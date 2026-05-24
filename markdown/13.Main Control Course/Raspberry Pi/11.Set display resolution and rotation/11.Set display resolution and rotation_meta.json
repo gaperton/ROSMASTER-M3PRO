@@ -1,0 +1,407 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Set display resolution and rotation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          41.935546875
+        ],
+        [
+          459.0205078125,
+          41.935546875
+        ],
+        [
+          459.0205078125,
+          65.04010009765625
+        ],
+        [
+          73.7939453125,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Set display resolution and rotation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          82.2265625
+        ],
+        [
+          228.40963745117188,
+          82.2265625
+        ],
+        [
+          228.40963745117188,
+          93.71405029296875
+        ],
+        [
+          73.7939453125,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "1. Display display settings",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          348.640625
+        ],
+        [
+          295.79498291015625,
+          348.640625
+        ],
+        [
+          295.79498291015625,
+          366.99346923828125
+        ],
+        [
+          74.5,
+          366.99346923828125
+        ]
+      ]
+    },
+    {
+      "title": "1.1. System settings adjustment",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          381.9423828125
+        ],
+        [
+          308.80224609375,
+          381.9423828125
+        ],
+        [
+          308.80224609375,
+          397.5654296875
+        ],
+        [
+          74.5,
+          397.5654296875
+        ]
+      ]
+    },
+    {
+      "title": "1.2. Modify configuration file adjustment",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          303.0048828125
+        ],
+        [
+          374.2784118652344,
+          303.0048828125
+        ],
+        [
+          374.2784118652344,
+          318.6279296875
+        ],
+        [
+          74.5,
+          318.6279296875
+        ]
+      ]
+    },
+    {
+      "title": "2. VNC remote display",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.50341796875,
+          608.4765625
+        ],
+        [
+          264.4113464355469,
+          608.4765625
+        ],
+        [
+          264.4113464355469,
+          625.7434997558594
+        ],
+        [
+          73.50341796875,
+          625.7434997558594
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Graphical interface",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.7939453125,
+          31.24609375
+        ],
+        [
+          246.4705047607422,
+          31.24609375
+        ],
+        [
+          246.4705047607422,
+          46.97039794921875
+        ],
+        [
+          73.7939453125,
+          46.97039794921875
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Command line",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          72.34130859375,
+          666.8453979492188
+        ],
+        [
+          211.8677520751953,
+          666.8453979492188
+        ],
+        [
+          211.8677520751953,
+          681.4703979492188
+        ],
+        [
+          72.34130859375,
+          681.4703979492188
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          108
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "ListItem",
+          8
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          152
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\11.Set display resolution and rotation"
+}

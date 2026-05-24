@@ -1,0 +1,469 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Robotic Arm Grasping + Multimodal\nVisual Understanding + SLAM\nNavigation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          65.78125
+        ],
+        [
+          466.96929931640625,
+          65.78125
+        ],
+        [
+          466.96929931640625,
+          141.0921630859375
+        ],
+        [
+          74.9560546875,
+          141.0921630859375
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          313.56304931640625
+        ],
+        [
+          229.14520263671875,
+          313.56304931640625
+        ],
+        [
+          229.14520263671875,
+          330.6335144042969
+        ],
+        [
+          75.52161407470703,
+          330.6335144042969
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          429.22265625
+        ],
+        [
+          200.3507080078125,
+          429.22265625
+        ],
+        [
+          200.3507080078125,
+          446.9375915527344
+        ],
+        [
+          74.375,
+          446.9375915527344
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          459.646484375
+        ],
+        [
+          250.1754150390625,
+          459.646484375
+        ],
+        [
+          250.1754150390625,
+          476.4279479980469
+        ],
+        [
+          75.24658203125,
+          476.4279479980469
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Starting the Agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          605.5986328125
+        ],
+        [
+          235.9358367919922,
+          605.5986328125
+        ],
+        [
+          235.9358367919922,
+          621.2452392578125
+        ],
+        [
+          74.9560546875,
+          621.2452392578125
+        ]
+      ]
+    },
+    {
+      "title": "3. Running Examples",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          244.6240234375
+        ],
+        [
+          253.7771759033203,
+          244.6240234375
+        ],
+        [
+          253.7771759033203,
+          262.351806640625
+        ],
+        [
+          74.375,
+          262.351806640625
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Starting the Program",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          275.8701171875
+        ],
+        [
+          258.6296691894531,
+          275.8701171875
+        ],
+        [
+          258.6296691894531,
+          291.84210205078125
+        ],
+        [
+          75.52161407470703,
+          291.84210205078125
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Test Cases",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          556.673828125
+        ],
+        [
+          178.4322967529297,
+          556.673828125
+        ],
+        [
+          178.4322967529297,
+          571.7223510742188
+        ],
+        [
+          74.08447265625,
+          571.7223510742188
+        ]
+      ]
+    },
+    {
+      "title": "4. Source Code Analysis",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.375,
+          722.771484375
+        ],
+        [
+          276.6344909667969,
+          722.771484375
+        ],
+        [
+          276.6344909667969,
+          741.0743026733398
+        ],
+        [
+          74.375,
+          741.0743026733398
+        ]
+      ]
+    },
+    {
+      "title": "putdown function:",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          75.24658203125,
+          101.9609375
+        ],
+        [
+          160.7051544189453,
+          101.9609375
+        ],
+        [
+          160.7051544189453,
+          112.9620361328125
+        ],
+        [
+          75.24658203125,
+          112.9620361328125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          106
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "ListItem",
+          8
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          37
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          112
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\a"
+}

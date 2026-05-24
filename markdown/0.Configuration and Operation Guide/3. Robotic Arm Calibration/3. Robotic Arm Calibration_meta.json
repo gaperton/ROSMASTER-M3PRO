@@ -1,0 +1,440 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Robotic arm calibration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          280.2232666015625,
+          64.5478515625
+        ],
+        [
+          280.2232666015625,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Jetson Orin Nano/NX version (skip the Raspberry\nPi and Jetson Nano versions)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          120.05078125
+        ],
+        [
+          513.29443359375,
+          120.05078125
+        ],
+        [
+          513.29443359375,
+          158.8037109375
+        ],
+        [
+          74.9560546875,
+          158.8037109375
+        ]
+      ]
+    },
+    {
+      "title": "1. Calibrate the median value",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          172.2646484375
+        ],
+        [
+          292.4570617675781,
+          172.2646484375
+        ],
+        [
+          292.4570617675781,
+          188.2940673828125
+        ],
+        [
+          74.9560546875,
+          188.2940673828125
+        ]
+      ]
+    },
+    {
+      "title": "2. Calibration offset",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          404.1435546875
+        ],
+        [
+          221.6551971435547,
+          404.1435546875
+        ],
+        [
+          221.6551971435547,
+          420.90228271484375
+        ],
+        [
+          74.66552734375,
+          420.90228271484375
+        ]
+      ]
+    },
+    {
+      "title": "2. Jetson Nano, Raspberry Pi version (skip for Orin\nmotherboard)",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          585.453125
+        ],
+        [
+          502.82159423828125,
+          585.453125
+        ],
+        [
+          502.82159423828125,
+          624.0196075439453
+        ],
+        [
+          74.66552734375,
+          624.0196075439453
+        ]
+      ]
+    },
+    {
+      "title": "1. Calibrate the median value",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.52161407470703,
+          31.6572265625
+        ],
+        [
+          292.4570617675781,
+          31.6572265625
+        ],
+        [
+          292.4570617675781,
+          47.97894287109375
+        ],
+        [
+          75.52161407470703,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "2. Calibration offset",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          404.1435546875
+        ],
+        [
+          221.6551971435547,
+          404.1435546875
+        ],
+        [
+          221.6551971435547,
+          420.90228271484375
+        ],
+        [
+          75.24658203125,
+          420.90228271484375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          75
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          10
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          37
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          10
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3. Robotic Arm Calibration"
+}

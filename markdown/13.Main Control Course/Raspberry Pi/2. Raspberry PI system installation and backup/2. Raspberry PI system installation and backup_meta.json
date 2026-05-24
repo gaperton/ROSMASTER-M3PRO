@@ -1,0 +1,341 @@
+{
+  "table_of_contents": [
+    {
+      "title": "2. Raspberry PI system installation and\nbackup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          65.3701171875
+        ],
+        [
+          505.5927429199219,
+          65.3701171875
+        ],
+        [
+          505.5927429199219,
+          114.8299560546875
+        ],
+        [
+          74.08447265625,
+          114.8299560546875
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Installation through Imgaer",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          201.455078125
+        ],
+        [
+          308.9873352050781,
+          201.455078125
+        ],
+        [
+          308.9873352050781,
+          216.80731201171875
+        ],
+        [
+          75.24658203125,
+          216.80731201171875
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Installation through Win32DiskImager",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          32.890625
+        ],
+        [
+          385.5115661621094,
+          32.890625
+        ],
+        [
+          385.5115661621094,
+          47.97894287109375
+        ],
+        [
+          74.9560546875,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "Prepare:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.52161407470703,
+          62.4921875
+        ],
+        [
+          115.14942169189453,
+          62.4921875
+        ],
+        [
+          115.14942169189453,
+          73.1939697265625
+        ],
+        [
+          75.52161407470703,
+          73.1939697265625
+        ]
+      ]
+    },
+    {
+      "title": "Burning system:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          187.4765625
+        ],
+        [
+          149.72923278808594,
+          187.4765625
+        ],
+        [
+          149.72923278808594,
+          197.7518310546875
+        ],
+        [
+          74.66552734375,
+          197.7518310546875
+        ]
+      ]
+    },
+    {
+      "title": "2.3. Backup (restore) Raspberry Pi under Windows",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.375,
+          692.34765625
+        ],
+        [
+          441.10235595703125,
+          692.34765625
+        ],
+        [
+          441.10235595703125,
+          709.7863159179688
+        ],
+        [
+          74.375,
+          709.7863159179688
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          27
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          49
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "ListItem",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          17
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\2. Raspberry PI system installation and backup"
+}

@@ -1,0 +1,174 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Image mirroring",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          64.5478515625
+        ],
+        [
+          217.37094116210938,
+          64.5478515625
+        ],
+        [
+          217.37094116210938,
+          83.01849365234375
+        ],
+        [
+          75.24658203125,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "Horizontal mirror transformation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          186.2431640625
+        ],
+        [
+          240.9447479248047,
+          186.2431640625
+        ],
+        [
+          240.9447479248047,
+          197.75177001953125
+        ],
+        [
+          74.375,
+          197.75177001953125
+        ]
+      ]
+    },
+    {
+      "title": "Vertical mirror transformation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.212890625,
+          352.751953125
+        ],
+        [
+          227.34693908691406,
+          352.751953125
+        ],
+        [
+          227.34693908691406,
+          363.5788269042969
+        ],
+        [
+          73.212890625,
+          363.5788269042969
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          91
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Equation",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          189
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\9. Image Mirroring"
+}

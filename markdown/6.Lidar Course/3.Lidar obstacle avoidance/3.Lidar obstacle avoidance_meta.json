@@ -1,0 +1,322 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Lidar obstacle avoidance",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.958984375
+        ],
+        [
+          351.2132568359375,
+          64.958984375
+        ],
+        [
+          351.2132568359375,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Lidar obstacle avoidance",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          107.3056640625
+        ],
+        [
+          185.87017822265625,
+          107.3056640625
+        ],
+        [
+          185.87017822265625,
+          117.25506591796875
+        ],
+        [
+          74.9560546875,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          216.255859375
+        ],
+        [
+          241.83529663085938,
+          216.255859375
+        ],
+        [
+          241.83529663085938,
+          232.56463623046875
+        ],
+        [
+          75.24658203125,
+          232.56463623046875
+        ]
+      ]
+    },
+    {
+      "title": "2. Program startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          452.24609375
+        ],
+        [
+          215.96163940429688,
+          452.24609375
+        ],
+        [
+          215.96163940429688,
+          468.69140625
+        ],
+        [
+          74.66552734375,
+          468.69140625
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code analysis",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          228.99978637695312,
+          32.068359375
+        ],
+        [
+          228.99978637695312,
+          47.97906494140625
+        ],
+        [
+          75.24658203125,
+          47.97906494140625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          79
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          231
+        ],
+        [
+          "Line",
+          46
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          721
+        ],
+        [
+          "Line",
+          54
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          503
+        ],
+        [
+          "Line",
+          57
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          111
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Lidar obstacle avoidance"
+}

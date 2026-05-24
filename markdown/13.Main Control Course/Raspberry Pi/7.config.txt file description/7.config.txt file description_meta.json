@@ -1,0 +1,390 @@
+{
+  "table_of_contents": [
+    {
+      "title": "config.txt file description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          41.935546875
+        ],
+        [
+          353.9837646484375,
+          41.935546875
+        ],
+        [
+          353.9837646484375,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "config.txt file description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          83.048828125
+        ],
+        [
+          186.3685302734375,
+          83.048828125
+        ],
+        [
+          186.3685302734375,
+          93.71405029296875
+        ],
+        [
+          74.08447265625,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "Check status",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          277.5146484375
+        ],
+        [
+          170.5228729248047,
+          277.5146484375
+        ],
+        [
+          170.5228729248047,
+          293.72015380859375
+        ],
+        [
+          74.08447265625,
+          293.72015380859375
+        ]
+      ]
+    },
+    {
+      "title": "file format",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          551.3451538085938
+        ],
+        [
+          154.49388122558594,
+          551.3451538085938
+        ],
+        [
+          154.49388122558594,
+          565.9701538085938
+        ],
+        [
+          74.08447265625,
+          565.9701538085938
+        ]
+      ]
+    },
+    {
+      "title": "Common options",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          235.990234375
+        ],
+        [
+          201.4693603515625,
+          235.990234375
+        ],
+        [
+          201.4693603515625,
+          252.47021484375
+        ],
+        [
+          73.7939453125,
+          252.47021484375
+        ]
+      ]
+    },
+    {
+      "title": "camera_auto_detect",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          83.96240234375,
+          266.0029296875
+        ],
+        [
+          221.57656860351562,
+          266.0029296875
+        ],
+        [
+          221.57656860351562,
+          279.6968994140625
+        ],
+        [
+          83.96240234375,
+          279.6968994140625
+        ]
+      ]
+    },
+    {
+      "title": "display_auto_detect",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          82.80029296875,
+          396.7431640625
+        ],
+        [
+          219.09033203125,
+          396.7431640625
+        ],
+        [
+          219.09033203125,
+          409.4469299316406
+        ],
+        [
+          82.80029296875,
+          409.4469299316406
+        ]
+      ]
+    },
+    {
+      "title": "dtoverlay",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          83.38134765625,
+          527.4833984375
+        ],
+        [
+          157.49063110351562,
+          527.4833984375
+        ],
+        [
+          157.49063110351562,
+          539.9469299316406
+        ],
+        [
+          83.38134765625,
+          539.9469299316406
+        ]
+      ]
+    },
+    {
+      "title": "GPIO control",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          658.5952758789062
+        ],
+        [
+          168.6801300048828,
+          658.5952758789062
+        ],
+        [
+          168.6801300048828,
+          673.2202758789062
+        ],
+        [
+          74.08447265625,
+          673.2202758789062
+        ]
+      ]
+    },
+    {
+      "title": "Example:",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          270.525390625
+        ],
+        [
+          116.86050415039062,
+          270.525390625
+        ],
+        [
+          116.86050415039062,
+          282.17333984375
+        ],
+        [
+          74.08447265625,
+          282.17333984375
+        ]
+      ]
+    },
+    {
+      "title": "illustrate",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          476.5029296875
+        ],
+        [
+          144.431884765625,
+          476.5029296875
+        ],
+        [
+          144.431884765625,
+          491.72003173828125
+        ],
+        [
+          73.7939453125,
+          491.72003173828125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          77
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          103
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          147
+        ],
+        [
+          "TableCell",
+          27
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\7.config.txt file description"
+}

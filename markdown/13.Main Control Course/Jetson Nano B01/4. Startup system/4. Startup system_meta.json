@@ -1,0 +1,140 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Jetson Nano B01 SUB board startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          65.78125
+        ],
+        [
+          465.428466796875,
+          65.78125
+        ],
+        [
+          465.428466796875,
+          88.5677490234375
+        ],
+        [
+          74.9560546875,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Power supply",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.5498046875
+        ],
+        [
+          212.0506134033203,
+          101.5498046875
+        ],
+        [
+          212.0506134033203,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Start",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          172.67578125
+        ],
+        [
+          139.2694091796875,
+          172.67578125
+        ],
+        [
+          139.2694091796875,
+          190.31829833984375
+        ],
+        [
+          74.9560546875,
+          190.31829833984375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          36
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4. Startup system"
+}

@@ -1,0 +1,366 @@
+{
+  "table_of_contents": [
+    {
+      "title": "RTAB-Map Mapping",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          244.18856811523438,
+          65.3701171875
+        ],
+        [
+          244.18856811523438,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Contents",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          229.0009765625
+        ],
+        [
+          160.44981384277344,
+          229.0009765625
+        ],
+        [
+          160.44981384277344,
+          243.81988525390625
+        ],
+        [
+          75.52161407470703,
+          243.81988525390625
+        ]
+      ]
+    },
+    {
+      "title": "1.1 Introduction to RTAB-Map",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          296.4267578125
+        ],
+        [
+          256.9104919433594,
+          296.4267578125
+        ],
+        [
+          256.9104919433594,
+          310.0772705078125
+        ],
+        [
+          75.52161407470703,
+          310.0772705078125
+        ]
+      ]
+    },
+    {
+      "title": "1.2. RTAB-Map Working Principle",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          461.7021484375
+        ],
+        [
+          274.94451904296875,
+          461.7021484375
+        ],
+        [
+          274.94451904296875,
+          474.4036560058594
+        ],
+        [
+          75.52161407470703,
+          474.4036560058594
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          32.068359375
+        ],
+        [
+          182.5179901123047,
+          32.068359375
+        ],
+        [
+          182.5179901123047,
+          47.9788818359375
+        ],
+        [
+          74.66552734375,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "3. Program Startup",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          298.482421875
+        ],
+        [
+          216.73712158203125,
+          298.482421875
+        ],
+        [
+          216.73712158203125,
+          313.60223388671875
+        ],
+        [
+          74.9560546875,
+          313.60223388671875
+        ]
+      ]
+    },
+    {
+      "title": "4. Instruction analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          418.9443359375
+        ],
+        [
+          238.43728637695312,
+          418.9443359375
+        ],
+        [
+          238.43728637695312,
+          435.15863037109375
+        ],
+        [
+          74.66552734375,
+          435.15863037109375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          97
+        ],
+        [
+          "Line",
+          41
+        ],
+        [
+          "ListItem",
+          21
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "ListGroup",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          123
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          71
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "ListItem",
+          12
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\12.RTAB-Map mapping"
+}

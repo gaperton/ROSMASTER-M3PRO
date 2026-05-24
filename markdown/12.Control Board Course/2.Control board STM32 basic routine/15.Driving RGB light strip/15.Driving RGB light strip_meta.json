@@ -1,0 +1,383 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Driving RGB light strips",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          274.8079528808594,
+          65.3701171875
+        ],
+        [
+          274.8079528808594,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Experimental Purpose",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          237.634765625
+        ],
+        [
+          256.0092468261719,
+          237.634765625
+        ],
+        [
+          256.0092468261719,
+          253.57440185546875
+        ],
+        [
+          74.66552734375,
+          253.57440185546875
+        ]
+      ]
+    },
+    {
+      "title": "2. Hardware Connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          329.728515625
+        ],
+        [
+          254.59420776367188,
+          329.728515625
+        ],
+        [
+          254.59420776367188,
+          345.8672790527344
+        ],
+        [
+          74.66552734375,
+          345.8672790527344
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code analysis",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          32.890625
+        ],
+        [
+          228.99978637695312,
+          32.890625
+        ],
+        [
+          228.99978637695312,
+          47.9788818359375
+        ],
+        [
+          75.24658203125,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "4. Compile, download and burn firmware",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.08447265625,
+          262.302734375
+        ],
+        [
+          376.22412109375,
+          262.302734375
+        ],
+        [
+          376.22412109375,
+          278.33538818359375
+        ],
+        [
+          74.08447265625,
+          278.33538818359375
+        ]
+      ]
+    },
+    {
+      "title": "5. Experimental Results",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.375,
+          650.412109375
+        ],
+        [
+          249.17703247070312,
+          650.412109375
+        ],
+        [
+          249.17703247070312,
+          667.0160522460938
+        ],
+        [
+          74.375,
+          667.0160522460938
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          53
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          307
+        ],
+        [
+          "Line",
+          49
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          337
+        ],
+        [
+          "Line",
+          51
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          221
+        ],
+        [
+          "Line",
+          50
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Picture",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\15.Driving RGB light strip"
+}

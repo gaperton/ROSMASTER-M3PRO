@@ -1,0 +1,335 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Subscribe to the speed control topic",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          64.5478515625
+        ],
+        [
+          384.1211242675781,
+          64.5478515625
+        ],
+        [
+          384.1211242675781,
+          83.01849365234375
+        ],
+        [
+          74.66552734375,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Experimental Purpose",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          238.45703125
+        ],
+        [
+          256.0092468261719,
+          238.45703125
+        ],
+        [
+          256.0092468261719,
+          253.57440185546875
+        ],
+        [
+          74.66552734375,
+          253.57440185546875
+        ]
+      ]
+    },
+    {
+      "title": "2. Hardware Connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          330.55078125
+        ],
+        [
+          254.59420776367188,
+          330.55078125
+        ],
+        [
+          254.59420776367188,
+          345.8672790527344
+        ],
+        [
+          74.66552734375,
+          345.8672790527344
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code analysis",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          640.9560546875
+        ],
+        [
+          228.99978637695312,
+          640.9560546875
+        ],
+        [
+          228.99978637695312,
+          657.2619018554688
+        ],
+        [
+          75.52161407470703,
+          657.2619018554688
+        ]
+      ]
+    },
+    {
+      "title": "4. Compile, download and burn firmware",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.50341796875,
+          593.67578125
+        ],
+        [
+          376.22412109375,
+          593.67578125
+        ],
+        [
+          376.22412109375,
+          610.7404174804688
+        ],
+        [
+          73.50341796875,
+          610.7404174804688
+        ]
+      ]
+    },
+    {
+      "title": "5. Experimental Results",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          261.0693359375
+        ],
+        [
+          249.17703247070312,
+          261.0693359375
+        ],
+        [
+          249.17703247070312,
+          277.58538818359375
+        ],
+        [
+          74.66552734375,
+          277.58538818359375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          57
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          121
+        ],
+        [
+          "Line",
+          34
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          85
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          83
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\6.Subscribe to the rate control topic"
+}

@@ -1,0 +1,118 @@
+{
+  "table_of_contents": [
+    {
+      "title": "20.Back up system image",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          65.78125
+        ],
+        [
+          292.4407043457031,
+          65.78125
+        ],
+        [
+          292.4407043457031,
+          83.01849365234375
+        ],
+        [
+          74.66552734375,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          96.6162109375
+        ],
+        [
+          146.85252380371094,
+          96.6162109375
+        ],
+        [
+          146.85252380371094,
+          107.7099609375
+        ],
+        [
+          74.9560546875,
+          107.7099609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Backup (restore) system image on Windows",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          159.1083984375
+        ],
+        [
+          299.9183654785156,
+          159.1083984375
+        ],
+        [
+          299.9183654785156,
+          169.9888916015625
+        ],
+        [
+          74.08447265625,
+          169.9888916015625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          17
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\20.Back up system image"
+}

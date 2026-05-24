@@ -1,0 +1,507 @@
+{
+  "table_of_contents": [
+    {
+      "title": "AI Application Development - Chatbot",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          65.3701171875
+        ],
+        [
+          491.2197265625,
+          65.3701171875
+        ],
+        [
+          491.2197265625,
+          88.5677490234375
+        ],
+        [
+          74.66552734375,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "AI Application Development - Chatbot",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          106.89453125
+        ],
+        [
+          241.94056701660156,
+          106.89453125
+        ],
+        [
+          241.94056701660156,
+          117.25506591796875
+        ],
+        [
+          74.9560546875,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          206.7998046875
+        ],
+        [
+          229.14520263671875,
+          206.7998046875
+        ],
+        [
+          229.14520263671875,
+          224.08404541015625
+        ],
+        [
+          75.52161407470703,
+          224.08404541015625
+        ]
+      ]
+    },
+    {
+      "title": "2. Starting the Dify Service",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          261.0693359375
+        ],
+        [
+          303.2633972167969,
+          261.0693359375
+        ],
+        [
+          303.2633972167969,
+          279.60980224609375
+        ],
+        [
+          75.24658203125,
+          279.60980224609375
+        ]
+      ]
+    },
+    {
+      "title": "3. Chatbot",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          787.3193359375
+        ],
+        [
+          165.57493591308594,
+          787.3193359375
+        ],
+        [
+          165.57493591308594,
+          805.6042098999023
+        ],
+        [
+          74.66552734375,
+          805.6042098999023
+        ]
+      ]
+    },
+    {
+      "title": "# Role Definition",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          82.80029296875,
+          62.4921875
+        ],
+        [
+          176.9552459716797,
+          62.4921875
+        ],
+        [
+          176.9552459716797,
+          72.9451904296875
+        ],
+        [
+          82.80029296875,
+          72.9451904296875
+        ]
+      ]
+    },
+    {
+      "title": "# Conversation Rules",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          84.2529296875,
+          130.3291015625
+        ],
+        [
+          192.82443237304688,
+          130.3291015625
+        ],
+        [
+          192.82443237304688,
+          140.4765625
+        ],
+        [
+          84.2529296875,
+          140.4765625
+        ]
+      ]
+    },
+    {
+      "title": "# Start Conversation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          84.54345703125,
+          319.4501953125
+        ],
+        [
+          192.82443237304688,
+          319.4501953125
+        ],
+        [
+          192.82443237304688,
+          329.5643310546875
+        ],
+        [
+          84.54345703125,
+          329.5643310546875
+        ]
+      ]
+    },
+    {
+      "title": "[!TIP]",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          89.19189453125,
+          403.732421875
+        ],
+        [
+          113.84718322753906,
+          403.732421875
+        ],
+        [
+          113.84718322753906,
+          413.852294921875
+        ],
+        [
+          89.19189453125,
+          413.852294921875
+        ]
+      ]
+    },
+    {
+      "title": "[!TIP]",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          89.19189453125,
+          721.94921875
+        ],
+        [
+          113.84718322753906,
+          721.94921875
+        ],
+        [
+          113.84718322753906,
+          732.750358581543
+        ],
+        [
+          89.19189453125,
+          732.750358581543
+        ]
+      ]
+    },
+    {
+      "title": "4. Accessing the Chatbot via Web",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.7939453125,
+          253.6689453125
+        ],
+        [
+          358.0419006347656,
+          253.6689453125
+        ],
+        [
+          358.0419006347656,
+          271.35577392578125
+        ],
+        [
+          73.7939453125,
+          271.35577392578125
+        ]
+      ]
+    },
+    {
+      "title": "[!TIP]",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          88.61083984375,
+          709.615234375
+        ],
+        [
+          113.84718322753906,
+          709.615234375
+        ],
+        [
+          113.84718322753906,
+          720.744743347168
+        ],
+        [
+          88.61083984375,
+          720.744743347168
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          58
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          369
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          14
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          10
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\AI Large Model Development - chatbot"
+}

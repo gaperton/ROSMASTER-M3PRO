@@ -1,0 +1,580 @@
+{
+  "table_of_contents": [
+    {
+      "title": "14. ROS2 DDS",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          66.603515625
+        ],
+        [
+          223.25140380859375,
+          66.603515625
+        ],
+        [
+          223.25140380859375,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to DDS",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.5498046875
+        ],
+        [
+          266.8980712890625,
+          101.5498046875
+        ],
+        [
+          266.8980712890625,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "References",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          268.05859375
+        ],
+        [
+          131.06741333007812,
+          268.05859375
+        ],
+        [
+          131.06741333007812,
+          279.539794921875
+        ],
+        [
+          74.9560546875,
+          279.539794921875
+        ]
+      ]
+    },
+    {
+      "title": "2. Communication Model",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          360.5634765625
+        ],
+        [
+          289.4563903808594,
+          360.5634765625
+        ],
+        [
+          289.4563903808594,
+          378.6558532714844
+        ],
+        [
+          74.9560546875,
+          378.6558532714844
+        ]
+      ]
+    },
+    {
+      "title": "3. Application of DDS in ROS2",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          272.9921875
+        ],
+        [
+          324.8974914550781,
+          272.9921875
+        ],
+        [
+          324.8974914550781,
+          291.61541748046875
+        ],
+        [
+          74.9560546875,
+          291.61541748046875
+        ]
+      ]
+    },
+    {
+      "title": "4. Quality of Service (QoS)",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          651.234375
+        ],
+        [
+          295.5331726074219,
+          651.234375
+        ],
+        [
+          295.5331726074219,
+          669.0407257080078
+        ],
+        [
+          74.9560546875,
+          669.0407257080078
+        ]
+      ]
+    },
+    {
+      "title": "5. Test Cases",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.52161407470703,
+          266.4140625
+        ],
+        [
+          185.8539276123047,
+          266.4140625
+        ],
+        [
+          185.8539276123047,
+          284.86236572265625
+        ],
+        [
+          75.52161407470703,
+          284.86236572265625
+        ]
+      ]
+    },
+    {
+      "title": "5.1 Case 1\u2014Configuring DDS via the Command Line",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          298.482421875
+        ],
+        [
+          449.41229248046875,
+          298.482421875
+        ],
+        [
+          449.41229248046875,
+          314.35284423828125
+        ],
+        [
+          74.66552734375,
+          314.35284423828125
+        ]
+      ]
+    },
+    {
+      "title": "5.2 Example 2\u2014Configuring QoS Service Policies for Topic\nNodes",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.7939453125,
+          32.068359375
+        ],
+        [
+          491.66485595703125,
+          32.068359375
+        ],
+        [
+          491.66485595703125,
+          68.23822021484375
+        ],
+        [
+          73.7939453125,
+          68.23822021484375
+        ]
+      ]
+    },
+    {
+      "title": "Advanced Robot Development:",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          350.28515625
+        ],
+        [
+          226.2664337158203,
+          350.28515625
+        ],
+        [
+          226.2664337158203,
+          362.0782470703125
+        ],
+        [
+          75.24658203125,
+          362.0782470703125
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          221.962890625,
+          511.0380859375
+        ],
+        [
+          349.794921875,
+          511.0380859375
+        ],
+        [
+          349.794921875,
+          521.7275390625
+        ],
+        [
+          221.962890625,
+          521.7275390625
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          222.83447265625,
+          612.9990234375
+        ],
+        [
+          366.35498046875,
+          612.9990234375
+        ],
+        [
+          366.35498046875,
+          628.6220703125
+        ],
+        [
+          222.83447265625,
+          628.6220703125
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          223.7060546875,
+          671.3798828125
+        ],
+        [
+          309.7021484375,
+          671.3798828125
+        ],
+        [
+          309.7021484375,
+          687.0029296875
+        ],
+        [
+          223.7060546875,
+          687.0029296875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          62
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          61
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          87
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          363
+        ],
+        [
+          "Line",
+          47
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          244
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          89
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          5
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          24
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\14.ROS2 DDS"
+}

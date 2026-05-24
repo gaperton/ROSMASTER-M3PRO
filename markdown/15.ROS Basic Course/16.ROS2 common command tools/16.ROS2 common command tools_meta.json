@@ -1,0 +1,844 @@
+{
+  "table_of_contents": [
+    {
+      "title": "16. ROS2 Common Command Tools",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.958984375
+        ],
+        [
+          457.9681091308594,
+          64.958984375
+        ],
+        [
+          457.9681091308594,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Package Management Tool ros2 pkg",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          102.3720703125
+        ],
+        [
+          402.61920166015625,
+          102.3720703125
+        ],
+        [
+          402.61920166015625,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "1.1. ros2 pkg create",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          134.029296875
+        ],
+        [
+          219.283447265625,
+          134.029296875
+        ],
+        [
+          219.283447265625,
+          149.27593994140625
+        ],
+        [
+          75.52161407470703,
+          149.27593994140625
+        ]
+      ]
+    },
+    {
+      "title": "1.2, ros2 pkg list",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          415.6552734375
+        ],
+        [
+          194.52784729003906,
+          415.6552734375
+        ],
+        [
+          194.52784729003906,
+          431.4070129394531
+        ],
+        [
+          75.52161407470703,
+          431.4070129394531
+        ]
+      ]
+    },
+    {
+      "title": "1.3. ros2 pkg executables",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          32.890625
+        ],
+        [
+          259.87286376953125,
+          32.890625
+        ],
+        [
+          259.87286376953125,
+          47.9788818359375
+        ],
+        [
+          75.52161407470703,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "2. Node Run ros2 run",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          197.34375
+        ],
+        [
+          257.2294006347656,
+          197.34375
+        ],
+        [
+          257.2294006347656,
+          215.079833984375
+        ],
+        [
+          75.24658203125,
+          215.079833984375
+        ]
+      ]
+    },
+    {
+      "title": "3. Node-Related Tools: ros2 node",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          622.0439453125
+        ],
+        [
+          355.7890625,
+          622.0439453125
+        ],
+        [
+          355.7890625,
+          641.2779083251953
+        ],
+        [
+          74.66552734375,
+          641.2779083251953
+        ]
+      ]
+    },
+    {
+      "title": "3.1. ros2 node list",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          654.5234375
+        ],
+        [
+          204.43356323242188,
+          654.5234375
+        ],
+        [
+          204.43356323242188,
+          670.7682495117188
+        ],
+        [
+          75.52161407470703,
+          670.7682495117188
+        ]
+      ]
+    },
+    {
+      "title": "3.2. ros2 node info",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          32.4794921875
+        ],
+        [
+          211.5819549560547,
+          32.4794921875
+        ],
+        [
+          211.5819549560547,
+          47.97906494140625
+        ],
+        [
+          74.9560546875,
+          47.97906494140625
+        ]
+      ]
+    },
+    {
+      "title": "4. Topic-Related Tools: ros2 topic",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          406.6103515625
+        ],
+        [
+          355.3916015625,
+          406.6103515625
+        ],
+        [
+          355.3916015625,
+          424.4272155761719
+        ],
+        [
+          74.66552734375,
+          424.4272155761719
+        ]
+      ]
+    },
+    {
+      "title": "4.1. ros2 topic list",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          437.8564453125
+        ],
+        [
+          204.5213623046875,
+          437.8564453125
+        ],
+        [
+          204.5213623046875,
+          453.91766357421875
+        ],
+        [
+          74.66552734375,
+          453.91766357421875
+        ]
+      ]
+    },
+    {
+      "title": "4.2. ros2 topic info",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          648.767578125
+        ],
+        [
+          211.66973876953125,
+          648.767578125
+        ],
+        [
+          211.66973876953125,
+          665.212890625
+        ],
+        [
+          74.9560546875,
+          665.212890625
+        ]
+      ]
+    },
+    {
+      "title": "4.3, ros2 topic type",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.52161407470703,
+          87.982421875
+        ],
+        [
+          215.34750366210938,
+          87.982421875
+        ],
+        [
+          215.34750366210938,
+          103.50457763671875
+        ],
+        [
+          75.52161407470703,
+          103.50457763671875
+        ]
+      ]
+    },
+    {
+      "title": "4.4, ros2 topic hz",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.24658203125,
+          262.302734375
+        ],
+        [
+          199.04371643066406,
+          262.302734375
+        ],
+        [
+          199.04371643066406,
+          277.58538818359375
+        ],
+        [
+          75.24658203125,
+          277.58538818359375
+        ]
+      ]
+    },
+    {
+      "title": "4.5, ros2 topic echo",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          548.451171875
+        ],
+        [
+          217.77120971679688,
+          548.451171875
+        ],
+        [
+          217.77120971679688,
+          565.7191772460938
+        ],
+        [
+          74.66552734375,
+          565.7191772460938
+        ]
+      ]
+    },
+    {
+      "title": "4.5, ros2 topic pub",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          260.658203125
+        ],
+        [
+          211.1185302734375,
+          260.658203125
+        ],
+        [
+          211.1185302734375,
+          276.83514404296875
+        ],
+        [
+          74.66552734375,
+          276.83514404296875
+        ]
+      ]
+    },
+    {
+      "title": "Example:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.52161407470703,
+          549.6845703125
+        ],
+        [
+          117.90019989013672,
+          549.6845703125
+        ],
+        [
+          117.90019989013672,
+          560.9205322265625
+        ],
+        [
+          75.52161407470703,
+          560.9205322265625
+        ]
+      ]
+    },
+    {
+      "title": "5. Interface-Related Tools: ros2 interface",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          220.7783203125
+        ],
+        [
+          423.1319274902344,
+          220.7783203125
+        ],
+        [
+          423.1319274902344,
+          239.09088134765625
+        ],
+        [
+          74.9560546875,
+          239.09088134765625
+        ]
+      ]
+    },
+    {
+      "title": "5.1. ros2 interface list",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          252.0244140625
+        ],
+        [
+          234.23854064941406,
+          252.0244140625
+        ],
+        [
+          234.23854064941406,
+          268.58099365234375
+        ],
+        [
+          74.9560546875,
+          268.58099365234375
+        ]
+      ]
+    },
+    {
+      "title": "5.2. ros2 interface show",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          665.8905944824219
+        ],
+        [
+          252.1928253173828,
+          665.8905944824219
+        ],
+        [
+          252.1928253173828,
+          680.5223999023438
+        ],
+        [
+          74.66552734375,
+          680.5223999023438
+        ]
+      ]
+    },
+    {
+      "title": "6. Service-Related Tools ros2 service",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          271.7587890625
+        ],
+        [
+          384.0064697265625,
+          271.7587890625
+        ],
+        [
+          384.0064697265625,
+          290.11480712890625
+        ],
+        [
+          75.24658203125,
+          290.11480712890625
+        ]
+      ]
+    },
+    {
+      "title": "6.1. ros2 service list",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          304.23828125
+        ],
+        [
+          219.3579864501953,
+          304.23828125
+        ],
+        [
+          219.3579864501953,
+          319.60491943359375
+        ],
+        [
+          75.24658203125,
+          319.60491943359375
+        ]
+      ]
+    },
+    {
+      "title": "6.2, ros2 service call",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          585.8642578125
+        ],
+        [
+          221.53929138183594,
+          585.8642578125
+        ],
+        [
+          221.53929138183594,
+          601.7362670898438
+        ],
+        [
+          75.24658203125,
+          601.7362670898438
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          60
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          47
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          39
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          81
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "ListItem",
+          8
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListGroup",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          41
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          8
+        ],
+        [
+          "Span",
+          4
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\16.ROS2 common command tools"
+}

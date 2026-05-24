@@ -1,0 +1,478 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Transfer files remotely",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          41.935546875
+        ],
+        [
+          327.97320556640625,
+          41.935546875
+        ],
+        [
+          327.97320556640625,
+          65.04010009765625
+        ],
+        [
+          74.08447265625,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Transfer files remotely",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.212890625,
+          82.6376953125
+        ],
+        [
+          175.94793701171875,
+          82.6376953125
+        ],
+        [
+          175.94793701171875,
+          93.71405029296875
+        ],
+        [
+          73.212890625,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "1. WinSCP software",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          238.0458984375
+        ],
+        [
+          240.88783264160156,
+          238.0458984375
+        ],
+        [
+          240.88783264160156,
+          256.743408203125
+        ],
+        [
+          74.5,
+          256.743408203125
+        ]
+      ]
+    },
+    {
+      "title": "\u7ee7\u7eed\u8fde\u63a5\u672a\u77e5\u670d\u52a1\u5668,\u5e76\u5c06\u5176\u4e3b\u673a\u5bc6\u94a5\u6dfb\u52a0\u5230\u7f13\u5b58\u4e2d\u5417?",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          141.63098236775818,
+          59.23241317898486
+        ],
+        [
+          437.63224181360204,
+          59.23241317898486
+        ],
+        [
+          437.63224181360204,
+          71.9786286731968
+        ],
+        [
+          141.63098236775818,
+          71.9786286731968
+        ]
+      ]
+    },
+    {
+      "title": "\u670d\u52a1\u5668Ed25519\u7684\u5bc6\u94a5\u660e\u7ec6\u662f:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          140.8816120906801,
+          112.2392578125
+        ],
+        [
+          266.02644836272043,
+          112.2392578125
+        ],
+        [
+          266.02644836272043,
+          121.46393588601958
+        ],
+        [
+          140.8816120906801,
+          121.46393588601958
+        ]
+      ]
+    },
+    {
+      "title": "\u5c06\u5bc6\u94a5\u6307\u7eb9\u590d\u5236\u5230\u526a\u8d34\u677f(C)",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          377.39501953125,
+          226.123046875
+        ],
+        [
+          489.33879093198993,
+          226.123046875
+        ],
+        [
+          489.33879093198993,
+          236.92965271593943
+        ],
+        [
+          377.39501953125,
+          236.92965271593943
+        ]
+      ]
+    },
+    {
+      "title": "Connection success interface:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          72.68891687657431,
+          292.413178984862
+        ],
+        [
+          209.07430730478592,
+          292.413178984862
+        ],
+        [
+          209.07430730478592,
+          301.41050756901154
+        ],
+        [
+          72.68891687657431,
+          301.41050756901154
+        ]
+      ]
+    },
+    {
+      "title": "Transfer files",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          72.68891687657431,
+          614.232421875
+        ],
+        [
+          170.85642317380353,
+          614.232421875
+        ],
+        [
+          170.85642317380353,
+          627.388671875
+        ],
+        [
+          72.68891687657431,
+          627.388671875
+        ]
+      ]
+    },
+    {
+      "title": "2. SCP command",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          381.4308776855469
+        ],
+        [
+          217.5804443359375,
+          381.4308776855469
+        ],
+        [
+          217.5804443359375,
+          398.4933776855469
+        ],
+        [
+          74.08447265625,
+          398.4933776855469
+        ]
+      ]
+    },
+    {
+      "title": "1.1. Copy the file to the Raspberry Pi motherboard",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5,
+          506.515625
+        ],
+        [
+          442.31390380859375,
+          506.515625
+        ],
+        [
+          442.31390380859375,
+          522.9609375
+        ],
+        [
+          74.5,
+          522.9609375
+        ]
+      ]
+    },
+    {
+      "title": "Single file copy command: scp file name username@IP address:path",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          537.3505859375
+        ],
+        [
+          405.2103271484375,
+          537.3505859375
+        ],
+        [
+          405.2103271484375,
+          547.6734619140625
+        ],
+        [
+          74.375,
+          547.6734619140625
+        ]
+      ]
+    },
+    {
+      "title": "1.2. Copy files from the Raspberry Pi motherboard to the\ncurrent computer",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          72.92236328125,
+          179.25390625
+        ],
+        [
+          488.8653564453125,
+          179.25390625
+        ],
+        [
+          488.8653564453125,
+          216.47039794921875
+        ],
+        [
+          72.92236328125,
+          216.47039794921875
+        ]
+      ]
+    },
+    {
+      "title": "Single file copy command: scp username@IP address: file name",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.5,
+          229.8232421875
+        ],
+        [
+          382.3043518066406,
+          229.8232421875
+        ],
+        [
+          382.3043518066406,
+          241.6737060546875
+        ],
+        [
+          74.5,
+          241.6737060546875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          95
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          121
+        ],
+        [
+          "Span",
+          13
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          103
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\10.Transfer files remotely"
+}

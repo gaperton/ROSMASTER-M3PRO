@@ -1,0 +1,274 @@
+{
+  "table_of_contents": [
+    {
+      "title": "SSD expansion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          66.1923828125
+        ],
+        [
+          239.17666625976562,
+          66.1923828125
+        ],
+        [
+          239.17666625976562,
+          88.5677490234375
+        ],
+        [
+          75.24658203125,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "SSD expansion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          107.3056640625
+        ],
+        [
+          141.0269317626953,
+          107.3056640625
+        ],
+        [
+          141.0269317626953,
+          117.25506591796875
+        ],
+        [
+          74.08447265625,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Install GParted",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          268.880859375
+        ],
+        [
+          225.42176818847656,
+          268.880859375
+        ],
+        [
+          225.42176818847656,
+          287.11328125
+        ],
+        [
+          75.52161407470703,
+          287.11328125
+        ]
+      ]
+    },
+    {
+      "title": "2. Use GParted",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          638.078125
+        ],
+        [
+          203.38385009765625,
+          638.078125
+        ],
+        [
+          203.38385009765625,
+          657.0351715087891
+        ],
+        [
+          75.52161407470703,
+          657.0351715087891
+        ]
+      ]
+    },
+    {
+      "title": "3. Adjust partitions",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          319.0390625
+        ],
+        [
+          240.9914093017578,
+          319.0390625
+        ],
+        [
+          240.9914093017578,
+          337.3866882324219
+        ],
+        [
+          75.24658203125,
+          337.3866882324219
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Line",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4.SSD expansion"
+}

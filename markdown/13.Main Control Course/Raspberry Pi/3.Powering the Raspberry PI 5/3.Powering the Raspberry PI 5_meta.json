@@ -1,0 +1,103 @@
+{
+  "table_of_contents": [
+    {
+      "title": "3. Powering the Raspberry PI 5",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          66.1923828125
+        ],
+        [
+          411.5550537109375,
+          66.1923828125
+        ],
+        [
+          411.5550537109375,
+          88.5677490234375
+        ],
+        [
+          74.9560546875,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "This section mainly introduces the power supply related content of Raspberry Pi 5",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          101.5498046875
+        ],
+        [
+          475.1224060058594,
+          101.5498046875
+        ],
+        [
+          475.1224060058594,
+          112.96240234375
+        ],
+        [
+          74.66552734375,
+          112.96240234375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          33
+        ],
+        [
+          "TableCell",
+          21
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Powering the Raspberry PI 5"
+}

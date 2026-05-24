@@ -1,0 +1,518 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Color block color sorting",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          64.5478515625
+        ],
+        [
+          285.9940490722656,
+          64.5478515625
+        ],
+        [
+          285.9940490722656,
+          83.01849365234375
+        ],
+        [
+          74.66552734375,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          112.50885009765625
+        ],
+        [
+          75.52161407470703,
+          112.50885009765625
+        ]
+      ]
+    },
+    {
+      "title": "2. Program startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          370.4306640625
+        ],
+        [
+          215.96163940429688,
+          370.4306640625
+        ],
+        [
+          215.96163940429688,
+          385.6357727050781
+        ],
+        [
+          75.24658203125,
+          385.6357727050781
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Color block color calibration",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          316.1611328125
+        ],
+        [
+          273.44830322265625,
+          316.1611328125
+        ],
+        [
+          273.44830322265625,
+          329.58642578125
+        ],
+        [
+          74.9560546875,
+          329.58642578125
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          252.435546875
+        ],
+        [
+          228.99978637695312,
+          252.435546875
+        ],
+        [
+          228.99978637695312,
+          268.58123779296875
+        ],
+        [
+          74.66552734375,
+          268.58123779296875
+        ]
+      ]
+    },
+    {
+      "title": "3.1\u3001color_recognize.py",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          281.21484375
+        ],
+        [
+          219.4343719482422,
+          281.21484375
+        ],
+        [
+          219.4343719482422,
+          295.070068359375
+        ],
+        [
+          74.9560546875,
+          295.070068359375
+        ]
+      ]
+    },
+    {
+      "title": "3.2, color_common",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          74.66552734375,
+          46.046875
+        ],
+        [
+          191.18101501464844,
+          46.046875
+        ],
+        [
+          191.18101501464844,
+          59.461181640625
+        ],
+        [
+          74.66552734375,
+          59.461181640625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          71
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          27
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          191
+        ],
+        [
+          "Line",
+          37
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          469
+        ],
+        [
+          "Line",
+          55
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          633
+        ],
+        [
+          "Line",
+          55
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          651
+        ],
+        [
+          "Line",
+          58
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          503
+        ],
+        [
+          "Line",
+          55
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          597
+        ],
+        [
+          "Line",
+          52
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          336
+        ],
+        [
+          "Line",
+          50
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          181
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\6.Color block color sorting"
+}

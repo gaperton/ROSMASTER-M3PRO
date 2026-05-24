@@ -1,0 +1,301 @@
+{
+  "table_of_contents": [
+    {
+      "title": "2. Installing Humble in ROS2",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          65.3701171875
+        ],
+        [
+          387.3248291015625,
+          65.3701171875
+        ],
+        [
+          387.3248291015625,
+          88.5677490234375
+        ],
+        [
+          74.66552734375,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Set the locale",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          186.2431640625
+        ],
+        [
+          212.4315948486328,
+          186.2431640625
+        ],
+        [
+          212.4315948486328,
+          204.574951171875
+        ],
+        [
+          75.52161407470703,
+          204.574951171875
+        ]
+      ]
+    },
+    {
+      "title": "2. Set up the software source",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          427.9892578125
+        ],
+        [
+          325.79632568359375,
+          427.9892578125
+        ],
+        [
+          325.79632568359375,
+          446.187255859375
+        ],
+        [
+          74.375,
+          446.187255859375
+        ]
+      ]
+    },
+    {
+      "title": "3. Install Humble",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          727.705078125
+        ],
+        [
+          222.8787078857422,
+          727.705078125
+        ],
+        [
+          222.8787078857422,
+          747.0770492553711
+        ],
+        [
+          74.66552734375,
+          747.0770492553711
+        ]
+      ]
+    },
+    {
+      "title": "4. Configure the Environment",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          265.1806640625
+        ],
+        [
+          328.3244323730469,
+          265.1806640625
+        ],
+        [
+          328.3244323730469,
+          283.36151123046875
+        ],
+        [
+          75.24658203125,
+          283.36151123046875
+        ]
+      ]
+    },
+    {
+      "title": "5. Run the publisher and subscriber example nodes",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          559.5517578125
+        ],
+        [
+          512.8209228515625,
+          559.5517578125
+        ],
+        [
+          512.8209228515625,
+          577.4982604980469
+        ],
+        [
+          74.08447265625,
+          577.4982604980469
+        ]
+      ]
+    },
+    {
+      "title": "6. Run and experience the turtle example",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          754.4287109375
+        ],
+        [
+          430.7111511230469,
+          754.4287109375
+        ],
+        [
+          430.7111511230469,
+          772.5888290405273
+        ],
+        [
+          73.7939453125,
+          772.5888290405273
+        ]
+      ]
+    },
+    {
+      "title": "7. Uninstallation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          219.9560546875
+        ],
+        [
+          220.1182861328125,
+          219.9560546875
+        ],
+        [
+          220.1182861328125,
+          238.34075927734375
+        ],
+        [
+          74.9560546875,
+          238.34075927734375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          187
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          103
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "Code",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\2.ROS2 install Humble"
+}

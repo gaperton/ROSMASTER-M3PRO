@@ -1,0 +1,363 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Set screen to sleep",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          42.3466796875
+        ],
+        [
+          283.5790100097656,
+          42.3466796875
+        ],
+        [
+          283.5790100097656,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Set screen to sleep",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          83.048828125
+        ],
+        [
+          158.18833923339844,
+          83.048828125
+        ],
+        [
+          158.18833923339844,
+          93.71405029296875
+        ],
+        [
+          73.7939453125,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "environment",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          296.4267578125
+        ],
+        [
+          188.07937622070312,
+          296.4267578125
+        ],
+        [
+          188.07937622070312,
+          314.49346923828125
+        ],
+        [
+          74.5,
+          314.49346923828125
+        ]
+      ]
+    },
+    {
+      "title": "Idea 1 (recommended)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          405.7880859375
+        ],
+        [
+          266.8569641113281,
+          405.7880859375
+        ],
+        [
+          266.8569641113281,
+          423.99346923828125
+        ],
+        [
+          74.5,
+          423.99346923828125
+        ]
+      ]
+    },
+    {
+      "title": "Graphical interface",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          438.6787109375
+        ],
+        [
+          217.6738739013672,
+          438.6787109375
+        ],
+        [
+          217.6738739013672,
+          454.3017578125
+        ],
+        [
+          74.375,
+          454.3017578125
+        ]
+      ]
+    },
+    {
+      "title": "Command Line",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          308.349609375
+        ],
+        [
+          168.13250732421875,
+          308.349609375
+        ],
+        [
+          168.13250732421875,
+          321.6968994140625
+        ],
+        [
+          73.7939453125,
+          321.6968994140625
+        ]
+      ]
+    },
+    {
+      "title": "Restart",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          377.419921875
+        ],
+        [
+          130.3333740234375,
+          377.419921875
+        ],
+        [
+          130.3333740234375,
+          392.72027587890625
+        ],
+        [
+          74.5,
+          392.72027587890625
+        ]
+      ]
+    },
+    {
+      "title": "Idea 2",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          433.1811218261719
+        ],
+        [
+          128.6905059814453,
+          433.1811218261719
+        ],
+        [
+          128.6905059814453,
+          450.2436218261719
+        ],
+        [
+          74.5,
+          450.2436218261719
+        ]
+      ]
+    },
+    {
+      "title": "Configuration file modification",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          504.87109375
+        ],
+        [
+          302.4306335449219,
+          504.87109375
+        ],
+        [
+          302.4306335449219,
+          521.31640625
+        ],
+        [
+          74.375,
+          521.31640625
+        ]
+      ]
+    },
+    {
+      "title": "Restart",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5,
+          310.4052734375
+        ],
+        [
+          130.3333740234375,
+          310.4052734375
+        ],
+        [
+          130.3333740234375,
+          325.22003173828125
+        ],
+        [
+          74.5,
+          325.22003173828125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          115
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          106
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          5
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\12.Set screen to sleep"
+}

@@ -1,0 +1,231 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Edge detection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.958984375
+        ],
+        [
+          205.2328643798828,
+          64.958984375
+        ],
+        [
+          205.2328643798828,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          112.50885009765625
+        ],
+        [
+          75.24658203125,
+          112.50885009765625
+        ]
+      ]
+    },
+    {
+      "title": "2. Program startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          294.37109375
+        ],
+        [
+          215.96163940429688,
+          294.37109375
+        ],
+        [
+          215.96163940429688,
+          309.85052490234375
+        ],
+        [
+          75.24658203125,
+          309.85052490234375
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          488.8086853027344
+        ],
+        [
+          166.59432983398438,
+          488.8086853027344
+        ],
+        [
+          166.59432983398438,
+          503.44049072265625
+        ],
+        [
+          74.66552734375,
+          503.44049072265625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          57
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          341
+        ],
+        [
+          "Line",
+          46
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          162
+        ],
+        [
+          "Line",
+          23
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\6.Edge detection"
+}

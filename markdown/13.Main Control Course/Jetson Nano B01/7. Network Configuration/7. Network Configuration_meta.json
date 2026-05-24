@@ -1,0 +1,356 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Network Configuration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          333.6395263671875,
+          65.78125
+        ],
+        [
+          333.6395263671875,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1.Remote login.",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.9609375
+        ],
+        [
+          208.97523498535156,
+          101.9609375
+        ],
+        [
+          208.97523498535156,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2.About updating sources.",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          440.3232421875
+        ],
+        [
+          299.0900573730469,
+          440.3232421875
+        ],
+        [
+          299.0900573730469,
+          458.1928405761719
+        ],
+        [
+          74.375,
+          458.1928405761719
+        ]
+      ]
+    },
+    {
+      "title": "3.Jetson Nano B01 connects to WiFi",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.7939453125,
+          56.3251953125
+        ],
+        [
+          374.96221923828125,
+          56.3251953125
+        ],
+        [
+          374.96221923828125,
+          74.76470947265625
+        ],
+        [
+          73.7939453125,
+          74.76470947265625
+        ]
+      ]
+    },
+    {
+      "title": "4.Jetson Nano B01 connecting network cable",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.375,
+          413.1884765625
+        ],
+        [
+          457.2557067871094,
+          413.1884765625
+        ],
+        [
+          457.2557067871094,
+          431.1797790527344
+        ],
+        [
+          74.375,
+          431.1797790527344
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          27
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          65
+        ],
+        [
+          "Span",
+          42
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          5
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          234
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Line",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\7. Network Configuration"
+}

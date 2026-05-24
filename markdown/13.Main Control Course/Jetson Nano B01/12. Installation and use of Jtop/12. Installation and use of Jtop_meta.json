@@ -1,0 +1,251 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Installation and Use of Jtop",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          377.418212890625,
+          65.78125
+        ],
+        [
+          377.418212890625,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Installation of Jtop",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.5498046875
+        ],
+        [
+          237.7295379638672,
+          101.5498046875
+        ],
+        [
+          237.7295379638672,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "Check the installed system components",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          289.4375
+        ],
+        [
+          416.8680419921875,
+          289.4375
+        ],
+        [
+          416.8680419921875,
+          308.12310791015625
+        ],
+        [
+          74.9560546875,
+          308.12310791015625
+        ]
+      ]
+    },
+    {
+      "title": "(2) Check CUDA",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          493.7705078125
+        ],
+        [
+          147.82489013671875,
+          493.7705078125
+        ],
+        [
+          147.82489013671875,
+          504.64434814453125
+        ],
+        [
+          74.66552734375,
+          504.64434814453125
+        ]
+      ]
+    },
+    {
+      "title": "(3) Check OpenCV",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          740.2537612915039
+        ],
+        [
+          158.1421661376953,
+          740.2537612915039
+        ],
+        [
+          158.1421661376953,
+          750.0082931518555
+        ],
+        [
+          75.52161407470703,
+          750.0082931518555
+        ]
+      ]
+    },
+    {
+      "title": "(4) Check cuDNN",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          60.025390625
+        ],
+        [
+          154.11907958984375,
+          60.025390625
+        ],
+        [
+          154.11907958984375,
+          70.9429931640625
+        ],
+        [
+          74.66552734375,
+          70.9429931640625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          131
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\12. Installation and use of Jtop"
+}

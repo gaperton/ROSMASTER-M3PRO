@@ -1,0 +1,587 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Using MIPI camera",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          42.7578125
+        ],
+        [
+          282.3651123046875,
+          42.7578125
+        ],
+        [
+          282.3651123046875,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Using MIPI camera",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          83.4599609375
+        ],
+        [
+          157.70578002929688,
+          83.4599609375
+        ],
+        [
+          157.70578002929688,
+          93.71405029296875
+        ],
+        [
+          74.08447265625,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "Configure camera",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          322.7392578125
+        ],
+        [
+          229.3820037841797,
+          322.7392578125
+        ],
+        [
+          229.3820037841797,
+          340.74346923828125
+        ],
+        [
+          73.7939453125,
+          340.74346923828125
+        ]
+      ]
+    },
+    {
+      "title": "Use camera",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          400.9311218261719
+        ],
+        [
+          177.71676635742188,
+          400.9311218261719
+        ],
+        [
+          177.71676635742188,
+          417.9936218261719
+        ],
+        [
+          74.375,
+          417.9936218261719
+        ]
+      ]
+    },
+    {
+      "title": "Preview camera",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          432.1005859375
+        ],
+        [
+          214.34994506835938,
+          432.1005859375
+        ],
+        [
+          214.34994506835938,
+          449.4936218261719
+        ],
+        [
+          74.5,
+          449.4936218261719
+        ]
+      ]
+    },
+    {
+      "title": "Photograph",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          573.94140625
+        ],
+        [
+          178.34237670898438,
+          573.94140625
+        ],
+        [
+          178.34237670898438,
+          591.9936218261719
+        ],
+        [
+          74.5,
+          591.9936218261719
+        ]
+      ]
+    },
+    {
+      "title": "rpicam-still",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.50341796875,
+          717.5094299316406
+        ],
+        [
+          144.6837615966797,
+          717.5094299316406
+        ],
+        [
+          144.6837615966797,
+          729.6969299316406
+        ],
+        [
+          73.50341796875,
+          729.6969299316406
+        ]
+      ]
+    },
+    {
+      "title": "Video",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          275.8701171875
+        ],
+        [
+          125.71025848388672,
+          275.8701171875
+        ],
+        [
+          125.71025848388672,
+          294.99334716796875
+        ],
+        [
+          73.7939453125,
+          294.99334716796875
+        ]
+      ]
+    },
+    {
+      "title": "rpicam-vid",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          307.9384765625
+        ],
+        [
+          141.85626220703125,
+          307.9384765625
+        ],
+        [
+          141.85626220703125,
+          321.6966552734375
+        ],
+        [
+          74.08447265625,
+          321.6966552734375
+        ]
+      ]
+    },
+    {
+      "title": "Error resolution",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.212890625,
+          526.6611328125
+        ],
+        [
+          154.02099609375,
+          526.6611328125
+        ],
+        [
+          154.02099609375,
+          537.9234619140625
+        ],
+        [
+          73.212890625,
+          537.9234619140625
+        ]
+      ]
+    },
+    {
+      "title": "Web page preview camera",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.50341796875,
+          449.3681640625
+        ],
+        [
+          301.3857727050781,
+          449.3681640625
+        ],
+        [
+          301.3857727050781,
+          467.4937438964844
+        ],
+        [
+          73.50341796875,
+          467.4937438964844
+        ]
+      ]
+    },
+    {
+      "title": "Run script",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.5,
+          507.337890625
+        ],
+        [
+          150.7498779296875,
+          507.337890625
+        ],
+        [
+          150.7498779296875,
+          523.783203125
+        ],
+        [
+          74.5,
+          523.783203125
+        ]
+      ]
+    },
+    {
+      "title": "Web access",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          72.6318359375,
+          368.375
+        ],
+        [
+          159.7442626953125,
+          368.375
+        ],
+        [
+          159.7442626953125,
+          384.47015380859375
+        ],
+        [
+          72.6318359375,
+          384.47015380859375
+        ]
+      ]
+    },
+    {
+      "title": "Picamera2 MJPEG Streaming Demo",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          80.18261964735517,
+          58.482635796972396
+        ],
+        [
+          478.84760705289676,
+          58.482635796972396
+        ],
+        [
+          478.84760705289676,
+          85.47462154942119
+        ],
+        [
+          80.18261964735517,
+          85.47462154942119
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          109
+        ],
+        [
+          "Line",
+          37
+        ],
+        [
+          "TableCell",
+          18
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          75
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          102
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          31
+        ],
+        [
+          "Figure",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          6
+        ],
+        [
+          "Span",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\15.Using MIPI camera"
+}

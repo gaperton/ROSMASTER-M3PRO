@@ -1,0 +1,733 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Robot kinematics analysis theory",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          362.2362365722656,
+          64.5478515625
+        ],
+        [
+          362.2362365722656,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Experimental Purpose",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          264.76953125
+        ],
+        [
+          256.0092468261719,
+          264.76953125
+        ],
+        [
+          256.0092468261719,
+          280.58697509765625
+        ],
+        [
+          74.66552734375,
+          280.58697509765625
+        ]
+      ]
+    },
+    {
+      "title": "2. Hardware Connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          372.0751953125
+        ],
+        [
+          254.59420776367188,
+          372.0751953125
+        ],
+        [
+          254.59420776367188,
+          387.8868103027344
+        ],
+        [
+          74.66552734375,
+          387.8868103027344
+        ]
+      ]
+    },
+    {
+      "title": "3. Introduction of Mecanum Wheel",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          318.6279296875
+        ],
+        [
+          329.59515380859375,
+          318.6279296875
+        ],
+        [
+          329.59515380859375,
+          334.61224365234375
+        ],
+        [
+          74.08447265625,
+          334.61224365234375
+        ]
+      ]
+    },
+    {
+      "title": "4. Mecanum Wheel Motion Analysis and Direction\nDetermination",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          274.2255859375
+        ],
+        [
+          439.70111083984375,
+          274.2255859375
+        ],
+        [
+          439.70111083984375,
+          310.60076904296875
+        ],
+        [
+          74.08447265625,
+          310.60076904296875
+        ]
+      ]
+    },
+    {
+      "title": "6. Mecanum Wheel Installation Combination and Motion\nAnalysis",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          73.7939453125,
+          32.890625
+        ],
+        [
+          490.3564147949219,
+          32.890625
+        ],
+        [
+          490.3564147949219,
+          68.23797607421875
+        ],
+        [
+          73.7939453125,
+          68.23797607421875
+        ]
+      ]
+    },
+    {
+      "title": "Analysis error example [AAAA]",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.375,
+          180.4873046875
+        ],
+        [
+          224.55259704589844,
+          180.4873046875
+        ],
+        [
+          224.55259704589844,
+          191.1767578125
+        ],
+        [
+          74.375,
+          191.1767578125
+        ]
+      ]
+    },
+    {
+      "title": "The correct wheat wheel distribution should be [ABBA]",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.66552734375,
+          385.642578125
+        ],
+        [
+          342.47515869140625,
+          385.642578125
+        ],
+        [
+          342.47515869140625,
+          396.5943603515625
+        ],
+        [
+          74.66552734375,
+          396.5943603515625
+        ]
+      ]
+    },
+    {
+      "title": "7. Installation location of Mecanum wheel",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          74.66552734375,
+          86.7490234375
+        ],
+        [
+          382.9133605957031,
+          86.7490234375
+        ],
+        [
+          382.9133605957031,
+          102.75286865234375
+        ],
+        [
+          74.66552734375,
+          102.75286865234375
+        ]
+      ]
+    },
+    {
+      "title": "8. Final installation method",
+      "heading_level": null,
+      "page_id": 13,
+      "polygon": [
+        [
+          74.66552734375,
+          31.6572265625
+        ],
+        [
+          275.8309020996094,
+          31.6572265625
+        ],
+        [
+          275.8309020996094,
+          47.97747802734375
+        ],
+        [
+          74.66552734375,
+          47.97747802734375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          79
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "ListItem",
+          7
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          17
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          5
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          32
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Span",
+          25
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\10.Robot kinematics analysis theory"
+}

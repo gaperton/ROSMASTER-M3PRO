@@ -1,0 +1,580 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Multi-vehicle navigation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          285.276123046875,
+          64.5478515625
+        ],
+        [
+          285.276123046875,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          112.50885009765625
+        ],
+        [
+          75.52161407470703,
+          112.50885009765625
+        ]
+      ]
+    },
+    {
+      "title": "1.1 Functional Requirements",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          180.076171875
+        ],
+        [
+          251.77818298339844,
+          180.076171875
+        ],
+        [
+          251.77818298339844,
+          193.77325439453125
+        ],
+        [
+          75.24658203125,
+          193.77325439453125
+        ]
+      ]
+    },
+    {
+      "title": "1.2 Navigation Map",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          246.2685546875
+        ],
+        [
+          195.05458068847656,
+          246.2685546875
+        ],
+        [
+          195.05458068847656,
+          259.803955078125
+        ],
+        [
+          74.9560546875,
+          259.803955078125
+        ]
+      ]
+    },
+    {
+      "title": "2. Program startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          329.728515625
+        ],
+        [
+          215.96163940429688,
+          329.728515625
+        ],
+        [
+          215.96163940429688,
+          345.116943359375
+        ],
+        [
+          74.66552734375,
+          345.116943359375
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Start chassis data fusion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          578.4638671875
+        ],
+        [
+          251.19581604003906,
+          578.4638671875
+        ],
+        [
+          251.19581604003906,
+          592.2084045410156
+        ],
+        [
+          74.9560546875,
+          592.2084045410156
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Start rviz and publish map data",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          31.6572265625
+        ],
+        [
+          292.8521423339844,
+          31.6572265625
+        ],
+        [
+          292.8521423339844,
+          44.453857421875
+        ],
+        [
+          75.52161407470703,
+          44.453857421875
+        ]
+      ]
+    },
+    {
+      "title": "2.3. Start amcl positioning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          717.4267578125
+        ],
+        [
+          235.8452911376953,
+          717.4267578125
+        ],
+        [
+          235.8452911376953,
+          731.0228500366211
+        ],
+        [
+          75.24658203125,
+          731.0228500366211
+        ]
+      ]
+    },
+    {
+      "title": "2.4. Start nav2 navigation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          554.6181640625
+        ],
+        [
+          232.78407287597656,
+          554.6181640625
+        ],
+        [
+          232.78407287597656,
+          568.9477844238281
+        ],
+        [
+          74.08447265625,
+          568.9477844238281
+        ]
+      ]
+    },
+    {
+      "title": "3. TF Tree",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.24658203125,
+          280.392578125
+        ],
+        [
+          147.353515625,
+          280.392578125
+        ],
+        [
+          147.353515625,
+          295.59368896484375
+        ],
+        [
+          75.24658203125,
+          295.59368896484375
+        ]
+      ]
+    },
+    {
+      "title": "4. Expansion",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.50341796875,
+          691.1142578125
+        ],
+        [
+          169.77369689941406,
+          691.1142578125
+        ],
+        [
+          169.77369689941406,
+          706.7848510742188
+        ],
+        [
+          73.50341796875,
+          706.7848510742188
+        ]
+      ]
+    },
+    {
+      "title": "4.1. Add the URDF model file of the car",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          55.5029296875
+        ],
+        [
+          310.15533447265625,
+          55.5029296875
+        ],
+        [
+          310.15533447265625,
+          69.21533203125
+        ],
+        [
+          74.66552734375,
+          69.21533203125
+        ]
+      ]
+    },
+    {
+      "title": "4.2. Add car URDF startup file",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          136.9072265625
+        ],
+        [
+          255.10626220703125,
+          136.9072265625
+        ],
+        [
+          255.10626220703125,
+          150.2529296875
+        ],
+        [
+          74.9560546875,
+          150.2529296875
+        ]
+      ]
+    },
+    {
+      "title": "4.3. Add the amcl parameter file of the car",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          250.3798828125
+        ],
+        [
+          333.5296325683594,
+          250.3798828125
+        ],
+        [
+          333.5296325683594,
+          263.5556640625
+        ],
+        [
+          74.9560546875,
+          263.5556640625
+        ]
+      ]
+    },
+    {
+      "title": "4.4. Add the amcl startup file of the car",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          330.9619140625
+        ],
+        [
+          313.642578125,
+          330.9619140625
+        ],
+        [
+          313.642578125,
+          344.5932922363281
+        ],
+        [
+          74.9560546875,
+          344.5932922363281
+        ]
+      ]
+    },
+    {
+      "title": "4.5. Add the nav2 navigation parameter file of the car",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          411.955078125
+        ],
+        [
+          401.4576721191406,
+          411.955078125
+        ],
+        [
+          401.4576721191406,
+          425.6308898925781
+        ],
+        [
+          74.66552734375,
+          425.6308898925781
+        ]
+      ]
+    },
+    {
+      "title": "4.6. Add the nav2 navigation startup file of the car",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          493.359375
+        ],
+        [
+          381.57061767578125,
+          493.359375
+        ],
+        [
+          381.57061767578125,
+          506.6687316894531
+        ],
+        [
+          74.66552734375,
+          506.6687316894531
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          90
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          61
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          87
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          6
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Multi-vehicle navigation"
+}

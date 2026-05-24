@@ -1,0 +1,509 @@
+{
+  "table_of_contents": [
+    {
+      "title": "3\u3001Docker images deeply understand and\npublish images",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.109375,
+          40.9921875
+        ],
+        [
+          533.8582763671875,
+          40.9921875
+        ],
+        [
+          533.8582763671875,
+          91.26690673828125
+        ],
+        [
+          74.109375,
+          91.26690673828125
+        ]
+      ]
+    },
+    {
+      "title": "3\u3001Docker images deeply understand and publish images",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.810546875,
+          134.96484375
+        ],
+        [
+          326.0856018066406,
+          134.96484375
+        ],
+        [
+          326.0856018066406,
+          145.489501953125
+        ],
+        [
+          73.810546875,
+          145.489501953125
+        ]
+      ]
+    },
+    {
+      "title": "3.1\u3001image understanding",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5417709350586,
+          438.4321594238281
+        ],
+        [
+          300.9439392089844,
+          438.4321594238281
+        ],
+        [
+          300.9439392089844,
+          455.7973937988281
+        ],
+        [
+          74.5417709350586,
+          455.7973937988281
+        ]
+      ]
+    },
+    {
+      "title": "3.2\u3001UnionFS(Federated file systems)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.51171875,
+          577.7578125
+        ],
+        [
+          417.92633056640625,
+          577.7578125
+        ],
+        [
+          417.92633056640625,
+          595.4226989746094
+        ],
+        [
+          73.51171875,
+          595.4226989746094
+        ]
+      ]
+    },
+    {
+      "title": "3.3\u3001image layering",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.109375,
+          29.77734375
+        ],
+        [
+          244.7066650390625,
+          29.77734375
+        ],
+        [
+          244.7066650390625,
+          48.18157958984375
+        ],
+        [
+          74.109375,
+          48.18157958984375
+        ]
+      ]
+    },
+    {
+      "title": "3.3.1\u3001hierarchical understanding",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.109375,
+          174.0234375
+        ],
+        [
+          323.8591003417969,
+          174.0234375
+        ],
+        [
+          323.8591003417969,
+          189.53472900390625
+        ],
+        [
+          74.109375,
+          189.53472900390625
+        ]
+      ]
+    },
+    {
+      "title": "3.3.2\u3001Docker images should use layering benefits",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.212890625,
+          348.8203125
+        ],
+        [
+          441.5314025878906,
+          348.8203125
+        ],
+        [
+          441.5314025878906,
+          364.44171142578125
+        ],
+        [
+          73.212890625,
+          364.44171142578125
+        ]
+      ]
+    },
+    {
+      "title": "3.4\u3001Make and publish images",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.109375,
+          435.05859375
+        ],
+        [
+          334.8732604980469,
+          435.05859375
+        ],
+        [
+          334.8732604980469,
+          453.5450134277344
+        ],
+        [
+          74.109375,
+          453.5450134277344
+        ]
+      ]
+    },
+    {
+      "title": "3.4.1\u3001Make an image",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.810546875,
+          468.703125
+        ],
+        [
+          236.4055633544922,
+          468.703125
+        ],
+        [
+          236.4055633544922,
+          484.171875
+        ],
+        [
+          73.810546875,
+          484.171875
+        ]
+      ]
+    },
+    {
+      "title": "3.4.2\u3001Publish the image",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.51171875,
+          322.5234375
+        ],
+        [
+          256.0792236328125,
+          322.5234375
+        ],
+        [
+          256.0792236328125,
+          338.16827392578125
+        ],
+        [
+          73.51171875,
+          338.16827392578125
+        ]
+      ]
+    },
+    {
+      "title": "4. Log in to Docker Hub to publish the image:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          84.8671875,
+          160.1015625
+        ],
+        [
+          291.684326171875,
+          160.1015625
+        ],
+        [
+          291.684326171875,
+          170.9296875
+        ],
+        [
+          84.8671875,
+          170.9296875
+        ]
+      ]
+    },
+    {
+      "title": "5\u3001Visit Docker Hub to see that it has been successfully released",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.51171875,
+          406.7691955566406
+        ],
+        [
+          368.1832275390625,
+          406.7691955566406
+        ],
+        [
+          368.1832275390625,
+          416.8828125
+        ],
+        [
+          73.51171875,
+          416.8828125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          133
+        ],
+        [
+          "Line",
+          34
+        ],
+        [
+          "ListItem",
+          17
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListGroup",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          95
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          223
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          319
+        ],
+        [
+          "TableCell",
+          40
+        ],
+        [
+          "Line",
+          34
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          223
+        ],
+        [
+          "TableCell",
+          32
+        ],
+        [
+          "Line",
+          23
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Docker images deeply understand and publish images"
+}

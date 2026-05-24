@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /b /s)",
+      "Bash(findstr /i \"hermes\")",
+      "WebSearch",
+      "Bash(cmd /c \"dir /S /B /A:-D *.pdf | find /C \\\\\".pdf\\\\\"\")",
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); Get-Command marker_single, marker -ErrorAction SilentlyContinue | Select-Object Name, Source)",
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); $py = \\(Get-Command python\\).Source; \"python at: $py\"; $scriptsDir = Join-Path \\(Split-Path $py\\) 'Scripts'; \"scripts: $scriptsDir\"; if \\(Test-Path $scriptsDir\\) { Get-ChildItem $scriptsDir | Select-Object Name | Format-Table -AutoSize | Out-String -Width 200 } else { 'no scripts dir' })",
+      "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); marker_single --help 2>&1 | Select-Object -First 80)",
+      "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); marker --help 2>&1 | Select-Object -First 30)",
+      "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); python -m pip install psutil 2>&1 | Select-Object -Last 3)",
+      "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); New-Item -ItemType Directory -Force \"c:\\\\Users\\\\Vlad\\\\GitHub\\\\ROSMASTER-M3PRO\\\\markdown\\\\_test\" | Out-Null; marker_single \"c:\\\\Users\\\\Vlad\\\\GitHub\\\\ROSMASTER-M3PRO\\\\0.Configuration and Operation Guide\\\\1. Quick start handle to control the car.pdf\" --output_dir \"c:\\\\Users\\\\Vlad\\\\GitHub\\\\ROSMASTER-M3PRO\\\\markdown\\\\_test\" --output_format markdown 2>&1 | Select-Object -Last 30)",
+      "Bash(awk ' *)"
+    ]
+  }
+}

@@ -1,0 +1,601 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Configuring the API Key",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          66.1923828125
+        ],
+        [
+          337.1816711425781,
+          66.1923828125
+        ],
+        [
+          337.1816711425781,
+          88.5677490234375
+        ],
+        [
+          75.24658203125,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Configuring the API Key",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          107.3056640625
+        ],
+        [
+          180.26388549804688,
+          107.3056640625
+        ],
+        [
+          180.26388549804688,
+          117.25506591796875
+        ],
+        [
+          74.9560546875,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          274.2255859375
+        ],
+        [
+          229.14520263671875,
+          274.2255859375
+        ],
+        [
+          229.14520263671875,
+          291.61541748046875
+        ],
+        [
+          75.52161407470703,
+          291.61541748046875
+        ]
+      ]
+    },
+    {
+      "title": "2. Starting the Dify Service",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          389.3427734375
+        ],
+        [
+          303.2633972167969,
+          389.3427734375
+        ],
+        [
+          303.2633972167969,
+          407.9194641113281
+        ],
+        [
+          74.9560546875,
+          407.9194641113281
+        ]
+      ]
+    },
+    {
+      "title": "[!NOTE]",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          89.19189453125,
+          187.4765625
+        ],
+        [
+          125.62090301513672,
+          187.4765625
+        ],
+        [
+          125.62090301513672,
+          198.5020751953125
+        ],
+        [
+          89.19189453125,
+          198.5020751953125
+        ]
+      ]
+    },
+    {
+      "title": "3. Configuring the Model Service Provider API Key",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          509.3935546875
+        ],
+        [
+          497.51934814453125,
+          509.3935546875
+        ],
+        [
+          497.51934814453125,
+          527.2248229980469
+        ],
+        [
+          74.08447265625,
+          527.2248229980469
+        ]
+      ]
+    },
+    {
+      "title": "4. Testing the API Key",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          323.97265625
+        ],
+        [
+          260.837890625,
+          323.97265625
+        ],
+        [
+          260.837890625,
+          342.0625
+        ],
+        [
+          74.375,
+          342.0625
+        ]
+      ]
+    },
+    {
+      "title": "5. Configuring the multi_brains Function Package\nAPI",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          291.08203125
+        ],
+        [
+          495.2715759277344,
+          291.08203125
+        ],
+        [
+          495.2715759277344,
+          329.88311767578125
+        ],
+        [
+          74.66552734375,
+          329.88311767578125
+        ]
+      ]
+    },
+    {
+      "title": "6. Using Local Speech Services",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          745.794921875
+        ],
+        [
+          332.28411865234375,
+          745.794921875
+        ],
+        [
+          332.28411865234375,
+          763.5848007202148
+        ],
+        [
+          74.9560546875,
+          763.5848007202148
+        ]
+      ]
+    },
+    {
+      "title": "6.1 Local Speech Recognition",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          117.1728515625
+        ],
+        [
+          287.4425964355469,
+          117.1728515625
+        ],
+        [
+          287.4425964355469,
+          132.7958984375
+        ],
+        [
+          74.66552734375,
+          132.7958984375
+        ]
+      ]
+    },
+    {
+      "title": "6.2 Local Speech Synthesis",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          684.125
+        ],
+        [
+          269.5591125488281,
+          684.125
+        ],
+        [
+          269.5591125488281,
+          701.5321655273438
+        ],
+        [
+          74.66552734375,
+          701.5321655273438
+        ]
+      ]
+    },
+    {
+      "title": "7. Modifying the Dfiy Service API",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          73.7939453125,
+          366.73046875
+        ],
+        [
+          351.0063781738281,
+          366.73046875
+        ],
+        [
+          351.0063781738281,
+          385.4092712402344
+        ],
+        [
+          73.7939453125,
+          385.4092712402344
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          116
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "ListItem",
+          9
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          32
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          205
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          100
+        ],
+        [
+          "Line",
+          23
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\2.Configuring API-KEY"
+}

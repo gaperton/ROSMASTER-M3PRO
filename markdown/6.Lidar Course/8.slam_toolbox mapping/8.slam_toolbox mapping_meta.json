@@ -1,0 +1,718 @@
+{
+  "table_of_contents": [
+    {
+      "title": "slam_toolbox mapping",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          66.1923828125
+        ],
+        [
+          326.288330078125,
+          66.1923828125
+        ],
+        [
+          326.288330078125,
+          88.5677490234375
+        ],
+        [
+          74.66552734375,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.9609375
+        ],
+        [
+          229.14520263671875,
+          101.9609375
+        ],
+        [
+          229.14520263671875,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Introduction to slam-toolbox",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          195.2880859375
+        ],
+        [
+          343.6009216308594,
+          195.2880859375
+        ],
+        [
+          343.6009216308594,
+          212.82879638671875
+        ],
+        [
+          75.52161407470703,
+          212.82879638671875
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Core Technology Principles",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          311.2275390625
+        ],
+        [
+          298.29595947265625,
+          311.2275390625
+        ],
+        [
+          298.29595947265625,
+          327.10858154296875
+        ],
+        [
+          74.9560546875,
+          327.10858154296875
+        ]
+      ]
+    },
+    {
+      "title": "2.1.1 Front-end Processing (Laser Scan Matching)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          339.595703125
+        ],
+        [
+          371.9429626464844,
+          339.595703125
+        ],
+        [
+          371.9429626464844,
+          353.5975341796875
+        ],
+        [
+          74.66552734375,
+          353.5975341796875
+        ]
+      ]
+    },
+    {
+      "title": "2.1.2 Backend Optimization (Graph Optimization)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          451.423828125
+        ],
+        [
+          375.2229309082031,
+          451.423828125
+        ],
+        [
+          375.2229309082031,
+          464.6491394042969
+        ],
+        [
+          74.66552734375,
+          464.6491394042969
+        ]
+      ]
+    },
+    {
+      "title": "3. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          772.9296875
+        ],
+        [
+          196.61923217773438,
+          772.9296875
+        ],
+        [
+          196.61923217773438,
+          790.5972518920898
+        ],
+        [
+          74.66552734375,
+          790.5972518920898
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Content Description",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          250.1754150390625,
+          32.068359375
+        ],
+        [
+          250.1754150390625,
+          47.9788818359375
+        ],
+        [
+          75.24658203125,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Start the agent",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          161.986328125
+        ],
+        [
+          212.36399841308594,
+          161.986328125
+        ],
+        [
+          212.36399841308594,
+          177.7891845703125
+        ],
+        [
+          75.24658203125,
+          177.7891845703125
+        ]
+      ]
+    },
+    {
+      "title": "4. Run the case",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          526.6611328125
+        ],
+        [
+          206.7642364501953,
+          526.6611328125
+        ],
+        [
+          206.7642364501953,
+          545.9836120605469
+        ],
+        [
+          74.66552734375,
+          545.9836120605469
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Map creation process",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          558.318359375
+        ],
+        [
+          258.7901306152344,
+          558.318359375
+        ],
+        [
+          258.7901306152344,
+          575.4739379882812
+        ],
+        [
+          75.24658203125,
+          575.4739379882812
+        ]
+      ]
+    },
+    {
+      "title": "Note:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          587.5087890625
+        ],
+        [
+          103.17399597167969,
+          587.5087890625
+        ],
+        [
+          103.17399597167969,
+          599.9385986328125
+        ],
+        [
+          75.52161407470703,
+          599.9385986328125
+        ]
+      ]
+    },
+    {
+      "title": "ros2 launch slam_mapping slam_view.launch.py",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          83.96240234375,
+          98.2607421875
+        ],
+        [
+          319.77789306640625,
+          98.2607421875
+        ],
+        [
+          319.77789306640625,
+          109.7122802734375
+        ],
+        [
+          83.96240234375,
+          109.7122802734375
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Saving the Map",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          313.6943359375
+        ],
+        [
+          214.80575561523438,
+          313.6943359375
+        ],
+        [
+          214.80575561523438,
+          330.10980224609375
+        ],
+        [
+          74.66552734375,
+          330.10980224609375
+        ]
+      ]
+    },
+    {
+      "title": "Parameter Explanation:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          238.45703125
+        ],
+        [
+          183.19700622558594,
+          238.45703125
+        ],
+        [
+          183.19700622558594,
+          249.5257568359375
+        ],
+        [
+          74.66552734375,
+          249.5257568359375
+        ]
+      ]
+    },
+    {
+      "title": "5. Node Analysis",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          465.40234375
+        ],
+        [
+          217.43421936035156,
+          465.40234375
+        ],
+        [
+          217.43421936035156,
+          483.7046813964844
+        ],
+        [
+          74.9560546875,
+          483.7046813964844
+        ]
+      ]
+    },
+    {
+      "title": "5.1 Displaying the Node Computation Graph",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.375,
+          497.8818359375
+        ],
+        [
+          398.8784484863281,
+          497.8818359375
+        ],
+        [
+          398.8784484863281,
+          513.5048828125
+        ],
+        [
+          74.375,
+          513.5048828125
+        ]
+      ]
+    },
+    {
+      "title": "5.2 TF Transformation",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          32.4794921875
+        ],
+        [
+          238.51385498046875,
+          32.4794921875
+        ],
+        [
+          238.51385498046875,
+          47.97845458984375
+        ],
+        [
+          74.9560546875,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "5.3 slam-toolbox Node Details",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          411.5439453125
+        ],
+        [
+          295.13555908203125,
+          411.5439453125
+        ],
+        [
+          295.13555908203125,
+          427.65472412109375
+        ],
+        [
+          74.9560546875,
+          427.65472412109375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          58
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "SectionHeader",
+          7
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          59
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          39
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          77
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "ListItem",
+          7
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          105
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          55
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\8.slam_toolbox mapping"
+}

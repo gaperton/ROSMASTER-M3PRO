@@ -1,0 +1,395 @@
+{
+  "table_of_contents": [
+    {
+      "title": "MoveIt2 simulation-reality linkage",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          64.5478515625
+        ],
+        [
+          371.83526611328125,
+          64.5478515625
+        ],
+        [
+          371.83526611328125,
+          83.01849365234375
+        ],
+        [
+          75.24658203125,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          235.16796875
+        ],
+        [
+          241.83529663085938,
+          235.16796875
+        ],
+        [
+          241.83529663085938,
+          250.572998046875
+        ],
+        [
+          74.9560546875,
+          250.572998046875
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          303.8271484375
+        ],
+        [
+          182.5179901123047,
+          303.8271484375
+        ],
+        [
+          182.5179901123047,
+          320.35540771484375
+        ],
+        [
+          74.66552734375,
+          320.35540771484375
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Start the agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          388.109375
+        ],
+        [
+          193.03199768066406,
+          388.109375
+        ],
+        [
+          193.03199768066406,
+          401.6198425292969
+        ],
+        [
+          74.66552734375,
+          401.6198425292969
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Distributed communication between virtual machines and cars",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          507.337890625
+        ],
+        [
+          482.4361877441406,
+          507.337890625
+        ],
+        [
+          482.4361877441406,
+          520.9252624511719
+        ],
+        [
+          73.7939453125,
+          520.9252624511719
+        ]
+      ]
+    },
+    {
+      "title": "3. Program startup",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          215.96163940429688,
+          32.068359375
+        ],
+        [
+          215.96163940429688,
+          47.9788818359375
+        ],
+        [
+          75.24658203125,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "4. Node Communication",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          663.568359375
+        ],
+        [
+          254.2430419921875,
+          663.568359375
+        ],
+        [
+          254.2430419921875,
+          679.0221557617188
+        ],
+        [
+          74.08447265625,
+          679.0221557617188
+        ]
+      ]
+    },
+    {
+      "title": "5. Core code analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.24658203125,
+          458.82421875
+        ],
+        [
+          228.99978637695312,
+          458.82421875
+        ],
+        [
+          228.99978637695312,
+          475.67742919921875
+        ],
+        [
+          75.24658203125,
+          475.67742919921875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          83
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          63
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          387
+        ],
+        [
+          "Line",
+          44
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\2.MovelT2 simulation-reality linkage"
+}

@@ -1,0 +1,465 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Install and start the Microros agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          466.6822204589844,
+          65.3701171875
+        ],
+        [
+          466.6822204589844,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Install and start the Microros agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          107.3056640625
+        ],
+        [
+          232.0812225341797,
+          107.3056640625
+        ],
+        [
+          232.0812225341797,
+          117.25506591796875
+        ],
+        [
+          74.9560546875,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Docker starts the microros agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          309.994140625
+        ],
+        [
+          378.084716796875,
+          309.994140625
+        ],
+        [
+          378.084716796875,
+          328.38250732421875
+        ],
+        [
+          75.52161407470703,
+          328.38250732421875
+        ]
+      ]
+    },
+    {
+      "title": "Docker starts the serial port proxy",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          342.0625
+        ],
+        [
+          329.63177490234375,
+          342.0625
+        ],
+        [
+          329.63177490234375,
+          357.87286376953125
+        ],
+        [
+          74.9560546875,
+          357.87286376953125
+        ]
+      ]
+    },
+    {
+      "title": "Agent startup failure",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          621.6328125
+        ],
+        [
+          231.53024291992188,
+          621.6328125
+        ],
+        [
+          231.53024291992188,
+          638.5032348632812
+        ],
+        [
+          74.08447265625,
+          638.5032348632812
+        ]
+      ]
+    },
+    {
+      "title": "2. Start microros agent from source code",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          105.6611328125
+        ],
+        [
+          425.47052001953125,
+          105.6611328125
+        ],
+        [
+          425.47052001953125,
+          124.28765869140625
+        ],
+        [
+          74.375,
+          124.28765869140625
+        ]
+      ]
+    },
+    {
+      "title": "Install tinyxml2 dependencies",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          137.7294921875
+        ],
+        [
+          296.467041015625,
+          137.7294921875
+        ],
+        [
+          296.467041015625,
+          153.77801513671875
+        ],
+        [
+          75.52161407470703,
+          153.77801513671875
+        ]
+      ]
+    },
+    {
+      "title": "Install the python3-rosdep tool",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          349.462890625
+        ],
+        [
+          303.06768798828125,
+          349.462890625
+        ],
+        [
+          303.06768798828125,
+          366.12664794921875
+        ],
+        [
+          74.66552734375,
+          366.12664794921875
+        ]
+      ]
+    },
+    {
+      "title": "Compile the micro_ros_setup environment",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          481.84765625
+        ],
+        [
+          386.5701599121094,
+          481.84765625
+        ],
+        [
+          386.5701599121094,
+          498.93841552734375
+        ],
+        [
+          74.66552734375,
+          498.93841552734375
+        ]
+      ]
+    },
+    {
+      "title": "Compile the micro_ros_agent environment",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          119.6396484375
+        ],
+        [
+          387.1407775878906,
+          119.6396484375
+        ],
+        [
+          387.1407775878906,
+          135.76947021484375
+        ],
+        [
+          74.9560546875,
+          135.76947021484375
+        ]
+      ]
+    },
+    {
+      "title": "Start the microros serial port proxy from source code",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          448.134765625
+        ],
+        [
+          466.78033447265625,
+          448.134765625
+        ],
+        [
+          466.78033447265625,
+          465.17254638671875
+        ],
+        [
+          74.08447265625,
+          465.17254638671875
+        ]
+      ]
+    },
+    {
+      "title": "3. Start the microros agent with the factory image",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          725.6494140625
+        ],
+        [
+          504.4725036621094,
+          725.6494140625
+        ],
+        [
+          504.4725036621094,
+          744.0755233764648
+        ],
+        [
+          74.08447265625,
+          744.0755233764648
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          177
+        ],
+        [
+          "Line",
+          34
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          123
+        ],
+        [
+          "Line",
+          29
+        ],
+        [
+          "Code",
+          7
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          118
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\6.Install and start the microros agent"
+}

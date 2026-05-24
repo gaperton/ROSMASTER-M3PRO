@@ -1,0 +1,580 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Using USB camera",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          42.3466796875
+        ],
+        [
+          276.77105712890625,
+          42.3466796875
+        ],
+        [
+          276.77105712890625,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Using USB camera",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          83.4599609375
+        ],
+        [
+          155.4734649658203,
+          83.4599609375
+        ],
+        [
+          155.4734649658203,
+          93.71405029296875
+        ],
+        [
+          74.08447265625,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "Install FSWebcam",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          293.1376953125
+        ],
+        [
+          229.83700561523438,
+          293.1376953125
+        ],
+        [
+          229.83700561523438,
+          311.49346923828125
+        ],
+        [
+          74.5,
+          311.49346923828125
+        ]
+      ]
+    },
+    {
+      "title": "View USB camera device",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          29.1904296875
+        ],
+        [
+          284.27777099609375,
+          29.1904296875
+        ],
+        [
+          284.27777099609375,
+          48.2435302734375
+        ],
+        [
+          73.7939453125,
+          48.2435302734375
+        ]
+      ]
+    },
+    {
+      "title": "Photograph",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          455.53515625
+        ],
+        [
+          178.34237670898438,
+          455.53515625
+        ],
+        [
+          178.34237670898438,
+          473.4936218261719
+        ],
+        [
+          74.5,
+          473.4936218261719
+        ]
+      ]
+    },
+    {
+      "title": "Time-lapse photography",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5,
+          31.24609375
+        ],
+        [
+          254.27536010742188,
+          31.24609375
+        ],
+        [
+          254.27536010742188,
+          46.97003173828125
+        ],
+        [
+          74.5,
+          46.97003173828125
+        ]
+      ]
+    },
+    {
+      "title": "Using Cron (scheduled tasks)",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          242.9794921875
+        ],
+        [
+          250.44688415527344,
+          242.9794921875
+        ],
+        [
+          250.44688415527344,
+          257.197021484375
+        ],
+        [
+          74.08447265625,
+          257.197021484375
+        ]
+      ]
+    },
+    {
+      "title": "Web page preview camera",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.5,
+          29.1904296875
+        ],
+        [
+          301.3857727050781,
+          29.1904296875
+        ],
+        [
+          301.3857727050781,
+          48.24322509765625
+        ],
+        [
+          74.5,
+          48.24322509765625
+        ]
+      ]
+    },
+    {
+      "title": "Install Motion",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.375,
+          124.984375
+        ],
+        [
+          162.09156799316406,
+          124.984375
+        ],
+        [
+          162.09156799316406,
+          138.696533203125
+        ],
+        [
+          74.375,
+          138.696533203125
+        ]
+      ]
+    },
+    {
+      "title": "Modify configuration file",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.5,
+          354.8076171875
+        ],
+        [
+          227.217529296875,
+          354.8076171875
+        ],
+        [
+          227.217529296875,
+          368.1968078613281
+        ],
+        [
+          74.5,
+          368.1968078613281
+        ]
+      ]
+    },
+    {
+      "title": "illustrate:",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          73.212890625,
+          608.8876953125
+        ],
+        [
+          117.70875549316406,
+          608.8876953125
+        ],
+        [
+          117.70875549316406,
+          619.6734619140625
+        ],
+        [
+          73.212890625,
+          619.6734619140625
+        ]
+      ]
+    },
+    {
+      "title": "Start service",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.08447265625,
+          283.681640625
+        ],
+        [
+          153.10531616210938,
+          283.681640625
+        ],
+        [
+          153.10531616210938,
+          297.69677734375
+        ],
+        [
+          74.08447265625,
+          297.69677734375
+        ]
+      ]
+    },
+    {
+      "title": "Web page preview screen",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          73.50341796875,
+          567.7744140625
+        ],
+        [
+          231.35313415527344,
+          567.7744140625
+        ],
+        [
+          231.35313415527344,
+          580.4468078613281
+        ],
+        [
+          73.50341796875,
+          580.4468078613281
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          93
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          103
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          55
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          27
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          145
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          91
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          112
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "Code",
+          9
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\14.Using USB camera"
+}

@@ -1,0 +1,461 @@
+{
+  "table_of_contents": [
+    {
+      "title": "RAG Knowledge Base + Chatbot",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          419.6263122558594,
+          65.78125
+        ],
+        [
+          419.6263122558594,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "RAG Knowledge Base + Chatbot",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          107.3056640625
+        ],
+        [
+          213.2799835205078,
+          107.3056640625
+        ],
+        [
+          213.2799835205078,
+          117.25506591796875
+        ],
+        [
+          75.24658203125,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          233.9345703125
+        ],
+        [
+          229.14520263671875,
+          233.9345703125
+        ],
+        [
+          229.14520263671875,
+          251.0965576171875
+        ],
+        [
+          75.24658203125,
+          251.0965576171875
+        ]
+      ]
+    },
+    {
+      "title": "2. Starting the Dify Service",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          318.6279296875
+        ],
+        [
+          303.2633972167969,
+          318.6279296875
+        ],
+        [
+          303.2633972167969,
+          336.6363525390625
+        ],
+        [
+          74.66552734375,
+          336.6363525390625
+        ]
+      ]
+    },
+    {
+      "title": "3. Case Study 1: Task Planning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          170.208984375
+        ],
+        [
+          332.2207946777344,
+          170.208984375
+        ],
+        [
+          332.2207946777344,
+          188.817626953125
+        ],
+        [
+          75.24658203125,
+          188.817626953125
+        ]
+      ]
+    },
+    {
+      "title": "[!TIP]",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          88.61083984375,
+          691.525390625
+        ],
+        [
+          113.84718322753906,
+          691.525390625
+        ],
+        [
+          113.84718322753906,
+          702.7362060546875
+        ],
+        [
+          88.61083984375,
+          702.7362060546875
+        ]
+      ]
+    },
+    {
+      "title": "4. Case Study 2: Knowledge Management",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          252.435546875
+        ],
+        [
+          424.0553283691406,
+          252.435546875
+        ],
+        [
+          424.0553283691406,
+          271.35601806640625
+        ],
+        [
+          74.66552734375,
+          271.35601806640625
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Creating a Knowledge Base",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          353.9853515625
+        ],
+        [
+          300.0363464355469,
+          353.9853515625
+        ],
+        [
+          300.0363464355469,
+          370.62884521484375
+        ],
+        [
+          74.66552734375,
+          370.62884521484375
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Creating an Application",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.24658203125,
+          536.1171875
+        ],
+        [
+          274.8446350097656,
+          536.1171875
+        ],
+        [
+          274.8446350097656,
+          552.9635620117188
+        ],
+        [
+          75.24658203125,
+          552.9635620117188
+        ]
+      ]
+    },
+    {
+      "title": "# Role Positioning",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          84.2529296875,
+          598.1982421875
+        ],
+        [
+          182.24496459960938,
+          598.1982421875
+        ],
+        [
+          182.24496459960938,
+          607.943603515625
+        ],
+        [
+          84.2529296875,
+          607.943603515625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          76
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          41
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          171
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          24
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\RAG knowledge base + chatbot"
+}

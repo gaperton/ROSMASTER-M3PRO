@@ -1,0 +1,669 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Semantic Understanding and\nInstruction Following",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          65.3701171875
+        ],
+        [
+          398.0271301269531,
+          65.3701171875
+        ],
+        [
+          398.0271301269531,
+          114.8299560546875
+        ],
+        [
+          75.24658203125,
+          114.8299560546875
+        ]
+      ]
+    },
+    {
+      "title": "Semantic Understanding and Instruction Following",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          133.6181640625
+        ],
+        [
+          299.76251220703125,
+          133.6181640625
+        ],
+        [
+          299.76251220703125,
+          143.51727294921875
+        ],
+        [
+          74.66552734375,
+          143.51727294921875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          367.9638671875
+        ],
+        [
+          229.14520263671875,
+          367.9638671875
+        ],
+        [
+          229.14520263671875,
+          385.40899658203125
+        ],
+        [
+          75.24658203125,
+          385.40899658203125
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          498.29296875
+        ],
+        [
+          200.3507080078125,
+          498.29296875
+        ],
+        [
+          200.3507080078125,
+          515.9696655273438
+        ],
+        [
+          74.9560546875,
+          515.9696655273438
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          528.3056640625
+        ],
+        [
+          250.1754150390625,
+          528.3056640625
+        ],
+        [
+          250.1754150390625,
+          545.4600219726562
+        ],
+        [
+          75.24658203125,
+          545.4600219726562
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Starting the Agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          689.05859375
+        ],
+        [
+          235.9358367919922,
+          689.05859375
+        ],
+        [
+          235.9358367919922,
+          705.50390625
+        ],
+        [
+          74.66552734375,
+          705.50390625
+        ]
+      ]
+    },
+    {
+      "title": "3. Running the Cases",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          266.8251953125
+        ],
+        [
+          254.08445739746094,
+          266.8251953125
+        ],
+        [
+          254.08445739746094,
+          284.86224365234375
+        ],
+        [
+          74.66552734375,
+          284.86224365234375
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Starting the Program",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          298.8935546875
+        ],
+        [
+          258.6296691894531,
+          298.8935546875
+        ],
+        [
+          258.6296691894531,
+          314.5166015625
+        ],
+        [
+          75.24658203125,
+          314.5166015625
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Test Cases",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          32.890625
+        ],
+        [
+          178.4322967529297,
+          32.890625
+        ],
+        [
+          178.4322967529297,
+          47.97906494140625
+        ],
+        [
+          74.375,
+          47.97906494140625
+        ]
+      ]
+    },
+    {
+      "title": "3.2.1 Case 1",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          154.1748046875
+        ],
+        [
+          147.28627014160156,
+          154.1748046875
+        ],
+        [
+          147.28627014160156,
+          166.7608642578125
+        ],
+        [
+          74.66552734375,
+          166.7608642578125
+        ]
+      ]
+    },
+    {
+      "title": "3.2.2 Case 2",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          309.171875
+        ],
+        [
+          147.28627014160156,
+          309.171875
+        ],
+        [
+          147.28627014160156,
+          322.8330078125
+        ],
+        [
+          74.9560546875,
+          322.8330078125
+        ]
+      ]
+    },
+    {
+      "title": "4. Code Analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          665.4765319824219
+        ],
+        [
+          214.4468994140625,
+          665.4765319824219
+        ],
+        [
+          214.4468994140625,
+          682.5469512939453
+        ],
+        [
+          74.08447265625,
+          682.5469512939453
+        ]
+      ]
+    },
+    {
+      "title": "5. Solutions to Common Problems",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          749.083984375
+        ],
+        [
+          362.0658264160156,
+          749.083984375
+        ],
+        [
+          362.0658264160156,
+          768.0865097045898
+        ],
+        [
+          74.66552734375,
+          768.0865097045898
+        ]
+      ]
+    },
+    {
+      "title": "5.1 Microphone Recording is Too Sensitive",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.375,
+          32.068359375
+        ],
+        [
+          383.0132751464844,
+          32.068359375
+        ],
+        [
+          383.0132751464844,
+          47.97894287109375
+        ],
+        [
+          74.375,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "[!NOTE]",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          88.9013671875,
+          151.7080078125
+        ],
+        [
+          125.62090301513672,
+          151.7080078125
+        ],
+        [
+          125.62090301513672,
+          163.2357177734375
+        ],
+        [
+          88.9013671875,
+          163.2357177734375
+        ]
+      ]
+    },
+    {
+      "title": "5.2 Microphone Recording Insensitivity",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          32.068359375
+        ],
+        [
+          361.17791748046875,
+          32.068359375
+        ],
+        [
+          361.17791748046875,
+          47.97845458984375
+        ],
+        [
+          74.9560546875,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "Note:",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          129.095703125
+        ],
+        [
+          103.17399597167969,
+          129.095703125
+        ],
+        [
+          103.17399597167969,
+          139.9744873046875
+        ],
+        [
+          74.9560546875,
+          139.9744873046875
+        ]
+      ]
+    },
+    {
+      "title": "5.3 Software Adjustment of Speech Recognition Sensitivity",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          192.8212890625
+        ],
+        [
+          502.9601135253906,
+          192.8212890625
+        ],
+        [
+          502.9601135253906,
+          208.55316162109375
+        ],
+        [
+          74.9560546875,
+          208.55316162109375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          157
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "ListItem",
+          14
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          250
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          38
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          190
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\Semantic understand and command follow"
+}

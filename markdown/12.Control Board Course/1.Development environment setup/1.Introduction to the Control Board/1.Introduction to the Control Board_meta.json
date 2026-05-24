@@ -1,0 +1,342 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Introduction to the Control Board",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          365.689453125,
+          64.5478515625
+        ],
+        [
+          365.689453125,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Component distribution diagram on the front of the\ncontrol board",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          224.0673828125
+        ],
+        [
+          473.7889709472656,
+          224.0673828125
+        ],
+        [
+          473.7889709472656,
+          260.32757568359375
+        ],
+        [
+          74.9560546875,
+          260.32757568359375
+        ]
+      ]
+    },
+    {
+      "title": "2. Component distribution diagram on the back of the\ncontrol board",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          379.064453125
+        ],
+        [
+          471.1405944824219,
+          379.064453125
+        ],
+        [
+          471.1405944824219,
+          415.64971923828125
+        ],
+        [
+          74.66552734375,
+          415.64971923828125
+        ]
+      ]
+    },
+    {
+      "title": "3. Control board pin assignment diagram",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          56.736328125
+        ],
+        [
+          373.13238525390625,
+          56.736328125
+        ],
+        [
+          373.13238525390625,
+          72.74053955078125
+        ],
+        [
+          73.7939453125,
+          72.74053955078125
+        ]
+      ]
+    },
+    {
+      "title": "4. Analysis of Common Problems",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.08447265625,
+          451.8349609375
+        ],
+        [
+          315.2396240234375,
+          451.8349609375
+        ],
+        [
+          315.2396240234375,
+          468.17401123046875
+        ],
+        [
+          74.08447265625,
+          468.17401123046875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          101
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "ListItem",
+          20
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          53
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "ListItem",
+          20
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          165
+        ],
+        [
+          "TableCell",
+          66
+        ],
+        [
+          "Line",
+          49
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          118
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "TableCell",
+          30
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\1.Introduction to the Control Board"
+}

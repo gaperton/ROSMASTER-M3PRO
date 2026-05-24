@@ -1,0 +1,274 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Yolov8 Object Detection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          65.78125
+        ],
+        [
+          283.6885681152344,
+          65.78125
+        ],
+        [
+          283.6885681152344,
+          83.01849365234375
+        ],
+        [
+          74.08447265625,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          97.02734375
+        ],
+        [
+          241.83529663085938,
+          112.50885009765625
+        ],
+        [
+          75.24658203125,
+          112.50885009765625
+        ]
+      ]
+    },
+    {
+      "title": "1.1 Introduction to YOLOv8",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          165.275390625
+        ],
+        [
+          242.2466583251953,
+          165.275390625
+        ],
+        [
+          242.2466583251953,
+          178.7662353515625
+        ],
+        [
+          75.52161407470703,
+          178.7662353515625
+        ]
+      ]
+    },
+    {
+      "title": "YOLOv8 Features:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          259.8359375
+        ],
+        [
+          157.11341857910156,
+          259.8359375
+        ],
+        [
+          157.11341857910156,
+          270.53558349609375
+        ],
+        [
+          74.66552734375,
+          270.53558349609375
+        ]
+      ]
+    },
+    {
+      "title": "YOLOv application scenarios:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          530.361328125
+        ],
+        [
+          207.88575744628906,
+          530.361328125
+        ],
+        [
+          207.88575744628906,
+          541.4114379882812
+        ],
+        [
+          74.66552734375,
+          541.4114379882812
+        ]
+      ]
+    },
+    {
+      "title": "2. Program Startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          661.1015625
+        ],
+        [
+          216.73712158203125,
+          661.1015625
+        ],
+        [
+          216.73712158203125,
+          677.546875
+        ],
+        [
+          74.66552734375,
+          677.546875
+        ]
+      ]
+    },
+    {
+      "title": "3. Core Code Analysis",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          404.5546875
+        ],
+        [
+          232.04318237304688,
+          404.5546875
+        ],
+        [
+          232.04318237304688,
+          420.90216064453125
+        ],
+        [
+          74.66552734375,
+          420.90216064453125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          108
+        ],
+        [
+          "Line",
+          38
+        ],
+        [
+          "ListItem",
+          9
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          125
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          243
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\7.YOLOv8 object detection"
+}

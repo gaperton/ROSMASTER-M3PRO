@@ -1,0 +1,330 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Jtop tool",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          66.62005615234375
+        ],
+        [
+          171.07041931152344,
+          66.62005615234375
+        ],
+        [
+          171.07041931152344,
+          88.5677490234375
+        ],
+        [
+          75.24658203125,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Jtop tool",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          107.3056640625
+        ],
+        [
+          113.76057434082031,
+          107.3056640625
+        ],
+        [
+          113.76057434082031,
+          117.25506591796875
+        ],
+        [
+          73.7939453125,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Install Jtop",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          287.3818359375
+        ],
+        [
+          190.4444580078125,
+          287.3818359375
+        ],
+        [
+          190.4444580078125,
+          305.87200927734375
+        ],
+        [
+          75.52161407470703,
+          305.87200927734375
+        ]
+      ]
+    },
+    {
+      "title": "2. Best performance mode",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          671.791015625
+        ],
+        [
+          302.97314453125,
+          671.791015625
+        ],
+        [
+          302.97314453125,
+          689.3001861572266
+        ],
+        [
+          75.52161407470703,
+          689.3001861572266
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Enable MAXN mode",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          703.4482421875
+        ],
+        [
+          250.55160522460938,
+          703.4482421875
+        ],
+        [
+          250.55160522460938,
+          718.7905197143555
+        ],
+        [
+          75.24658203125,
+          718.7905197143555
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Enable Jetson Clocks",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          255.79058837890625,
+          32.068359375
+        ],
+        [
+          255.79058837890625,
+          47.9788818359375
+        ],
+        [
+          75.24658203125,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "3. Use Jtop",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          124.5732421875
+        ],
+        [
+          168.4065399169922,
+          124.5732421875
+        ],
+        [
+          168.4065399169922,
+          142.2960205078125
+        ],
+        [
+          75.52161407470703,
+          142.2960205078125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          81
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          26
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          65
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "PageHeader",
+          3
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Span",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\9.Jtop tool"
+}

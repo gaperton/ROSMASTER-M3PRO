@@ -1,0 +1,305 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Light up the LED light",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          259.9402770996094,
+          65.3701171875
+        ],
+        [
+          259.9402770996094,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Experimental Purpose",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          237.634765625
+        ],
+        [
+          256.0092468261719,
+          237.634765625
+        ],
+        [
+          256.0092468261719,
+          253.57440185546875
+        ],
+        [
+          75.24658203125,
+          253.57440185546875
+        ]
+      ]
+    },
+    {
+      "title": "2. Hardware Connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          314.927734375
+        ],
+        [
+          254.59420776367188,
+          314.927734375
+        ],
+        [
+          254.59420776367188,
+          330.86029052734375
+        ],
+        [
+          74.9560546875,
+          330.86029052734375
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code analysis",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          32.890625
+        ],
+        [
+          228.99978637695312,
+          32.890625
+        ],
+        [
+          228.99978637695312,
+          47.9788818359375
+        ],
+        [
+          75.52161407470703,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "4. Compile, download and burn firmware",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          32.068359375
+        ],
+        [
+          376.22412109375,
+          32.068359375
+        ],
+        [
+          376.22412109375,
+          47.97869873046875
+        ],
+        [
+          74.375,
+          47.97869873046875
+        ]
+      ]
+    },
+    {
+      "title": "5. Experimental Results",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          421.0
+        ],
+        [
+          249.17703247070312,
+          421.0
+        ],
+        [
+          249.17703247070312,
+          436.65936279296875
+        ],
+        [
+          74.375,
+          436.65936279296875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          175
+        ],
+        [
+          "Line",
+          37
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          5
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\1.Turn on the LED light"
+}

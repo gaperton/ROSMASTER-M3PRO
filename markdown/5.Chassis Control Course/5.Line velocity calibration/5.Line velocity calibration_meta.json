@@ -1,0 +1,672 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Linear speed calibration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          345.1401672363281,
+          65.78125
+        ],
+        [
+          345.1401672363281,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Linear speed calibration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          107.3056640625
+        ],
+        [
+          183.4476776123047,
+          107.3056640625
+        ],
+        [
+          183.4476776123047,
+          117.25506591796875
+        ],
+        [
+          74.375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          323.97265625
+        ],
+        [
+          229.14520263671875,
+          323.97265625
+        ],
+        [
+          229.14520263671875,
+          341.8887939453125
+        ],
+        [
+          74.9560546875,
+          341.8887939453125
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          409.0771484375
+        ],
+        [
+          200.3507080078125,
+          409.0771484375
+        ],
+        [
+          200.3507080078125,
+          427.42852783203125
+        ],
+        [
+          74.375,
+          427.42852783203125
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          441.1455078125
+        ],
+        [
+          250.1754150390625,
+          441.1455078125
+        ],
+        [
+          250.1754150390625,
+          456.91888427734375
+        ],
+        [
+          74.66552734375,
+          456.91888427734375
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Start the Agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          569.830078125
+        ],
+        [
+          213.6077117919922,
+          569.830078125
+        ],
+        [
+          213.6077117919922,
+          586.7291870117188
+        ],
+        [
+          74.08447265625,
+          586.7291870117188
+        ]
+      ]
+    },
+    {
+      "title": "3. Run the case",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          245.03515625
+        ],
+        [
+          206.7642364501953,
+          245.03515625
+        ],
+        [
+          206.7642364501953,
+          262.351806640625
+        ],
+        [
+          74.9560546875,
+          262.351806640625
+        ]
+      ]
+    },
+    {
+      "title": "Notice:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          274.63671875
+        ],
+        [
+          111.16295623779297,
+          274.63671875
+        ],
+        [
+          111.16295623779297,
+          286.2928466796875
+        ],
+        [
+          75.52161407470703,
+          286.2928466796875
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Startup Program",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          352.751953125
+        ],
+        [
+          226.77626037597656,
+          352.751953125
+        ],
+        [
+          226.77626037597656,
+          369.12811279296875
+        ],
+        [
+          74.66552734375,
+          369.12811279296875
+        ]
+      ]
+    },
+    {
+      "title": "Click the calibrate_linear node in the node options on the left :",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          366.3193359375
+        ],
+        [
+          367.9144287109375,
+          366.3193359375
+        ],
+        [
+          367.9144287109375,
+          377.085205078125
+        ],
+        [
+          74.08447265625,
+          377.085205078125
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Start calibration",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          72.359375
+        ],
+        [
+          222.87249755859375,
+          72.359375
+        ],
+        [
+          222.87249755859375,
+          87.74725341796875
+        ],
+        [
+          74.9560546875,
+          87.74725341796875
+        ]
+      ]
+    },
+    {
+      "title": "3.3 Writing calibration parameters to the chassis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.24658203125,
+          562.4296875
+        ],
+        [
+          432.6451721191406,
+          562.4296875
+        ],
+        [
+          432.6451721191406,
+          579.2255249023438
+        ],
+        [
+          75.24658203125,
+          579.2255249023438
+        ]
+      ]
+    },
+    {
+      "title": "4. Code explanation",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          273.4033203125
+        ],
+        [
+          247.1578369140625,
+          273.4033203125
+        ],
+        [
+          247.1578369140625,
+          292.36529541015625
+        ],
+        [
+          74.9560546875,
+          292.36529541015625
+        ]
+      ]
+    },
+    {
+      "title": "4.1 View the node relationship diagram",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          75.24658203125,
+          476.9140625
+        ],
+        [
+          365.6319580078125,
+          476.9140625
+        ],
+        [
+          365.6319580078125,
+          493.68548583984375
+        ],
+        [
+          75.24658203125,
+          493.68548583984375
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Source code analysis",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.375,
+          94.560546875
+        ],
+        [
+          253.20077514648438,
+          94.560546875
+        ],
+        [
+          253.20077514648438,
+          110.25775146484375
+        ],
+        [
+          74.375,
+          110.25775146484375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          117
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          28
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          37
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          50
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          460
+        ],
+        [
+          "Line",
+          47
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          495
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\5.Line velocity calibration"
+}

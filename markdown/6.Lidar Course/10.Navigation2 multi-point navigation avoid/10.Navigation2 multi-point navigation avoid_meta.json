@@ -1,0 +1,556 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Navigation2 Multi-Point Navigation and Obstacle\nAvoidance",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          65.3701171875
+        ],
+        [
+          495.7323913574219,
+          65.3701171875
+        ],
+        [
+          495.7323913574219,
+          103.27789306640625
+        ],
+        [
+          74.08447265625,
+          103.27789306640625
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          312.0498046875
+        ],
+        [
+          229.14520263671875,
+          312.0498046875
+        ],
+        [
+          229.14520263671875,
+          329.1328125
+        ],
+        [
+          75.52161407470703,
+          329.1328125
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          404.1435546875
+        ],
+        [
+          200.3507080078125,
+          404.1435546875
+        ],
+        [
+          200.3507080078125,
+          422.17608642578125
+        ],
+        [
+          74.66552734375,
+          422.17608642578125
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          436.2119140625
+        ],
+        [
+          250.1754150390625,
+          436.2119140625
+        ],
+        [
+          250.1754150390625,
+          451.8349609375
+        ],
+        [
+          74.9560546875,
+          451.8349609375
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Starting the Agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          564.896484375
+        ],
+        [
+          235.9358367919922,
+          564.896484375
+        ],
+        [
+          235.9358367919922,
+          581.4767456054688
+        ],
+        [
+          74.9560546875,
+          581.4767456054688
+        ]
+      ]
+    },
+    {
+      "title": "3. Running the Example",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          244.212890625
+        ],
+        [
+          278.9380187988281,
+          244.212890625
+        ],
+        [
+          278.9380187988281,
+          262.351806640625
+        ],
+        [
+          74.08447265625,
+          262.351806640625
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Multi-Point Navigation",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          276.28125
+        ],
+        [
+          269.24066162109375,
+          276.28125
+        ],
+        [
+          269.24066162109375,
+          291.84210205078125
+        ],
+        [
+          75.24658203125,
+          291.84210205078125
+        ]
+      ]
+    },
+    {
+      "title": "Note:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          304.23828125
+        ],
+        [
+          103.17399597167969,
+          304.23828125
+        ],
+        [
+          103.17399597167969,
+          316.306884765625
+        ],
+        [
+          75.52161407470703,
+          316.306884765625
+        ]
+      ]
+    },
+    {
+      "title": "4. Principle Analysis",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.375,
+          605.5986328125
+        ],
+        [
+          247.06849670410156,
+          605.5986328125
+        ],
+        [
+          247.06849670410156,
+          624.0196075439453
+        ],
+        [
+          74.375,
+          624.0196075439453
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Waypoint Data",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          637.255859375
+        ],
+        [
+          211.7576904296875,
+          637.255859375
+        ],
+        [
+          211.7576904296875,
+          653.701171875
+        ],
+        [
+          74.66552734375,
+          653.701171875
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Data transmission execution",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.66552734375,
+          476.9140625
+        ],
+        [
+          313.3409118652344,
+          476.9140625
+        ],
+        [
+          313.3409118652344,
+          492.18548583984375
+        ],
+        [
+          74.66552734375,
+          492.18548583984375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          104
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "ListItem",
+          9
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          35
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          33
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          23
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          39
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          20
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\10.Navigation2 multi-point navigation avoid"
+}

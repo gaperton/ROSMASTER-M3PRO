@@ -1,0 +1,224 @@
+{
+  "table_of_contents": [
+    {
+      "title": "4.Ubuntu common editors",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          64.5478515625
+        ],
+        [
+          301.4036865234375,
+          64.5478515625
+        ],
+        [
+          301.4036865234375,
+          83.01849365234375
+        ],
+        [
+          74.375,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "4.1Editor",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          97.4384765625
+        ],
+        [
+          142.5360107421875,
+          97.4384765625
+        ],
+        [
+          142.5360107421875,
+          113.25921630859375
+        ],
+        [
+          74.08447265625,
+          113.25921630859375
+        ]
+      ]
+    },
+    {
+      "title": "4.1.1\u3001vim",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          127.0400390625
+        ],
+        [
+          142.13418579101562,
+          127.0400390625
+        ],
+        [
+          142.13418579101562,
+          140.49847412109375
+        ],
+        [
+          73.7939453125,
+          140.49847412109375
+        ]
+      ]
+    },
+    {
+      "title": "4.1.2\u3001nano",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.50341796875,
+          554.2981872558594
+        ],
+        [
+          148.9935302734375,
+          554.2981872558594
+        ],
+        [
+          148.9935302734375,
+          566.6965637207031
+        ],
+        [
+          73.50341796875,
+          566.6965637207031
+        ]
+      ]
+    },
+    {
+      "title": "4.1.3\u3001gedit",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          167.3310546875
+        ],
+        [
+          148.09671020507812,
+          167.3310546875
+        ],
+        [
+          148.09671020507812,
+          180.26708984375
+        ],
+        [
+          75.24658203125,
+          180.26708984375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          159
+        ],
+        [
+          "Line",
+          28
+        ],
+        [
+          "Text",
+          14
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          473
+        ],
+        [
+          "Line",
+          41
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          157
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4.Ubuntu common editors"
+}

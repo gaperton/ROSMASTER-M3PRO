@@ -1,0 +1,316 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Network Configuration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          42.3466796875
+        ],
+        [
+          332.5069274902344,
+          42.3466796875
+        ],
+        [
+          332.5069274902344,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Network Configuration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          82.2265625
+        ],
+        [
+          177.76065063476562,
+          82.2265625
+        ],
+        [
+          177.76065063476562,
+          93.71405029296875
+        ],
+        [
+          73.7939453125,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "1. WiFi connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          194.876953125
+        ],
+        [
+          232.87413024902344,
+          194.876953125
+        ],
+        [
+          232.87413024902344,
+          213.243408203125
+        ],
+        [
+          74.5,
+          213.243408203125
+        ]
+      ]
+    },
+    {
+      "title": "Graphical interface",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          82.80029296875,
+          226.9453125
+        ],
+        [
+          240.17388916015625,
+          226.9453125
+        ],
+        [
+          240.17388916015625,
+          242.7200927734375
+        ],
+        [
+          82.80029296875,
+          242.7200927734375
+        ]
+      ]
+    },
+    {
+      "title": "Command Line",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          82.80029296875,
+          612.0951538085938
+        ],
+        [
+          209.35902404785156,
+          612.0951538085938
+        ],
+        [
+          209.35902404785156,
+          626.7201538085938
+        ],
+        [
+          82.80029296875,
+          626.7201538085938
+        ]
+      ]
+    },
+    {
+      "title": "2. Turn on hotspot",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.212890625,
+          420.4311218261719
+        ],
+        [
+          233.03907775878906,
+          420.4311218261719
+        ],
+        [
+          233.03907775878906,
+          437.4936218261719
+        ],
+        [
+          73.212890625,
+          437.4936218261719
+        ]
+      ]
+    },
+    {
+      "title": "3. Hotspot/WiFi starts automatically after booting",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          332.1953125
+        ],
+        [
+          501.54022216796875,
+          332.1953125
+        ],
+        [
+          501.54022216796875,
+          350.28515625
+        ],
+        [
+          73.7939453125,
+          350.28515625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          155
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          61
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          16
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\8.Network Configuration"
+}

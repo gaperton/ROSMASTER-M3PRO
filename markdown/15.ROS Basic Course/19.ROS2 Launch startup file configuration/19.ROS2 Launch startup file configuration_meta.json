@@ -1,0 +1,1510 @@
+{
+  "table_of_contents": [
+    {
+      "title": "19. ROS2 Launch startup file\nconfiguration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          65.3701171875
+        ],
+        [
+          386.8343811035156,
+          65.3701171875
+        ],
+        [
+          386.8343811035156,
+          114.8299560546875
+        ],
+        [
+          75.24658203125,
+          114.8299560546875
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to Launch",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          152.5302734375
+        ],
+        [
+          295.2110900878906,
+          152.5302734375
+        ],
+        [
+          295.2110900878906,
+          170.80926513671875
+        ],
+        [
+          75.24658203125,
+          170.80926513671875
+        ]
+      ]
+    },
+    {
+      "title": "References:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          394.6875
+        ],
+        [
+          129.44955444335938,
+          394.6875
+        ],
+        [
+          129.44955444335938,
+          406.34869384765625
+        ],
+        [
+          75.52161407470703,
+          406.34869384765625
+        ]
+      ]
+    },
+    {
+      "title": "2. Writing a Single Node Launch Program",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          510.2158203125
+        ],
+        [
+          427.2474060058594,
+          510.2158203125
+        ],
+        [
+          427.2474060058594,
+          528.7255859375
+        ],
+        [
+          74.66552734375,
+          528.7255859375
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Creating a Launch File",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          542.2841796875
+        ],
+        [
+          268.5486755371094,
+          542.2841796875
+        ],
+        [
+          268.5486755371094,
+          558.2159423828125
+        ],
+        [
+          75.24658203125,
+          558.2159423828125
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Configuring the setup.py File",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          335.0732421875
+        ],
+        [
+          312.3709716796875,
+          335.0732421875
+        ],
+        [
+          312.3709716796875,
+          351.11968994140625
+        ],
+        [
+          74.66552734375,
+          351.11968994140625
+        ]
+      ]
+    },
+    {
+      "title": "2.3. Compile the package",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          56.3251953125
+        ],
+        [
+          259.3160400390625,
+          56.3251953125
+        ],
+        [
+          259.3160400390625,
+          72.74053955078125
+        ],
+        [
+          74.9560546875,
+          72.74053955078125
+        ]
+      ]
+    },
+    {
+      "title": "2.4. Run the program",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          226.9453125
+        ],
+        [
+          233.19960021972656,
+          226.9453125
+        ],
+        [
+          233.19960021972656,
+          242.31927490234375
+        ],
+        [
+          74.9560546875,
+          242.31927490234375
+        ]
+      ]
+    },
+    {
+      "title": "2.5. Source Code Analysis",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          446.9013671875
+        ],
+        [
+          260.4142761230469,
+          446.9013671875
+        ],
+        [
+          260.4142761230469,
+          462.92181396484375
+        ],
+        [
+          74.66552734375,
+          462.92181396484375
+        ]
+      ]
+    },
+    {
+      "title": "3. Writing a Launch Program for Multiple Nodes",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          92.09375
+        ],
+        [
+          482.7940368652344,
+          92.09375
+        ],
+        [
+          482.7940368652344,
+          110.78131103515625
+        ],
+        [
+          74.9560546875,
+          110.78131103515625
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Creating a Launch File",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.24658203125,
+          124.5732421875
+        ],
+        [
+          268.5486755371094,
+          124.5732421875
+        ],
+        [
+          268.5486755371094,
+          140.27166748046875
+        ],
+        [
+          75.24658203125,
+          140.27166748046875
+        ]
+      ]
+    },
+    {
+      "title": "3.2. Compile the package",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          470.3359375
+        ],
+        [
+          259.3160400390625,
+          470.3359375
+        ],
+        [
+          259.3160400390625,
+          487.68304443359375
+        ],
+        [
+          74.9560546875,
+          487.68304443359375
+        ]
+      ]
+    },
+    {
+      "title": "3.3. Run the program",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          641.3671875
+        ],
+        [
+          233.19960021972656,
+          641.3671875
+        ],
+        [
+          233.19960021972656,
+          657.8125
+        ],
+        [
+          74.66552734375,
+          657.8125
+        ]
+      ]
+    },
+    {
+      "title": "3.4 Source Code Analysis",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.9560546875,
+          439.5009765625
+        ],
+        [
+          256.24420166015625,
+          439.5009765625
+        ],
+        [
+          256.24420166015625,
+          455.41815185546875
+        ],
+        [
+          74.9560546875,
+          455.41815185546875
+        ]
+      ]
+    },
+    {
+      "title": "4 Topic Remapping Example",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          493.7705078125
+        ],
+        [
+          315.656494140625,
+          493.7705078125
+        ],
+        [
+          315.656494140625,
+          511.4676208496094
+        ],
+        [
+          74.66552734375,
+          511.4676208496094
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Creating a New Launch File",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.24658203125,
+          525.0166015625
+        ],
+        [
+          301.1922912597656,
+          525.0166015625
+        ],
+        [
+          301.1922912597656,
+          540.9579467773438
+        ],
+        [
+          75.24658203125,
+          540.9579467773438
+        ]
+      ]
+    },
+    {
+      "title": "4.2. Compile the package",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          32.068359375
+        ],
+        [
+          259.3160400390625,
+          32.068359375
+        ],
+        [
+          259.3160400390625,
+          47.97845458984375
+        ],
+        [
+          74.9560546875,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "4.3. Run the program",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          202.27734375
+        ],
+        [
+          233.19960021972656,
+          202.27734375
+        ],
+        [
+          233.19960021972656,
+          217.55755615234375
+        ],
+        [
+          74.66552734375,
+          217.55755615234375
+        ]
+      ]
+    },
+    {
+      "title": "4.4 Source Code Analysis",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.375,
+          319.861328125
+        ],
+        [
+          256.24420166015625,
+          319.861328125
+        ],
+        [
+          256.24420166015625,
+          336.11273193359375
+        ],
+        [
+          74.375,
+          336.11273193359375
+        ]
+      ]
+    },
+    {
+      "title": "5. Example of Launching Another Launch File from a\nNested Launch File",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          437.0341796875
+        ],
+        [
+          521.2127685546875,
+          437.0341796875
+        ],
+        [
+          521.2127685546875,
+          475.4507751464844
+        ],
+        [
+          75.24658203125,
+          475.4507751464844
+        ]
+      ]
+    },
+    {
+      "title": "5.1. Creating a New Launch File",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.9560546875,
+          488.42578125
+        ],
+        [
+          305.3623352050781,
+          488.42578125
+        ],
+        [
+          305.3623352050781,
+          504.94134521484375
+        ],
+        [
+          74.9560546875,
+          504.94134521484375
+        ]
+      ]
+    },
+    {
+      "title": "5.2. Compiling the Function Package",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          340.97607421875,
+          32.068359375
+        ],
+        [
+          340.97607421875,
+          47.97845458984375
+        ],
+        [
+          75.24658203125,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "5.3. Running the Program",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.9560546875,
+          202.27734375
+        ],
+        [
+          265.0676574707031,
+          202.27734375
+        ],
+        [
+          265.0676574707031,
+          217.55706787109375
+        ],
+        [
+          74.9560546875,
+          217.55706787109375
+        ]
+      ]
+    },
+    {
+      "title": "5.4. Source Code Analysis",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          75.24658203125,
+          464.9912109375
+        ],
+        [
+          260.4142761230469,
+          464.9912109375
+        ],
+        [
+          260.4142761230469,
+          480.92962646484375
+        ],
+        [
+          75.24658203125,
+          480.92962646484375
+        ]
+      ]
+    },
+    {
+      "title": "6. Comprehensive Launch File Example",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.375,
+          609.298828125
+        ],
+        [
+          408.65618896484375,
+          609.298828125
+        ],
+        [
+          408.65618896484375,
+          627.0205841064453
+        ],
+        [
+          74.375,
+          627.0205841064453
+        ]
+      ]
+    },
+    {
+      "title": "6.1. Creating a New Launch File",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.66552734375,
+          679.19140625
+        ],
+        [
+          305.3623352050781,
+          679.19140625
+        ],
+        [
+          305.3623352050781,
+          696.2797241210938
+        ],
+        [
+          74.66552734375,
+          696.2797241210938
+        ]
+      ]
+    },
+    {
+      "title": "6.2. Compile the Workspace",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          74.66552734375,
+          504.048828125
+        ],
+        [
+          279.3323669433594,
+          504.048828125
+        ],
+        [
+          279.3323669433594,
+          521.4491577148438
+        ],
+        [
+          74.66552734375,
+          521.4491577148438
+        ]
+      ]
+    },
+    {
+      "title": "6.3. Run the Program",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          74.66552734375,
+          674.2578125
+        ],
+        [
+          233.1264190673828,
+          674.2578125
+        ],
+        [
+          233.1264190673828,
+          691.0277709960938
+        ],
+        [
+          74.66552734375,
+          691.0277709960938
+        ]
+      ]
+    },
+    {
+      "title": "6.4. Program Description",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          74.9560546875,
+          32.890625
+        ],
+        [
+          258.3692321777344,
+          32.890625
+        ],
+        [
+          258.3692321777344,
+          47.97747802734375
+        ],
+        [
+          74.9560546875,
+          47.97747802734375
+        ]
+      ]
+    },
+    {
+      "title": "7. XML Implementation",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          74.08447265625,
+          168.9755859375
+        ],
+        [
+          278.3796691894531,
+          168.9755859375
+        ],
+        [
+          278.3796691894531,
+          186.56549072265625
+        ],
+        [
+          74.08447265625,
+          186.56549072265625
+        ]
+      ]
+    },
+    {
+      "title": "7.1. Creating a Launch File",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          74.9560546875,
+          200.2216796875
+        ],
+        [
+          268.5486755371094,
+          200.2216796875
+        ],
+        [
+          268.5486755371094,
+          216.05560302734375
+        ],
+        [
+          74.9560546875,
+          216.05560302734375
+        ]
+      ]
+    },
+    {
+      "title": "7.2. setup.py File Configuration",
+      "heading_level": null,
+      "page_id": 12,
+      "polygon": [
+        [
+          74.9560546875,
+          31.6572265625
+        ],
+        [
+          304.4739990234375,
+          31.6572265625
+        ],
+        [
+          304.4739990234375,
+          47.97845458984375
+        ],
+        [
+          74.9560546875,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "7.3. Compile the Function Package",
+      "heading_level": null,
+      "page_id": 12,
+      "polygon": [
+        [
+          74.375,
+          267.236328125
+        ],
+        [
+          327.28070068359375,
+          267.236328125
+        ],
+        [
+          327.28070068359375,
+          283.681640625
+        ],
+        [
+          74.375,
+          283.681640625
+        ]
+      ]
+    },
+    {
+      "title": "7.4. Run the Program",
+      "heading_level": null,
+      "page_id": 12,
+      "polygon": [
+        [
+          74.9560546875,
+          437.0341796875
+        ],
+        [
+          233.1264190673828,
+          437.0341796875
+        ],
+        [
+          233.1264190673828,
+          452.6572265625
+        ],
+        [
+          74.9560546875,
+          452.6572265625
+        ]
+      ]
+    },
+    {
+      "title": "8. YAML Implementation",
+      "heading_level": null,
+      "page_id": 13,
+      "polygon": [
+        [
+          74.9560546875,
+          525.427734375
+        ],
+        [
+          289.42425537109375,
+          525.427734375
+        ],
+        [
+          289.42425537109375,
+          542.9805603027344
+        ],
+        [
+          74.9560546875,
+          542.9805603027344
+        ]
+      ]
+    },
+    {
+      "title": "8.1. Create a New Launch File",
+      "heading_level": null,
+      "page_id": 13,
+      "polygon": [
+        [
+          74.66552734375,
+          556.673828125
+        ],
+        [
+          291.6669616699219,
+          556.673828125
+        ],
+        [
+          291.6669616699219,
+          572.4706420898438
+        ],
+        [
+          74.66552734375,
+          572.4706420898438
+        ]
+      ]
+    },
+    {
+      "title": "8.2. Configuration",
+      "heading_level": null,
+      "page_id": 15,
+      "polygon": [
+        [
+          75.52161407470703,
+          32.068359375
+        ],
+        [
+          208.47479248046875,
+          32.068359375
+        ],
+        [
+          208.47479248046875,
+          47.97845458984375
+        ],
+        [
+          75.52161407470703,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "8.3. Compile the package",
+      "heading_level": null,
+      "page_id": 15,
+      "polygon": [
+        [
+          75.52161407470703,
+          264.76953125
+        ],
+        [
+          259.3160400390625,
+          264.76953125
+        ],
+        [
+          259.3160400390625,
+          281.33685302734375
+        ],
+        [
+          75.52161407470703,
+          281.33685302734375
+        ]
+      ]
+    },
+    {
+      "title": "8.4. Run the program",
+      "heading_level": null,
+      "page_id": 15,
+      "polygon": [
+        [
+          75.52161407470703,
+          435.3896484375
+        ],
+        [
+          233.19960021972656,
+          435.3896484375
+        ],
+        [
+          233.19960021972656,
+          451.0126953125
+        ],
+        [
+          75.52161407470703,
+          451.0126953125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          97
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          75
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          89
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          67
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          47
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          91
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          77
+        ],
+        [
+          "Line",
+          23
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          295
+        ],
+        [
+          "Line",
+          52
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          121
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          297
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          99
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 14,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          253
+        ],
+        [
+          "Line",
+          48
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 15,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 16,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          17
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\19.ROS2 Launch startup file configuration"
+}

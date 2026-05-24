@@ -1,0 +1,512 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Core Module Testing Tools",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          65.78125
+        ],
+        [
+          365.9414367675781,
+          65.78125
+        ],
+        [
+          365.9414367675781,
+          88.5677490234375
+        ],
+        [
+          75.24658203125,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Core Module Testing Tools",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          107.3056640625
+        ],
+        [
+          191.7720947265625,
+          107.3056640625
+        ],
+        [
+          191.7720947265625,
+          117.25506591796875
+        ],
+        [
+          74.375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          328.4951171875
+        ],
+        [
+          229.14520263671875,
+          328.4951171875
+        ],
+        [
+          229.14520263671875,
+          345.6405334472656
+        ],
+        [
+          75.24658203125,
+          345.6405334472656
+        ]
+      ]
+    },
+    {
+      "title": "2. Starting the Dify Service",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          412.3662109375
+        ],
+        [
+          303.2633972167969,
+          412.3662109375
+        ],
+        [
+          303.2633972167969,
+          431.1802673339844
+        ],
+        [
+          75.52161407470703,
+          431.1802673339844
+        ]
+      ]
+    },
+    {
+      "title": "3. Entering the Test Tool Path",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          578.052734375
+        ],
+        [
+          328.4131164550781,
+          578.052734375
+        ],
+        [
+          328.4131164550781,
+          597.0072784423828
+        ],
+        [
+          74.375,
+          597.0072784423828
+        ]
+      ]
+    },
+    {
+      "title": "4. Testing Local Speech Synthesis Functionality",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          726.4716796875
+        ],
+        [
+          476.0960388183594,
+          726.4716796875
+        ],
+        [
+          476.0960388183594,
+          744.0756454467773
+        ],
+        [
+          74.66552734375,
+          744.0756454467773
+        ]
+      ]
+    },
+    {
+      "title": "5. Testing Local Speech Recognition Functionality",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          141.0185546875
+        ],
+        [
+          496.0513000488281,
+          141.0185546875
+        ],
+        [
+          496.0513000488281,
+          158.80364990234375
+        ],
+        [
+          75.24658203125,
+          158.80364990234375
+        ]
+      ]
+    },
+    {
+      "title": "6. Testing if the robot can access Dify normally",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          363.44140625
+        ],
+        [
+          474.2353210449219,
+          363.44140625
+        ],
+        [
+          474.2353210449219,
+          382.4075622558594
+        ],
+        [
+          75.24658203125,
+          382.4075622558594
+        ]
+      ]
+    },
+    {
+      "title": "7. Online Voice Services for Domestic Users",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          612.587890625
+        ],
+        [
+          443.583251953125,
+          612.587890625
+        ],
+        [
+          443.583251953125,
+          632.2736358642578
+        ],
+        [
+          75.24658203125,
+          632.2736358642578
+        ]
+      ]
+    },
+    {
+      "title": "7.1 BaiLian Speech Recognition",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          645.478515625
+        ],
+        [
+          303.59613037109375,
+          645.478515625
+        ],
+        [
+          303.59613037109375,
+          661.923828125
+        ],
+        [
+          74.66552734375,
+          661.923828125
+        ]
+      ]
+    },
+    {
+      "title": "7.2 BaiLian Speech Synthesis",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.52161407470703,
+          118.40625
+        ],
+        [
+          285.7126770019531,
+          118.40625
+        ],
+        [
+          285.7126770019531,
+          133.51873779296875
+        ],
+        [
+          75.52161407470703,
+          133.51873779296875
+        ]
+      ]
+    },
+    {
+      "title": "7.3 BaiLian Speech Synthesis",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.52161407470703,
+          371.2529296875
+        ],
+        [
+          285.7126770019531,
+          371.2529296875
+        ],
+        [
+          285.7126770019531,
+          387.88690185546875
+        ],
+        [
+          75.52161407470703,
+          387.88690185546875
+        ]
+      ]
+    },
+    {
+      "title": "8. Online Voice Services for International Users",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          517.205078125
+        ],
+        [
+          477.22906494140625,
+          517.205078125
+        ],
+        [
+          477.22906494140625,
+          536.9795837402344
+        ],
+        [
+          74.66552734375,
+          536.9795837402344
+        ]
+      ]
+    },
+    {
+      "title": "8.1 iFlytek Speech Recognition Service",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          549.6845703125
+        ],
+        [
+          354.3349304199219,
+          549.6845703125
+        ],
+        [
+          354.3349304199219,
+          566.4699096679688
+        ],
+        [
+          75.24658203125,
+          566.4699096679688
+        ]
+      ]
+    },
+    {
+      "title": "8.2 iFlytek Speech Synthesis Service",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.52161407470703,
+          32.068359375
+        ],
+        [
+          337.2303771972656,
+          32.068359375
+        ],
+        [
+          337.2303771972656,
+          47.97869873046875
+        ],
+        [
+          75.52161407470703,
+          47.97869873046875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          153
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "ListItem",
+          13
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          41
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          41
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\Core Module Testing Tools"
+}

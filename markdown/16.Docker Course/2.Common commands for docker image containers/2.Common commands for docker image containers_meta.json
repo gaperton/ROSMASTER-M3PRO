@@ -1,0 +1,719 @@
+{
+  "table_of_contents": [
+    {
+      "title": "2\u3001Common commands for docker image\ncontainers",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.810546875,
+          41.37890625
+        ],
+        [
+          529.380126953125,
+          41.37890625
+        ],
+        [
+          529.380126953125,
+          91.26690673828125
+        ],
+        [
+          73.810546875,
+          91.26690673828125
+        ]
+      ]
+    },
+    {
+      "title": "2\u3001Common commands for docker image containers",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.51171875,
+          134.578125
+        ],
+        [
+          305.4441223144531,
+          134.578125
+        ],
+        [
+          305.4441223144531,
+          145.489501953125
+        ],
+        [
+          73.51171875,
+          145.489501953125
+        ]
+      ]
+    },
+    {
+      "title": "2.1\u3001do not use the sudo command",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.51171875,
+          410.30859375
+        ],
+        [
+          377.0014953613281,
+          410.30859375
+        ],
+        [
+          377.0014953613281,
+          428.0224609375
+        ],
+        [
+          73.51171875,
+          428.0224609375
+        ]
+      ]
+    },
+    {
+      "title": "2.2\u3001help commands",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.109375,
+          80.05078125
+        ],
+        [
+          254.19761657714844,
+          80.05078125
+        ],
+        [
+          254.19761657714844,
+          99.2274169921875
+        ],
+        [
+          74.109375,
+          99.2274169921875
+        ]
+      ]
+    },
+    {
+      "title": "2.3\u3001mirror command",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.810546875,
+          179.4375
+        ],
+        [
+          264.970947265625,
+          179.4375
+        ],
+        [
+          264.970947265625,
+          197.565673828125
+        ],
+        [
+          73.810546875,
+          197.565673828125
+        ]
+      ]
+    },
+    {
+      "title": "1\u3001Docker pull download image",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.408203125,
+          211.1484375
+        ],
+        [
+          221.33404541015625,
+          211.1484375
+        ],
+        [
+          221.33404541015625,
+          222.267822265625
+        ],
+        [
+          74.408203125,
+          222.267822265625
+        ]
+      ]
+    },
+    {
+      "title": "2\u3001Docker images lists the images",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          72.615234375,
+          374.4903869628906
+        ],
+        [
+          231.19137573242188,
+          374.4903869628906
+        ],
+        [
+          231.19137573242188,
+          384.78515625
+        ],
+        [
+          72.615234375,
+          384.78515625
+        ]
+      ]
+    },
+    {
+      "title": "3\u3001docker search",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5417709350586,
+          61.1015625
+        ],
+        [
+          155.6407470703125,
+          61.1015625
+        ],
+        [
+          155.6407470703125,
+          72.13262939453125
+        ],
+        [
+          74.5417709350586,
+          72.13262939453125
+        ]
+      ]
+    },
+    {
+      "title": "4\u3001docker rmi delete the image",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.51171875,
+          448.8066711425781
+        ],
+        [
+          219.38229370117188,
+          448.8066711425781
+        ],
+        [
+          219.38229370117188,
+          458.72967529296875
+        ],
+        [
+          73.51171875,
+          458.72967529296875
+        ]
+      ]
+    },
+    {
+      "title": "2.4\u3001container commands",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.109375,
+          554.7862243652344
+        ],
+        [
+          299.453857421875,
+          554.7862243652344
+        ],
+        [
+          299.453857421875,
+          572.1514587402344
+        ],
+        [
+          74.109375,
+          572.1514587402344
+        ]
+      ]
+    },
+    {
+      "title": "1\u3001docker run",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5417709350586,
+          665.54296875
+        ],
+        [
+          141.42222595214844,
+          665.54296875
+        ],
+        [
+          141.42222595214844,
+          676.4250946044922
+        ],
+        [
+          74.5417709350586,
+          676.4250946044922
+        ]
+      ]
+    },
+    {
+      "title": "2\u3001docker ps",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.51171875,
+          482.5870666503906
+        ],
+        [
+          135.66290283203125,
+          482.5870666503906
+        ],
+        [
+          135.66290283203125,
+          492.51007080078125
+        ],
+        [
+          73.51171875,
+          492.51007080078125
+        ]
+      ]
+    },
+    {
+      "title": "3\u3001Exit the container",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.5417709350586,
+          30.55078125
+        ],
+        [
+          170.88307189941406,
+          30.55078125
+        ],
+        [
+          170.88307189941406,
+          41.35528564453125
+        ],
+        [
+          74.5417709350586,
+          41.35528564453125
+        ]
+      ]
+    },
+    {
+      "title": "4\u3001Multiple terminals enter a running container",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.212890625,
+          108.66796875
+        ],
+        [
+          292.6333312988281,
+          108.66796875
+        ],
+        [
+          292.6333312988281,
+          119.42535400390625
+        ],
+        [
+          73.212890625,
+          119.42535400390625
+        ]
+      ]
+    },
+    {
+      "title": "5\u3001Start and stop the container",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          72.31640625,
+          635.765625
+        ],
+        [
+          218.4960479736328,
+          635.765625
+        ],
+        [
+          218.4960479736328,
+          646.3982391357422
+        ],
+        [
+          72.31640625,
+          646.3982391357422
+        ]
+      ]
+    },
+    {
+      "title": "6\u3001Delete the container",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.212890625,
+          742.11328125
+        ],
+        [
+          183.89149475097656,
+          742.11328125
+        ],
+        [
+          183.89149475097656,
+          752.9939460754395
+        ],
+        [
+          73.212890625,
+          752.9939460754395
+        ]
+      ]
+    },
+    {
+      "title": "2.5\u3001common other commands",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          73.810546875,
+          95.1328125
+        ],
+        [
+          343.0023498535156,
+          95.1328125
+        ],
+        [
+          343.0023498535156,
+          113.49017333984375
+        ],
+        [
+          73.810546875,
+          113.49017333984375
+        ]
+      ]
+    },
+    {
+      "title": "2.6\u3001Command Summary",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.109375,
+          509.30859375
+        ],
+        [
+          292.8034362792969,
+          509.30859375
+        ],
+        [
+          292.8034362792969,
+          527.8620300292969
+        ],
+        [
+          74.109375,
+          527.8620300292969
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          199
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          448
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          337
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          539
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          475
+        ],
+        [
+          "Line",
+          40
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Code",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          349
+        ],
+        [
+          "Line",
+          41
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          205
+        ],
+        [
+          "Line",
+          49
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          93
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          42
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\2.Common commands for docker image containers"
+}

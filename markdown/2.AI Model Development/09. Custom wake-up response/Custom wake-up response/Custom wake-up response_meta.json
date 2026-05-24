@@ -1,0 +1,451 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Personalized Wake-Up Response",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          433.51708984375,
+          65.78125
+        ],
+        [
+          433.51708984375,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Personalized Wake-Up Response",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          107.3056640625
+        ],
+        [
+          218.8345947265625,
+          107.3056640625
+        ],
+        [
+          218.8345947265625,
+          117.25506591796875
+        ],
+        [
+          74.66552734375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          179.6650390625
+        ],
+        [
+          229.14520263671875,
+          179.6650390625
+        ],
+        [
+          229.14520263671875,
+          197.07147216796875
+        ],
+        [
+          75.52161407470703,
+          197.07147216796875
+        ]
+      ]
+    },
+    {
+      "title": "[!NOTE]",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          89.482421875,
+          249.52587890625
+        ],
+        [
+          125.62090301513672,
+          249.52587890625
+        ],
+        [
+          125.62090301513672,
+          259.2803955078125
+        ],
+        [
+          89.482421875,
+          259.2803955078125
+        ]
+      ]
+    },
+    {
+      "title": "[!NOTE]",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          88.9013671875,
+          211.322265625
+        ],
+        [
+          125.62090301513672,
+          211.322265625
+        ],
+        [
+          125.62090301513672,
+          222.51324462890625
+        ],
+        [
+          88.9013671875,
+          222.51324462890625
+        ]
+      ]
+    },
+    {
+      "title": "Speech synthesis - Qwen",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          98.16750629722922,
+          38.98842386464826
+        ],
+        [
+          236.80100755667507,
+          38.98842386464826
+        ],
+        [
+          236.80100755667507,
+          53.983971504897596
+        ],
+        [
+          98.16750629722922,
+          53.983971504897596
+        ]
+      ]
+    },
+    {
+      "title": "Model availability",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          101.16498740554157,
+          72.72840605520926
+        ],
+        [
+          225.56045340050377,
+          72.72840605520926
+        ],
+        [
+          225.56045340050377,
+          89.22350845948353
+        ],
+        [
+          101.16498740554157,
+          89.22350845948353
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          135.67626953125,
+          53.0361328125
+        ],
+        [
+          240.84716796875,
+          53.0361328125
+        ],
+        [
+          240.84716796875,
+          65.3701171875
+        ],
+        [
+          135.67626953125,
+          65.3701171875
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          149.04052734375,
+          120.873046875
+        ],
+        [
+          427.36572265625,
+          120.873046875
+        ],
+        [
+          427.36572265625,
+          132.384765625
+        ],
+        [
+          149.04052734375,
+          132.384765625
+        ]
+      ]
+    },
+    {
+      "title": "3. Loading Audio Files",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          717.4267578125
+        ],
+        [
+          261.4076843261719,
+          717.4267578125
+        ],
+        [
+          261.4076843261719,
+          735.8216171264648
+        ],
+        [
+          74.9560546875,
+          735.8216171264648
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          63
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "ListItem",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          55
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          15
+        ],
+        [
+          "TableCell",
+          8
+        ],
+        [
+          "Span",
+          7
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "TableCell",
+          18
+        ],
+        [
+          "Span",
+          9
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\Custom wake-up response"
+}
