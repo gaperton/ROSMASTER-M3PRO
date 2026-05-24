@@ -24,6 +24,44 @@ ROSMASTER M3 Pro is a highly integrated embodied intelligent robot platform deve
 # More Details
 [Click here](https://category.yahboom.net/products/rosmaster-m3-pro)
 
+# Markdown Documentation
+
+All 246 course PDFs have been converted to Markdown under [markdown/](markdown/), mirroring the original folder tree. For each `<course>/<lesson>.pdf` you'll find `markdown/<course>/<lesson>/<lesson>.md` plus the extracted figures (`.jpeg`) and a `<lesson>_meta.json` alongside. Tables, code blocks, headings, and images are preserved.
+
+## How to regenerate
+
+Conversion uses [marker-pdf](https://github.com/datalab-to/marker) with CUDA-accelerated PyTorch. Tested on Windows 11 + Python 3.12 + RTX 2070 (CUDA 12.8). Full batch runs in ~50 min on that GPU; CPU-only is possible but much slower.
+
+1. **Install Python 3.10+** (3.12 recommended):
+   ```powershell
+   winget install Python.Python.3.12
+   ```
+2. **Install PyTorch with CUDA** (pick the build matching your driver from [pytorch.org](https://pytorch.org/get-started/locally/)):
+   ```powershell
+   python -m pip install --upgrade pip
+   python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+   ```
+   For CPU only: `python -m pip install torch torchvision`.
+3. **Install marker and its batch dependency:**
+   ```powershell
+   python -m pip install marker-pdf psutil
+   ```
+4. **Run the conversion** from the repo root:
+   ```powershell
+   python markdown/convert_all.py
+   ```
+   The script is resumable — it skips any PDF whose target `.md` already exists and is non-empty. On first run, marker downloads its layout/OCR models (~2 GB) into the HuggingFace cache.
+
+5. **(Windows only) Fix long-path failures.** Two PDFs in `3.AI Model - Text Version/` and `4.AI Model - Voice Version/` produce target paths over the Windows 260-char `MAX_PATH` limit. After step 4, run:
+   ```powershell
+   python markdown/fix_longpath.py
+   ```
+   This converts those two via a short temp path and writes them one folder shallower (`markdown/<course>/<lesson>.md` instead of `markdown/<course>/<lesson>/<lesson>.md`). Alternatively, enable Win32 long paths permanently:
+   ```powershell
+   # admin PowerShell, then reboot
+   Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' LongPathsEnabled 1
+   ```
+
 # Please Contact Us
 If you have any problem when using our robot after checking the tutorial, please contact us.
 
