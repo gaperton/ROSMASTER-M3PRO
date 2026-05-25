@@ -90,6 +90,59 @@ def run_search(table, query: str, mode: str, top_k: int):
     return table.search(query, query_type="fts").limit(top_k).to_list()
 
 
+_TABLE_CACHE: dict[str, object] = {}
+
+
+def _get_table(db_path: Path):
+    """Cached table handle so eval harnesses don't reopen the DB on every query."""
+    key = str(db_path)
+    if key not in _TABLE_CACHE:
+        db = lancedb.connect(key)
+        _TABLE_CACHE[key] = db.open_table("chunks")
+    return _TABLE_CACHE[key]
+
+
+def search(
+    query: str,
+    mode: str = "hybrid",
+    top_k: int = 8,
+    db_path: Path = DEFAULT_DB,
+) -> list[dict]:
+    """Programmatic entry point — returns top-k chunks as plain dicts.
+
+    Each dict carries file_path, heading_path, text, primary (the engine's
+    headline score: rrf for hybrid, cos for semantic, fts for keyword), and
+    per-channel scores when LanceDB exposes them.
+    """
+    table = _get_table(Path(db_path))
+    rows = run_search(table, query, mode, top_k)
+    out: list[dict] = []
+    for row in rows:
+        d = row.get("_distance")
+        cos = 1.0 - (d * d) / 2.0 if d is not None else None
+        fts = row.get("_score")
+        rrf = row.get("_relevance_score")
+        if mode == "hybrid":
+            primary_label, primary = "rrf", rrf
+        elif mode == "semantic":
+            primary_label, primary = "cos", cos
+        else:
+            primary_label, primary = "fts", fts
+        out.append(
+            {
+                "file_path": row.get("file_path", "?"),
+                "heading_path": row.get("heading_path") or "",
+                "text": row.get("text", ""),
+                "primary_label": primary_label,
+                "primary": primary,
+                "cos": cos,
+                "bm25": fts,
+                "rrf": rrf,
+            }
+        )
+    return out
+
+
 def format_score(row: dict, mode: str) -> str:
     """LanceDB's result columns vary by mode; surface whichever the engine returned."""
     if mode == "hybrid":

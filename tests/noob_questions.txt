@@ -1,0 +1,41 @@
+# Unified noob question list — what people actually ask when they first
+# get a robot like this. Used by tests/ask.py for eyeball-level relevance
+# checks, NOT by the labeled evaluator in evaluate.py.
+#
+# Comments (#) and blank lines are ignored.
+
+# ---- Batch 1: capability / setup / troubleshooting ----
+How do I power on the robot for the first time?
+What's the default WiFi password to connect to the robot?
+Why won't the robot's wheels move when I press buttons on the controller?
+How do I make the robot map a room?
+Can the robot understand voice commands?
+What's the difference between the Jetson Nano and Raspberry Pi 5 versions?
+How do I make the robot pick up an object?
+What do I do if the robot keeps losing its WiFi connection?
+Where do I write my own code to add new behaviors?
+How do I back up the system image so I can restore it later?
+
+# ---- Batch 2: ROS2 first-day pains ----
+How do I check which ROS2 topics the robot is publishing?
+How long does the battery last and how do I charge it?
+How do I view the camera feed on my laptop?
+My ROS2 node says 'package not found' - how do I source the workspace?
+Can I control the robot from my own laptop instead of the onboard computer?
+What's a launch file and how do I write one?
+How do I make the robot drive in a straight line for 1 meter?
+Why does rviz show no map or empty screen?
+How do I install ROS2 on my own laptop to talk to the robot?
+How do I send a velocity command from the terminal to move the robot?
+
+# ---- Batch 3: safety / specs / programming / configuration / popular use cases ----
+How do I emergency-stop the robot if something goes wrong?
+What's the lidar's range and field of view?
+How do I write a Python node that subscribes to a topic?
+How can I make the robot follow me around the room?
+What objects can the depth camera recognize out of the box?
+How do I change the robot's IP address?
+Why is the robotic arm shaking or vibrating?
+Where can I find example projects or demos to try?
+How do I run two robots together in a swarm or formation?
+How do I configure the AI model API key for voice commands?

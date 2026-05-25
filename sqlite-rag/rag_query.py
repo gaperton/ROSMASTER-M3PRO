@@ -151,6 +151,85 @@ def fetch_chunks(
     return {cid: (fp, hp, txt) for cid, fp, hp, txt in rows}
 
 
+_MODEL_CACHE: dict[str, SentenceTransformer] = {}
+
+
+def _get_model(name: str) -> SentenceTransformer:
+    """Cached model loader so eval harnesses can reuse one model across many queries."""
+    if name not in _MODEL_CACHE:
+        _MODEL_CACHE[name] = SentenceTransformer(name)
+    return _MODEL_CACHE[name]
+
+
+def search(
+    query: str,
+    mode: str = "hybrid",
+    top_k: int = 8,
+    db_path: Path = DEFAULT_DB,
+    model_name: str = DEFAULT_MODEL,
+    pool: int = 0,
+) -> list[dict]:
+    """Programmatic entry point — returns top-k chunks as plain dicts.
+
+    Each dict carries: chunk_id, file_path, heading_path, text, primary (the
+    score the caller would rank by in the chosen mode), and per-channel scores
+    when available (cos for semantic, bm25 for keyword, rrf for hybrid).
+    """
+    pool = pool if pool > 0 else max(top_k * 4, 30)
+    conn = open_db(Path(db_path))
+    try:
+        sem_results: list[tuple[int, float]] = []
+        kw_results: list[tuple[int, float]] = []
+        if mode in ("semantic", "hybrid"):
+            sem_results = search_semantic(conn, _get_model(model_name), query, pool)
+        if mode in ("keyword", "hybrid"):
+            kw_results = search_keyword(conn, query, pool)
+
+        sem_scores = {cid: s for cid, s in sem_results}
+        kw_scores = {cid: s for cid, s in kw_results}
+
+        if mode == "semantic":
+            ranked = list(sem_results)[:top_k]
+            primary_label = "cos"
+        elif mode == "keyword":
+            ranked = list(kw_results)[:top_k]
+            primary_label = "bm25"
+        else:
+            fused = rrf_fuse(
+                {
+                    "semantic": [cid for cid, _ in sem_results],
+                    "keyword": [cid for cid, _ in kw_results],
+                }
+            )
+            ranked = sorted(fused.items(), key=lambda kv: kv[1], reverse=True)[:top_k]
+            primary_label = "rrf"
+
+        if not ranked:
+            return []
+
+        ranked_ids = [cid for cid, _ in ranked]
+        meta = fetch_chunks(conn, ranked_ids)
+
+        out: list[dict] = []
+        for cid, primary in ranked:
+            file_path, heading_path, text = meta.get(cid, ("?", "", ""))
+            out.append(
+                {
+                    "chunk_id": cid,
+                    "file_path": file_path,
+                    "heading_path": heading_path,
+                    "text": text,
+                    "primary_label": primary_label,
+                    "primary": primary,
+                    "cos": sem_scores.get(cid),
+                    "bm25": kw_scores.get(cid),
+                }
+            )
+        return out
+    finally:
+        conn.close()
+
+
 def fetch_fts_snippets(
     conn: sqlite3.Connection,
     query: str,

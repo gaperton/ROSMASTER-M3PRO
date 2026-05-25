@@ -11,10 +11,11 @@ ROSMASTER-M3PRO/
 ├── pdf-source/      Original Yahboom course PDFs (246 documents across 18 modules)
 ├── markdown/        Marker-converted markdown + extracted figures, one folder per PDF
 ├── sqlite-rag/      Local hybrid RAG over markdown/, backed by SQLite + sqlite-vec + FTS5
-└── lance-db-rag/    Local hybrid RAG over markdown/, backed by LanceDB (parallel implementation)
+├── lance-db-rag/    Local hybrid RAG over markdown/, backed by LanceDB (parallel implementation)
+└── tests/           Retrieval-quality harness; scores both engines side by side on labeled cases
 ```
 
-Both RAG folders are independent — same chunking, same embedding model (BGE-small-en-v1.5), same hybrid retrieval (semantic + BM25 fused with Reciprocal Rank Fusion), different storage engines. See each folder's README for the design rationale and a head-to-head comparison.
+Both RAG folders are independent — same chunking, same embedding model (BGE-small-en-v1.5), same hybrid retrieval (semantic + BM25 fused with Reciprocal Rank Fusion), different storage engines. See each folder's README for the design rationale and a head-to-head comparison; `tests/` quantifies the comparison on real questions.
 
 ## Searching the docs
 
