@@ -124,8 +124,30 @@ def open_db(db_path: Path) -> sqlite3.Connection:
         CREATE VIRTUAL TABLE IF NOT EXISTS vec_chunks USING vec0(
             embedding float[{EMBED_DIM}]
         );
+        CREATE VIRTUAL TABLE IF NOT EXISTS fts_chunks USING fts5(
+            text,
+            content='chunks',
+            content_rowid='id',
+            tokenize='porter unicode61'
+        );
+        CREATE TRIGGER IF NOT EXISTS chunks_ai AFTER INSERT ON chunks BEGIN
+            INSERT INTO fts_chunks(rowid, text) VALUES (new.id, new.text);
+        END;
+        CREATE TRIGGER IF NOT EXISTS chunks_ad AFTER DELETE ON chunks BEGIN
+            INSERT INTO fts_chunks(fts_chunks, rowid, text) VALUES('delete', old.id, old.text);
+        END;
+        CREATE TRIGGER IF NOT EXISTS chunks_au AFTER UPDATE ON chunks BEGIN
+            INSERT INTO fts_chunks(fts_chunks, rowid, text) VALUES('delete', old.id, old.text);
+            INSERT INTO fts_chunks(rowid, text) VALUES (new.id, new.text);
+        END;
         """
     )
+    # Backfill FTS for any pre-existing chunks (older DB built before FTS was added).
+    fts_count = conn.execute("SELECT COUNT(*) FROM fts_chunks").fetchone()[0]
+    chunk_count = conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
+    if chunk_count > 0 and fts_count == 0:
+        conn.execute("INSERT INTO fts_chunks(rowid, text) SELECT id, text FROM chunks")
+        conn.commit()
     return conn
 
 

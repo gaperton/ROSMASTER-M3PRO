@@ -1,72 +1,63 @@
 # ROSMASTER M3 Pro ROS2 Robot for Jetson NANO B01/Orin NX SUPER/Orin NANO SUPER/RPi 5
-![](https://github.com/YahboomTechnology/ROSMASTER-M3PRO/blob/main/ROSMASTER_M3PRO.jpg)
-# Introduction
-ROSMASTER M3 Pro is a highly integrated embodied intelligent robot platform developed by Yahboom specifically for ROS education, scientific research experiments, and AI application teaching. It utilizes Mecanum wheels and pendulum suspension chassis for omnidirectional movement. Developed based on the ROS2 Humble system, equipped with a 6DOF robotic arm and a binocular structured light depth camera to perform tasks such as visual recognition, 3D grasping, and precise handling. With dual TOF LiDAR, it enables stable and reliable SLAM mapping and autonomous navigation, as well as LiDAR obstacle avoidance and path planning. Unlike traditional ROS robots, the ROSMASTER M3 Pro deeply integrates cutting-edge AI large-scale model technology. Built-in speech recognition and natural language understanding modules, can realize voice command control, multimodal interaction with text/image/voice, task planning and execution, and dynamic environment perception. Whether used in AI courses, robotics algorithm teaching, or university research projects, the ROSMASTER M3 Pro provides a stable, powerful, and easily scalable experimental platform, making it an ideal choice for AI and robotics education.
-# Features
-【Top-level Hardware Configuration】
 
-* Raspberry Pi 5, Jetson NANO B01, Jetson ORIN NANO SUPER, Jetson ORIN NX SUPER development boards, four main control boards for choice.
-* An aluminum alloy chassis, 80mm Mecanum wheels, and a rear-wheel pendulum suspension structure allow for easy navigation across diverse terrains.
-* Combining a depth camera and a 6DOF robotic arm, it enables 3D grasping, precise handling, and MoveIt simulation. 4. Two TOF ranging LiDAR on the front left and rear right provide 360° scanning, enhancing mapping and navigation accuracy.
-* 
-【Fully Integrates Intelligent Perception and Semantic Understanding】
+A searchable mirror of [Yahboom](https://category.yahboom.net/products/rosmaster-m3-pro)'s course documentation for the **ROSMASTER M3 Pro** robotics platform, plus local command-line RAG (Retrieval-Augmented Generation) tooling for asking natural-language questions over the docs without a network call.
 
-* Built-in speech recognition and natural language processing, combined with speakers, enable easy voice commands and question-and-answer interactions.
-* Integrating multimodal interaction capabilities, including text, image, and voice, it can adjust actions in real time based on environmental changes, supporting free conversation interruptions and dynamic feedback reasoning.
-* Integrating a large model and an extensible RAG knowledge system enhances task awareness and complex problem-solving capabilities.
+The original Yahboom material ships as PDFs. This repo keeps the PDFs alongside a git-friendly markdown conversion produced by [Marker](https://github.com/datalab-to/marker), so the content is both grep-able and embedding-friendly.
 
-【A full-stack robotics platform for teaching and research】
+## Repository layout
 
-* Based on the ROS2 Humble system, compatible with a variety of robotics algorithms and AI course content.
-* Integrated hardware and software, along with comprehensive documentation and teaching resources, facilitate efficient progress from introductory learning to scientific research experiments.
-* From AI and SLAM to visual recognition and robot control, it's widely applicable to university teaching, scientific research experiments, and robotics competition platform development.
+```
+ROSMASTER-M3PRO/
+├── pdf-source/      Original Yahboom course PDFs (246 documents across 18 modules)
+├── markdown/        Marker-converted markdown + extracted figures, one folder per PDF
+├── sqlite-rag/      Local hybrid RAG over markdown/, backed by SQLite + sqlite-vec + FTS5
+└── lance-db-rag/    Local hybrid RAG over markdown/, backed by LanceDB (parallel implementation)
+```
 
-# More Details
-[Click here](https://category.yahboom.net/products/rosmaster-m3-pro)
+Both RAG folders are independent — same chunking, same embedding model (BGE-small-en-v1.5), same hybrid retrieval (semantic + BM25 fused with Reciprocal Rank Fusion), different storage engines. See each folder's README for the design rationale and a head-to-head comparison.
 
-# Markdown Documentation
+## Searching the docs
 
-All 246 course PDFs have been converted to Markdown under [markdown/](markdown/), mirroring the original folder tree. For each `<course>/<lesson>.pdf` you'll find `markdown/<course>/<lesson>/<lesson>.md` plus the extracted figures (`.jpeg`) and a `<lesson>_meta.json` alongside. Tables, code blocks, headings, and images are preserved.
+Pick either RAG implementation; both expose the same CLI.
 
-## How to regenerate
+```powershell
+# Lighter option: single .db file, ~3 small Python deps
+pip install -r sqlite-rag/rag_requirements.txt
+python sqlite-rag/rag_index.py
+python sqlite-rag/rag_query.py "how do I unlock the controller buttons"
+python sqlite-rag/rag_query.py "moveit2 pick and place" -k 5
+python sqlite-rag/rag_query.py "lidar setup" --mode keyword
+```
 
-Conversion uses [marker-pdf](https://github.com/datalab-to/marker) with CUDA-accelerated PyTorch. Tested on Windows 11 + Python 3.12 + RTX 2070 (CUDA 12.8). Full batch runs in ~50 min on that GPU; CPU-only is possible but much slower.
+```powershell
+# Heavier option: built-in HNSW + auto-embedding + dataset versioning
+pip install -r lance-db-rag/rag_requirements.txt
+python lance-db-rag/rag_index.py
+python lance-db-rag/rag_query.py "how do I unlock the controller buttons"
+```
 
-1. **Install Python 3.10+** (3.12 recommended):
-   ```powershell
-   winget install Python.Python.3.12
-   ```
-2. **Install PyTorch with CUDA** (pick the build matching your driver from [pytorch.org](https://pytorch.org/get-started/locally/)):
-   ```powershell
-   python -m pip install --upgrade pip
-   python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
-   ```
-   For CPU only: `python -m pip install torch torchvision`.
-3. **Install marker and its batch dependency:**
-   ```powershell
-   python -m pip install marker-pdf psutil
-   ```
-4. **Run the conversion** from the repo root:
-   ```powershell
-   python markdown/convert_all.py
-   ```
-   The script is resumable — it skips any PDF whose target `.md` already exists and is non-empty. On first run, marker downloads its layout/OCR models (~2 GB) into the HuggingFace cache.
+Results are ranked chunks with file paths and heading breadcrumbs — no LLM synthesis. You read the chunks yourself or pipe them downstream. First run downloads the ~130 MB embedding model into your HuggingFace cache; subsequent runs are incremental (sha256 per file).
 
-5. **(Windows only) Fix long-path failures.** Two PDFs in `3.AI Model - Text Version/` and `4.AI Model - Voice Version/` produce target paths over the Windows 260-char `MAX_PATH` limit. After step 4, run:
-   ```powershell
-   python markdown/fix_longpath.py
-   ```
-   This converts those two via a short temp path and writes them one folder shallower (`markdown/<course>/<lesson>.md` instead of `markdown/<course>/<lesson>/<lesson>.md`). Alternatively, enable Win32 long paths permanently:
-   ```powershell
-   # admin PowerShell, then reboot
-   Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' LongPathsEnabled 1
-   ```
+## Course catalog
 
-# Please Contact Us
-If you have any problem when using our robot after checking the tutorial, please contact us.
+The 18 modules under [`markdown/`](markdown/) (and mirrored in [`pdf-source/`](pdf-source/)):
 
-### WhatsApp:
-+86 18682378128
+| Group | Module |
+|---|---|
+| **Setup & operation** | [`0. Configuration and Operation Guide`](markdown/0.Configuration%20and%20Operation%20Guide/) |
+| **Platform internals** | [`12. Control Board Course`](markdown/12.Control%20Board%20Course/) · [`13. Main Control Course`](markdown/13.Main%20Control%20Course/) · [`14. Linux System Course`](markdown/14.Linux%20System%20Course/) · [`15. ROS Basic Course`](markdown/15.ROS%20Basic%20Course/) · [`16. Docker Course`](markdown/16.Docker%20Course/) |
+| **AI / LLM stack** | [`1. AI Model Basics`](markdown/1.AI%20Model%20Basics/) · [`2. AI Model Development`](markdown/2.AI%20Model%20Development/) · [`3. AI Model - Text Version`](markdown/3.AI%20Model%20-%20Text%20Version/) · [`4. AI Model - Voice Version`](markdown/4.AI%20Model%20-%20Voice%20Version/) |
+| **Motion & manipulation** | [`5. Chassis Control Course`](markdown/5.Chassis%20Control%20Course/) · [`9. Robotic Arm and 3D Space Gripping Course`](markdown/9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/) · [`10. MoveIt2 Simulation Course`](markdown/10.MoveIt2%20Simulation%20Course/) · [`11. Multi-vehicle Course`](markdown/11.Multi-vehicle%20Course/) |
+| **Perception** | [`6. Lidar Course`](markdown/6.Lidar%20Course/) · [`7. Depth Camera Course`](markdown/7.Depth%20Camera%20Course/) · [`8. Mediapipe Visual Course`](markdown/8.Mediapipe%20Visual%20Course/) · [`17. Image Processing Basics Course`](markdown/17.Image%20Processing%20Basics%20Course/) |
 
-### Technical support email: 
-support@yahboom.com
+## About the robot
+
+The ROSMASTER M3 Pro is a ROS2 Humble platform with a Mecanum-wheel chassis, pendulum suspension, 6-DOF arm, binocular depth camera, and dual TOF LiDAR. It runs on a choice of Jetson NANO B01, Jetson Orin NANO SUPER, Jetson Orin NX SUPER, or Raspberry Pi 5 main boards, and the courses cover everything from controller use through SLAM, MoveIt2, voice/text LLM interaction, and multi-vehicle coordination.
+
+Full product description, hardware specs, and purchase info: <https://category.yahboom.net/products/rosmaster-m3-pro>.
+
+## Sources & credits
+
+- **Course content**: © Yahboom. PDFs in [`pdf-source/`](pdf-source/) are the as-shipped Yahboom training material; this repo redistributes them for convenient offline reference and indexing.
+- **Markdown conversion**: produced by [Marker](https://github.com/datalab-to/marker) (see `markdown/convert.log` for the run log). The conversion preserves text, tables, and inline figures; some formatting may diverge from the original PDF.
+- **Upstream contact** (per Yahboom): WhatsApp `+86 18682378128`, email `support@yahboom.com`.
