@@ -33,7 +33,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DOCS = SCRIPT_DIR.parent / "markdown"
 DEFAULT_DB = SCRIPT_DIR / "index.lance"
 
-bge = BGE()
+bge = BGE.create()
 
 
 class Chunk(LanceModel):
@@ -119,10 +119,12 @@ def open_db(db_path: Path):
 
 
 def load_file_hashes(files_t) -> dict[str, str]:
-    rows = files_t.to_pandas()
-    if rows.empty:
+    tbl = files_t.to_arrow()
+    if tbl.num_rows == 0:
         return {}
-    return dict(zip(rows["path"].tolist(), rows["hash"].tolist()))
+    paths = tbl.column("path").to_pylist()
+    hashes = tbl.column("hash").to_pylist()
+    return dict(zip(paths, hashes))
 
 
 def build_chunk_rows(docs_root: Path, file_path: Path) -> list[dict]:

@@ -36,11 +36,20 @@ class BGE(EmbeddingFunction):
 
     def compute_source_embeddings(self, texts, *args, **kwargs):
         model = _get_model(self.name)
-        items = list(texts) if not isinstance(texts, str) else [texts]
+        items = _as_str_list(texts)
         return model.encode(items, normalize_embeddings=True).tolist()
 
     def compute_query_embeddings(self, query: Union[str, list], *args, **kwargs):
         model = _get_model(self.name)
-        items = [query] if isinstance(query, str) else list(query)
+        items = _as_str_list(query)
         prefixed = [QUERY_INSTRUCTION + s for s in items]
         return model.encode(prefixed, normalize_embeddings=True).tolist()
+
+
+def _as_str_list(x) -> list[str]:
+    """Coerce LanceDB inputs (str, list[str], pyarrow Array/StringScalar, etc.) to list[str]."""
+    if isinstance(x, str):
+        return [x]
+    if hasattr(x, "to_pylist"):  # pyarrow.Array / ChunkedArray
+        return [str(s) for s in x.to_pylist()]
+    return [s.as_py() if hasattr(s, "as_py") else str(s) for s in x]
