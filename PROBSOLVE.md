@@ -1,74 +1,249 @@
-# PROBSOLVE — A working-state template for problem solving
+# Problem-Solving Ledger Skill
 
-A markdown layout for capturing the *current* state of solving a non-trivial problem: what you're trying to achieve, what you've learned, what you don't yet know, what you'd test next, and what you've rejected. Distinct from a project plan or a writeup — this is **working notes**, refactored as understanding deepens.
+## Purpose
 
-## When to use
+Use this skill when a project needs a durable record of the problem-solving process: goals, constraints, findings, hypotheses, decisions, open questions, next experiments, and experiment history.
 
-- The problem spans multiple sessions and you need durable state to pick it up cold.
-- You'll run experiments and accumulate knowledge over time.
-- You'll consider alternatives and need to remember why you rejected the ones you didn't pick.
-- You've ever lost track of "what was that thing I tried two weeks ago and what did it tell us?"
+This skill is for engineering investigations where future work depends on knowing not only the current answer, but how that answer was reached.
 
-**When not to use**: one-shot tasks with a clear answer (just do them); pure documentation (use a README); ticket/sprint tracking (use a tracker); incident response (use a runbook).
+Typical use cases:
 
-## The sections, in order
+- comparing tools, models, engines, libraries, or architectures;
+- debugging a recurring failure;
+- evaluating a retrieval, robotics, ML, or software system;
+- preserving experimental knowledge across sessions;
+- preventing future re-discovery of already tested dead ends.
 
-Each section header is followed by a one-line blockquote (`> ...`) restating the section's purpose. This is template scaffolding that stays in the filled-in doc — it tells the reader what belongs there, and tells future-you what to write when adding new entries.
+Do not use this skill for ordinary task lists, meeting notes, or one-off summaries.
 
-1. **Goals** — 2–5 bullets describing what success looks like. Each one written so "done or not done" is unambiguous.
-2. **Constraints** — non-negotiable limits on the solution space. Things you've decided you won't compromise on. (Examples: platform, latency budget, no external services, reproducibility requirements.)
-3. **Established Findings** (`EF`) — durable findings; claims you'd carry to a similar problem. Two categories live here: (a) **lessons** earned from experiments — each cites the experiment(s) that established it; (b) **characterizations** of what you built — verifiable from the artifacts themselves, not from a hypothesis test. No floating claims of either kind.
-4. **Working Hypotheses** (`H`) — claims you believe based on the work but haven't formally tested. Each one: states the belief, names the evidence base (what you observed), and notes how it would be **falsified** by a specific outcome. Hypotheses are promoted to Established Findings when confirmed, demoted to nothing when refuted. Use this section for generalizations and meta-claims that emerge from your experiments but go beyond any single one.
-5. **Decisions Made** — consequential choices, both rejections and acceptances. Each entry: **what** was decided, **why** (referencing Established Findings or Experiment log rather than re-paraphrasing them), and a **"revisit if"** trigger when one exists. The expected overlap with Established Findings — beliefs shape decisions — is handled by *referencing* the belief (`per EF §3`), not restating its content.
-6. **Open Questions** (`Q`) — unverified predictions and unknowns. Each one **names the experiment that would resolve it**, or is explicitly marked "not actionable" with the reason.
-7. **Next Experiments** (`NX`) — concrete actions, ordered by expected impact. Each one **either resolves an open question (cross-referenced) or is tool/coverage work** with no associated hypothesis.
-8. **Experiment Log** — historical record, append-only. Only entries that **asked a question and produced new knowledge**. Construction milestones and shipping decisions live elsewhere (READMEs, git log, tickets).
+---
 
-Optional sections, only if the problem demands them:
+## Core Ontology
 
-- **Stakeholders** — who the goals serve and whose input shapes the constraints. Useful when the problem is partly social.
-- **Budget / timeline** — when cost or deadlines are first-class constraints, not just preferences.
+Maintain the distinction between these categories.
 
-### Cross-reference conventions
+### Goal
 
-Short ID prefixes keep references compact: `EF §3` = third Established Finding; `H2` = second hypothesis; `Q1` = first open question; `NX1` = first next experiment. When the experiment log uses any of the same letters (e.g. our example uses `NQ#` for "noob questions" in a separate file), call out the convention in the section preface to avoid collisions.
+A desired end state. It should be testable as done / not done.
 
-## Rules of the format
+Example:
 
-These are the disciplines that keep the doc honest:
+> Build local RAG over the robot documentation so a beginner can ask natural-language questions and receive relevant chunks with paths and heading breadcrumbs.
 
-- **An experiment asks a question and produces new knowledge.** Building, shipping, documenting, refactoring are not experiments.
-- **Every belief is traceable.** A bullet in Established Findings is either a lesson citing the experiment(s) that established it, or a characterization of the artifact you can verify by inspecting the code/data. If it's neither — it's a Working Hypothesis (untested belief), an Open Question (genuine uncertainty), or noise. Move it or delete it.
-- **Working Hypotheses are claim-shaped and falsifiable.** Each one states the belief, the evidence base, and what specific outcome would refute it. A hypothesis you can't imagine falsifying is dogma — delete it.
-- **Decisions reference, don't restate.** A decision is shaped by a belief in Established Findings (or sometimes a Working Hypothesis) plus a tradeoff judgment. Reference the belief (`per EF §3`) rather than re-paraphrasing it; otherwise the doc grows duplicate facts that can drift.
-- **Every open question has a planned test.** If you can't write the experiment that would resolve it, mark it "not actionable" with the blocker (e.g., needs labeled data, needs a customer interview).
-- **Decisions Made captures consequential choices, not implementation trivia.** A decision belongs here if future-you might be tempted to revisit it or quietly drift away from it. "Kept both engines side by side" qualifies; "chose pool size = 30" does not (that's a constant in code). Rule of thumb: if the reasoning would surprise someone reading the code, write the decision down.
-- **Sections are mutually exclusive.** If two sections overlap, you have a stale section. Merge or delete.
-- **The whole doc is refactorable.** As understanding deepens, items move between sections. Working Hypotheses become Established Findings (or are refuted). Open Questions become resolved. Next Experiments become Experiment Log rows. Edit aggressively.
+### Constraint
 
-## Common failure modes
+A non-negotiable limit on the solution space.
 
-The patterns that show the discipline has slipped:
+Example:
 
-- **A "Known problems" or "Issues" section that paraphrases other sections.** Most items in such a section are either already a verified lesson (→ Established Findings), an untested belief (→ Working Hypotheses), a genuine question (→ Open Questions), or being worked on (→ Next Experiments). Delete the section.
-- **Working Hypotheses and Open Questions duplicate each other.** If `H1` and `Q1` are the same uncertainty in two phrasings, keep only one. Use Working Hypotheses when you have a strong prior and a falsification criterion; use Open Questions when you genuinely don't know and want to be reminded to find out.
-- **Experiment log bloat.** Rows for "built the thing", "wrote the README", "fixed a typo" puff the log without capturing new knowledge. Those belong in the README or `git log`.
-- **Naming collisions.** `Q1` in one section meaning something different from `Q1` in another section. Disambiguate by prefix (e.g. `NQ#` for one kind, `Q#` for another) and call out the convention in the section preface.
-- **Vague Next Experiments without an ordering.** Without expected-impact ordering, the list is a wishlist. Order by "what I'd run first if I only had time for one."
-- **Citations point at the wrong rows after editing.** If you renumber the experiment log or move items between sections, grep for old references and update them. A stale citation is worse than no citation.
+> Retrieval must run locally with no network calls after model download.
 
-## How to apply
+### Established Finding
 
-1. Start by writing **Goals** and **Constraints**. These rarely change once set.
-2. Leave **Experiment Log** empty. Don't pre-fill it with planned work — that's what Next Experiments is for.
-3. Each time you run an experiment, append a row to the log. Then ask:
-   - Did this generate a durable lesson or characterization? → add a bullet to **Established Findings** with a citation.
-   - Did it produce a generalization beyond the specific test, that you believe but haven't formally verified? → add a **Working Hypothesis** with a falsification criterion.
-   - Did it create new uncertainty? → add an entry to **Open Questions** with a planned test.
-   - Did it close out an existing open question? → cross out / remove the question.
-4. When you make a consequential choice — whether rejecting an alternative, picking a default, or deliberately accepting a tradeoff — write it into **Decisions Made** immediately, with the reasoning (referencing Established Findings rather than restating them) and a "revisit if" trigger when one exists. Don't trust future-you to remember why.
-5. Re-read the whole doc at the start of each new session. If a section feels stale or duplicative, prune it before doing anything else. If a Working Hypothesis has been confirmed by recent experiments, promote it to Established Findings; if refuted, delete it.
+A claim supported by experiments, logs, measurements, or direct observation. It may include empirical findings, causal diagnoses, and methodological lessons, but it must state or imply its scope.
 
-## A worked example
+Example:
 
-See [`PS-LEDGER.md`](PS-LEDGER.md) in this repo for a non-trivial application: a comparison of two RAG engine implementations across 8 experiments, with the resulting findings, hypotheses, decisions, open questions, and ordered next steps. The doc was refactored at least seven times as understanding deepened — sections renamed, items moved between sections, a "Known problems" section was deleted once every item lived more accurately elsewhere, a narrower "Considered and deferred" was generalized to "Decisions Made", the section was repositioned to sit alongside "Established Findings" rather than near the forward-looking sections, Decisions entries were tightened to reference (not restate) the beliefs that shaped them, blockquote scaffolding was added under each section header to keep the template self-documenting, and a separate "Working Hypotheses" section was carved out to hold claim-shaped beliefs that emerged from the work but go beyond any single experiment. That refactoring is the format working as intended.
+> After matching stop-word filtering and fusion-pool size, sqlite-vec and LanceDB tie on observed retrieval quality for this corpus.
+
+### Working Hypothesis
+
+A plausible explanation or prediction not yet established by experiment.
+
+Example:
+
+> Corpus coverage is probably the next major quality lever because retrieval cannot recover answers absent from the source docs.
+
+### Decision
+
+A consequential choice made because of findings, hypotheses, constraints, or tradeoffs. Decisions should include revisit conditions.
+
+Example:
+
+> Keep both engines side by side until maintenance cost outweighs the value of the comparison harness.
+
+### Open Question
+
+A known unknown. It should point to an experiment or condition that would resolve it.
+
+Example:
+
+> Does `bge-large-en-v1.5` meaningfully outperform `bge-small-en-v1.5` on this corpus?
+
+### Next Experiment
+
+A planned action intended to resolve an open question, refine a hypothesis, or improve the evaluation toolchain.
+
+Example:
+
+> Rebuild both indexes with `bge-large-en-v1.5` and rerun labeled plus subjective evaluations.
+
+### Experiment Log Entry
+
+A chronological record of an experiment that produced new knowledge. Exclude construction milestones unless they changed what is known.
+
+---
+
+## Anti-Slop Rules
+
+Apply these rules strictly.
+
+1. Do not call empirical findings “truths.” Use “findings,” “diagnoses,” or “supported claims.”
+2. Do not mix decisions into Established Findings. If a claim says what should be done, it belongs under Decisions Made.
+3. Do not leave Working Hypotheses empty. Either populate it or remove the section.
+4. Do not use fragile references like “section 3” when order may change. Prefer IDs: F1, H1, D1, Q1, NX1, E1.
+5. Do not claim general benchmark results from one corpus. State scope.
+6. Do not rescue a weak conclusion by making it tautological. If a claim only survives by becoming trivial, say so.
+7. Do not record every implementation step in the Experiment Log. Only record experiments that changed knowledge.
+8. Do not hide failed experiments. Failed experiments are often the most important evidence.
+9. Do not confuse “not tested” with “false.” Put untested claims under Working Hypotheses or Open Questions.
+10. Do not remove revisit conditions from decisions. They are what make decisions reversible rather than dogma.
+
+---
+
+## Update Procedure
+
+When updating a ledger, follow this sequence.
+
+1. Read the current ledger fully.
+2. Identify whether the new information is:
+   - an established finding;
+   - a working hypothesis;
+   - a decision;
+   - an open question;
+   - a next experiment;
+   - an experiment-log entry.
+3. Check whether the new information changes an existing section rather than adding a new section.
+4. Preserve scope. Every finding should imply the conditions under which it is valid.
+5. Add or update IDs if the ledger uses them.
+6. Add revisit conditions for new decisions.
+7. Remove obsolete next experiments once completed, but preserve their results in the Experiment Log.
+8. If an experiment resolves an open question, update both the Open Questions and Established Findings sections.
+9. If an experiment falsifies a hypothesis, mark it explicitly instead of silently deleting it.
+
+---
+
+## Recommended Ledger Template
+
+```markdown
+# Problem-Solving Ledger
+
+## Goals
+
+> 2–5 bullets describing what success looks like. Each should be testable as done / not done.
+
+- ...
+
+## Constraints
+
+> Non-negotiable limits on the solution space.
+
+- ...
+
+## Established Findings
+
+> Empirical findings, causal diagnoses, and methodological lessons supported by the experiment log. Each claim should state or imply its scope.
+
+- **F1. [Finding title].** [Claim, scope, and evidence reference.]
+- **F2. [Finding title].** [Claim, scope, and evidence reference.]
+
+## Working Hypotheses
+
+> Plausible explanations or predictions not yet established by experiment.
+
+- **H1. [Hypothesis title].** [Claim.]  
+  *Falsified by:* [What evidence would make this false.]  
+  *Test:* [Experiment or condition that would test it.]
+
+## Decisions Made
+
+> Consequential choices to preserve or reconsider deliberately.
+
+- **D1. [Decision title].**  
+  *Decision:* [What was decided.]  
+  *Why:* [Findings, hypotheses, constraints, or tradeoffs.]  
+  *Revisit if:* [Condition that should reopen the decision.]
+
+## Open Questions
+
+> Important things we know we do not know. Each should point to an experiment that can resolve it.
+
+- **Q1. [Question].** [Why it matters.]  
+  *Test:* NX1.
+
+## Next Experiments
+
+> Planned actions expected to resolve open questions, refine hypotheses, or improve the toolchain. Ordered by expected impact.
+
+1. **NX1 — [Experiment name].**  
+   [Action and method.]  
+   *Resolves:* Q1.
+
+## Experiment Log
+
+> Chronological record of experiments that produced new knowledge.
+
+Excludes construction milestones and shipping decisions; those belong in READMEs, commits, or implementation notes.
+
+| # | Question tested | Method | Result / new knowledge | Produces |
+|---|---|---|---|---|
+| E1 | ... | ... | ... | F1 / H1 / D1 / Q1 |
+```
+
+---
+
+## Quality Checklist
+
+Before considering the ledger clean, verify:
+
+- Goals are testable.
+- Constraints are actually non-negotiable.
+- Findings are supported by experiments or direct evidence.
+- Findings do not contain hidden decisions.
+- Hypotheses are testable or falsifiable.
+- Decisions include reasons and revisit conditions.
+- Open questions point to resolving experiments.
+- Next experiments are ordered by expected impact.
+- Experiment log entries changed knowledge.
+- Scope is stated for any claim that could otherwise look universal.
+- Failed or negative results are preserved.
+
+---
+
+## Response Style for Hermes
+
+When using this skill, respond as an engineering reviewer, not as a motivational coach.
+
+Preferred style:
+
+- direct;
+- structured;
+- sparse but complete;
+- explicit about category errors;
+- explicit about unsupported claims;
+- willing to say “this belongs in another section.”
+
+Avoid:
+
+- generic praise;
+- vague “looks good” comments;
+- over-broad conclusions;
+- philosophical decoration unless it clarifies the ontology;
+- changing the substance of findings while merely editing prose.
+
+---
+
+## Minimal Final Skeleton
+
+```markdown
+# Problem-Solving Ledger
+
+## Goals
+## Constraints
+## Established Findings
+## Working Hypotheses
+## Decisions Made
+## Open Questions
+## Next Experiments
+## Experiment Log
+```
