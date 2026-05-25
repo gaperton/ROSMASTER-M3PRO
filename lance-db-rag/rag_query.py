@@ -15,6 +15,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -28,10 +29,52 @@ from bge import BGE  # noqa: F401
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DB = SCRIPT_DIR / "index.lance"
 
+# Kept in sync with sqlite-rag/rag_query.py so the two CLIs highlight identically.
+STOP_WORDS = frozenset({
+    "a", "an", "and", "are", "as", "at", "be", "by", "but", "can", "did", "do",
+    "does", "for", "from", "had", "has", "have", "how", "i", "if", "in", "into",
+    "is", "it", "its", "me", "my", "no", "not", "of", "on", "or", "so", "than",
+    "that", "the", "their", "them", "then", "there", "these", "they", "this",
+    "to", "was", "we", "were", "what", "when", "where", "which", "who", "why",
+    "will", "with", "you", "your",
+})
+
+
+def query_content_tokens(q: str) -> list[str]:
+    raw = re.findall(r"\w+", q, flags=re.UNICODE)
+    kept = [t for t in raw if t.lower() not in STOP_WORDS]
+    return kept or raw
+
 
 def snippet(text: str, max_chars: int = 400) -> str:
     text = " ".join(text.split())
     return text if len(text) <= max_chars else text[:max_chars].rstrip() + " ..."
+
+
+def centered_snippet(text: str, tokens: list[str], radius: int = 150) -> str:
+    """Slice the chunk around the first content-token match and bracket every match.
+
+    Falls back to the head-of-chunk snippet when no token matches (typical for
+    purely-semantic hits where the query and chunk share meaning but no words).
+    """
+    if not tokens:
+        return snippet(text)
+    # Boundaries on letters/digits only — `\b` would treat `_` as a word char and
+    # miss matches inside compound identifiers like `quaternion_from_euler`.
+    pattern = re.compile(
+        r"(?<![A-Za-z0-9])(?:" + "|".join(re.escape(t) for t in tokens) + r")(?![A-Za-z0-9])",
+        re.IGNORECASE,
+    )
+    first = pattern.search(text)
+    if first is None:
+        return snippet(text)
+    start = max(0, first.start() - radius)
+    end = min(len(text), first.end() + radius)
+    excerpt = pattern.sub(lambda m: f"[[{m.group(0)}]]", text[start:end])
+    excerpt = " ".join(excerpt.split())
+    prefix = " ... " if start > 0 else ""
+    suffix = " ... " if end < len(text) else ""
+    return prefix + excerpt + suffix
 
 
 def run_search(table, query: str, mode: str, top_k: int):
@@ -95,6 +138,7 @@ def main() -> int:
         print("No results.")
         return 1
 
+    tokens = query_content_tokens(args.query)
     for i, row in enumerate(results, 1):
         loc = row.get("file_path", "?")
         heading = row.get("heading_path") or ""
@@ -102,8 +146,12 @@ def main() -> int:
             loc += f"  ::  {heading}"
         scores = format_score(row, args.mode)
         text = row.get("text", "")
+        if args.full:
+            body = text
+        else:
+            body = centered_snippet(text, tokens)
         print(f"\n[{i}] {scores}  {loc}")
-        print("    " + (text if args.full else snippet(text)).replace("\n", "\n    "))
+        print("    " + body.replace("\n", "\n    "))
 
     return 0
 

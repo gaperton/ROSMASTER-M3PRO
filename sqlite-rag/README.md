@@ -106,6 +106,22 @@ Results are sorted by fused score descending; for each one the printer also show
 
 `--mode semantic` or `--mode keyword` skips fusion and ranks by the channel's native score. Useful when you want to A/B compare, or when you know your query is purely semantic (e.g. *"what is a quaternion"*) or purely token-driven (e.g. *"ros2 topic list"*).
 
+### Snippet display
+
+Every result also prints a match-centered excerpt with the matching tokens wrapped in `[[…]]`:
+
+```
+[1] rrf=0.0325  cos=0.701  bm25=13.73  path/to/file.md  ::  Heading > Sub
+     ... Press the [START] [[button]] on the [[controller]] to activate the [[controller]],
+     then press R2 to [[unlock]] the [[buttons]]. You can then use the remote [[control]] ...
+```
+
+How it works:
+
+- The natural-language query is tokenized (`\w+`), then a small built-in English stop-word list strips noise tokens (`the`, `do`, `how`, …). Without this filter the snippets get cluttered with `[[the]]` everywhere; BM25 already discounts those terms via IDF so dropping them doesn't change ranking.
+- A second FTS5 query (`SELECT snippet(fts_chunks, 0, '[[', ']]', ' ... ', 32)`) returns a Porter-stemmed, match-centered excerpt for each displayed chunk that the keyword query also hit. Because it uses the *same* stemmer the FTS5 index was built with, `controllers` will highlight when you searched `controller`.
+- Chunks the keyword query *didn't* hit (purely semantic matches) fall back to the head-of-chunk snippet. `--full` skips both and prints the entire chunk.
+
 ### Incremental indexing
 
 The whole indexer is idempotent and incremental:
@@ -122,7 +138,7 @@ The whole indexer is idempotent and incremental:
 - **Schema is dim-locked to the model.** `vec_chunks` is declared `float[384]` at create time. If you swap `--model` for one with a different embedding dimension (e.g. `bge-base-en-v1.5` at 768-dim), you must also pass `--rebuild` — otherwise inserts will fail against the existing schema. The script does not auto-detect this.
 - **Cold start per query is ~1–2 s.** Each `rag_query.py` invocation reloads the embedding model. That's the price of "no services". If you query interactively a lot, the natural next step is a tiny REPL that keeps the model in memory; that crosses the "no services" line but is a 30-line change.
 - **Reading the scores.** In hybrid mode the primary number is the RRF score (small, typically ~0.01–0.05; only meaningful relative to other RRF scores in the same result set). The `cos=…` and `bm25=…` extras tell you which channel found the chunk and how strongly. In single-channel mode the primary is the channel's native score: cosine (higher = better, >0.7 is strong for BGE) or BM25 (sign-flipped so higher = better, magnitudes depend on corpus statistics). A `—` means the chunk wasn't in that channel's top pool — bump `--pool` if you want a wider net before fusion.
-- **FTS5 tokenizer is `porter unicode61`.** That means English stemming (`controllers` matches `controller`) and Unicode-aware case folding, but no stop-word removal — short function words like *and*, *the*, *is* still match. If you index non-English markdown, swap to the `unicode61` tokenizer alone (no Porter) or `trigram` for CJK content, and `--rebuild`.
+- **FTS5 tokenizer is `porter unicode61`.** That means English stemming (`controllers` matches `controller`) and Unicode-aware case folding. FTS5 itself doesn't strip stop words, but the query script does — `to_fts5_query` filters a small English stop-word list before building the MATCH expression, so noise tokens like `the` / `how` / `do` don't clutter the snippets. If you index non-English markdown, swap to the `unicode61` tokenizer alone (no Porter) or `trigram` for CJK content, and `--rebuild`.
 - **`enable_load_extension` requirement.** The Python interpreter must be built with loadable-SQLite-extension support. Stock CPython on Windows and most Linux distros has it; some hardened or minimal builds (e.g. older system Python on macOS) don't, and you'll see a clear error at index time.
 - **Embedding model is English-only.** If you index non-English markdown, swap to `BAAI/bge-m3` (multilingual, 1024-dim) and `--rebuild`.
 
@@ -134,5 +150,15 @@ sqlite-rag/
 ├── rag_index.py          # build / refresh the index
 ├── rag_query.py          # query the index
 ├── rag_requirements.txt  # sentence-transformers, sqlite-vec, numpy
-└── rag_index.db          # generated; gitignore this
+└── rag_index.db          # generated index
 ```
+
+## Validated on this corpus
+
+End-to-end tested against the repo's `markdown/` folder:
+
+- **247 markdown files → 2198 chunks**, single `.db` of **~8 MB**.
+- Cold index build: a few minutes on CPU (dominated by BGE encoding); `--rebuild` not required for the model download — first run pulls it into the HuggingFace cache automatically.
+- Re-runs with no file changes: seconds (hash-skip).
+- Query latency: ~1–2 s end-to-end, model-load-bound.
+- All three modes (`hybrid` / `semantic` / `keyword`) verified to return on-topic results; the example queries in this README map to real chunks in this corpus.
