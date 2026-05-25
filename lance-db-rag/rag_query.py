@@ -20,7 +20,6 @@ import sys
 from pathlib import Path
 
 import lancedb
-from lancedb.rerankers import RRFReranker
 
 # Import for side effect: the @register decorator in bge.py must run so LanceDB
 # can rehydrate the embedding function attached to the chunks table.
@@ -38,12 +37,31 @@ STOP_WORDS = frozenset({
     "to", "was", "we", "were", "what", "when", "where", "which", "who", "why",
     "will", "with", "you", "your",
 })
+RRF_K = 60
 
 
 def query_content_tokens(q: str) -> list[str]:
     raw = re.findall(r"\w+", q, flags=re.UNICODE)
     kept = [t for t in raw if t.lower() not in STOP_WORDS]
     return kept or raw
+
+
+def to_lance_fts_query(q: str) -> str:
+    """Stop-word-filtered OR-joined Tantivy query (parity with sqlite's to_fts5_query).
+
+    Without this, Tantivy receives the raw natural-language string and lets
+    common words anchor the BM25 ranking toward generic 'hub' docs.
+    """
+    tokens = query_content_tokens(q)
+    return " OR ".join(tokens) if tokens else ""
+
+
+def rrf_fuse(rankings: dict[str, list[str]], k_param: int = RRF_K) -> dict[str, float]:
+    scores: dict[str, float] = {}
+    for ids in rankings.values():
+        for rank, cid in enumerate(ids, start=1):
+            scores[cid] = scores.get(cid, 0.0) + 1.0 / (k_param + rank)
+    return scores
 
 
 def snippet(text: str, max_chars: int = 400) -> str:
@@ -77,17 +95,64 @@ def centered_snippet(text: str, tokens: list[str], radius: int = 150) -> str:
     return prefix + excerpt + suffix
 
 
-def run_search(table, query: str, mode: str, top_k: int):
-    if mode == "hybrid":
-        return (
-            table.search(query, query_type="hybrid")
-            .rerank(RRFReranker())
-            .limit(top_k)
-            .to_list()
-        )
+def run_search(table, query: str, mode: str, top_k: int, pool: int = 0):
+    """Orchestrate retrieval manually instead of using LanceDB's hybrid path.
+
+    Rationale (after 30-question subjective eval showed Lance under-performed
+    sqlite on diffuse queries): three things diverge between Lance's built-in
+    hybrid and sqlite-rag's hybrid.
+      1. FTS query — Tantivy received the raw natural-language string; sqlite
+         pre-tokenizes + stop-word-filters + OR-joins. Stop words anchored
+         results toward generic 'hub' docs.
+      2. Candidate pool before fusion — Lance's hybrid path uses a small default
+         tied to .limit(); sqlite uses max(top_k*4, 30). Narrow pool → RRF has
+         fewer candidates to work with → off-topic semantic neighbours win.
+      3. RRF implementation — same formula, different inputs because of (1, 2).
+    This function fixes all three.
+    """
+    pool = pool if pool > 0 else max(top_k * 4, 30)
+
     if mode == "semantic":
         return table.search(query, query_type="vector").limit(top_k).to_list()
-    return table.search(query, query_type="fts").limit(top_k).to_list()
+
+    if mode == "keyword":
+        fts_q = to_lance_fts_query(query)
+        if not fts_q:
+            return []
+        return table.search(fts_q, query_type="fts").limit(top_k).to_list()
+
+    # Hybrid: pool per channel, manual RRF.
+    vector_rows = table.search(query, query_type="vector").limit(pool).to_list()
+    fts_q = to_lance_fts_query(query)
+    fts_rows = (
+        table.search(fts_q, query_type="fts").limit(pool).to_list() if fts_q else []
+    )
+
+    # Merge rows by chunk_id, preserving both channels' raw scores.
+    by_id: dict[str, dict] = {}
+    for r in vector_rows:
+        by_id[r["chunk_id"]] = dict(r)
+    for r in fts_rows:
+        cid = r["chunk_id"]
+        if cid in by_id:
+            by_id[cid]["_score"] = r.get("_score")
+        else:
+            row = dict(r)
+            row.setdefault("_distance", None)
+            by_id[cid] = row
+
+    scores = rrf_fuse({
+        "semantic": [r["chunk_id"] for r in vector_rows],
+        "keyword": [r["chunk_id"] for r in fts_rows],
+    })
+
+    ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:top_k]
+    out = []
+    for cid, rrf_score in ranked:
+        row = by_id[cid]
+        row["_relevance_score"] = rrf_score
+        out.append(row)
+    return out
 
 
 _TABLE_CACHE: dict[str, object] = {}
@@ -107,15 +172,16 @@ def search(
     mode: str = "hybrid",
     top_k: int = 8,
     db_path: Path = DEFAULT_DB,
+    pool: int = 0,
 ) -> list[dict]:
     """Programmatic entry point — returns top-k chunks as plain dicts.
 
     Each dict carries file_path, heading_path, text, primary (the engine's
     headline score: rrf for hybrid, cos for semantic, fts for keyword), and
-    per-channel scores when LanceDB exposes them.
+    per-channel scores when both channels surfaced the chunk.
     """
     table = _get_table(Path(db_path))
-    rows = run_search(table, query, mode, top_k)
+    rows = run_search(table, query, mode, top_k, pool)
     out: list[dict] = []
     for row in rows:
         d = row.get("_distance")
@@ -175,6 +241,12 @@ def main() -> int:
         help="Retrieval mode (default: hybrid)",
     )
     ap.add_argument("--db", default=str(DEFAULT_DB), help=f"LanceDB directory (default: {DEFAULT_DB})")
+    ap.add_argument(
+        "--pool",
+        type=int,
+        default=0,
+        help="Candidates per channel before fusion (default: max(top_k*4, 30))",
+    )
     ap.add_argument("--full", action="store_true", help="Print the full chunk text instead of a snippet")
     args = ap.parse_args()
 
@@ -186,7 +258,7 @@ def main() -> int:
     db = lancedb.connect(str(db_path))
     table = db.open_table("chunks")
 
-    results = run_search(table, args.query, args.mode, args.top_k)
+    results = run_search(table, args.query, args.mode, args.top_k, args.pool)
     if not results:
         print("No results.")
         return 1
