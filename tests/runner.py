@@ -29,11 +29,18 @@ VARIANT_DB = {
         "sqlite": REPO_ROOT / "sqlite-rag" / "rag_index.large.db",
         "lance": REPO_ROOT / "lance-db-rag" / "index.large.lance",
     },
+    # NX8: same bge-small model, but indexes built with heading_path prepended
+    # to embed text and added as a weighted FTS column.
+    "small_h": {
+        "sqlite": REPO_ROOT / "sqlite-rag" / "rag_index.h.db",
+        "lance": REPO_ROOT / "lance-db-rag" / "index.h.lance",
+    },
 }
 
 VARIANT_MODEL = {
     "small": "BAAI/bge-small-en-v1.5",
     "large": "BAAI/bge-large-en-v1.5",
+    "small_h": "BAAI/bge-small-en-v1.5",
 }
 
 _MODULE_CACHE: dict[str, ModuleType] = {}

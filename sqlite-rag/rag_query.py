@@ -102,6 +102,16 @@ def search_semantic(
     return [(rowid, 1.0 - (d * d) / 2.0) for rowid, d in rows]
 
 
+def _fts_bm25_expr(conn: sqlite3.Connection) -> str:
+    """Pick the BM25 expression that matches whichever FTS5 schema this DB has.
+
+    Pre-NX8 DBs: `fts_chunks(text)` — one column, default weights.
+    NX8 DBs:     `fts_chunks(heading_path, text)` — weight heading 2x body.
+    """
+    col_count = len(conn.execute("SELECT * FROM fts_chunks LIMIT 0").description)
+    return "bm25(fts_chunks, 2.0, 1.0)" if col_count == 2 else "bm25(fts_chunks)"
+
+
 def search_keyword(
     conn: sqlite3.Connection,
     query: str,
@@ -111,12 +121,13 @@ def search_keyword(
     fts_query = to_fts5_query(query)
     if not fts_query:
         return []
+    bm25_expr = _fts_bm25_expr(conn)
     rows = conn.execute(
-        """
-        SELECT rowid, bm25(fts_chunks)
+        f"""
+        SELECT rowid, {bm25_expr}
         FROM fts_chunks
         WHERE fts_chunks MATCH ?
-        ORDER BY bm25(fts_chunks)
+        ORDER BY {bm25_expr}
         LIMIT ?
         """,
         (fts_query, pool),
@@ -243,10 +254,14 @@ def fetch_fts_snippets(
     fts_query = to_fts5_query(query)
     if not fts_query or not ids:
         return {}
+    # Snippet should center on the body match, not the heading. Body is always
+    # the last column: index 0 in pre-NX8 (text-only), index 1 in NX8 schema.
+    col_count = len(conn.execute("SELECT * FROM fts_chunks LIMIT 0").description)
+    text_col = col_count - 1
     placeholders = ",".join("?" * len(ids))
     rows = conn.execute(
         f"""
-        SELECT rowid, snippet(fts_chunks, 0, '[[', ']]', ' ... ', 32)
+        SELECT rowid, snippet(fts_chunks, {text_col}, '[[', ']]', ' ... ', 32)
         FROM fts_chunks
         WHERE fts_chunks MATCH ? AND rowid IN ({placeholders})
         """,

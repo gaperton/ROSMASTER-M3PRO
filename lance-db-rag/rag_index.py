@@ -39,6 +39,12 @@ def make_chunk_model(variant: str):
 
     The class is constructed per call because Vector(ndims) bakes the dim into
     the pydantic schema at class definition time, and LanceDB stores it.
+
+    Schema note: `text` carries body-only chunk text for display; `embed_source`
+    carries `"<heading_path> — <body>"` and is what the embedding model sees
+    (via SourceField). FTS is built on `embed_source` so the keyword channel
+    also sees headings. Pre-NX8 indexes are still readable because rag_query.py
+    only consumes `text`, `heading_path`, and the auto-built `vector` column.
     """
     bge = VARIANTS[variant].create()
 
@@ -47,7 +53,8 @@ def make_chunk_model(variant: str):
         file_path: str
         heading_path: str
         ord: int
-        text: str = bge.SourceField()
+        text: str
+        embed_source: str = bge.SourceField()
         vector: Vector(bge.ndims()) = bge.VectorField()
 
     return Chunk
@@ -142,13 +149,16 @@ def build_chunk_rows(docs_root: Path, file_path: Path) -> list[dict]:
     sections = chunk_markdown(text)
     rows: list[dict] = []
     for ord_, (heading, body) in enumerate(sections):
+        heading_str = " > ".join(heading)
+        embed_source = f"{heading_str} — {body}" if heading_str else body
         rows.append(
             {
                 "chunk_id": f"{rel}::{ord_}",
                 "file_path": rel,
-                "heading_path": " > ".join(heading),
+                "heading_path": heading_str,
                 "ord": ord_,
                 "text": body,
+                "embed_source": embed_source,
             }
         )
     return rows
@@ -215,12 +225,14 @@ def main() -> int:
             print(f"  [{i}/{len(to_index)}] +{len(rows):3d} chunks  {rel}")
         files_t.add([{"path": rel, "hash": sha256_file(f)}])
 
+    # NX8: FTS on `embed_source` (heading + body) so the keyword channel sees
+    # the heading text the same way the dense channel does.
     if new_chunks > 0:
-        print("Rebuilding FTS index over chunks.text ...", flush=True)
-        chunks_t.create_fts_index("text", replace=True)
-    elif "text_idx" not in {ix.name for ix in chunks_t.list_indices()}:
-        print("Creating initial FTS index over chunks.text ...", flush=True)
-        chunks_t.create_fts_index("text", replace=True)
+        print("Rebuilding FTS index over chunks.embed_source ...", flush=True)
+        chunks_t.create_fts_index("embed_source", replace=True)
+    elif "embed_source_idx" not in {ix.name for ix in chunks_t.list_indices()}:
+        print("Creating initial FTS index over chunks.embed_source ...", flush=True)
+        chunks_t.create_fts_index("embed_source", replace=True)
 
     total_chunks = chunks_t.count_rows()
     print(

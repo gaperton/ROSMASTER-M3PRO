@@ -18,7 +18,9 @@
       "Bash(python tests/evaluate.py --mode hybrid --variant large)",
       "Bash(python tests/ask.py --variant large --file tests/noob_questions.txt)",
       "Read(//tmp/**)",
-      "Bash(python tests/ask.py --variant small --file tests/noob_questions.txt > /tmp/nx2-noob-small.txt 2>&1 && wc -l /tmp/nx2-noob-small.txt)"
+      "Bash(python tests/ask.py --variant small --file tests/noob_questions.txt > /tmp/nx2-noob-small.txt 2>&1 && wc -l /tmp/nx2-noob-small.txt)",
+      "Bash(python tests/evaluate.py --mode hybrid --variant small_h)",
+      "Bash(python tests/ask.py --variant small_h --file tests/noob_questions.txt > /tmp/nx8-noob-small_h.txt 2>&1 && wc -l /tmp/nx8-noob-small_h.txt)"
     ],
     "additionalDirectories": [
       "\\tmp"

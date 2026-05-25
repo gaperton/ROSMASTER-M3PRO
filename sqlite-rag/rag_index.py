@@ -131,21 +131,26 @@ def open_db(db_path: Path, embed_dim: int) -> sqlite3.Connection:
         CREATE VIRTUAL TABLE IF NOT EXISTS vec_chunks USING vec0(
             embedding float[{embed_dim}]
         );
+        -- Two-column FTS5: heading first, body second. Queried with weighted
+        -- BM25 (`bm25(fts_chunks, 2.0, 1.0)`) so heading matches outrank body
+        -- matches. Pre-NX8 single-column DBs use the legacy `fts_chunks(text)`
+        -- shape; rag_query.py detects column count and degrades gracefully.
         CREATE VIRTUAL TABLE IF NOT EXISTS fts_chunks USING fts5(
+            heading_path,
             text,
             content='chunks',
             content_rowid='id',
             tokenize='porter unicode61'
         );
         CREATE TRIGGER IF NOT EXISTS chunks_ai AFTER INSERT ON chunks BEGIN
-            INSERT INTO fts_chunks(rowid, text) VALUES (new.id, new.text);
+            INSERT INTO fts_chunks(rowid, heading_path, text) VALUES (new.id, new.heading_path, new.text);
         END;
         CREATE TRIGGER IF NOT EXISTS chunks_ad AFTER DELETE ON chunks BEGIN
-            INSERT INTO fts_chunks(fts_chunks, rowid, text) VALUES('delete', old.id, old.text);
+            INSERT INTO fts_chunks(fts_chunks, rowid, heading_path, text) VALUES('delete', old.id, old.heading_path, old.text);
         END;
         CREATE TRIGGER IF NOT EXISTS chunks_au AFTER UPDATE ON chunks BEGIN
-            INSERT INTO fts_chunks(fts_chunks, rowid, text) VALUES('delete', old.id, old.text);
-            INSERT INTO fts_chunks(rowid, text) VALUES (new.id, new.text);
+            INSERT INTO fts_chunks(fts_chunks, rowid, heading_path, text) VALUES('delete', old.id, old.heading_path, old.text);
+            INSERT INTO fts_chunks(rowid, heading_path, text) VALUES (new.id, new.heading_path, new.text);
         END;
         """
     )
@@ -153,7 +158,9 @@ def open_db(db_path: Path, embed_dim: int) -> sqlite3.Connection:
     fts_count = conn.execute("SELECT COUNT(*) FROM fts_chunks").fetchone()[0]
     chunk_count = conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
     if chunk_count > 0 and fts_count == 0:
-        conn.execute("INSERT INTO fts_chunks(rowid, text) SELECT id, text FROM chunks")
+        conn.execute(
+            "INSERT INTO fts_chunks(rowid, heading_path, text) SELECT id, heading_path, text FROM chunks"
+        )
         conn.commit()
     return conn
 
@@ -187,7 +194,14 @@ def index_file(
         conn.execute("INSERT INTO files(path, hash) VALUES (?, ?)", (rel, new_hash))
         return 0
 
-    texts = [body for _, body in chunks]
+    # Embed `heading_path — body` so the dense vector carries topical context.
+    # Matches the format the cross-encoder reranker already uses, and is the
+    # NX8 first-stage parity for what NX2 showed bge-large was reconstructing
+    # from body alone.
+    texts = [
+        (" > ".join(h) + " — " + b) if h else b
+        for h, b in chunks
+    ]
     embeddings = model.encode(
         texts,
         normalize_embeddings=True,
