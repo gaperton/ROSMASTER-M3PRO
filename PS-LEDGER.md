@@ -37,16 +37,21 @@
 
 > Important things we believe to be truth. Plausible explanations or predictions not yet established by experiment.
 
+- **H1. Cross-encoder rerankers add value only when retrieval is genuinely ambiguous.** Most queries against a well-tuned hybrid retriever aren't ambiguous — RRF over a stop-word-filtered FTS plus a wide vector pool already top-1's them, so a reranker just adds noise. Generalizes EF §3 from "rerankers help by condition" to "for clean-query corpora, no off-the-shelf reranker helps net." *Falsified by* finding a reranker that improves both clean and ambiguous queries on this corpus.
+- **H2. Configuration defaults dominate engine choice in retrieval benchmarks.** Verified for sqlite-vec vs LanceDB (raw FTS query + small pool accounted for the entire apparent quality gap — see EF §1). Generalization: most published "engine X beats engine Y" comparisons are comparing default configurations, not engines. *Falsified by* finding two hybrid retrieval engines whose top-line metrics differ on a fair task after careful config parity.
+- **H3. For small-to-medium corpora (≲10k chunks), linear scan over normalized vectors is the right default vector index.** sqlite-vec's brute-force runs at ~37 ms median on 2198 chunks; HNSW adds setup cost, recall@k loss, and a parameter-tuning surface for marginal latency gain at this scale. Not directly tested on this project — extrapolated from known ANN tradeoffs. *Falsified by* HNSW achieving substantially better latency at our scale without quality loss.
+- **H4. For documentation retrieval, corpus coverage dominates retrieval tuning as the next quality lever.** ~33% of noob questions on our corpus hit gaps where no doc has the answer; for those, no retrieval improvement can help. Implies that for documentation systems specifically, doc coverage has higher marginal return than embedding/reranker tuning. *Test:* NX1 will measure this directly; if win-rate shift from NX1 > NX2, this is supported.
+
 ## Decisions Made
 
 > Consequential choices we'd want to preserve or reconsider deliberately.
 
-- **Default `--no-rerank` for lance-db-rag.** *Why:* WK §3 (rerankers help when ambiguous, hurt when clean) + Experiments 6–8. Reranker remains as an opt-in `--rerank` flag. *Revisit if* a domain-fine-tuned reranker becomes available or Q5 finds labeled training data.
-- **Both engines kept side by side rather than picking one.** *Why:* WK §5 (both engines defensible) — keeping both preserves the comparison harness and prevents premature lock-in. *Revisit if* maintenance cost outweighs the side-by-side value, or one engine drifts ahead on retrieval quality.
-- **Bypassed LanceDB's built-in `query_type="hybrid"` + `RRFReranker`.** *Why:* WK §1 (config parity) — achieving parity required manual orchestration (stop-word-filtered Tantivy query, explicit `max(top_k*4, 30)` pool per channel, Python-side RRF). Built-in path remains in git history; no advantage to re-adopting it because we'd rebuild the same bypass.
+- **Default `--no-rerank` for lance-db-rag.** *Why:* EF §3 (rerankers help when ambiguous, hurt when clean) + Experiments 6–8 + H1. Reranker remains as an opt-in `--rerank` flag. *Revisit if* a domain-fine-tuned reranker becomes available or Q5 finds labeled training data.
+- **Both engines kept side by side rather than picking one.** *Why:* EF §5 (both engines defensible) — keeping both preserves the comparison harness and prevents premature lock-in. *Revisit if* maintenance cost outweighs the side-by-side value, or one engine drifts ahead on retrieval quality.
+- **Bypassed LanceDB's built-in `query_type="hybrid"` + `RRFReranker`.** *Why:* EF §1 (config parity) — achieving parity required manual orchestration (stop-word-filtered Tantivy query, explicit `max(top_k*4, 30)` pool per channel, Python-side RRF). Built-in path remains in git history; no advantage to re-adopting it because we'd rebuild the same bypass.
 - **ChromaDB rejected as a third engine.** *Why:* (a) no built-in BM25 / proper FTS — `where_document={"$contains": ...}` is a substring filter, so hybrid would require bolting on `rank_bm25` and writing our own fusion (essentially porting sqlite-rag with Chroma underneath); (b) sits in an awkward middle — heavier than sqlite-vec, fewer features than LanceDB. *Revisit if* a future requirement is pure semantic + HNSW with no hybrid need.
 - **Chunking code duplicated between `sqlite-rag/rag_index.py` and `lance-db-rag/rag_index.py`.** *Why:* shared-module refactor deferred until one engine is the primary; otherwise we'd maintain shared code for two equally-weighted implementations. *Revisit if* a third engine is added or chunking logic starts diverging by mistake.
-- **Embedding model: `BAAI/bge-small-en-v1.5` (384-dim).** *Why:* lightest English-only BGE; adequate for current corpus; same model used by both engines so semantic vectors are byte-identical (eliminates one comparison variable — see WK §7). *Revisit if* NX2 shows bge-large meaningfully better, or the corpus becomes multilingual.
+- **Embedding model: `BAAI/bge-small-en-v1.5` (384-dim).** *Why:* lightest English-only BGE; adequate for current corpus; same model used by both engines so semantic vectors are byte-identical (eliminates one comparison variable — see EF §7). *Revisit if* NX2 shows bge-large meaningfully better, or the corpus becomes multilingual.
 
 ## Open Questions
 
@@ -60,9 +65,7 @@
 
 ## Next Experiments
 
-> Planned actions expected to resolve open questions, refine hypotheses, or improve the toolchain.
-
-Concrete actions, ordered by expected impact. Tool-work items (NX5, NX6, NX7) have no associated open question; they pay back as evaluator coverage or operational quality.
+> Planned actions expected to resolve open questions, refine hypotheses, or improve the toolchain. Ordered by expected impact.
 
 1. **NX1 — Write missing answer docs surfaced by the noob test.** Charging procedure, physical e-stop, simple `cmd_vel` cookbook ("drive N meters"), distributed-ROS for laptop control, "demo index", arm-vibration troubleshooting. Re-run `tests/ask.py` against the updated corpus and count how many previously-tied or previously-missed questions now have a clear top-1. *Resolves Q1.*
 2. **NX2 — Try `bge-large-en-v1.5` (1024-dim) embeddings.** Rebuild both indexes (`--rebuild`); rerun `tests/evaluate.py --mode hybrid` and the 30-question eyeball. Compare MRR and subjective wins. ~500 MB model + slower encoding. *Resolves Q2.*
@@ -76,7 +79,7 @@ Concrete actions, ordered by expected impact. Tool-work items (NX5, NX6, NX7) ha
 
 > Chronological record of experiments that produced new knowledge.
 
-Only entries that asked a question and produced new knowledge. Construction milestones (building each engine) and shipping decisions (set default, write docs) live in the READMEs and `git log`, not here. `NQ#` references below point to specific questions in `tests/noob_questions.txt`; they are unrelated to the `Q#` open questions above.
+Excludes construction milestones (building each engine) and shipping decisions (set default, write docs) — those live in the READMEs and `git log`. `NQ#` references below point to specific questions in `tests/noob_questions.txt`; they are unrelated to the `Q#` open questions above.
 
 | # | Question being tested | Method | Result / new knowledge |
 |---|---|---|---|
