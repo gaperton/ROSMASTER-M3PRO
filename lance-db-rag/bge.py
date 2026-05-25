@@ -25,14 +25,17 @@ def _get_model(name: str) -> SentenceTransformer:
     return _MODEL_CACHE[name]
 
 
-@register("bge-small-en-v1.5")
-class BGE(EmbeddingFunction):
-    """BGE-small with the asymmetric query-instruction prefix BAAI recommends."""
+class _BGEBase(EmbeddingFunction):
+    """BGE with the asymmetric query-instruction prefix BAAI recommends.
 
-    name: str = "BAAI/bge-small-en-v1.5"
+    Subclasses pin `name` and `ndims` so LanceDB can rehydrate the embedding
+    function from the table schema — the registered name is what's stored.
+    """
+
+    name: str = ""
 
     def ndims(self) -> int:
-        return 384
+        raise NotImplementedError
 
     def compute_source_embeddings(self, texts, *args, **kwargs):
         model = _get_model(self.name)
@@ -44,6 +47,25 @@ class BGE(EmbeddingFunction):
         items = _as_str_list(query)
         prefixed = [QUERY_INSTRUCTION + s for s in items]
         return model.encode(prefixed, normalize_embeddings=True).tolist()
+
+
+@register("bge-small-en-v1.5")
+class BGE(_BGEBase):
+    name: str = "BAAI/bge-small-en-v1.5"
+
+    def ndims(self) -> int:
+        return 384
+
+
+@register("bge-large-en-v1.5")
+class BGELarge(_BGEBase):
+    name: str = "BAAI/bge-large-en-v1.5"
+
+    def ndims(self) -> int:
+        return 1024
+
+
+VARIANTS = {"small": BGE, "large": BGELarge}
 
 
 def _as_str_list(x) -> list[str]:

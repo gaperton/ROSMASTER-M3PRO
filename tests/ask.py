@@ -41,6 +41,12 @@ def main() -> int:
     ap.add_argument("-k", "--top-k", type=int, default=3)
     ap.add_argument("--mode", default="hybrid", choices=("hybrid", "semantic", "keyword"))
     ap.add_argument("--file", help="Read one query per line from this file")
+    ap.add_argument(
+        "--variant",
+        choices=runner.variants(),
+        default="small",
+        help="Which embedding index to query: small (bge-small, 384d) or large (bge-large, 1024d).",
+    )
     args = ap.parse_args()
 
     questions = load_questions(args)
@@ -49,12 +55,12 @@ def main() -> int:
         return 2
 
     engines = runner.engines()
-    print(f"Loading {len(engines)} engines ({', '.join(engines)}) ...", flush=True)
+    print(f"Loading {len(engines)} engines [variant={args.variant}] ({', '.join(engines)}) ...", flush=True)
     for q in questions:
         print(f"\n{'=' * 80}\nQ: {q}")
         for e in engines:
             print(f"\n  [{e}]")
-            results = runner.search(e, q, mode=args.mode, top_k=args.top_k)
+            results = runner.search(e, q, mode=args.mode, top_k=args.top_k, variant=args.variant)
             if not results:
                 print("    (no results)")
                 continue

@@ -21,9 +21,9 @@ from pathlib import Path
 
 import lancedb
 
-# Import for side effect: the @register decorator in bge.py must run so LanceDB
-# can rehydrate the embedding function attached to the chunks table.
-from bge import BGE  # noqa: F401
+# Import for side effect: the @register decorators in bge.py must run so LanceDB
+# can rehydrate whichever embedding function is attached to the opened table.
+from bge import BGE, BGELarge  # noqa: F401
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DB = SCRIPT_DIR / "index.lance"

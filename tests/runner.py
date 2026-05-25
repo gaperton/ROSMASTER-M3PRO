@@ -2,6 +2,10 @@
 importlib.util is the cleanest way to get them on the path) and expose a
 single search(engine, query, mode, top_k) call. The model and DB handles are
 cached inside each engine's module, so the second query is fast.
+
+A `variant` selects which physical index to query: `small` is the original
+bge-small build (rag_index.db / index.lance); `large` is the bge-large build
+(rag_index.large.db / index.large.lance) used by NX2.
 """
 from __future__ import annotations
 
@@ -14,6 +18,22 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 ENGINE_PATHS = {
     "sqlite": REPO_ROOT / "sqlite-rag" / "rag_query.py",
     "lance": REPO_ROOT / "lance-db-rag" / "rag_query.py",
+}
+
+VARIANT_DB = {
+    "small": {
+        "sqlite": REPO_ROOT / "sqlite-rag" / "rag_index.db",
+        "lance": REPO_ROOT / "lance-db-rag" / "index.lance",
+    },
+    "large": {
+        "sqlite": REPO_ROOT / "sqlite-rag" / "rag_index.large.db",
+        "lance": REPO_ROOT / "lance-db-rag" / "index.large.lance",
+    },
+}
+
+VARIANT_MODEL = {
+    "small": "BAAI/bge-small-en-v1.5",
+    "large": "BAAI/bge-large-en-v1.5",
 }
 
 _MODULE_CACHE: dict[str, ModuleType] = {}
@@ -37,10 +57,30 @@ def _load(engine: str) -> ModuleType:
     return mod
 
 
-def search(engine: str, query: str, mode: str = "hybrid", top_k: int = 8) -> list[dict]:
+def search(
+    engine: str,
+    query: str,
+    mode: str = "hybrid",
+    top_k: int = 8,
+    variant: str = "small",
+) -> list[dict]:
     mod = _load(engine)
-    return mod.search(query, mode=mode, top_k=top_k)
+    db_path = VARIANT_DB[variant][engine]
+    if engine == "sqlite":
+        return mod.search(
+            query,
+            mode=mode,
+            top_k=top_k,
+            db_path=db_path,
+            model_name=VARIANT_MODEL[variant],
+        )
+    # lance: model is pinned by the table schema, just pass the db_path.
+    return mod.search(query, mode=mode, top_k=top_k, db_path=db_path)
 
 
 def engines() -> list[str]:
     return list(ENGINE_PATHS.keys())
+
+
+def variants() -> list[str]:
+    return list(VARIANT_DB.keys())

@@ -54,7 +54,7 @@ def first_match_rank(results: list[dict], expected_file: str, heading_substr: st
     return file_rank, chunk_rank
 
 
-def score_engine(engine: str, cases: list[dict], mode: str, top_k: int) -> dict:
+def score_engine(engine: str, cases: list[dict], mode: str, top_k: int, variant: str) -> dict:
     file_hits = {k: 0 for k in KS if k <= top_k}
     chunk_hits = {k: 0 for k in KS if k <= top_k}
     file_rr_sum = 0.0
@@ -64,7 +64,7 @@ def score_engine(engine: str, cases: list[dict], mode: str, top_k: int) -> dict:
 
     for case in cases:
         start = time.perf_counter()
-        results = runner.search(engine, case["query"], mode=mode, top_k=top_k)
+        results = runner.search(engine, case["query"], mode=mode, top_k=top_k, variant=variant)
         durations.append(time.perf_counter() - start)
 
         f_rank, c_rank = first_match_rank(
@@ -137,6 +137,12 @@ def main() -> int:
     ap.add_argument("--mode", default="hybrid", choices=("hybrid", "semantic", "keyword"))
     ap.add_argument("-k", "--top-k", type=int, default=8)
     ap.add_argument("--engine", choices=("sqlite", "lance", "both"), default="both")
+    ap.add_argument(
+        "--variant",
+        choices=runner.variants(),
+        default="small",
+        help="Which embedding index to query: small (bge-small, 384d) or large (bge-large, 1024d).",
+    )
     args = ap.parse_args()
 
     cases = load_cases(Path(args.cases))
@@ -145,11 +151,11 @@ def main() -> int:
         return 2
 
     targets = runner.engines() if args.engine == "both" else [args.engine]
-    print(f"Loading {len(targets)} engine(s): {', '.join(targets)} (first query per engine cold-starts the model) ...", flush=True)
+    print(f"Loading {len(targets)} engine(s) [variant={args.variant}]: {', '.join(targets)} (first query per engine cold-starts the model) ...", flush=True)
 
     results = {}
     for e in targets:
-        results[e] = score_engine(e, cases, args.mode, args.top_k)
+        results[e] = score_engine(e, cases, args.mode, args.top_k, args.variant)
 
     render_report(cases, results, args.mode, args.top_k)
     return 0

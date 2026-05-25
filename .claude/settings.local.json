@@ -11,7 +11,17 @@
       "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); marker --help 2>&1 | Select-Object -First 30)",
       "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); python -m pip install psutil 2>&1 | Select-Object -Last 3)",
       "PowerShell($env:PATH = \"C:\\\\Users\\\\Vlad\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\Scripts;\" + [System.Environment]::GetEnvironmentVariable\\('PATH','Machine'\\) + ';' + [System.Environment]::GetEnvironmentVariable\\('PATH','User'\\); New-Item -ItemType Directory -Force \"c:\\\\Users\\\\Vlad\\\\GitHub\\\\ROSMASTER-M3PRO\\\\markdown\\\\_test\" | Out-Null; marker_single \"c:\\\\Users\\\\Vlad\\\\GitHub\\\\ROSMASTER-M3PRO\\\\0.Configuration and Operation Guide\\\\1. Quick start handle to control the car.pdf\" --output_dir \"c:\\\\Users\\\\Vlad\\\\GitHub\\\\ROSMASTER-M3PRO\\\\markdown\\\\_test\" --output_format markdown 2>&1 | Select-Object -Last 30)",
-      "Bash(awk ' *)"
+      "Bash(awk ' *)",
+      "PowerShell(\\(Get-Command python\\).Source; python --version)",
+      "Bash(python sqlite-rag/rag_index.py --model BAAI/bge-large-en-v1.5 --db sqlite-rag/rag_index.large.db --rebuild)",
+      "Bash(python lance-db-rag/rag_index.py --variant large --db lance-db-rag/index.large.lance --rebuild)",
+      "Bash(python tests/evaluate.py --mode hybrid --variant large)",
+      "Bash(python tests/ask.py --variant large --file tests/noob_questions.txt)",
+      "Read(//tmp/**)",
+      "Bash(python tests/ask.py --variant small --file tests/noob_questions.txt > /tmp/nx2-noob-small.txt 2>&1 && wc -l /tmp/nx2-noob-small.txt)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }

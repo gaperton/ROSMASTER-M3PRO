@@ -24,7 +24,6 @@ import sqlite_vec
 from sentence_transformers import SentenceTransformer
 
 DEFAULT_MODEL = "BAAI/bge-small-en-v1.5"
-EMBED_DIM = 384
 CHUNK_TARGET_CHARS = 1800
 CHUNK_OVERLAP_CHARS = 300
 
@@ -33,6 +32,14 @@ HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$", re.MULTILINE)
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DOCS = SCRIPT_DIR.parent / "markdown"
 DEFAULT_DB = SCRIPT_DIR / "rag_index.db"
+
+# Embed dim is baked into the vec0 virtual table schema, so swapping models
+# requires a fresh DB file at a different path. Keep the lookup tight to the
+# bge family we actually use.
+MODEL_DIMS = {
+    "BAAI/bge-small-en-v1.5": 384,
+    "BAAI/bge-large-en-v1.5": 1024,
+}
 
 
 def sha256_file(path: Path) -> str:
@@ -101,7 +108,7 @@ def serialize_f32(vec: np.ndarray) -> bytes:
     return struct.pack(f"{len(vec)}f", *vec.astype(np.float32).tolist())
 
 
-def open_db(db_path: Path) -> sqlite3.Connection:
+def open_db(db_path: Path, embed_dim: int) -> sqlite3.Connection:
     conn = sqlite3.connect(db_path)
     conn.enable_load_extension(True)
     sqlite_vec.load(conn)
@@ -122,7 +129,7 @@ def open_db(db_path: Path) -> sqlite3.Connection:
         );
         CREATE INDEX IF NOT EXISTS idx_chunks_file ON chunks(file_path);
         CREATE VIRTUAL TABLE IF NOT EXISTS vec_chunks USING vec0(
-            embedding float[{EMBED_DIM}]
+            embedding float[{embed_dim}]
         );
         CREATE VIRTUAL TABLE IF NOT EXISTS fts_chunks USING fts5(
             text,
@@ -216,13 +223,18 @@ def main() -> int:
         print(f"Docs folder not found: {docs_root}", file=sys.stderr)
         return 2
 
+    if args.model not in MODEL_DIMS:
+        print(f"Unknown model {args.model}. Add its dim to MODEL_DIMS first.", file=sys.stderr)
+        return 2
+    embed_dim = MODEL_DIMS[args.model]
+
     if args.rebuild and db_path.exists():
         db_path.unlink()
 
-    print(f"Loading model {args.model} (first run downloads ~130MB) ...", flush=True)
+    print(f"Loading model {args.model} (first run downloads the weights) ...", flush=True)
     model = SentenceTransformer(args.model)
 
-    conn = open_db(db_path)
+    conn = open_db(db_path, embed_dim)
     md_files = sorted(p for p in docs_root.rglob("*.md") if p.is_file())
     print(f"Found {len(md_files)} markdown files under {docs_root}")
 

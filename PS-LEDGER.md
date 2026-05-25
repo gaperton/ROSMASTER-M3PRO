@@ -41,6 +41,8 @@
 
 - **The evaluation harness has survived implementation changes.** Two case sets, `tests/cases.jsonl` and `tests/noob_questions.txt`, plus two tools, `evaluate.py` and `ask.py`, worked across two engine implementations and three reranker variants.
 
+- **`bge-large-en-v1.5` is a mild net-positive that does not justify its cost.** The 1024-dim model improved a handful of diffuse noob queries where bge-small's vectors blurred a clearly-correct doc (lidar specs, IP-change, "Controlling the Car's Speed", install-ROS2) but regressed labeled chunk MRR from 0.531/0.529 to 0.483/0.483 — same right file, different chunk inside it — and demoted at least one exact-match chunk (Configuring API-Key). Lance latency rose ~70% (80 → 137 ms); sqlite was flat. The 2.7× weight footprint (~130 MB → ~1.3 GB) and slower re-embed are not paid back by ~3 clear noob wins minus 1 labeled regression. *(Experiment 9.)*
+
 ## Working Hypotheses
 
 > Plausible explanations or predictions not yet established by experiment.
@@ -54,8 +56,8 @@
 - **H3. For small-to-medium corpora, linear scan over normalized vectors is a reasonable default.** sqlite-vec brute-force search runs at ~37 ms median on 2,198 chunks. At this scale, HNSW may add setup cost, recall risk, and tuning complexity for little practical gain. This is not yet directly tested here.  
   *Falsified by:* HNSW producing substantially lower latency at this scale without quality loss.
 
-- **H4. Corpus coverage is probably the next major quality lever.** About one third of noob questions hit gaps where the corpus does not contain a good answer. Retrieval tuning cannot recover answers that are not present.  
-  *Test:* NX1. If adding missing docs improves win rate more than NX2, this hypothesis is supported.
+- **H4. Corpus coverage is probably the next major quality lever.** About one third of noob questions hit gaps where the corpus does not contain a good answer. Retrieval tuning cannot recover answers that are not present. Supporting evidence: Experiment 9 showed that doubling embedding capacity yields only a handful of noob wins, several of which (e.g. NQ22 lidar specs) succeeded because the right doc *was* in the corpus and bge-large simply surfaced it.  
+  *Test:* NX1. If adding missing docs improves win rate more than the ~3-clear-wins baseline NX2 produced, this hypothesis is supported.
 
 ## Decisions Made
 
@@ -82,8 +84,8 @@
   *Revisit if:* a third engine is added, or chunking behavior starts diverging unintentionally.
 
 - **Keep `BAAI/bge-small-en-v1.5` as the default embedding model.**  
-  *Why:* it is lightweight, English-focused, adequate for the current corpus, and shared across both engines, which removes one comparison variable.  
-  *Revisit if:* NX2 shows that `bge-large-en-v1.5` is meaningfully better, or the corpus becomes multilingual.
+  *Why:* it is lightweight, English-focused, adequate for the current corpus, and shared across both engines, which removes one comparison variable. Experiment 9 ran NX2 and found `bge-large-en-v1.5` is only a mild net-positive on diffuse noob queries while costing ~70% Lance latency, a labeled chunk-MRR regression, and a 1.3 GB weight footprint.  
+  *Revisit if:* the corpus becomes multilingual, gains a substantial body of long technical chunks where 1024-dim discrimination would matter more than it currently does, or a new embedding family meaningfully improves on bge-small at comparable cost.
 
 ## Open Questions
 
@@ -92,10 +94,6 @@
 - **Q1. Is corpus coverage the biggest remaining quality lever?**  
   About one third of noob questions hit corpus gaps.  
   *Test:* NX1.
-
-- **Q2. Does `bge-large-en-v1.5` meaningfully beat `bge-small-en-v1.5` on this corpus?**  
-  Both engines would benefit equally if it does.  
-  *Test:* NX2.
 
 - **Q3. Does multi-query expansion help imprecise beginner questions?**  
   This may improve recall, but it partially breaks the no-services-on-retrieval-path constraint.  
@@ -117,27 +115,23 @@
    Add docs for charging, physical e-stop, simple `cmd_vel` usage, distributed ROS for laptop control, demo index, and arm-vibration troubleshooting. Rebuild indexes and rerun `tests/ask.py`.  
    *Resolves:* Q1.
 
-2. **NX2 — Try `bge-large-en-v1.5` embeddings.**  
-   Rebuild both indexes with the 1024-dim model, then rerun `tests/evaluate.py --mode hybrid` and the 30-question eyeball. Compare MRR and subjective wins.  
-   *Resolves:* Q2.
-
-3. **NX3 — Add multi-query expansion.**  
+2. **NX3 — Add multi-query expansion.**  
    Use Anthropic Haiku to produce 3–5 paraphrases per user query, search each, and fuse results with RRF. Decide whether the partial break of the offline-retrieval constraint is acceptable.  
    *Resolves:* Q3.
 
-4. **NX4 — Test paragraph-level chunking.**  
+3. **NX4 — Test paragraph-level chunking.**  
    Change `chunk_section` to split sections into paragraph-level pieces. Rebuild both indexes and rerun labeled + subjective evaluations.  
    *Resolves:* Q4.
 
-5. **NX5 — Add metadata and query routing.**  
+4. **NX5 — Add metadata and query routing.**  
    Tag chunks by module number, doc type, and difficulty. Route questions to likely module ranges: ROS to modules 15–16, AI to 1–4, and so on.  
    *Tool work.*
 
-6. **NX6 — Generate labeled cases for the remaining docs.**  
+5. **NX6 — Generate labeled cases for the remaining docs.**  
    Use Claude Haiku to produce one plausible question per remaining doc and commit them to `tests/cases.jsonl`.  
    *Coverage work.*
 
-7. **NX7 — Add per-mode side-by-side reporting.**  
+6. **NX7 — Add per-mode side-by-side reporting.**  
    Update `evaluate.py` so one invocation reports hybrid, semantic, and keyword results for both engines.  
    *Tool work.*
 
@@ -157,3 +151,4 @@ Excludes construction milestones and shipping decisions; those belong in the REA
 | 6 | Does a cross-encoder reranker beat plain RRF? | Added `cross-encoder/ms-marco-MiniLM-L-6-v2`, scoring top-20 `(query, text)` pairs | Labeled chunk MRR improved from 0.529 to 0.558, but open-noob queries regressed: NQ4, NQ6, and NQ9 got worse. Latency rose from 81 ms to 157 ms. Labeled-only win; real-world loss. |
 | 7 | Does adding heading path fix the ms-marco regression? | Same model, input changed to `(query, heading_path + " — " + text)` | No. Labeled MRR stayed 0.558. Open-noob regressions changed but did not disappear; NQ6 got worse because the heading created a misleading lexical match. |
 | 8 | Does BGE-reranker behave differently? | Swapped to `BAAI/bge-reranker-base`, same `(query, heading + text)` input | Labeled chunk MRR was 0.533, about the same as plain RRF. It fixed NQ4, NQ6, and NQ9, but broke NQ7, NQ21, NQ25, NQ28, and NQ30. Latency rose to 440 ms. Net wash. |
+| 9 | Does `bge-large-en-v1.5` (1024-dim) meaningfully beat `bge-small-en-v1.5` (384-dim)? | Parameterized both engines for variable embed dim, built side-by-side `*.large.*` indexes, reran `evaluate.py --mode hybrid` and `ask.py --file noob_questions.txt` for both variants. | File MRR unchanged (0.950 / 0.950). Chunk MRR regressed 0.531/0.529 → 0.483/0.483: same right file, different chunk inside it. On the 30 noob queries: 5 clear large wins (NQ4 map-room, NQ19 install-ROS2, NQ20 velocity-from-terminal, NQ22 lidar-specs, NQ26 IP-change), 3 slight large wins, 1 clear small win (NQ30 API-key), 4 slight small wins, 17 ties. Sqlite latency flat (~78 ms); Lance latency rose ~70% (80 → 137 ms). Engines stayed equivalent. Resolves Q2: bge-large is a mild net-positive, not worth the 1.3 GB model and slower re-embed. |

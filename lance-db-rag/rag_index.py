@@ -22,7 +22,7 @@ from pathlib import Path
 import lancedb
 from lancedb.pydantic import LanceModel, Vector
 
-from bge import BGE
+from bge import VARIANTS
 
 CHUNK_TARGET_CHARS = 1800
 CHUNK_OVERLAP_CHARS = 300
@@ -33,16 +33,24 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DOCS = SCRIPT_DIR.parent / "markdown"
 DEFAULT_DB = SCRIPT_DIR / "index.lance"
 
-bge = BGE.create()
 
+def make_chunk_model(variant: str):
+    """Build a Chunk LanceModel pinned to the chosen BGE variant's vector dim.
 
-class Chunk(LanceModel):
-    chunk_id: str
-    file_path: str
-    heading_path: str
-    ord: int
-    text: str = bge.SourceField()
-    vector: Vector(bge.ndims()) = bge.VectorField()
+    The class is constructed per call because Vector(ndims) bakes the dim into
+    the pydantic schema at class definition time, and LanceDB stores it.
+    """
+    bge = VARIANTS[variant].create()
+
+    class Chunk(LanceModel):
+        chunk_id: str
+        file_path: str
+        heading_path: str
+        ord: int
+        text: str = bge.SourceField()
+        vector: Vector(bge.ndims()) = bge.VectorField()
+
+    return Chunk
 
 
 class FileHash(LanceModel):
@@ -111,8 +119,9 @@ def sql_escape(s: str) -> str:
     return s.replace("'", "''")
 
 
-def open_db(db_path: Path):
+def open_db(db_path: Path, variant: str):
     db = lancedb.connect(str(db_path))
+    Chunk = make_chunk_model(variant)
     chunks_t = db.create_table("chunks", schema=Chunk, exist_ok=True)
     files_t = db.create_table("files", schema=FileHash, exist_ok=True)
     return db, chunks_t, files_t
@@ -149,6 +158,12 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--docs", default=str(DEFAULT_DOCS), help=f"Folder to index (default: {DEFAULT_DOCS})")
     ap.add_argument("--db", default=str(DEFAULT_DB), help=f"LanceDB directory (default: {DEFAULT_DB})")
+    ap.add_argument(
+        "--variant",
+        choices=tuple(VARIANTS),
+        default="small",
+        help="BGE variant: small (384-dim) or large (1024-dim). Must match the table's stored schema on re-open.",
+    )
     ap.add_argument("--rebuild", action="store_true", help="Wipe the DB and re-embed everything")
     args = ap.parse_args()
 
@@ -161,8 +176,8 @@ def main() -> int:
     if args.rebuild and db_path.exists():
         shutil.rmtree(db_path)
 
-    print(f"Opening LanceDB at {db_path} (embedding model loads lazily) ...", flush=True)
-    db, chunks_t, files_t = open_db(db_path)
+    print(f"Opening LanceDB at {db_path} (variant={args.variant}, embedding model loads lazily) ...", flush=True)
+    db, chunks_t, files_t = open_db(db_path, args.variant)
 
     md_files = sorted(p for p in docs_root.rglob("*.md") if p.is_file())
     print(f"Found {len(md_files)} markdown files under {docs_root}")
