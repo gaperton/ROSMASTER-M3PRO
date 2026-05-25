@@ -47,6 +47,12 @@ def main() -> int:
         default="small",
         help="Which embedding index to query: small (bge-small, 384d) or large (bge-large, 1024d).",
     )
+    ap.add_argument(
+        "--bm25-heading-weight",
+        type=float,
+        default=1.0,
+        help="BM25 weight for sqlite heading_path in two-column FTS indexes (default: 1.0).",
+    )
     args = ap.parse_args()
 
     questions = load_questions(args)
@@ -60,7 +66,14 @@ def main() -> int:
         print(f"\n{'=' * 80}\nQ: {q}")
         for e in engines:
             print(f"\n  [{e}]")
-            results = runner.search(e, q, mode=args.mode, top_k=args.top_k, variant=args.variant)
+            results = runner.search(
+                e,
+                q,
+                mode=args.mode,
+                top_k=args.top_k,
+                variant=args.variant,
+                bm25_heading_weight=args.bm25_heading_weight,
+            )
             if not results:
                 print("    (no results)")
                 continue

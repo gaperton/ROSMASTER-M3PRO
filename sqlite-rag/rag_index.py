@@ -131,9 +131,9 @@ def open_db(db_path: Path, embed_dim: int) -> sqlite3.Connection:
         CREATE VIRTUAL TABLE IF NOT EXISTS vec_chunks USING vec0(
             embedding float[{embed_dim}]
         );
-        -- Two-column FTS5: heading first, body second. Queried with weighted
-        -- BM25 (`bm25(fts_chunks, 2.0, 1.0)`) so heading matches outrank body
-        -- matches. Pre-NX8 single-column DBs use the legacy `fts_chunks(text)`
+        -- Two-column FTS5: heading first, body second. Query-time BM25 can
+        -- tune the heading column weight without rebuilding the index.
+        -- Pre-NX8 single-column DBs use the legacy `fts_chunks(text)`
         -- shape; rag_query.py detects column count and degrades gracefully.
         CREATE VIRTUAL TABLE IF NOT EXISTS fts_chunks USING fts5(
             heading_path,

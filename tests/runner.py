@@ -70,6 +70,7 @@ def search(
     mode: str = "hybrid",
     top_k: int = 8,
     variant: str = "small",
+    bm25_heading_weight: float = 1.0,
 ) -> list[dict]:
     mod = _load(engine)
     db_path = VARIANT_DB[variant][engine]
@@ -80,6 +81,7 @@ def search(
             top_k=top_k,
             db_path=db_path,
             model_name=VARIANT_MODEL[variant],
+            bm25_heading_weight=bm25_heading_weight,
         )
     # lance: model is pinned by the table schema, just pass the db_path.
     return mod.search(query, mode=mode, top_k=top_k, db_path=db_path)

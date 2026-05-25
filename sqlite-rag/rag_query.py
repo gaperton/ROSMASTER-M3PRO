@@ -27,6 +27,7 @@ from sentence_transformers import SentenceTransformer
 DEFAULT_MODEL = "BAAI/bge-small-en-v1.5"
 QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
 RRF_K = 60
+DEFAULT_BM25_HEADING_WEIGHT = 1.0
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DB = SCRIPT_DIR / "rag_index.db"
@@ -102,26 +103,28 @@ def search_semantic(
     return [(rowid, 1.0 - (d * d) / 2.0) for rowid, d in rows]
 
 
-def _fts_bm25_expr(conn: sqlite3.Connection) -> str:
+def _fts_bm25_expr(conn: sqlite3.Connection, heading_weight: float = DEFAULT_BM25_HEADING_WEIGHT) -> str:
     """Pick the BM25 expression that matches whichever FTS5 schema this DB has.
 
     Pre-NX8 DBs: `fts_chunks(text)` — one column, default weights.
-    NX8 DBs:     `fts_chunks(heading_path, text)` — weight heading 2x body.
+    NX8 DBs:     `fts_chunks(heading_path, text)` — weight heading vs. body.
     """
     col_count = len(conn.execute("SELECT * FROM fts_chunks LIMIT 0").description)
-    return "bm25(fts_chunks, 2.0, 1.0)" if col_count == 2 else "bm25(fts_chunks)"
+    heading_weight = float(heading_weight)
+    return f"bm25(fts_chunks, {heading_weight:g}, 1.0)" if col_count == 2 else "bm25(fts_chunks)"
 
 
 def search_keyword(
     conn: sqlite3.Connection,
     query: str,
     pool: int,
+    heading_weight: float = DEFAULT_BM25_HEADING_WEIGHT,
 ) -> list[tuple[int, float]]:
     """Return [(chunk_id, bm25_score)] best-first. Higher score = better."""
     fts_query = to_fts5_query(query)
     if not fts_query:
         return []
-    bm25_expr = _fts_bm25_expr(conn)
+    bm25_expr = _fts_bm25_expr(conn, heading_weight)
     rows = conn.execute(
         f"""
         SELECT rowid, {bm25_expr}
@@ -179,6 +182,7 @@ def search(
     db_path: Path = DEFAULT_DB,
     model_name: str = DEFAULT_MODEL,
     pool: int = 0,
+    bm25_heading_weight: float = DEFAULT_BM25_HEADING_WEIGHT,
 ) -> list[dict]:
     """Programmatic entry point — returns top-k chunks as plain dicts.
 
@@ -194,7 +198,7 @@ def search(
         if mode in ("semantic", "hybrid"):
             sem_results = search_semantic(conn, _get_model(model_name), query, pool)
         if mode in ("keyword", "hybrid"):
-            kw_results = search_keyword(conn, query, pool)
+            kw_results = search_keyword(conn, query, pool, bm25_heading_weight)
 
         sem_scores = {cid: s for cid, s in sem_results}
         kw_scores = {cid: s for cid, s in kw_results}
@@ -288,6 +292,15 @@ def main() -> int:
     )
     ap.add_argument("--db", default=str(DEFAULT_DB), help=f"SQLite index path (default: {DEFAULT_DB})")
     ap.add_argument("--model", default=DEFAULT_MODEL, help=f"Embedding model (default: {DEFAULT_MODEL})")
+    ap.add_argument(
+        "--bm25-heading-weight",
+        type=float,
+        default=DEFAULT_BM25_HEADING_WEIGHT,
+        help=(
+            "BM25 weight for heading_path in two-column FTS indexes "
+            f"(default: {DEFAULT_BM25_HEADING_WEIGHT:g})"
+        ),
+    )
     ap.add_argument("--full", action="store_true", help="Print the full chunk text instead of a snippet")
     args = ap.parse_args()
 
@@ -306,7 +319,7 @@ def main() -> int:
         model = SentenceTransformer(args.model)
         sem_results = search_semantic(conn, model, args.query, pool)
     if args.mode in ("keyword", "hybrid"):
-        kw_results = search_keyword(conn, args.query, pool)
+        kw_results = search_keyword(conn, args.query, pool, args.bm25_heading_weight)
 
     sem_scores = {cid: s for cid, s in sem_results}
     kw_scores = {cid: s for cid, s in kw_results}

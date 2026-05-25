@@ -54,7 +54,14 @@ def first_match_rank(results: list[dict], expected_file: str, heading_substr: st
     return file_rank, chunk_rank
 
 
-def score_engine(engine: str, cases: list[dict], mode: str, top_k: int, variant: str) -> dict:
+def score_engine(
+    engine: str,
+    cases: list[dict],
+    mode: str,
+    top_k: int,
+    variant: str,
+    bm25_heading_weight: float,
+) -> dict:
     file_hits = {k: 0 for k in KS if k <= top_k}
     chunk_hits = {k: 0 for k in KS if k <= top_k}
     file_rr_sum = 0.0
@@ -64,7 +71,14 @@ def score_engine(engine: str, cases: list[dict], mode: str, top_k: int, variant:
 
     for case in cases:
         start = time.perf_counter()
-        results = runner.search(engine, case["query"], mode=mode, top_k=top_k, variant=variant)
+        results = runner.search(
+            engine,
+            case["query"],
+            mode=mode,
+            top_k=top_k,
+            variant=variant,
+            bm25_heading_weight=bm25_heading_weight,
+        )
         durations.append(time.perf_counter() - start)
 
         f_rank, c_rank = first_match_rank(
@@ -96,11 +110,20 @@ def score_engine(engine: str, cases: list[dict], mode: str, top_k: int, variant:
     }
 
 
-def render_report(cases: list[dict], results_by_engine: dict[str, dict], mode: str, top_k: int) -> None:
+def render_report(
+    cases: list[dict],
+    results_by_engine: dict[str, dict],
+    mode: str,
+    top_k: int,
+    bm25_heading_weight: float,
+) -> None:
     n = len(cases)
     engines = list(results_by_engine.keys())
 
-    print(f"\n=== mode={mode}  top_k={top_k}  cases={n}  engines={','.join(engines)} ===\n")
+    print(
+        f"\n=== mode={mode}  top_k={top_k}  cases={n}  "
+        f"bm25_heading_weight={bm25_heading_weight:g}  engines={','.join(engines)} ===\n"
+    )
 
     # Headline: MRR is the sharpest signal (weights rank-1 heavily); Hits@1/@3 next;
     # @8 is a coarse "did we find it at all" bound that usually saturates.
@@ -143,6 +166,12 @@ def main() -> int:
         default="small",
         help="Which embedding index to query: small (bge-small, 384d) or large (bge-large, 1024d).",
     )
+    ap.add_argument(
+        "--bm25-heading-weight",
+        type=float,
+        default=1.0,
+        help="BM25 weight for sqlite heading_path in two-column FTS indexes (default: 1.0).",
+    )
     args = ap.parse_args()
 
     cases = load_cases(Path(args.cases))
@@ -155,9 +184,16 @@ def main() -> int:
 
     results = {}
     for e in targets:
-        results[e] = score_engine(e, cases, args.mode, args.top_k, args.variant)
+        results[e] = score_engine(
+            e,
+            cases,
+            args.mode,
+            args.top_k,
+            args.variant,
+            args.bm25_heading_weight,
+        )
 
-    render_report(cases, results, args.mode, args.top_k)
+    render_report(cases, results, args.mode, args.top_k, args.bm25_heading_weight)
     return 0
 
 
