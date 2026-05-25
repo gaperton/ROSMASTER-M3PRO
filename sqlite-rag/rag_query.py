@@ -49,15 +49,32 @@ def snippet(text: str, max_chars: int = 400) -> str:
     return text if len(text) <= max_chars else text[:max_chars].rstrip() + " ..."
 
 
+STOP_WORDS = frozenset({
+    "a", "an", "and", "are", "as", "at", "be", "by", "but", "can", "did", "do",
+    "does", "for", "from", "had", "has", "have", "how", "i", "if", "in", "into",
+    "is", "it", "its", "me", "my", "no", "not", "of", "on", "or", "so", "than",
+    "that", "the", "their", "them", "then", "there", "these", "they", "this",
+    "to", "was", "we", "were", "what", "when", "where", "which", "who", "why",
+    "will", "with", "you", "your",
+})
+
+
 def to_fts5_query(q: str) -> str:
     """Convert a natural-language query into a safe FTS5 MATCH expression.
 
-    Splits on word boundaries, double-quotes each token to neutralize FTS5
-    operators, and joins with OR so results are ranked rather than required
-    to contain every term.
+    Splits on word boundaries, drops common English stop words (they cost
+    snippet noise — BM25's IDF already weights them near zero — but if the
+    query is *only* stop words we keep them rather than return empty),
+    double-quotes each remaining token to neutralize FTS5 operators, and
+    joins with OR so results are ranked rather than required to contain
+    every term.
     """
-    tokens = re.findall(r"\w+", q, flags=re.UNICODE)
-    return " OR ".join(f'"{t}"' for t in tokens) if tokens else ""
+    raw = re.findall(r"\w+", q, flags=re.UNICODE)
+    if not raw:
+        return ""
+    kept = [t for t in raw if t.lower() not in STOP_WORDS]
+    tokens = kept or raw
+    return " OR ".join(f'"{t}"' for t in tokens)
 
 
 def search_semantic(
@@ -134,6 +151,31 @@ def fetch_chunks(
     return {cid: (fp, hp, txt) for cid, fp, hp, txt in rows}
 
 
+def fetch_fts_snippets(
+    conn: sqlite3.Connection,
+    query: str,
+    ids: list[int],
+) -> dict[int, str]:
+    """Match-centered snippets for chunk ids the FTS query also hits.
+
+    snippet() args: (table, col_index, start_mark, end_mark, ellipsis, max_tokens).
+    Returns {} for chunks the query doesn't match — caller falls back to head-of-chunk.
+    """
+    fts_query = to_fts5_query(query)
+    if not fts_query or not ids:
+        return {}
+    placeholders = ",".join("?" * len(ids))
+    rows = conn.execute(
+        f"""
+        SELECT rowid, snippet(fts_chunks, 0, '[[', ']]', ' ... ', 32)
+        FROM fts_chunks
+        WHERE fts_chunks MATCH ? AND rowid IN ({placeholders})
+        """,
+        (fts_query, *ids),
+    ).fetchall()
+    return {rowid: snip for rowid, snip in rows}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("query", help="Natural-language question")
@@ -196,7 +238,12 @@ def main() -> int:
         conn.close()
         return 1
 
-    meta = fetch_chunks(conn, [cid for cid, _ in ranked])
+    ranked_ids = [cid for cid, _ in ranked]
+    meta = fetch_chunks(conn, ranked_ids)
+    fts_snips = (
+        {} if args.full or args.mode == "semantic"
+        else fetch_fts_snippets(conn, args.query, ranked_ids)
+    )
     conn.close()
 
     for i, (cid, primary) in enumerate(ranked, 1):
@@ -211,7 +258,13 @@ def main() -> int:
         extras_str = ("  " + "  ".join(extras)) if extras else ""
         primary_fmt = f"{primary:.4f}" if primary_label == "rrf" else f"{primary:.3f}"
         print(f"\n[{i}] {primary_label}={primary_fmt}{extras_str}  {loc}")
-        print("    " + (text if args.full else snippet(text)).replace("\n", "\n    "))
+        if args.full:
+            body = text
+        elif cid in fts_snips:
+            body = fts_snips[cid]
+        else:
+            body = snippet(text)
+        print("    " + body.replace("\n", "\n    "))
 
     return 0
 
