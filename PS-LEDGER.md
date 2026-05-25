@@ -2,6 +2,8 @@
 
 ## Goals
 
+> 2–5 bullets describing what success looks like. Each one should be testable as done / not done.
+
 - Local RAG over the repo's markdown course material so a beginner can ask natural-language questions and get back the most relevant chunks with file paths and heading breadcrumbs.
 - Side-by-side comparison of two embedded vector-store engines (sqlite-vec, LanceDB) on this specific corpus, with a repeatable scoring harness.
 - Honest, documented verdict on which engine to use and why — not a benchmark for benchmark's sake.
@@ -9,15 +11,17 @@
 
 ## Constraints
 
+> Non-negotiable limits on the solution space.
+
 - **No services** — embedded engines only, single-file or single-directory storage.
 - **Local-only retrieval path** — no network calls after the first model download. Anthropic / OpenAI keys are fine for offline case generation, not for live retrieval.
 - **Windows / Python 3.12 / CPU.** No GPU assumed; model loads must fit in seconds, not minutes.
 - **Corpus is fixed input.** 247 markdown files, Marker-converted from PDFs. We don't rewrite the docs; we work with the noise (markdown markup, mixed code blocks, translated-from-Chinese English).
 - **Reproducibility.** Every claim in the READMEs should be backed by a script someone can re-run.
 
-## What we know
+## Established Findings
 
-Durable lessons earned through running the experiments below. Each one has a citation back to the experiment log.
+> Important things we know that we know. Empirical findings and logical conclusions supported by the experiment log. Each claim should state or imply its scope.
 
 - **Engine choice on this corpus is a configuration parity question, not an engine quality question.** Lance under-performed in early tests entirely because of two missing config bits (stop-word-filtered FTS query, larger fusion pool). Once matched to sqlite's config, the engines are functionally equivalent on retrieval quality. *(Experiments 2–4.)*
 - **A few "hub" docs over-rank on diffuse queries when keyword anchoring is weak.** Chunks from `1.AI Model Basics/3.Embodied intelligent robot system architecture` and the MoveIt2 intros sit semantically close to many query embeddings; without strong BM25 anchoring they win on cosine and crowd out concrete walkthroughs. The stop-word + pool fix keeps them out of top-3 reliably. Worth knowing so future tuning doesn't accidentally re-introduce the failure mode.
@@ -29,20 +33,24 @@ Durable lessons earned through running the experiments below. Each one has a cit
 - **The comparison ran on five dimensions.** Retrieval quality (labeled MRR + Hits@k + subjective relevance on noob questions), latency (median ms after model warmup), install footprint (deps + binary size), portability (single file vs directory tree), and score transparency (per-channel scores visible in output). The engines tie on retrieval quality after the parity fix; the other four are where the operational tradeoff lives.
 - **The evaluation methodology survives changes (Goal 4).** Two case sets (`tests/cases.jsonl` labeled, `tests/noob_questions.txt` unlabeled), two harness tools (`evaluate.py` for MRR + Hits@k, `ask.py` for subjective eyeball), one `importlib`-based runner exposing both engines through a uniform `search()` API. Survived two engine implementations and three reranker variants without harness changes.
 
+## Working Hypotheses
+
+> Important things we believe to be truth. Plausible explanations or predictions not yet established by experiment.
+
 ## Decisions Made
 
-Consequential choices made along the way — both what was accepted and what was rejected — with reasoning captured *now* so future-us doesn't re-derive or quietly drift away from a deliberate call. Each entry notes a "revisit if" trigger when one exists.
+> Consequential choices we'd want to preserve or reconsider deliberately.
 
-- **Default `--no-rerank` for lance-db-rag.** Experiments 6–8 showed every reranker we tried is a net wash on this corpus (small labeled gain traded for visible open-query regressions). Reranker remains as an opt-in flag. *Revisit if* a domain-fine-tuned reranker becomes available or Q5 finds labeled training data.
-- **Both engines kept side by side rather than picking one.** After the parity fix the engines are functionally equivalent on retrieval quality, so the choice is operational (install footprint vs growth headroom). Keeping both preserves the comparison harness and prevents premature lock-in. *Revisit if* maintenance cost of two engines starts to outweigh the value of side-by-side, or one engine drifts ahead on retrieval quality.
-- **Bypassed LanceDB's built-in `query_type="hybrid"` + `RRFReranker`.** Configuration parity with sqlite required manual orchestration (stop-word-filtered Tantivy query, explicit `max(top_k*4, 30)` candidate pool per channel, Python-side RRF). Built-in path remains in git history; no advantage to re-adopting it because we'd just rebuild the same bypass.
-- **ChromaDB rejected as a third engine.** Embedded mode is directory-based with HNSW out of the box, but (a) no built-in BM25 / proper FTS — `where_document={"$contains": ...}` is a substring filter, not a ranker, so hybrid would require bolting on `rank_bm25` and writing our own fusion (essentially porting sqlite-rag with Chroma underneath), and (b) it sits in an awkward middle: heavier deps than sqlite-vec, fewer advanced features than LanceDB. *Revisit if* a future requirement is pure semantic + HNSW with no hybrid need.
-- **Chunking code duplicated between `sqlite-rag/rag_index.py` and `lance-db-rag/rag_index.py`.** Accepted duplication for now — both implementations carry their own copies of `split_by_headings` / `chunk_section`. Shared-module refactor deferred until one engine is picked as the primary; otherwise we'd be maintaining shared code for two equally-weighted implementations. *Revisit if* a third engine is added or if chunking logic starts diverging by mistake.
-- **Embedding model: `BAAI/bge-small-en-v1.5` (384-dim).** Lightest English-only BGE; adequate for the corpus we have; same model used by both engines so semantic vectors are byte-identical (eliminates one comparison variable). *Revisit if* Q2 (NX2) shows bge-large meaningfully better, or the corpus becomes multilingual.
+- **Default `--no-rerank` for lance-db-rag.** *Why:* WK §3 (rerankers help when ambiguous, hurt when clean) + Experiments 6–8. Reranker remains as an opt-in `--rerank` flag. *Revisit if* a domain-fine-tuned reranker becomes available or Q5 finds labeled training data.
+- **Both engines kept side by side rather than picking one.** *Why:* WK §5 (both engines defensible) — keeping both preserves the comparison harness and prevents premature lock-in. *Revisit if* maintenance cost outweighs the side-by-side value, or one engine drifts ahead on retrieval quality.
+- **Bypassed LanceDB's built-in `query_type="hybrid"` + `RRFReranker`.** *Why:* WK §1 (config parity) — achieving parity required manual orchestration (stop-word-filtered Tantivy query, explicit `max(top_k*4, 30)` pool per channel, Python-side RRF). Built-in path remains in git history; no advantage to re-adopting it because we'd rebuild the same bypass.
+- **ChromaDB rejected as a third engine.** *Why:* (a) no built-in BM25 / proper FTS — `where_document={"$contains": ...}` is a substring filter, so hybrid would require bolting on `rank_bm25` and writing our own fusion (essentially porting sqlite-rag with Chroma underneath); (b) sits in an awkward middle — heavier than sqlite-vec, fewer features than LanceDB. *Revisit if* a future requirement is pure semantic + HNSW with no hybrid need.
+- **Chunking code duplicated between `sqlite-rag/rag_index.py` and `lance-db-rag/rag_index.py`.** *Why:* shared-module refactor deferred until one engine is the primary; otherwise we'd maintain shared code for two equally-weighted implementations. *Revisit if* a third engine is added or chunking logic starts diverging by mistake.
+- **Embedding model: `BAAI/bge-small-en-v1.5` (384-dim).** *Why:* lightest English-only BGE; adequate for current corpus; same model used by both engines so semantic vectors are byte-identical (eliminates one comparison variable — see WK §7). *Revisit if* NX2 shows bge-large meaningfully better, or the corpus becomes multilingual.
 
-## Open questions
+## Open Questions
 
-Unverified predictions and unknowns. Each one points to the experiment that would resolve it.
+> Important things we know we don't know. Each one points to the experiment that would resolve it.
 
 - **Q1. Is the corpus the biggest remaining quality lever?** ~33% of noob questions hit corpus gaps. *Test: NX1* (write the missing docs, re-run the 30-question eyeball — does the win rate visibly move?).
 - **Q2. Does `bge-large-en-v1.5` (1024-dim) meaningfully beat `bge-small` on this corpus?** Both engines would benefit equally. We don't know the headroom. *Test: NX2.*
@@ -50,7 +58,9 @@ Unverified predictions and unknowns. Each one points to the experiment that woul
 - **Q4. Does finer-grained (per-paragraph) chunking help the cross-encoder discriminate?** Increases chunk count; changes RRF dynamics; might also help BM25 specificity. *Test: NX4.*
 - **Q5. Would a domain-fine-tuned cross-encoder reliably beat both off-the-shelf rerankers we tried?** Plausible but expensive — requires labeled (query, relevant-passage) training data we don't have. *Test: TBD; not actionable without labeled training set.*
 
-## Next experiments
+## Next Experiments
+
+> Planned actions expected to resolve open questions, refine hypotheses, or improve the toolchain.
 
 Concrete actions, ordered by expected impact. Tool-work items (NX5, NX6, NX7) have no associated open question; they pay back as evaluator coverage or operational quality.
 
@@ -62,8 +72,9 @@ Concrete actions, ordered by expected impact. Tool-work items (NX5, NX6, NX7) ha
 6. **NX6 — Auto-generate cases for the remaining ~236 docs.** Use Claude Haiku to produce one plausible question per doc, commit to `tests/cases.jsonl`. Gives the labeled eval real statistical power. *Coverage; no hypothesis.*
 7. **NX7 — Per-mode side-by-side in `evaluate.py`.** Run hybrid/semantic/keyword in one invocation; widen the report so you see all 3 columns per engine. *Tool work; no hypothesis.*
 
+## Experiment Log
 
-## Experiment log
+> Chronological record of experiments that produced new knowledge.
 
 Only entries that asked a question and produced new knowledge. Construction milestones (building each engine) and shipping decisions (set default, write docs) live in the READMEs and `git log`, not here. `NQ#` references below point to specific questions in `tests/noob_questions.txt`; they are unrelated to the `Q#` open questions above.
 
