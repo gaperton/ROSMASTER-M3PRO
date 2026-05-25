@@ -81,11 +81,13 @@ def main() -> int:
         return 1
 
     for i, (file_path, heading_path, text, distance) in enumerate(rows, 1):
-        score = 1.0 - distance / 2.0
+        # sqlite-vec returns L2 distance; vectors are unit-normalized so
+        # ||a-b||^2 = 2 - 2*cos(a,b), hence cos = 1 - distance^2 / 2.
+        cosine = 1.0 - (distance * distance) / 2.0
         loc = f"{file_path}"
         if heading_path:
             loc += f"  ::  {heading_path}"
-        print(f"\n[{i}] score={score:.3f}  {loc}")
+        print(f"\n[{i}] cos={cosine:.3f}  {loc}")
         print("    " + (text if args.full else snippet(text)).replace("\n", "\n    "))
 
     return 0

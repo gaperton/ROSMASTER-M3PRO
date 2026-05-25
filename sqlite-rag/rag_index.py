@@ -48,8 +48,6 @@ def split_by_headings(text: str) -> list[tuple[list[str], str]]:
     """
     sections: list[tuple[list[str], str]] = []
     stack: list[str] = []
-    cursor = 0
-    current_heading_stack: list[str] = []
 
     matches = list(HEADING_RE.finditer(text))
     if not matches:
@@ -65,13 +63,13 @@ def split_by_headings(text: str) -> list[tuple[list[str], str]]:
         while len(stack) < level - 1:
             stack.append("")
         stack.append(title)
-        current_heading_stack = [s for s in stack if s]
+        heading_path = [s for s in stack if s]
 
         body_start = m.end()
         body_end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
         body = text[body_start:body_end].strip()
         if body:
-            sections.append((list(current_heading_stack), body))
+            sections.append((heading_path, body))
 
     return [(h, b) for h, b in sections if b]
 
