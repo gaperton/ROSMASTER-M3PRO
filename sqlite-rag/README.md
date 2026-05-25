@@ -160,5 +160,7 @@ End-to-end tested against the repo's `markdown/` folder:
 - **247 markdown files → 2198 chunks**, single `.db` of **~8 MB**.
 - Cold index build: a few minutes on CPU (dominated by BGE encoding); `--rebuild` not required for the model download — first run pulls it into the HuggingFace cache automatically.
 - Re-runs with no file changes: seconds (hash-skip).
-- Query latency: ~1–2 s end-to-end, model-load-bound.
+- Query latency: ~37 ms median (post-model-load), ~1–2 s end-to-end including cold start.
 - All three modes (`hybrid` / `semantic` / `keyword`) verified to return on-topic results; the example queries in this README map to real chunks in this corpus.
+
+Compared head-to-head against the sibling [`../lance-db-rag/`](../lance-db-rag/) implementation on a 10-case labeled eval and 30 unlabeled noob questions — the two engines are now functionally equivalent on retrieval quality, with sqlite-rag winning on install footprint (~10 MB vs ~82 MB), single-file portability, latency (~2× faster), and per-channel score transparency. Full numbers and methodology: [`../tests/README.md`](../tests/README.md#findings-corpus-247-docs-2198-chunks).

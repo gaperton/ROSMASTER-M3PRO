@@ -27,14 +27,19 @@ Defaults resolve relative to the script location, so commands work from any cwd:
 
 ## TL;DR comparison
 
-For the current corpus (~250 markdown files, ~2k chunks) **sqlite-rag is the better fit** — confirmed by end-to-end testing on both engines (see [Validated on this corpus](#validated-on-this-corpus) below). Same top-1 hit on every query we ran, but sqlite-rag installs in ~10 MB vs ~82 MB, exposes per-channel scores next to every result, and produces a single portable `.db` file instead of a directory tree.
+After two rounds of testing and tuning, the two engines are **functionally equivalent on retrieval quality for this corpus**. Both produce the same top-1 hit on every labeled case and converge to nearly identical results across the 30 unlabeled noob questions in `../tests/noob_questions.txt`.
 
-The LanceDB version stays in the repo as a working comparison. It becomes the better choice when:
+Earlier versions of this README said "sqlite-rag is the better fit" because LanceDB's default hybrid path under-performed on diffuse queries. That gap turned out to be a *configuration parity* issue, not an engine-quality issue:
 
-- corpus grows past ~50k chunks (linear scan vs the HNSW/IVF index path LanceDB enables),
-- you want polyglot readers (Rust/JS) over the same dataset,
-- you want first-class dataset versioning / time-travel,
-- you want to swap rerankers (Cohere, cross-encoder) without writing the plumbing.
+1. Lance was receiving the raw natural-language string for FTS; sqlite was stop-word-filtering + OR-joining tokens before BM25 ranking.
+2. Lance's built-in hybrid used a smaller candidate pool than sqlite's `max(top_k*4, 30)` before RRF fusion.
+
+[`rag_query.py`](rag_query.py) now applies both fixes manually (see `run_search` / `to_lance_fts_query`) and Lance lands at parity. See [`../tests/README.md`](../tests/README.md#findings-corpus-247-docs-2198-chunks) for the side-by-side numbers.
+
+The pragmatic decision now is *operational*, not quality-based:
+
+- **sqlite-rag wins on**: ~10 MB install vs ~82 MB; single portable `.db` file vs directory tree; ~2× faster queries (~37 ms vs ~80 ms); per-channel score transparency in the CLI.
+- **lance-db-rag wins on**: future growth headroom (HNSW/IVF index path) when corpus passes ~50k chunks; polyglot readers (Rust/JS) over the same dataset; first-class dataset versioning / time-travel; pluggable rerankers (the `--rerank` flag — see "Reranker exploration" below).
 
 ## What LanceDB changes
 
@@ -154,10 +159,10 @@ The whole `to_fts5_query` / `rrf_fuse` / `search_semantic` / `search_keyword` ap
 | **Storage** | One `.db` file | Directory tree of `.lance` files |
 | **Vector index** | Linear scan (sqlite-vec) | Linear scan by default; HNSW/IVF_PQ available via `create_index` |
 | **Keyword index** | SQLite FTS5 (porter+unicode61) | Tantivy (richer tokenizer set, better multilingual story) |
-| **Hybrid + RRF** | ~40 LOC we wrote | `query_type="hybrid"` + `RRFReranker()` |
+| **Hybrid + RRF** | ~40 LOC we wrote | Originally `query_type="hybrid"` + `RRFReranker()` — but we ended up reimplementing it in `run_search` for parity (see "What surfaced" below). Net LOC similar to sqlite. |
 | **Embedding pipeline** | Manual `model.encode` + serialize | Embedding registry; declared on the schema, auto-runs |
 | **Asymmetric query prefix (BGE)** | Hand-coded in the query script | Hand-coded inside the custom `EmbeddingFunction` (same idea, different home) |
-| **Reranker swap** | Rewrite the fusion code | One-line: `.rerank(CrossEncoderReranker(...))` |
+| **Reranker swap** | Rewrite the fusion code | `--rerank` flag; opt-in cross-encoder via `sentence_transformers.CrossEncoder` (we bypass `lancedb.rerankers`). See "Reranker exploration" below. |
 | **Schema migrations** | Manual `ALTER TABLE` | Dataset versions; can checkout / restore prior versions |
 | **Polyglot reads** | Python only (or DIY SQLite reader) | Lance format readable from Rust, JS, DuckDB, etc. |
 | **Dependencies (measured)** | `sentence-transformers`, `sqlite-vec`, `numpy` — ~10 MB of new wheels | adds `lancedb` 51 MB + `pyarrow` 27 MB + `tantivy` 4 MB |
@@ -167,18 +172,21 @@ The whole `to_fts5_query` / `rrf_fuse` / `search_semantic` / `search_keyword` ap
 | **Snippet centering + highlights** | Built in via FTS5 `snippet()`, Porter-stemmed | Client-side helper in `rag_query.py` (~30 LOC), exact-match only |
 | **Good fit when** | Small/medium corpus, want one portable file, want SQL alongside vectors | Large corpus, want versioning, want polyglot readers, want pluggable rerankers |
 
-## What we'd lose by switching
+## What we'd lose by switching to Lance
 
 - **Single-file portability.** The single `rag_index.db` is genuinely nice — you can email it, drop it on a USB stick, gitignore one path. A Lance directory is fine but less satisfying.
 - **Direct SQL.** With sqlite-vec we can `SELECT ... WHERE heading_path LIKE '%MoveIt2%'` from any SQLite client. LanceDB has SQL via DuckDB but it's a separate path.
-- **Per-channel score readability.** The current display (`rrf=…  cos=…  bm25=…`) is genuinely useful for debugging "why did this rank." LanceDB's `_relevance_score` is a single fused number; getting the components back means running the channels separately, which gives up the engine's built-in fusion path.
-- **Featherweight install.** pyarrow alone is ~50 MB and historically the most common source of "pip install failed on Windows" reports in this ecosystem.
+- **Featherweight install.** ~10 MB of new wheels for sqlite-rag vs ~82 MB for lance-db-rag. pyarrow has historically been the most common "pip install failed on Windows" issue in this ecosystem.
+- **~2× faster queries** (~37 ms vs ~80 ms median, hybrid mode).
 
-## What we'd gain by switching
+## What we'd gain by switching to Lance
 
-- **~Half the boilerplate**: no `serialize_f32`, no FTS triggers, no manual fusion. Less surface area to maintain.
-- **A real ANN index path** when we need it. `create_index(metric="cosine")` builds IVF_PQ; queries unchanged.
-- **Reranker plug points**: swap RRF for a cross-encoder, Cohere, or hand-written reranker by changing one line in the query script.
+- **A real ANN index path** when we need it. `create_index(metric="cosine")` builds IVF_PQ; queries unchanged. Matters past ~50k chunks.
+- **Pluggable rerankers** via the `--rerank` flag — opt-in cross-encoder reranking is a config swap, not a code-write. (See "Reranker exploration" — neither reranker we tried helped on this corpus, but the plumbing is there for a domain-tuned reranker.)
+- **Dataset versioning for free.** Re-index introduces a bad chunking change? `table.restore(version=N)` rolls back without re-embedding.
+- **Cross-language reads.** Same dataset usable from a Rust ingest script or a JS web tool if that ever matters.
+
+The "we'd save boilerplate" pitch from the original design doc didn't hold up: LanceDB's built-in hybrid path needed bypassing for configuration-parity reasons (see "Reranker exploration"), and the manual orchestration we wrote is comparable in size to sqlite's hybrid code. Net code volume is roughly equal.
 - **Versioning for free.** Re-index introduces a bad chunking change? `table.restore(version=N)` rolls back without re-embedding.
 - **Cross-language reads.** Same dataset usable from a Rust ingest script or a JS web tool, if that ever matters.
 
@@ -205,17 +213,42 @@ End-to-end tested against the repo's `markdown/` folder on Windows / Python 3.12
 - Cold index build: a few minutes on CPU, same order as sqlite-rag. The 25-min hidden-retry trap (above) added significant wasted time during initial debugging.
 - Install footprint: ~82 MB of wheels (lancedb 51 MB + pyarrow 27 MB + tantivy 4 MB) plus sentence-transformers' stack.
 - Query latency: ~1–2 s end-to-end, model-load-bound (same as sqlite-rag).
-- Retrieval quality: top-1 hit matches sqlite-rag on every comparison query we ran. Lower-ranked hits diverge slightly because LanceDB's hybrid ranking uses different intermediate scores; both engines find the same "right" documents, sometimes in different orders.
+- Retrieval quality: at parity with sqlite-rag on every comparison query we ran (labeled cases + 30 unlabeled noob questions in `../tests/noob_questions.txt`). Same top-1 hit; lower-rank order matches to within RRF tie-breaking noise.
+
+## Reranker exploration
+
+`run_search` accepts a `rerank` flag and `rag_query.py` exposes it as `--rerank`. **Default is off** after side-by-side testing showed neither cross-encoder we tried reliably improves retrieval on this corpus.
+
+What we tried and what happened:
+
+| Reranker | Labeled chunk MRR | Open noob queries | Latency |
+|---|---|---|---|
+| None (RRF only) | 0.529 | matches sqlite | 80 ms |
+| `cross-encoder/ms-marco-MiniLM-L-6-v2`, input `(query, text)` | 0.558 (+5%) | regressed on diffuse queries | 157 ms |
+| same model, input `(query, heading_path + text)` | 0.558 | regressed differently | 157 ms |
+| `BAAI/bge-reranker-base`, input `(query, heading + text)` | 0.533 | fixed 3 hard queries, broke 5 easy ones | 440 ms |
+
+Why the rerankers underperformed: ms-marco-MiniLM is trained on web QA passages and over-fits to surface keyword density in our markdown chunks (especially short header-rich chunks). BGE-reranker is better-matched to passage retrieval and *did* fix the diffuse queries (Q4 "map a room", Q6 "Jetson vs Pi", Q9 "install ROS2 on laptop") that originally exposed Lance's weaknesses — but it introduced new failures on queries where RRF was already correctly anchoring the right doc (the cross-encoder's re-scoring became noise).
+
+Hypothesis: **rerankers help most when retrieval is *ambiguous* (many plausible docs, the right one buried by noise). For clean queries where one doc obviously answers, re-scoring adds entropy without value.** This corpus is a mix, so any reranker is a net wash. A specialized fine-tuned reranker on a labeled domain dataset would likely do better, but that's a bigger investment.
+
+To experiment with reranking yourself:
+
+```powershell
+# BGE-reranker, on the diffuse queries it actually helps
+python lance-db-rag/rag_query.py "how do I map a room" --rerank
+
+# Disable for the queries where it hurts
+python lance-db-rag/rag_query.py "what's the default WiFi password"  # rerank off by default
+```
+
+The model downloads (~280 MB) into your HuggingFace cache on first use.
 
 ## Recommendation
 
-For *this* corpus and the questions we're asking of it, **sqlite-rag is the better choice** — confirmed by side-by-side testing. The wins:
+**Either engine is a defensible choice for this corpus** — the original "sqlite is clearly better" verdict reversed once we matched Lance's hybrid configuration to sqlite's. The remaining differences are operational, not quality:
 
-- **Score transparency**: per-channel `cos=…  bm25=…` next to every result makes ranking debuggable. With LanceDB you see only the fused RRF score.
-- **Lighter install** (~10 MB vs ~82 MB).
-- **Single portable `.db` file** vs a directory tree.
-- **Stemmed snippet highlighting** for free via FTS5's `snippet()`.
+- Pick **sqlite-rag** if you value: lighter install, single portable file, faster queries, per-channel score transparency, less code complexity.
+- Pick **lance-db-rag** if you value or anticipate: corpus past ~50k chunks (HNSW), polyglot readers, dataset versioning, an experimental playground for rerankers/cross-encoders.
 
-LanceDB earns its weight when the corpus or operational requirements grow: ≥50k chunks (linear scan starts to feel slow → opt into HNSW/IVF), polyglot readers, dataset versioning, pluggable rerankers. None of those apply here.
-
-The natural follow-up if we ever pick LanceDB as the primary: move `split_by_headings` / `chunk_section` (currently duplicated between the two `rag_index.py` files) to a shared module, drop the duplication, and demote `sqlite-rag` to a "minimal reference" demo.
+The natural follow-up if you pick one as the primary: move `split_by_headings` / `chunk_section` (currently duplicated between the two `rag_index.py` files) to a shared module, drop the duplication, and demote the other to a "minimal reference" demo.

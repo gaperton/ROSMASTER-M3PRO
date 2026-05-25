@@ -28,6 +28,28 @@ from bge import BGE  # noqa: F401
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DB = SCRIPT_DIR / "index.lance"
 
+# Cross-encoder reranker. BAAI/bge-reranker-base (~280 MB) is trained on passage
+# retrieval data by the same team that trains our BGE embedding model. Tried
+# cross-encoder/ms-marco-MiniLM-L-6-v2 first; it over-fit to surface keyword
+# similarity in markdown chunks and hurt diffuse-query quality even when it
+# nudged labeled MRR up. BGE-reranker is matched to passages, not web QA.
+DEFAULT_RERANKER = "BAAI/bge-reranker-base"
+RERANK_POOL = 20  # how many RRF-fused candidates the cross-encoder re-scores
+
+_CROSS_ENCODER_CACHE: dict = {}
+
+
+def _get_cross_encoder(name: str):
+    """Lazy import + cache so the module loads even if the user only does --no-rerank.
+
+    Returns a sentence_transformers.CrossEncoder; left untyped to keep the
+    import lazy.
+    """
+    if name not in _CROSS_ENCODER_CACHE:
+        from sentence_transformers import CrossEncoder
+        _CROSS_ENCODER_CACHE[name] = CrossEncoder(name)
+    return _CROSS_ENCODER_CACHE[name]
+
 # Kept in sync with sqlite-rag/rag_query.py so the two CLIs highlight identically.
 STOP_WORDS = frozenset({
     "a", "an", "and", "are", "as", "at", "be", "by", "but", "can", "did", "do",
@@ -95,20 +117,33 @@ def centered_snippet(text: str, tokens: list[str], radius: int = 150) -> str:
     return prefix + excerpt + suffix
 
 
-def run_search(table, query: str, mode: str, top_k: int, pool: int = 0):
+def run_search(
+    table,
+    query: str,
+    mode: str,
+    top_k: int,
+    pool: int = 0,
+    rerank: bool = True,
+    reranker_name: str = DEFAULT_RERANKER,
+):
     """Orchestrate retrieval manually instead of using LanceDB's hybrid path.
 
-    Rationale (after 30-question subjective eval showed Lance under-performed
-    sqlite on diffuse queries): three things diverge between Lance's built-in
-    hybrid and sqlite-rag's hybrid.
-      1. FTS query — Tantivy received the raw natural-language string; sqlite
-         pre-tokenizes + stop-word-filters + OR-joins. Stop words anchored
-         results toward generic 'hub' docs.
-      2. Candidate pool before fusion — Lance's hybrid path uses a small default
-         tied to .limit(); sqlite uses max(top_k*4, 30). Narrow pool → RRF has
-         fewer candidates to work with → off-topic semantic neighbours win.
-      3. RRF implementation — same formula, different inputs because of (1, 2).
-    This function fixes all three.
+    Pipeline for hybrid mode:
+      1. Run vector + FTS independently with `pool` candidates each.
+      2. RRF-fuse and keep top RERANK_POOL candidates.
+      3. If rerank=True, score each (query, chunk_text) pair with a cross-encoder
+         and re-sort. Otherwise return RRF order.
+
+    Rationale for (1) and (2): three things diverged between Lance's built-in
+    hybrid and sqlite-rag's hybrid — Tantivy received the raw natural-language
+    string (sqlite pre-tokenizes), Lance's hybrid pool was small (sqlite uses
+    max(top_k*4, 30)), and RRF inputs differed accordingly. This function fixes
+    all three.
+
+    Rationale for (3): RRF is rank-based and engine-agnostic. A cross-encoder
+    re-scores the survivors with a real ML model that understands query-document
+    semantics directly, sharper on diffuse queries where token overlap and
+    vector centroids both mislead. Cost: ~50 ms / query for RERANK_POOL pairs.
     """
     pool = pool if pool > 0 else max(top_k * 4, 30)
 
@@ -146,11 +181,41 @@ def run_search(table, query: str, mode: str, top_k: int, pool: int = 0):
         "keyword": [r["chunk_id"] for r in fts_rows],
     })
 
-    ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:top_k]
+    # Narrow to a rerank pool first; cross-encoder only sees the top RERANK_POOL.
+    fused_top = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
+    rerank_pool = fused_top[: max(RERANK_POOL, top_k)] if rerank else fused_top[:top_k]
+
+    if rerank and rerank_pool:
+        ce = _get_cross_encoder(reranker_name)
+        # Prepend heading_path so the cross-encoder sees *what* the chunk is
+        # about (e.g. "Mapping Tutorial > Step 3"), not just its words. Plain
+        # `(query, text)` pairs lose this context and let the model over-rank
+        # keyword-dense theory chunks above task-matching how-to chunks.
+        pairs = []
+        for cid, _ in rerank_pool:
+            row = by_id[cid]
+            heading = row.get("heading_path") or ""
+            text = row.get("text", "")
+            doc_text = f"{heading} — {text}" if heading else text
+            pairs.append((query, doc_text))
+        ce_scores = ce.predict(pairs)
+        reranked = sorted(
+            ((cid, float(s)) for (cid, _), s in zip(rerank_pool, ce_scores)),
+            key=lambda kv: kv[1],
+            reverse=True,
+        )
+        ranked = reranked[:top_k]
+        score_label = "_ce_score"
+    else:
+        ranked = rerank_pool[:top_k]
+        score_label = "_relevance_score"
+
     out = []
-    for cid, rrf_score in ranked:
+    for cid, score in ranked:
         row = by_id[cid]
-        row["_relevance_score"] = rrf_score
+        row[score_label] = score
+        # Always carry the RRF score too so callers can see both.
+        row["_relevance_score"] = scores.get(cid, row.get("_relevance_score"))
         out.append(row)
     return out
 
@@ -173,23 +238,28 @@ def search(
     top_k: int = 8,
     db_path: Path = DEFAULT_DB,
     pool: int = 0,
+    rerank: bool = False,
 ) -> list[dict]:
     """Programmatic entry point — returns top-k chunks as plain dicts.
 
     Each dict carries file_path, heading_path, text, primary (the engine's
-    headline score: rrf for hybrid, cos for semantic, fts for keyword), and
-    per-channel scores when both channels surfaced the chunk.
+    headline score: ce when rerank=True in hybrid, otherwise rrf / cos / fts),
+    and per-channel scores when available.
     """
     table = _get_table(Path(db_path))
-    rows = run_search(table, query, mode, top_k, pool)
+    rows = run_search(table, query, mode, top_k, pool, rerank=rerank)
     out: list[dict] = []
     for row in rows:
         d = row.get("_distance")
         cos = 1.0 - (d * d) / 2.0 if d is not None else None
         fts = row.get("_score")
         rrf = row.get("_relevance_score")
+        ce = row.get("_ce_score")
         if mode == "hybrid":
-            primary_label, primary = "rrf", rrf
+            if ce is not None:
+                primary_label, primary = "ce", ce
+            else:
+                primary_label, primary = "rrf", rrf
         elif mode == "semantic":
             primary_label, primary = "cos", cos
         else:
@@ -212,15 +282,21 @@ def search(
 def format_score(row: dict, mode: str) -> str:
     """LanceDB's result columns vary by mode; surface whichever the engine returned."""
     if mode == "hybrid":
-        primary = row.get("_relevance_score")
-        cos = row.get("_distance")
+        ce = row.get("_ce_score")
+        rrf = row.get("_relevance_score")
+        d = row.get("_distance")
+        cos = 1.0 - (d * d) / 2.0 if d is not None else None
         bm = row.get("_score")
-        parts = [f"rrf={primary:.4f}" if primary is not None else "rrf=—"]
+        parts = []
+        if ce is not None:
+            parts.append(f"ce={ce:+.3f}")
+        if rrf is not None:
+            parts.append(f"rrf={rrf:.4f}")
         if cos is not None:
-            parts.append(f"dist={cos:.3f}")
+            parts.append(f"cos={cos:.3f}")
         if bm is not None:
             parts.append(f"fts={bm:.3f}")
-        return "  ".join(parts)
+        return "  ".join(parts) if parts else "?=—"
     if mode == "semantic":
         d = row.get("_distance")
         # vectors are unit-normalized: cos = 1 - d^2 / 2
@@ -247,6 +323,15 @@ def main() -> int:
         default=0,
         help="Candidates per channel before fusion (default: max(top_k*4, 30))",
     )
+    ap.add_argument(
+        "--rerank",
+        action="store_true",
+        help=(
+            f"Enable cross-encoder reranking with {DEFAULT_RERANKER} (~280 MB, ~5x slower). "
+            "Off by default: testing showed it trades wins on diffuse queries for losses "
+            "on already-clean queries. Only affects hybrid mode."
+        ),
+    )
     ap.add_argument("--full", action="store_true", help="Print the full chunk text instead of a snippet")
     args = ap.parse_args()
 
@@ -258,7 +343,7 @@ def main() -> int:
     db = lancedb.connect(str(db_path))
     table = db.open_table("chunks")
 
-    results = run_search(table, args.query, args.mode, args.top_k, args.pool)
+    results = run_search(table, args.query, args.mode, args.top_k, args.pool, rerank=args.rerank)
     if not results:
         print("No results.")
         return 1

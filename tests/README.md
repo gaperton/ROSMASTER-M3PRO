@@ -94,15 +94,67 @@ How to interpret:
 
 - **Add cases**: append to `cases.jsonl` by hand. Useful when a real question fails in production and you want regression coverage.
 - **Auto-generate cases**: write a `generate_cases.py` that walks `markdown/` and asks an LLM (Anthropic / OpenAI / local Ollama) for one plausible question per doc. Commit the output once — these are stable test data, not regenerated each run.
-- **Add metrics**: MRR (`1 / file_rank` averaged) is a 3-line addition to `score_engine`. Per-mode (`hybrid`/`semantic`/`keyword`) side-by-side requires looping over modes and widening the report; the `score_engine` function is mode-agnostic so this is purely a presentation change.
+- **Add metrics**: MRR and per-case rank diff are already included. Per-mode side-by-side (run all three modes in one invocation and widen the report) is the natural next addition.
 - **Add a third engine**: add an entry to `ENGINE_PATHS` in `runner.py`. The engine's `rag_query.py` must expose a `search(query, mode, top_k, ...) -> list[dict]` with `file_path` and `heading_path` keys per result.
+
+## The unlabeled side: `ask.py` + `noob_questions.txt`
+
+The labeled evaluator scores against an expected file. That's a clean metric but misses the failure mode where the right file appears at rank 5 with off-topic noise above it — Hits@8 still gives full credit. To catch *that*, we eyeball results on unlabeled, real-world-style questions.
+
+```powershell
+# Side-by-side top-k from both engines, no scoring.
+python tests/ask.py "How long does the battery last?"
+python tests/ask.py --file tests/noob_questions.txt -k 3
+python tests/ask.py "what is a launch file" --mode semantic
+```
+
+`noob_questions.txt` holds 30 questions sourced from common ROS Discourse / Reddit / Robotics-SE newcomer patterns. Three batches: capability/setup/troubleshooting → ROS2 first-day pains → safety/specs/programming/config/use-cases. These are *not* used by the labeled evaluator; they're for subjective relevance checks.
+
+## Findings (corpus: 247 docs, 2198 chunks)
+
+The evaluation runs in two complementary modes:
+
+| Tool | Cases | Metric | What it measures |
+|---|---|---|---|
+| `evaluate.py` | 10 hand-labeled (`cases.jsonl`) | MRR + Hits@1/3/8 (file + chunk) | Whether the *known* answer doc appears, and at what rank |
+| `ask.py` | 30 unlabeled (`noob_questions.txt`) | Eyeball — subjective relevance | Whether the top 3 are useful for a newcomer's actual question |
+
+### Headline results (hybrid mode, post-tuning)
+
+| | sqlite-rag | lance-db-rag |
+|---|---|---|
+| file MRR | 0.950 | 0.950 |
+| chunk MRR | 0.531 | 0.529 |
+| file-match @1 | 9/10 | 9/10 |
+| chunk-match @3 | 7/10 | 7/10 |
+| median latency | ~37 ms | ~80 ms |
+| Open-question subjective quality (30 noob qs) | baseline | parity (~tied) |
+
+**Engines are functionally equivalent on this corpus** in the modes that matter (hybrid + semantic). Same embedding model (`BAAI/bge-small-en-v1.5`), so semantic vectors are byte-identical; the small lance latency overhead comes from doing two separate `.search()` calls instead of one optimized hybrid path.
+
+### Three findings worth knowing if you build on this
+
+1. **Labeled and subjective evals can disagree.** Early labeled runs said sqlite and lance were identical at every Hits@k. The 30-question subjective eval revealed sqlite winning 13 of 20 questions (zero clear lance wins), because the labeled metric gave full credit for "right file at rank 5 with noise above". The disagreement was *engine-meaningful*: it surfaced that lance was promoting "hub" docs (`Embodied AI architecture`, MoveIt2 intros) above concrete walkthroughs. Lesson: **labeled file-match metrics oversell parity; always pair with subjective spot-checks**.
+
+2. **The lance gap closed entirely with configuration parity, not better algorithms.** The original sqlite advantage on diffuse queries came from two things lance wasn't doing: (a) pre-tokenizing the FTS query with stop-word filter + OR-join, (b) using a larger candidate pool (`max(top_k*4, 30)`) per channel before RRF. Both are now applied in lance's `run_search`. After the fix, lance matches sqlite on every previously-failing query (map a room, Jetson vs Pi, install ROS2). **Net lesson: most "engine X is better than engine Y" comparisons are actually configuration comparisons.**
+
+3. **Cross-encoder reranking didn't reliably help this corpus.** We tried `ms-marco-MiniLM-L-6-v2` (regression on noob queries — over-fits to keyword-density in markdown chunks) and `BAAI/bge-reranker-base` (mixed — fixes the diffuse queries but introduces new failures on already-clean queries where RRF was correctly anchoring the right doc). Latency went from 81 ms → 440 ms. Default is now `--no-rerank`; the reranker stays as an opt-in flag. Hypothesis: rerankers help when retrieval is ambiguous; on clean queries where RRF already nailed the answer doc, re-scoring just adds noise.
+
+### What we didn't try that might still help
+
+- **Multi-query expansion** (LLM-generated paraphrases of the user query, search each, fuse). Works for both engines; needs an LLM API.
+- **Bigger embedding model** (`bge-large-en-v1.5`, 1024-dim). Both engines benefit equally; ~500 MB model; requires `--rebuild`.
+- **Chunking changes** — finer-grained (per-paragraph) chunks might help the reranker discriminate; bigger chunks might give the cross-encoder more context. Both are pre-embed changes that affect both engines.
+- **Closing corpus gaps.** ~10 of 30 noob questions surfaced topics the docs don't actually cover (charging procedure, physical e-stop, "drive N meters", distributed-ROS for laptop control, "demo index"). No engine can find what isn't there.
 
 ## File layout
 
 ```
 tests/
-├── README.md      # this file
-├── cases.jsonl    # labeled query → expected_file/heading test cases
-├── runner.py      # importlib loader; calls each engine's search()
-└── evaluate.py    # scoring + report
+├── README.md            # this file
+├── cases.jsonl          # labeled query → expected_file/heading test cases
+├── noob_questions.txt   # 30 unlabeled questions for subjective eyeballing
+├── runner.py            # importlib loader; calls each engine's search()
+├── evaluate.py          # labeled scoring + report (MRR, Hits@k, per-case diff)
+└── ask.py               # ad-hoc side-by-side query tool (unlabeled, no scoring)
 ```
