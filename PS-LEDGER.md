@@ -29,6 +29,17 @@ Durable lessons earned through running the experiments below. Each one has a cit
 - **The comparison ran on five dimensions.** Retrieval quality (labeled MRR + Hits@k + subjective relevance on noob questions), latency (median ms after model warmup), install footprint (deps + binary size), portability (single file vs directory tree), and score transparency (per-channel scores visible in output). The engines tie on retrieval quality after the parity fix; the other four are where the operational tradeoff lives.
 - **The evaluation methodology survives changes (Goal 4).** Two case sets (`tests/cases.jsonl` labeled, `tests/noob_questions.txt` unlabeled), two harness tools (`evaluate.py` for MRR + Hits@k, `ask.py` for subjective eyeball), one `importlib`-based runner exposing both engines through a uniform `search()` API. Survived two engine implementations and three reranker variants without harness changes.
 
+## Decisions Made
+
+Consequential choices made along the way — both what was accepted and what was rejected — with reasoning captured *now* so future-us doesn't re-derive or quietly drift away from a deliberate call. Each entry notes a "revisit if" trigger when one exists.
+
+- **Default `--no-rerank` for lance-db-rag.** Experiments 6–8 showed every reranker we tried is a net wash on this corpus (small labeled gain traded for visible open-query regressions). Reranker remains as an opt-in flag. *Revisit if* a domain-fine-tuned reranker becomes available or Q5 finds labeled training data.
+- **Both engines kept side by side rather than picking one.** After the parity fix the engines are functionally equivalent on retrieval quality, so the choice is operational (install footprint vs growth headroom). Keeping both preserves the comparison harness and prevents premature lock-in. *Revisit if* maintenance cost of two engines starts to outweigh the value of side-by-side, or one engine drifts ahead on retrieval quality.
+- **Bypassed LanceDB's built-in `query_type="hybrid"` + `RRFReranker`.** Configuration parity with sqlite required manual orchestration (stop-word-filtered Tantivy query, explicit `max(top_k*4, 30)` candidate pool per channel, Python-side RRF). Built-in path remains in git history; no advantage to re-adopting it because we'd just rebuild the same bypass.
+- **ChromaDB rejected as a third engine.** Embedded mode is directory-based with HNSW out of the box, but (a) no built-in BM25 / proper FTS — `where_document={"$contains": ...}` is a substring filter, not a ranker, so hybrid would require bolting on `rank_bm25` and writing our own fusion (essentially porting sqlite-rag with Chroma underneath), and (b) it sits in an awkward middle: heavier deps than sqlite-vec, fewer advanced features than LanceDB. *Revisit if* a future requirement is pure semantic + HNSW with no hybrid need.
+- **Chunking code duplicated between `sqlite-rag/rag_index.py` and `lance-db-rag/rag_index.py`.** Accepted duplication for now — both implementations carry their own copies of `split_by_headings` / `chunk_section`. Shared-module refactor deferred until one engine is picked as the primary; otherwise we'd be maintaining shared code for two equally-weighted implementations. *Revisit if* a third engine is added or if chunking logic starts diverging by mistake.
+- **Embedding model: `BAAI/bge-small-en-v1.5` (384-dim).** Lightest English-only BGE; adequate for the corpus we have; same model used by both engines so semantic vectors are byte-identical (eliminates one comparison variable). *Revisit if* Q2 (NX2) shows bge-large meaningfully better, or the corpus becomes multilingual.
+
 ## Open questions
 
 Unverified predictions and unknowns. Each one points to the experiment that would resolve it.
@@ -51,12 +62,6 @@ Concrete actions, ordered by expected impact. Tool-work items (NX5, NX6, NX7) ha
 6. **NX6 — Auto-generate cases for the remaining ~236 docs.** Use Claude Haiku to produce one plausible question per doc, commit to `tests/cases.jsonl`. Gives the labeled eval real statistical power. *Coverage; no hypothesis.*
 7. **NX7 — Per-mode side-by-side in `evaluate.py`.** Run hybrid/semantic/keyword in one invocation; widen the report so you see all 3 columns per engine. *Tool work; no hypothesis.*
 
-## Considered and deferred
-
-Options we evaluated and decided against, with reasoning so future-us doesn't re-derive the same conclusion.
-
-- **ChromaDB as a third engine.** Embedded mode (PersistentClient) uses SQLite + binary HNSW files in a directory; collection API; HNSW out of the box. Decided against because (a) no built-in BM25 / proper full-text search — `where_document={"$contains": ...}` is substring filter, not a ranker, so hybrid would mean bolting on `rank_bm25` and writing our own fusion (essentially porting sqlite-rag with Chroma underneath), and (b) it sits in an awkward middle: heavier deps than sqlite-vec, fewer advanced features than LanceDB. The right pick only if pure semantic + HNSW were the goal.
-- **LanceDB's built-in `RRFReranker` and `query_type="hybrid"` path.** We started here; ended up bypassing it for manual orchestration to apply configuration parity with sqlite (stop-word-filtered FTS query, explicit candidate pool). Built-in path is still available — see git history for the original implementation — but we'd rebuild the bypass if we re-introduced it, so there's no advantage.
 
 ## Experiment log
 
@@ -72,3 +77,4 @@ Only entries that asked a question and produced new knowledge. Construction mile
 | 6 | Does a cross-encoder reranker beat plain RRF on hybrid retrieval? | Added `--rerank` with `cross-encoder/ms-marco-MiniLM-L-6-v2`, input `(query, text)`, top-20 candidates re-scored | Labeled chunk MRR 0.529 → 0.558 (+5%). Open-noob queries regressed: NQ4 picks theory over walkthrough, NQ6 demotes right doc, NQ9 drops install doc. Latency 81 → 157 ms. Labeled-only win, real-world loss. |
 | 7 | Does feeding heading_path + text fix the ms-marco regression? | Same model, input changed to `(query, heading_path + " — " + text)` | No. Labeled unchanged (0.558). Open-noob regressions are different but similar in magnitude (NQ6 now lexically matches an "Arm Calibration → Jetson Nano, Raspberry Pi" subsection — heading made it worse here). |
 | 8 | Does a passage-trained reranker (BGE-reranker, matched to our embedding model) behave differently? | Swapped to `BAAI/bge-reranker-base`, same `(query, heading + text)` input | Labeled chunk MRR 0.533 (≈ plain RRF). Fixes NQ4 (slam_toolbox into top-3), NQ6 (right doc at #1), NQ9 (`ROS2 install Humble` at #1, beats sqlite). Breaks NQ7 (drive 1m → Color block transport), NQ21 (e-stop → multimodal visual), NQ25 (depth camera → Line patrol), NQ28 (examples → STM32 burning), NQ30 (API key → Wake-up response). Latency 440 ms. Net wash — real wins traded for real losses. Rerankers help when retrieval is ambiguous and hurt when it's already correct. |
+ 

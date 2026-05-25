@@ -18,14 +18,13 @@ A markdown layout for capturing the *current* state of solving a non-trivial pro
 3. **What we know** — durable lessons earned through experiments. Each bullet **cites the experiment(s) that established it**. No floating claims.
 4. **Open questions** — unverified predictions and unknowns. Each one **names the experiment that would resolve it**, or is explicitly marked "not actionable" with the reason.
 5. **Next experiments** — concrete actions, ordered by expected impact. Each one **either resolves an open question (cross-referenced) or is tool/coverage work** with no associated hypothesis.
-6. **Considered and deferred** — options evaluated and rejected, with the reasoning captured *now* so future-you doesn't re-derive the same conclusion.
+6. **Decisions** — consequential choices made along the way, both rejections and acceptances, with reasoning captured *now*. Each entry should answer "what did we decide and why" and ideally "revisit if X". Covers everything from "rejected alternative Y" to "chose default Z" to "accepted duplication W until trigger fires".
 7. **Experiment log** — historical record, append-only. Only entries that **asked a question and produced new knowledge**. Construction milestones and shipping decisions live elsewhere (READMEs, git log, tickets).
 
 Optional sections, only if the problem demands them:
 
 - **Stakeholders** — who the goals serve and whose input shapes the constraints. Useful when the problem is partly social.
 - **Budget / timeline** — when cost or deadlines are first-class constraints, not just preferences.
-- **Decision log** — separate from Experiment log when you make consequential non-experimental decisions (vendor picks, architecture choices) that you'll want to look back on.
 
 ## Rules of the format
 
@@ -34,7 +33,7 @@ These are the disciplines that keep the doc honest:
 - **An experiment asks a question and produces new knowledge.** Building, shipping, documenting, refactoring are not experiments.
 - **Every belief cites its evidence.** If a bullet in "What we know" doesn't trace back to an experiment row, it's a hunch — move it to "Open questions" or delete it.
 - **Every open question has a planned test.** If you can't write the experiment that would resolve it, mark it "not actionable" with the blocker (e.g., needs labeled data, needs a customer interview).
-- **Considered and deferred is not a parking lot.** It's for explicit rejections with reasoning. Things you might do go in Next experiments. Things you've decided not to do go in Considered and deferred.
+- **Decisions captures consequential choices, not implementation trivia.** A decision belongs here if future-you might be tempted to revisit it or quietly drift away from it. "Kept both engines side by side" qualifies; "chose pool size = 30" does not (that's a constant in code). Rule of thumb: if the reasoning would surprise someone reading the code, write the decision down.
 - **Sections are mutually exclusive.** If two sections overlap, you have a stale section. Merge or delete.
 - **The whole doc is refactorable.** As understanding deepens, items move between sections. Open questions become known. Next experiments become experiment log rows. Edit aggressively.
 
@@ -57,9 +56,9 @@ The patterns that show the discipline has slipped:
    - Did this generate a durable lesson? → add a bullet to **What we know** with a citation.
    - Did it create new uncertainty? → add an entry to **Open questions** with a planned test.
    - Did it close out an existing open question? → cross out / remove the question.
-4. When you decide *not* to pursue an option, write it into **Considered and deferred** immediately, with the reasoning. Don't trust future-you to remember.
+4. When you make a consequential choice — whether rejecting an alternative, picking a default, or deliberately accepting a tradeoff — write it into **Decisions** immediately, with the reasoning and a "revisit if" trigger when one exists. Don't trust future-you to remember why.
 5. Re-read the whole doc at the start of each new session. If a section feels stale or duplicative, prune it before doing anything else.
 
 ## A worked example
 
-See [`TODO.md`](TODO.md) in this repo for a non-trivial application: a comparison of two RAG engine implementations across 8 experiments, with the resulting beliefs, open questions, considered-and-rejected alternatives, and ordered next steps. The doc was refactored at least four times as understanding deepened — sections were renamed, items moved between sections, and a "Known problems" section was deleted entirely once it became clear every item lived more accurately elsewhere. That refactoring is the format working as intended.
+See [`PS-LEDGER.md`](PS-LEDGER.md) in this repo for a non-trivial application: a comparison of two RAG engine implementations across 8 experiments, with the resulting beliefs, open questions, decisions, and ordered next steps. The doc was refactored at least five times as understanding deepened — sections were renamed, items moved between sections, a "Known problems" section was deleted entirely once it became clear every item lived more accurately elsewhere, and a narrower "Considered and deferred" was generalized to "Decisions" to cover both rejections and deliberate acceptances. That refactoring is the format working as intended.
