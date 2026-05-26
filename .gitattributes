@@ -1,2 +1,4 @@
 .gitattributes text eol=lf
 skills/rosmaster-m3pro-expert/** text eol=lf
+skills/rosmaster-m3pro-expert/assets/index/*.sqlite -text -eol
+skills/rosmaster-m3pro-expert/assets/corpus/**/*.jpeg -text -eol

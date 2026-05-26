@@ -17,6 +17,8 @@ MODEL_NAME = "BAAI/bge-small-en-v1.5"
 EMBED_DIM = 384
 CHUNK_TARGET_CHARS = 1800
 CHUNK_OVERLAP_CHARS = 300
+BATCH_SIZE = 32
+COMMIT_EVERY = 25
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$", re.MULTILINE)
 
@@ -77,7 +79,7 @@ def chunk_markdown(text: str) -> list[tuple[list[str], str]]:
     return chunks
 
 
-def serialize_f32(vec: np.ndarray) -> bytes:
+def serialize_f32(vec: Any) -> bytes:
     import numpy as np
 
     return struct.pack(f"{len(vec)}f", *vec.astype(np.float32).tolist())
@@ -138,29 +140,43 @@ def drop_file(conn: sqlite3.Connection, file_path: str) -> None:
     conn.execute("DELETE FROM files WHERE path = ?", (file_path,))
 
 
-def index_file(conn: sqlite3.Connection, model: Any, corpus_root: Path, path: Path) -> int:
+FilePlan = tuple[Path, str, str, bool]
+
+
+def plan_files(conn: sqlite3.Connection, corpus_root: Path, files: list[Path]) -> tuple[list[FilePlan], list[str]]:
+    known_hashes = dict(conn.execute("SELECT path, hash FROM files").fetchall())
+    plans = []
+    for path in files:
+        relative_path = path.relative_to(corpus_root).as_posix()
+        digest = sha256_file(path)
+        plans.append((path, relative_path, digest, known_hashes.get(relative_path) != digest))
+    removed = sorted(set(known_hashes) - {relative_path for _, relative_path, _, _ in plans})
+    return plans, removed
+
+
+def index_file(conn: sqlite3.Connection, model: Any, plan: FilePlan) -> int:
     import numpy as np
 
-    rel = path.relative_to(corpus_root).as_posix()
-    digest = sha256_file(path)
-    row = conn.execute("SELECT hash FROM files WHERE path = ?", (rel,)).fetchone()
-    if row and row[0] == digest:
+    path, relative_path, digest, changed = plan
+    if not changed:
         return 0
-    if row:
-        drop_file(conn, rel)
 
+    drop_file(conn, relative_path)
     chunks = chunk_markdown(path.read_text(encoding="utf-8", errors="replace"))
-    conn.execute("INSERT INTO files(path, hash) VALUES (?, ?)", (rel, digest))
+    conn.execute("INSERT INTO files(path, hash) VALUES (?, ?)", (relative_path, digest))
     if not chunks:
         return 0
 
-    texts = [(" > ".join(heading) + " - " + body) if heading else body for heading, body in chunks]
-    embeddings = model.encode(texts, normalize_embeddings=True, show_progress_bar=False, batch_size=32)
+    texts = [
+        f"{' > '.join(heading)} - {body}" if heading else body
+        for heading, body in chunks
+    ]
+    embeddings = model.encode(texts, normalize_embeddings=True, show_progress_bar=False, batch_size=BATCH_SIZE)
 
-    for ord_, ((heading, body), embedding) in enumerate(zip(chunks, embeddings)):
+    for ordinal, ((heading, body), embedding) in enumerate(zip(chunks, embeddings)):
         cur = conn.execute(
             "INSERT INTO chunks(file_path, heading_path, ord, text) VALUES (?, ?, ?, ?)",
-            (rel, " > ".join(heading), ord_, body),
+            (relative_path, " > ".join(heading), ordinal, body),
         )
         conn.execute(
             "INSERT INTO vec_chunks(rowid, embedding) VALUES (?, ?)",
@@ -169,32 +185,39 @@ def index_file(conn: sqlite3.Connection, model: Any, corpus_root: Path, path: Pa
     return len(chunks)
 
 
-def build_index(corpus_root: Path, db_path: Path, rebuild: bool) -> dict[str, Any]:
-    from sentence_transformers import SentenceTransformer
+def skill_relative(path: Path) -> str:
+    resolved = path.resolve()
+    try:
+        return resolved.relative_to(SKILL_ROOT).as_posix()
+    except ValueError:
+        return str(resolved)
 
+
+def build_index(corpus_root: Path, db_path: Path, rebuild: bool) -> dict[str, Any]:
     if rebuild and db_path.exists():
         db_path.unlink()
 
     db_path.parent.mkdir(parents=True, exist_ok=True)
-    model = SentenceTransformer(MODEL_NAME)
     conn = open_db(db_path)
     try:
-        markdown_files = sorted(path for path in corpus_root.rglob("*.md") if path.is_file())
-        on_disk = {path.relative_to(corpus_root).as_posix() for path in markdown_files}
-        in_db = {row[0] for row in conn.execute("SELECT path FROM files").fetchall()}
-        removed = sorted(in_db - on_disk)
+        files = sorted(path for path in corpus_root.rglob("*.md") if path.is_file())
+        plans, removed = plan_files(conn, corpus_root, files)
         for stale in removed:
             drop_file(conn, stale)
 
         indexed_files = 0
         new_chunks = 0
-        for i, path in enumerate(markdown_files, start=1):
-            added = index_file(conn, model, corpus_root, path)
-            if added:
+        changed = [plan for plan in plans if plan[3]]
+        if changed:
+            from sentence_transformers import SentenceTransformer
+
+            model = SentenceTransformer(MODEL_NAME)
+            for i, plan in enumerate(changed, start=1):
+                added = index_file(conn, model, plan)
                 indexed_files += 1
                 new_chunks += added
-            if i % 25 == 0:
-                conn.commit()
+                if i % COMMIT_EVERY == 0:
+                    conn.commit()
 
         conn.commit()
         total_chunks = conn.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
@@ -203,10 +226,10 @@ def build_index(corpus_root: Path, db_path: Path, rebuild: bool) -> dict[str, An
 
     return {
         "status": "ok",
-        "corpus_root": str(corpus_root),
-        "db_path": str(db_path),
         "model": MODEL_NAME,
-        "markdown_files": len(markdown_files),
+        "db_path": skill_relative(db_path),
+        "corpus_root": skill_relative(corpus_root),
+        "markdown_files": len(files),
         "indexed_files": indexed_files,
         "new_chunks": new_chunks,
         "removed_files": removed,

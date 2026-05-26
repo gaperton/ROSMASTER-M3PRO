@@ -6,13 +6,13 @@ import json
 import re
 import sqlite3
 import struct
-import sys
 from pathlib import Path
 from typing import Any
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB = SKILL_ROOT / "assets" / "index" / "rosmaster_m3pro.sqlite"
 DEFAULT_CORPUS = SKILL_ROOT / "assets" / "corpus"
+CORPUS_PREFIX = "assets/corpus"
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
 RRF_K = 60
@@ -55,7 +55,7 @@ def model() -> Any:
     return _MODEL
 
 
-def serialize_f32(vec: np.ndarray) -> bytes:
+def serialize_f32(vec: Any) -> bytes:
     import numpy as np
 
     return struct.pack(f"{len(vec)}f", *vec.astype(np.float32).tolist())
@@ -113,19 +113,19 @@ def rrf_fuse(rankings: list[list[int]]) -> dict[int, float]:
     return scores
 
 
-def fetch_chunks(conn: sqlite3.Connection, ids: list[int]) -> dict[int, tuple[str, str, int, str]]:
-    if not ids:
+def fetch_chunks(conn: sqlite3.Connection, chunk_ids: list[int]) -> dict[int, tuple[str, str, int, str]]:
+    if not chunk_ids:
         return {}
-    placeholders = ",".join("?" * len(ids))
+    placeholders = ",".join("?" * len(chunk_ids))
     rows = conn.execute(
         f"""
         SELECT id, file_path, heading_path, ord, text
         FROM chunks
         WHERE id IN ({placeholders})
         """,
-        ids,
+        chunk_ids,
     ).fetchall()
-    return {chunk_id: (file_path, heading_path, ord_, text) for chunk_id, file_path, heading_path, ord_, text in rows}
+    return {chunk_id: (file_path, heading_path, ordinal, text) for chunk_id, file_path, heading_path, ordinal, text in rows}
 
 
 def compact_text(text: str, max_chars: int = SNIPPET_CHARS) -> str:
@@ -161,22 +161,19 @@ def find_line(abs_path: Path, heading_path: str, chunk_text: str) -> int | None:
     return None
 
 
-def markdown_target(relative_path: str, line: int | None) -> str:
-    target = "assets/corpus/" + relative_path.replace("\\", "/")
-    if line is not None:
-        target += f":{line}"
-    return target
+def corpus_path(relative_path: str) -> str:
+    return f"{CORPUS_PREFIX}/" + relative_path.replace("\\", "/")
 
 
 def source_fields(file_path: str, line: int | None) -> dict[str, Any]:
     label = Path(file_path).name
-    path = "assets/corpus/" + file_path.replace("\\", "/")
-    link_target = markdown_target(file_path, line)
+    path = corpus_path(file_path)
+    target = f"{path}:{line}" if line is not None else path
     return {
         "label": label,
         "path": path,
         "line": line,
-        "link": f"[{label}](<{link_target}>)",
+        "link": f"[{label}](<{target}>)",
     }
 
 
@@ -204,16 +201,14 @@ def search(
 
     results = []
     for rank, (chunk_id, rrf_score) in enumerate(ranked, start=1):
-        file_path, heading_path, ord_, text = chunks[chunk_id]
-        abs_path = (corpus_root / file_path).resolve()
-        line = find_line(abs_path, heading_path, text)
-        source = source_fields(file_path, line)
+        file_path, heading_path, ordinal, text = chunks[chunk_id]
+        line = find_line((corpus_root / file_path).resolve(), heading_path, text)
         results.append({
             "rank": rank,
             "chunk_id": chunk_id,
-            "source": source,
+            "source": source_fields(file_path, line),
             "heading_path": heading_path,
-            "chunk_ord": ord_,
+            "chunk_ord": ordinal,
             "scores": {
                 "rrf": rrf_score,
                 "cos": semantic_scores.get(chunk_id),
@@ -226,8 +221,6 @@ def search(
     return {
         "query": query,
         "top_k": top_k,
-        "db_path": "assets/index/rosmaster_m3pro.sqlite",
-        "corpus_root": "assets/corpus",
         "model": MODEL_NAME,
         "retrieval": "hybrid_rrf",
         "results": results,
