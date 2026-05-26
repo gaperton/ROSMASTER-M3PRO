@@ -62,8 +62,8 @@
 - **H3. For small-to-medium corpora, linear scan over normalized vectors is a reasonable default.** sqlite-vec brute-force search runs at ~37–39 ms median on roughly 2.2k chunks. At this scale, HNSW may add setup cost, recall risk, and tuning complexity for little practical gain. This is not yet directly tested here.  
   *Falsified by:* HNSW producing substantially lower latency at this scale without quality loss.
 
-- **H4. Corpus coverage is probably the next major quality lever.** About one third of noob questions hit gaps where the corpus does not contain a good answer. Retrieval tuning cannot recover answers that are not present. Supporting evidence: Experiment 9 showed that doubling embedding capacity yields only a handful of noob wins, several of which (e.g. NQ22 lidar specs) succeeded because the right doc *was* in the corpus and bge-large simply surfaced it.  
-  *Test:* TBD. If adding missing docs improves win rate more than the ~3-clear-wins baseline NX2 produced, this hypothesis is supported.
+- **H4. Corpus coverage is probably the next major quality lever, but it is outside this project's feasible action set.** About one third of noob questions hit gaps where the corpus does not contain a good answer. Retrieval tuning cannot recover answers that are not present. Supporting evidence: Experiment 9 showed that doubling embedding capacity yields only a handful of noob wins, several of which (e.g. NQ22 lidar specs) succeeded because the right doc *was* in the corpus and bge-large simply surfaced it.  
+  *Status:* not testable here because adding or sourcing new corpus coverage is impossible in the current project constraints.
 
 ## Decisions Made
 
@@ -71,7 +71,7 @@
 
 - **Default to `--no-rerank` for lance-db-rag.**  
   *Why:* EF §3, Experiments 6–8, and H1. Reranking remains available through the opt-in `--rerank` flag.  
-  *Revisit if:* a domain-fine-tuned reranker becomes available, or Q5 produces usable labeled training data.
+  *Revisit if:* a domain-fine-tuned reranker and a real labeled passage set become available outside this project.
 
 - **Keep both engines side by side for now.**  
   *Why:* after parity, retrieval quality is equivalent and the remaining choice is operational. Keeping both preserves the comparison harness and avoids premature lock-in.  
@@ -97,47 +97,35 @@
   *Why:* Experiments 10–11 produced the best labeled and subjective numbers the harness has measured (file MRR 1.000, chunk MRR 0.613/0.562, +10/+2 vs. −1/−4 on noob) at no additional dependency or model cost. Experiment 12 kept the schema and cleaned chunk text, but lower chunk MRR and NQ4/NQ20 regressions show that boundary-aware splitting changes ranking in harmful ways. `rag_query.py` accepts both schemas via the FTS column-count probe in `_fts_bm25_expr`; sqlite uses heading weight 1.0 after NX10 tuning.  
   *Revisit if:* a later chunking pass preserves code/table hygiene while recovering NX10's chunk MRR and noob wins.
 
-- **Next quality work should be deterministic routing and local intent expansion, not more model/chunker churn.**  
-  *Why:* File recall is at ceiling; remaining misses are predictable domain confusions (SLAM mapping vs AI demos, chassis velocity vs calibration/arm docs, ROS2 workflow terms). Bigger embeddings, off-the-shelf rerankers, and boundary-aware chunking all failed as broad levers. A local rule layer keeps the retrieval path offline and debuggable while directly targeting the observed beginner-query failures.  
+- **The final quality layer should be deterministic routing and local intent expansion, not more model/chunker churn.**  
+  *Why:* File recall is at ceiling; the remaining fixable misses were predictable domain confusions (SLAM mapping vs AI demos, chassis velocity vs calibration/arm docs, ROS2 workflow terms). Bigger embeddings, off-the-shelf rerankers, and boundary-aware chunking all failed as broad levers. A local rule layer keeps the retrieval path offline and debuggable while directly targeting the observed beginner-query failures.  
   *Revisit if:* routing overfits the 30-noob set or harms labeled chunk MRR.
 
 - **Keep local routing narrow, transparent, and post-fusion.**  
   *Why:* The first NX13 pass over-expanded ROS2 workflow terms and dropped labeled `ros2-publisher`; tightening the trigger set restored all labeled metrics while preserving NQ4/NQ17 wins. Route boosts should stay small, inspectable, and tied to observed corpus/module confusions rather than becoming a general synonym system.  
   *Revisit if:* new labeled cases show a repeated class of misses that cannot be fixed by corpus coverage.
 
+- **Do not test multi-query expansion for Q3.**  
+  *Why:* it would put an external generation service on the retrieval path, which conflicts with the offline/local retrieval constraint. NX13 already captured the high-confidence query-expansion wins locally and transparently.  
+  *Revisit if:* the product constraint changes and online query rewriting becomes acceptable.
+
+- **Do not test domain-fine-tuned cross-encoder reranking for Q5.**  
+  *Why:* off-the-shelf rerankers were not reliable on this corpus, and a domain-fine-tuned reranker requires labeled passage-level training data that this project does not have. Creating that dataset is not currently in scope.  
+  *Revisit if:* a maintained labeled training set appears.
+
+- **Do not pursue NX14 corpus coverage.**  
+  *Why:* adding or ingesting new source coverage is impossible here. The remaining weak noob answers should be recorded as corpus limitations, not treated as retriever failures.  
+  *Revisit if:* source-document ownership changes and new authoritative docs can be added.
+
 ## Open Questions
 
-> Important things we know we do not know. Each should point to an experiment that can resolve it.
-
-- **Q3. Does multi-query expansion help imprecise beginner questions?**  
-  This may improve recall, but it partially breaks the no-services-on-retrieval-path constraint.  
-  *Test:* NX3.
-
-- **Q5. Would a domain-fine-tuned cross-encoder reliably beat the off-the-shelf rerankers?**  
-  Plausible but expensive. Requires labeled query / relevant-passage training data we do not currently have.  
-  *Test:* TBD; not actionable until a labeled training set exists.
+> No active retrieval-quality open questions remain under the current constraints. Q3 and Q5 are explicitly closed as non-goals, and H4 is blocked because corpus coverage cannot be added.
 
 ## Next Experiments
 
 > Planned actions expected to resolve open questions, refine hypotheses, or improve the toolchain. Ordered by expected impact.
 
-1. **NX14 — Add corpus coverage for remaining noob gaps.**  
-   Identify noob questions whose top results are weak because the markdown corpus lacks a direct answer (for example emergency stop, battery/charging, arm shaking, version differences). Add or ingest concise source docs/FAQ pages, rebuild `small_h`, then rerun labeled + noob evaluation.  
-   *Quality work.* *Tests H4 directly.*
-
-2. **NX3 — Add multi-query expansion.**  
-   Use Anthropic Haiku to produce 3–5 paraphrases per user query, search each, and fuse results with RRF. Decide whether the partial break of the offline-retrieval constraint is acceptable.  
-   *Resolves:* Q3.
-
-3. **NX5 — Add metadata and query routing.**  
-   Tag chunks by module number, doc type, and difficulty. Route questions to likely module ranges: ROS to modules 15–16, AI to 1–4, and so on.  
-   *Tool work.*
-
-4. **NX6 — Generate labeled cases for the remaining docs.**  
-   Use Claude Haiku to produce one plausible question per remaining doc and commit them to `tests/cases.jsonl`.  
-   *Coverage work.*
-
-5. **NX7 — Add per-mode side-by-side reporting.**  
+1. **NX7 — Add per-mode side-by-side reporting.**  
    Update `evaluate.py` so one invocation reports hybrid, semantic, and keyword results for both engines.  
    *Tool work.*
 
