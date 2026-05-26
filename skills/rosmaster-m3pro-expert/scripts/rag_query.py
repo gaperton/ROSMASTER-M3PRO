@@ -135,13 +135,21 @@ def compact_text(text: str, max_chars: int = SNIPPET_CHARS) -> str:
     return text[:max_chars].rstrip() + " ..."
 
 
+def strip_markdown_heading(text: str) -> str:
+    text = re.sub(r"<[^>]+>", "", text)
+    text = text.replace("\\_", "_")
+    text = re.sub(r"^\*\*(.*)\*\*$", r"\1", text.strip())
+    text = re.sub(r"^__(.*)__$", r"\1", text.strip())
+    return text.strip()
+
+
 def find_line(abs_path: Path, heading_path: str, chunk_text: str) -> int | None:
     if not abs_path.exists():
         return None
     content = abs_path.read_text(encoding="utf-8", errors="replace")
     if heading_path:
-        heading = heading_path.split(" > ")[-1]
-        heading_match = re.search(rf"^#{{1,6}}\s+{re.escape(heading)}\s*$", content, re.MULTILINE)
+        heading = strip_markdown_heading(heading_path.split(" > ")[-1])
+        heading_match = re.search(rf"^#{{1,6}}\s+[*_]*{re.escape(heading)}[*_]*\s*$", content, re.MULTILINE)
         if heading_match:
             return content.count("\n", 0, heading_match.start()) + 1
 
@@ -151,6 +159,25 @@ def find_line(abs_path: Path, heading_path: str, chunk_text: str) -> int | None:
         if idx >= 0:
             return content.count("\n", 0, idx) + 1
     return None
+
+
+def markdown_target(relative_path: str, line: int | None) -> str:
+    target = "assets/corpus/" + relative_path.replace("\\", "/")
+    if line is not None:
+        target += f":{line}"
+    return target
+
+
+def source_fields(file_path: str, line: int | None) -> dict[str, Any]:
+    label = Path(file_path).name
+    path = "assets/corpus/" + file_path.replace("\\", "/")
+    link_target = markdown_target(file_path, line)
+    return {
+        "label": label,
+        "path": path,
+        "line": line,
+        "link": f"[{label}](<{link_target}>)",
+    }
 
 
 def search(
@@ -180,12 +207,11 @@ def search(
         file_path, heading_path, ord_, text = chunks[chunk_id]
         abs_path = (corpus_root / file_path).resolve()
         line = find_line(abs_path, heading_path, text)
+        source = source_fields(file_path, line)
         results.append({
             "rank": rank,
             "chunk_id": chunk_id,
-            "file_path": file_path,
-            "abs_path": str(abs_path),
-            "line": line,
+            "source": source,
             "heading_path": heading_path,
             "chunk_ord": ord_,
             "scores": {
@@ -200,8 +226,8 @@ def search(
     return {
         "query": query,
         "top_k": top_k,
-        "db_path": str(db_path.resolve()),
-        "corpus_root": str(corpus_root.resolve()),
+        "db_path": "assets/index/rosmaster_m3pro.sqlite",
+        "corpus_root": "assets/corpus",
         "model": MODEL_NAME,
         "retrieval": "hybrid_rrf",
         "results": results,

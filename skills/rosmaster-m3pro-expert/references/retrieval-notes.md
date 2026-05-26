@@ -17,6 +17,6 @@ Final retrieval configuration:
 - Hybrid fusion: semantic vector search plus SQLite FTS5 keyword search with Reciprocal Rank Fusion
 - Heading BM25 weight: `1.0`
 
-The skill-local scripts intentionally expose only the happy path: one model, one chunking strategy, one heading-aware schema, and hybrid retrieval. Query output is always JSON with source paths, best-effort line numbers, headings, scores, snippets, and full chunk text.
+The skill-local scripts intentionally expose only the happy path: one model, one chunking strategy, one heading-aware schema, and hybrid retrieval. Query output is always JSON with portable skill-relative source paths, clickable-style markdown links, best-effort line numbers, headings, scores, snippets, and full chunk text.
 
 The Markdown corpus is converted from vendor/course PDFs and may contain PDF conversion artifacts. Prefer retrieved commands, file names, and headings, but phrase final answers clearly rather than copying noisy conversion text.

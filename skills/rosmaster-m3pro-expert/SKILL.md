@@ -24,7 +24,7 @@ python scripts/query_robot_docs.py "How do I make the robot map a room?"
 python scripts/query_robot_docs.py "How do I calibrate the robotic arm servos?" --top-k 5
 ```
 
-The query script always returns JSON. Use `results[].abs_path`, `results[].line`, and `results[].heading_path` to open the right source location. Use `results[].text` for full grounding text and `results[].snippet` for quick inspection.
+The query script always returns JSON with portable skill-relative paths. Use `results[].source.link` when citing or opening a source, `results[].source.path` plus `results[].source.line` for navigation relative to this skill folder, and `results[].heading_path` for section context. Use `results[].text` for full grounding text and `results[].snippet` for quick inspection.
 
 If the prebuilt index is missing or stale, rebuild it from the bundled corpus:
 
