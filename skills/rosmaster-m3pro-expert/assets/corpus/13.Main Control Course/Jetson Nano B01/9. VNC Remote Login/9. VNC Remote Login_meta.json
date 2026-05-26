@@ -1,0 +1,249 @@
+{
+  "table_of_contents": [
+    {
+      "title": "VNC remote login",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          65.78125
+        ],
+        [
+          272.0104064941406,
+          65.78125
+        ],
+        [
+          272.0104064941406,
+          88.5677490234375
+        ],
+        [
+          74.375,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Jetson Nano B01 remote desktop control through\nvnc",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          101.9609375
+        ],
+        [
+          497.83709716796875,
+          101.9609375
+        ],
+        [
+          497.83709716796875,
+          140.04498291015625
+        ],
+        [
+          73.7939453125,
+          140.04498291015625
+        ]
+      ]
+    },
+    {
+      "title": "",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          165.01953125,
+          66.603515625
+        ],
+        [
+          433.466796875,
+          66.603515625
+        ],
+        [
+          433.466796875,
+          81.404296875
+        ],
+        [
+          165.01953125,
+          81.404296875
+        ]
+      ]
+    },
+    {
+      "title": "6. Connecting to VNC Server",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          86.28662109375,
+          623.6884765625
+        ],
+        [
+          216.0204315185547,
+          623.6884765625
+        ],
+        [
+          216.0204315185547,
+          634.4547119140625
+        ],
+        [
+          86.28662109375,
+          634.4547119140625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          39
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          128
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Code",
+          7
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "PageHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          34
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\9. VNC Remote Login"
+}

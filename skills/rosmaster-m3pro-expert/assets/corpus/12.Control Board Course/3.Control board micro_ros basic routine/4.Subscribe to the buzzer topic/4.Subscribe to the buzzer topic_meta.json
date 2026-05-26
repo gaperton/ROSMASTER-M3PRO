@@ -1,0 +1,301 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Subscribe to the buzzer topic",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          64.5478515625
+        ],
+        [
+          324.4599914550781,
+          64.5478515625
+        ],
+        [
+          324.4599914550781,
+          83.01849365234375
+        ],
+        [
+          74.9560546875,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Experimental Purpose",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          238.45703125
+        ],
+        [
+          256.0092468261719,
+          238.45703125
+        ],
+        [
+          256.0092468261719,
+          253.57440185546875
+        ],
+        [
+          74.66552734375,
+          253.57440185546875
+        ]
+      ]
+    },
+    {
+      "title": "2. Hardware Connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          329.728515625
+        ],
+        [
+          254.59420776367188,
+          329.728515625
+        ],
+        [
+          254.59420776367188,
+          345.8672790527344
+        ],
+        [
+          74.66552734375,
+          345.8672790527344
+        ]
+      ]
+    },
+    {
+      "title": "3. Core code analysis",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          32.4794921875
+        ],
+        [
+          228.99978637695312,
+          32.4794921875
+        ],
+        [
+          228.99978637695312,
+          48.1025390625
+        ],
+        [
+          75.24658203125,
+          48.1025390625
+        ]
+      ]
+    },
+    {
+      "title": "4. Compile, download and burn firmware",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          707.5595703125
+        ],
+        [
+          376.22412109375,
+          707.5595703125
+        ],
+        [
+          376.22412109375,
+          724.0430221557617
+        ],
+        [
+          74.66552734375,
+          724.0430221557617
+        ]
+      ]
+    },
+    {
+      "title": "5. Experimental Results",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          352.3408203125
+        ],
+        [
+          249.17703247070312,
+          352.3408203125
+        ],
+        [
+          249.17703247070312,
+          369.12823486328125
+        ],
+        [
+          74.66552734375,
+          369.12823486328125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          57
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          121
+        ],
+        [
+          "Line",
+          35
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          41
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          55
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4.Subscribe to the buzzer topic"
+}

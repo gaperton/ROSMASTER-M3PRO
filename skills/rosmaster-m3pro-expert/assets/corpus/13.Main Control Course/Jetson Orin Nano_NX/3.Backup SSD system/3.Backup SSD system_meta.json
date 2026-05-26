@@ -1,0 +1,610 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Backup SSD system",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          293.8878479003906,
+          65.3701171875
+        ],
+        [
+          293.8878479003906,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Backup SSD system",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          107.3056640625
+        ],
+        [
+          162.9259490966797,
+          107.3056640625
+        ],
+        [
+          162.9259490966797,
+          117.25506591796875
+        ],
+        [
+          74.66552734375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Hardware connection",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          377.0087890625
+        ],
+        [
+          282.3399963378906,
+          377.0087890625
+        ],
+        [
+          282.3399963378906,
+          395.1635437011719
+        ],
+        [
+          75.24658203125,
+          395.1635437011719
+        ]
+      ]
+    },
+    {
+      "title": "2. Compress the SSD",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          635.611328125
+        ],
+        [
+          251.45303344726562,
+          635.611328125
+        ],
+        [
+          251.45303344726562,
+          653.2834625244141
+        ],
+        [
+          75.24658203125,
+          653.2834625244141
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Install Gparted",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          721.126953125
+        ],
+        [
+          216.5908203125,
+          721.126953125
+        ],
+        [
+          216.5908203125,
+          737.572265625
+        ],
+        [
+          74.08447265625,
+          737.572265625
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Use GParted",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          266.4140625
+        ],
+        [
+          197.6280059814453,
+          266.4140625
+        ],
+        [
+          197.6280059814453,
+          282.08758544921875
+        ],
+        [
+          75.52161407470703,
+          282.08758544921875
+        ]
+      ]
+    },
+    {
+      "title": "2.2.1. Select the SSD",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          606.83203125
+        ],
+        [
+          198.57757568359375,
+          606.83203125
+        ],
+        [
+          198.57757568359375,
+          620.7215881347656
+        ],
+        [
+          74.66552734375,
+          620.7215881347656
+        ]
+      ]
+    },
+    {
+      "title": "2.2.2. Unmount the partition",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          264.76953125
+        ],
+        [
+          251.6591339111328,
+          264.76953125
+        ],
+        [
+          251.6591339111328,
+          278.562744140625
+        ],
+        [
+          75.24658203125,
+          278.562744140625
+        ]
+      ]
+    },
+    {
+      "title": "2.2.3. Perform disk compression",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          562.8408203125
+        ],
+        [
+          271.72906494140625,
+          562.8408203125
+        ],
+        [
+          271.72906494140625,
+          578.4638671875
+        ],
+        [
+          74.9560546875,
+          578.4638671875
+        ]
+      ]
+    },
+    {
+      "title": "3. Back up the SSD",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.24658203125,
+          775.7777938842773
+        ],
+        [
+          231.03323364257812,
+          775.7777938842773
+        ],
+        [
+          231.03323364257812,
+          792.8482284545898
+        ],
+        [
+          75.24658203125,
+          792.8482284545898
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Check disk information",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          31.6572265625
+        ],
+        [
+          277.4344482421875,
+          31.6572265625
+        ],
+        [
+          277.4344482421875,
+          47.97845458984375
+        ],
+        [
+          74.66552734375,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "parted_info.sh script content",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          85.99609375,
+          139.3740234375
+        ],
+        [
+          231.87637329101562,
+          139.3740234375
+        ],
+        [
+          231.87637329101562,
+          150.4793701171875
+        ],
+        [
+          85.99609375,
+          150.4793701171875
+        ]
+      ]
+    },
+    {
+      "title": "3.2. Start disk backup",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          552.9736328125
+        ],
+        [
+          234.80740356445312,
+          552.9736328125
+        ],
+        [
+          234.80740356445312,
+          570.2211303710938
+        ],
+        [
+          74.9560546875,
+          570.2211303710938
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          125
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "ListItem",
+          10
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          5
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          81
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Backup SSD system"
+}

@@ -1,0 +1,460 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Network configuration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          330.9399719238281,
+          65.78125
+        ],
+        [
+          330.9399719238281,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Network configuration",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          107.3056640625
+        ],
+        [
+          177.74644470214844,
+          107.3056640625
+        ],
+        [
+          177.74644470214844,
+          117.25506591796875
+        ],
+        [
+          74.375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. WIFI mode",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          335.8955078125
+        ],
+        [
+          187.62828063964844,
+          335.8955078125
+        ],
+        [
+          187.62828063964844,
+          354.64471435546875
+        ],
+        [
+          75.24658203125,
+          354.64471435546875
+        ]
+      ]
+    },
+    {
+      "title": "1.1. Connect to WiFi",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          368.375
+        ],
+        [
+          219.9883575439453,
+          368.375
+        ],
+        [
+          219.9883575439453,
+          384.13507080078125
+        ],
+        [
+          74.9560546875,
+          384.13507080078125
+        ]
+      ]
+    },
+    {
+      "title": "ifconfig",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          82.21923828125,
+          467.869140625
+        ],
+        [
+          518.59130859375,
+          467.869140625
+        ],
+        [
+          518.59130859375,
+          487.603515625
+        ],
+        [
+          82.21923828125,
+          487.603515625
+        ]
+      ]
+    },
+    {
+      "title": "1.3. Set static IP",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.24658203125,
+          32.890625
+        ],
+        [
+          192.80441284179688,
+          32.890625
+        ],
+        [
+          192.80441284179688,
+          47.97894287109375
+        ],
+        [
+          75.24658203125,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "2. Hotspot mode",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.08447265625,
+          750.2660751342773
+        ],
+        [
+          218.76475524902344,
+          750.2660751342773
+        ],
+        [
+          218.76475524902344,
+          767.5849609375
+        ],
+        [
+          74.08447265625,
+          767.5849609375
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Create a hotspot",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          96.205078125
+        ],
+        [
+          228.22486877441406,
+          96.205078125
+        ],
+        [
+          228.22486877441406,
+          111.75823974609375
+        ],
+        [
+          74.66552734375,
+          111.75823974609375
+        ]
+      ]
+    },
+    {
+      "title": "2.2, Hotspot information",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          437.0341796875
+        ],
+        [
+          258.0326843261719,
+          437.0341796875
+        ],
+        [
+          258.0326843261719,
+          453.16693115234375
+        ],
+        [
+          74.66552734375,
+          453.16693115234375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          123
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          34
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Text",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          12
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "PictureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          92
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          34
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\5.Network configuration"
+}

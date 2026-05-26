@@ -1,0 +1,609 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Multi-vehicle Platoon",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          260.4898681640625,
+          64.5478515625
+        ],
+        [
+          260.4898681640625,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          97.02734375
+        ],
+        [
+          179.10879516601562,
+          97.02734375
+        ],
+        [
+          179.10879516601562,
+          112.50885009765625
+        ],
+        [
+          75.24658203125,
+          112.50885009765625
+        ]
+      ]
+    },
+    {
+      "title": "1.1. Functional Requirements",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          316.1611328125
+        ],
+        [
+          255.2532501220703,
+          316.1611328125
+        ],
+        [
+          255.2532501220703,
+          329.5863037109375
+        ],
+        [
+          75.52161407470703,
+          329.5863037109375
+        ]
+      ]
+    },
+    {
+      "title": "1.2. Site Requirements",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          411.955078125
+        ],
+        [
+          213.54042053222656,
+          411.955078125
+        ],
+        [
+          213.54042053222656,
+          425.6310119628906
+        ],
+        [
+          74.66552734375,
+          425.6310119628906
+        ]
+      ]
+    },
+    {
+      "title": "1.3. Navigation Map",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          478.55859375
+        ],
+        [
+          198.52963256835938,
+          478.55859375
+        ],
+        [
+          198.52963256835938,
+          491.66168212890625
+        ],
+        [
+          74.9560546875,
+          491.66168212890625
+        ]
+      ]
+    },
+    {
+      "title": "2. Implementation Principle",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          559.140625
+        ],
+        [
+          281.512451171875,
+          559.140625
+        ],
+        [
+          281.512451171875,
+          576.2243041992188
+        ],
+        [
+          74.9560546875,
+          576.2243041992188
+        ]
+      ]
+    },
+    {
+      "title": "3. Program Startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          675.080078125
+        ],
+        [
+          216.73712158203125,
+          675.080078125
+        ],
+        [
+          216.73712158203125,
+          691.525390625
+        ],
+        [
+          75.52161407470703,
+          691.525390625
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Start chassis data fusion",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          168.564453125
+        ],
+        [
+          251.19581604003906,
+          168.564453125
+        ],
+        [
+          251.19581604003906,
+          181.76763916015625
+        ],
+        [
+          74.9560546875,
+          181.76763916015625
+        ]
+      ]
+    },
+    {
+      "title": "3.2. Start rviz display and publish map data",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          340.41796875
+        ],
+        [
+          339.21051025390625,
+          340.41796875
+        ],
+        [
+          339.21051025390625,
+          353.5975646972656
+        ],
+        [
+          74.9560546875,
+          353.5975646972656
+        ]
+      ]
+    },
+    {
+      "title": "3.3. Starting AMCL Positioning",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          682.0693359375
+        ],
+        [
+          259.6097717285156,
+          682.0693359375
+        ],
+        [
+          259.6097717285156,
+          695.0061340332031
+        ],
+        [
+          75.24658203125,
+          695.0061340332031
+        ]
+      ]
+    },
+    {
+      "title": "3.4. Starting NAV Navigation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          349.0517578125
+        ],
+        [
+          250.24473571777344,
+          349.0517578125
+        ],
+        [
+          250.24473571777344,
+          362.6018371582031
+        ],
+        [
+          74.66552734375,
+          362.6018371582031
+        ]
+      ]
+    },
+    {
+      "title": "3.5. Starting the Formation Program",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          618.34375
+        ],
+        [
+          298.4052734375,
+          618.34375
+        ],
+        [
+          298.4052734375,
+          631.2265930175781
+        ],
+        [
+          74.66552734375,
+          631.2265930175781
+        ]
+      ]
+    },
+    {
+      "title": "4. Core Code Analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          138.962890625
+        ],
+        [
+          232.04318237304688,
+          138.962890625
+        ],
+        [
+          232.04318237304688,
+          154.52825927734375
+        ],
+        [
+          74.9560546875,
+          154.52825927734375
+        ]
+      ]
+    },
+    {
+      "title": "4.1. pub_follower_goal.py",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          166.919921875
+        ],
+        [
+          229.3015899658203,
+          166.919921875
+        ],
+        [
+          229.3015899658203,
+          181.01708984375
+        ],
+        [
+          74.375,
+          181.01708984375
+        ]
+      ]
+    },
+    {
+      "title": "4.2\u3001get_follower_point.py",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.7939453125,
+          521.2828063964844
+        ],
+        [
+          237.58999633789062,
+          521.2828063964844
+        ],
+        [
+          237.58999633789062,
+          533.6811828613281
+        ],
+        [
+          73.7939453125,
+          533.6811828613281
+        ]
+      ]
+    },
+    {
+      "title": "5. View the TF tree",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          73.50341796875,
+          661.923828125
+        ],
+        [
+          212.50892639160156,
+          661.923828125
+        ],
+        [
+          212.50892639160156,
+          676.7704467773438
+        ],
+        [
+          73.50341796875,
+          676.7704467773438
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          73
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "SectionHeader",
+          7
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          95
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          113
+        ],
+        [
+          "Line",
+          35
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          389
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          535
+        ],
+        [
+          "Line",
+          47
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          313
+        ],
+        [
+          "Line",
+          40
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4.Multi-vehicle formation"
+}

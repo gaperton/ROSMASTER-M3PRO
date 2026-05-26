@@ -1,0 +1,416 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Update and upgrade operating system",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          41.935546875
+        ],
+        [
+          501.4476623535156,
+          41.935546875
+        ],
+        [
+          501.4476623535156,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Update and upgrade operating system",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          83.048828125
+        ],
+        [
+          245.4156951904297,
+          83.048828125
+        ],
+        [
+          245.4156951904297,
+          93.71405029296875
+        ],
+        [
+          73.7939453125,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "Graphical interface",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          322.7392578125
+        ],
+        [
+          241.5362091064453,
+          322.7392578125
+        ],
+        [
+          241.5362091064453,
+          340.74346923828125
+        ],
+        [
+          74.5,
+          340.74346923828125
+        ]
+      ]
+    },
+    {
+      "title": "Use APT",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          670.96875
+        ],
+        [
+          145.97482299804688,
+          670.96875
+        ],
+        [
+          145.97482299804688,
+          689.4934997558594
+        ],
+        [
+          74.5,
+          689.4934997558594
+        ]
+      ]
+    },
+    {
+      "title": "Update software list",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          31.24609375
+        ],
+        [
+          225.00099182128906,
+          31.24609375
+        ],
+        [
+          225.00099182128906,
+          46.97021484375
+        ],
+        [
+          74.5,
+          46.97021484375
+        ]
+      ]
+    },
+    {
+      "title": "Update software to the latest version",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          99.9052734375
+        ],
+        [
+          350.75164794921875,
+          99.9052734375
+        ],
+        [
+          350.75164794921875,
+          116.72021484375
+        ],
+        [
+          74.08447265625,
+          116.72021484375
+        ]
+      ]
+    },
+    {
+      "title": "Search software",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          168.9755859375
+        ],
+        [
+          195.37075805664062,
+          168.9755859375
+        ],
+        [
+          195.37075805664062,
+          185.72021484375
+        ],
+        [
+          73.7939453125,
+          185.72021484375
+        ]
+      ]
+    },
+    {
+      "title": "View software information",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          311.2275390625
+        ],
+        [
+          273.3707275390625,
+          311.2275390625
+        ],
+        [
+          273.3707275390625,
+          327.47027587890625
+        ],
+        [
+          73.7939453125,
+          327.47027587890625
+        ]
+      ]
+    },
+    {
+      "title": "install software",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          454.59527587890625
+        ],
+        [
+          191.5390167236328,
+          454.59527587890625
+        ],
+        [
+          191.5390167236328,
+          469.22027587890625
+        ],
+        [
+          74.08447265625,
+          469.22027587890625
+        ]
+      ]
+    },
+    {
+      "title": "Uninstall software",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5,
+          30.8349609375
+        ],
+        [
+          212.18951416015625,
+          30.8349609375
+        ],
+        [
+          212.18951416015625,
+          46.97003173828125
+        ],
+        [
+          74.5,
+          46.97003173828125
+        ]
+      ]
+    },
+    {
+      "title": "Use rpi-update",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          313.283203125
+        ],
+        [
+          203.4697723388672,
+          313.283203125
+        ],
+        [
+          203.4697723388672,
+          331.7433776855469
+        ],
+        [
+          74.375,
+          331.7433776855469
+        ]
+      ]
+    },
+    {
+      "title": "Upgrade firmware",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          453.890625
+        ],
+        [
+          210.75625610351562,
+          453.890625
+        ],
+        [
+          210.75625610351562,
+          470.3359375
+        ],
+        [
+          74.08447265625,
+          470.3359375
+        ]
+      ]
+    },
+    {
+      "title": "Roll back to stable version",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          563.6630859375
+        ],
+        [
+          269.2903747558594,
+          563.6630859375
+        ],
+        [
+          269.2903747558594,
+          578.7201538085938
+        ],
+        [
+          73.7939453125,
+          578.7201538085938
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          133
+        ],
+        [
+          "Line",
+          23
+        ],
+        [
+          "Text",
+          15
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          79
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "Text",
+          18
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          5
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          141
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Code",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\5.Update and upgrade operating system"
+}

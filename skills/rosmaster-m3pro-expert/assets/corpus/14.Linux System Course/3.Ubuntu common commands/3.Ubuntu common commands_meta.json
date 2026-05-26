@@ -1,0 +1,319 @@
+{
+  "table_of_contents": [
+    {
+      "title": "3.Ubuntu common commands",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          65.3701171875
+        ],
+        [
+          334.75927734375,
+          65.3701171875
+        ],
+        [
+          334.75927734375,
+          83.01849365234375
+        ],
+        [
+          74.66552734375,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "3.1\u3001Add",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          97.849609375
+        ],
+        [
+          142.6820526123047,
+          97.849609375
+        ],
+        [
+          142.6820526123047,
+          113.25921630859375
+        ],
+        [
+          74.375,
+          113.25921630859375
+        ]
+      ]
+    },
+    {
+      "title": "3.2\u3001Delete",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          348.640625
+        ],
+        [
+          161.44039916992188,
+          348.640625
+        ],
+        [
+          161.44039916992188,
+          364.6260070800781
+        ],
+        [
+          74.66552734375,
+          364.6260070800781
+        ]
+      ]
+    },
+    {
+      "title": "3.3\u3001Modify",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          520.494140625
+        ],
+        [
+          164.3181915283203,
+          520.494140625
+        ],
+        [
+          164.3181915283203,
+          537.2061767578125
+        ],
+        [
+          74.375,
+          537.2061767578125
+        ]
+      ]
+    },
+    {
+      "title": "3.4\u3001View",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          439.5009765625
+        ],
+        [
+          150.29344177246094,
+          439.5009765625
+        ],
+        [
+          150.29344177246094,
+          455.41815185546875
+        ],
+        [
+          74.66552734375,
+          455.41815185546875
+        ]
+      ]
+    },
+    {
+      "title": "3.5\u3001Other",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          338.7734375
+        ],
+        [
+          156.11077880859375,
+          338.7734375
+        ],
+        [
+          156.11077880859375,
+          354.12127685546875
+        ],
+        [
+          74.9560546875,
+          354.12127685546875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          205
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "TableCell",
+          14
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Table",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          223
+        ],
+        [
+          "Line",
+          34
+        ],
+        [
+          "TableCell",
+          8
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          537
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Code",
+          7
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          317
+        ],
+        [
+          "Line",
+          37
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Code",
+          6
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Ubuntu common commands"
+}

@@ -1,0 +1,132 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Tutorial on how to re-burn a burned\nimage",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          65.78125
+        ],
+        [
+          474.3612060546875,
+          65.78125
+        ],
+        [
+          474.3612060546875,
+          114.8299560546875
+        ],
+        [
+          74.66552734375,
+          114.8299560546875
+        ]
+      ]
+    },
+    {
+      "title": "1. Check whether the memory card or USB drive is\nrecognized.",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          197.7548828125
+        ],
+        [
+          503.7223815917969,
+          197.7548828125
+        ],
+        [
+          503.7223815917969,
+          236.089599609375
+        ],
+        [
+          74.375,
+          236.089599609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Delete partition",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          621.6328125
+        ],
+        [
+          234.01364135742188,
+          621.6328125
+        ],
+        [
+          234.01364135742188,
+          639.7771759033203
+        ],
+        [
+          74.08447265625,
+          639.7771759033203
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          38
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3. Re-read the memory card or USB drive that has been burned"
+}

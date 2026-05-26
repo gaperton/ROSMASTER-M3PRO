@@ -1,0 +1,622 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Multi-Agent Embodied Architecture\n(multi_brains)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.958984375
+        ],
+        [
+          467.4043884277344,
+          64.958984375
+        ],
+        [
+          467.4043884277344,
+          114.8299560546875
+        ],
+        [
+          75.52161407470703,
+          114.8299560546875
+        ]
+      ]
+    },
+    {
+      "title": "Multi-Agent Embodied Architecture (multi_brains)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          133.20703125
+        ],
+        [
+          294.7220764160156,
+          133.20703125
+        ],
+        [
+          294.7220764160156,
+          143.51727294921875
+        ],
+        [
+          74.08447265625,
+          143.51727294921875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          327.26171875
+        ],
+        [
+          229.14520263671875,
+          327.26171875
+        ],
+        [
+          229.14520263671875,
+          344.8901672363281
+        ],
+        [
+          74.9560546875,
+          344.8901672363281
+        ]
+      ]
+    },
+    {
+      "title": "2. Introduction to multi_brains",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          396.7431640625
+        ],
+        [
+          338.4977111816406,
+          396.7431640625
+        ],
+        [
+          338.4977111816406,
+          415.4229431152344
+        ],
+        [
+          74.9560546875,
+          415.4229431152344
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Advantages of Dual-Model Inference",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          343.70703125
+        ],
+        [
+          367.9718017578125,
+          343.70703125
+        ],
+        [
+          367.9718017578125,
+          360.12384033203125
+        ],
+        [
+          75.24658203125,
+          360.12384033203125
+        ]
+      ]
+    },
+    {
+      "title": "3.1.1 Decoupling of Task Decision and Action Conversion",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          372.8974609375
+        ],
+        [
+          418.6566467285156,
+          372.8974609375
+        ],
+        [
+          418.6566467285156,
+          386.6128234863281
+        ],
+        [
+          74.08447265625,
+          386.6128234863281
+        ]
+      ]
+    },
+    {
+      "title": "3.1.2 Improved Success Rate for Long-Process Tasks",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          454.3017578125
+        ],
+        [
+          388.8050231933594,
+          454.3017578125
+        ],
+        [
+          388.8050231933594,
+          467.6505432128906
+        ],
+        [
+          75.24658203125,
+          467.6505432128906
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Decision-Making Layer AI",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          564.896484375
+        ],
+        [
+          285.51904296875,
+          564.896484375
+        ],
+        [
+          285.51904296875,
+          582.2271118164062
+        ],
+        [
+          74.9560546875,
+          582.2271118164062
+        ]
+      ]
+    },
+    {
+      "title": "3.3 Execution Layer AI",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          32.890625
+        ],
+        [
+          236.85372924804688,
+          32.890625
+        ],
+        [
+          236.85372924804688,
+          47.97906494140625
+        ],
+        [
+          74.66552734375,
+          47.97906494140625
+        ]
+      ]
+    },
+    {
+      "title": "4. Task Cycle",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          343.2958984375
+        ],
+        [
+          186.19435119628906,
+          343.2958984375
+        ],
+        [
+          186.19435119628906,
+          361.3980407714844
+        ],
+        [
+          75.24658203125,
+          361.3980407714844
+        ]
+      ]
+    },
+    {
+      "title": "5. Historical Context",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.52161407470703,
+          30.8349609375
+        ],
+        [
+          250.80758666992188,
+          30.8349609375
+        ],
+        [
+          250.80758666992188,
+          49.25250244140625
+        ],
+        [
+          75.52161407470703,
+          49.25250244140625
+        ]
+      ]
+    },
+    {
+      "title": "6. Map Mapping",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          75.24658203125,
+          377.8310546875
+        ],
+        [
+          213.35939025878906,
+          377.8310546875
+        ],
+        [
+          213.35939025878906,
+          395.9136657714844
+        ],
+        [
+          75.24658203125,
+          395.9136657714844
+        ]
+      ]
+    },
+    {
+      "title": "7. Action Function Library",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          244.6240234375
+        ],
+        [
+          297.6246643066406,
+          244.6240234375
+        ],
+        [
+          297.6246643066406,
+          262.35186767578125
+        ],
+        [
+          74.66552734375,
+          262.35186767578125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          135
+        ],
+        [
+          "Line",
+          42
+        ],
+        [
+          "ListItem",
+          19
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          57
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "ListItem",
+          7
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "PageFooter",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          59
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          215
+        ],
+        [
+          "Line",
+          94
+        ],
+        [
+          "TableCell",
+          52
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          165
+        ],
+        [
+          "Line",
+          74
+        ],
+        [
+          "TableCell",
+          36
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "TableCell",
+          12
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\3.Embodied intelligent robot system architecture"
+}

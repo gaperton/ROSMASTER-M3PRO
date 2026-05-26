@@ -1,0 +1,663 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Autonomous Line Patrol",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          65.78125
+        ],
+        [
+          343.4476318359375,
+          65.78125
+        ],
+        [
+          343.4476318359375,
+          88.5677490234375
+        ],
+        [
+          74.08447265625,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Autonomous Line Patrol",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          107.3056640625
+        ],
+        [
+          182.76287841796875,
+          107.3056640625
+        ],
+        [
+          182.76287841796875,
+          117.25506591796875
+        ],
+        [
+          74.375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          300.94921875
+        ],
+        [
+          229.14520263671875,
+          300.94921875
+        ],
+        [
+          229.14520263671875,
+          318.6279296875
+        ],
+        [
+          75.24658203125,
+          318.6279296875
+        ]
+      ]
+    },
+    {
+      "title": "2. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          409.0771484375
+        ],
+        [
+          200.3507080078125,
+          409.0771484375
+        ],
+        [
+          200.3507080078125,
+          427.42852783203125
+        ],
+        [
+          74.375,
+          427.42852783203125
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Content Description",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          441.1455078125
+        ],
+        [
+          250.1754150390625,
+          441.1455078125
+        ],
+        [
+          250.1754150390625,
+          456.91888427734375
+        ],
+        [
+          74.375,
+          456.91888427734375
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Starting the Agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          675.90234375
+        ],
+        [
+          235.9358367919922,
+          675.90234375
+        ],
+        [
+          235.9358367919922,
+          692.5283203125
+        ],
+        [
+          75.24658203125,
+          692.5283203125
+        ]
+      ]
+    },
+    {
+      "title": "3. Running the Example",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          266.8251953125
+        ],
+        [
+          278.9380187988281,
+          266.8251953125
+        ],
+        [
+          278.9380187988281,
+          284.86224365234375
+        ],
+        [
+          75.52161407470703,
+          284.86224365234375
+        ]
+      ]
+    },
+    {
+      "title": "Note:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          296.837890625
+        ],
+        [
+          103.17399597167969,
+          296.837890625
+        ],
+        [
+          103.17399597167969,
+          308.8033447265625
+        ],
+        [
+          75.24658203125,
+          308.8033447265625
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Starting the Program",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          361.3857421875
+        ],
+        [
+          258.6296691894531,
+          361.3857421875
+        ],
+        [
+          258.6296691894531,
+          377.38189697265625
+        ],
+        [
+          74.9560546875,
+          377.38189697265625
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Color Calibration",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.66552734375,
+          668.9130859375
+        ],
+        [
+          226.98403930664062,
+          668.9130859375
+        ],
+        [
+          226.98403930664062,
+          684.2745971679688
+        ],
+        [
+          74.66552734375,
+          684.2745971679688
+        ]
+      ]
+    },
+    {
+      "title": "4. Source Code Analysis",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          477.3251953125
+        ],
+        [
+          276.6344909667969,
+          477.3251953125
+        ],
+        [
+          276.6344909667969,
+          495.7100524902344
+        ],
+        [
+          74.66552734375,
+          495.7100524902344
+        ]
+      ]
+    },
+    {
+      "title": "4.1 View the Node Relationship Graph",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          680.013671875
+        ],
+        [
+          353.6368713378906,
+          680.013671875
+        ],
+        [
+          353.6368713378906,
+          697.0302124023438
+        ],
+        [
+          74.9560546875,
+          697.0302124023438
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Program Flowchart",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.08447265625,
+          357.685546875
+        ],
+        [
+          239.9244842529297,
+          357.685546875
+        ],
+        [
+          239.9244842529297,
+          373.63006591796875
+        ],
+        [
+          74.08447265625,
+          373.63006591796875
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Key Programs",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          73.7939453125,
+          459.2353515625
+        ],
+        [
+          203.26246643066406,
+          459.2353515625
+        ],
+        [
+          203.26246643066406,
+          474.92718505859375
+        ],
+        [
+          73.7939453125,
+          474.92718505859375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          123
+        ],
+        [
+          "Line",
+          37
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Reference",
+          5
+        ],
+        [
+          "PageFooter",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          34
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          37
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          66
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          136
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          315
+        ],
+        [
+          "Line",
+          51
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\6.Line patrol automatic driving"
+}

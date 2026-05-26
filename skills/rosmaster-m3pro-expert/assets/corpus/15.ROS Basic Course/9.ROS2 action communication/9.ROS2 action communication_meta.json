@@ -1,0 +1,697 @@
+{
+  "table_of_contents": [
+    {
+      "title": "9.ROS2 action communication",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          66.1923828125
+        ],
+        [
+          407.9544677734375,
+          66.1923828125
+        ],
+        [
+          407.9544677734375,
+          88.5677490234375
+        ],
+        [
+          74.9560546875,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to Action Communication",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          126.2177734375
+        ],
+        [
+          428.2580261230469,
+          126.2177734375
+        ],
+        [
+          428.2580261230469,
+          144.54705810546875
+        ],
+        [
+          75.52161407470703,
+          144.54705810546875
+        ]
+      ]
+    },
+    {
+      "title": "2. Example Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          508.16015625
+        ],
+        [
+          283.0057678222656,
+          508.16015625
+        ],
+        [
+          283.0057678222656,
+          525.7241821289062
+        ],
+        [
+          74.375,
+          525.7241821289062
+        ]
+      ]
+    },
+    {
+      "title": "3. Create a new function package",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          593.2646484375
+        ],
+        [
+          360.92724609375,
+          593.2646484375
+        ],
+        [
+          360.92724609375,
+          611.2639312744141
+        ],
+        [
+          74.375,
+          611.2639312744141
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Create an action communication interface function\npackage",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          624.099609375
+        ],
+        [
+          482.25042724609375,
+          624.099609375
+        ],
+        [
+          482.25042724609375,
+          661.0137329101562
+        ],
+        [
+          74.08447265625,
+          661.0137329101562
+        ]
+      ]
+    },
+    {
+      "title": "3.2. Creating the Action Communication Function Package",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          673.435546875
+        ],
+        [
+          501.13580322265625,
+          673.435546875
+        ],
+        [
+          501.13580322265625,
+          690.2775268554688
+        ],
+        [
+          74.9560546875,
+          690.2775268554688
+        ]
+      ]
+    },
+    {
+      "title": "4. Server Implementation",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          293.548828125
+        ],
+        [
+          296.0304870605469,
+          293.548828125
+        ],
+        [
+          296.0304870605469,
+          312.62506103515625
+        ],
+        [
+          74.08447265625,
+          312.62506103515625
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Creating the Server",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          326.0283203125
+        ],
+        [
+          243.568603515625,
+          326.0283203125
+        ],
+        [
+          243.568603515625,
+          342.11541748046875
+        ],
+        [
+          74.375,
+          342.11541748046875
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Edit the Configuration File",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.375,
+          384.4091796875
+        ],
+        [
+          293.7738952636719,
+          384.4091796875
+        ],
+        [
+          293.7738952636719,
+          400.0322265625
+        ],
+        [
+          74.375,
+          400.0322265625
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Compile the Package",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          31.6572265625
+        ],
+        [
+          255.07281494140625,
+          31.6572265625
+        ],
+        [
+          255.07281494140625,
+          47.97845458984375
+        ],
+        [
+          74.66552734375,
+          47.97845458984375
+        ]
+      ]
+    },
+    {
+      "title": "4.4 Run the Program",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          100.7275390625
+        ],
+        [
+          228.9563751220703,
+          100.7275390625
+        ],
+        [
+          228.9563751220703,
+          116.3505859375
+        ],
+        [
+          74.66552734375,
+          116.3505859375
+        ]
+      ]
+    },
+    {
+      "title": "5. Client Implementation",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.66552734375,
+          725.6494140625
+        ],
+        [
+          291.284912109375,
+          724.0048828125
+        ],
+        [
+          291.284912109375,
+          744.0752792358398
+        ],
+        [
+          74.66552734375,
+          744.0752792358398
+        ]
+      ]
+    },
+    {
+      "title": "5.1 Creating the Client",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          239.40354919433594,
+          32.068359375
+        ],
+        [
+          239.40354919433594,
+          47.97894287109375
+        ],
+        [
+          75.24658203125,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "5.2 Edit the Configuration File",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          75.24658203125,
+          275.8701171875
+        ],
+        [
+          293.7738952636719,
+          275.8701171875
+        ],
+        [
+          293.7738952636719,
+          291.84173583984375
+        ],
+        [
+          75.24658203125,
+          291.84173583984375
+        ]
+      ]
+    },
+    {
+      "title": "5.3 Compile the Package",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.9560546875,
+          663.1572265625
+        ],
+        [
+          255.07281494140625,
+          663.1572265625
+        ],
+        [
+          255.07281494140625,
+          679.0214233398438
+        ],
+        [
+          74.9560546875,
+          679.0214233398438
+        ]
+      ]
+    },
+    {
+      "title": "5.4 Run the Program",
+      "heading_level": null,
+      "page_id": 8,
+      "polygon": [
+        [
+          74.9560546875,
+          194.0546875
+        ],
+        [
+          228.9563751220703,
+          194.0546875
+        ],
+        [
+          228.9563751220703,
+          209.30413818359375
+        ],
+        [
+          74.9560546875,
+          209.30413818359375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          47
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          36
+        ],
+        [
+          "Line",
+          14
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          67
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          127
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          111
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          53
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Code",
+          7
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          177
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          91
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          45
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\9.ROS2 action communication"
+}

@@ -1,0 +1,1024 @@
+{
+  "table_of_contents": [
+    {
+      "title": "23. ROS2 TF2 Coordinate Transformation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          64.958984375
+        ],
+        [
+          522.2361450195312,
+          64.958984375
+        ],
+        [
+          522.2361450195312,
+          88.5677490234375
+        ],
+        [
+          74.9560546875,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to TF2",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.5498046875
+        ],
+        [
+          261.32720947265625,
+          101.5498046875
+        ],
+        [
+          261.32720947265625,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Coordinate Systems in Robotics",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          224.8896484375
+        ],
+        [
+          365.1446838378906,
+          224.8896484375
+        ],
+        [
+          365.1446838378906,
+          242.84271240234375
+        ],
+        [
+          75.24658203125,
+          242.84271240234375
+        ]
+      ]
+    },
+    {
+      "title": "3. TF Command Line Operations",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          31.24609375
+        ],
+        [
+          348.6033935546875,
+          31.24609375
+        ],
+        [
+          348.6033935546875,
+          49.25274658203125
+        ],
+        [
+          75.24658203125,
+          49.25274658203125
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Installing Related Tools",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          117.1728515625
+        ],
+        [
+          272.4708557128906,
+          117.1728515625
+        ],
+        [
+          272.4708557128906,
+          133.51861572265625
+        ],
+        [
+          75.24658203125,
+          133.51861572265625
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Starting Up",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          418.1220703125
+        ],
+        [
+          185.87867736816406,
+          418.1220703125
+        ],
+        [
+          185.87867736816406,
+          433.7451171875
+        ],
+        [
+          74.66552734375,
+          433.7451171875
+        ]
+      ]
+    },
+    {
+      "title": "3.3 Viewing the TF Tree",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          314.5166015625
+        ],
+        [
+          245.29879760742188,
+          314.5166015625
+        ],
+        [
+          245.29879760742188,
+          331.61077880859375
+        ],
+        [
+          74.375,
+          331.61077880859375
+        ]
+      ]
+    },
+    {
+      "title": "3.4 Querying Coordinate Transformation Information",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          661.923828125
+        ],
+        [
+          466.477294921875,
+          661.923828125
+        ],
+        [
+          466.477294921875,
+          678.369140625
+        ],
+        [
+          74.9560546875,
+          678.369140625
+        ]
+      ]
+    },
+    {
+      "title": "3.5 Coordinate System Visualization",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          335.0732421875
+        ],
+        [
+          339.1806945800781,
+          335.0732421875
+        ],
+        [
+          339.1806945800781,
+          351.11956787109375
+        ],
+        [
+          74.66552734375,
+          351.11956787109375
+        ]
+      ]
+    },
+    {
+      "title": "4. Static Coordinate Transformation",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          658.634765625
+        ],
+        [
+          384.3870544433594,
+          658.634765625
+        ],
+        [
+          384.3870544433594,
+          677.2945098876953
+        ],
+        [
+          74.66552734375,
+          677.2945098876953
+        ]
+      ]
+    },
+    {
+      "title": "4.1. Publishing the pose from A to B",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          32.068359375
+        ],
+        [
+          336.33709716796875,
+          32.068359375
+        ],
+        [
+          336.33709716796875,
+          47.97894287109375
+        ],
+        [
+          74.66552734375,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "4.2. Monitoring/Getting TF Relationships",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          201.455078125
+        ],
+        [
+          371.3525695800781,
+          201.455078125
+        ],
+        [
+          371.3525695800781,
+          216.80731201171875
+        ],
+        [
+          74.66552734375,
+          216.80731201171875
+        ]
+      ]
+    },
+    {
+      "title": "4.3. RIVZ Visualization",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          269.2919921875
+        ],
+        [
+          237.84078979492188,
+          269.2919921875
+        ],
+        [
+          237.84078979492188,
+          285.08905029296875
+        ],
+        [
+          74.66552734375,
+          285.08905029296875
+        ]
+      ]
+    },
+    {
+      "title": "5. Case Introduction",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          603.54296875
+        ],
+        [
+          250.19638061523438,
+          603.54296875
+        ],
+        [
+          250.19638061523438,
+          623.2693634033203
+        ],
+        [
+          74.66552734375,
+          623.2693634033203
+        ]
+      ]
+    },
+    {
+      "title": "Course Content:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          672.61328125
+        ],
+        [
+          149.9828338623047,
+          672.61328125
+        ],
+        [
+          149.9828338623047,
+          684.7279052734375
+        ],
+        [
+          74.66552734375,
+          684.7279052734375
+        ]
+      ]
+    },
+    {
+      "title": "Advanced Content:",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.50341796875,
+          793.486328125
+        ],
+        [
+          162.36134338378906,
+          793.486328125
+        ],
+        [
+          162.36134338378906,
+          805.5340538024902
+        ],
+        [
+          73.50341796875,
+          805.5340538024902
+        ]
+      ]
+    },
+    {
+      "title": "6. Analysis of the Principles of the Turtle-Following\nExample",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          71.537109375
+        ],
+        [
+          508.3363952636719,
+          71.537109375
+        ],
+        [
+          508.3363952636719,
+          109.28033447265625
+        ],
+        [
+          74.9560546875,
+          109.28033447265625
+        ]
+      ]
+    },
+    {
+      "title": "7. Create a new package",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.9560546875,
+          85.9267578125
+        ],
+        [
+          284.298095703125,
+          85.9267578125
+        ],
+        [
+          284.298095703125,
+          104.02838134765625
+        ],
+        [
+          74.9560546875,
+          104.02838134765625
+        ]
+      ]
+    },
+    {
+      "title": "8. Edit the configuration file",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          74.375,
+          647.5341796875
+        ],
+        [
+          315.5711364746094,
+          647.5341796875
+        ],
+        [
+          315.5711364746094,
+          665.2881622314453
+        ],
+        [
+          74.375,
+          665.2881622314453
+        ]
+      ]
+    },
+    {
+      "title": "8.1. Configuration in setup.py",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          74.66552734375,
+          678.7802734375
+        ],
+        [
+          292.5401306152344,
+          678.7802734375
+        ],
+        [
+          292.5401306152344,
+          694.7782592773438
+        ],
+        [
+          74.66552734375,
+          694.7782592773438
+        ]
+      ]
+    },
+    {
+      "title": "9. Compile the package",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          74.375,
+          356.041015625
+        ],
+        [
+          275.3531799316406,
+          356.041015625
+        ],
+        [
+          275.3531799316406,
+          374.1524353027344
+        ],
+        [
+          74.375,
+          374.1524353027344
+        ]
+      ]
+    },
+    {
+      "title": "10. Run the Program",
+      "heading_level": null,
+      "page_id": 11,
+      "polygon": [
+        [
+          75.52161407470703,
+          549.2734375
+        ],
+        [
+          254.52883911132812,
+          549.2734375
+        ],
+        [
+          254.52883911132812,
+          567.7422790527344
+        ],
+        [
+          75.52161407470703,
+          567.7422790527344
+        ]
+      ]
+    },
+    {
+      "title": "11. Advanced Content",
+      "heading_level": null,
+      "page_id": 12,
+      "polygon": [
+        [
+          75.52161407470703,
+          358.0966796875
+        ],
+        [
+          263.3202209472656,
+          358.0966796875
+        ],
+        [
+          263.3202209472656,
+          376.4053649902344
+        ],
+        [
+          75.52161407470703,
+          376.4053649902344
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          52
+        ],
+        [
+          "Line",
+          26
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          64
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          33
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Code",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          18
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          67
+        ],
+        [
+          "Line",
+          18
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          29
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          346
+        ],
+        [
+          "Line",
+          43
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          485
+        ],
+        [
+          "Line",
+          51
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          475
+        ],
+        [
+          "Line",
+          48
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          437
+        ],
+        [
+          "Line",
+          50
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          139
+        ],
+        [
+          "Line",
+          46
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          23
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          37
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          23
+        ],
+        [
+          "Span",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\23.ROS2 TF2 coordinate transformation"
+}

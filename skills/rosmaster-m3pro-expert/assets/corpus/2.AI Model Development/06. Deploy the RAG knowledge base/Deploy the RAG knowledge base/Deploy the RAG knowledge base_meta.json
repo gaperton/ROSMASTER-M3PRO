@@ -1,0 +1,577 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Deploying a Local RAG Knowledge Base",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          66.1923828125
+        ],
+        [
+          505.5274963378906,
+          66.1923828125
+        ],
+        [
+          505.5274963378906,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Deploying a Local RAG Knowledge Base",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          107.3056640625
+        ],
+        [
+          247.6708984375,
+          107.3056640625
+        ],
+        [
+          247.6708984375,
+          117.25506591796875
+        ],
+        [
+          74.66552734375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          247.0908203125
+        ],
+        [
+          229.14520263671875,
+          247.0908203125
+        ],
+        [
+          229.14520263671875,
+          264.60284423828125
+        ],
+        [
+          75.52161407470703,
+          264.60284423828125
+        ]
+      ]
+    },
+    {
+      "title": "[TIP]",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          89.77823638916016,
+          345.3515625
+        ],
+        [
+          111.24272155761719,
+          345.3515625
+        ],
+        [
+          111.24272155761719,
+          356.82568359375
+        ],
+        [
+          89.77823638916016,
+          356.82568359375
+        ]
+      ]
+    },
+    {
+      "title": "2. Starting the Dify Service",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          467.869140625
+        ],
+        [
+          303.2633972167969,
+          467.869140625
+        ],
+        [
+          303.2633972167969,
+          485.9557189941406
+        ],
+        [
+          74.375,
+          485.9557189941406
+        ]
+      ]
+    },
+    {
+      "title": "3. Viewing the Preset Knowledge Base",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          224.0673828125
+        ],
+        [
+          399.5576171875,
+          224.0673828125
+        ],
+        [
+          399.5576171875,
+          242.09234619140625
+        ],
+        [
+          75.52161407470703,
+          242.09234619140625
+        ]
+      ]
+    },
+    {
+      "title": "[TIP]",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          89.19189453125,
+          292.3154296875
+        ],
+        [
+          111.24272155761719,
+          292.3154296875
+        ],
+        [
+          111.24272155761719,
+          303.5509033203125
+        ],
+        [
+          89.19189453125,
+          303.5509033203125
+        ]
+      ]
+    },
+    {
+      "title": "4. Expanding the RAG Knowledge Base",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          737.572265625
+        ],
+        [
+          402.0328369140625,
+          737.572265625
+        ],
+        [
+          402.0328369140625,
+          755.662109375
+        ],
+        [
+          74.66552734375,
+          755.662109375
+        ]
+      ]
+    },
+    {
+      "title": "[!TIP]",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          89.77823638916016,
+          492.1259765625
+        ],
+        [
+          113.84718322753906,
+          492.1259765625
+        ],
+        [
+          113.84718322753906,
+          502.3934326171875
+        ],
+        [
+          89.77823638916016,
+          502.3934326171875
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Economic Mode Knowledge Base",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          664.390625
+        ],
+        [
+          339.5860900878906,
+          664.390625
+        ],
+        [
+          339.5860900878906,
+          680.8359375
+        ],
+        [
+          74.375,
+          680.8359375
+        ]
+      ]
+    },
+    {
+      "title": "4.2 High-Quality Mode Knowledge Base",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          527.89453125
+        ],
+        [
+          361.69476318359375,
+          527.89453125
+        ],
+        [
+          361.69476318359375,
+          544.33984375
+        ],
+        [
+          74.66552734375,
+          544.33984375
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Recall Test",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.375,
+          253.6689453125
+        ],
+        [
+          180.36427307128906,
+          253.6689453125
+        ],
+        [
+          180.36427307128906,
+          270.08148193359375
+        ],
+        [
+          74.375,
+          270.08148193359375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          97
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListGroup",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          33
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          15
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          8
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\Deploy the RAG knowledge base"
+}

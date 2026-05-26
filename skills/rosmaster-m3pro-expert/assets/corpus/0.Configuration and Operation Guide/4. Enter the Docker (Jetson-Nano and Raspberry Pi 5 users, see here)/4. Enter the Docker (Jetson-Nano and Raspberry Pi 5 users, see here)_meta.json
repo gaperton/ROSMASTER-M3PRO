@@ -1,0 +1,252 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Enter the Vehicle Docker",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          348.79351806640625,
+          65.3701171875
+        ],
+        [
+          348.79351806640625,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Enter the Vehicle Docker",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          107.3056640625
+        ],
+        [
+          184.9051971435547,
+          107.3056640625
+        ],
+        [
+          184.9051971435547,
+          117.25506591796875
+        ],
+        [
+          74.9560546875,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          219.9560546875
+        ],
+        [
+          229.14520263671875,
+          219.9560546875
+        ],
+        [
+          229.14520263671875,
+          237.59027099609375
+        ],
+        [
+          75.24658203125,
+          237.59027099609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Basic Operations",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          390.9873046875
+        ],
+        [
+          241.38404846191406,
+          390.9873046875
+        ],
+        [
+          241.38404846191406,
+          409.420166015625
+        ],
+        [
+          74.66552734375,
+          409.420166015625
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Start the m3pro container",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          423.466796875
+        ],
+        [
+          292.9362487792969,
+          423.466796875
+        ],
+        [
+          292.9362487792969,
+          438.9105224609375
+        ],
+        [
+          74.9560546875,
+          438.9105224609375
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Enter the m3pro container terminal",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          32.890625
+        ],
+        [
+          362.56060791015625,
+          32.890625
+        ],
+        [
+          362.56060791015625,
+          47.9788818359375
+        ],
+        [
+          74.9560546875,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "2.3 Shut down the m3pro container",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          355.6298828125
+        ],
+        [
+          334.54913330078125,
+          355.6298828125
+        ],
+        [
+          334.54913330078125,
+          371.37908935546875
+        ],
+        [
+          74.375,
+          371.37908935546875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          92
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          18
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4. Enter the Docker (Jetson-Nano and Raspberry Pi 5 users, see here)"
+}

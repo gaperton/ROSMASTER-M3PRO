@@ -1,0 +1,236 @@
+{
+  "table_of_contents": [
+    {
+      "title": "5. ROS2 Function Packages",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          65.78125
+        ],
+        [
+          369.2555236816406,
+          65.78125
+        ],
+        [
+          369.2555236816406,
+          88.5677490234375
+        ],
+        [
+          74.9560546875,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to Function Packages",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.5498046875
+        ],
+        [
+          390.18695068359375,
+          101.5498046875
+        ],
+        [
+          390.18695068359375,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Creating Function Packages",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          293.1376953125
+        ],
+        [
+          332.48895263671875,
+          293.1376953125
+        ],
+        [
+          332.48895263671875,
+          311.12445068359375
+        ],
+        [
+          74.9560546875,
+          311.12445068359375
+        ]
+      ]
+    },
+    {
+      "title": "3. Compile the package",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          30.8349609375
+        ],
+        [
+          275.3531799316406,
+          30.8349609375
+        ],
+        [
+          275.3531799316406,
+          49.25274658203125
+        ],
+        [
+          75.24658203125,
+          49.25274658203125
+        ]
+      ]
+    },
+    {
+      "title": "4. Complete Workspace Structure with Feature\nPackages",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          241.3349609375
+        ],
+        [
+          476.71600341796875,
+          241.3349609375
+        ],
+        [
+          476.71600341796875,
+          278.85943603515625
+        ],
+        [
+          74.9560546875,
+          278.85943603515625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          125
+        ],
+        [
+          "Line",
+          35
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "ListItem",
+          8
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          377
+        ],
+        [
+          "Line",
+          39
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          89
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\5.ROS2 function package"
+}

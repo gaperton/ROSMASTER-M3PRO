@@ -1,0 +1,357 @@
+{
+  "table_of_contents": [
+    {
+      "title": "11. ROS2 parameter service case",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          433.2318420410156,
+          65.78125
+        ],
+        [
+          433.2318420410156,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to parameters",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.9609375
+        ],
+        [
+          331.6353759765625,
+          101.9609375
+        ],
+        [
+          331.6353759765625,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Parameters in the Little Turtle Example",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          322.7392578125
+        ],
+        [
+          433.73260498046875,
+          322.7392578125
+        ],
+        [
+          433.73260498046875,
+          341.138427734375
+        ],
+        [
+          74.375,
+          341.138427734375
+        ]
+      ]
+    },
+    {
+      "title": "3. Parameter Examples",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          726.4716796875
+        ],
+        [
+          273.9374084472656,
+          726.4716796875
+        ],
+        [
+          273.9374084472656,
+          744.8260116577148
+        ],
+        [
+          75.24658203125,
+          744.8260116577148
+        ]
+      ]
+    },
+    {
+      "title": "3.1. Creating a New Function Package",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          32.890625
+        ],
+        [
+          350.9111022949219,
+          32.890625
+        ],
+        [
+          350.9111022949219,
+          47.97906494140625
+        ],
+        [
+          75.24658203125,
+          47.97906494140625
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Code Implementation",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          507.337890625
+        ],
+        [
+          262.2173767089844,
+          507.337890625
+        ],
+        [
+          262.2173767089844,
+          523.783203125
+        ],
+        [
+          74.375,
+          523.783203125
+        ]
+      ]
+    },
+    {
+      "title": "3.3. Compile the package",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.08447265625,
+          261.8916015625
+        ],
+        [
+          259.3160400390625,
+          261.8916015625
+        ],
+        [
+          259.3160400390625,
+          278.33563232421875
+        ],
+        [
+          74.08447265625,
+          278.33563232421875
+        ]
+      ]
+    },
+    {
+      "title": "3.4. Run the program",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          473.625
+        ],
+        [
+          233.19960021972656,
+          473.625
+        ],
+        [
+          233.19960021972656,
+          490.0703125
+        ],
+        [
+          74.66552734375,
+          490.0703125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          55
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          163
+        ],
+        [
+          "Line",
+          19
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          202
+        ],
+        [
+          "Line",
+          24
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          163
+        ],
+        [
+          "Line",
+          23
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Span",
+          38
+        ],
+        [
+          "Line",
+          33
+        ],
+        [
+          "Code",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\11.ROS2 parameter service case"
+}

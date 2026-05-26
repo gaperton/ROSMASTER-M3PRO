@@ -1,0 +1,4 @@
+interface:
+  display_name: "ROSMASTER M3 Pro Expert"
+  short_description: "Robot docs expert with local SQLite retrieval"
+  default_prompt: "Use $rosmaster-m3pro-expert to answer ROSMASTER M3 Pro setup, mapping, navigation, motion, arm, or troubleshooting questions."

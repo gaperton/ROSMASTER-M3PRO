@@ -1,0 +1,217 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Get real-time temperature of Raspberry\nPi",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          41.5244140625
+        ],
+        [
+          514.8806762695312,
+          41.5244140625
+        ],
+        [
+          514.8806762695312,
+          91.29010009765625
+        ],
+        [
+          74.5,
+          91.29010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Get real-time temperature of Raspberry Pi",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          109.361328125
+        ],
+        [
+          260.4966735839844,
+          109.361328125
+        ],
+        [
+          260.4966735839844,
+          119.96405029296875
+        ],
+        [
+          74.08447265625,
+          119.96405029296875
+        ]
+      ]
+    },
+    {
+      "title": "environment",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.7939453125,
+          250.3798828125
+        ],
+        [
+          188.07937622070312,
+          250.3798828125
+        ],
+        [
+          188.07937622070312,
+          268.743408203125
+        ],
+        [
+          73.7939453125,
+          268.743408203125
+        ]
+      ]
+    },
+    {
+      "title": "Ideas",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          360.974609375
+        ],
+        [
+          122.61056518554688,
+          360.974609375
+        ],
+        [
+          122.61056518554688,
+          378.24346923828125
+        ],
+        [
+          74.5,
+          378.24346923828125
+        ]
+      ]
+    },
+    {
+      "title": "Get temperature parameters",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          448.93096923828125
+        ],
+        [
+          325.17657470703125,
+          448.93096923828125
+        ],
+        [
+          325.17657470703125,
+          466.224609375
+        ],
+        [
+          74.5,
+          466.224609375
+        ]
+      ]
+    },
+    {
+      "title": "actual effect",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          29.6015625
+        ],
+        [
+          181.63543701171875,
+          29.6015625
+        ],
+        [
+          181.63543701171875,
+          48.2435302734375
+        ],
+        [
+          74.5,
+          48.2435302734375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          103
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Equation",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\16.Get real-time temperature of Raspberry Pi"
+}

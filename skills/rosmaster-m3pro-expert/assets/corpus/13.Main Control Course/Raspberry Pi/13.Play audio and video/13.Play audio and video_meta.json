@@ -1,0 +1,259 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Play audio and video",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          41.935546875
+        ],
+        [
+          305.0923767089844,
+          41.935546875
+        ],
+        [
+          305.0923767089844,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "Play audio and video",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          82.2265625
+        ],
+        [
+          166.81138610839844,
+          82.2265625
+        ],
+        [
+          166.81138610839844,
+          93.71405029296875
+        ],
+        [
+          74.08447265625,
+          93.71405029296875
+        ]
+      ]
+    },
+    {
+      "title": "Graphical interface",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.08447265625,
+          262.302734375
+        ],
+        [
+          241.5362091064453,
+          262.302734375
+        ],
+        [
+          241.5362091064453,
+          281.493408203125
+        ],
+        [
+          74.08447265625,
+          281.493408203125
+        ]
+      ]
+    },
+    {
+      "title": "Command Line",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.50341796875,
+          595.3203125
+        ],
+        [
+          205.5854949951172,
+          595.3203125
+        ],
+        [
+          205.5854949951172,
+          614.4934997558594
+        ],
+        [
+          73.50341796875,
+          614.4934997558594
+        ]
+      ]
+    },
+    {
+      "title": "Play video",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          669.32421875
+        ],
+        [
+          151.76873779296875,
+          669.32421875
+        ],
+        [
+          151.76873779296875,
+          685.76953125
+        ],
+        [
+          74.5,
+          685.76953125
+        ]
+      ]
+    },
+    {
+      "title": "Play audio",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.5,
+          553.384765625
+        ],
+        [
+          153.27511596679688,
+          553.384765625
+        ],
+        [
+          153.27511596679688,
+          569.830078125
+        ],
+        [
+          74.5,
+          569.830078125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          49
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          105
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Text",
+          15
+        ],
+        [
+          "TableCell",
+          8
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Table",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          11
+        ],
+        [
+          "TableCell",
+          6
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\13.Play audio and video"
+}

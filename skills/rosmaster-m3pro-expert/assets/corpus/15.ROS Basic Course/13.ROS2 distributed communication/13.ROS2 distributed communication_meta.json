@@ -1,0 +1,423 @@
+{
+  "table_of_contents": [
+    {
+      "title": "13. ROS2 Distributed Communication",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          484.74945068359375,
+          65.3701171875
+        ],
+        [
+          484.74945068359375,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Concept",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          101.9609375
+        ],
+        [
+          166.70156860351562,
+          101.9609375
+        ],
+        [
+          166.70156860351562,
+          119.78558349609375
+        ],
+        [
+          75.52161407470703,
+          119.78558349609375
+        ]
+      ]
+    },
+    {
+      "title": "2. Implementation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          367.552734375
+        ],
+        [
+          236.88143920898438,
+          367.552734375
+        ],
+        [
+          236.88143920898438,
+          386.15936279296875
+        ],
+        [
+          74.9560546875,
+          386.15936279296875
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Default Implementation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          399.62109375
+        ],
+        [
+          284.5162658691406,
+          399.62109375
+        ],
+        [
+          284.5162658691406,
+          415.64971923828125
+        ],
+        [
+          74.9560546875,
+          415.64971923828125
+        ]
+      ]
+    },
+    {
+      "title": "Test:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          520.0830078125
+        ],
+        [
+          97.94242095947266,
+          520.0830078125
+        ],
+        [
+          97.94242095947266,
+          530.9065551757812
+        ],
+        [
+          74.375,
+          530.9065551757812
+        ]
+      ]
+    },
+    {
+      "title": "1. Execute on host A:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          87.52719116210938,
+          594.9091796875
+        ],
+        [
+          182.60874938964844,
+          594.9091796875
+        ],
+        [
+          182.60874938964844,
+          605.94140625
+        ],
+        [
+          87.52719116210938,
+          605.94140625
+        ]
+      ]
+    },
+    {
+      "title": "2. Host B executes:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          86.86767578125,
+          710.4375
+        ],
+        [
+          174.2686309814453,
+          710.4375
+        ],
+        [
+          174.2686309814453,
+          722.245475769043
+        ],
+        [
+          86.86767578125,
+          722.245475769043
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Distributed Network Grouping",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          260.658203125
+        ],
+        [
+          329.392822265625,
+          260.658203125
+        ],
+        [
+          329.392822265625,
+          276.08489990234375
+        ],
+        [
+          74.375,
+          276.08489990234375
+        ]
+      ]
+    },
+    {
+      "title": "2.2.1 Example 1",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          459.2353515625
+        ],
+        [
+          170.72154235839844,
+          459.2353515625
+        ],
+        [
+          170.72154235839844,
+          473.2138671875
+        ],
+        [
+          74.66552734375,
+          473.2138671875
+        ]
+      ]
+    },
+    {
+      "title": "2.2.2 Case 2",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          259.013671875
+        ],
+        [
+          147.28627014160156,
+          259.013671875
+        ],
+        [
+          147.28627014160156,
+          272.5599365234375
+        ],
+        [
+          74.08447265625,
+          272.5599365234375
+        ]
+      ]
+    },
+    {
+      "title": "3. Notes",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          75.24658203125,
+          434.978515625
+        ],
+        [
+          147.7527313232422,
+          434.978515625
+        ],
+        [
+          147.7527313232422,
+          452.1901550292969
+        ],
+        [
+          75.24658203125,
+          452.1901550292969
+        ]
+      ]
+    },
+    {
+      "title": "4. DDS Domain ID Calculation Rules (Advanced\nKnowledge)",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          571.8857421875
+        ],
+        [
+          471.56024169921875,
+          571.8857421875
+        ],
+        [
+          471.56024169921875,
+          610.5137481689453
+        ],
+        [
+          73.7939453125,
+          610.5137481689453
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          83
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "SectionHeader",
+          7
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          151
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          65
+        ],
+        [
+          "Line",
+          27
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListGroup",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          21
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "ListItem",
+          3
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\13.ROS2 distributed communication"
+}

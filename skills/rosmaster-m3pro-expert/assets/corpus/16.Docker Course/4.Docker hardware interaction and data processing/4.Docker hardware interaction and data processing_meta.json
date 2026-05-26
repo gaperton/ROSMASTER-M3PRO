@@ -1,0 +1,447 @@
+{
+  "table_of_contents": [
+    {
+      "title": "4\u3001Docker hardware interaction and data\nprocessing",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.810546875,
+          40.9921875
+        ],
+        [
+          534.2030029296875,
+          40.9921875
+        ],
+        [
+          534.2030029296875,
+          91.26690673828125
+        ],
+        [
+          73.810546875,
+          91.26690673828125
+        ]
+      ]
+    },
+    {
+      "title": "4\u3001Docker hardware interaction and data processing",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          72.615234375,
+          134.578125
+        ],
+        [
+          307.501220703125,
+          134.578125
+        ],
+        [
+          307.501220703125,
+          145.489501953125
+        ],
+        [
+          72.615234375,
+          145.489501953125
+        ]
+      ]
+    },
+    {
+      "title": "4.1\u3001Hardware mounting (port binding)",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.51171875,
+          452.6949768066406
+        ],
+        [
+          411.2314758300781,
+          452.6949768066406
+        ],
+        [
+          411.2314758300781,
+          470.0602111816406
+        ],
+        [
+          73.51171875,
+          470.0602111816406
+        ]
+      ]
+    },
+    {
+      "title": "4.2\u3001GUI display in docker",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.212890625,
+          229.32421875
+        ],
+        [
+          298.23651123046875,
+          229.32421875
+        ],
+        [
+          298.23651123046875,
+          247.11328125
+        ],
+        [
+          73.212890625,
+          247.11328125
+        ]
+      ]
+    },
+    {
+      "title": "4.3\u3001docker containers and hosts transfer files to\neach other",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.810546875,
+          674.05078125
+        ],
+        [
+          497.34356689453125,
+          674.05078125
+        ],
+        [
+          497.34356689453125,
+          713.2785263061523
+        ],
+        [
+          73.810546875,
+          713.2785263061523
+        ]
+      ]
+    },
+    {
+      "title": "4.3.1\u3001use cp naming",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.810546875,
+          31.32421875
+        ],
+        [
+          230.37998962402344,
+          31.32421875
+        ],
+        [
+          230.37998962402344,
+          46.90667724609375
+        ],
+        [
+          73.810546875,
+          46.90667724609375
+        ]
+      ]
+    },
+    {
+      "title": "4.3.1.1\u3001Copy files from the container to the host",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.810546875,
+          59.94140625
+        ],
+        [
+          373.8040771484375,
+          59.94140625
+        ],
+        [
+          373.8040771484375,
+          74.15777587890625
+        ],
+        [
+          73.810546875,
+          74.15777587890625
+        ]
+      ]
+    },
+    {
+      "title": "4.3.1.2\u3001Copy files from the host to the container",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          72.9140625,
+          518.203125
+        ],
+        [
+          373.8851318359375,
+          518.203125
+        ],
+        [
+          373.8851318359375,
+          533.671875
+        ],
+        [
+          72.9140625,
+          533.671875
+        ]
+      ]
+    },
+    {
+      "title": "4.3.2\u3001Using Data Volumes",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.212890625,
+          203.02734375
+        ],
+        [
+          271.041015625,
+          203.02734375
+        ],
+        [
+          271.041015625,
+          218.06036376953125
+        ],
+        [
+          73.212890625,
+          218.06036376953125
+        ]
+      ]
+    },
+    {
+      "title": "4.3.2.1\u3001Data Volume Overview",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.51171875,
+          231.2578125
+        ],
+        [
+          267.87066650390625,
+          231.2578125
+        ],
+        [
+          267.87066650390625,
+          244.56097412109375
+        ],
+        [
+          73.51171875,
+          244.56097412109375
+        ]
+      ]
+    },
+    {
+      "title": "Peculiarity:",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.5417709350586,
+          415.3359375
+        ],
+        [
+          130.58299255371094,
+          415.3359375
+        ],
+        [
+          130.58299255371094,
+          425.70001220703125
+        ],
+        [
+          74.5417709350586,
+          425.70001220703125
+        ]
+      ]
+    },
+    {
+      "title": "4.3.2.2\u3001Data volume use",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          73.212890625,
+          525.1640625
+        ],
+        [
+          229.44540405273438,
+          525.1640625
+        ],
+        [
+          229.44540405273438,
+          538.0744018554688
+        ],
+        [
+          73.212890625,
+          538.0744018554688
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          277
+        ],
+        [
+          "Line",
+          35
+        ],
+        [
+          "ListItem",
+          16
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListGroup",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          355
+        ],
+        [
+          "Line",
+          30
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          415
+        ],
+        [
+          "Line",
+          45
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          247
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\4.Docker hardware interaction and data processing"
+}

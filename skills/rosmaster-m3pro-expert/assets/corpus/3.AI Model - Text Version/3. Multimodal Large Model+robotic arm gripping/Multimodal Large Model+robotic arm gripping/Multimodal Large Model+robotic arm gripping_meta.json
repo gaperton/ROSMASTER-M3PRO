@@ -1,0 +1,792 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Multimodal Visual Understanding +\nRobotic Arm Grasping",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          465.6561279296875,
+          65.78125
+        ],
+        [
+          465.6561279296875,
+          114.8299560546875
+        ],
+        [
+          75.52161407470703,
+          114.8299560546875
+        ]
+      ]
+    },
+    {
+      "title": "Multimodal Visual Understanding + Robotic Arm Grasping",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          133.6181640625
+        ],
+        [
+          329.37469482421875,
+          133.6181640625
+        ],
+        [
+          329.37469482421875,
+          143.51727294921875
+        ],
+        [
+          74.66552734375,
+          143.51727294921875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          353.9853515625
+        ],
+        [
+          229.14520263671875,
+          353.9853515625
+        ],
+        [
+          229.14520263671875,
+          371.9027404785156
+        ],
+        [
+          75.52161407470703,
+          371.9027404785156
+        ]
+      ]
+    },
+    {
+      "title": "[!NOTE]",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          89.482421875,
+          423.0556640625
+        ],
+        [
+          125.62090301513672,
+          423.0556640625
+        ],
+        [
+          125.62090301513672,
+          434.1116027832031
+        ],
+        [
+          89.482421875,
+          434.1116027832031
+        ]
+      ]
+    },
+    {
+      "title": "2. Starting the Agent",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          499.9375
+        ],
+        [
+          252.94140625,
+          499.9375
+        ],
+        [
+          252.94140625,
+          518.220703125
+        ],
+        [
+          74.9560546875,
+          518.220703125
+        ]
+      ]
+    },
+    {
+      "title": "3. Running the Examples",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          244.212890625
+        ],
+        [
+          286.8938293457031,
+          244.212890625
+        ],
+        [
+          286.8938293457031,
+          262.351806640625
+        ],
+        [
+          74.66552734375,
+          262.351806640625
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Starting the Program",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          275.8701171875
+        ],
+        [
+          258.6296691894531,
+          275.8701171875
+        ],
+        [
+          258.6296691894531,
+          291.84210205078125
+        ],
+        [
+          75.52161407470703,
+          291.84210205078125
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Test Cases",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          433.2829284667969
+        ],
+        [
+          178.4322967529297,
+          433.2829284667969
+        ],
+        [
+          178.4322967529297,
+          447.91473388671875
+        ],
+        [
+          74.66552734375,
+          447.91473388671875
+        ]
+      ]
+    },
+    {
+      "title": "3.2.1 Case 1: \"Find the red cube in front of you and grasp it\"",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          584.5173034667969
+        ],
+        [
+          436.0617370605469,
+          584.5173034667969
+        ],
+        [
+          436.0617370605469,
+          596.7104797363281
+        ],
+        [
+          74.375,
+          596.7104797363281
+        ]
+      ]
+    },
+    {
+      "title": "3.2.2 Case 2: \"Put the red block in front of you to the right of the blue\nblock\"",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          375.3642578125
+        ],
+        [
+          495.23828125,
+          375.3642578125
+        ],
+        [
+          495.23828125,
+          405.3713684082031
+        ],
+        [
+          74.66552734375,
+          405.3713684082031
+        ]
+      ]
+    },
+    {
+      "title": "3.2.3 Case 3: \"Please help me remove the machine code in front of you\nthat is taller than 5 centimeters\"",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          365.0859375
+        ],
+        [
+          502.2529296875,
+          365.0859375
+        ],
+        [
+          502.2529296875,
+          394.8664855957031
+        ],
+        [
+          74.9560546875,
+          394.8664855957031
+        ]
+      ]
+    },
+    {
+      "title": "4. Source Code Analysis",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.9560546875,
+          302.59375
+        ],
+        [
+          276.6344909667969,
+          302.59375
+        ],
+        [
+          276.6344909667969,
+          321.62896728515625
+        ],
+        [
+          74.9560546875,
+          321.62896728515625
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Case 1",
+      "heading_level": null,
+      "page_id": 7,
+      "polygon": [
+        [
+          74.375,
+          398.798828125
+        ],
+        [
+          149.1290283203125,
+          398.798828125
+        ],
+        [
+          149.1290283203125,
+          414.14837646484375
+        ],
+        [
+          74.375,
+          414.14837646484375
+        ]
+      ]
+    },
+    {
+      "title": "4.2 Case Study 2",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          74.9560546875,
+          522.9609375
+        ],
+        [
+          194.4875946044922,
+          522.9609375
+        ],
+        [
+          194.4875946044922,
+          539.4574584960938
+        ],
+        [
+          74.9560546875,
+          539.4574584960938
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Case Study 3",
+      "heading_level": null,
+      "page_id": 10,
+      "polygon": [
+        [
+          74.375,
+          238.45703125
+        ],
+        [
+          194.4875946044922,
+          238.45703125
+        ],
+        [
+          194.4875946044922,
+          253.57366943359375
+        ],
+        [
+          74.375,
+          253.57366943359375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          181
+        ],
+        [
+          "Line",
+          28
+        ],
+        [
+          "ListItem",
+          11
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "ListGroup",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          47
+        ],
+        [
+          "Line",
+          17
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "ListItem",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          25
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          17
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          7
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          4
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          33
+        ],
+        [
+          "Line",
+          12
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          242
+        ],
+        [
+          "Line",
+          47
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          258
+        ],
+        [
+          "Line",
+          49
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          205
+        ],
+        [
+          "Line",
+          41
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\Multimodal Large Model+robotic arm gripping"
+}

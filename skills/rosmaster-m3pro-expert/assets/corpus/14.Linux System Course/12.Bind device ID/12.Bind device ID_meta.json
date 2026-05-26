@@ -1,0 +1,480 @@
+{
+  "table_of_contents": [
+    {
+      "title": "12.Bind device ID",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          224.44760131835938,
+          64.5478515625
+        ],
+        [
+          224.44760131835938,
+          83.01849365234375
+        ],
+        [
+          75.52161407470703,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1.Device view command",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          395.9208984375
+        ],
+        [
+          253.97506713867188,
+          395.9208984375
+        ],
+        [
+          253.97506713867188,
+          411.89794921875
+        ],
+        [
+          74.9560546875,
+          411.89794921875
+        ]
+      ]
+    },
+    {
+      "title": "2. Establish port mapping relationship",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          563.251953125
+        ],
+        [
+          355.944091796875,
+          563.251953125
+        ],
+        [
+          355.944091796875,
+          579.697265625
+        ],
+        [
+          74.375,
+          579.697265625
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Device binding",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          592.4423828125
+        ],
+        [
+          191.04759216308594,
+          592.4423828125
+        ],
+        [
+          191.04759216308594,
+          606.4648742675781
+        ],
+        [
+          74.66552734375,
+          606.4648742675781
+        ]
+      ]
+    },
+    {
+      "title": "2.2. Introduction to rule file syntax",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.66552734375,
+          507.7490234375
+        ],
+        [
+          288.8326416015625,
+          507.7490234375
+        ],
+        [
+          288.8326416015625,
+          521.6755676269531
+        ],
+        [
+          74.66552734375,
+          521.6755676269531
+        ]
+      ]
+    },
+    {
+      "title": "3. Verify view",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          75.24658203125,
+          104.427734375
+        ],
+        [
+          176.89759826660156,
+          104.427734375
+        ],
+        [
+          176.89759826660156,
+          120.01190185546875
+        ],
+        [
+          75.24658203125,
+          120.01190185546875
+        ]
+      ]
+    },
+    {
+      "title": "PCB",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          75.24658203125,
+          199.810546875
+        ],
+        [
+          95.95020294189453,
+          199.810546875
+        ],
+        [
+          95.95020294189453,
+          209.7569580078125
+        ],
+        [
+          75.24658203125,
+          209.7569580078125
+        ]
+      ]
+    },
+    {
+      "title": "laser",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          75.52161407470703,
+          410.7216796875
+        ],
+        [
+          98.83248138427734,
+          410.7216796875
+        ],
+        [
+          98.83248138427734,
+          421.3551025390625
+        ],
+        [
+          75.52161407470703,
+          421.3551025390625
+        ]
+      ]
+    },
+    {
+      "title": "4. Bind USB port",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          74.375,
+          32.068359375
+        ],
+        [
+          194.86436462402344,
+          32.068359375
+        ],
+        [
+          194.86436462402344,
+          47.97894287109375
+        ],
+        [
+          74.375,
+          47.97894287109375
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          69
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "ListItem",
+          6
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "TableCell",
+          396
+        ],
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          200
+        ],
+        [
+          "Line",
+          31
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "Code",
+          7
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          19
+        ],
+        [
+          "Line",
+          9
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          61
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\12.Bind device ID"
+}

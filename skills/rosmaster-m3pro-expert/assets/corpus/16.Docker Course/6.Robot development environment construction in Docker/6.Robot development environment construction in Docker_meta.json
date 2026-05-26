@@ -1,0 +1,927 @@
+{
+  "table_of_contents": [
+    {
+      "title": "6\u3001Robot development environment\nconstruction in Docker",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.408203125,
+          41.37890625
+        ],
+        [
+          476.5112609863281,
+          41.37890625
+        ],
+        [
+          476.5112609863281,
+          91.26690673828125
+        ],
+        [
+          74.408203125,
+          91.26690673828125
+        ]
+      ]
+    },
+    {
+      "title": "6\u3001Robot development environment construction in Docker",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.51171875,
+          134.578125
+        ],
+        [
+          337.7608947753906,
+          134.578125
+        ],
+        [
+          337.7608947753906,
+          145.489501953125
+        ],
+        [
+          73.51171875,
+          145.489501953125
+        ]
+      ]
+    },
+    {
+      "title": "6.1\u3001Using Jupyter Lab to access Docker",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          73.810546875,
+          452.6949768066406
+        ],
+        [
+          414.775634765625,
+          452.6949768066406
+        ],
+        [
+          414.775634765625,
+          470.0602111816406
+        ],
+        [
+          73.810546875,
+          470.0602111816406
+        ]
+      ]
+    },
+    {
+      "title": "6.2\u3001Use vscode to access docker",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.810546875,
+          681.3984375
+        ],
+        [
+          357.58197021484375,
+          681.3984375
+        ],
+        [
+          357.58197021484375,
+          699.7664413452148
+        ],
+        [
+          73.810546875,
+          699.7664413452148
+        ]
+      ]
+    },
+    {
+      "title": "6.2.1\u3001Remote configuration",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.5417709350586,
+          31.32421875
+        ],
+        [
+          285.4762878417969,
+          31.32421875
+        ],
+        [
+          285.4762878417969,
+          46.90667724609375
+        ],
+        [
+          74.5417709350586,
+          46.90667724609375
+        ]
+      ]
+    },
+    {
+      "title": "6.2.2\u3001vscode configuration",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.212890625,
+          191.8125
+        ],
+        [
+          278.83056640625,
+          191.8125
+        ],
+        [
+          278.83056640625,
+          207.55084228515625
+        ],
+        [
+          73.212890625,
+          207.55084228515625
+        ]
+      ]
+    },
+    {
+      "title": "6.2.2.1\u3001download and install VSCODE",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.212890625,
+          220.81640625
+        ],
+        [
+          305.77154541015625,
+          220.81640625
+        ],
+        [
+          305.77154541015625,
+          234.05133056640625
+        ],
+        [
+          73.212890625,
+          234.05133056640625
+        ]
+      ]
+    },
+    {
+      "title": "6.2.2.2\u3001vscode configuration ssh remote login to the host",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.212890625,
+          288.87890625
+        ],
+        [
+          428.31890869140625,
+          288.87890625
+        ],
+        [
+          428.31890869140625,
+          302.36260986328125
+        ],
+        [
+          73.212890625,
+          302.36260986328125
+        ]
+      ]
+    },
+    {
+      "title": "6.2.2.3\u3001enter the robot container",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.109375,
+          320.9765625
+        ],
+        [
+          282.7017517089844,
+          320.9765625
+        ],
+        [
+          282.7017517089844,
+          334.64178466796875
+        ],
+        [
+          74.109375,
+          334.64178466796875
+        ]
+      ]
+    },
+    {
+      "title": "6.2.2.4\u3001Vscode remote host configuration docker environment",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          73.212890625,
+          373.5703125
+        ],
+        [
+          459.11822509765625,
+          373.5703125
+        ],
+        [
+          459.11822509765625,
+          387.18890380859375
+        ],
+        [
+          73.212890625,
+          387.18890380859375
+        ]
+      ]
+    },
+    {
+      "title": "Visual Studio Code",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          105.0,
+          56.4609375
+        ],
+        [
+          356.25,
+          56.4609375
+        ],
+        [
+          356.25,
+          82.5
+        ],
+        [
+          105.0,
+          82.5
+        ]
+      ]
+    },
+    {
+      "title": "\u7f16\u8f91\u8fdb\u5316",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          104.25,
+          96.0
+        ],
+        [
+          197.25,
+          96.0
+        ],
+        [
+          197.25,
+          119.25
+        ],
+        [
+          104.25,
+          119.25
+        ]
+      ]
+    },
+    {
+      "title": "\u542f\u52a8",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          104.25,
+          147.0
+        ],
+        [
+          141.0,
+          147.0
+        ],
+        [
+          141.0,
+          165.12890625
+        ],
+        [
+          104.25,
+          165.12890625
+        ]
+      ]
+    },
+    {
+      "title": "\u6700\u8fd1",
+      "heading_level": null,
+      "page_id": 9,
+      "polygon": [
+        [
+          105.0,
+          294.29296875
+        ],
+        [
+          141.75,
+          294.29296875
+        ],
+        [
+          141.75,
+          311.25
+        ],
+        [
+          105.0,
+          311.25
+        ]
+      ]
+    },
+    {
+      "title": "6.2.2.5\u3001Configure passwordless login",
+      "heading_level": null,
+      "page_id": 13,
+      "polygon": [
+        [
+          74.408203125,
+          611.7890625
+        ],
+        [
+          304.7738952636719,
+          611.7890625
+        ],
+        [
+          304.7738952636719,
+          625.9032592773438
+        ],
+        [
+          74.408203125,
+          625.9032592773438
+        ]
+      ]
+    },
+    {
+      "title": "(2) Generate a key pair",
+      "heading_level": null,
+      "page_id": 14,
+      "polygon": [
+        [
+          83.373046875,
+          554.5546875
+        ],
+        [
+          188.56285095214844,
+          554.5546875
+        ],
+        [
+          188.56285095214844,
+          564.5747528076172
+        ],
+        [
+          83.373046875,
+          564.5747528076172
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          251
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "ListItem",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          25
+        ],
+        [
+          "Line",
+          6
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          89
+        ],
+        [
+          "Line",
+          16
+        ],
+        [
+          "Text",
+          6
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          4
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          33
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          25
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Span",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          23
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          43
+        ],
+        [
+          "Span",
+          9
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Line",
+          13
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 11,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Caption",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ],
+        [
+          "FigureGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 12,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Line",
+          1
+        ],
+        [
+          "Span",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 13,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          8
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 14,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          20
+        ],
+        [
+          "Line",
+          11
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 15,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          67
+        ],
+        [
+          "Line",
+          13
+        ],
+        [
+          "Text",
+          7
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\6.Robot development environment construction in Docker"
+}

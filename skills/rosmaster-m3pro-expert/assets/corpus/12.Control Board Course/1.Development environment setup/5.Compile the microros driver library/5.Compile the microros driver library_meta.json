@@ -1,0 +1,529 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Compile the microros driver library",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          65.3701171875
+        ],
+        [
+          378.4018859863281,
+          65.3701171875
+        ],
+        [
+          378.4018859863281,
+          83.01849365234375
+        ],
+        [
+          74.9560546875,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Install the cross-compiler",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          292.3154296875
+        ],
+        [
+          278.88970947265625,
+          292.3154296875
+        ],
+        [
+          278.88970947265625,
+          309.10015869140625
+        ],
+        [
+          75.52161407470703,
+          309.10015869140625
+        ]
+      ]
+    },
+    {
+      "title": "2. Get the STM32-microros library file",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          678.369140625
+        ],
+        [
+          348.5407409667969,
+          678.369140625
+        ],
+        [
+          348.5407409667969,
+          694.814453125
+        ],
+        [
+          74.66552734375,
+          694.814453125
+        ]
+      ]
+    },
+    {
+      "title": "3. Modify parameters",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          402.91015625
+        ],
+        [
+          234.00387573242188,
+          402.91015625
+        ],
+        [
+          234.00387573242188,
+          419.40142822265625
+        ],
+        [
+          74.66552734375,
+          419.40142822265625
+        ]
+      ]
+    },
+    {
+      "title": "4. Add environment variables",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          429.6337890625
+        ],
+        [
+          292.3847351074219,
+          429.6337890625
+        ],
+        [
+          292.3847351074219,
+          447.16424560546875
+        ],
+        [
+          74.375,
+          447.16424560546875
+        ]
+      ]
+    },
+    {
+      "title": "5. Start compiling",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          524.1943359375
+        ],
+        [
+          206.0175018310547,
+          524.1943359375
+        ],
+        [
+          206.0175018310547,
+          540.2074584960938
+        ],
+        [
+          74.66552734375,
+          540.2074584960938
+        ]
+      ]
+    },
+    {
+      "title": "6. Solve the include problem",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          75.52161407470703,
+          31.6572265625
+        ],
+        [
+          286.2691345214844,
+          31.6572265625
+        ],
+        [
+          286.2691345214844,
+          47.97894287109375
+        ],
+        [
+          75.52161407470703,
+          47.97894287109375
+        ]
+      ]
+    },
+    {
+      "title": "7. The final file",
+      "heading_level": null,
+      "page_id": 4,
+      "polygon": [
+        [
+          74.08447265625,
+          578.875
+        ],
+        [
+          185.2498779296875,
+          578.875
+        ],
+        [
+          185.2498779296875,
+          594.2326049804688
+        ],
+        [
+          74.08447265625,
+          594.2326049804688
+        ]
+      ]
+    },
+    {
+      "title": "8. Import STM32CUBEIDE project",
+      "heading_level": null,
+      "page_id": 5,
+      "polygon": [
+        [
+          74.9560546875,
+          376.1865234375
+        ],
+        [
+          313.1478576660156,
+          376.1865234375
+        ],
+        [
+          313.1478576660156,
+          392.38861083984375
+        ],
+        [
+          74.9560546875,
+          392.38861083984375
+        ]
+      ]
+    },
+    {
+      "title": "Import the microros library path",
+      "heading_level": null,
+      "page_id": 6,
+      "polygon": [
+        [
+          72.92236328125,
+          558.7294921875
+        ],
+        [
+          222.1517333984375,
+          558.7294921875
+        ],
+        [
+          222.1517333984375,
+          569.1744384765625
+        ],
+        [
+          72.92236328125,
+          569.1744384765625
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          83
+        ],
+        [
+          "Line",
+          21
+        ],
+        [
+          "Text",
+          13
+        ],
+        [
+          "ListItem",
+          8
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          238
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Code",
+          6
+        ],
+        [
+          "Text",
+          4
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          161
+        ],
+        [
+          "Line",
+          51
+        ],
+        [
+          "Code",
+          3
+        ],
+        [
+          "Text",
+          3
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          81
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Text",
+          10
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          141
+        ],
+        [
+          "Line",
+          28
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          9
+        ],
+        [
+          "Line",
+          5
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Figure",
+          3
+        ],
+        [
+          "Span",
+          3
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "Text",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\5.Compile the microros driver library"
+}

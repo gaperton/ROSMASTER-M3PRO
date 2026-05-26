@@ -1,0 +1,155 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Image reading and display",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          64.5478515625
+        ],
+        [
+          302.1824645996094,
+          64.5478515625
+        ],
+        [
+          302.1824645996094,
+          83.01849365234375
+        ],
+        [
+          74.9560546875,
+          83.01849365234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Image reading:",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          97.849609375
+        ],
+        [
+          201.77679443359375,
+          97.849609375
+        ],
+        [
+          201.77679443359375,
+          113.25921630859375
+        ],
+        [
+          75.52161407470703,
+          113.25921630859375
+        ]
+      ]
+    },
+    {
+      "title": "2. Image display",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.24658203125,
+          277.5146484375
+        ],
+        [
+          195.1362762451172,
+          277.5146484375
+        ],
+        [
+          195.1362762451172,
+          294.09320068359375
+        ],
+        [
+          75.24658203125,
+          294.09320068359375
+        ]
+      ]
+    },
+    {
+      "title": "2.1\u3001Code and actual effect display",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          418.1220703125
+        ],
+        [
+          289.9474792480469,
+          418.1220703125
+        ],
+        [
+          289.9474792480469,
+          432.3841247558594
+        ],
+        [
+          74.66552734375,
+          432.3841247558594
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          183
+        ],
+        [
+          "Line",
+          36
+        ],
+        [
+          "Text",
+          12
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Code",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "Picture",
+          1
+        ],
+        [
+          "Line",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\2. Image reading and display"
+}

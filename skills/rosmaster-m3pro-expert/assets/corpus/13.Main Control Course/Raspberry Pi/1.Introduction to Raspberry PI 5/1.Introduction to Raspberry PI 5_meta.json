@@ -1,0 +1,266 @@
+{
+  "table_of_contents": [
+    {
+      "title": "1. Introduction to Raspberry PI 5",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          41.5244140625
+        ],
+        [
+          432.6297607421875,
+          41.5244140625
+        ],
+        [
+          432.6297607421875,
+          65.04010009765625
+        ],
+        [
+          74.5,
+          65.04010009765625
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to Raspberry Pi 5",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          103.1943359375
+        ],
+        [
+          352.60162353515625,
+          103.1943359375
+        ],
+        [
+          352.60162353515625,
+          121.743408203125
+        ],
+        [
+          74.5,
+          121.743408203125
+        ]
+      ]
+    },
+    {
+      "title": "1.1. Preparation before use",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.5,
+          135.673828125
+        ],
+        [
+          274.56512451171875,
+          135.673828125
+        ],
+        [
+          274.56512451171875,
+          151.9700927734375
+        ],
+        [
+          74.5,
+          151.9700927734375
+        ]
+      ]
+    },
+    {
+      "title": "1.2. Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          418.9443359375
+        ],
+        [
+          198.82711791992188,
+          418.9443359375
+        ],
+        [
+          198.82711791992188,
+          433.9701232910156
+        ],
+        [
+          74.375,
+          433.9701232910156
+        ]
+      ]
+    },
+    {
+      "title": "1.3. Comparison with Raspberry Pi 4B parameters",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          73.7939453125,
+          30.423828125
+        ],
+        [
+          437.04888916015625,
+          30.423828125
+        ],
+        [
+          437.04888916015625,
+          46.97021484375
+        ],
+        [
+          73.7939453125,
+          46.97021484375
+        ]
+      ]
+    },
+    {
+      "title": "1.4. Function distribution",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          30.8349609375
+        ],
+        [
+          261.2466125488281,
+          30.8349609375
+        ],
+        [
+          261.2466125488281,
+          46.97003173828125
+        ],
+        [
+          74.375,
+          46.97003173828125
+        ]
+      ]
+    },
+    {
+      "title": "1.5. Dimensional drawing (unit: mm)",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          73.7939453125,
+          300.94921875
+        ],
+        [
+          338.5251159667969,
+          300.94921875
+        ],
+        [
+          338.5251159667969,
+          316.97003173828125
+        ],
+        [
+          73.7939453125,
+          316.97003173828125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          62
+        ],
+        [
+          "Line",
+          32
+        ],
+        [
+          "Text",
+          11
+        ],
+        [
+          "SectionHeader",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "TableCell",
+          77
+        ],
+        [
+          "Span",
+          27
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Table",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Picture",
+          2
+        ],
+        [
+          "Line",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\1.Introduction to Raspberry PI 5"
+}

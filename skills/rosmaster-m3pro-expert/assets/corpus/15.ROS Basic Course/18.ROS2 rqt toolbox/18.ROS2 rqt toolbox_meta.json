@@ -1,0 +1,339 @@
+{
+  "table_of_contents": [
+    {
+      "title": "18. ROS2 Rqt Toolbox",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          64.5478515625
+        ],
+        [
+          309.1835632324219,
+          64.5478515625
+        ],
+        [
+          309.1835632324219,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Introduction to Rqt",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          273.4033203125
+        ],
+        [
+          261.0498352050781,
+          273.4033203125
+        ],
+        [
+          261.0498352050781,
+          291.61541748046875
+        ],
+        [
+          75.52161407470703,
+          291.61541748046875
+        ]
+      ]
+    },
+    {
+      "title": "2. Installation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          358.9189453125
+        ],
+        [
+          196.4586639404297,
+          358.9189453125
+        ],
+        [
+          196.4586639404297,
+          377.1551818847656
+        ],
+        [
+          74.66552734375,
+          377.1551818847656
+        ]
+      ]
+    },
+    {
+      "title": "3. Startup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          482.669921875
+        ],
+        [
+          162.3977508544922,
+          482.669921875
+        ],
+        [
+          162.3977508544922,
+          500.9626770019531
+        ],
+        [
+          74.375,
+          500.9626770019531
+        ]
+      ]
+    },
+    {
+      "title": "4. Plugin Usage",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.375,
+          611.765625
+        ],
+        [
+          206.86663818359375,
+          611.765625
+        ],
+        [
+          206.86663818359375,
+          630.0226593017578
+        ],
+        [
+          74.375,
+          630.0226593017578
+        ]
+      ]
+    },
+    {
+      "title": "4.1. Topic Plugin",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.9560546875,
+          363.8525390625
+        ],
+        [
+          195.6573486328125,
+          363.8525390625
+        ],
+        [
+          195.6573486328125,
+          379.63311767578125
+        ],
+        [
+          74.9560546875,
+          379.63311767578125
+        ]
+      ]
+    },
+    {
+      "title": "4.2. Service Plugin",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.08447265625,
+          648.3564453125
+        ],
+        [
+          209.14785766601562,
+          648.3564453125
+        ],
+        [
+          209.14785766601562,
+          664.0153198242188
+        ],
+        [
+          74.08447265625,
+          664.0153198242188
+        ]
+      ]
+    },
+    {
+      "title": "4.3. Parameter Plugin",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.375,
+          263.125
+        ],
+        [
+          235.00222778320312,
+          263.125
+        ],
+        [
+          235.00222778320312,
+          279.08612060546875
+        ],
+        [
+          74.375,
+          279.08612060546875
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          36
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          12
+        ],
+        [
+          "Line",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          13
+        ],
+        [
+          "Line",
+          7
+        ],
+        [
+          "Text",
+          3
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          3
+        ],
+        [
+          "Figure",
+          2
+        ],
+        [
+          "Line",
+          2
+        ],
+        [
+          "SectionHeader",
+          1
+        ],
+        [
+          "Text",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\18.ROS2 rqt toolbox"
+}

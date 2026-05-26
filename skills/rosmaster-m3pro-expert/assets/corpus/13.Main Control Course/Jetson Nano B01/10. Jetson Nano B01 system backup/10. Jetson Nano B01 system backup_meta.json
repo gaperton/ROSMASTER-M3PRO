@@ -1,0 +1,140 @@
+{
+  "table_of_contents": [
+    {
+      "title": "system backup",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          66.603515625
+        ],
+        [
+          244.41519165039062,
+          66.603515625
+        ],
+        [
+          244.41519165039062,
+          88.5677490234375
+        ],
+        [
+          74.9560546875,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "1. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          189.943359375
+        ],
+        [
+          200.3507080078125,
+          189.943359375
+        ],
+        [
+          200.3507080078125,
+          207.57635498046875
+        ],
+        [
+          75.52161407470703,
+          207.57635498046875
+        ]
+      ]
+    },
+    {
+      "title": "2. Backup (Restore) Jetson Nano B01 in Windows",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          262.302734375
+        ],
+        [
+          488.2053527832031,
+          262.302734375
+        ],
+        [
+          488.2053527832031,
+          280.36016845703125
+        ],
+        [
+          74.66552734375,
+          280.36016845703125
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          43
+        ],
+        [
+          "Line",
+          22
+        ],
+        [
+          "Text",
+          5
+        ],
+        [
+          "SectionHeader",
+          3
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\10. Jetson Nano B01 system backup"
+}

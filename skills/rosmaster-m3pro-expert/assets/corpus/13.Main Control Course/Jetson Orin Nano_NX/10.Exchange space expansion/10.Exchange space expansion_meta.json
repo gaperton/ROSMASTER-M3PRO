@@ -1,0 +1,347 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Exchange space expansion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.78125
+        ],
+        [
+          370.42388916015625,
+          65.78125
+        ],
+        [
+          370.42388916015625,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Exchange space expansion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          107.3056640625
+        ],
+        [
+          193.55560302734375,
+          107.3056640625
+        ],
+        [
+          193.55560302734375,
+          117.25506591796875
+        ],
+        [
+          74.9560546875,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Exchange space",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          260.658203125
+        ],
+        [
+          231.3798065185547,
+          260.658203125
+        ],
+        [
+          231.3798065185547,
+          278.109130859375
+        ],
+        [
+          75.52161407470703,
+          278.109130859375
+        ]
+      ]
+    },
+    {
+      "title": "2. Swap space expansion",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          353.9853515625
+        ],
+        [
+          288.34881591796875,
+          353.9853515625
+        ],
+        [
+          288.34881591796875,
+          371.9027404785156
+        ],
+        [
+          74.9560546875,
+          371.9027404785156
+        ]
+      ]
+    },
+    {
+      "title": "2.1. Disable ZRAM swap configuration",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          32.068359375
+        ],
+        [
+          351.6469421386719,
+          32.068359375
+        ],
+        [
+          351.6469421386719,
+          47.9788818359375
+        ],
+        [
+          74.9560546875,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "2.2, Create 8GB file",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          140.1962890625
+        ],
+        [
+          215.24505615234375,
+          140.1962890625
+        ],
+        [
+          215.24505615234375,
+          156.029052734375
+        ],
+        [
+          75.24658203125,
+          156.029052734375
+        ]
+      ]
+    },
+    {
+      "title": "2.3. Set the swap space format",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.66552734375,
+          233.9345703125
+        ],
+        [
+          299.5110168457031,
+          233.9345703125
+        ],
+        [
+          299.5110168457031,
+          249.8226318359375
+        ],
+        [
+          74.66552734375,
+          249.8226318359375
+        ]
+      ]
+    },
+    {
+      "title": "2.4. Enable swap space",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          302.1826171875
+        ],
+        [
+          243.14791870117188,
+          302.1826171875
+        ],
+        [
+          243.14791870117188,
+          318.10430908203125
+        ],
+        [
+          75.52161407470703,
+          318.10430908203125
+        ]
+      ]
+    },
+    {
+      "title": "2.5. Permanently start swap space",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.9560546875,
+          370.4306640625
+        ],
+        [
+          328.0269775390625,
+          370.4306640625
+        ],
+        [
+          328.0269775390625,
+          386.38604736328125
+        ],
+        [
+          74.9560546875,
+          386.38604736328125
+        ]
+      ]
+    },
+    {
+      "title": "3. Verify the expansion",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          437.8564453125
+        ],
+        [
+          273.94134521484375,
+          437.8564453125
+        ],
+        [
+          273.94134521484375,
+          455.9417419433594
+        ],
+        [
+          75.52161407470703,
+          455.9417419433594
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          113
+        ],
+        [
+          "Line",
+          20
+        ],
+        [
+          "ListItem",
+          8
+        ],
+        [
+          "SectionHeader",
+          4
+        ],
+        [
+          "Reference",
+          3
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          77
+        ],
+        [
+          "Line",
+          15
+        ],
+        [
+          "Text",
+          8
+        ],
+        [
+          "SectionHeader",
+          6
+        ],
+        [
+          "Reference",
+          6
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\10.Exchange space expansion"
+}

@@ -1,0 +1,729 @@
+{
+  "table_of_contents": [
+    {
+      "title": "Rapid Relocalization and Navigation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          65.3701171875
+        ],
+        [
+          475.0046691894531,
+          65.3701171875
+        ],
+        [
+          475.0046691894531,
+          88.5677490234375
+        ],
+        [
+          75.52161407470703,
+          88.5677490234375
+        ]
+      ]
+    },
+    {
+      "title": "Rapid Relocalization and Navigation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.375,
+          107.3056640625
+        ],
+        [
+          235.41905212402344,
+          107.3056640625
+        ],
+        [
+          235.41905212402344,
+          117.25506591796875
+        ],
+        [
+          74.375,
+          117.25506591796875
+        ]
+      ]
+    },
+    {
+      "title": "1. Course Content",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          75.52161407470703,
+          314.5166015625
+        ],
+        [
+          229.14520263671875,
+          314.5166015625
+        ],
+        [
+          229.14520263671875,
+          332.1342468261719
+        ],
+        [
+          75.52161407470703,
+          332.1342468261719
+        ]
+      ]
+    },
+    {
+      "title": "2. Principle Overview",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          414.8330078125
+        ],
+        [
+          259.395263671875,
+          414.8330078125
+        ],
+        [
+          259.395263671875,
+          432.68096923828125
+        ],
+        [
+          74.66552734375,
+          432.68096923828125
+        ]
+      ]
+    },
+    {
+      "title": "2.1 Introduction",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          447.3125
+        ],
+        [
+          195.73049926757812,
+          447.3125
+        ],
+        [
+          195.73049926757812,
+          462.17132568359375
+        ],
+        [
+          74.9560546875,
+          462.17132568359375
+        ]
+      ]
+    },
+    {
+      "title": "2.2 Differences Between the Two Localization Methods",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.66552734375,
+          561.1962890625
+        ],
+        [
+          475.9113464355469,
+          561.1962890625
+        ],
+        [
+          475.9113464355469,
+          576.9746704101562
+        ],
+        [
+          74.66552734375,
+          576.9746704101562
+        ]
+      ]
+    },
+    {
+      "title": "3. Preparation",
+      "heading_level": null,
+      "page_id": 0,
+      "polygon": [
+        [
+          74.9560546875,
+          704.2705078125
+        ],
+        [
+          196.61923217773438,
+          704.2705078125
+        ],
+        [
+          196.61923217773438,
+          723.0658798217773
+        ],
+        [
+          74.9560546875,
+          723.0658798217773
+        ]
+      ]
+    },
+    {
+      "title": "3.1 Content Description",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          32.068359375
+        ],
+        [
+          250.1754150390625,
+          32.068359375
+        ],
+        [
+          250.1754150390625,
+          47.9788818359375
+        ],
+        [
+          75.24658203125,
+          47.9788818359375
+        ]
+      ]
+    },
+    {
+      "title": "3.2 Map Preparation",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          162.3974609375
+        ],
+        [
+          226.51577758789062,
+          162.3974609375
+        ],
+        [
+          226.51577758789062,
+          178.0205078125
+        ],
+        [
+          75.52161407470703,
+          178.0205078125
+        ]
+      ]
+    },
+    {
+      "title": "4. Running the Example",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.52161407470703,
+          370.01953125
+        ],
+        [
+          278.9380187988281,
+          370.01953125
+        ],
+        [
+          278.9380187988281,
+          389.1607360839844
+        ],
+        [
+          75.52161407470703,
+          389.1607360839844
+        ]
+      ]
+    },
+    {
+      "title": "4.1 Single-Point Navigation Function",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          74.08447265625,
+          402.4990234375
+        ],
+        [
+          342.0777893066406,
+          402.4990234375
+        ],
+        [
+          342.0777893066406,
+          418.65106201171875
+        ],
+        [
+          74.08447265625,
+          418.65106201171875
+        ]
+      ]
+    },
+    {
+      "title": "Note:",
+      "heading_level": null,
+      "page_id": 1,
+      "polygon": [
+        [
+          75.24658203125,
+          432.1005859375
+        ],
+        [
+          103.17399597167969,
+          432.1005859375
+        ],
+        [
+          103.17399597167969,
+          443.11572265625
+        ],
+        [
+          75.24658203125,
+          443.11572265625
+        ]
+      ]
+    },
+    {
+      "title": "ros2 launch M3Pro_navigation nav_rviz.launch.py",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          84.54345703125,
+          36.1796875
+        ],
+        [
+          335.6470642089844,
+          36.1796875
+        ],
+        [
+          335.6470642089844,
+          46.6829833984375
+        ],
+        [
+          84.54345703125,
+          46.6829833984375
+        ]
+      ]
+    },
+    {
+      "title": "4.3 Viewing the Node Communication Graph",
+      "heading_level": null,
+      "page_id": 2,
+      "polygon": [
+        [
+          74.375,
+          420.177734375
+        ],
+        [
+          400.9122619628906,
+          420.177734375
+        ],
+        [
+          400.9122619628906,
+          435.15887451171875
+        ],
+        [
+          74.375,
+          435.15887451171875
+        ]
+      ]
+    },
+    {
+      "title": "4.4 Viewing the TF Tree",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.9560546875,
+          32.890625
+        ],
+        [
+          245.29879760742188,
+          32.890625
+        ],
+        [
+          245.29879760742188,
+          47.97869873046875
+        ],
+        [
+          74.9560546875,
+          47.97869873046875
+        ]
+      ]
+    },
+    {
+      "title": "5. Principle Explanation",
+      "heading_level": null,
+      "page_id": 3,
+      "polygon": [
+        [
+          74.66552734375,
+          359.7412109375
+        ],
+        [
+          279.267333984375,
+          359.7412109375
+        ],
+        [
+          279.267333984375,
+          377.9053649902344
+        ],
+        [
+          74.66552734375,
+          377.9053649902344
+        ]
+      ]
+    }
+  ],
+  "page_stats": [
+    {
+      "page_id": 0,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          131
+        ],
+        [
+          "Line",
+          35
+        ],
+        [
+          "ListItem",
+          18
+        ],
+        [
+          "SectionHeader",
+          7
+        ],
+        [
+          "Reference",
+          6
+        ],
+        [
+          "ListGroup",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 1,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          82
+        ],
+        [
+          "Line",
+          28
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "SectionHeader",
+          5
+        ],
+        [
+          "Code",
+          5
+        ],
+        [
+          "Reference",
+          4
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 2,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          31
+        ],
+        [
+          "Line",
+          10
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "ListItem",
+          2
+        ],
+        [
+          "Text",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ],
+        [
+          "Code",
+          1
+        ],
+        [
+          "Picture",
+          1
+        ],
+        [
+          "ListGroup",
+          1
+        ],
+        [
+          "Reference",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 3,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          95
+        ],
+        [
+          "Line",
+          25
+        ],
+        [
+          "Text",
+          9
+        ],
+        [
+          "Code",
+          4
+        ],
+        [
+          "SectionHeader",
+          2
+        ],
+        [
+          "Reference",
+          2
+        ],
+        [
+          "Figure",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 4,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          301
+        ],
+        [
+          "Line",
+          49
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 5,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          255
+        ],
+        [
+          "Line",
+          49
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 6,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          145
+        ],
+        [
+          "Line",
+          58
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 7,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          139
+        ],
+        [
+          "Line",
+          57
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 8,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          211
+        ],
+        [
+          "Line",
+          44
+        ],
+        [
+          "Code",
+          2
+        ],
+        [
+          "Text",
+          2
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 9,
+      "text_extraction_method": "pdftext",
+      "block_counts": [
+        [
+          "Span",
+          167
+        ],
+        [
+          "Line",
+          38
+        ],
+        [
+          "Code",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    },
+    {
+      "page_id": 10,
+      "text_extraction_method": "surya",
+      "block_counts": [
+        [
+          "TableCell",
+          33
+        ],
+        [
+          "Form",
+          1
+        ]
+      ],
+      "block_metadata": {
+        "llm_request_count": 0,
+        "llm_error_count": 0,
+        "llm_tokens_used": 0,
+        "previous_text": "",
+        "previous_type": "",
+        "previous_order": 0
+      }
+    }
+  ],
+  "debug_data_path": "debug_data\\11.Repositioning navigation"
+}
