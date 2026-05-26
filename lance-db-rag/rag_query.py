@@ -60,6 +60,7 @@ STOP_WORDS = frozenset({
     "will", "with", "you", "your",
 })
 RRF_K = 60
+ROUTE_BOOST = 0.006
 
 
 def query_content_tokens(q: str) -> list[str]:
@@ -76,6 +77,81 @@ def to_lance_fts_query(q: str) -> str:
     """
     tokens = query_content_tokens(q)
     return " OR ".join(tokens) if tokens else ""
+
+
+def query_profile(query: str) -> tuple[str, set[str]]:
+    """Return (keyword_query, route_intents) for local beginner-query fixes."""
+    q = query.lower()
+    expansions: list[str] = []
+    intents: set[str] = set()
+
+    mapping_terms = ("map a room", "mapping", "slam", "make a map")
+    if any(term in q for term in mapping_terms) or ("map" in q and "room" in q):
+        intents.add("mapping")
+        expansions.extend(["slam", "mapping", "cartographer", "gmapping", "slam_toolbox", "lidar"])
+    for mapper in ("gmapping", "cartographer", "slam_toolbox"):
+        if mapper in q:
+            intents.add(f"{mapper}_exact")
+
+    chassis_terms = (
+        "cmd_vel",
+        "velocity command",
+        "terminal to move",
+        "drive straight",
+        "straight line",
+        "1 meter",
+        "one meter",
+        "move the robot",
+    )
+    if any(term in q for term in chassis_terms):
+        intents.add("chassis_velocity")
+        expansions.extend(["cmd_vel", "linear", "velocity", "chassis", "ros2", "topic", "pub"])
+
+    ros2_terms = ("install ros2", "ros2 install", "launch file", "package", "workspace")
+    if any(term in q for term in ros2_terms):
+        intents.add("ros2_workflow")
+        expansions.extend(["ros2", "humble", "workspace", "package"])
+
+    if not expansions:
+        return query, intents
+    return query + " " + " ".join(dict.fromkeys(expansions)), intents
+
+
+def route_boost(file_path: str, heading_path: str, intents: set[str]) -> float:
+    """Small post-fusion boost for predictable local-doc routing intents."""
+    if not intents:
+        return 0.0
+
+    path = f"{file_path} {heading_path}".lower().replace("\\", "/")
+    boost = 0.0
+
+    if "mapping" in intents:
+        if "gmapping_exact" in intents:
+            if "6.lidar course/" in path and "gmapping" in path:
+                boost += ROUTE_BOOST * 2.0
+        elif "cartographer_exact" in intents:
+            if "6.lidar course/" in path and "cartographer" in path:
+                boost += ROUTE_BOOST * 2.0
+        elif "slam_toolbox_exact" in intents:
+            if "6.lidar course/" in path and "slam_toolbox" in path:
+                boost += ROUTE_BOOST * 2.0
+        elif "6.lidar course/" in path and "cartographer" in path:
+            boost += ROUTE_BOOST * 2.0
+        elif "6.lidar course/" in path and any(
+            term in path for term in ("gmapping", "slam_toolbox", "rtab-map")
+        ):
+            boost += ROUTE_BOOST
+
+    if "chassis_velocity" in intents:
+        if "5.chassis control course/1.ros control" in path:
+            boost += ROUTE_BOOST * 1.5
+        elif "5.chassis control course/" in path:
+            boost += ROUTE_BOOST
+
+    if "ros2_workflow" in intents and "15.ros basic course/" in path:
+        boost += ROUTE_BOOST
+
+    return boost
 
 
 def rrf_fuse(rankings: dict[str, list[str]], k_param: int = RRF_K) -> dict[str, float]:
@@ -146,19 +222,20 @@ def run_search(
     vector centroids both mislead. Cost: ~50 ms / query for RERANK_POOL pairs.
     """
     pool = pool if pool > 0 else max(top_k * 4, 30)
+    keyword_query, route_intents = query_profile(query)
 
     if mode == "semantic":
         return table.search(query, query_type="vector").limit(top_k).to_list()
 
     if mode == "keyword":
-        fts_q = to_lance_fts_query(query)
+        fts_q = to_lance_fts_query(keyword_query)
         if not fts_q:
             return []
         return table.search(fts_q, query_type="fts").limit(top_k).to_list()
 
     # Hybrid: pool per channel, manual RRF.
     vector_rows = table.search(query, query_type="vector").limit(pool).to_list()
-    fts_q = to_lance_fts_query(query)
+    fts_q = to_lance_fts_query(keyword_query)
     fts_rows = (
         table.search(fts_q, query_type="fts").limit(pool).to_list() if fts_q else []
     )
@@ -180,6 +257,12 @@ def run_search(
         "semantic": [r["chunk_id"] for r in vector_rows],
         "keyword": [r["chunk_id"] for r in fts_rows],
     })
+    boosts = {}
+    for cid, row in by_id.items():
+        boost = route_boost(row.get("file_path", "?"), row.get("heading_path") or "", route_intents)
+        boosts[cid] = boost
+        if cid in scores:
+            scores[cid] += boost
 
     # Narrow to a rerank pool first; cross-encoder only sees the top RERANK_POOL.
     fused_top = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
@@ -216,6 +299,7 @@ def run_search(
         row[score_label] = score
         # Always carry the RRF score too so callers can see both.
         row["_relevance_score"] = scores.get(cid, row.get("_relevance_score"))
+        row["_route_boost"] = boosts.get(cid, 0.0)
         out.append(row)
     return out
 
@@ -274,6 +358,7 @@ def search(
                 "cos": cos,
                 "bm25": fts,
                 "rrf": rrf,
+                "route_boost": row.get("_route_boost", 0.0),
             }
         )
     return out
@@ -287,6 +372,7 @@ def format_score(row: dict, mode: str) -> str:
         d = row.get("_distance")
         cos = 1.0 - (d * d) / 2.0 if d is not None else None
         bm = row.get("_score")
+        boost = row.get("_route_boost") or 0.0
         parts = []
         if ce is not None:
             parts.append(f"ce={ce:+.3f}")
@@ -296,6 +382,8 @@ def format_score(row: dict, mode: str) -> str:
             parts.append(f"cos={cos:.3f}")
         if bm is not None:
             parts.append(f"fts={bm:.3f}")
+        if boost:
+            parts.append(f"boost={boost:.3f}")
         return "  ".join(parts) if parts else "?=—"
     if mode == "semantic":
         d = row.get("_distance")

@@ -28,6 +28,7 @@ DEFAULT_MODEL = "BAAI/bge-small-en-v1.5"
 QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
 RRF_K = 60
 DEFAULT_BM25_HEADING_WEIGHT = 1.0
+ROUTE_BOOST = 0.006
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DB = SCRIPT_DIR / "rag_index.db"
@@ -76,6 +77,81 @@ def to_fts5_query(q: str) -> str:
     kept = [t for t in raw if t.lower() not in STOP_WORDS]
     tokens = kept or raw
     return " OR ".join(f'"{t}"' for t in tokens)
+
+
+def query_profile(query: str) -> tuple[str, set[str]]:
+    """Return (keyword_query, route_intents) for local beginner-query fixes."""
+    q = query.lower()
+    expansions: list[str] = []
+    intents: set[str] = set()
+
+    mapping_terms = ("map a room", "mapping", "slam", "make a map")
+    if any(term in q for term in mapping_terms) or ("map" in q and "room" in q):
+        intents.add("mapping")
+        expansions.extend(["slam", "mapping", "cartographer", "gmapping", "slam_toolbox", "lidar"])
+    for mapper in ("gmapping", "cartographer", "slam_toolbox"):
+        if mapper in q:
+            intents.add(f"{mapper}_exact")
+
+    chassis_terms = (
+        "cmd_vel",
+        "velocity command",
+        "terminal to move",
+        "drive straight",
+        "straight line",
+        "1 meter",
+        "one meter",
+        "move the robot",
+    )
+    if any(term in q for term in chassis_terms):
+        intents.add("chassis_velocity")
+        expansions.extend(["cmd_vel", "linear", "velocity", "chassis", "ros2", "topic", "pub"])
+
+    ros2_terms = ("install ros2", "ros2 install", "launch file", "package", "workspace")
+    if any(term in q for term in ros2_terms):
+        intents.add("ros2_workflow")
+        expansions.extend(["ros2", "humble", "workspace", "package"])
+
+    if not expansions:
+        return query, intents
+    return query + " " + " ".join(dict.fromkeys(expansions)), intents
+
+
+def route_boost(file_path: str, heading_path: str, intents: set[str]) -> float:
+    """Small post-fusion boost for predictable local-doc routing intents."""
+    if not intents:
+        return 0.0
+
+    path = f"{file_path} {heading_path}".lower().replace("\\", "/")
+    boost = 0.0
+
+    if "mapping" in intents:
+        if "gmapping_exact" in intents:
+            if "6.lidar course/" in path and "gmapping" in path:
+                boost += ROUTE_BOOST * 2.0
+        elif "cartographer_exact" in intents:
+            if "6.lidar course/" in path and "cartographer" in path:
+                boost += ROUTE_BOOST * 2.0
+        elif "slam_toolbox_exact" in intents:
+            if "6.lidar course/" in path and "slam_toolbox" in path:
+                boost += ROUTE_BOOST * 2.0
+        elif "6.lidar course/" in path and "cartographer" in path:
+            boost += ROUTE_BOOST * 2.0
+        elif "6.lidar course/" in path and any(
+            term in path for term in ("gmapping", "slam_toolbox", "rtab-map")
+        ):
+            boost += ROUTE_BOOST
+
+    if "chassis_velocity" in intents:
+        if "5.chassis control course/1.ros control" in path:
+            boost += ROUTE_BOOST * 1.5
+        elif "5.chassis control course/" in path:
+            boost += ROUTE_BOOST
+
+    if "ros2_workflow" in intents and "15.ros basic course/" in path:
+        boost += ROUTE_BOOST
+
+    return boost
 
 
 def search_semantic(
@@ -191,6 +267,7 @@ def search(
     when available (cos for semantic, bm25 for keyword, rrf for hybrid).
     """
     pool = pool if pool > 0 else max(top_k * 4, 30)
+    keyword_query, route_intents = query_profile(query)
     conn = open_db(Path(db_path))
     try:
         sem_results: list[tuple[int, float]] = []
@@ -198,7 +275,7 @@ def search(
         if mode in ("semantic", "hybrid"):
             sem_results = search_semantic(conn, _get_model(model_name), query, pool)
         if mode in ("keyword", "hybrid"):
-            kw_results = search_keyword(conn, query, pool, bm25_heading_weight)
+            kw_results = search_keyword(conn, keyword_query, pool, bm25_heading_weight)
 
         sem_scores = {cid: s for cid, s in sem_results}
         kw_scores = {cid: s for cid, s in kw_results}
@@ -216,14 +293,24 @@ def search(
                     "keyword": [cid for cid, _ in kw_results],
                 }
             )
-            ranked = sorted(fused.items(), key=lambda kv: kv[1], reverse=True)[:top_k]
+            meta = fetch_chunks(conn, list(fused.keys()))
+            boosts = {}
+            boosted = {}
+            for cid, score in fused.items():
+                file_path, heading_path, _ = meta.get(cid, ("?", "", ""))
+                boost = route_boost(file_path, heading_path, route_intents)
+                boosts[cid] = boost
+                boosted[cid] = score + boost
+            ranked = sorted(boosted.items(), key=lambda kv: kv[1], reverse=True)[:top_k]
             primary_label = "rrf"
 
         if not ranked:
             return []
 
         ranked_ids = [cid for cid, _ in ranked]
-        meta = fetch_chunks(conn, ranked_ids)
+        if mode != "hybrid":
+            meta = fetch_chunks(conn, ranked_ids)
+            boosts = {}
 
         out: list[dict] = []
         for cid, primary in ranked:
@@ -238,6 +325,7 @@ def search(
                     "primary": primary,
                     "cos": sem_scores.get(cid),
                     "bm25": kw_scores.get(cid),
+                    "route_boost": boosts.get(cid, 0.0),
                 }
             )
         return out
@@ -310,6 +398,7 @@ def main() -> int:
         return 2
 
     pool = args.pool if args.pool > 0 else max(args.top_k * 4, 30)
+    keyword_query, route_intents = query_profile(args.query)
     conn = open_db(db_path)
 
     sem_results: list[tuple[int, float]] = []
@@ -319,7 +408,7 @@ def main() -> int:
         model = SentenceTransformer(args.model)
         sem_results = search_semantic(conn, model, args.query, pool)
     if args.mode in ("keyword", "hybrid"):
-        kw_results = search_keyword(conn, args.query, pool, args.bm25_heading_weight)
+        kw_results = search_keyword(conn, keyword_query, pool, args.bm25_heading_weight)
 
     sem_scores = {cid: s for cid, s in sem_results}
     kw_scores = {cid: s for cid, s in kw_results}
@@ -337,7 +426,15 @@ def main() -> int:
                 "keyword": [cid for cid, _ in kw_results],
             }
         )
-        ranked = sorted(fused.items(), key=lambda kv: kv[1], reverse=True)[: args.top_k]
+        meta = fetch_chunks(conn, list(fused.keys()))
+        boosts = {}
+        boosted = {}
+        for cid, score in fused.items():
+            file_path, heading_path, _ = meta.get(cid, ("?", "", ""))
+            boost = route_boost(file_path, heading_path, route_intents)
+            boosts[cid] = boost
+            boosted[cid] = score + boost
+        ranked = sorted(boosted.items(), key=lambda kv: kv[1], reverse=True)[: args.top_k]
         primary_label = "rrf"
 
     if not ranked:
@@ -346,10 +443,12 @@ def main() -> int:
         return 1
 
     ranked_ids = [cid for cid, _ in ranked]
-    meta = fetch_chunks(conn, ranked_ids)
+    if args.mode != "hybrid":
+        meta = fetch_chunks(conn, ranked_ids)
+        boosts = {}
     fts_snips = (
         {} if args.full or args.mode == "semantic"
-        else fetch_fts_snippets(conn, args.query, ranked_ids)
+        else fetch_fts_snippets(conn, keyword_query, ranked_ids)
     )
     conn.close()
 

@@ -28,6 +28,10 @@ CHUNK_TARGET_CHARS = 1800
 CHUNK_OVERLAP_CHARS = 300
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*$", re.MULTILINE)
+PAGE_SPAN_RE = re.compile(r"""<span\s+[^>]*id=["']page-[^"']+["'][^>]*>\s*</span>""", re.IGNORECASE)
+PAGE_ANCHOR_LINK_RE = re.compile(r"\[([^\]]+)\]\(#page-[^)]+\)")
+TABLE_SEPARATOR_RE = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$")
+SENTENCE_BOUNDARY_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9`*_\"'])")
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_DOCS = SCRIPT_DIR.parent / "markdown"
@@ -71,6 +75,14 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
+def clean_markdown(text: str) -> str:
+    """Remove PDF-conversion litter before chunking, embedding, and display."""
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    text = PAGE_SPAN_RE.sub("", text)
+    text = PAGE_ANCHOR_LINK_RE.sub(r"\1", text)
+    return "\n".join(line.rstrip() for line in text.split("\n")).strip()
+
+
 def split_by_headings(text: str) -> list[tuple[list[str], str]]:
     sections: list[tuple[list[str], str]] = []
     stack: list[str] = []
@@ -100,9 +112,127 @@ def split_by_headings(text: str) -> list[tuple[list[str], str]]:
     return [(h, b) for h, b in sections if b]
 
 
-def chunk_section(heading: list[str], body: str) -> list[tuple[list[str], str]]:
+def is_fence_start(line: str) -> bool:
+    stripped = line.lstrip()
+    return stripped.startswith("```") or stripped.startswith("~~~")
+
+
+def is_table_start(lines: list[str], i: int) -> bool:
+    return (
+        "|" in lines[i]
+        and i + 1 < len(lines)
+        and TABLE_SEPARATOR_RE.match(lines[i + 1].strip()) is not None
+    )
+
+
+def section_blocks(body: str) -> list[tuple[str, bool]]:
+    """Return (text, atomic) blocks; atomic blocks are never split."""
+    blocks: list[tuple[str, bool]] = []
+    paragraph: list[str] = []
+    lines = body.split("\n")
+    i = 0
+
+    def flush_paragraph() -> None:
+        nonlocal paragraph
+        if paragraph:
+            blocks.append(("\n".join(paragraph).strip(), False))
+            paragraph = []
+
+    while i < len(lines):
+        line = lines[i]
+        if is_fence_start(line):
+            flush_paragraph()
+            fence = [line]
+            i += 1
+            while i < len(lines):
+                fence.append(lines[i])
+                if is_fence_start(lines[i]):
+                    i += 1
+                    break
+                i += 1
+            blocks.append(("\n".join(fence).strip(), True))
+            continue
+
+        if is_table_start(lines, i):
+            flush_paragraph()
+            table = []
+            while i < len(lines) and lines[i].strip() and "|" in lines[i]:
+                table.append(lines[i])
+                i += 1
+            blocks.append(("\n".join(table).strip(), True))
+            continue
+
+        if not line.strip():
+            flush_paragraph()
+        else:
+            paragraph.append(line)
+        i += 1
+
+    flush_paragraph()
+    return [(text, atomic) for text, atomic in blocks if text]
+
+
+def hard_split_text(text: str, max_chars: int) -> list[str]:
+    pieces: list[str] = []
+    text = text.strip()
+    while len(text) > max_chars:
+        cut = max(text.rfind("\n", 0, max_chars + 1), text.rfind(" ", 0, max_chars + 1))
+        if cut < max_chars // 2:
+            cut = max_chars
+        pieces.append(text[:cut].strip())
+        text = text[cut:].strip()
+    if text:
+        pieces.append(text)
+    return pieces
+
+
+def split_prose_block(text: str) -> list[str]:
+    """Split oversized prose by sentence first, then by character fallback."""
+    if len(text) <= CHUNK_TARGET_CHARS:
+        return [text]
+
+    pieces: list[str] = []
+    current = ""
+    for sentence in SENTENCE_BOUNDARY_RE.split(text):
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+        if len(sentence) > CHUNK_TARGET_CHARS:
+            if current:
+                pieces.append(current)
+                current = ""
+            pieces.extend(hard_split_text(sentence, CHUNK_TARGET_CHARS))
+            continue
+        candidate = f"{current} {sentence}".strip() if current else sentence
+        if len(candidate) <= CHUNK_TARGET_CHARS:
+            current = candidate
+        else:
+            pieces.append(current)
+            current = sentence
+    if current:
+        pieces.append(current)
+    return pieces
+
+
+def joined_len(parts: list[str]) -> int:
+    return len("\n\n".join(parts))
+
+
+def overlap_tail(parts: list[str]) -> list[str]:
+    out: list[str] = []
+    for part in reversed(parts):
+        candidate = [part, *out]
+        if joined_len(candidate) > CHUNK_OVERLAP_CHARS:
+            break
+        out = candidate
+    return out
+
+
+def legacy_chunk_section(heading: list[str], body: str) -> list[tuple[list[str], str]]:
+    """NX8/NX10 baseline chunker: fixed-size sliding window with overlap."""
     if len(body) <= CHUNK_TARGET_CHARS:
         return [(heading, body)]
+
     chunks: list[tuple[list[str], str]] = []
     step = CHUNK_TARGET_CHARS - CHUNK_OVERLAP_CHARS
     for start in range(0, len(body), step):
@@ -114,10 +244,43 @@ def chunk_section(heading: list[str], body: str) -> list[tuple[list[str], str]]:
     return chunks
 
 
-def chunk_markdown(text: str) -> list[tuple[list[str], str]]:
+def boundary_chunk_section(heading: list[str], body: str) -> list[tuple[list[str], str]]:
+    """Chunk by paragraph/sentence boundaries without splitting fences or tables."""
+    units: list[str] = []
+    for block, atomic in section_blocks(body):
+        units.extend([block] if atomic else split_prose_block(block))
+
+    if not units:
+        return []
+
+    chunks: list[tuple[list[str], str]] = []
+    current: list[str] = []
+    for unit in units:
+        if len(unit) > CHUNK_TARGET_CHARS:
+            if current:
+                chunks.append((heading, "\n\n".join(current)))
+                current = []
+            chunks.append((heading, unit))
+            continue
+
+        if current and joined_len(current + [unit]) > CHUNK_TARGET_CHARS:
+            chunks.append((heading, "\n\n".join(current)))
+            current = overlap_tail(current)
+            if current and joined_len(current + [unit]) > CHUNK_TARGET_CHARS:
+                current = []
+        current.append(unit)
+
+    if current:
+        chunks.append((heading, "\n\n".join(current)))
+    return chunks
+
+
+def chunk_markdown(text: str, chunking: str = "legacy") -> list[tuple[list[str], str]]:
     out: list[tuple[list[str], str]] = []
-    for heading, body in split_by_headings(text):
-        out.extend(chunk_section(heading, body))
+    source = clean_markdown(text) if chunking == "boundary" else text
+    chunker = boundary_chunk_section if chunking == "boundary" else legacy_chunk_section
+    for heading, body in split_by_headings(source):
+        out.extend(chunker(heading, body))
     return out
 
 
@@ -143,10 +306,10 @@ def load_file_hashes(files_t) -> dict[str, str]:
     return dict(zip(paths, hashes))
 
 
-def build_chunk_rows(docs_root: Path, file_path: Path) -> list[dict]:
+def build_chunk_rows(docs_root: Path, file_path: Path, chunking: str) -> list[dict]:
     rel = file_path.relative_to(docs_root).as_posix()
     text = file_path.read_text(encoding="utf-8", errors="replace")
-    sections = chunk_markdown(text)
+    sections = chunk_markdown(text, chunking)
     rows: list[dict] = []
     for ord_, (heading, body) in enumerate(sections):
         heading_str = " > ".join(heading)
@@ -173,6 +336,12 @@ def main() -> int:
         choices=tuple(VARIANTS),
         default="small",
         help="BGE variant: small (384-dim) or large (1024-dim). Must match the table's stored schema on re-open.",
+    )
+    ap.add_argument(
+        "--chunking",
+        choices=("legacy", "boundary"),
+        default="legacy",
+        help="Chunking strategy: legacy NX8/NX10 sliding windows or boundary-aware NX9 (default: legacy)",
     )
     ap.add_argument("--rebuild", action="store_true", help="Wipe the DB and re-embed everything")
     args = ap.parse_args()
@@ -217,7 +386,7 @@ def main() -> int:
         if rel in in_db:
             chunks_t.delete(f"file_path = '{sql_escape(rel)}'")
             files_t.delete(f"path = '{sql_escape(rel)}'")
-        rows = build_chunk_rows(docs_root, f)
+        rows = build_chunk_rows(docs_root, f, args.chunking)
         if rows:
             chunks_t.add(rows)
             new_chunks += len(rows)
