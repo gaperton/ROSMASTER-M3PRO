@@ -1,13 +1,5 @@
 # Enter the Vehicle Docker
 
-#### Enter the Vehicle Docker
-
-- 1. Course Content
-- 2. Basic Operations
-  - 2.1 Start the m3pro container
-  - 2.2 Enter the m3pro container terminal
-  - 2.3 Shut down the m3pro container
-
 ## 1. Course Content
 
 This section of the course is only for reference by users of **Raspberry Pi 5** mainboard and **Jetson Nano** mainboard
@@ -28,7 +20,7 @@ bringup_m3pro
 
 Display container rosmaster-m3pro Started indicates successful startup
 
-#### 2.2 Enter the m3pro container terminal
+### 2.2 Enter the m3pro container terminal
 
 The commands in subsequent tutorials need to be operated within the container. Open the container terminal command:
 
@@ -38,7 +30,7 @@ exec_m3pro
 
 If you need to exit the container terminal, press ctrl+D
 
-## 2.3 Shut down the m3pro container
+### 2.3 Shut down the m3pro container
 
 When you really need to manually shut down the m3pro container (generally no need to shut down):
 

@@ -104,10 +104,13 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
     "\u00e2\u20ac\u009d": '"',
     "\u00e2\u2020\u2019": "->",
     "\u00e2\u2020\u0092": "->",
+    "\u2192": "->",
     "\u00e2\u02c6\u0161": "the check mark",
     "\u221a": "the check mark",
     "\u00c3\u2014": "x",
+    "\u00ae": "(R)",
     "\u00c2\u00ae": "(R)",
+    "\u00b0": " degrees",
     "\u00c2\u00b0": " degrees",
     "\u00c2": "",
     "\u00e3\u20ac\u0081": ", ",
@@ -283,6 +286,8 @@ def normalize_heading_level(
             number_depth = numbered.group("num").count(".") + 1
             if numbered_parent_level:
                 target_level = min(6, numbered_parent_level + number_depth)
+            elif number_depth == 1 and original_level > 2 and last_level >= 2:
+                target_level = min(6, last_level + 1 if original_level > last_level else last_level)
             else:
                 target_level = min(6, number_depth + 1)
         elif last_level and original_level > last_level + 1:

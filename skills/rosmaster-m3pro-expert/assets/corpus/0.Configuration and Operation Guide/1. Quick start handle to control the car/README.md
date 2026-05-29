@@ -1,4 +1,4 @@
-## Quick start handle to control the car
+# Quick start handle to control the car
 
 Plug the controller receiver into the mainboard or HUB expansion board. After the robot is powered on, the system will automatically connect to the proxy and start the controller control program. Press the [START] button on the controller to activate the controller, then press R2 to unlock the buttons. You can then use the remote control to control the robot according to the table below.
 
@@ -62,7 +62,7 @@ If you want to permanently turn off the handle control self-start function, the 
 
 Raspberry Pi and Jetson Nano motherboard Terminal input,
 
-```
+```bash
 mv ~/.config/autostart/uros.desktop ~
 ```
 
@@ -72,7 +72,7 @@ Orin Motherboard
 
 Terminal input,
 
-```
+```bash
 mv ~/.config/autostart/joy_control.desktop ~
 ```
 

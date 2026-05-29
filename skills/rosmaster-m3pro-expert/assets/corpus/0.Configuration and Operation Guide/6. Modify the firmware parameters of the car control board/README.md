@@ -1,4 +1,4 @@
-## Modify the firmware parameters of the car control board
+# Modify the firmware parameters of the car control board
 
 Modify the firmware parameters of the car control board
 
@@ -22,7 +22,9 @@ Make sure the Type-C USB Connect port on the control board is connected to the U
 
 Open the system terminal, find and open the [config_robot.py] file in the user directory.
 
+```bash
 vim ~/config_robot.py
+```
 
 Scroll to the bottom of the file, and you will find the configuration parameters mainly including set_ros_domain_id, set_ros_namespace, set_motor_pid_parm, set_imu_yaw_pid_parm, set_ros_scale_line, set_ros_scale_angular, and set_arm_mid_value.
 
@@ -61,7 +63,7 @@ Note: Before running the configuration modification script, you need to shut dow
 
 Open the system terminal and run the following command to start writing the configuration
 
-```
+```bash
 python3 ~/config_robot.py
 ```
 

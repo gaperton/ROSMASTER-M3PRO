@@ -2,11 +2,11 @@
 
 This section introduces several ways to connect the car to your computer and how to view the code.
 
-The recommended operation process in this section is: connect to the car's hotspot/insert the network cable to obtain the IP → check the OLED screen's IP → log in via VNC → turn off the hotspot and connect to your own Wi-Fi (to facilitate the subsequent operation of large model functions) → check the updated IP of the OLED → reconnect to VNC → view the source code.
+The recommended operation process in this section is: connect to the car's hotspot/insert the network cable to obtain the IP -> check the OLED screen's IP -> log in via VNC -> turn off the hotspot and connect to your own Wi-Fi (to facilitate the subsequent operation of large model functions) -> check the updated IP of the OLED -> reconnect to VNC -> view the source code.
 
 **The default hotspot name of the factory image is: ROSMASTER, the password is: 12345678, and the default IP is: 192.168.8.88**.
 
-# 1. Connect the car
+## 1. Connect the car
 
 Regardless of the method used to connect to the car, the computer and the car need to be in the same local area network. The simplest condition to meet the same LAN is to connect to the same Wi-Fi or hotspot. First, connect to the car's default hotspot ROSMASTER, the Wi-Fi password is 12345678. After the connection is successful, you can use the following method to log in.
 
@@ -43,9 +43,9 @@ The interface of successfully connecting to the car is as follows:
 
 Only one terminal will be opened here, and the graphical interface cannot be displayed. Therefore, ssh is suitable for logging in without starting the graphical program.
 
-## 1.2 VNC login
+### 1.2 VNC login
 
-**1.2.1 Orin motherboard without screen (Users of Orin motherboard without screen need to configure this section for visualization. Other users do not need to configure this section and can directly proceed to 1.2.2)**
+- 1.2.1. Orin motherboard without screen (Users of Orin motherboard without screen need to configure this section for visualization. Other users do not need to configure this section and can directly proceed to 1.2.2)
 
 Since the Orin motherboard system is Ubuntu 22.04, this system needs to be connected to a monitor to enter visualization. Users who have not purchased a monitor package may not be able to open visualization. Here is a method to display visualization on a virtual desktop. It is only for users who have not connected a monitor to the Orin motherboard. Orin motherboard users who
 
@@ -55,13 +55,13 @@ Open Document 19. Attachment - Virtual Desktop Files and copy xorg.conf.backup_d
 
 Install the virtual desktop environment xserver-xorg-video-dummy:
 
-```
+```bash
 sudo apt-get install xserver-xorg-video-dummy
 ```
 
 Open the terminal and enter the following command to open the virtual desktop and switch to VNC mode.
 
-```
+```bash
 sudo cp /etc/X11/xorg.conf.backup_vnc /etc/X11/xorg.conf
 ```
 
@@ -77,7 +77,7 @@ To shut down a virtual desktop:
 
 If you need to connect a DP display, open the terminal and enter the following command to switch to the DP interface connection display mode.
 
-```
+```bash
 sudo cp /etc/X11/xorg.conf.backup_dp /etc/X11/xorg.conf
 ```
 
@@ -87,9 +87,9 @@ Restart the system and you can use the DP cable to connect the display.
 sudo reboot
 ```
 
-#### 1.2.2
+### 1.2.2
 
-VNC allows users to remotely access and control the desktop environment of another computer through the network. So when we need to access the desktop environment of the car, for example, when we want to start the image display, we can use VNC to connect and log in to the car. The download address of VNC is as follows: [Download VNC Viewer by RealVNC®](https://www.realvnc.com/en/connect/download/viewer/?lai_vid=0XwM1MAv5h60&lai_sr=5-9&lai_sl=l)
+VNC allows users to remotely access and control the desktop environment of another computer through the network. So when we need to access the desktop environment of the car, for example, when we want to start the image display, we can use VNC to connect and log in to the car. The download address of VNC is as follows: [Download VNC Viewer by RealVNC(R)](https://www.realvnc.com/en/connect/download/viewer/?lai_vid=0XwM1MAv5h60&lai_sr=5-9&lai_sl=l)
 
 Download and install according to your computer version. After successful installation, double-click to open it. The displayed screen is as follows:
 
@@ -125,7 +125,7 @@ The code for the Orin motherboard is in the /home/jetson directory, so as long a
 
 The following introduces several ways to view the code, which will facilitate our subsequent editing and modification of the code.
 
-#### 2.1. jupyter-lab
+### 2.1. jupyter-lab
 
 2.1.1: Orin motherboard (it is not recommended to use jupyter-lab to view and modify code)
 
@@ -139,7 +139,7 @@ Then press Enter to display the password. Enter yahboom in the same way, and the
 
 Select the contents of the folder on the left to view the code.
 
-2.1.2 Raspberry Pi 5 and Jetson Nano motherboard:
+- 2.1.2. Raspberry Pi 5 and Jetson Nano motherboard:
 
 You need to enter the docker container and enter the command jupyter-lab --allow-root, then enter the car IP address +:8888 in the browser to start jupyter-lab to view the car code. As shown in the figure below, I enter the car container and cd to the /root directory, and then enter jupyter-lab - allow-root in the terminal.
 

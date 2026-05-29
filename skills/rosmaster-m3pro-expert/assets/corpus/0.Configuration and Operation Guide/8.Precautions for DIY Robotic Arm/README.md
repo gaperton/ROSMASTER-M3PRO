@@ -1,6 +1,6 @@
-## Precautions for DIY Robotic Arm
+# Precautions for DIY Robotic Arm
 
-**Note: When the robot arm is gripping objects, it is necessary to control the angle of the gripper. Improper angle setting may cause the servo to stall and burn.**
+Note: When the robot arm is gripping objects, it is necessary to control the angle of the gripper. Improper angle setting may cause the servo to stall and burn.
 
 Here is a table of gripper angles, which records the angle that the servo needs to be set to for every 0.5 cm object.
 
@@ -25,7 +25,7 @@ You can adjust the angle you set when gripping according to this table to avoid 
 | 6.0                      | 57                         |  |  |
 | 6.0-6.4                  | 0-57                       |  |  |
 
-For example, the visual recognition cube we provide has a length, width and height of 3 cm each, so you can clamp it by setting the servo angle to 134°. Do not set an angle that is too large.
+For example, the visual recognition cube we provide has a length, width and height of 3 cm each, so you can clamp it by setting the servo angle to 134 degrees. Do not set an angle that is too large.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
