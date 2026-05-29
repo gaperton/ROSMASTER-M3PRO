@@ -1,24 +1,10 @@
 # Multi-Agent Embodied Architecture (multi_brains)
 
-#### Multi-Agent Embodied Architecture \(multi_brains\)
-
-- 1. Course Content
-- 2. Introduction to multi_brains
-  - 3.1 Advantages of Dual-Model Inference
-    - 3.1.1 Decoupling of Task Decision and Action Conversion
-    - 3.1.2 Improved Success Rate for Long-Process Tasks
-  - 3.2 Decision-Making Layer AI
-  - 3.3 Execution Layer AI
-- 4. Task Cycle
-- 5. Historical Context
-- 6. Map Mapping
-- 7. Action Function Library
-
-#### 1. Course Content
+## 1. Course Content
 
 Understanding the multi_brains multi-agent embodied architecture framework of ROSMASTER-M3 Pro
 
-# 2. Introduction to multi_brains
+## 2. Introduction to multi_brains
 
 - multi_brains is a self-developed embodied intelligence framework by Yabao Intelligent, adapted for general-purpose AI large models. It avoids the limitations of VLA models and end-to-end models, which require dedicated hardware, local computing power, and long data collection and training times. By simply connecting to general-purpose AI models from cloud model providers, the edge-side robot can achieve powerful embodied intelligence.
 - multi_brains expands training examples through a RAG knowledge base, allowing the robot to quickly adapt to different scenarios and tasks. It can be deployed on most small main control devices, offloading the massive model inference to the cloud or a local server.
@@ -37,7 +23,7 @@ Understanding the multi_brains multi-agent embodied architecture framework of RO
 
 ![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
-#### 3.1 Advantages of Dual-Model Inference
+### 3.1 Advantages of Dual-Model Inference
 
 #### 3.1.1 Decoupling of Task Decision and Action Conversion
 
@@ -48,13 +34,13 @@ Understanding the multi_brains multi-agent embodied architecture framework of RO
 
 When using a single-model approach for inference, it requires simultaneous "natural language understanding + environmental perception + process decomposition + action function output," which is prone to **modal interference** (language ambiguity or overly long instructions leading to misinterpretation). The dual-model approach processes in stages, allowing the decision-making layer to focus on task planning and the execution layer to focus on action execution.
 
-#### 3.2 Decision-Making Layer AI
+### 3.2 Decision-Making Layer AI
 
 The decision-making layer large language model is primarily responsible for task planning. It can understand complex human instructions and break them down into specific task steps. For example, when receiving the instruction "Can you get me a bottle of mineral water from the kitchen?", the large language model will break it down into several tasks, as shown in the figure below.
 
 ![Figure: page 1: figure 14](_page_1_Figure_14.jpeg)
 
-#### 3.3 Execution Layer AI
+### 3.3 Execution Layer AI
 
 - The execution layer large language model is primarily responsible for chat responses and converting task steps into JSON text. It continuously receives feedback (success/failure) and images from the robot's execution of actions, and provides instructions for the next action based on the success or failure of the action execution.
 - The execution layer large language model acts as a supervisor, continuously monitoring the robot's progress in executing task steps and thinking and judging the next action to be performed based on the feedback from the robot's actions and environmental information, until the task is successfully completed or terminated prematurely due to special circumstances.
@@ -68,7 +54,7 @@ The decision-making layer large language model is primarily responsible for task
 
 ![Figure: page 2: figure 7](_page_2_Figure_7.jpeg)
 
-# 5. Historical Context
+## 5. Historical Context
 
 The robot's conversation history is stored in DIfy's AI application variables, with a default setting of a maximum conversation memory of 50 turns.
 
@@ -101,7 +87,7 @@ orientation:
 
 When we want the robot to go to a specific real-world area, we simply have the large language model convert the area name into the corresponding letter symbol, allowing the robot to understand the location in the real-world environment.
 
-#### 7. Action Function Library
+### 7. Action Function Library
 
 - The API functions in the robot action function library are the bridge for the large language model to control the robot and interact with the real world.
 - These API functions define the minimum actions that the physical robot can perform in the physical world.

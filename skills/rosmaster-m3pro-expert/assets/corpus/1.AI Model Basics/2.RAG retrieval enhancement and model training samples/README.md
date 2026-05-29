@@ -1,8 +1,8 @@
 # RAG Retrieval Enhancement and Model Training Samples
 
-### 1. Course Content
+## 1. Course Content
 
-1. This course introduces the concepts of large model hallucination, RAG retrieval enhancement, and model training samples, laying the theoretical foundation for subsequent practical application and facilitating subsequent understanding and operation.
+- 1. This course introduces the concepts of large model hallucination, RAG retrieval enhancement, and model training samples, laying the theoretical foundation for subsequent practical application and facilitating subsequent understanding and operation.
 
 ### 2. What is large model hallucination? Why do large models experience hallucinations?
 
@@ -14,13 +14,13 @@ Why do large model hallucinations occur? **Large models are essentially probabil
 
 ### 3. RAG Retrieval Enhancement and Training Examples
 
-#### 3.1 RAG Retrieval Enhancement
+### 3.1 RAG Retrieval Enhancement
 
 RAG is an architecture that combines a retrieval system with a generation model. It aims to address the limitations of traditional generation models in scenarios such as open-domain knowledge question answering and real-time information querying (e.g., knowledge obsolescence, factual hallucinations, and dependencies on long text). Its core logic is to retrieve relevant knowledge through retrieval and incorporate it into prompts, allowing the large model to reference this knowledge, achieving a "retrieval first, generation later" approach.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-#### 3.2 Training Examples
+### 3.2 Training Examples
 
 Training examples are contained in the RAG knowledge base. The robot comes pre-installed with two knowledge bases: the action function library and the training example library. The training examples include training samples from the course case scenarios, providing insights for the Large model's decision-making and planning in specific scenarios. The subsequent sections [2. AI Large Model Basics - 5. Configuring the AI Large Model] will explain how to configure and extend the proprietary knowledge base and training examples.
 

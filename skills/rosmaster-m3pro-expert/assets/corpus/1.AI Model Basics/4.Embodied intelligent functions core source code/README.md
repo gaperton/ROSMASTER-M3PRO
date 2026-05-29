@@ -1,75 +1,58 @@
 # multi_brains Framework Source Code Analysis
 
-#### multi_brains Framework Source Code Analysis
-
-- 1. Course Content
-- 2. Source Code Package Structure
-  - 2.1 Functional Package File Structure
-- 3. Speech Recognition Function
-  - 3.1 Dynamic Recording with Voice Activity Detection
-  - 3.3 ASR Speech Recognition
-- 4. Model Service Functionality
-- 5. Action Server Functionality
-- 6. Interruption Function
-  - 6.1 Recording Stage Interruption
-  - 6.2 Interrupting the Dialogue Phase
-  - 6.3 Action Phase Interruption
-    - 6.3.1 Normal Action Interruption
-    - 6.3.2 Interruption of Actions with Subprocesses
-
 ## 1. Course Content
 
 - This section analyzes the core functionalities of the multi_brains functional package architecture.
 - In subsequent lessons, each new action function introduced in the tutorials will be explained separately.
 
-#### [!TIP]
+### [!TIP]
 
 This course is a purely code-analysis course, intended for users who want a deeper understanding of the functionality. If you only need to experience the functionality, you can skip this section.
 
 ## 2. Source Code Package Structure
 
-## 2.1 Functional Package File Structure
+### 2.1 Functional Package File Structure
 
-| ├── config                           |
+| |-- config                           |
 |--------------------------------------|
-| │ ├── map_mapping.yaml            |
-| │ ├── multi_brains_setting.yaml   |
-| │ └── README.MD                   |
-| ├── language                         |
-| │ ├── en.yaml                     |
-| │ └── zh.yaml                     |
-| ├── launch                           |
-| │ └── llm_agent_control.launch.py |
-| ├── multi_brains                     |
-| │ ├── action_service.py           |
-| │ ├── asr_detect.py               |
-| │ ├──initpy                       |
-| │ ├── model_service.py            |
-| │ └── utils                       |
+| | |-- map_mapping.yaml            |
+| | |-- multi_brains_setting.yaml   |
+| | `-- README.MD                   |
+| |-- language                         |
+| | |-- en.yaml                     |
+| | `-- zh.yaml                     |
+| |-- launch                           |
+| | `-- llm_agent_control.launch.py |
+| |-- multi_brains                     |
+| | |-- action_service.py           |
+| | |-- asr_detect.py               |
+| | |--initpy                       |
+| | |-- model_service.py            |
+| | `-- utils                       |
 
 ```
-├── package.xml
-├── resource
-│ └── multi_brains
-├── setup.cfg
-├── setup.py
-├── system_vioce
-│ ├── en
-│ ├── notify.mp3
-│ ├── test_en.wav
-│ ├── test_zh.wav
-│ └── zh
-└── test
-    ├── test_copyright.py
-    ├── test_dify_connection.py
-    ├── test_flake8.py
-    ├── test_pep257.py
-    ├── test_PiperTTS.py
-    ├── test_SenseVoiceSmall.py
-    ├── test_TongyiASR.py
-    ├── test_TongyiTTS.py
-    ├── test_xunfeiASR.py
-    └── test_xunfeiTTS.py
+|-- package.xml
+|-- resource
+| `-- multi_brains
+|-- setup.cfg
+|-- setup.py
+|-- system_vioce
+| |-- en
+| |-- notify.mp3
+| |-- test_en.wav
+| |-- test_zh.wav
+| `-- zh
+`-- test
+    |-- test_copyright.py
+    |-- test_dify_connection.py
+    |-- test_flake8.py
+    |-- test_pep257.py
+    |-- test_PiperTTS.py
+    |-- test_SenseVoiceSmall.py
+    |-- test_TongyiASR.py
+    |-- test_TongyiTTS.py
+    |-- test_xunfeiASR.py
+    `-- test_xunfeiTTS.py
 ```
 
 config
@@ -109,14 +92,14 @@ Source code path:
 ~/M3Pro_ws/src/multi_brains/multi_brains/asr_detect.py
 ```
 
-## 3.1 Dynamic Recording with Voice Activity Detection
+### 3.1 Dynamic Recording with Voice Activity Detection
 
 - 1. Continuously read audio frames and perform voice activity detection.
 - 2. If voice activity is detected, add the audio frames to the buffer; if continuous silence exceeding a threshold (90 frames, approximately 1.5 seconds) is detected, end the recording.
 - 3. After recording ends, remove the trailing silent portion and save the valid speech as a WAV file.
 - 4. If no valid speech is detected, no file will be saved.
 
-```
+```python
 def listen_for_speech(self):
         ''' Dynamic recording with VAD'''
         self.record_flag = True
@@ -180,11 +163,11 @@ if recording_active and audio_buffer:
 return False
 ```
 
-#### 3.3 ASR Speech Recognition
+### 3.3 ASR Speech Recognition
 
 The recognize method of the speech engine is called for speech recognition. The speech engine is provided by instantiated objects of the classes Tongyi_ASR, SenseVoiceSmall_ASR, and XUNFEI_ASR.
 
-```
+```python
 def kws_handler(self) -> None:
         ''' Wake-up handling function'''
         if self.stop_event.is_set():
@@ -224,7 +207,7 @@ Core function explanation:
 - Once an element is pushed into the queue, it calls the chat function of the Dify access interface with different parameters depending on the request type.
 - After receiving the AI agent's response from the Dify platform, it parses the corresponding content for speech playback and sends the action list to the action server for execution.
 
-```
+```python
 def handle_llm_thread(self)->None:
         '''Handle model request
         '''while True:
@@ -288,7 +271,7 @@ Core callback function execute_callback explanation:
 
 Accepts a string representing the list of actions.
 
-```
+```python
 def execute_callback(self, goal_handle):
         """action execution callback function"""
         actions = goal_handle.request.actions
@@ -346,7 +329,7 @@ self.get_logger().info(self.actionlog.get_text("system_log_2"))
 
 The robot supports interruptions at any stage, which can be specifically divided into recording stage interruptions, dialogue stage interruptions, and action stage interruptions. The principles of interruption at each stage are introduced below.
 
-## 6.1 Recording Stage Interruption
+### 6.1 Recording Stage Interruption
 
 If you realize you've made a mistake while recording, or are dissatisfied with the recorded content and need to re-record, you can interrupt the previous recording and start speaking and recording again by re-activating the robot **during the recording process**.
 
@@ -354,7 +337,7 @@ If you realize you've made a mistake while recording, or are dissatisfied with t
 - Each time the robot is activated, if there is already a thread running for wake-up recording, it is interrupted via the thread event stop_event, and waits for it to end;
 - After clearing the stop event flag, a new recording thread is started.
 
-```
+```python
 def asr_detect_run(self):
         while True:
             # Process only the most recent wake-up request to prevent
@@ -380,7 +363,7 @@ finish
             time.sleep(0.5)
 ```
 
-## 6.2 Interrupting the Dialogue Phase
+### 6.2 Interrupting the Dialogue Phase
 
 If you are dissatisfied with the robot's response during its speech or don't want the robot to continue speaking, you can use the wake word to interrupt the robot's speech and start recording your voice. At this point, you can give the robot a new command (still within the current task cycle), or you can say "End current task" to directly end the current task and start a new task cycle.
 
@@ -389,7 +372,7 @@ If you are dissatisfied with the robot's response during its speech or don't wan
 - Each time a wake-up occurs, it checks whether **pygame.mixer** is currently playing audio. If so, it notifies the playback thread to stop playback via the thread event self.stop_event.
 - If a previous action is detected to be running after the wake-up, the **self.interrupt_flag** flag is set, which is used for subsequent action interruption.
 
-```
+```python
 def wakeup_callback(self, msg):
     if msg.data:
         if pygame.mixer.music.get_busy():
@@ -402,7 +385,7 @@ def wakeup_callback(self, msg):
 
 When play_audio is playing audio, it checks if self.asr_detect.extern_wakeup is set. If it detects that it is set, it immediately stops the currently playing audio.
 
-```
+```python
 def play_audio(self,file_path: str) -> None:
     '''Play audio'''
     self.asr_detect.extern_wakeup.clear()
@@ -419,7 +402,7 @@ def play_audio(self,file_path: str) -> None:
         pygame.mixer.quit()
 ```
 
-## 6.3 Action Phase Interruption
+### 6.3 Action Phase Interruption
 
 If the robot is interrupted during the execution of an action, it will stop the current action and return to its initial posture. This can be divided into two types: normal action interruption and action interruption with subprocesses.
 
@@ -429,7 +412,7 @@ If the robot is interrupted during the execution of an action, it will stop the 
 - The _execute_action chassis control function continuously checks the self.interrupt_event interruption flag. If it is set, the chassis movement is immediately stopped.
 - Similarly, the pubSix_Arm robotic arm control function checks the self.interrupt_event interruption flag; it will only publish the robotic arm joint angle topics normally if the flag is not set.
 
-```
+```python
 def _execute_action(self, twist, num=1, durationtime=3.0):
     for _ in range(num):
         start_time = time.time()
@@ -458,13 +441,13 @@ For example, actions such as robotic arm gripping and sorting machine codes requ
 
 When the robotic arm gripping is not complete, it will continuously wait in a while not self.grasp_obj_future.done(): loop. During this process, if the self.interrupt_event flag is detected as set, the corresponding __reset_grasp_obj() function will be called first, recursively ending the subprocess tree, and then the action will stop.
 
-```
+```python
 def grasp_obj(self, x1, y1, x2, y2) -> None:
         """grasp_obj: Grasping objects x1,y1,x2,y2: Object outer border
 coordinates """
 ```
 
-```
+```python
 def __reset_grasp_obj():
     kill_process_tree(self.grasp_obj_process_1.pid)
     kill_process_tree(self.grasp_obj_process_2.pid)
