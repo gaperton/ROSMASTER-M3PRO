@@ -1,6 +1,6 @@
-## 5.Ubuntu software operation commands
+# 5.Ubuntu software operation commands
 
-```
+```bash
 sudo apt-get update # Update source
 sudo apt-get install package # Installation package
 sudo apt-get remove package # Delete package

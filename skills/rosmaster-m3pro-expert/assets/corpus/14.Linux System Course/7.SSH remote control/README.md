@@ -1,10 +1,10 @@
-## 7.SSH remote control
+# 7.SSH remote control
 
 7.SSH remote control 1. PuTTY log into 2.SSH
 
 PuTTY download link:<https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
 
-**Note: You must know the robot's username, password and IP address before logging in remotely.**
+Note: You must know the robot's username, password and IP address before logging in remotely.
 
 For example, in the picture below: IP address [192.168.2.119], user name [jetson], host name [yahboom].
 
@@ -12,9 +12,9 @@ For example, in the picture below: IP address [192.168.2.119], user name [jetson
 
 ## Note:
 
-**Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom Jetson Nano version Muto RS image, username: jetson, password: yahboom**
+Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom Jetson Nano version Muto RS image, username: jetson, password: yahboom
 
-## 1. PuTTY log into
+### 1. PuTTY log into
 
 Download the PuTTY installation file and double-click the [.exe] file to install it.
 
@@ -30,7 +30,7 @@ After successful login, the following figure will appear.
 
 ![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
-## 2.SSH
+### 2.SSH
 
 Log in
 
@@ -38,7 +38,7 @@ Operate under ubuntu system
 
 1)Enter the following command
 
-```
+```bash
 ssh jetson@192.168.2.103
 ```
 
@@ -48,7 +48,7 @@ ssh jetson@192.168.2.103
 
 If jetson's IP is 192.168.2.103, username: jetson; virtual machine username: yahboom
 
-```
+```python
 scp jetson@192.168.2.103:/home/jetson/xxx.tar.gz /home/yahboom/ # Copy files
 from remote to local (file)
 scp /home/yahboom/xxx.png jetson@192.168.2.103:/home/jetson/ # Copy files

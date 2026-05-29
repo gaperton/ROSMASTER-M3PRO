@@ -1,8 +1,8 @@
-## 14.Update system software sources
+# 14.Update system software sources
 
 ## 1.Modify sources.list file
 
-```
+```bash
 sudo nano /etc/apt/sources.list
 ```
 
@@ -14,11 +14,11 @@ deb <http://mirrors.aliyun.com/raspbian/raspbian/>buster main contrib non-free r
 
 deb-src <http://mirrors.aliyun.com/raspbian/raspbian/> buster main contrib non-free rpi
 
-Save and exit: Ctrl+X Press Y (save data) and press 【Enter key】.
+Save and exit: Ctrl+X Press Y (save data) and press  `Enter key`.
 
 ## 2. Update local software sources
 
-```
+```bash
 sudo apt-get update
 ```
 

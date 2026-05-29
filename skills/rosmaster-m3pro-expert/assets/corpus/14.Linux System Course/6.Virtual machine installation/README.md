@@ -1,4 +1,4 @@
-## 1.Virtual machine installation
+# 1.Virtual machine installation
 
 User name:yahboom
 
@@ -6,7 +6,7 @@ Password:yahboom
 
 VM password:Ubuntu20.04
 
-## 1.1 Virtual machine installation
+### 1.1 Virtual machine installation
 
 The virtual machine VMware Workstation is a paid software, and we do not provide VMware downloads. You need to download it online and then double-click the downloaded exe installation file.
 
@@ -36,7 +36,7 @@ The above completes the installation of VMWare. You can open VMWare on the deskt
 
 ![Picture: page 3: picture 2](_page_3_Picture_2.jpeg)
 
-## 1.2 Virtual machine usage
+### 1.2 Virtual machine usage
 
 Find a local hard drive with more than 40G of remaining space and decompress the system compressed files.
 
@@ -56,21 +56,21 @@ If the prompt shown in the figure below appears, directly select [I have copied 
 
 ![Picture: page 5: picture 2](_page_5_Picture_2.jpeg)
 
-Click【yahboom】
+Click `yahboom`
 
 ![Picture: page 6: picture 0](_page_6_Picture_0.jpeg)
 
-Enter the password 【yahboom】and click the 【enter key】 on the keyboard to confirm.
+Enter the password  `yahboom`and click the  `enter key` on the keyboard to confirm.
 
 ![Picture: page 6: picture 2](_page_6_Picture_2.jpeg)
 
-## 1.3 Virtual machine settings
+### 1.3 Virtual machine settings
 
-You can edit the virtual machine settings before starting, as shown below, then click 【Edit Virtual Machine Settings】.
+You can edit the virtual machine settings before starting, as shown below, then click  `Edit Virtual Machine Settings`.
 
 ![Picture: page 7: picture 0](_page_7_Picture_0.jpeg)
 
-The 【Virtual Machine Settings】 dialog box will pop up.
+The  `Virtual Machine Settings` dialog box will pop up.
 
 Since the situation of each computer is different, settings can be made according to the actual situation. The higher the virtual machine memory setting, the faster the virtual machine will run, but do not exceed the maximum memory.
 
@@ -80,6 +80,6 @@ Processor: The higher the number of cores (c) per processor, the smoother the vi
 
 ![Figure: page 9: figure 0](_page_9_Figure_0.jpeg)
 
-USB controller: USB compatibility is set to 【USB 3.1】, so that USB3.0 devices can be used.
+USB controller: USB compatibility is set to  `USB 3.1`, so that USB3.0 devices can be used.
 
 ![Figure: page 10: figure 0](_page_10_Figure_0.jpeg)

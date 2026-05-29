@@ -1,9 +1,4 @@
-## 17.Connect to Wi-Fi network
-
-17.Connect to Wi-Fi network
-
-- 1. Connect the desktop to Wi-Fi network
-- 2. Connect to Wi-Fi network via command line
+# 17.Connect to Wi-Fi network
 
 ## 1. Connect the desktop to Wi-Fi network
 

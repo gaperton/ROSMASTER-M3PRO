@@ -1,20 +1,10 @@
-## 19.Customized service management
-
-19.Customized service management
-
-- 1. Create a new service file
-- 2. Update service
-- 3. Management services
-
-This course takes the newly created OLED startup service as an example for reference only to the service management process.
-
-The Yahboom Muto image has been set up to start the oled service automatically at boot.
+# 19.Customized service management
 
 ## 1. Create a new service file
 
 Create a new yahboom_oled.service in the user directory
 
-```
+```bash
 touch yahboom_oled.service
 vim yahboom_oled.service
 ```
@@ -60,46 +50,50 @@ Then exit editing and enter: qw to save the file.
 
 Copy the newly created yahboom_oled.service service file to the /etc/systemd/system/ path.
 
-```
+```bash
 sudo cp yahboom_oled.service /etc/systemd/system/
 ```
 
 Update system services
 
+```bash
 sudo systemctl daemon-reload
+```
 
 ## 3. Management services
 
 Check service status
 
-```
+```bash
 sudo systemctl status yahboom_oled.service
 ```
 
 Start service
 
-```
+```bash
 sudo systemctl start yahboom_oled.service
 ```
 
 Restart service
 
-```
+```bash
 sudo systemctl restart yahboom_oled.service
 ```
 
 Set the service to automatically start at boot
 
-```
+```bash
 sudo systemctl enable yahboom_oled.service
 ```
 
 Close service
 
-```
+```bash
 sudo systemctl stop yahboom_oled.service
 ```
 
 Service does not start when booting
 
+```bash
 sudo systemctl disable yahboom_oled.service
+```

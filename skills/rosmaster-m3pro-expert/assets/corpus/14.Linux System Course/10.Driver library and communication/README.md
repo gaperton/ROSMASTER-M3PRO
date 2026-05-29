@@ -1,6 +1,6 @@
-## 10.Driver library and communication
+# 10.Driver library and communication
 
-10.Driver library and communication 1、Install serial port driver library 2.Install robot driver library
+10.Driver library and communication 1, Install serial port driver library 2.Install robot driver library
 
 ## 1. Install serial port driver library
 
@@ -10,13 +10,13 @@ The Ubuntu system has multiple serial libraries. Installation errors may cause t
 
 Open the terminal and enter the following command to install the serial port driver
 
-```
+```bash
 sudo pip3 install pyserial
 ```
 
 Check the version number of the serial port driver library
 
-```
+```bash
 pip3 list | grep pyserial
 ```
 
@@ -30,27 +30,27 @@ The following installation process takes Jetson Nano's installation of the MutoL
 
 Transfer the driver library file to the system, taking transferring to the desktop as an example, and decompress it to obtain the corresponding MutoLib folder.
 
-```
+```bash
 cd ~/Desktop && ls
 unzip MutoLib.zip
 ```
 
 Start install drive library.
 
-```
+```bash
 cd MutoLib
 sudo python3 setup.py install
 ```
 
 Check the version number after installation.
 
-```
+```bash
 pip3 list | grep MutoLib
 ```
 
 Test the underlying firmware version number of the read version.
 
-```
+```python
 python3
 from MutoLib import Muto
 g_bot = Muto()

@@ -1,4 +1,4 @@
-## 11.Static IP and hotspot mode
+# 11.Static IP and hotspot mode
 
 ## 1. Static IP
 
@@ -22,7 +22,7 @@ In the [IPv4 Settings] directory, click the [Add] icon, enter the IP as shown be
 
 Input following command to modify the.bashrc file,
 
-```
+```bash
 sudo vim ~/.bashrc
 ```
 
@@ -30,7 +30,7 @@ Set ROS_IP to the IP modified in the previous step, as shown in the figure below
 
 Note: If you do not connect to this Wi-Fi, be sure to comment out the modified line (just add # in front).
 
-When we newly open the terminal, 【binary operator expected】 appears.
+When we newly open the terminal,  `binary operator expected` appears.
 
 Don't pay attention to it. It does not affect use.
 

@@ -10,7 +10,7 @@ touch test.txt
 
 New create folder
 
-```
+```bash
 mkdir test # Create a file
 mkdir -p test/src # Create the test folder and create the src folder in the test
 folder
@@ -18,32 +18,34 @@ folder
 
 Copy
 
-```
+```bash
 sudo cp test.txt test_copy.txt # Copy a file
 ```
 
-## 3.2. Delete
+### 3.2. Delete
 
 | -i | To execute interactively                                       |
 |----|----------------------------------------------------------------|
 | -f | Forced deletion, ignoring non-existent files without prompting |
 | -r | Recursively delete the contents of a directory                 |
 
-```
+```bash
 sudo rm test.txt # Delete files | empty folders
 sudo rm -r test # Delete folders and their contents
 ```
 
-# 3.3. Modify
+### 3.3. Modify
 
-move、re-name
+move, re-name
 
-```
+```bash
 sudo mv test test_new # Change the test folder to test_new
 sudo mv test.txt test_new.txt # Modify the test.txt file to test_new.txt
 ```
 
+```bash
 chmod changes file permissions
+```
 
 Permission settings
 
@@ -59,13 +61,13 @@ Permission settings
 | w                     | write means write permission. For a directory, if there is no w permission, it means that new files cannot be created in the directory.             |
 | x                     | execute means executable permission. For a directory, if there is no x permission, it means that the directory cannot be entered through cd.        |
 
-```
+```bash
 sudo chmod +rwx test.txt
 ```
 
 Add a shortcut to all permissions
 
-```
+```bash
 sudo chmod 777 test.txt
 ```
 
@@ -81,11 +83,11 @@ Set user password
 sudo passwd user name
 ```
 
-## 3.4. View
+### 3.4. View
 
 View system version
 
-```
+```bash
 lsb_release -a # Release version number
 uname -a # Kernel version and system bit number
 cat /proc/version # Kernel version and gcc version
@@ -117,7 +119,7 @@ tree # View the file directory (needs to install tree)
 
 tree installation command
 
-```
+```bash
 sudo apt install tree
 ```
 
@@ -134,9 +136,13 @@ uppercase letter in the current directory
 
 ### 3.5. Other
 
+```bash
 tar command
+```
 
+```bash
 tar usage format: tar [parameter] package file name file
+```
 
 ```
 -c # Generate archive files and create packaging files
@@ -149,7 +155,7 @@ file, so the option must be placed last.
 
 Pack
 
-```
+```bash
 tar -cvf xxx.tar * # All files in current directory
 tar -cvf xxx.tar *.txt # Files ending with .txt
 tar -cvf xxx.tar my-file my-dir # Pack the specified directory or file
@@ -157,13 +163,13 @@ tar -cvf xxx.tar my-file my-dir # Pack the specified directory or file
 
 Unpack
 
-```
+```bash
 tar -xvf xxx.tar # Unpack to current directory
 tar -xvf xxx.tar -C my-dir # Unpack to the specified directory (you need to
 create the my-dir directory first)
 ```
 
-zip、unzip command
+zip, unzip command
 
 Compressed file: zip [-r] target file (no extension) source file
 
@@ -193,9 +199,11 @@ Hard links: Hard links can only link ordinary files, not directories. Even if th
 ln Source file Link file
 ```
 
+```bash
 scp remote copy
-
 ```
+
+```python
 scp jetson@192.168.16.66:/home/jetson/xxx.tar.gz /home/yahboom/ # Copy files
 from remote to local
 scp /home/yahboom/xxx.png jetson@192.168.16.66:/home/jetson/ # Copy files
@@ -221,7 +229,7 @@ wget -O yahboom.jpg
 
 Other
 
-```
+```bash
 nautilus . # Open the current file
 cd ~ # Switch to the current user's home directory
 (/home/user directory)

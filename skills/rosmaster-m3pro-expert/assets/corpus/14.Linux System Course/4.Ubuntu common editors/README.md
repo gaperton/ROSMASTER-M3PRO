@@ -2,13 +2,15 @@
 
 ## 4.1Editor
 
-### 4.1.1. vim
+#### 4.1.1. vim
 
+```bash
 vim is an upgraded version of vi. The most common difference is that it can display some special information of system files in multiple colors.
+```
 
 Installation command
 
-```
+```bash
 sudo apt install vim
 ```
 
@@ -16,9 +18,9 @@ Three main modes
 
 Command mode (edit mode): Default mode, move cursor, cut/paste text (interface performance: file name is displayed in the lower left corner or is empty)
 
-Insert mode (input mode): Modify text (interface performance: -INSERT– is displayed in the lower left corner) In insert mode, press the ESC key to return to command mode
+Insert mode (input mode): Modify text (interface performance: -INSERT- is displayed in the lower left corner) In insert mode, press the ESC key to return to command mode
 
-Last line mode (extended mode): save, exit, etc. (Interface performance: -VISUAL– displayed in the lower left corner) In last line mode, press the ESC key twice in succession to return to last line mode.
+Last line mode (extended mode): save, exit, etc. (Interface performance: -VISUAL- displayed in the lower left corner) In last line mode, press the ESC key twice in succession to return to last line mode.
 
 Mode switch
 
@@ -34,12 +36,12 @@ O # Start editing at the beginning of the line above the current line
 Switch command mode to last line mode
 
 ```
-: # Enter colon 【:】
+: # Enter colon  `:`
 ```
 
-Switch to command mode from last line mode: press 【esc】
+Switch to command mode from last line mode: press  `esc`
 
-Switch from edit mode to command mode: press 【esc】
+Switch from edit mode to command mode: press  `esc`
 
 Esc: exit to current mode
 
@@ -89,17 +91,19 @@ PageUp(or Ctrl+B) # Scroll up one screen
 
 #### 4.1.2. nano
 
+```bash
 nano is a text editor for Unix and Unix-like systems, a copy of Pico.
+```
 
 Install
 
-```
+```bash
 sudo apt install nano
 ```
 
 New/open file
 
-```
+```bash
 nano path + file name
 Eg:nano test_nano.txt
 ```

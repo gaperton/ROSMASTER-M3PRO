@@ -1,6 +1,4 @@
-## 9.Transfer files remotely
-
-## 9.Transfer files remotely
+# 9.Transfer files remotely
 
 WinSCP download link:<https://winscp.net/eng/download.php>
 

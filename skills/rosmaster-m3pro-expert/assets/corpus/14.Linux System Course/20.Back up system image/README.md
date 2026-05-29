@@ -1,4 +1,4 @@
-## 20.Back up system image
+# 20.Back up system image
 
 ## 1. Preparation
 

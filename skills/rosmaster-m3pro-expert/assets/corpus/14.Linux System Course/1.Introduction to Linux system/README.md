@@ -1,4 +1,4 @@
-## 1.Introduction to Linux system
+# 1.Introduction to Linux system
 
 Linux is an open source operating system.
 

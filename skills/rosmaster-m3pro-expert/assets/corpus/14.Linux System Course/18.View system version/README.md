@@ -1,13 +1,6 @@
 # 18.View system version
 
-18.View system version
-
-- 1. View system version information
-- 2. Jetson Nano Check jetpack version
-
-The following content takes the Jetson Nano system version as an example to display the system version information.
-
-#### 1. View system version information
+## 1. View system version information
 
 Check system kernel version
 
@@ -27,11 +20,11 @@ View all system version information
 uname -a
 ```
 
-### 2. Jetson Nano Check jetpack version
+## 2. Jetson Nano Check jetpack version
 
 Enter the following command in the Jetson Nano system terminal to check that the system version is R32.7.3
 
-```
+```bash
 cat /etc/nv_tegra_release
 ```
 
@@ -47,11 +40,11 @@ Find the corresponding version, click to enter the 32.7.3 version information, a
 
 | JETSON LINUX VERSION | Jetson AGX Xavier | Jetson AGX Xavier Industrial | Jet |
 |-------------------------|----------------------|---------------------------------|-----|
-| 32.7.4 >                | <b>√</b>             | ✓                               |     |
+| 32.7.4 > | <b>check mark</b> | | |
 | June 2023               |                      |                                 |     |
-| 32.7.3 >                | <b>√</b>             | ✓                               |     |
+| 32.7.3 > | <b>check mark</b> | | |
 | November 2022           |                      |                                 |     |
-| 32.7.2 >                | ✓                    | ✓                               |     |
+| 32.7.2 > | | | |
 | April 2022              |                      |                                 |     |
 
 # NVIDIA Jetson Linux 32.7.3

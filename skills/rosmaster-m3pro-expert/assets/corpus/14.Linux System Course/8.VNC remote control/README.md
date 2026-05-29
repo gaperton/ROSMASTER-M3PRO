@@ -1,20 +1,18 @@
-## 8.VNC remote control
-
-8.VNC remote control
+# 8.VNC remote control
 
 VNC Software download URL:<https://www.realvnc.com/en/connect/download/viewer/>
 
-**Note: You must know the robot's username, password and IP address before logging in remotely.**
+Note: You must know the robot's username, password and IP address before logging in remotely.
 
 For example, in the picture below: IP address [192.168.2.119], user name [jetson], host name [yahboom].
 
 ![Picture: page 0: picture 5](_page_0_Picture_5.jpeg)
 
-**Note:**
+Note:
 
-**Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom Jetson Nano version Muto RS image, username: jetson, password: yahboom**
+Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom Jetson Nano version Muto RS image, username: jetson, password: yahboom
 
-Just follow the login steps as shown in the picture. When using the vnc viewer software for VNC connection, you first need to query the IP address. You can query the IP address through the built-in OLED screen or by connecting the monitor to open a terminal and enter the ifconfig command. What I found here is [192.168.2.119]. Enter the IP address. Then click [Enter] on the keyboard.
+Just follow the login steps as shown in the picture. When using the VNC viewer software for VNC connection, you first need to query the IP address. You can query the IP address through the built-in OLED screen or by connecting the monitor to open a terminal and enter the ifconfig command. What I found here is [192.168.2.119]. Enter the IP address. Then click [Enter] on the keyboard.
 
 ![Figure: page 0: figure 9](_page_0_Figure_9.jpeg)
 
@@ -38,7 +36,7 @@ Modify the [config.txt] file and it will be permanently effective.
 
 Open the terminal and enter the following command.
 
-```
+```bash
 sudo vim /boot/firmware/config.txt
 ```
 
