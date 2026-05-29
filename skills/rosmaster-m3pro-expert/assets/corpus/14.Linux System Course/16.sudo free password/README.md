@@ -1,6 +1,6 @@
-## **16.sudo free password**
+## 16.sudo free password
 
-<span id="page-0-0"></span>16.sudo free [password](#page-0-0)
+16.sudo free password
 
 Open the terminal, enter the following command, find the %sudo line, as shown in the figure below.
 

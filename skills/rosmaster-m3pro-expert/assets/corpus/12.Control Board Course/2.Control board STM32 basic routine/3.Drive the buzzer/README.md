@@ -1,24 +1,24 @@
-# **Drive the buzzer**
+# Drive the buzzer
 
-#### Drive the [buzzer](#page-0-0)
+#### Drive the buzzer
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-3-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-4-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Read the KEY1 button on the STM32 control board and control the active buzzer to sound.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the KEY1 button and buzzer are onboard components, so no external devices are required. Please connect the Type-C data cable to the computer and the USB Connect port on the STM32 control board.
 
-![](_page_0_Picture_11.jpeg)
+![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 Open STM32CUBEIDE and import the project. The path corresponding to the program source code is:
 
@@ -26,11 +26,11 @@ Open STM32CUBEIDE and import the project. The path corresponding to the program 
 Board_Samples/STM32_Samples/Beep
 ```
 
-Initialize the peripheral GPIO, where BEEP\_GPIO corresponds to PE5 of the hardware circuit, the GPIO mode is output mode, KEY1 corresponds to PC15 of the hardware circuit, and the GPIO mode is input pull-up mode.
+Initialize the peripheral GPIO, where BEEP_GPIO corresponds to PE5 of the hardware circuit, the GPIO mode is output mode, KEY1 corresponds to PC15 of the hardware circuit, and the GPIO mode is input pull-up mode.
 
-<span id="page-1-0"></span>![](_page_1_Picture_4.jpeg)
+![Picture: page 1: picture 4](_page_1_Picture_4.jpeg)
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
 ```
 #define BEEP_Pin GPIO_PIN_5
@@ -140,7 +140,7 @@ void Beep_Handle(void)
 }
 ```
 
-The Beep\_Handle function is called every 10 milliseconds to control the buzzer to sound according to the status value of the KEY1 button.
+The Beep_Handle function is called every 10 milliseconds to control the buzzer to sound according to the status value of the KEY1 button.
 
 ```
 while (1)
@@ -155,11 +155,11 @@ while (1)
 }
 ```
 
-# <span id="page-3-0"></span>**4. Compile, download and burn firmware**
+# 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-![](_page_4_Picture_0.jpeg)
+![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -167,10 +167,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-# **5. Experimental Results**
+# 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 When you press KEY1, the buzzer sounds once.
 
-<span id="page-4-0"></span>![](_page_4_Picture_8.jpeg)
+![Picture: page 4: picture 8](_page_4_Picture_8.jpeg)

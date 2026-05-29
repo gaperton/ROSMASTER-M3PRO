@@ -1,16 +1,16 @@
-## **Wood block shape sorting**
+## Wood block shape sorting
 
-## **1. Content Description**
+## 1. Content Description
 
 This function enables the program to obtain images through the camera, identify the shape of the wooden block in the image according to the input target shape parameters, and clamp the wooden block of the target shape and place it at the set position.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
 Wooden blocks used in this lesson: **30x30x30mm, 30x30x60mm, and 30x30mm colored blocks**
 
-## **2. Program startup**
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
@@ -32,20 +32,20 @@ ros2 run M3Pro_demo shape_recognize
 
 After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the wood block shape sorting program by pressing ctrl+c and restart it again until the robot arm gripping program obtains the current angle information and calculates the current end position.
+If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the wood block shape sorting program by pressing Ctrl+C and restart it again until the robot arm gripping program obtains the current angle information and calculates the current end position.
 
 Once the program has launched, you must enter the shape of the wooden block to be sorted into the terminal. There are three available shapes: a **30x30x60mm** rectangular prism (Rectangle), a 30x30x30mm cube (Square), and a **30x30mm** cylinder (Cylinder). Suppose we wish to sort the rectangular prisms; in that case, you would need to enter: Rectangle, as shown in the figure below.
 
-After pressing Enter, a color screen will appear. Then, press the spacebar to start gripping the block. The recognized block's shape will also appear on the screen. Calculate the distance between the recognized block and the car's base\_link. If the distance is within [190, 210], directly lower the gripper to grip the block and place it at the set location. If the distance is outside [190, 210], control the chassis to move the block within [190, 210], then lower the gripper to grip the block and place it at the set location.
+After pressing Enter, a color screen will appear. Then, press the spacebar to start gripping the block. The recognized block's shape will also appear on the screen. Calculate the distance between the recognized block and the car's base_link. If the distance is within [190, 210], directly lower the gripper to grip the block and place it at the set location. If the distance is outside [190, 210], control the chassis to move the block within [190, 210], then lower the gripper to grip the block and place it at the set location.
 
-![](_page_2_Picture_1.jpeg)
+![Picture: page 2: picture 1](_page_2_Picture_1.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-- Raspberry Pi and Jetson-Nano board The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ shape\_recognize.py
-- Orin Motherboard The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/shape\_recognize.py
+- Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ shape_recognize.py
+- Orin Motherboard The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/shape_recognize.py
 
 Import the necessary library files,
 

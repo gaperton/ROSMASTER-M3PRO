@@ -1,4 +1,4 @@
-## **5.Ubuntu software operation commands**
+## 5.Ubuntu software operation commands
 
 ```
 sudo apt-get update # Update source

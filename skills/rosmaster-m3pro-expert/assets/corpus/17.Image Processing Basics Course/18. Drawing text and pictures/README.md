@@ -1,4 +1,4 @@
-## **Text and picture drawing**
+## Text and picture drawing
 
 Function call: cv2.putText(img, str, origin, font, size, color, thickness)
 
@@ -20,7 +20,7 @@ The font types are as follows:
 
 ## Code path:
 
-opencv/opencv\_basic/03\_Image processing and text drawing/06Text and image drawing.ipynb
+opencv/opencv_basic/03_Image processing and text drawing/06Text and image drawing.ipynb
 
 ```
 import cv2
@@ -41,4 +41,4 @@ plt.imshow(img)
 plt.show()
 ```
 
-![](_page_1_Figure_1.jpeg)
+![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)

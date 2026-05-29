@@ -1,44 +1,44 @@
-# **Read Lidar data**
+# Read LiDAR data
 
-#### [Read Lidar](#page-0-0) data
+#### Read LiDAR data
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-7-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-7-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Use the radar interface of the STM32 control board to read data from the T-MiniPlus lidar and parse the radar data packets.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the T-MiniPlus LiDAR interface. You need to connect the T-MiniPlus LiDAR cable to the STM32 control board and the LiDAR.
 
 Please connect the type-C data cable to the computer USB port and the USB Connect port of the STM32 control board.
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
 The T-MiniPlus LiDAR interface cable has an anti-reverse connection function. Just align the interface and insert it into the left LiDAR interface.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-Board\_Samples/STM32\_Samples/Read\_Lidar
+Board_Samples/STM32_Samples/Read_Lidar
 
 Since the T-MiniPlus LiDAR uses serial communication, select serial port 4 for communication. Serial port 4's TX pin corresponds to PC10, and its RX pin corresponds to PC11. Set the baud rate to 230400, with an 8-bit data length, a 1-bit stop bit, and no parity. Enable the receive DMA channel and serial port interrupt.
 
-<span id="page-1-0"></span>![](_page_1_Picture_5.jpeg)
+![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
-![](_page_1_Picture_6.jpeg)
+![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
-![](_page_1_Picture_7.jpeg)
+![Picture: page 1: picture 7](_page_1_Picture_7.jpeg)
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 ```
 void MX_UART4_Init(void)
@@ -315,11 +315,11 @@ while (1)
 }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-7-0"></span>![](_page_7_Picture_3.jpeg)
+![Picture: page 7: picture 3](_page_7_Picture_3.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -327,10 +327,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-# <span id="page-7-1"></span>**5. Experimental Results**
+# 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 Open the serial port assistant and set the baud rate to 115200. You can see that the distance detected by the T-MiniPlus LiDAR at 0 degrees (pointer direction) is printed every 200 milliseconds in millimeters.
 
-![](_page_8_Picture_0.jpeg)
+![Picture: page 8: picture 0](_page_8_Picture_0.jpeg)

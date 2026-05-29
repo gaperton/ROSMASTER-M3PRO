@@ -1,24 +1,24 @@
-# **Button functions**
+# Button functions
 
-#### Button [functions](#page-0-0)
+#### Button functions
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-3-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-4-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Read the KEY1 button on the STM32 control board and control the LED indicator light on and off.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the KEY1 button and LED indicator are onboard components, so no external devices are required. Please connect the Type-C data cable to the computer and the USB Connect port on the STM32 control board.
 
-![](_page_0_Picture_11.jpeg)
+![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 Open STM32CUBEIDE and import the project. The path corresponding to the program source code is:
 
@@ -26,11 +26,11 @@ Open STM32CUBEIDE and import the project. The path corresponding to the program 
 Board_Samples/STM32_Samples/Key
 ```
 
-Initialize the peripheral GPIO, where LED\_ROS\_GPIO corresponds to PC14 of the hardware circuit, and the GPIO mode is output mode; KEY1\_GPIO corresponds to PC15 of the hardware circuit, and the GPIO mode is input pull-up mode.
+Initialize the peripheral GPIO, where LED_ROS_GPIO corresponds to PC14 of the hardware circuit, and the GPIO mode is output mode; KEY1_GPIO corresponds to PC15 of the hardware circuit, and the GPIO mode is input pull-up mode.
 
-<span id="page-1-0"></span>![](_page_1_Figure_4.jpeg)
+![Figure: page 1: figure 4](_page_1_Figure_4.jpeg)
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
 ```
 #define LED_MCU_Pin GPIO_PIN_13
@@ -86,7 +86,7 @@ Control the LED light status flip
 #define LED_ROS_TOGGLE() HAL_GPIO_TogglePin(LED_ROS_GPIO_Port, LED_ROS_Pin)
 ```
 
-Read the current state of the key. If pressed, returns KEY\_PRESS=1; if released, returns KEY\_RELEASE=0.
+Read the current state of the key. If pressed, returns KEY_PRESS=1; if released, returns KEY_RELEASE=0.
 
 ```
 static uint8_t Key1_is_Press(void)
@@ -99,7 +99,7 @@ static uint8_t Key1_is_Press(void)
 }
 ```
 
-Read the status of key K1 and call it every 10 milliseconds. If KEY1 is pressed, it returns KEY\_PRESS; otherwise, it returns KEY\_RELEASE.
+Read the status of key K1 and call it every 10 milliseconds. If KEY1 is pressed, it returns KEY_PRESS; otherwise, it returns KEY_RELEASE.
 
 ```
 uint8_t Key1_State(void)
@@ -127,7 +127,7 @@ uint8_t Key1_State(void)
 }
 ```
 
-The Key1\_State function is called every 10 milliseconds to control the LED\_ROS indicator light on and off according to the state value of the KEY1 button.
+The Key1_State function is called every 10 milliseconds to control the LED_ROS indicator light on and off according to the state value of the KEY1 button.
 
 ```
 while (1)
@@ -150,11 +150,11 @@ while (1)
 }
 ```
 
-# **4. Compile, download and burn firmware**
+# 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-3-0"></span>![](_page_3_Picture_5.jpeg)
+![Picture: page 3: picture 5](_page_3_Picture_5.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -162,10 +162,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-## **5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
-When you press KEY1 once, the LED\_ROS light turns on. Press KEY1 again and the LED\_ROS light turns off. Each time you press KEY1, the state of the LED\_ROS light changes.
+When you press KEY1 once, the LED_ROS light turns on. Press KEY1 again and the LED_ROS light turns off. Each time you press KEY1, the state of the LED_ROS light changes.
 
-<span id="page-4-0"></span>![](_page_4_Picture_6.jpeg)
+![Picture: page 4: picture 6](_page_4_Picture_6.jpeg)

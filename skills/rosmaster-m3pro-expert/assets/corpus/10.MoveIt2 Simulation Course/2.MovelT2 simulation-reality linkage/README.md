@@ -1,36 +1,36 @@
-# **MoveIt2 simulation-reality linkage**
+# MoveIt2 simulation-reality linkage
 
-Preface: Raspberry Pi 5 and Jetson-nano's ROS is running in Docker, so the effect of running MoveIT2 is generally poor. It is recommended that Raspberry Pi 5 and
+Preface: Raspberry Pi 5 and Jetson Nano's ROS is running in Docker, so the effect of running MoveIT2 is generally poor. It is recommended that Raspberry Pi 5 and
 
-The user of the Jetson-Nano motherboard runs MoveIt2 on a virtual machine. The ROS of the Orin motherboard runs directly on the motherboard.
+The user of the Jetson Nano motherboard runs MoveIt2 on a virtual machine. The ROS of the Orin motherboard runs directly on the motherboard.
 
 Therefore, users of the Orin motherboard can run MoveIt2 related cases directly on the motherboard, and the instructions are the same as those running on a virtual machine.
 
 The following content uses running on a virtual machine as an example.
 
-### **1. Content Description**
+### 1. Content Description
 
-This section explains how to combine the simulated robotic arm in Rviz with the real robotic arm to realize the function of driving the real machine.
+This section explains how to combine the simulated robotic arm in RViz with the real robotic arm to realize the function of driving the real machine.
 
-# **2. Preparation**
+# 2. Preparation
 
 Preface: Since the real robot arm does not have an obstacle avoidance function, some positions may hit obstacles. Therefore, before driving the real machine, you need to ensure that there are no obstacles around the robot arm.
 
-#### **2.1. Start the agent**
+#### 2.1. Start the agent
 
 You need to start the agent on the motherboard. The agent will start the control node to control the robot and chassis. The agent will be automatically started when the computer is turned on. If the agent is not started, you can enter the following command in the terminal to start it.
 
-sh start\_agent.sh
+sh start_agent.sh
 
-#### **2.2 Distributed communication between virtual machines and cars**
+#### 2.2 Distributed communication between virtual machines and cars
 
 The virtual machine and the car need to be able to communicate. There are two steps to achieve this:
 
-- In the same local area network, the easiest way to achieve this is to connect to the same wifi;
-- The ROS\_DOMAIN\_ID of the two must be consistent. The default ROS\_DOMAIN\_ID of the car is 30, and the default ROS\_DOMAIN\_ID of the virtual machine is also 30. If the two are different, you need to modify the ROS\_DOMAIN\_ID of the virtual machine, modify ~/.bashrc the file, and then change the value of ROS\_DOMAIN\_ID in it to the same as that of the car. Save and exit, then enter the command source ~/.bashrc to refresh the environment variables.
-- Check whether the distributed communication between the two is achieved. Enter it on the virtual machine side ros2 node list . If you see **/YB\_Node** , it means that the two are communicating.
+- In the same local area network, the easiest way to achieve this is to connect to the same Wi-Fi;
+- The ROS_DOMAIN_ID of the two must be consistent. The default ROS_DOMAIN_ID of the car is 30, and the default ROS_DOMAIN_ID of the virtual machine is also 30. If the two are different, you need to modify the ROS_DOMAIN_ID of the virtual machine, modify ~/.bashrc the file, and then change the value of ROS_DOMAIN_ID in it to the same as that of the car. Save and exit, then enter the command source ~/.bashrc to refresh the environment variables.
+- Check whether the distributed communication between the two is achieved. Enter it on the virtual machine side ros2 node list. If you see **/YB_Node**, it means that the two are communicating.
 
-## **3. Program startup**
+## 3. Program startup
 
 Enter the following command in the virtual machine to start MoveIt2,
 
@@ -38,9 +38,9 @@ Enter the following command in the virtual machine to start MoveIt2,
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"** , it indicates that the program has been successfully started, as shown in the figure below.
+After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
 
-![](_page_1_Figure_4.jpeg)
+![Figure: page 1: figure 4](_page_1_Figure_4.jpeg)
 
 At this time, the posture of the robotic arm is straightened upwards. After running the program to drive the real machine, the robotic arm on the car will also straighten upwards. Be careful with the robotic arm and place it in an open space. Enter the following command in the virtual machine terminal to start the program to drive the real machine:
 
@@ -48,17 +48,17 @@ At this time, the posture of the robotic arm is straightened upwards. After runn
 ros2 run MoveIt_SimToMachine SimulationToMachine
 ```
 
-After the program runs, the robotic arm will straighten upwards, just like the robotic arm in rviz.
+After the program runs, the robotic arm will straighten upwards, just like the robotic arm in RViz.
 
-This is to allow the robot arm in rviz to plan and move to our preset init posture, as shown in the figure below. Select [Planning Group] as arm\_group, select [Start State] as, and select [Goal State] as. We plan the robot arm's posture from the current up to the previously set init, and then click [Plan&Execute].
+This is to allow the robot arm in RViz to plan and move to our preset init posture, as shown in the figure below. Select [Planning Group] as arm_group, select [Start State] as, and select [Goal State] as. We plan the robot arm's posture from the current up to the previously set init, and then click [Plan&Execute].
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-The robotic arm in rviz will first plan and then slowly move to the init posture. The robotic arm on the car will also slowly move to the init posture. The final result is shown in the figure below.
+The robotic arm in RViz will first plan and then slowly move to the init posture. The robotic arm on the car will also slowly move to the init posture. The final result is shown in the figure below.
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-### **4. Node Communication**
+### 4. Node Communication
 
 Enter the following command in the virtual machine to view the current node communication diagram,
 
@@ -68,21 +68,21 @@ ros2 run rqt_graph rqt_graph
 
 Select [Nodes/Topics (all)] in the upper left corner, and then click the refresh button next to it to get the following content:
 
-![](_page_3_Figure_0.jpeg)
+![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
 We focus on the following diagrams:
 
-![](_page_3_Figure_2.jpeg)
+![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
 This section illustrates the communication between the three nodes.
 
-# **5. Core code analysis**
+# 5. Core code analysis
 
 Program source code path:
 
 In the virtual
 
-machine: /home/yahboom/moveit2\_ws/src/MoveIt\_SimToMachine/MoveIt\_SimToMachine/Simula tionToMachine.py
+machine: /home/yahboom/moveit2_ws/src/MoveIt_SimToMachine/MoveIt_SimToMachine/Simula tionToMachine.py
 
 Import the library files used,
 
@@ -112,7 +112,7 @@ and the underlying control node subscribes to the message
     self.joints = [90.0, 90.0, 90.0, 90.0, 90.0, 30.0]
 ```
 
-/arm\_group\_controller/state topic callback function,
+/arm_group_controller/state topic callback function,
 
 ```
 def get_ArmPosCallback(self,msg):

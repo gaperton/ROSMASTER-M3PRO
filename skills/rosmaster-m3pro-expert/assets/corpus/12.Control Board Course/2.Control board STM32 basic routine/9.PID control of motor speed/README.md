@@ -1,18 +1,18 @@
-# **PID control of motor speed**
+# PID control of motor speed
 
-PID [control](#page-0-0) of motor speed
+PID control of motor speed
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-6-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-7-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-### **1. Experimental Purpose**
+### 1. Experimental Purpose
 
 Use the encoder motor interface of the STM32 control board to learn how to use the number of motor encoder pulses combined with the PID algorithm to control the speed of the motor.
 
-#### **2. Hardware Connection**
+#### 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates four encoder motor control interfaces. This requires additional connection to an encoder motor. The motor control interface supports 520 encoder motors. Because encoder motors require high voltage and current, they must be powered by a battery.
 
@@ -20,19 +20,19 @@ Use a type-C data cable to connect the computer USB and the USB Connect port of 
 
 The corresponding names of the four motor interfaces are: left front wheel -> M1, left rear wheel - > M2, right front wheel -> M3, right rear wheel -> M4.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-<span id="page-1-0"></span>Board\_Samples/STM32\_Samples/Motor\_PID
+Board_Samples/STM32_Samples/Motor_PID
 
 The encoder motor hardware configuration is a combination of motor and encoder settings.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-This time, the incremental PID algorithm is used to control the motor. A motor\_pid\_t structure is defined to store PID related parameters. A motor\_data\_t structure is defined to store motor speed related parameters.
+This time, the incremental PID algorithm is used to control the motor. A motor_pid_t structure is defined to store PID related parameters. A motor_data_t structure is defined to store motor speed related parameters.
 
 ```
 typedef struct _pid_t
@@ -157,7 +157,7 @@ void PID_Clear_Motor(uint8_t motor_id)
 }
 ```
 
-Set the encoder motor's operating speed and convert the motor speed parameter into a PID target parameter value. The motor speed parameter range is related to the encoder motor and wheels. For example, the speed\_m value range is [-700, 700].
+Set the encoder motor's operating speed and convert the motor speed parameter into a PID target parameter value. The motor speed parameter range is related to the encoder motor and wheels. For example, the speed_m value range is [-700, 700].
 
 ```
 void Motion_Set_Speed(int16_t speed_m1, int16_t speed_m2, int16_t speed_m3,
@@ -175,7 +175,7 @@ int16_t speed_m4)
 }
 ```
 
-Read the motor speed, calculate the motor speed based on the data captured by the encoder and the circumference of the wheel, and save the speed value to the speed\_motors variable.
+Read the motor speed, calculate the motor speed based on the data captured by the encoder and the circumference of the wheel, and save the speed value to the speed_motors variable.
 
 ```
 void Motion_Get_Speed(int16_t* speed_motors)
@@ -205,7 +205,7 @@ ENCODER_CIRCLE;
 }
 ```
 
-The Motion\_Handle function is called every 10 milliseconds in the loop to read, calculate, and control the motor speed. To facilitate display, the function of printing the motor speed value through the serial port is added.
+The Motion_Handle function is called every 10 milliseconds in the loop to read, calculate, and control the motor speed. To facilitate display, the function of printing the motor speed value through the serial port is added.
 
 ```
 void Motion_Handle(void)
@@ -226,7 +226,7 @@ speed_data[2], speed_data[3]);
 }
 ```
 
-Initialize the encoder motor and PID parameters in App\_Handle, and then set the speed of the four motors to 300, indicating a forward speed of 0.3m/s.
+Initialize the encoder motor and PID parameters in App_Handle, and then set the speed of the four motors to 300, indicating a forward speed of 0.3m/s.
 
 ```
 void App_Handle(void)
@@ -245,11 +245,11 @@ void App_Handle(void)
 }
 ```
 
-### **4. Compile, download and burn firmware**
+### 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-6-0"></span>![](_page_6_Picture_4.jpeg)
+![Picture: page 6: picture 4](_page_6_Picture_4.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -257,11 +257,11 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### **5. Experimental Results**
+### 5. Experimental Results
 
 **Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.**
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 The car moves forward at a speed of 0.3m/s.
 

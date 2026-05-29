@@ -1,4 +1,4 @@
-## **15.Set root user password**
+## 15.Set root user password
 
 Input following command:
 

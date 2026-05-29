@@ -1,38 +1,38 @@
-# **Controller Control**
+# Controller Control
 
-#### **[Controller Control](#page-0-0)**
+#### Controller Control
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Preparation](#page-0-2)
-  - 2.1 Content [Description](#page-0-3)
-  - 2.2 Start the [agent](#page-0-4)
-  - 2.3 [Check the](#page-1-0) device
-  - 2.4 Testing the [Controller](#page-1-1) Input
-- 3. Run the [Example](#page-2-0)
-  - 3.1 Start the PS2 [Controller](#page-2-1) Control Node
-  - 3.2 Button Control [Instructions](#page-3-0)
-- [4. Source](#page-4-0) Code Analysis
-  - 4.1 View the Node [Relationship Graph](#page-4-1)
-  - 4.2 Viewing [Topic Messages](#page-4-2) and Message Types
-  - 4.3 [Program Flowchart](#page-5-0)
-  - 4.4 Source Code [Analysis](#page-8-0)
-    - 4.4.1 [Topic Communication](#page-9-0)
-    - 4.4.2 [Robotic Arm Control](#page-9-1)
-    - 4.4.3 Chassis [Movement](#page-9-2) Control
+- 1. Course Content
+- 2. Preparation
+  - 2.1 Content Description
+  - 2.2 Start the agent
+  - 2.3 Check the device
+  - 2.4 Testing the Controller Input
+- 3. Run the Example
+  - 3.1 Start the PS2 Controller Control Node
+  - 3.2 Button Control Instructions
+- 4. Source Code Analysis
+  - 4.1 View the Node Relationship Graph
+  - 4.2 Viewing Topic Messages and Message Types
+  - 4.3 Program Flowchart
+  - 4.4 Source Code Analysis
+    - 4.4.1 Topic Communication
+    - 4.4.2 Robotic Arm Control
+    - 4.4.3 Chassis Movement Control
 
-## <span id="page-0-1"></span>**1. Course Content**
+## 1. Course Content
 
 Learn to control robot movement using a PS2 controller.
 
 After running the program, use the PS2 controller to control the robot chassis and the robotic arm.
 
-# <span id="page-0-2"></span>**2. Preparation**
+# 2. Preparation
 
-### <span id="page-0-3"></span>**2.1 Content Description**
+### 2.1 Content Description
 
 This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
 
-### <span id="page-0-4"></span>**2.2 Start the agent**
+### 2.2 Start the agent
 
 **Note: All test cases must start the docker agent first. If it has already started, there is no need to restart it**
 
@@ -44,19 +44,19 @@ sh start_agent.sh
 
 The terminal prints the following information, indicating that the connection is successful:
 
-### <span id="page-1-0"></span>**2.3 Check the device**
+### 2.3 Check the device
 
 First, insert the wireless handle USB receiver into the main control (jetson, Raspberry Pi, PC), open the terminal, and enter the following command. If [js0] is displayed, it is the wireless handle. In special cases, you can also check the changes in the device list by connecting and disconnecting the wireless handle USB port. If there is a change, the changed device is the device; otherwise, the connection is unsuccessful or cannot be recognized.
 
-![](_page_1_Picture_3.jpeg)
+![Picture: page 1: picture 3](_page_1_Picture_3.jpeg)
 
-### <span id="page-1-1"></span>**2.4 Testing the Controller Input**
+### 2.4 Testing the Controller Input
 
 Open Terminal and enter the following command. As shown in the image, this wireless controller has 8 axis inputs and 15 button inputs. You can test the corresponding numbers by pressing each button individually.
 
 sudo jstest /dev/input/js0
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 If jstest is not installed, run the following command:
 
@@ -64,13 +64,13 @@ If jstest is not installed, run the following command:
 sudo apt-get install joystick
 ```
 
-# **3. Run the Example**
+# 3. Run the Example
 
-### **3.1 Start the PS2 Controller Control Node**
+### 3.1 Start the PS2 Controller Control Node
 
-#### **Note:**
+#### Note:
 
-<span id="page-2-1"></span>The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (see the [Docker Course Chapter - Entering the Robot's Docker Container] for steps).
+The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (see the [Docker Course Chapter - Entering the Robot's Docker Container] for steps).
 
 Open two terminals on the car computer and run the following two nodes respectively.
 
@@ -86,7 +86,7 @@ Run the robot controller control node:
 ros2 run yahboomcar_ctrl yahboom_joy_M3Pro
 ```
 
-### <span id="page-3-0"></span>**3.2 Button Control Instructions**
+### 3.2 Button Control Instructions
 
 | Controller Actions        | Functions                                     |
 |---------------------------|-----------------------------------------------|
@@ -108,64 +108,64 @@ ros2 run yahboomcar_ctrl yahboom_joy_M3Pro
 | Left "2" Button           | Servo 6 Clamp (Loose) / Servo 5 Turn Left     |
 | SELECT Button             | Switching Control Between Servo 6 and Servo 5 |
 
-# <span id="page-4-0"></span>**4. Source Code Analysis**
+# 4. Source Code Analysis
 
 Source Code Path:
 
 Jetson Orin Nano, Jetson Orin NX:
 
-/home/jetson/yahboomcar\_ws/src/yahboomcar\_ctrl/yahboomcar\_ctrl/yahboom\_joy\_M3Pro .py
+/home/jetson/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_joy_M3Pro.py
 
 Jetson Orin Nano, Raspberry Pi:
 
 You need to enter Docker first.
 
-<span id="page-4-1"></span>root/yahboomcar\_ws/src/yahboomcar\_ctrl/yahboomcar\_ctrl/yahboom\_joy\_M3Pro.py
+root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_joy_M3Pro.py
 
-### **4.1 View the Node Relationship Graph**
+### 4.1 View the Node Relationship Graph
 
 Open a terminal and enter the command:
 
-ros2 run rqt\_graph rqt\_graph
+ros2 run rqt_graph rqt_graph
 
-![](_page_4_Picture_10.jpeg)
+![Picture: page 4: picture 10](_page_4_Picture_10.jpeg)
 
 In the above node relationship graph:
 
-**joy\_node**: Receives data from the controller receiver and publishes it to the **/joy** topic.
+**joy_node**: Receives data from the controller receiver and publishes it to the **/joy** topic.
 
-**joy\_ctrl**: Subscribes to data from the **/joy** topic and parses keystrokes and corresponding operations. Publishes to the **/cmd\_vel** and /arm\_joint\*\* topics to control the robot chassis and robotic arms.
+**joy_ctrl**: Subscribes to data from the **/joy** topic and parses keystrokes and corresponding operations. Publishes to the **/cmd_vel** and /arm_joint\*\* topics to control the robot chassis and robotic arms.
 
-### **4.2 Viewing Topic Messages and Message Types**
+### 4.2 Viewing Topic Messages and Message Types
 
 Open a terminal on the vehicle or virtual machine and enter the following command:
 
-<span id="page-4-2"></span>ros2 interface show sensor\_msgs/msg/Joy
+ros2 interface show sensor_msgs/msg/Joy
 
 The data in the /joy topic is a float32 array containing timestamps.
 
 - float32[] axes: Input data for 8 axes
 - int32[] buttons: Input data for 15 buttons
 
-### **4.3 Program Flowchart**
+### 4.3 Program Flowchart
 
 Image size is too large. The original image can be viewed in this lesson's folder.
 
-<span id="page-5-0"></span>![](_page_5_Figure_6.jpeg)
+![Figure: page 5: figure 6](_page_5_Figure_6.jpeg)
 
-![](_page_6_Figure_0.jpeg)
+![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-![](_page_7_Figure_0.jpeg)
+![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-![](_page_8_Picture_0.jpeg)
+![Picture: page 8: picture 0](_page_8_Picture_0.jpeg)
 
-### **4.4 Source Code Analysis**
+### 4.4 Source Code Analysis
 
 Jetson Orin Nano and Jetson Orin NX series motherboards, source code is located here:
 
-<span id="page-8-0"></span>/home/jetson/yahboomcar\_ws/src/yahboomcar\_ctrl/yahboomcar\_ctrl/yahboom\_joy\_M3Pro .py
+/home/jetson/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_joy_M3Pro.py
 
-jetson Nano, Raspberry Pi series controller:
+Jetson Nano, Raspberry Pi series controller:
 
 You need to first enter the Docker container. The source code is located here:
 
@@ -173,7 +173,7 @@ You need to first enter the Docker container. The source code is located here:
 /root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_joy_M3Pro.py
 ```
 
-#### **4.4.1 Topic Communication**
+#### 4.4.1 Topic Communication
 
 ```
 self.pub_cmdVel = self.create_publisher(Twist,'cmd_vel', 1)
@@ -181,13 +181,13 @@ self.pub_SingleTargetAngle = self.create_publisher(ArmJoint, "arm_joint", 1)
 self.sub_Joy = self.create_subscription(Joy,'joy', self.buttonCallback,10)
 ```
 
-The chassis and robotic arm movements are controlled by publishing topics **/cmd\_vel** and /arm\_joint**, and the** /joy\*\* topic is subscribed to obtain the button status of the PS2 controller.
+The chassis and robotic arm movements are controlled by publishing topics **/cmd_vel** and /arm_joint**, and the** /joy\*\* topic is subscribed to obtain the button status of the PS2 controller.
 
 The essential principle of controlling the robot with a controller is to first parse the controller data, convert it into corresponding control state variables, and send it to the chassis control board via topic communication. The chassis control board subscribes to the topic data and converts it into values for directly controlling the hardware.
 
-#### <span id="page-9-1"></span>**4.4.2 Robotic Arm Control**
+#### 4.4.2 Robotic Arm Control
 
-The function of controlling the robotic arm with a PS2 controller is implemented through the arm\_ctrl method in the JoyTeleop class:
+The function of controlling the robotic arm with a PS2 controller is implemented through the arm_ctrl method in the JoyTeleop class:
 
 ```
 def arm_ctrl(self, id, direction):
@@ -211,9 +211,9 @@ def arm_ctrl(self, id, direction):
         sleep(0.03)
 ```
 
-#### <span id="page-9-2"></span>**4.4.3 Chassis Movement Control**
+#### 4.4.3 Chassis Movement Control
 
-Chassis movement control with the PS2 controller is implemented using the user\_jetson method in the JoyTeleop class:
+Chassis movement control with the PS2 controller is implemented using the user_jetson method in the JoyTeleop class:
 
 ```
 def user_jetson(self, joy_data):

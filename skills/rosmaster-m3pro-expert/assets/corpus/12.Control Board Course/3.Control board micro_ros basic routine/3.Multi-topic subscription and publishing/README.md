@@ -1,18 +1,18 @@
-# **Multi-topic subscription and publishing**
+# Multi-topic subscription and publishing
 
-[Multi-topic subscription](#page-0-0) and publishing
+Multi-topic subscription and publishing
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-4-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-4-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to and publish multiple int32 topics.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the STM32H743 chip and can use the microros framework program.
 
@@ -22,11 +22,11 @@ If you have a USB-to-serial module such as CH340, you can connect to the serial 
 
 Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu22.04 and ROS2 environment on the main control board.
 
-![](_page_0_Picture_14.jpeg)
+![Picture: page 0: picture 14](_page_0_Picture_14.jpeg)
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-## <span id="page-1-0"></span>**3. Core code analysis**
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -201,7 +201,7 @@ void subscriber_callback_3(const void *msgin)
 }
 ```
 
-Call rclc\_executor\_spin\_some in a loop to make microros work properly.
+Call rclc_executor_spin_some in a loop to make microros work properly.
 
 ```
 while (ros_error < 3)
@@ -213,11 +213,11 @@ while (ros_error < 3)
 }
 ```
 
-#### **4. Compile, download and burn firmware**
+#### 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-4-0"></span>![](_page_4_Picture_3.jpeg)
+![Picture: page 4: picture 3](_page_4_Picture_3.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -225,9 +225,9 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-## <span id="page-4-1"></span>**5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 The functional operation is similar to the single topic subscription and publishing functions, except that the topic name is different.
 
@@ -239,26 +239,26 @@ sh ~/start_agent.sh
 
 After the connection is successful, three nodes and three subscribers are created.
 
-Open another terminal and view the /YB\_Example\_Node node.
+Open another terminal and view the /YB_Example_Node node.
 
 ```
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
-Publish a message with the int data 123 to the topic /subscriber\_1.
+Publish a message with the int data 123 to the topic /subscriber_1.
 
 ```
 ros2 topic pub /subscriber_1 std_msgs/msg/Int32 "data: 123"
 ```
 
-Publish a message with the int data value 456 to the topic /subscriber\_2.
+Publish a message with the int data value 456 to the topic /subscriber_2.
 
 ```
 ros2 topic pub /subscriber_2 std_msgs/msg/Int32 "data: 456"
 ```
 
-Publish a message with the integer value 789 to the topic /subscriber\_3.
+Publish a message with the integer value 789 to the topic /subscriber_3.
 
 ```
 ros2 topic pub /subscriber_3 std_msgs/msg/Int32 "data: 789"
@@ -266,7 +266,7 @@ ros2 topic pub /subscriber_3 std_msgs/msg/Int32 "data: 789"
 
 You can see the corresponding information printed on the serial port assistant, indicating that the subscription is successful.
 
-Check the frequency of /publisher\_1, /publisher\_2, and /publisher\_3 topics
+Check the frequency of /publisher_1, /publisher_2, and /publisher_3 topics
 
 ```
 ros2 topic hz /int32_publisher_1
@@ -276,7 +276,7 @@ ros2 topic hz /int32_publisher_3
 
 Press Ctrl+C to end the command.
 
-Subscribe to data from topics /int32\_publisher\_1, /int32\_publisher\_2, and /int32\_publisher\_3
+Subscribe to data from topics /int32_publisher_1, /int32_publisher_2, and /int32_publisher_3
 
 ```
 ros2 topic echo /int32_publisher_1

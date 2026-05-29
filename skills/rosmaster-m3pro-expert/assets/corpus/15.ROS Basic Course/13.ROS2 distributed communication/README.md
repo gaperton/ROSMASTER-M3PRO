@@ -1,18 +1,18 @@
-# **13. ROS2 Distributed Communication**
+# 13. ROS2 Distributed Communication
 
-## **1. Concept**
+## 1. Concept
 
 Multi-machine communication, or distributed communication, refers to a communication strategy that enables data exchange between different hosts over a network.
 
-ROS2 itself is a distributed communication framework that facilitates communication between different devices. The middleware underlying ROS2 is DDS. When running on the same network, distributed communication is achieved through the DDS domain ID mechanism (ROS\_DOMAIN\_ID). The general process is as follows: Before starting a node, you can set the domain ID value. Nodes with the same domain ID can freely discover and communicate with each other. Conversely, if the domain ID values are different, this communication is impossible. By default, all nodes start with domain ID 0. In other words, as long as they are on the same network, distributed communication can be achieved between different nodes on different ROS2 devices without any configuration.
+ROS2 itself is a distributed communication framework that facilitates communication between different devices. The middleware underlying ROS2 is DDS. When running on the same network, distributed communication is achieved through the DDS domain ID mechanism (ROS_DOMAIN_ID). The general process is as follows: Before starting a node, you can set the domain ID value. Nodes with the same domain ID can freely discover and communicate with each other. Conversely, if the domain ID values are different, this communication is impossible. By default, all nodes start with domain ID 0. In other words, as long as they are on the same network, distributed communication can be achieved between different nodes on different ROS2 devices without any configuration.
 
 Distributed communication has a wide range of application scenarios, including unmanned vehicle platooning, drone platooning, and remote control. These data exchanges all rely on distributed communication.
 
-## **2. Implementation**
+## 2. Implementation
 
-### **2.1. Default Implementation**
+### 2.1. Default Implementation
 
-Distributed communication is achieved by simply placing the master and slave devices (you can have multiple devices) on the same network. For example, the master and slave devices can be connected to the same WiFi or router.
+Distributed communication is achieved by simply placing the master and slave devices (you can have multiple devices) on the same network. For example, the master and slave devices can be connected to the same Wi-Fi or router.
 
 In Windows, setting the virtual machine to "bridge mode" will place them on the same network as the host.
 
@@ -24,19 +24,19 @@ Here, we assume we have two hosts, A and B. These can be any network-capable hos
 
 This demonstration shows the car running in Docker. Docker uses host mode. Simply put, host mode means the car shares the same network, so executing the command is identical to running the command on the car.
 
-ros2 run demo\_nodes\_py talker
+ros2 run demo_nodes_py talker
 
 #### 2. Host B executes:
 
-ros2 run demo\_nodes\_py listener
+ros2 run demo_nodes_py listener
 
 If the following display appears: The slaves can subscribe to the topics published by the host, multi-machine communication has been achieved.
 
-### **2.2. Distributed Network Grouping**
+### 2.2. Distributed Network Grouping
 
 If you are currently using other robots in your network, you can also set up a group for your robot to prevent interference from other robots.
 
-ROS2 provides a DOMAIN mechanism, similar to grouping. Only computers in the same DOMAIN can communicate. We can assign both the host (car) and the slave (virtual machine) to the same group by adding the following line to their .bashrc files:
+ROS2 provides a DOMAIN mechanism, similar to grouping. Only computers in the same DOMAIN can communicate. We can assign both the host (car) and the slave (virtual machine) to the same group by adding the following line to their.bashrc files:
 
 ```
 $ export ROS_DOMAIN_ID=<your_domain_id>
@@ -44,7 +44,7 @@ $ export ROS_DOMAIN_ID=<your_domain_id>
 
 If the host (car) and the slave (virtual machine) are assigned different IDs, they will not be able to communicate, thus achieving the purpose of grouping.
 
-### **2.2.1 Example 1**
+### 2.2.1 Example 1
 
 1. Execute on the host (car):
 
@@ -69,29 +69,29 @@ ros2 run demo_nodes_py listener
 
 If the following message appears: The slave machine can subscribe to the topic published by the master machine in a timely manner, indicating that grouped multi-machine communication has been achieved.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-### **2.2.2 Case 2**
+### 2.2.2 Case 2
 
 Controlling turtle movement through distributed communication
 
 Host A run command
 
-ros2 run turtlesim turtlesim\_node
+ros2 run turtlesim turtlesim_node
 
 Host B run command
 
-ros2 run turtlesim turtle\_teleop\_key
+ros2 run turtlesim turtle_teleop_key
 
-## **3. Notes**
+## 3. Notes
 
-Setting the ROS\_DOMAIN\_ID value is not arbitrary and is subject to certain constraints:
+Setting the ROS_DOMAIN_ID value is not arbitrary and is subject to certain constraints:
 
-- 1. It is recommended that the ROS\_DOMAIN\_ID value be between [0, 101], inclusive;
+- 1. It is recommended that the ROS_DOMAIN_ID value be between [0, 101], inclusive;
 - 2. The total number of nodes within each domain ID is limited and must be less than or equal to 120;
 - 3. If the domain ID is 101, the total number of nodes in that domain must be less than or equal to 54.
 
-## **4. DDS Domain ID Calculation Rules (Advanced Knowledge)**
+## 4. DDS Domain ID Calculation Rules (Advanced Knowledge)
 
 The calculation rules for domain ID values are as follows:
 

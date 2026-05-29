@@ -1,14 +1,14 @@
-## **Finger control**
+## Finger control
 
-## **1. Content Description**
+## 1. Content Description
 
 This course implements color images and uses the mediapipe framework to detect fingers. It then calculates the angles formed by the thumb tip, wrist joint, and index finger tip to change the effect of image processing.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -24,21 +24,21 @@ ros2 run yahboomcar_mediapipe 10_HandCtrl
 
 After the program is running, press the F key to switch the image processing effect, and then change the angle by changing the distance between the thumb and index finger to control the image processing effect.
 
-![](_page_0_Figure_11.jpeg)
+![Figure: page 0: figure 11](_page_0_Figure_11.jpeg)
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/10\_HandCtrl. py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/10_HandCtrl. py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/10\_Ha ndCtrl.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/10_Ha ndCtrl.py
 
 Import the necessary library files,
 
@@ -182,9 +182,9 @@ the joint detected
 
 As shown in the figure below, the ID of each joint of the finger,
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-calc\_angle calculates the angle, here we calculate the angle between the thumb tip, wrist joint and index finger tip.
+calc_angle calculates the angle, here we calculate the angle between the thumb tip, wrist joint and index finger tip.
 
 ```
 def calc_angle(self, pt1, pt2, pt3):

@@ -1,28 +1,28 @@
-# **23. ROS2 TF2 Coordinate Transformation**
+# 23. ROS2 TF2 Coordinate Transformation
 
-# **1. Introduction to TF2**
+# 1. Introduction to TF2
 
 Coordinate systems are a very familiar concept and a key foundation in robotics. In a complete robotic system, there are many coordinate systems. How do we manage the positional relationships between these coordinate systems? ROS provides a powerful coordinate system management tool: TF2.
 
 TF System Reference: [tf: The transform library | IEEE Conference Publication | IEEE Xplore](https://ieeexplore.ieee.org/abstract/document/6556373)
 
-# **2. Coordinate Systems in Robotics**
+# 2. Coordinate Systems in Robotics
 
 Coordinate systems are also crucial in mobile robot systems. For example, the center point of a mobile robot is the base coordinate system (Base Link), and the position of the radar is called the laser link. As the robot moves, the odometry accumulates its position. The reference system for this position is called the odom coordinate system (odom). The odometry itself is subject to accumulated errors and drift. The reference system for absolute position is called the map coordinate system (map).
 
 The relationships between layers of coordinate systems are complex. Some are relatively fixed, while others are constantly changing. Even seemingly simple coordinate systems can become complex within a spatial context, making a good coordinate system management system extremely important.
 
-![](_page_0_Picture_7.jpeg)
+![Picture: page 0: picture 7](_page_0_Picture_7.jpeg)
 
 The basic theory of coordinate system transformations is explained in every robotics textbook. It can be broken down into two components: translation and rotation. These components are described by a four-by-four matrix. When plotting a coordinate system in space, the transformation between these two components is essentially a mathematical description of vectors.
 
 The underlying principles of the TF functionality in ROS encapsulate these mathematical transformations. For detailed theoretical knowledge, please refer to robotics textbooks. We will primarily explain how to use the TF coordinate management system.
 
-# **3. TF Command Line Operations**
+# 3. TF Command Line Operations
 
 Let's first use an example with two turtles to understand a robot following algorithm based on coordinate systems. **For ease of demonstration, this lesson is best conducted in a virtual machine**
 
-### **3.1 Installing Related Tools**
+### 3.1 Installing Related Tools
 
 This example requires installing the corresponding function packages, the TF turtle simulator example, and the TF tree visualization tool.
 
@@ -32,7 +32,7 @@ sudo pip3 install transforms3d
 sudo apt install ros-${ROS_DISTRO}-rqt-tf-tree
 ```
 
-#### **3.2 Starting Up**
+#### 3.2 Starting Up
 
 Then you can start the system using a launch file. You can then control one of the turtles, and the other will automatically follow.
 
@@ -43,9 +43,9 @@ ros2 run turtlesim turtle_teleop_key
 
 When we control the movement of one turtle, the other turtle will follow.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-## **3.3 Viewing the TF Tree**
+## 3.3 Viewing the TF Tree
 
 ```
 ros2 run rqt_tf_tree rqt_tf_tree
@@ -53,11 +53,11 @@ ros2 run rqt_tf_tree rqt_tf_tree
 
 You can view the TF transformation tree in the rqt window.
 
-![](_page_2_Figure_4.jpeg)
+![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)
 
-### **3.4 Querying Coordinate Transformation Information**
+### 3.4 Querying Coordinate Transformation Information
 
-Just viewing the coordinate system structure is not enough. If we want to know the specific relationship between two coordinate systems, we can use the tf2\_echo tool:
+Just viewing the coordinate system structure is not enough. If we want to know the specific relationship between two coordinate systems, we can use the tf2_echo tool:
 
 ```
 ros2 run tf2_ros tf2_echo turtle2 turtle1
@@ -65,7 +65,7 @@ ros2 run tf2_ros tf2_echo turtle2 turtle1
 
 After running successfully, the terminal will repeatedly print the coordinate system transformation values.
 
-#### **3.5 Coordinate System Visualization**
+#### 3.5 Coordinate System Visualization
 
 Run rviz2 and add the TF display plugin.
 
@@ -73,31 +73,31 @@ Run rviz2 and add the TF display plugin.
 rviz2
 ```
 
-Set the reference coordinate system in rviz2 to "world," add the TF display plugin, and then animate the turtle. The coordinate axes in rviz will begin to move. Isn't this more intuitive?
+Set the reference coordinate system in rviz2 to "world," add the TF display plugin, and then animate the turtle. The coordinate axes in RViz will begin to move. Isn't this more intuitive?
 
-![](_page_3_Figure_5.jpeg)
+![Figure: page 3: figure 5](_page_3_Figure_5.jpeg)
 
-# **4. Static Coordinate Transformation**
+# 4. Static Coordinate Transformation
 
-A static coordinate transformation refers to a fixed relative position between two coordinate systems. For example, the position between the radar and base\_link is fixed.
+A static coordinate transformation refers to a fixed relative position between two coordinate systems. For example, the position between the radar and base_link is fixed.
 
 Example: **For ease of demonstration, this lesson is best performed in a virtual machine**
 
-#### **4.1. Publishing the pose from A to B**
+#### 4.1. Publishing the pose from A to B
 
-ros2 run tf2\_ros static\_transform\_publisher 0 0 3 0 0 3.14 A B
+ros2 run tf2_ros static_transform_publisher 0 0 3 0 0 3.14 A B
 
-#### **4.2. Monitoring/Getting TF Relationships**
+#### 4.2. Monitoring/Getting TF Relationships
 
-ros2 run tf2\_ros tf2\_echo A B
+ros2 run tf2_ros tf2_echo A B
 
-#### **4.3. RIVZ Visualization**
+#### 4.3. RIVZ Visualization
 
 Run rviz2 and add the TF display plugin.
 
-![](_page_4_Figure_7.jpeg)
+![Figure: page 4: figure 7](_page_4_Figure_7.jpeg)
 
-# **5. Case Introduction**
+# 5. Case Introduction
 
 In the previous lesson, we explained the TF relationship in the system-provided turtle following example. In this lesson, we will implement this functionality ourselves.
 
@@ -112,9 +112,9 @@ In the previous lesson, we explained the TF relationship in the system-provided 
 
 Understanding the TF system's ability to transform coordinate systems across time dimensions
 
-# **6. Analysis of the Principles of the Turtle-Following Example**
+# 6. Analysis of the Principles of the Turtle-Following Example
 
-![](_page_5_Picture_2.jpeg)
+![Picture: page 5: picture 2](_page_5_Picture_2.jpeg)
 
 In a two-turtle simulator, we can define three coordinate systems. For example, the simulator's global reference system is called "world," and the turtle1 and turtle2 coordinate systems are at the center of the two turtles. Thus, the relative position of turtle1 and the world coordinate system represents the position of turtle1, and similarly for turtle2.
 
@@ -124,7 +124,7 @@ The length of a vector represents distance, and the direction represents angle. 
 
 So the core of this example is to perform vector calculations using the coordinate system. Since the two turtles are constantly moving, the vectors must also be calculated according to a certain period. This requires the use of TF's dynamic broadcast and monitoring.
 
-# **7. Create a new package**
+# 7. Create a new package
 
 1. Create a new package in the src directory of the workspace to store our files.
 
@@ -133,7 +133,7 @@ ros2 pkg create pkg_tf --build-type ament_python --dependencies rclpy --node-
 name turtle_tf_broadcaster
 ```
 
-Executing the above command will create the pkg\_tf package and a turtle\_tf\_broadcaster node. The relevant configuration files will be configured. Add the following code to the turtle\_tf\_broadcaster.py file:
+Executing the above command will create the pkg_tf package and a turtle_tf_broadcaster node. The relevant configuration files will be configured. Add the following code to the turtle_tf_broadcaster.py file:
 
 ```
 import rclpy # ROS2 Python interface
@@ -206,7 +206,7 @@ object
 Python interface
 ```
 
-2. Next, create a new file [turtle\_following.py] in the same directory as turtle\_tf\_broadcaster.py and add the following code:
+2. Next, create a new file [turtle_following.py] in the same directory as turtle_tf_broadcaster.py and add the following code:
 
 ```
 import math
@@ -332,7 +332,7 @@ exit.
 interface.
 ```
 
-3. Create a new launch folder under the pkg\_tf package, create a new file [turtle\_following.launch.py] in the launch folder, and add the following content:
+3. Create a new launch folder under the pkg_tf package, create a new file [turtle_following.launch.py] in the launch folder, and add the following content:
 
 ```
 from launch import LaunchDescription
@@ -374,9 +374,9 @@ description='Target frame name.'),
     ])
 ```
 
-## **8. Edit the configuration file**
+## 8. Edit the configuration file
 
-#### **8.1. Configuration in setup.py**
+#### 8.1. Configuration in setup.py
 
 Import relevant libraries
 
@@ -385,33 +385,33 @@ import os
 from glob import glob
 ```
 
-Add the turtle\_following node information and add the following command to copy the launch file to the shared directory in the install.
+Add the turtle_following node information and add the following command to copy the launch file to the shared directory in the install.
 
 ```
 (os.path.join('share',package_name,'launch'),glob('launch/*')),
 ```
 
-# **9. Compile the package**
+# 9. Compile the package
 
-colcon build --packages-select pkg\_tf
+colcon build --packages-select pkg_tf
 
-![](_page_11_Figure_4.jpeg)
+![Figure: page 11: figure 4](_page_11_Figure_4.jpeg)
 
-# **10. Run the Program**
+# 10. Run the Program
 
 Refresh the terminal environment variables, then run
 
-ros2 launch pkg\_tf turtle\_following.launch.py
+ros2 launch pkg_tf turtle_following.launch.py
 
 Start the turtle keyboard control node, controlling the movement of the first turtle; the second turtle will automatically follow.
 
-ros2 run turtlesim turtle\_teleop\_key
+ros2 run turtlesim turtle_teleop_key
 
-![](_page_12_Figure_2.jpeg)
+![Figure: page 12: figure 2](_page_12_Figure_2.jpeg)
 
 In this terminal, press the up, down, left, and right keys on your keyboard to control the movement of one turtle. The other turtle will follow until they overlap.
 
-# **11. Advanced Content**
+# 11. Advanced Content
 
 Understanding TF's Cross-Time Transformation Capabilities
 
@@ -419,7 +419,7 @@ Buffer automatically caches all TF transformation relationships within the TF sy
 
 The following is a supplement to the turtle following example above. The red arrow indicates that the transformation between two coordinate systems at different points in time can be found across time.
 
-![](_page_13_Figure_0.jpeg)
+![Figure: page 13: figure 0](_page_13_Figure_0.jpeg)
 
 Fig. 4: A simple tf tree from a core ROS tutorial, with debugging information.
 

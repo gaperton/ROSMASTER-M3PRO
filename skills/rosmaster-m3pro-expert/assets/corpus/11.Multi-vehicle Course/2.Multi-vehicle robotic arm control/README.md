@@ -1,22 +1,22 @@
-# **Multi-vehicle robotic arm control**
+# Multi-vehicle robotic arm control
 
-## **1. Content Description**
+## 1. Content Description
 
 This function enables the use of handles to control the robotic arms of multiple robots.
 
-#### **1.1 Functional Requirements**
+#### 1.1 Functional Requirements
 
 For more information, please refer to this product course **[11. Multi-vehicle Function] - [1. Multi-vehicle Chassis Control] - [1.1. Functional Requirements]**
 
-#### **1.2. Connect the controller to the virtual machine**
+#### 1.2. Connect the controller to the virtual machine
 
 After the virtual machine starts, plug the handle receiver into the USB port of the computer, and then select Connect handle receiver in the virtual machine, as shown below.
 
-![](_page_0_Picture_7.jpeg)
+![Picture: page 0: picture 7](_page_0_Picture_7.jpeg)
 
 Click [Connect] to complete the connection.
 
-## **2. Program startup**
+## 2. Program startup
 
 After completing the namespace settings for the two robots and successfully reconnecting to the proxy, open two terminals in the corresponding virtual machines and enter the following commands respectively to start the handle to control the robotic arm.
 
@@ -45,7 +45,7 @@ In addition to the controllable robotic arm, the chassis can also be controlled.
 
 The left joystick controls forward/backward/left/right movement, and the right joystick controls left turn/right turn on the spot.
 
-## **3. Node Communication**
+## 3. Node Communication
 
 Enter the following command in the virtual machine terminal to view the node communication diagram.
 
@@ -55,6 +55,6 @@ ros2 run rqt_graph rqt_graph
 
 As shown in the figure below, select [Nodes/Topics (all)] in the upper left corner, and then click the refresh button on the left.
 
-![](_page_1_Figure_7.jpeg)
+![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 
-The joystick node /joy\_ctrl publishes the /cmd\_vel and /arm\_joint topics to control the chassis and robotic arm. The two robots' underlying nodes /robot1/YB\_Node and /robot2/YB\_Node subscribe to these topics, receive messages from these topics, process them, and pass them to the driver board, which then controls the robot's movement and the robotic arm.
+The joystick node /joy_ctrl publishes the /cmd_vel and /arm_joint topics to control the chassis and robotic arm. The two robots' underlying nodes /robot1/YB_Node and /robot2/YB_Node subscribe to these topics, receive messages from these topics, process them, and pass them to the driver board, which then controls the robot's movement and the robotic arm.

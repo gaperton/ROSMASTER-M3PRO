@@ -1,36 +1,36 @@
-# **3. ROS2 development environment**
+# 3. ROS2 development environment
 
 In theory, you can write basic ROS2 programs in Notepad, but to improve development efficiency, you can install the integrated development environment (VSCode).
 
-## **1. Using the VSCode development environment**
+## 1. Using the VSCode development environment
 
 Search for "VSCode" in your browser, select the installation package for your platform, download and install it.
 
-![](_page_0_Picture_4.jpeg)
+![Picture: page 0: picture 4](_page_0_Picture_4.jpeg)
 
 Install commonly used plug-ins to improve work efficiency.
 
-![](_page_0_Figure_6.jpeg)
+![Figure: page 0: figure 6](_page_0_Figure_6.jpeg)
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-## **2. Using the Terminal**
+## 2. Using the Terminal
 
 In ROS2, you'll frequently use the terminal. We recommend a relatively easy-to-use terminal: Terminator. The results are as follows:
 
-![](_page_1_Figure_3.jpeg)
+![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
-#### **2.1. Installation**
+#### 2.1. Installation
 
 sudo apt install terminator
 
-### **2.2. Launching**
+### 2.2. Launching
 
 ```
 Shortcut `Ctrl+Alt+T` to launch
 ```
 
-### **2.3. Common Terminator Shortcuts**
+### 2.3. Common Terminator Shortcuts
 
 About operations within the same tab:
 
@@ -93,9 +93,9 @@ Super+i // Open a new window; the new window will use a
 different process than the original window
 ```
 
-### **3. Using Git**
+### 3. Using Git
 
-#### **3.1. Installation**
+#### 3.1. Installation
 
 Since daily work involves teamwork and version management, Git is an essential skill. Git is a free and open source distributed version control system. To install Git in Ubuntu:
 
@@ -103,7 +103,7 @@ Since daily work involves teamwork and version management, Git is an essential s
 sudo apt install git
 ```
 
-#### **3.2. Basic Git Operations**
+#### 3.2. Basic Git Operations
 
 Git's job is to create and save snapshots of your project and compare them with subsequent snapshots.
 
@@ -111,9 +111,9 @@ This chapter introduces commands for creating and committing your project snapsh
 
 Git uses the following six commands: **git clone**, **git push**, **git add**, **git commit**, **git checkout**, and **git pull**. We'll explain them in detail later.
 
-![](_page_3_Picture_9.jpeg)
+![Picture: page 3: picture 9](_page_3_Picture_9.jpeg)
 
-#### **Description:**
+#### Description:
 
 - workspace: Workspace
 - staging area: Staging area
@@ -129,10 +129,10 @@ $ git commit
 ```
 
 - git init Initializes the repository.
-- git add . Adds files to the staging area.
+- git add. Adds files to the staging area.
 - git commit Adds the contents of the staging area to the repository.
 
-#### **3.2.1. Repository Creation Commands**
+#### 3.2.1. Repository Creation Commands
 
 The following table lists the Git commands for creating repositories:
 
@@ -141,7 +141,7 @@ The following table lists the Git commands for creating repositories:
 | git init  | Initializes a repository                                                |
 | git clone | Makes a copy of a remote repository, essentially downloading a project. |
 
-#### **3.2.2. Committing and Modifying**
+#### 3.2.2. Committing and Modifying
 
 Git's job is to create and save snapshots of your project and compare them with subsequent snapshots.
 
@@ -150,24 +150,24 @@ The following table lists the commands for creating and committing snapshots of 
 | Command                                    | Description                                                                                                |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------|
 | git add                                    | Adds files to the staging area                                                                             |
-| git status                                 | Views the current status of the repository, showing modified<br>files.                                     |
-| git diff                                   | Compares file differences, that is, the differences between the<br>staging area and the working directory. |
+| git status                                 | Views the current status of the repository, showing modified files.                                     |
+| git diff                                   | Compares file differences, that is, the differences between the staging area and the working directory. |
 | git commit                                 | Commits the staging area to the local repository.                                                          |
 | git reset                                  | Roll back a revision.                                                                                      |
 | git rm                                     | Remove a file from the staging area and the working directory.                                             |
 | git mv                                     | Move or rename a file in the working directory.                                                            |
 | git checkout                               | Switch branches.                                                                                           |
-| git switch<br>(introduced in Git<br>2.23)  | Switch branches more cleanly.                                                                              |
-| git restore<br>(introduced in Git<br>2.23) | Revert or undo changes to a file.                                                                          |
+| git switch (introduced in Git 2.23)  | Switch branches more cleanly.                                                                              |
+| git restore (introduced in Git 2.23) | Revert or undo changes to a file.                                                                          |
 
-#### **3.2.3. Commit Log**
+#### 3.2.3. Commit Log
 
 | Command                 | Description                                                    |
 |-------------------------|----------------------------------------------------------------|
 | git log                 | View historical commits                                        |
 | git blame <file></file> | View the modification history of a specified file in list form |
 
-#### **3.2.4. Remote Operations**
+#### 3.2.4. Remote Operations
 
 | Command    | Description                            |
 |------------|----------------------------------------|

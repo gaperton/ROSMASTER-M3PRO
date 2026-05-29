@@ -1,41 +1,41 @@
-# **ROS Control**
+# ROS Control
 
-#### **ROS [Control](#page-0-0)**
+#### ROS Control
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Preparation](#page-0-2)
-  - 2.1 Content [Description](#page-0-3)
-  - 2.2 [Starting](#page-0-4) the Agent
-- [3. Startup Commands](#page-1-0)
-  - 3.1 Functional [Description](#page-1-1)
-  - 3.2 [Program Startup](#page-1-2)
-    - 3.2.1 [Connecting](#page-1-3) to the Agent
-    - 3.2.2 Viewing Node [Information](#page-2-0)
-  - 3.3 Publishing Control [Commands](#page-3-0)
-    - 3.3.1 [Controlling](#page-3-1) the Car's Speed
-    - 3.3.2 [Controlling](#page-4-0) the Car's Buzzer
-    - 3.3.3 [Controlling](#page-4-1) the Car's Light Strip
-    - 3.3.4 [Controlling](#page-4-2) Six Servos
-    - 3.3.5 [Controlling](#page-4-3) a Single Servo
-  - 3.4 [Subscribing](#page-5-0) to Car Data
-    - 3.4.1 [Subscribing](#page-5-1) to Radar Data
-    - 3.4.2 [Subscribing](#page-5-2) to Battery Level Data
-    - 3.4.3 [Subscribing](#page-6-0) to IMU Data
-    - 3.4.4 [Subscribing](#page-7-0) to Odometer Data
+- 1. Course Content
+- 2. Preparation
+  - 2.1 Content Description
+  - 2.2 Starting the Agent
+- 3. Startup Commands
+  - 3.1 Functional Description
+  - 3.2 Program Startup
+    - 3.2.1 Connecting to the Agent
+    - 3.2.2 Viewing Node Information
+  - 3.3 Publishing Control Commands
+    - 3.3.1 Controlling the Car's Speed
+    - 3.3.2 Controlling the Car's Buzzer
+    - 3.3.3 Controlling the Car's Light Strip
+    - 3.3.4 Controlling Six Servos
+    - 3.3.5 Controlling a Single Servo
+  - 3.4 Subscribing to Car Data
+    - 3.4.1 Subscribing to Radar Data
+    - 3.4.2 Subscribing to Battery Level Data
+    - 3.4.3 Subscribing to IMU Data
+    - 3.4.4 Subscribing to Odometer Data
 
-# **1. Course Content**
+# 1. Course Content
 
-<span id="page-0-3"></span><span id="page-0-2"></span><span id="page-0-1"></span>1. Learn the basics of robot control using ROS.
+1. Learn the basics of robot control using ROS.
 
 This function enables control of the robot's speed, buzzer, and robotic arm using ROS2 topic tools. It also enables reading low-level data, such as radar data, IMU data, and odometry data.
 
-# **2. Preparation**
+# 2. Preparation
 
-# **2.1 Content Description**
+# 2.1 Content Description
 
 This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container from the host computer, refer to the **[Configuration and Operation Guide] -- [Enter the Docker (Jetson Nano and Raspberry Pi 5 users see here)]** section of this product tutorial. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
 
-## <span id="page-0-4"></span>**2.2 Starting the Agent**
+## 2.2 Starting the Agent
 
 **Note: The Docker agent must be started before testing all cases. If it's already started, you don't need to restart it.**
 
@@ -47,15 +47,15 @@ sh start_agent.sh
 
 The terminal will print the following message, indicating a successful connection.
 
-# <span id="page-1-0"></span>**3. Startup Commands**
+# 3. Startup Commands
 
-### <span id="page-1-1"></span>**3.1 Functional Description**
+### 3.1 Functional Description
 
 This function enables control of the vehicle's speed, buzzer, and robotic arm through ROS2 topic tools. It also enables reading low-level data, such as radar data, IMU data, and odometer data.
 
-### <span id="page-1-2"></span>**3.2 Program Startup**
+### 3.2 Program Startup
 
-### <span id="page-1-3"></span>**3.2.1 Connecting to the Agent**
+### 3.2.1 Connecting to the Agent
 
 After booting up, open a terminal and enter the following command to connect to the agent:
 
@@ -65,13 +65,13 @@ sh start_agent.sh
 
 As shown below, after successfully starting the agent,
 
-If the startup fails, check for loose connections and verify that the serial port /dev/myserial is recognized by running ls /dev.myserial .
+If the startup fails, check for loose connections and verify that the serial port /dev/myserial is recognized by running ls /dev.myserial.
 
-### <span id="page-2-0"></span>**3.2.2 Viewing Node Information**
+### 3.2.2 Viewing Node Information
 
 After successfully connecting to the agent, you can use the ros2 node list command in the terminal to view the nodes.
 
-Here, you need to open the terminal according to the motherboard. Users of Jetson-Nano and Raspberry Pi 5 need to enter Docker and enter the command. For the instructions for starting Docker, please refer to the content of [Entering Docker (Jetson-Nano and Raspberry Pi 5 users see here)] in [0. Instructions and Installation Steps] of this product tutorial; users of Orin motherboards can directly open the terminal and enter the command. Here, we use the Raspberry Pi 5's runtime interface as an example. After entering Docker, enter the command in the Docker terminal:
+Here, you need to open the terminal according to the motherboard. Users of Jetson Nano and Raspberry Pi 5 need to enter Docker and enter the command. For the instructions for starting Docker, please refer to the content of [Entering Docker (Jetson Nano and Raspberry Pi 5 users see here)] in [0. Instructions and Installation Steps] of this product tutorial; users of Orin motherboards can directly open the terminal and enter the command. Here, we use the Raspberry Pi 5's runtime interface as an example. After entering Docker, enter the command in the Docker terminal:
 
 ```
 ros2 node list
@@ -79,7 +79,7 @@ ros2 node list
 
 A screenshot is shown below.
 
-Here, there's a /YB\_Node, indicating that the underlying control node has started. Enter the following command to query information about this node, also in the terminal:
+Here, there's a /YB_Node, indicating that the underlying control node has started. Enter the following command to query information about this node, also in the terminal:
 
 ```
 ros2 node info /YB_Node
@@ -111,13 +111,13 @@ Subscription Topic Table
 
 <<<<<<< HEAD
 
-# <span id="page-3-0"></span>**3.3 Publishing Control Commands**
+# 3.3 Publishing Control Commands
 
 According to the table of subscribed topics, use the following command format: ros2 topic pub topic name topic message data type message data --once to publish a frame of control data.
 
-### **3.3.1 Controlling the Car's Speed**
+### 3.3.1 Controlling the Car's Speed
 
-<span id="page-3-1"></span>Publishing Control Commands
+Publishing Control Commands
 
 According to the table of subscribed topics, use the following command format: ros2 topic pub topic name topic message data type message data --once to publish a frame of control data.
 
@@ -128,7 +128,7 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.1, y: 0.0, z:
 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" --once
 ```
 
-After running, the car will move forward at a speed of 0.1 m/s. Similarly, to control the car to move at an angular velocity of 1.0 rad/s, assign the z value of angular\_r to the following command:
+After running, the car will move forward at a speed of 0.1 m/s. Similarly, to control the car to move at an angular velocity of 1.0 rad/s, assign the z value of angular_r to the following command:
 
 ```
 ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z:
@@ -144,7 +144,7 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z:
 
 The --once flag indicates that only one frame of message data will be sent. For other parameters for the ros2 topic pub command, please refer to [19. Common ROS2 Command Tools] in [15. ROS2 Basics] of this product course.
 
-### <span id="page-4-0"></span>**3.3.2 Controlling the Car's Buzzer**
+### 3.3.2 Controlling the Car's Buzzer
 
 To turn on the buzzer, enter the following command in the terminal:
 
@@ -158,7 +158,7 @@ To turn off the buzzer, enter the following command in the terminal:
 ros2 topic pub /beep std_msgs/msg/UInt16 "data: 0" --once
 ```
 
-### <span id="page-4-1"></span>**3.3.3 Controlling the Car's Light Strip**
+### 3.3.3 Controlling the Car's Light Strip
 
 To publish red, enter the following command in the terminal:
 
@@ -167,7 +167,7 @@ ros2 topic pub /rgb std_msgs/msg/ColorRGBA "{r: 1.0, g: 0.0, b: 0.0, a: 1.0}" --
 once
 ```
 
-### **3.3.4 Controlling Six Servos**
+### 3.3.4 Controlling Six Servos
 
 Set the angles of the six servos to 90 degrees, and the robotic arm to an upward, straight posture. Note: Stand clear of the robotic arm to avoid being hit. Enter the following command in the terminal:
 
@@ -178,7 +178,7 @@ joint3: 90, joint4: 90, joint5: 90, joint6: 90, time: 1500"} --once
 
 The time value here represents the servo operation time, in milliseconds.
 
-### <span id="page-4-3"></span>**3.3.5 Controlling a Single Servo**
+### 3.3.5 Controlling a Single Servo
 
 Set the angle of servo #6 (gripper) to 150 degrees, indicating a gripping state. Enter the following command in the terminal:
 
@@ -187,11 +187,11 @@ ros2 topic pub /arm_joint arm_msgs/msg/ArmJoint "{id: 6,joint: 150,time: 2000}"
 --once
 ```
 
-### <span id="page-5-0"></span>**3.4 Subscribing to Car Data**
+### 3.4 Subscribing to Car Data
 
 According to the published table, use the command ros2 topic exho topic-name in the following format to receive sensor data published by the car node.
 
-### <span id="page-5-1"></span>**3.4.1 Subscribing to Radar Data**
+### 3.4.1 Subscribing to Radar Data
 
 According to the published table, use the command ros2 topic exho topic-name in the following format to receive sensor data published by the car node.
 
@@ -205,7 +205,7 @@ The subscribed data is shown in the figure below.
 
 For more information about radar data, please visit [6. LiDAR] in this course.
 
-#### <span id="page-5-2"></span>**3.4.2 Subscribing to Battery Level Data**
+#### 3.4.2 Subscribing to Battery Level Data
 
 Theoretically, the battery voltage for normal operation of this product should be above 10.3V and below 12V. If it falls below 10.3V, the buzzer will beep, indicating that the battery voltage is too low and needs to be charged. You can enter the following command in the terminal to query the battery voltage:
 
@@ -215,9 +215,9 @@ ros2 topic echo /battery
 
 The subscribed data is shown in the figure below.
 
-<span id="page-6-0"></span>Here, the battery voltage is 11.8V.
+Here, the battery voltage is 11.8V.
 
-### **3.4.3 Subscribing to IMU Data**
+### 3.4.3 Subscribing to IMU Data
 
 The control board has a 9-axis IMU that provides feedback on the car's attitude. Enter the following command in the terminal to retrieve IMU data:
 
@@ -227,7 +227,7 @@ ros2 topic echo /imu/data_raw
 
 The subscribed IMU data is shown in the figure below.
 
-### <span id="page-7-0"></span>**3.4.4 Subscribing to Odometer Data**
+### 3.4.4 Subscribing to Odometer Data
 
 This product's four motors are equipped with encoders. The ROS control board reads the encoder information and publishes calculated odometer data. Enter the following command in the terminal to read the odometer data:
 

@@ -1,6 +1,6 @@
-## **12.ROS2 meta-function package**
+## 12.ROS2 meta-function package
 
-## **1. Introduction to Metapackages**
+## 1. Introduction to Metapackages
 
 Completing a systemic function may involve multiple packages. For example, implementing a robot navigation module might include sub-packages such as mapping, positioning, and path planning. So, when installing this module, does the user need to install each package individually?
 
@@ -14,11 +14,11 @@ A classic example of a meta-package: navigation2
 
 [navigation2 GitHub repository: GitHub - ros-navigation/navigation2: ROS 2 Navigation](https://github.com/ros-navigation/navigation2) Framework and System
 
-## **2. Purpose**
+## 2. Purpose
 
 This package facilitates installation. We only need this one package to organize and install other related packages.
 
-## **3. Implementation**
+## 3. Implementation
 
 1. Create a new package
 
@@ -71,6 +71,6 @@ ament_package()
 - 4. Compile the meta-package
 - No actual executable files will be generated
 
-colcon build --packages-select pkg\_metapackage
+colcon build --packages-select pkg_metapackage
 
-![](_page_1_Figure_6.jpeg)
+![Figure: page 1: figure 6](_page_1_Figure_6.jpeg)

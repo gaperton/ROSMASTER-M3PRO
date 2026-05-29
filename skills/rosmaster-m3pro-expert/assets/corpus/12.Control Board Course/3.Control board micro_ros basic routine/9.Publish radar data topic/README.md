@@ -1,18 +1,18 @@
-# **Publish radar data topic**
+# Publish radar data topic
 
-[Publish](#page-0-0) radar data topic
+Publish radar data topic
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-2-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-3-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Learn about STM32-microROS components, access the ROS2 environment, and publish radar data topics.
 
-# **2. Hardware Connection**
+# 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the Tmini-Plus LiDAR serial port interface, and an external Tmini-Plus LiDAR is required to complete the experiment.
 
@@ -20,13 +20,13 @@ Since the LiDAR requires a large current, it is recommended to use a battery for
 
 Use a Type-C data cable to connect the USB port of the main control board and the USB Connect port of the STM32 control board.
 
-![](_page_0_Picture_13.jpeg)
+![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
 Note: The M3 Pro series car products come with a Tmini-Plus serial port adapter cable. The adapter cable has an anti-misinsertion function and can be inserted into the left radar port.
 
-### <span id="page-1-0"></span>**3. Core code analysis**
+### 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -34,7 +34,7 @@ The virtual machine path corresponding to the program source code is:
 Board_Samples/Microros_Samples/Publisher_lidar
 ```
 
-Initialize and publish the lidar information, set the lidar angle to 0 ~ 360, the angle interval to 0.54 degrees, the ranging range to 0.05~12.0 meters, set the frame\_id to "laser\_frame", and then decide whether to add the ROS\_NAMESPACE prefix based on whether ROS\_NAMESPACE is empty.
+Initialize and publish the lidar information, set the lidar angle to 0 ~ 360, the angle interval to 0.54 degrees, the ranging range to 0.05~12.0 meters, set the frame_id to "laser_frame", and then decide whether to add the ROS_NAMESPACE prefix based on whether ROS_NAMESPACE is empty.
 
 ```
 #define LIDAR_DATA_LEN 666
@@ -58,7 +58,7 @@ micro_ros_string_utilities_set(lidar_msg.header.frame_id, "laser_frame");
 }
 ```
 
-To create a publisher named "scan", you need to specify the publisher's message type as sensor\_msgs/msg/LaserScan.
+To create a publisher named "scan", you need to specify the publisher's message type as sensor_msgs/msg/LaserScan.
 
 ```
 RCCHECK(rclc_publisher_init_default(
@@ -110,7 +110,7 @@ void publish_lidar_data(void)
 }
 ```
 
-Call rclc\_executor\_spin\_some in a loop to make microros work properly.
+Call rclc_executor_spin_some in a loop to make microros work properly.
 
 ```
 while (ros_error < 3)
@@ -122,11 +122,11 @@ while (ros_error < 3)
     }
 ```
 
-# **4. Compile, download and burn firmware**
+# 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-2-0"></span>![](_page_2_Picture_8.jpeg)
+![Picture: page 2: picture 8](_page_2_Picture_8.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -134,9 +134,9 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-# <span id="page-3-0"></span>**5. Experimental Results**
+# 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
 
@@ -146,7 +146,7 @@ sh ~/start_agent.sh
 
 After the connection is successful, a node and a publisher are created.
 
-Open another terminal and view the /YB\_Example\_Node node.
+Open another terminal and view the /YB_Example_Node node.
 
 ```
 ros2 node list
@@ -169,6 +169,6 @@ ros2 topic hz /scan
 
 Press Ctrl+C to end the command.
 
-To view the visualization, open the rviz2 client, add the LaserScan topic data, set Fixed Frame to laser\_frame, and Topic to /scan. Other parameters are as shown in the figure below.
+To view the visualization, open the rviz2 client, add the LaserScan topic data, set Fixed Frame to laser_frame, and Topic to /scan. Other parameters are as shown in the figure below.
 
-![](_page_5_Figure_0.jpeg)
+![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)

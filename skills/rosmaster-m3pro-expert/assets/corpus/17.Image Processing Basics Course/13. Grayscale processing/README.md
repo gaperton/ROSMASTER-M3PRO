@@ -1,8 +1,8 @@
-## **Grayscale processing**
+## Grayscale processing
 
 The process of converting a color image to a grayscale image is called grayscaling. The color of each pixel in a color image is determined by three components: R, G, and B. Each component can take values from 0 to 255, resulting in a pixel with a range of over 16 million possible colors (256 *256* 256 = 1,677,256). A grayscale image is a special type of color image where the R, G, and B components are identical, but the range of possible colors for a single pixel is 256. Therefore, in digital image processing, images of various formats are generally converted to grayscale to reduce the amount of computation required for subsequent image processing. Like color images, grayscale images still reflect the distribution and characteristics of the overall and local chromaticity and highlight levels of the entire image.
 
-**Image grayscale processing** . Grayscale processing is the process of converting a color image into a grayscale image. Color images are divided into three components: R, G, and B, which represent red and green respectively.
+**Image grayscale processing**. Grayscale processing is the process of converting a color image into a grayscale image. Color images are divided into three components: R, G, and B, which represent red and green respectively.
 
 Grayscale is the process of making the R, G, and B components of a color equal. Pixels with large grayscale values are brighter (the maximum pixel value is 255, which is
 
@@ -12,15 +12,15 @@ White), whereas it is darker (the bottom pixel is 0, which is black).
 
 Image grayscale algorithm
 
-- **1) Maximum value method** : Make the converted R, G, and B values equal to the largest of the three values before conversion, that is, R = G = B = max (R, G, B). This method converts the grayscale image to a very bright level.
-- **2) Average value method** : The R, G, and B values after conversion are the average of the R, G, and B values before conversion. That is, R = G = B = (R + G + B) / 3. This method produces a softer grayscale image.
-- **3) Weighted Average Method** : The R, G, and B values are weighted and averaged according to certain weights. Different weights are used to create different grayscale images. Since the human eye is most sensitive to green, followed by red, and least sensitive to blue, this method produces a more easily recognizable grayscale image. Generally, this method produces the best grayscale image.
+- **1) Maximum value method**: Make the converted R, G, and B values equal to the largest of the three values before conversion, that is, R = G = B = max (R, G, B). This method converts the grayscale image to a very bright level.
+- **2) Average value method**: The R, G, and B values after conversion are the average of the R, G, and B values before conversion. That is, R = G = B = (R + G + B) / 3. This method produces a softer grayscale image.
+- **3) Weighted Average Method**: The R, G, and B values are weighted and averaged according to certain weights. Different weights are used to create different grayscale images. Since the human eye is most sensitive to green, followed by red, and least sensitive to blue, this method produces a more easily recognizable grayscale image. Generally, this method produces the best grayscale image.
 
 There are four ways to implement grayscale in the following code:
 
 Code path:
 
-opencv/opencv\_basic/03\_Image processing and text drawing/01gray processing.ipynb
+opencv/opencv_basic/03_Image processing and text drawing/01gray processing.ipynb
 
 ```
 #Method 1 imread
@@ -46,7 +46,7 @@ img_bgr2rgb0 = cv2.cvtColor(img0, cv2.COLOR_BGR2RGB)
     plt.show()
 ```
 
-![](_page_1_Figure_1.jpeg)
+![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)
 
 ```
 #Method 2 cvtColor
@@ -68,7 +68,7 @@ img_bgr2rgb0 = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
     plt.show()
 ```
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 ```
 #Method 3 Average Method
@@ -97,7 +97,7 @@ plt.imshow(img_bgr2rgb0)
     plt.show()
 ```
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
 ```
 #Method 4 Weighted Average Method
@@ -128,4 +128,4 @@ plt.imshow(img_bgr2rgb0)
     plt.show()
 ```
 
-![](_page_3_Figure_1.jpeg)
+![Figure: page 3: figure 1](_page_3_Figure_1.jpeg)

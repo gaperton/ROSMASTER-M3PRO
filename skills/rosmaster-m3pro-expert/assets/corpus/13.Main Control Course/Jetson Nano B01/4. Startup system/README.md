@@ -1,10 +1,10 @@
-## **Jetson Nano B01 SUB board startup**
+## Jetson Nano B01 SUB board startup
 
-## **1. Power supply**
+## 1. Power supply
 
 It uses 5V4A power supply, which can meet most of the usage scenarios of Jetson Nano B01 and can also drive loads such as cameras, displays, and USB devices.
 
-## **2. Start**
+## 2. Start
 
 There are two approaches here.
 
@@ -13,4 +13,4 @@ There are two approaches here.
 
 The following is the effect diagram of the second startup method:
 
-![](_page_0_Picture_8.jpeg)
+![Picture: page 0: picture 8](_page_0_Picture_8.jpeg)

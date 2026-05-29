@@ -1,14 +1,14 @@
-## **Posture Detection**
+## Posture Detection
 
-## **1. Content Description**
+## 1. Content Description
 
 This course implements color image acquisition and gesture detection using the MediaPipe framework.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -18,23 +18,23 @@ ros2 launch orbbec_camera dabai_dcw2.launch.py
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the posture detection program.
 
-ros2 run yahboomcar\_mediapipe 02\_PoseDetector
+ros2 run yahboomcar_mediapipe 02_PoseDetector
 
 After the program is run, the following figure will be shown. The joint points of the detected posture will be displayed on the right side of the image.
 
-![](_page_0_Picture_11.jpeg)
+![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/02\_PoseDetec tor.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/02_PoseDetec tor.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/02\_Pos eDetector.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/02_Pos eDetector.py
 
 Import the library files used,
 
@@ -128,4 +128,4 @@ self.mpPose.POSE_CONNECTIONS, self.lmDrawSpec, self.drawSpec)
     return frame, img
 ```
 
-The frame\_combine image merging function was mentioned in the first lesson of this chapter. Please refer to [Meediapipe Visual Fun Game] - [1. Hand Detection] for an analysis of this function.
+The frame_combine image merging function was mentioned in the first lesson of this chapter. Please refer to [Meediapipe Visual Fun Game] - [1. Hand Detection] for an analysis of this function.

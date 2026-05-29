@@ -1,20 +1,20 @@
-## **Image mirroring**
+## Image mirroring
 
 There are two types of image mirroring: horizontal and vertical. Horizontal mirroring swaps the image's pixels around its vertical centerline, essentially swapping the left and right halves. Vertical mirroring swaps the top and bottom halves around its horizontal centerline.
 
 Transformation principle: Let the width of the image be width and the length be height. (x,y) is the coordinate after transformation, and (x0,y0) is the coordinate of the original image.
 
-## **Horizontal mirror transformation**
+## Horizontal mirror transformation
 
-![](_page_0_Figure_4.jpeg)
+![Figure: page 0: figure 4](_page_0_Figure_4.jpeg)
 
 Its inverse transform is
 
 $$x_0 = width - x - 1$$
-  
+
  $y_0 = y$  Backward Mapping
 
-## **Vertical mirror transformation**
+## Vertical mirror transformation
 
 $$x = x_0$$
 $$y = height - y_0 - 1$$
@@ -77,6 +77,6 @@ display(image_widget1)
 image_widget1.value = bgr8_to_jpeg(dst)
 ```
 
-![](_page_1_Picture_3.jpeg)
+![Picture: page 1: picture 3](_page_1_Picture_3.jpeg)
 
 You can see the mirror image from the picture.

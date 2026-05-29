@@ -1,15 +1,15 @@
-# **Introduction to the Control Board**
+# Introduction to the Control Board
 
-[Introduction](#page-0-0) to the Control Board
+Introduction to the Control Board
 
-- <span id="page-0-0"></span>[1. Component](#page-0-1) distribution diagram on the front of the control board
-- [2. Component](#page-1-0) distribution diagram on the back of the control board
-- 3. Control board pin [assignment](#page-2-0) diagram
-- <span id="page-0-1"></span>[4. Analysis](#page-4-0) of Common Problems
+- 1. Component distribution diagram on the front of the control board
+- 2. Component distribution diagram on the back of the control board
+- 3. Control board pin assignment diagram
+- 4. Analysis of Common Problems
 
-## **1. Component distribution diagram on the front of the control board**
+## 1. Component distribution diagram on the front of the control board
 
-![](_page_0_Picture_7.jpeg)
+![Picture: page 0: picture 7](_page_0_Picture_7.jpeg)
 
 - 1. KEY1 key: User function key, which can realize customized functions through programming.
 - 2. RESET button: reset the STM32 microcontroller.
@@ -44,59 +44,59 @@
 - 30. Power switch: controls the entire board. Turn the switch to OFF to shut down the board, and turn it to ON to power on the board.
 - 31. Charging port: 12.6V charging port
 - 32. Nine-axis attitude sensor: including 3-axis accelerometer, 3-axis gyroscope, and 3-axis magnetometer
-- <span id="page-1-0"></span>33. SWD debug interface: users can use ST-LINK for debugging
+- 33. SWD debug interface: users can use ST-LINK for debugging
 
-# **2. Component distribution diagram on the back of the control board**
+# 2. Component distribution diagram on the back of the control board
 
-![](_page_1_Picture_18.jpeg)
+![Picture: page 1: picture 18](_page_1_Picture_18.jpeg)
 
 - 1. STM32 microcontroller: main chip, controls the function operation of the entire board
 - 2. Charging port: 12.6V charging port
 - 3. Self-locking switch interface: can be used to connect an external self-locking switch to control the switch of the entire board
 
-#### <span id="page-2-0"></span>**3. Control board pin assignment diagram**
+#### 3. Control board pin assignment diagram
 
-![](_page_2_Figure_1.jpeg)
+![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-| Peripheral<br>functions                  | Pins                   | Remark                                                                                                                   |
+| Peripheral functions                  | Pins                   | Remark                                                                                                                   |
 |------------------------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Active buzzer                            | PE5                    | Common GPIO                                                                                                              |
-| RGB light strips                         | PE6                    | SPI4_MOSI (SPI4_SCK is the SPI4 clock,<br>which is not needed and has been left<br>floating)                             |
-| LED_MCU<br>indicator                     | PC13                   | Ordinary GPIO, status indicator                                                                                          |
-| LED_ROS<br>indicator                     | PC14                   | Ordinary GPIO, ROS status indicator                                                                                      |
+| RGB light strips                         | PE6                    | SPI4_MOSI (SPI4_SCK is the SPI4 clock, which is not needed and has been left floating)                             |
+| LED_MCU indicator                     | PC13                   | Ordinary GPIO, status indicator                                                                                          |
+| LED_ROS indicator                     | PC14                   | Ordinary GPIO, ROS status indicator                                                                                      |
 | KEY1 button                              | PC15                   | Ordinary GPIO, input pull-up                                                                                             |
-| 25M crystal<br>oscillator                | PH0/PH1                |                                                                                                                          |
-| BAT power<br>supply voltage<br>detection | PC0                    | ADC detection                                                                                                            |
+| 25M crystal oscillator                | PH0/PH1                |                                                                                                                          |
+| BAT power supply voltage detection | PC0                    | ADC detection                                                                                                            |
 | LED_SW indicator                         | PC1                    | Ordinary GPIO, switch indicator light                                                                                    |
-| IMU attitude<br>sensor                   | PC2/PC3/PB13/PB12/PD10 | SPI2 - MISO/MOSI/SCK/NSS/INT                                                                                             |
-| M3 motor<br>encoder                      | PA0/PA1                | Encoder mode, Timer 5 channel 1 and<br>channel 2                                                                         |
-| SBUS interface                           | PA3                    | Serial port 2 receiving pin (PA2 is the<br>serial port 2 sending pin, which is not<br>needed and has been left floating) |
-| M3 motor drive                           | PA5/PB0                | PWM output mode, timer 8 channel 1N<br>and channel 2N                                                                    |
+| IMU attitude sensor                   | PC2/PC3/PB13/PB12/PD10 | SPI2 - MISO/MOSI/SCK/NSS/INT                                                                                             |
+| M3 motor encoder                      | PA0/PA1                | Encoder mode, Timer 5 channel 1 and channel 2                                                                         |
+| SBUS interface                           | PA3                    | Serial port 2 receiving pin (PA2 is the serial port 2 sending pin, which is not needed and has been left floating) |
+| M3 motor drive                           | PA5/PB0                | PWM output mode, timer 8 channel 1N and channel 2N                                                                    |
 | Debug interface                          | PE7/PE8                | Serial port 7, print log information                                                                                     |
-| M2 motor drive                           | PE9/PE11               | PWM output mode, Timer 1 channel 1<br>and channel 2                                                                      |
-| M1 motor drive                           | PE13/PE14              | PWM output mode, timer 1 channel 3<br>and channel 4                                                                      |
+| M2 motor drive                           | PE9/PE11               | PWM output mode, Timer 1 channel 1 and channel 2                                                                      |
+| M1 motor drive                           | PE13/PE14              | PWM output mode, timer 1 channel 3 and channel 4                                                                      |
 | OLED display                             | PB10/PB11              | I2C interface                                                                                                            |
 | PWM servo S1                             | PB15                   | Timer 12 channel 2                                                                                                       |
 | PWM servo S2                             | PB14                   | Timer 12 channel 1                                                                                                       |
 | Bus Servo                                | PD8/PD9                | Serial port 3                                                                                                            |
-| M4 motor<br>encoder                      | PD12/PD13              | Encoder mode, Timer 4 channel 1 and<br>channel 2                                                                         |
+| M4 motor encoder                      | PD12/PD13              | Encoder mode, Timer 4 channel 1 and channel 2                                                                         |
 | Control interface                        | PC6/PC7                | Serial port 6                                                                                                            |
 
-| Peripheral<br>functions                   | Pins      | Remark                                              |
+| Peripheral functions                   | Pins      | Remark                                              |
 |-------------------------------------------|-----------|-----------------------------------------------------|
-| M4 motor drive                            | PC8/PC9   | PWM output mode, timer 8 channel 3<br>and channel 4 |
-| Burning and<br>communication<br>interface | PA9/PA10  | Serial port 1                                       |
-| USB controller<br>interface               | PA11/PA12 | USB Host                                            |
+| M4 motor drive                            | PC8/PC9   | PWM output mode, timer 8 channel 3 and channel 4 |
+| Burning and communication interface | PA9/PA10  | Serial port 1                                       |
+| USB controller interface               | PA11/PA12 | USB Host                                            |
 | SWD interface                             | PA13/PA14 | SWDIO/SWCLK                                         |
-| M2 motor<br>encoder                       | PA15/PB3  | Encoder mode, Timer 2 channel 1 and<br>channel 2    |
-| Left radar<br>interface                   | PC10/PC11 | Serial port 4                                       |
-| Right radar<br>interface                  | PC12/PD2  | Serial port 5                                       |
+| M2 motor encoder                       | PA15/PB3  | Encoder mode, Timer 2 channel 1 and channel 2    |
+| Left radar interface                   | PC10/PC11 | Serial port 4                                       |
+| Right radar interface                  | PC12/PD2  | Serial port 5                                       |
 | CAN interface                             | PD0/PD1   |                                                     |
-| M1 motor<br>encoder                       | PB4/PB5   | Encoder mode, Timer 3 channel 1 and<br>channel 2    |
+| M1 motor encoder                       | PB4/PB5   | Encoder mode, Timer 3 channel 1 and channel 2    |
 
-#### **4. Analysis of Common Problems**
+#### 4. Analysis of Common Problems
 
-<span id="page-4-0"></span>1. How does a main control board (such as Jetson Nano) drive a control board? How do I communicate with the control board?
+1. How does a main control board (such as Jetson Nano) drive a control board? How do I communicate with the control board?
 
 A: The factory firmware of the control board integrates the Microros framework program. Jetson Nano is connected to the control board through the USB Connect interface, opens the Microros agent and sends the corresponding topic instructions. The microcontroller integrated in the control board receives and parses the data, and then processes the specific commands to be executed.
 

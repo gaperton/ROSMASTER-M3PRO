@@ -1,24 +1,24 @@
-# **Network Configuration**
+# Network Configuration
 
-#### **[Network Configuration](#page-0-0)**
+#### Network Configuration
 
-- <span id="page-0-0"></span>1. WiFi [connection](#page-0-1)
-- 2. Turn on [hotspot](#page-1-0)
-- <span id="page-0-1"></span>[3. Hotspot/WiFi](#page-2-0) starts automatically after booting
+- 1. Wi-Fi connection
+- 2. Turn on hotspot
+- 3. Hotspot/Wi-Fi starts automatically after booting
 
-Network configuration mainly introduces WiFi connection and hotspot opening.
+Network configuration mainly introduces Wi-Fi connection and hotspot opening.
 
-# **1. WiFi connection**
+# 1. Wi-Fi connection
 
-### **Graphical interface**
+### Graphical interface
 
-Using the Raspberry Pi graphical desktop system, we can connect to the corresponding WiFi by clicking the network icon in the upper right corner of the menu bar.
+Using the Raspberry Pi graphical desktop system, we can connect to the corresponding Wi-Fi by clicking the network icon in the upper right corner of the menu bar.
 
-![](_page_0_Picture_9.jpeg)
+![Picture: page 0: picture 9](_page_0_Picture_9.jpeg)
 
 Note: If the region is not set, you need to set the region before connecting to the network for the first time before you can configure the network.
 
-#### **Command Line**
+#### Command Line
 
 For systems without a graphical interface, you can configure the network through the command line.
 
@@ -32,34 +32,34 @@ Localization Options → WLAN Country → CN China → OK
 
 After completing the above option settings, select Finish to exit the raspi-config tool.
 
-View WiFi enabled status command: nmcli radio wifi
+View Wi-Fi enabled status command: nmcli radio Wi-Fi
 
-Turn on WiFi status command: nmcli radio wifi on
+Turn on Wi-Fi status command: nmcli radio Wi-Fi on
 
-Turn off WiFi status command: nmcli radio wifi off
+Turn off Wi-Fi status command: nmcli radio Wi-Fi off
 
-Find network command: sudo nmcli dev wifi list
+Find network command: sudo nmcli dev Wi-Fi list
 
-Connect to the network command: sudo nmcli --ask dev wifi connect <example\_ssid>
+Connect to the network command: sudo nmcli --ask dev Wi-Fi connect <example_ssid>
 
-<span id="page-1-0"></span>Note: If it is displayed that you do not have permission to operate, please add sudo in front of all commands.
+Note: If it is displayed that you do not have permission to operate, please add sudo in front of all commands.
 
-The above information prompt appears indicating that the WiFi connection is successful!
+The above information prompt appears indicating that the Wi-Fi connection is successful!
 
-## **2. Turn on hotspot**
+## 2. Turn on hotspot
 
 Using the Raspberry Pi graphical desktop system, we can create a hotspot by clicking the network icon in the upper right corner of the menu bar.
 
-![](_page_1_Picture_12.jpeg)
+![Picture: page 1: picture 12](_page_1_Picture_12.jpeg)
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 After the creation is successful, you can use your mobile phone to view the hotspot!
 
-# <span id="page-2-0"></span>**3. Hotspot/WiFi starts automatically after booting**
+# 3. Hotspot/Wi-Fi starts automatically after booting
 
-We can set up the Raspberry Pi system to connect to WIFI or turn on a hotspot by modifying the priority of the network settings.
+We can set up the Raspberry Pi system to connect to Wi-Fi or turn on a hotspot by modifying the priority of the network settings.
 
 The higher the priority number, the better the connection method will be!
 
-![](_page_3_Figure_0.jpeg)
+![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)

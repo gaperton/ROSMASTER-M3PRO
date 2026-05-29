@@ -1,14 +1,14 @@
-## **Jetson Nano B01 SUB Version Introduction**
+## Jetson Nano B01 SUB Version Introduction
 
 The main differences between the Jetson Nano B01 SUB version development kit and the official Jetson Nano B01 official version development kit are:
 
 **1. The most obvious change is the removal of the core board's TF card slot and its replacement with a 16GB EMMC storage chip. Since 16GB of space is often insufficient in actual development and application, Jetson Nano B01 supports booting from the carrier board's TF card slot/U disk, allowing the system to be burned to a 32GB or larger TF card or U disk for use.**
 
-![](_page_0_Picture_3.jpeg)
+![Picture: page 0: picture 3](_page_0_Picture_3.jpeg)
 
 **2. Remove the pin header switch of the DC power port, and you no longer have to worry about the DC power failure caused by the jumper cap not being inserted.**
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
 For the carrier board boot method using a TF card or USB flash drive, please note the following points:
 
@@ -22,6 +22,6 @@ For the carrier board boot method using a TF card or USB flash drive, please not
 
 Reference images:
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-![](_page_2_Picture_1.jpeg)
+![Picture: page 2: picture 1](_page_2_Picture_1.jpeg)

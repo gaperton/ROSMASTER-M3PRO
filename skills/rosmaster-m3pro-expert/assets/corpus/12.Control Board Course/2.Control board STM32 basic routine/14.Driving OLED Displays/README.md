@@ -1,18 +1,18 @@
-# **Driving OLED displays**
+# Driving OLED displays
 
-Driving OLED [displays](#page-0-0)
+Driving OLED displays
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-5-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-6-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Use the analog I2C function of the STM32 control board to learn how to control the OLED screen.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates an OLED interface, but you need to connect an OLED display separately. You need to prepare your own OLED display and connect a type-C data cable between the computer and the USB Connect interface of the STM32 control board.
 
@@ -20,17 +20,17 @@ Please use a 0.91-inch OLED display with I2C communication protocol.
 
 The two rows of interfaces have the same function. Just choose one of them and align it with the interface silk screen and connect it.
 
-![](_page_0_Picture_13.jpeg)
+![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-<span id="page-1-0"></span>Board\_Samples/STM32\_Samples/OLED
+Board_Samples/STM32_Samples/OLED
 
 According to the pin assignment, the SCL pin of the OLED screen is connected to PB10, and the SDA pin is connected to PB11. Since the analog I2C method is used, both PB10 and PB11 are initialized to pull-up push-pull output mode.
 
-![](_page_1_Figure_4.jpeg)
+![Figure: page 1: figure 4](_page_1_Figure_4.jpeg)
 
 ```
 #define SCL_Pin GPIO_PIN_10
@@ -245,11 +245,11 @@ void App_Handle(void)
 }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-5-0"></span>![](_page_5_Picture_5.jpeg)
+![Picture: page 5: picture 5](_page_5_Picture_5.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -257,10 +257,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### <span id="page-6-0"></span>**5. Experimental Results**
+### 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 The information on the OLED screen is refreshed every second, and the count value is increased by 1 each time it is refreshed.
 
-![](_page_6_Picture_5.jpeg)
+![Picture: page 6: picture 5](_page_6_Picture_5.jpeg)

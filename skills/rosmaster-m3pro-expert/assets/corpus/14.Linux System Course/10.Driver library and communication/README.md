@@ -1,8 +1,8 @@
-## **10.Driver library and communication**
+## 10.Driver library and communication
 
-<span id="page-0-1"></span><span id="page-0-0"></span>10.Driver library [and communication](#page-0-0) 1、Install serial port driver [library](#page-0-1) [2.Install](#page-0-2) robot driver library
+10.Driver library and communication 1、Install serial port driver library 2.Install robot driver library
 
-## **1、Install serial port driver library**
+## 1. Install serial port driver library
 
 Since the robot and the underlying expansion board use serial port communication, the serial port driver library needs to be installed before it can be used. The Yahboom Muto system has already installed the serial port driver, so you can ignore the following steps.
 
@@ -20,7 +20,7 @@ Check the version number of the serial port driver library
 pip3 list | grep pyserial
 ```
 
-## **2.Install robot driver library**
+## 2.Install robot driver library
 
 The Yahboom Muto mirror system has already installed the latest robot driver library, so there is no need to reinstall it.
 

@@ -1,15 +1,15 @@
-# **3、Docker images deeply understand and publish images**
+# 3. Docker images deeply understand and publish images
 
-#### **3、Docker images [deeply understand](#page-0-0) and publish images**
+#### 3. Docker images deeply understand and publish images
 
-- <span id="page-0-0"></span>3.1、image [understanding](#page-0-1)
-- 3.2、UnionFS([Federated file](#page-0-2) systems)
-- 3.3、image [layering](#page-1-0)
-  - 3.3.1、hierarchical [understanding](#page-2-0)
-  - 3.3.2、Docker images [should use](#page-2-1) layering benefits
-- 3.4、Make [and publish](#page-2-2) images
-  - 3.4.1、Make an [image](#page-2-3)
-  - 3.4.2、[Publish](#page-3-0) the image
+- 3.1、image understanding
+- 3.2、UnionFS(Federated file systems)
+- 3.3、image layering
+  - 3.3.1、hierarchical understanding
+  - 3.3.2、Docker images should use layering benefits
+- 3.4、Make and publish images
+  - 3.4.1、Make an image
+  - 3.4.2、Publish the image
 
 The operating environment and software and hardware reference configurations are as follows:
 
@@ -19,19 +19,19 @@ The operating environment and software and hardware reference configurations are
 - PC Virtual Machine: Ubuntu (20.04) + ROS2 (Foxy)
 - Usage scenario: Use on a relatively clean 2D plane
 
-## **3.1、image understanding**
+## 3.1. image understanding
 
-- <span id="page-0-1"></span>1. An image is a lightweight, executable stand-alone software package that contains everything needed to run a piece of software. We package applications and configurations into a ready, deliverable, deployable runtime environment, including code, libraries, environment variables and configuration files required for runtime, and this large package runtime environment is the image image file.
-- <span id="page-0-2"></span>2. Docker container instances can only be generated through image files.
+- 1. An image is a lightweight, executable stand-alone software package that contains everything needed to run a piece of software. We package applications and configurations into a ready, deliverable, deployable runtime environment, including code, libraries, environment variables and configuration files required for runtime, and this large package runtime environment is the image image file.
+- 2. Docker container instances can only be generated through image files.
 
-# **3.2、UnionFS(Federated file systems)**
+# 3.2. UnionFS(Federated file systems)
 
 - 1.Union file system (UnionFS) is a hierarchical, lightweight, high-performance file system, it is the basis of docker images, and supports the modification of the file system as a commit to overlay layer by layer, while different directories can be mounted under the same virtual file system.
 - 2.The image can be inherited through layering, and based on the basic image, various specific application images can be made.
 
 Features of the Union file system: load multiple file systems at the same time, but from the outside, only one file system can be seen; Federated loading overlays the layers of file systems so that the final file system contains files and directories for all layers.
 
-# <span id="page-1-0"></span>**3.3、image layering**
+# 3.3. image layering
 
 When downloading an image, pay attention to the downloaded log output, you can see that it is downloading layer by layer:
 
@@ -70,19 +70,19 @@ jetson@ubuntu:~$ docker image inspect mysql:latest
 ]
 ```
 
-### **3.3.1、hierarchical understanding**
+### 3.3.1. hierarchical understanding
 
-- <span id="page-2-0"></span>All docker images start from a base image layer, and when modifications or additions are made, a new image layer will be created on top of the current image layer.
+- All docker images start from a base image layer, and when modifications or additions are made, a new image layer will be created on top of the current image layer.
 - For a simple example, if a new image is created based on Ubuntu 20.04, this is the first layer of the new image; If you add a Python package to the image, a second image layer is created on top of the base image layer; If you continue to add a security patch, a third mirror layer is created.
-- <span id="page-2-1"></span>Docker images are all read-only, and when the container starts, a new writable layer is loaded on top of the image! This layer is what we usually call the container layer, and what is under the container is called the image layer!
+- Docker images are all read-only, and when the container starts, a new writable layer is loaded on top of the image! This layer is what we usually call the container layer, and what is under the container is called the image layer!
 
-### **3.3.2、Docker images should use layering benefits**
+### 3.3.2. Docker images should use layering benefits
 
 Resource sharing, for example, if there are multiple images built from the same base image, then the host only needs to keep a base image on disk, and only one base image needs to be loaded in memory, so that all containers can be served, and each layer of the image can be shared.
 
-# <span id="page-2-2"></span>**3.4、Make and publish images**
+# 3.4. Make and publish images
 
-### <span id="page-2-3"></span>**3.4.1、Make an image**
+### 3.4.1. Make an image
 
 Method 1: Submit an image from the container:
 
@@ -126,7 +126,7 @@ For more information on writing dockerfiles, please refer to:
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
 ```
 
-### <span id="page-3-0"></span>**3.4.2、Publish the image**
+### 3.4.2. Publish the image
 
 The docker repository is a centralized storage place for image files. The largest public repository is Docker Hub ([https://hub.docker.com/\)](https://hub.docker.com/), which houses a huge number of images for users to download. Domestic public warehouses include Alibaba Cloud, NetEase Cloud, etc.
 
@@ -135,7 +135,7 @@ Steps to publish the image to docker hub:
 - 1. Address:<https://hub.docker.com/>, register an account first
 - 2. Ensure that the account can log in normally
 
-![](_page_3_Picture_8.jpeg)
+![Picture: page 3: picture 8](_page_3_Picture_8.jpeg)
 
 3. Use the tag command to modify the image name
 
@@ -185,6 +185,6 @@ ca774712d11b: Pushed
 size: 736
 ```
 
-#### 5、Visit Docker Hub to see that it has been successfully released
+#### 5. Visit Docker Hub to see that it has been successfully released
 
-![](_page_4_Figure_4.jpeg)
+![Figure: page 4: figure 4](_page_4_Figure_4.jpeg)

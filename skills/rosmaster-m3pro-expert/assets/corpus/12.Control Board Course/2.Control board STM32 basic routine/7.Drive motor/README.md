@@ -1,30 +1,30 @@
-# **Drive motor**
+# Drive motor
 
-#### Drive [motor](#page-0-0)
+#### Drive motor
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-3-0)
-- 4. Compile, [download and burn](#page-11-0) firmware
-- <span id="page-0-1"></span>[5. Experimental](#page-12-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Learn how to control motors using the PWM output of the STM32 control board.
 
 **Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.**
 
-#### <span id="page-0-2"></span>**2. Hardware Connection**
+#### 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates four encoder motor control interfaces. This requires additional connection to the encoder motor. The motor control interface supports 520 encoder motors. Because the encoder voltage requires high voltage and high current, a battery must be plugged in for power.
 
 The corresponding names of the four motor interfaces are: left front wheel -> M1, left rear wheel - > M2, right front wheel -> M3, right rear wheel -> M4.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
 There is a detailed line sequence silk screen near the motor interface. Here we take motor M1 as an example. M1+ and M1- are the interfaces for controlling the rotation of the motor, GND and +3.3V are the power supply circuits for the encoder, and H1A and H1B are the encoder pulse detection pins.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 The corresponding relationship between the motor PWM drive GPIO is shown in the following table:
 
@@ -41,17 +41,17 @@ The corresponding relationship between the motor PWM drive GPIO is shown in the 
 
 Motor interface wiring diagram:
 
-![](_page_3_Picture_2.jpeg)
+![Picture: page 3: picture 2](_page_3_Picture_2.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-<span id="page-3-0"></span>Board\_Samples/STM32\_Samples/Motor
+Board_Samples/STM32_Samples/Motor
 
 First, initialize the configuration parameters of timer TIM1, set the division coefficient to 4, and the counting range to 0~1999. Since the clock frequency of timer TIM1 is 240Mhz, the PWM frequency is calculated to be 240000000/(4+1)/(1999+1)=24kHz.
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
 ```
 void MX_TIM1_Init(void)
@@ -126,7 +126,7 @@ sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
 
 定时器TIM8的初始化参数与定时器TIM1的参数一致。
 
-![](_page_6_Figure_0.jpeg)
+![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
 ```
 void MX_TIM8_Init(void)
@@ -252,7 +252,7 @@ static int16_t Motor_Limit_Pulse(int16_t pulse)
 }
 ```
 
-设置电机速度,传入电机ID值来区分电机,speed用来控制电机的速度,取值范围是 ±MOTOR\_MAX\_SPEED。
+设置电机速度,传入电机ID值来区分电机,speed用来控制电机的速度,取值范围是 ±MOTOR_MAX_SPEED。
 
 ```
 #define MOTOR_MAX_SPEED (1000)
@@ -366,7 +366,7 @@ break;
 }
 ```
 
-电机停止函数,brake函数为停止状态,brake=MOTOR\_STOP表示自由停止,brake=MOTOR\_BRAKE 表示刹车停止。
+电机停止函数,brake函数为停止状态,brake=MOTOR_STOP表示自由停止,brake=MOTOR_BRAKE 表示刹车停止。
 
 ```
 typedef enum {
@@ -390,7 +390,7 @@ void Motor_Stop(uint8_t brake)
 }
 ```
 
-在App\_Handle函数里控制电机循环执行:前进1秒,停止1秒,后退1秒,停止1秒。
+在App_Handle函数里控制电机循环执行:前进1秒,停止1秒,后退1秒,停止1秒。
 
 ```
 void App_Handle(void)
@@ -417,11 +417,11 @@ void App_Handle(void)
 }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-11-0"></span>![](_page_11_Picture_5.jpeg)
+![Picture: page 11: picture 5](_page_11_Picture_5.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -429,10 +429,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### <span id="page-12-0"></span>**5. Experimental Results**
+### 5. Experimental Results
 
 **Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.**
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 The car motor moves forward for 1 second, stops for 1 second, moves backward for 1 second, and stops for 1 second.

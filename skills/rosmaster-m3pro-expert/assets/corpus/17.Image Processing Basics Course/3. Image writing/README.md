@@ -1,4 +1,4 @@
-## **Image writing**
+## Image writing
 
 Function method: cv2.imwrite('yahboom1.jpg', img).
 
@@ -35,4 +35,4 @@ image_widget.value = bgr8_to_jpeg(img)
 
 When the code block finishes running, you can see that the yahboom.jpg image is written to yahboom1.jpg.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)

@@ -1,22 +1,22 @@
-# **Machine code ID sorting**
+# Machine code ID sorting
 
-## **1. Content Description**
+## 1. Content Description
 
 This function enables the program to obtain images through the camera and recognize the machine code in the image. The robot arm's lower claw grabs the machine code and places it in different positions according to the machine code ID.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
 The wooden blocks used in this lesson: **30x30x30mm Machine Code Blocks**.
 
-### **1.1 Machine Code**
+### 1.1 Machine Code
 
 AprilTag's "machine code" refers to its internal encoding structure, a binary matrix composed of black and white squares. This design enables efficient decoding by computer vision algorithms and is used for tasks such as pose estimation and object recognition. AprilTag is a twodimensional barcode with a typical structure consisting of:
 
-- **Border** : The outer black frame helps the algorithm locate the marker quickly.
-- **Coding area (Payload)** : The black and white square inside stores the unique ID (machine code).
-- **Error Correction** : Some AprilTag families support error correction to improve anti-occlusion capabilities.
+- **Border**: The outer black frame helps the algorithm locate the marker quickly.
+- **Coding area (Payload)**: The black and white square inside stores the unique ID (machine code).
+- **Error Correction**: Some AprilTag families support error correction to improve anti-occlusion capabilities.
 
 AprilTag has multiple predefined "families", each with different encoding rules and capacities:
 
@@ -25,13 +25,13 @@ AprilTag has multiple predefined "families", each with different encoding rules 
 - tag36h11: 6×6 matrix, high capacity, strong anti-blocking ability
 - tagCircle21h7: circular design, suitable for rotating scenes
 
-h5 , h9 etc. suffixes indicate distance (error correction capability). The larger the number, the stronger the fault tolerance.
+h5, h9 etc. suffixes indicate distance (error correction capability). The larger the number, the stronger the fault tolerance.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-ros2 launch M3Pro\_demo camera\_arm\_kin.launch.py
+ros2 launch M3Pro_demo camera_arm_kin.launch.py
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
@@ -49,28 +49,28 @@ ros2 run M3Pro_demo apriltag_detect
 
 After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the machine code ID sorting program by pressing ctrl c and restart the machine code ID sorting program until the robot arm gripping program obtains the current angle information and calculates the current end position.
+If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the machine code ID sorting program by pressing Ctrl+C and restart the machine code ID sorting program until the robot arm gripping program obtains the current angle information and calculates the current end position.
 
 After the machine code ID sorting program is started, it will subscribe to the color image and depth image topics. Place the machine code block that comes with the product under the camera. If the machine code appears in the image, the program will recognize the machine code, as shown in the figure below.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 Press the spacebar to start the clamping process. There are two situations:
 
 - If the distance between the machine code block and the block is within [215, 225], the robot arm will directly grab the block and place it at the set position according to the ID value.
-- If the machine code block is outside [215, 225], the robot will first move and adjust it to within [215, 225] according to the distance between the machine code block and the robot base coordinate system (base\_link), then lower the claw to clamp it, and finally place it at the set position according to the ID value.
+- If the machine code block is outside [215, 225], the robot will first move and adjust it to within [215, 225] according to the distance between the machine code block and the robot base coordinate system (base_link), then lower the claw to clamp it, and finally place it at the set position according to the ID value.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
-### **3.1, apriltag\_detect.py**
+### 3.1, apriltag_detect.py
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ apriltag\_detect.py
+Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltag_detect.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/apriltag\_detect.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_detect.py
 
 Import the necessary library files,
 
@@ -363,7 +363,7 @@ servo
     key = cv2.waitKey(1)
 ```
 
-move\_dist chassis movement adjustment distance function,
+move_dist chassis movement adjustment distance function,
 
 ```
 def move_dist(self,dist):
@@ -374,7 +374,7 @@ distance value
     self.pubVel(linear_x,0,0)
 ```
 
-compute\_heigh calculates the machine code pose function. The parameters passed in are the xy pixel coordinates of the center point and the depth distance information corresponding to the center point.
+compute_heigh calculates the machine code pose function. The parameters passed in are the xy pixel coordinates of the center point and the depth distance information corresponding to the center point.
 
 ```
 def compute_heigh(self,x,y,z):
@@ -412,7 +412,7 @@ value of the machine code in the world coordinate system.
     return pose_T
 ```
 
-get\_current\_end\_pos gets the current end position function of the robotic arm.
+get_current_end_pos gets the current end position function of the robotic arm.
 
 ```
 def get_current_end_pos(self):
@@ -431,7 +431,7 @@ values are the joint angle values of the current robot arm.
     future.add_done_callback(self.get_fk_respone_callback)
 ```
 
-get\_fk\_respone\_callback receives the callback function that returns the result of calling the fk service.
+get_fk_respone_callback receives the callback function that returns the result of calling the fk service.
 
 ```
 def get_fk_respone_callback(self, future):
@@ -456,17 +456,17 @@ except Exception as e:
     self.get_logger().error(f'Service call failed: {e}')
 ```
 
-#### **3.2. compute\_joint5 function**
+#### 3.2. compute_joint5 function
 
 Program source code path:
 
 Raspberry Pi 5 and Jetson board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ compute\_joint5.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ compute_joint5.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/compute\_joint5.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/compute_joint5.py
 
 ```
 import math
@@ -478,17 +478,17 @@ def compute_joint5(vy,vx):
     return angle_degrees
 ```
 
-### **3.3, grab\_desktop.py**
+### 3.3, grab_desktop.py
 
 Program source code path:
 
 Raspberry Pi 5 and Jetson board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ grasp\_desktop.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ grasp_desktop.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/grasp\_desktop.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/grasp_desktop.py
 
 Import the necessary library files,
 
@@ -590,7 +590,7 @@ placement point
     self.z_offset = offset_config.get('z_offset')
 ```
 
-pos\_info\_callback machine code position information topic callback function,
+pos_info_callback machine code position information topic callback function,
 
 ```
 def pos_info_callback(self,msg):
@@ -668,7 +668,7 @@ you can adjust this parameter
     future.add_done_callback(self.get_ik_respone_callback)
 ```
 
-get\_ik\_respone\_callback receives the callback function that returns the result of calling the ik service.
+get_ik_respone_callback receives the callback function that returns the result of calling the ik service.
 
 ```
 def get_ik_respone_callback(self, future):

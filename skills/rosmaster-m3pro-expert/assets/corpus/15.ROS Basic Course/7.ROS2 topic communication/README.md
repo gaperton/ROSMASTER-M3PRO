@@ -1,34 +1,34 @@
-# **7. ROS2 Topic Communication**
+# 7. ROS2 Topic Communication
 
-### **1. Introduction to Topic Communication**
+### 1. Introduction to Topic Communication
 
 Topic communication is the most frequently used communication method in ROS2. A publisher publishes data on a specified topic, and subscribers who subscribe to that topic receive the data.
 
 Topic communication is based on the publish/subscribe model, as shown in the figure:
 
-![](_page_0_Picture_4.jpeg)
+![Picture: page 0: picture 4](_page_0_Picture_4.jpeg)
 
 Topic data transmission is a process where the data is transmitted from one node to another. The object sending data is called a publisher, and the object receiving data is called a subscriber. Each topic must have a name, and the data transmitted must have a fixed data type.
 
 Next, we will explain how to implement topic communication between nodes using Python.
 
-## **2. Create a New Package**
+## 2. Create a New Package
 
 - Switch to the src directory of the workspace
-- Create a new pkg\_topic package
+- Create a new pkg_topic package
 
 ```
 ros2 pkg create pkg_topic --build-type ament_python --dependencies rclpy --node-
 name publisher_demo
 ```
 
-After executing the above command, the pkg\_topic package will be created, along with a publisher\_demo node and the relevant configuration files.
+After executing the above command, the pkg_topic package will be created, along with a publisher_demo node and the relevant configuration files.
 
-# **3. Publisher Implementation**
+# 3. Publisher Implementation
 
-#### **3.1 Create a Publisher**
+#### 3.1 Create a Publisher
 
-Next, edit [publisher\_demo.py] to implement the publisher functionality and add the following code:
+Next, edit [publisher_demo.py] to implement the publisher functionality and add the following code:
 
 ```
 #Import the rclpy library
@@ -64,9 +64,9 @@ Topic_Pub class object just created as a parameter
     rclpy.shutdown() #Shut down the ROS2 Python interface
 ```
 
-#### **3.2 Editing the Configuration File**
+#### 3.2 Editing the Configuration File
 
-#### **3.3 Compiling the Package**
+#### 3.3 Compiling the Package
 
 Compiling the Package
 
@@ -76,7 +76,7 @@ colcon build --packages-select pkg_topic
 
 Refresh the environment variables in the workspace
 
-#### **3.4 Running the Program**
+#### 3.4 Running the Program
 
 After refreshing the environment variables, run the command
 
@@ -86,7 +86,7 @@ ros2 run pkg_topic publisher_demo
 
 After the program successfully runs, nothing is printed. We can use the ros2 topic tool to view the data. First, check if there are any topics being published. Open another terminal and enter:
 
-This topic\_demo is the topic data defined in the program. Next, we'll use ros2 topic echo to print this data. In the terminal, enter:
+This topic_demo is the topic data defined in the program. Next, we'll use ros2 topic echo to print this data. In the terminal, enter:
 
 ```
 ros2 topic echo /topic_demo
@@ -94,15 +94,15 @@ ros2 topic echo /topic_demo
 
 As you can see, the output "Hi, I send a message." from the terminal matches the line msg.data = "Hi, I send a message." in our code.
 
-# **4. Subscriber Implementation**
+# 4. Subscriber Implementation
 
-#### **4.1 Creating a Subscriber**
+#### 4.1 Creating a Subscriber
 
-Create a new file, [subscriber\_demo.py], in the same directory as [publisher\_demo.py].
+Create a new file, [subscriber_demo.py], in the same directory as [publisher_demo.py].
 
-![](_page_3_Picture_9.jpeg)
+![Picture: page 3: picture 9](_page_3_Picture_9.jpeg)
 
-Next, edit [subscriber\_demo.py] to implement the subscriber functionality and add the following code:
+Next, edit [subscriber_demo.py] to implement the subscriber functionality and add the following code:
 
 ```
 #Import related libraries
@@ -128,9 +128,9 @@ def main():
     rclpy.shutdown() #Shut down the ROS2 Python interface
 ```
 
-#### **4.2 Editing the Configuration File**
+#### 4.2 Editing the Configuration File
 
-#### **4.3 Compile the Workspace**
+#### 4.3 Compile the Workspace
 
 Compile the package
 
@@ -140,7 +140,7 @@ colcon build --packages-select pkg_topic
 
 Refresh the environment variables in the workspace
 
-#### **4.4 Run the Program**
+#### 4.4 Run the Program
 
 Execute the following command in a separate terminal:
 
@@ -151,4 +151,4 @@ ros2 run pkg_topic publisher_demo
 ros2 run pkg_topic subscriber_demo
 ```
 
-As shown in the figure above, the terminal running the subscriber node will print the information published by the publisher, /topic\_demo.
+As shown in the figure above, the terminal running the subscriber node will print the information published by the publisher, /topic_demo.

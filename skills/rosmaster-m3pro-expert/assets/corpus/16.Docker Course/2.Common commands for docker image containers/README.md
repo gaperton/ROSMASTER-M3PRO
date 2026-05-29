@@ -1,13 +1,13 @@
-# **2、Common commands for docker image containers**
+# 2. Common commands for docker image containers
 
-### **2、Common commands [for docker image containers](#page-0-0)**
+### 2. Common commands for docker image containers
 
-- <span id="page-0-0"></span>2.1、do not use the sudo [command](#page-0-1)
-- 2.2、[help commands](#page-1-0)
-- 2.3、mirror [command](#page-1-1)
-- 2.4、container [commands](#page-2-0)
-- 2.5、common other [commands](#page-5-0)
-- 2.6、[Command Summary](#page-7-0)
+- 2.1、do not use the sudo command
+- 2.2、help commands
+- 2.3、mirror command
+- 2.4、container commands
+- 2.5、common other commands
+- 2.6、Command Summary
 
 The operating environment and software and hardware reference configurations are as follows:
 
@@ -15,9 +15,9 @@ The operating environment and software and hardware reference configurations are
 - Robot hardware configuration: Arm series main control, Silan A1 lidar, AstraPro Plus depth camera
 - Robot system: Ubuntu (version not required) + docker (version 20.10.21 and above)
 - PC Virtual Machine: Ubuntu (20.04) + ROS2 (Foxy)
-- <span id="page-0-1"></span>Usage scenario: Use on a relatively clean 2D plane
+- Usage scenario: Use on a relatively clean 2D plane
 
-### **2.1、do not use the sudo command**
+### 2.1. do not use the sudo command
 
 Usually, to operate docker commands, you need to add the prefix sudo, as follows:
 
@@ -49,7 +49,7 @@ sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 sudo chmod g+rwx "/home/$USER/.docker" -R
 ```
 
-# **2.2、help commands**
+# 2.2. help commands
 
 ```
 docker info # Displays Docker system information, including the number of images and
@@ -57,9 +57,9 @@ containers.
 docker --help # Help
 ```
 
-## **2.3、mirror command**
+## 2.3. mirror command
 
-### 1、Docker pull download image
+### 1. Docker pull download image
 
 ```
 # Download the image
@@ -72,7 +72,7 @@ Status: Downloaded newer image for ubuntu:latest
 docker.io/library/ubuntu:latest # Real Location
 ```
 
-### 2、Docker images lists the images
+### 2. Docker images lists the images
 
 ```
 # Lists the images on the local host
@@ -103,7 +103,7 @@ default!
 --digests: Displays the summary information of the image
 ```
 
-### 3、docker search
+### 3. docker search
 
 ```
 # Search for mirrors
@@ -131,7 +131,7 @@ repository
 value.
 ```
 
-#### 4、docker rmi delete the image
+#### 4. docker rmi delete the image
 
 ```
 # Delete the image
@@ -140,7 +140,7 @@ docker rmi -f image name: tag image name: tag # Delete multiple
 docker rmi -f $(docker images -qa) # deletes all
 ```
 
-### <span id="page-2-0"></span>**2.4、container commands**
+### 2.4. container commands
 
 To create a container with an image, we use the image of ubuntu here to test and download the image:
 
@@ -148,7 +148,7 @@ To create a container with an image, we use the image of ubuntu here to test and
 docker pull ubuntu
 ```
 
-### 1、docker run
+### 1. docker run
 
 ```
 # command
@@ -189,7 +189,7 @@ exit
 jetson@ubuntu:~$
 ```
 
-#### 2、docker ps
+#### 2. docker ps
 
 ```
 # command
@@ -209,14 +209,14 @@ c54bf9efae47 ubuntu:latest "/bin/bash" 2 hours ago Up 4 seconds
          jovial_brown
 ```
 
-### 3、Exit the container
+### 3. Exit the container
 
 ```
 exit # The container stops exiting
 ctrl+P+Q # container does not stop exiting
 ```
 
-### 4、Multiple terminals enter a running container
+### 4. Multiple terminals enter a running container
 
 ```
 # Command 1
@@ -251,7 +251,7 @@ root@c54bf9efae47:/#
 start a new process
 ```
 
-### 5、Start and stop the container
+### 5. Start and stop the container
 
 ```
 docker start (container ID or container name) # Start the container
@@ -260,7 +260,7 @@ docker stop (container id or container name) # Stop the container
 docker kill (container ID or container name) # Forces the container to stop
 ```
 
-### 6、Delete the container
+### 6. Delete the container
 
 ```
 Docker rm docker_id # Deletes the specified container
@@ -268,9 +268,9 @@ docker rm -f $(docker ps -a -q) # Delete all containers
 docker ps -a -q|xargs docker rm # Delete all containers
 ```
 
-# **2.5、common other commands**
+# 2.5. common other commands
 
-<span id="page-5-0"></span>1. View the process information running in the container and support ps command parameters.
+1. View the process information running in the container and support ps command parameters.
 
 ```
 # command
@@ -402,6 +402,6 @@ jetson@ubuntu:~$ docker inspect bab8ce5c00ca
 ]
 ```
 
-# <span id="page-7-0"></span>**2.6、Command Summary**
+# 2.6. Command Summary
 
-![](_page_8_Figure_0.jpeg)
+![Figure: page 8: figure 0](_page_8_Figure_0.jpeg)

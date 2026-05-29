@@ -1,6 +1,6 @@
-# **22. ROS2 Gazebo Simulation Platform**
+# 22. ROS2 Gazebo Simulation Platform
 
-## **1. Introduction to Gazebo**
+## 1. Introduction to Gazebo
 
 Gazebo is the most commonly used 3D physics simulation platform in the ROS system. It supports a dynamics engine and enables high-quality graphics rendering. It not only simulates the robot and its surrounding environment, but also incorporates physical properties such as friction and elasticity.
 
@@ -10,26 +10,26 @@ Simulation platforms like Gazebo can help us verify robotic algorithms, optimize
 
 **Note: This section is for learning purposes only. The tutorial does not configure the environment because we are using real-device debugging**
 
-#### **2. Installation and Operation**
+#### 2. Installation and Operation
 
 Install gazebo using the apt command
 
-sudo apt install ros-\${ROS\_DISTRO}-gazebo-\*
+sudo apt install ros-\${ROS_DISTRO}-gazebo-\*
 
 - Run gazebo
 - Launch gazebo using the following command or directly from the desktop icon
 
-gazebo --verbose -s libgazebo\_ros\_init.so -s libgazebo\_ros\_factory.so
+gazebo --verbose -s libgazebo_ros_init.so -s libgazebo_ros_factory.so
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
 After running, you should see the following page:
 
-![](_page_1_Picture_7.jpeg)
+![Picture: page 1: picture 7](_page_1_Picture_7.jpeg)
 
-Optional: To ensure smooth model loading, you can download the offline model and place it [in the ~/.gazebo/models directory. The download link is as follows: https://github.com/osrf/g](https://github.com/osrf/gazebo_models) azebo\_models
+Optional: To ensure smooth model loading, you can download the offline model and place it [in the ~/.gazebo/models directory. The download link is as follows: https://github.com/osrf/g](https://github.com/osrf/gazebo_models) azebo_models
 
-## **3. Start the Gazebo Node and Service**
+## 3. Start the Gazebo Node and Service
 
 1. View the Node
 
@@ -47,11 +47,11 @@ You can see the following results:
 
 Excluding the last few regular services, we will only focus on the first three special services:
 
-- /spawn\_entity, used to load models into gazebo
-- /get\_model\_list, used to obtain a model list
-- /delete\_entity, used to delete loaded models in gazebo
+- /spawn_entity, used to load models into gazebo
+- /get_model_list, used to obtain a model list
+- /delete_entity, used to delete loaded models in gazebo
 
-## **4. Create a function package**
+## 4. Create a function package
 
 Create a myrobot package to store our URDF model and launch files.
 
@@ -59,7 +59,7 @@ Create a myrobot package to store our URDF model and launch files.
 ros2 pkg create myrobot --build-type ament_cmake
 ```
 
-Go to the myrobot directory and create folders launch and urdf . Within the urdf folder, create a file called demo01\_base.urdf . This file is a simple demonstration file containing only a basic cube.
+Go to the myrobot directory and create folders launch and urdf. Within the urdf folder, create a file called demo01_base.urdf. This file is a simple demonstration file containing only a basic cube.
 
 ```
 <robot name="myrobot">
@@ -88,7 +88,7 @@ iyz="0" izz="0.00036"/>
 </robot>
 ```
 
-## **5. Writing the launch file**
+## 5. Writing the launch file
 
 Writing a launch file consists of two main parts: launching the Gazebo file and then loading the robot model into Gazebo.
 
@@ -109,7 +109,7 @@ spawn_entity_cmd = Node(
 output='screen')
 ```
 
-Note the following two parameters in this command: -entity is the name of the model file, and file is the parameter loaded through the urdf file. Later we can also see how the model is loaded through the topic. Create a bringup\_model.launch.py file in the launch directory. The complete startup file is as follows:
+Note the following two parameters in this command: -entity is the name of the model file, and file is the parameter loaded through the urdf file. Later we can also see how the model is loaded through the topic. Create a bringup_model.launch.py file in the launch directory. The complete startup file is as follows:
 
 ```
 import os
@@ -162,8 +162,8 @@ colcon build --packages-select myrobot
 
 Refresh the environment variables and run the launch startup file
 
-ros2 launch myrobot bringup\_model.launch.py
+ros2 launch myrobot bringup_model.launch.py
 
-![](_page_5_Figure_0.jpeg)
+![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
 You can see the red model because you added the Gazebo tag settings.

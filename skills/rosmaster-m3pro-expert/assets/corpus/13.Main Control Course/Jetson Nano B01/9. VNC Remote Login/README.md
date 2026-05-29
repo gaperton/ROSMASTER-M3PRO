@@ -1,6 +1,6 @@
-## **VNC remote login**
+## VNC remote login
 
-## **Jetson Nano B01 remote desktop control through vnc**
+## Jetson Nano B01 remote desktop control through vnc
 
 Tip: The configured image has a username of Jetson and the original password is yahboom. If you are using a configured image and VNC is already configured, you can directly skip to step 6 and log in to VNC based on the current IP address
 
@@ -80,6 +80,6 @@ If the system is set to require a user password to enter before entering the des
 
 Using vncTo connect to VNC using the viewer software, the first step is to query the IP address. I found 192.168.1.195 here. After entering the IP address, click OK, double-click the corresponding VNC user to enter the password, and finally enter the VNC interface
 
-![](_page_3_Figure_0.jpeg)
+![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)

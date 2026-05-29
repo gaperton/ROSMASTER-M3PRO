@@ -1,10 +1,10 @@
-# **config.txt file description**
+# config.txt file description
 
-#### **config.txt [file description](#page-0-0)**
+#### config.txt file description
 
-<span id="page-0-0"></span>[Check status](#page-0-1) file [format](#page-0-2) [Common](#page-1-0) options [GPIO control](#page-1-1)
+Check status file format Common options GPIO control
 
-<span id="page-0-1"></span>[illustrate](#page-2-0)
+illustrate
 
 config.txt is a startup configuration file unique to the Raspberry Pi system. It is located on the first (boot) partition of the SD card and is read by the GPU before initializing the ARM CPU and Linux.
 
@@ -12,11 +12,11 @@ config.txt is a startup configuration file unique to the Raspberry Pi system. It
 Raspberry Pi OS config.txt path: /boot/config.txt
 ```
 
-## **Check status**
+## Check status
 
 Use the following command to view the current option settings:
 
-Display specific configuration values: vcgencmd get\_config
+Display specific configuration values: vcgencmd get_config
 
 ```
 Example: vcgencmd get_config arm_freq
@@ -34,11 +34,11 @@ List all string configuration options that have been set (non-zero)
 vcgencmd get_config str
 ```
 
-## **file format**
+## file format
 
 file format:
 
-- <span id="page-0-2"></span>1. A single statement per line, the content is an integer or a string
+- 1. A single statement per line, the content is an integer or a string
 - 2. Comment: Add # at the beginning of the line
 
 A line of comments can be added before each statement to explain the function of the statement. The length of each line is limited to 98 characters. Content exceeding the limit will be ignored.
@@ -55,9 +55,9 @@ display_auto_detect=1
 dtoverlay=vc4-kms-v3d
 ```
 
-# **Common options**
+# Common options
 
-### <span id="page-1-0"></span>**camera\_auto\_detect**
+### camera_auto_detect
 
 When this setting is enabled, the firmware will automatically load overlays for the CSI cameras it recognizes.
 
@@ -67,7 +67,7 @@ Set to disabled:
 camera_auto_detect=0
 ```
 
-#### **display\_auto\_detect**
+#### display_auto_detect
 
 When this setting is enabled, the firmware will automatically load overlays for the DSI monitors it recognizes.
 
@@ -77,7 +77,7 @@ Set to disabled:
 display_auto_detect=0
 ```
 
-#### **dtoverlay**
+#### dtoverlay
 
 Used to load and configure device tree overlays. By configuring dtoverlay, users can add additional hardware support or functionality to the Raspberry Pi system.
 
@@ -87,7 +87,7 @@ Load an overlay that enables the kernel graphics driver:
 dtoverlaydtoverlay=vc4-kms-v3d
 ```
 
-## **GPIO control**
+## GPIO control
 
 Set GPIO pins to specific modes and values at startup without using custom files.
 
@@ -97,7 +97,7 @@ The pin settings are followed by one or more comma-separated properties.
 
 | Abbreviation | Full name                  | Meaning                          |
 |--------------|----------------------------|----------------------------------|
-| ip           | Input                      | input                            |
+| IP           | Input                      | input                            |
 | op           | Output                     | output                           |
 | a0-a5        | Alt0-Alt5                  | Multiplexing                     |
 | dh           | Driving high (for outputs) | High level driving (for outputs) |
@@ -119,8 +119,8 @@ gpio=18,20=pu
 gpio=17-21=ip
 ```
 
-## **illustrate**
+## illustrate
 
 Only some of the options are listed here. For more detailed information, please go to the official website!
 
-<span id="page-2-0"></span>https://www.raspberrypi.com/documentation/
+https://www.raspberrypi.com/documentation/

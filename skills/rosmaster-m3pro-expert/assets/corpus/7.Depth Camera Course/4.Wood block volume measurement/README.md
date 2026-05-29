@@ -1,20 +1,20 @@
-## **Wood block volume measurement**
+## Wood block volume measurement
 
-[Wood block volume](#page-0-0) measurement
+Wood block volume measurement
 
-- <span id="page-0-0"></span>1. Content [Description](#page-0-1)
-- [2. Program startup](#page-0-2)
-- <span id="page-0-1"></span>3. Core code [analysis](#page-1-0)
+- 1. Content Description
+- 2. Program startup
+- 3. Core code analysis
 
-## **1. Content Description**
+## 1. Content Description
 
 This lesson explains how to combine depth information and coordinate system transformation to calculate the volume of a wooden block.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## <span id="page-0-2"></span>**2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera and robotic arm inverse solution program. The content of inverse solution will be introduced in this product course [9. Robotic Arm and 3D Space Gripping] - [Robotic Arm Inverse Solution]. Here you only need to understand that the inverse solution is to calculate the coordinate value.
 
@@ -28,23 +28,23 @@ After starting the camera and robotic arm inverse solution program, enter the fo
 ros2 run M3Pro_demo estimate_volume
 ```
 
-After the startup is complete, we place a rectangular wooden block as close to the camera as possible (this is done to make the depth information as accurate as possible), then click on the image frame, and finally press the spacebar. The program will calculate the coordinates of the center point and the shape's vertices in the world coordinate system based on the recognized depth information and the posture of its own robotic arm. This value is generally represented by (x, y, z) in meters, indicating the distance from the base coordinate system base\_link (0,0,0); then, combined with the recognized shape of the wooden block, the volume is calculated. As shown in the figure below, the recognized shape of the wooden block is a rectangular block, and the calculated volume is displayed on the terminal.
+After the startup is complete, we place a rectangular wooden block as close to the camera as possible (this is done to make the depth information as accurate as possible), then click on the image frame, and finally press the spacebar. The program will calculate the coordinates of the center point and the shape's vertices in the world coordinate system based on the recognized depth information and the posture of its own robotic arm. This value is generally represented by (x, y, z) in meters, indicating the distance from the base coordinate system base_link (0,0,0); then, combined with the recognized shape of the wooden block, the volume is calculated. As shown in the figure below, the recognized shape of the wooden block is a rectangular block, and the calculated volume is displayed on the terminal.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 The dimensions of the cuboid are 2.8cm x 2.8cm x 5.8cm. The theoretical volume is 45.472 cubic centimeters. The calculated value is 4.87, which is within ±1 cubic centimeter. The error comes from the depth information and the virtual position of the servo.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-<span id="page-1-0"></span>The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/estimate\_volume.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/estimate_volume.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/estimate\_volume.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/estimate_volume.py
 
 Import necessary library files
 
@@ -272,11 +272,11 @@ include the offset of the robotic arm
     return pose_T
 ```
 
-x value: the value of the point and base\_link in the x-axis direction
+x value: the value of the point and base_link in the x-axis direction
 
-y value: the value of the point and base\_link in the y-axis direction
+y value: the value of the point and base_link in the y-axis direction
 
-z value: The value of the point and base\_link in the z-axis direction, which can be considered as the height.
+z value: The value of the point and base_link in the z-axis direction, which can be considered as the height.
 
 If we can get the position of each point in the world coordinate system, we can solve the side length based on the identified shape. For example, for the simplest cube, we only need the z value to determine the volume. The side lengths of the cubes are the same, and the volume is the cube of the side length.
 

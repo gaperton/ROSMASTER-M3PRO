@@ -1,18 +1,18 @@
-## **19.Customized service management**
+## 19.Customized service management
 
-[19.Customized service](#page-0-0) management
+19.Customized service management
 
-- <span id="page-0-0"></span>[1. Create](#page-0-1) a new service file
-- [2. Update](#page-1-0) service
-- <span id="page-0-1"></span>[3. Management](#page-1-1) services
+- 1. Create a new service file
+- 2. Update service
+- 3. Management services
 
 This course takes the newly created OLED startup service as an example for reference only to the service management process.
 
 The Yahboom Muto image has been set up to start the oled service automatically at boot.
 
-## **1. Create a new service file**
+## 1. Create a new service file
 
-Create a new yahboom\_oled.service in the user directory
+Create a new yahboom_oled.service in the user directory
 
 ```
 touch yahboom_oled.service
@@ -23,7 +23,7 @@ Add the following content, where User represents the user name and needs to be m
 
 ExecStart represents the command to be executed and the command needs to be executed according to the actual modification.
 
-Jetson nano system service files:
+Jetson Nano system service files:
 
 ```
 [Unit]
@@ -56,9 +56,9 @@ WantedBy=multi-user.target
 
 Then exit editing and enter: qw to save the file.
 
-## **2. Update service**
+## 2. Update service
 
-Copy the newly created yahboom\_oled.service service file to the /etc/systemd/system/ path.
+Copy the newly created yahboom_oled.service service file to the /etc/systemd/system/ path.
 
 ```
 sudo cp yahboom_oled.service /etc/systemd/system/
@@ -68,7 +68,7 @@ Update system services
 
 sudo systemctl daemon-reload
 
-## **3. Management services**
+## 3. Management services
 
 Check service status
 
@@ -102,4 +102,4 @@ sudo systemctl stop yahboom_oled.service
 
 Service does not start when booting
 
-sudo systemctl disable yahboom\_oled.service
+sudo systemctl disable yahboom_oled.service

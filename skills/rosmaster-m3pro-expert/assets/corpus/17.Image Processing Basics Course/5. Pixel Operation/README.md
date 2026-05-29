@@ -1,4 +1,4 @@
-## **5.OpenCV pixel operations**
+## 5.OpenCV pixel operations
 
 Pixel operations allow us to change the color of any pixel at any position. Here we first read the image and then assign an area to white.
 
@@ -52,4 +52,4 @@ image_widget2.value = bgr8_to_jpeg(img) #After pixel operation
 
 After the code block is run, you can see that some of the pixels in the second image have turned into white pixels.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)

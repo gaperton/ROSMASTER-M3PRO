@@ -1,14 +1,14 @@
-## **Gesture grabbing and releasing objects**
+## Gesture grabbing and releasing objects
 
-## **1. Content Description**
+## 1. Content Description
 
 This function acquires color images and uses the MediaPipe framework to detect gestures, controlling the robotic arm to grasp objects based on these gestures.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -26,21 +26,21 @@ After the program starts, if the camera image shows a "Yes" gesture, the robotic
 
 At this time, put your hand in the camera image and make a "Yes" gesture, and the robotic arm will move forward to grab the object.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
 When the object is grabbed and the gesture is recognized as OK, the object is placed in the upper left position.
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-Press Ctrl+c in the terminal to exit the program.
+Press Ctrl+C in the terminal to exit the program.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/16\_GestureGras p.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/16_GestureGras p.py
 
 Import the library files used,
 
@@ -162,7 +162,7 @@ name="arm_ctrl_threading", args=(gesture, ))
     cv.imshow('frame', frame)
 ```
 
-arm\_ctrl\_threading is the thread function of the robot arm gripping. The parameter passed in is the gesture.
+arm_ctrl_threading is the thread function of the robot arm gripping. The parameter passed in is the gesture.
 
 ```
 def arm_ctrl_threading(self, gesture):

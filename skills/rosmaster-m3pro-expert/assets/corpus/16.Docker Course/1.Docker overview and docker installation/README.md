@@ -1,18 +1,18 @@
-# <span id="page-0-0"></span>**1、Docker overview and docker installation**
+# 1. Docker overview and docker installation
 
 *At present, ROS2's courses are all placed in Docker containers, and customers can experience learning to use containerized development methods.*
 
-### **1、Docker overview and [docker installation](#page-0-0)**
+### 1. Docker overview and docker installation
 
-- 1.1、Docker [overview](#page-0-1)
-  - 1.1.1、why docker [appears](#page-0-2)
-  - 1.1.2、[Docker's](#page-1-0) core idea
-  - 1.1.3、Compare virtual [machines](#page-1-1) to Docker
-  - 1.1.4、docker [architecture](#page-2-0)
-  - 1.1.5、Docker core [objects](#page-3-0)
-  - 1.1.6、images, containers, [repositories](#page-3-1)
-  - 1.1.7、Docker operation [mechanism](#page-4-0)
-- 1.2、docker [installation](#page-4-1)
+- 1.1、Docker overview
+  - 1.1.1、why docker appears
+  - 1.1.2、Docker's core idea
+  - 1.1.3、Compare virtual machines to Docker
+  - 1.1.4、docker architecture
+  - 1.1.5、Docker core objects
+  - 1.1.6、images, containers, repositories
+  - 1.1.7、Docker operation mechanism
+- 1.2、docker installation
 
 Docker Chinese website: [https://www.docker-cn.com](https://www.docker-cn.com/)
 
@@ -24,17 +24,17 @@ The operating environment and software and hardware reference configurations are
 - Robot hardware configuration: Arm series main control, Silan A1 lidar, AstraPro Plus depth camera
 - Robot system: Ubuntu (version not required) + docker (version 20.10.21 and above)
 - PC Virtual Machine: Ubuntu (20.04) + ROS2 (Foxy)
-- <span id="page-0-1"></span>Usage scenario: Use on a relatively clean 2D plane
+- Usage scenario: Use on a relatively clean 2D plane
 
-## **1.1、Docker overview**
+## 1.1. Docker overview
 
 Docker is an application container engine project, developed based on the Go language and open source.
 
-## **1.1.1、why docker appears**
+## 1.1.1. why docker appears
 
 Let's start with a few scenarios:
 
-- <span id="page-0-2"></span>1. O&M deploys the project you developed to the server, telling you that there is a problem and cannot be started. You ran around locally and found that there was no problem...
+- 1. O&M deploys the project you developed to the server, telling you that there is a problem and cannot be started. You ran around locally and found that there was no problem...
 - 2. The project to be launched is unavailable due to the update of some software versions...
 - 3. There are a lot of environmental content involved in the project, various middleware, various configurations, and the deployment of multiple servers...
 
@@ -46,28 +46,28 @@ For example, the project involves environments such as REDIS, MYSQL, JDK, ES, et
 
 Docker is here to solve this problem!
 
-## **1.1.2、Docker's core idea**
+## 1.1.2. Docker's core idea
 
-<span id="page-1-1"></span><span id="page-1-0"></span>![](_page_1_Picture_5.jpeg)
+![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
 This is the logo of Docker, a whale full of containers, on the back of the whale, the containers are isolated from each other, which is the core idea of Docker.
 
 For example, if there were multiple applications running on the same server before, there may be port occupation conflicts of software, but now they can run alone after isolation. In addition, Docker can maximize the power of the server.
 
-### **1.1.3、Compare virtual machines to Docker**
+### 1.1.3. Compare virtual machines to Docker
 
-![](_page_1_Figure_9.jpeg)
+![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
 The docker daemon can communicate directly with the main operating system to allocate resources to individual docker containers; It can also isolate containers from the main operating system and isolate individual containers from each other. Virtual machines take minutes to start, while docker containers can start in milliseconds. Since there is no bloated from the operating system, Docker can save a lot of disk space as well as other system resources.
 
 - Virtual machines are better at completely isolating the entire operating environment. For example, cloud service providers often use virtual machine technology to isolate different users. Docker is often used to isolate different applications, such as front-end, back-end, and database.
-- <span id="page-2-0"></span>Docker containers are more resource-efficient and faster (start, shut down, create, delete) than virtual machines
+- Docker containers are more resource-efficient and faster (start, shut down, create, delete) than virtual machines
 
-## **1.1.4、docker architecture**
+## 1.1.4. docker architecture
 
 Docker uses a client-server architecture. The Docker client communicates with the Docker daemon, which is responsible for building, running, and distributing the Docker container. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The docker client and daemon communicate using REST APIs over UNIX sockets or network interfaces. Another Docker client is Docker Compose, which lets you work with applications that consist of a set of containers.
 
-![](_page_2_Figure_4.jpeg)
+![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)
 
 - docker client is a docker command that is used directly after installing docker.
 - Docker host is our docker host (i.e. the operating system on which docker is installed)
@@ -75,15 +75,15 @@ Docker uses a client-server architecture. The Docker client communicates with th
 - registry is a remote repository where docker pulls images, providing a large number of images for download, and saving them in images (local image repository) after downloading.
 - Images is a local image repository of docker, and image files can be viewed through docker images.
 
-## <span id="page-3-0"></span>**1.1.5、Docker core objects**
+## 1.1.5. Docker core objects
 
-![](_page_3_Figure_2.jpeg)
+![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-### **1.1.6、images, containers, repositories**
+### 1.1.6. images, containers, repositories
 
 ### Image:
 
-<span id="page-3-1"></span>A docker image is a read-only template. Images can be used to create docker containers, and one image can create many containers. Just like classes and objects in Java, classes are images and containers are objects.
+A docker image is a read-only template. Images can be used to create docker containers, and one image can create many containers. Just like classes and objects in Java, classes are images and containers are objects.
 
 ### Container:
 
@@ -100,11 +100,11 @@ You need to correctly understand the concepts of warehousing/image/container:
 - A container runs a service, and when we need it, we can create a corresponding running instance through the docker client, which is our container.
 - As for the repository, it is a place where a bunch of images are placed, we can publish the images to the repository, and pull them from the repository when needed.
 
-### **1.1.7、Docker operation mechanism**
+### 1.1.7. Docker operation mechanism
 
 Docker pull execution process:
 
-- <span id="page-4-0"></span>1. The client sends instructions to Docker Daemon
+- 1. The client sends instructions to Docker Daemon
 - 2. Docker Daemon first check whether there are relevant images in the local images
 - 3. If there is no relevant image locally, request the mirror server to download the remote mirror to the local computer
 
@@ -117,9 +117,9 @@ docker run execution process:
 - 5. Configure an IP address from the address pool to the container
 - 6. Execute the application specified by the user
 
-## **1.2、docker installation**
+## 1.2. docker installation
 
-- <span id="page-4-1"></span>1. [Official website installation reference manual: https://docs.docker.com/engine/install/ubunt](https://docs.docker.com/engine/install/ubuntu/) u/
+- 1. [Official website installation reference manual: https://docs.docker.com/engine/install/ubunt](https://docs.docker.com/engine/install/ubuntu/) u/
 - 2. You can use the following commands to install with one click:
 
 ```

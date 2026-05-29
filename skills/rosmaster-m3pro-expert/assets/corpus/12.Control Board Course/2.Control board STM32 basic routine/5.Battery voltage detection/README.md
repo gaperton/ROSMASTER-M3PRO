@@ -1,26 +1,26 @@
-# **Battery voltage detection**
+# Battery voltage detection
 
-Battery voltage [detection](#page-0-0)
+Battery voltage detection
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-4-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-4-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Use the voltage detection function on the STM32 control board to learn how to read ADC values.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the battery voltage detection circuit has been integrated into the STM32 control board, and the battery needs to be plugged into the battery interface.
 
 Please connect the type-C data cable to the computer and the USB Connect port of the STM32 control board.
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -28,11 +28,11 @@ The path corresponding to the program source code is:
 Board_Samples/STM32_Samples/Adc
 ```
 
-First, initialize the battery voltage detection ADC channel. The hardware GPIO connected to the voltage detection is PC0, and the corresponding ADC channel is ADC1\_INP10.
+First, initialize the battery voltage detection ADC channel. The hardware GPIO connected to the voltage detection is PC0, and the corresponding ADC channel is ADC1_INP10.
 
-<span id="page-1-0"></span>![](_page_1_Picture_4.jpeg)
+![Picture: page 1: picture 4](_page_1_Picture_4.jpeg)
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
 ```
 void MX_ADC1_Init(void)
@@ -145,7 +145,7 @@ float Bat_Get_Battery_Volotage(void)
 }
 ```
 
-In App\_Handle, print the current battery voltage value in a loop, once per second.
+In App_Handle, print the current battery voltage value in a loop, once per second.
 
 ```
 void App_Handle(void)
@@ -170,11 +170,11 @@ void App_Handle(void)
 }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-4-0"></span>![](_page_4_Picture_2.jpeg)
+![Picture: page 4: picture 2](_page_4_Picture_2.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -182,12 +182,12 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-## <span id="page-4-1"></span>**5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 Connect the expansion board to the computer via a Type-C data cable, open the serial port assistant (specific parameters are shown in the figure below), and you can see the serial port assistant print the current battery voltage.
 
 Among them, the first value is the ADC value, the second value is the GPIO voltage value, and the third value is the battery voltage value.
 
-![](_page_5_Figure_0.jpeg)
+![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)

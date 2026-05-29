@@ -1,37 +1,37 @@
-# **AI Application Development - Chatbot**
+# AI Application Development - Chatbot
 
-#### **AI Application [Development](#page-0-0) - Chatbot**
+#### AI Application Development - Chatbot
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Starting](#page-0-2) the Dify Service
-- [3. Chatbot](#page-0-3)
-- <span id="page-0-1"></span>[4. Accessing](#page-3-0) the Chatbot via Web
+- 1. Course Content
+- 2. Starting the Dify Service
+- 3. Chatbot
+- 4. Accessing the Chatbot via Web
 
-### **1. Course Content**
+### 1. Course Content
 
 Master the use of Dify to quickly develop a chatbot
 
-# **2. Starting the Dify Service**
+# 2. Starting the Dify Service
 
-<span id="page-0-2"></span>Connect to the vehicle's computer via VNC or SSH, and enter the following command in the terminal:
+Connect to the vehicle's computer via VNC or SSH, and enter the following command in the terminal:
 
-bringup\_dify
+bringup_dify
 
-Check the vehicle's IP address (you can view it on the OLED screen, using ifconfig , or directly in the terminal). Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page.
+Check the vehicle's IP address (you can view it on the OLED screen, using ifconfig, or directly in the terminal). Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page.
 
-## <span id="page-0-3"></span>**3. Chatbot**
+## 3. Chatbot
 
 On the homepage, click "Create from Blank".
 
-![](_page_1_Picture_1.jpeg)
+![Picture: page 1: picture 1](_page_1_Picture_1.jpeg)
 
 Click to select "Chat Assistant" in the "Beginner-friendly" Chatbot -> App Name & Icon-> Create.
 
-![](_page_1_Picture_3.jpeg)
+![Picture: page 1: picture 3](_page_1_Picture_3.jpeg)
 
 Then, we enter our role prompt in the "INSTRUCTIONS"
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
 Example prompt:
 
@@ -57,7 +57,7 @@ Then select the AI model; here, qwen-max is used as an example, and the paramete
 - If you need to add visual question answering functionality, you need to select a multimodal model and enable the visual switch.
 - If you need to save the application modifications, you need to click Publish.
 
-![](_page_2_Figure_14.jpeg)
+![Figure: page 2: figure 14](_page_2_Figure_14.jpeg)
 
 Enter the test content in the chat box on the right to view the model's response.
 
@@ -65,18 +65,18 @@ Enter the test content in the chat box on the right to view the model's response
 
 If you are not satisfied with the model's response, you can adjust the prompt and model parameters to fine-tune the final result.
 
-![](_page_3_Figure_0.jpeg)
+![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-### **4. Accessing the Chatbot via Web**
+### 4. Accessing the Chatbot via Web
 
-- <span id="page-3-0"></span>To access the AI application we created, there are two methods: web access and backend API access. Here, we will use web access as an example.
+- To access the AI application we created, there are two methods: web access and backend API access. Here, we will use web access as an example.
 - Click the settings button for the chatbot on the left.
 
-![](_page_3_Figure_4.jpeg)
+![Figure: page 3: figure 4](_page_3_Figure_4.jpeg)
 
-Click to copy the public access URL of the Web App .
+Click to copy the public access URL of the Web App.
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
 Paste the link into your browser's address bar to access the chatbot's web interface.
 
@@ -84,4 +84,4 @@ Paste the link into your browser's address bar to access the chatbot's web inter
 
 As long as the device is on the same network segment as the vehicle's infotainment system, you can access the page. Therefore, Dify can also be deployed on a server.
 
-![](_page_5_Picture_0.jpeg)
+![Picture: page 5: picture 0](_page_5_Picture_0.jpeg)

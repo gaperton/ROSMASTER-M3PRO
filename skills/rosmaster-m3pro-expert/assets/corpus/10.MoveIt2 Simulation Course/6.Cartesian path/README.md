@@ -1,26 +1,26 @@
-## **Cartesian path**
+## Cartesian path
 
-Preface: ROS on Raspberry Pi 5 and Jetson-nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson-nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
+Preface: ROS on Raspberry Pi 5 and Jetson Nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson Nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
 
 The following content uses running on a virtual machine as an example.
 
-## **1. Content Description**
+## 1. Content Description
 
 This section explains how to use functions in MoveIt2 to implement Cartesian paths. Cartesian path planning is an important feature in robotic arm control. It allows users to specify the trajectory of the end effector in Cartesian space (i.e., three-dimensional space) rather than directly specifying the motion in joint space. MoveIt provides powerful Cartesian path planning capabilities.
 
-## **2. Program startup**
+## 2. Program startup
 
-After the program is started, when the terminal displays **"You can start planning now!"** , it indicates that the program has been successfully started, as shown in the figure below.
+After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
 
-![](_page_0_Figure_7.jpeg)
+![Figure: page 0: figure 7](_page_0_Figure_7.jpeg)
 
 Then, we need to add a plug-in to display the planned trajectory, and set it up as shown in the figure below.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 Next, we modify the topics that need to be displayed, as shown below.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 Then, enter the following command in the virtual machine terminal to start the Cartesian path program,
 
@@ -30,13 +30,13 @@ ros2 run MoveIt_demo cartesian_path
 
 After running, the robot arm will move to the set posture and a green Cartesian path point will be displayed, as shown in the figure below.
 
-![](_page_3_Picture_0.jpeg)
+![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Virtual machine code
 
-path: /home/yahboom/moveit2\_ws/src/MoveIt\_demo/src/cartesian\_path.cpp
+path: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/cartesian_path.cpp
 
 ```
 #include <rclcpp/rclcpp.hpp>

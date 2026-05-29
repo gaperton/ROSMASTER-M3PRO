@@ -1,44 +1,44 @@
-# **CAN bus communication**
+# CAN bus communication
 
-CAN bus [communication](#page-0-0)
+CAN bus communication
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-5-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-5-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-### **1. Experimental Purpose**
+### 1. Experimental Purpose
 
 Use the FDCAN function of the STM32 control board, configure the FDCAN as a traditional CAN function, and learn how to receive and parse CAN data.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the FDCAN interface. For testing convenience, this routine uses the loopback mode and the CAN interface does not need to be connected to other CAN devices.
 
 Please connect the type-C data cable to the computer and the USB Connect port of the STM32 control board.
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
 Note: In the test routine, the CAN interface can be left floating.
 
 If you need to connect other CAN devices, please align the CAN interface silkscreen: connect CAN-H on the left and CAN-L on the right. Then change the CAN mode to standard mode, recompile the firmware and burn it.
 
-![](_page_1_Picture_1.jpeg)
+![Picture: page 1: picture 1](_page_1_Picture_1.jpeg)
 
-# **3. Core code analysis**
+# 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-Board\_Samples/STM32\_Samples/CAN
+Board_Samples/STM32_Samples/CAN
 
-According to the pin assignment, CAN\_TX is connected to PD1 and CAN\_RX is connected to PD0.
+According to the pin assignment, CAN_TX is connected to PD1 and CAN_RX is connected to PD0.
 
-<span id="page-1-0"></span>![](_page_1_Picture_6.jpeg)
+![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
 According to the CAN component provided by STM32CUBEIDE, configure the frame format to traditional mode and the CAN mode to loopback mode. If you need to connect an external CAN device, set the Mode mode to standard mode.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 #### Set the baud rate of FDCAN to 1000kbps
 
@@ -170,11 +170,11 @@ void App_Handle(void)
 }
 ```
 
-# **4. Compile, download and burn firmware**
+# 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-5-0"></span>![](_page_5_Picture_2.jpeg)
+![Picture: page 5: picture 2](_page_5_Picture_2.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -182,10 +182,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### <span id="page-5-1"></span>**5. Experimental Results**
+### 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 Open the serial port assistant (specific parameters are shown in the figure below), and you can see that the serial port assistant is constantly printing the data sent and received by CAN.
 
-![](_page_6_Figure_0.jpeg)
+![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)

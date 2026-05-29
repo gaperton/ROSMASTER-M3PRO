@@ -1,14 +1,14 @@
-## **Medipipe gesture control robotic arm action group**
+## Medipipe gesture control robotic arm action group
 
-## **1. Content Description**
+## 1. Content Description
 
 This function captures color images and uses the mediapipe framework to recognize gestures, then uses these gestures to move the robotic arm to a predefined set of actions.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -33,23 +33,23 @@ After the program runs, the robotic arm will move to recognize gestures. There a
 
 For example, the following is the Rock gesture.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
 After we make a gesture, press the space bar, and the robotic arm will perform a set of movements based on the recognized gesture. You need to press the space bar every time recognition is performed.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/Gesture\_Moving.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
 
 Orin Motherboard
 
 The program code path
 
-is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/Gesture\_Moving.py
+is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
 
 Import the necessary library files,
 
@@ -142,7 +142,7 @@ self.pTime = self.cTime
     cv.imshow('frame', frame)
 ```
 
-Arm\_Moving\_threadin gesture recognition thread program,
+Arm_Moving_threadin gesture recognition thread program,
 
 ```
 def Arm_Moving_threading(self, lmList,bbox):

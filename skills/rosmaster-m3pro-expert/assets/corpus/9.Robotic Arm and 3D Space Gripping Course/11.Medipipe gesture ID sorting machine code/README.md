@@ -1,14 +1,14 @@
-# **Medipipe gesture ID sorting machine code**
+# Medipipe gesture ID sorting machine code
 
-## **1. Content Description**
+## 1. Content Description
 
 This function implements the program to capture images through the camera and then recognize gestures (1-4). After analyzing the gestures, the robotic arm moves to a sorting posture. According to the gestures, it sorts the machine-coded wooden blocks on the table. If a machine-coded wooden block with the ID corresponding to the gesture exists on the table, the robotic arm lowers its gripper and places it in the designated location. If a machine-coded wooden block with the ID corresponding to the gesture does not exist on the table, the robotic arm shakes its head and finally returns to the gesture recognition posture.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-#### **2. Program startup**
+#### 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
@@ -28,7 +28,7 @@ Then enter the following command in the third terminal to start the Mediapipe ge
 
 After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate during the coordinate system conversion. Therefore, you need to close the Mediapipe gesture ID sorting machine code program by pressing ctrl c and restart the Mediapipe gesture ID sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end position posture.
+If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate during the coordinate system conversion. Therefore, you need to close the Mediapipe gesture ID sorting machine code program by pressing Ctrl+C and restart the Mediapipe gesture ID sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end position posture.
 
 Then enter the following command in the fourth terminal to start the Mediapipe gesture recognition program,
 
@@ -38,31 +38,31 @@ ros2 run M3Pro_demo mediapipe_detect
 
 After starting, the robot arm will move to the recognition posture and begin to recognize gestures. The recognized gestures are 1-4. Gesture 1 represents one finger stretched out, gesture 2 represents two fingers stretched out, gesture 3 represents three fingers stretched out, and gesture 4 represents four fingers stretched out. Keep the gesture in mind and wait for the buzzer to sound, indicating that the gesture recognition is complete. The robot arm will move to the sorting posture. As shown in the figure below, assuming gesture 2 is given,
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 After entering the sorting posture, it will start to recognize the machine code on the desktop, as shown in the figure below.
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-After waiting for 8 seconds, if machine code No. 2 is found, the program will determine whether the distance between the machine code block No. 2 and the trolley base\_link is within the range of [210, 220]. If so, the lower claw will directly clamp the machine code block No. 2, and then place it at the set position. Finally, the robotic arm returns to the sorting posture. If not, the distance
+After waiting for 8 seconds, if machine code No. 2 is found, the program will determine whether the distance between the machine code block No. 2 and the trolley base_link is within the range of [210, 220]. If so, the lower claw will directly clamp the machine code block No. 2, and then place it at the set position. Finally, the robotic arm returns to the sorting posture. If not, the distance
 
-between the machine code block No. 2 and the trolley base\_link is outside the range of [210, 220]. The program will control the chassis to adjust the distance, adjust the distance between the two to within the range of [210, 220], and then clamp it with the lower claw, and then place it at the set position. Finally, the robotic arm returns to the sorting posture.
+between the machine code block No. 2 and the trolley base_link is outside the range of [210, 220]. The program will control the chassis to adjust the distance, adjust the distance between the two to within the range of [210, 220], and then clamp it with the lower claw, and then place it at the set position. Finally, the robotic arm returns to the sorting posture.
 
 If machine code No. 2 is not found or no machine code is found, the buzzer on the car will sound, then the robotic arm will shake its head and finally return to the gesture recognition posture.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
-#### **3.1、mediapipe\_detect.py**
+#### 3.1. mediapipe_detect.py
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ mediapipe\_detect.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ mediapipe_detect.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/mediapipe\_detect.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_detect.py
 
 Import the necessary libraries,
 
@@ -162,7 +162,7 @@ self.pub_gesture is True, which means that the gesture topic can be published
     cv.imshow('frame', frame)
 ```
 
-Gesture\_Detect\_threading gesture detection program,
+Gesture_Detect_threading gesture detection program,
 
 ```
 def Gesture_Detect_threading(self, lmList,bbox):
@@ -197,17 +197,17 @@ fingers stretched
     self.last_sum = sum(fingers)
 ```
 
-#### **3.2, apriltagID\_gesture.py**
+#### 3.2, apriltagID_gesture.py
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ apriltagID\_gesture.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltagID_gesture.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/apriltagID\_gesture.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagID_gesture.py
 
 Import the necessary library files,
 

@@ -1,20 +1,20 @@
-# **Lidar obstacle avoidance**
+# LiDAR obstacle avoidance
 
-#### **[Lidar obstacle avoidance](#page-0-0)**
+#### LiDAR obstacle avoidance
 
-- <span id="page-0-0"></span>1. Content [Description](#page-0-1)
-- [2. Program startup](#page-0-2)
-- <span id="page-0-1"></span>3. Core code [analysis](#page-2-0)
+- 1. Content Description
+- 2. Program startup
+- 3. Core code analysis
 
-## **1. Content Description**
+## 1. Content Description
 
 This section describes how the program combines chassis control with fused radar data to detect obstacles in real time as the car moves forward and steer the car to avoid them based on their locations.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson-Nano and Raspberry Pi 5 users, see here)**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
 
@@ -34,19 +34,19 @@ If there is no obstacle, the car will go straight forward; if there is an obstac
 
 The obstacle avoidance detection distance set by the program is 0.825 meters, and the radar detection angle is 45 degrees to the left and right of 0 degrees. After the dual radar fusion, the radar data at 0 degrees is the front of the vehicle, the left half of the vehicle is 0 degrees-180 degrees, and the right half of the vehicle is -180 degrees-0 degrees. The radar starts from 0 degrees and rotates counterclockwise, as shown in the figure below.
 
-![](_page_1_Figure_3.jpeg)
+![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-<span id="page-2-0"></span>The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboom\_M3Pro\_laser/yahboom\_M3Pro\_laser/laser\_Avoidance.p y
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Avoidance.p y
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/yahboom\_M3Pro\_laser/yahboom\_M3Pro\_laser/laser\_Avoi dance.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Avoi dance.py
 
 Import the necessary library files,
 

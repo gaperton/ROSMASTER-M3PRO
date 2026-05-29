@@ -1,14 +1,14 @@
-## **Robotic arm chassis linkage control**
+## Robotic arm chassis linkage control
 
-## **1. Content Description**
+## 1. Content Description
 
 This course implements the use of an inverse solution algorithm for the robotic arm to calculate the target pose of the robotic arm and control the robotic arm to move to that pose. At the same time, the chassis also moves synchronously, with the robotic arm and chassis moving in tandem relative to each other.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver.
 
@@ -30,17 +30,17 @@ ros2 topic pub /start_dancing std_msgs/msg/Bool "data: True" --once
 
 After posting this topic, the robot will move forward and the robotic arm will move backward. The robot will move forward 1 meter and then stop. If the above message is posted again, the robot will move back 1 meter.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ M3Pro\_Dancing.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ M3Pro_Dancing.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ M3Pro\_Dancing.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ M3Pro_Dancing.py
 
 Import the used libraries,
 
@@ -106,7 +106,7 @@ def startFlagCallBack(self,msg):
         base.start()
 ```
 
-base\_move controls the chassis movement function,
+base_move controls the chassis movement function,
 
 ```
 def base_move(self,base_dir):
@@ -121,7 +121,7 @@ direction
     self.direction = -self.direction
 ```
 
-arm\_move controls the movement of the robotic arm.
+arm_move controls the movement of the robotic arm.
 
 ```
 def arm_move(self,arm_dir):
@@ -153,7 +153,7 @@ from various angles
     future.add_done_callback(self.get_ik_respone_callback)
 ```
 
-get\_ik\_respone\_callback receives the callback function that returns the result of calling the ik service.
+get_ik_respone_callback receives the callback function that returns the result of calling the ik service.
 
 ```
 def get_ik_respone_callback(self, future):
@@ -180,7 +180,7 @@ responses returned after the service is processed.
         self.get_logger().error(f'Service call failed: {e}')
 ```
 
-get\_current\_end\_pos gets the current end position function of the robotic arm.
+get_current_end_pos gets the current end position function of the robotic arm.
 
 ```
 def get_current_end_pos(self):
@@ -199,7 +199,7 @@ values are the joint angle values of the current robot arm.
     future.add_done_callback(self.get_fk_respone_callback)
 ```
 
-get\_fk\_respone\_callback receives the callback function that returns the result of calling the fk service.
+get_fk_respone_callback receives the callback function that returns the result of calling the fk service.
 
 ```
 def get_fk_respone_callback(self, future):

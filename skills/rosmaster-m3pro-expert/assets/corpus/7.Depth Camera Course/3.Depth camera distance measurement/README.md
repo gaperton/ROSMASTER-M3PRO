@@ -1,43 +1,43 @@
-## **Depth camera distance measurement**
+## Depth camera distance measurement
 
-Depth camera distance [measurement](#page-0-0)
+Depth camera distance measurement
 
-- <span id="page-0-0"></span>1. Content [Description](#page-0-1)
-- [2. Program startup](#page-0-2)
-- <span id="page-0-1"></span>3. Core code [analysis](#page-1-0)
+- 1. Content Description
+- 2. Program startup
+- 3. Core code analysis
 
-## **1. Content Description**
+## 1. Content Description
 
 This lesson uses a depth camera to measure distance within its range. This lesson requires entering commands in a terminal.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
-<span id="page-0-2"></span>ros2 launch orbbec\_camera dabai\_dcw2.launch.py
+ros2 launch orbbec_camera dabai_dcw2.launch.py
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the deep pseudo-color image conversion program:
 
-ros2 run yahboom\_M3Pro\_DepthCam Measure\_Distance
+ros2 run yahboom_M3Pro_DepthCam Measure_Distance
 
 After startup, as shown below,
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 Click the red area with the mouse to select the point to be measured. The selected point will turn black and the distance measured by the depth camera will be printed directly in the upper left corner of the image in millimeters.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-- <span id="page-1-0"></span>Raspberry Pi 5 and Jetson-Nano board The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboom\_M3Pro\_DepthCam/yahboom\_M3Pro\_DepthCam/Measure\_ Distance.py
+- Raspberry Pi 5 and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Measure_ Distance.py
 - Orin Motherboard The program code path
 
-is /home/jetson/yahboomcar\_ws/yahboom\_M3Pro\_DepthCam/yahboom\_M3Pro\_DepthCam/Measu re\_Distance.py
+is /home/jetson/yahboomcar_ws/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Measu re_Distance.py
 
 Import the library files used
 
@@ -64,7 +64,7 @@ self.create_subscription(Image,"/camera/depth/image_raw",self.get_DepthImgCallBa
 ck,100)
 ```
 
-Define self.depth\_bridge to convert the message format into an image format that openc can handle
+Define self.depth_bridge to convert the message format into an image format that openc can handle
 
 ```
 self.depth_bridge = CvBridge()

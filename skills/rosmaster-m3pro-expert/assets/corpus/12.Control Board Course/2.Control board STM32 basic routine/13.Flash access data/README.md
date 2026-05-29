@@ -1,26 +1,26 @@
-# **Flash access data**
+# Flash access data
 
-Flash [access](#page-0-0) data
+Flash access data
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-4-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-5-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Use the flash storage function of the STM32 control board to learn the power-off saving function.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 The STM32 control board integrates the STM32H743 chip and has 2M Flash space. In addition to running programs, part of the space can be allocated as a user data area to save data.
 
 You need to connect the USB-C cable between the computer and the USB Connect port on the STM32 controller board. The KEY1 button is used to change the FLASH data.
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
-### <span id="page-1-0"></span>**3. Core code analysis**
+### 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -78,7 +78,7 @@ uint32_t Flash_Read_Word(uint32_t addr)
 }
 ```
 
-For ease of reading, a new Flash\_Read function is created to read multiple bytes of data. Where addr is the FLASH address, output is the pointer to the byte data to be read, and len is the length.
+For ease of reading, a new Flash_Read function is created to read multiple bytes of data. Where addr is the FLASH address, output is the pointer to the byte data to be read, and len is the length.
 
 ```
 void Flash_Read(uint32_t addr, uint32_t *output, uint32_t len)
@@ -235,11 +235,11 @@ void App_Key1_Handle(void)
 }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-4-0"></span>![](_page_4_Picture_5.jpeg)
+![Picture: page 4: picture 5](_page_4_Picture_5.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -247,9 +247,9 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-## <span id="page-5-0"></span>**5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 Open the serial port assistant according to the following configuration.
 
@@ -259,4 +259,4 @@ Each time you press KEY1, the final value will automatically increase by 1.
 
 After pressing the reset button, you can see the information read from FLASH.
 
-![](_page_5_Figure_9.jpeg)
+![Figure: page 5: figure 9](_page_5_Figure_9.jpeg)

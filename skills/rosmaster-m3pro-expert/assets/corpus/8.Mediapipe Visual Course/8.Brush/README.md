@@ -1,14 +1,14 @@
-## **Brush**
+## Brush
 
-## **1. Content Description**
+## 1. Content Description
 
 This course implements acquiring color images and using the MediaPipe framework to detect fingers. It then selects colors and draws a trajectory based on the detected finger movement.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -26,23 +26,23 @@ After running the program, as shown in the figure below, the default fingertip c
 
 The index finger and middle finger start to draw.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
 Put your index and middle fingers together to enter the color selection mode.
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/09\_VirtualPa int.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/09_VirtualPa int.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/09\_Vi rtualPaint.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/09_Vi rtualPaint.py
 
 Import the library files used,
 
@@ -254,7 +254,7 @@ value increases as it goes to the right)
 
 As shown in the figure below, the ID of each joint of the finger,
 
-![](_page_5_Figure_4.jpeg)
+![Figure: page 5: figure 4](_page_5_Figure_4.jpeg)
 
 findHands detects the palm function,
 

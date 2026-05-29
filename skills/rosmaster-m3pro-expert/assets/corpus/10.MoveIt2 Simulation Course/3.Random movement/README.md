@@ -1,12 +1,12 @@
-## **Random movement**
+## Random movement
 
 Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
 
-## **1. Content Description**
+## 1. Content Description
 
-This section describes how to use the MoveIt2 library to implement random movement of the robotic arm in rviz to a certain posture.
+This section describes how to use the MoveIt2 library to implement random movement of the robotic arm in RViz to a certain posture.
 
-## **2. Start**
+## 2. Start
 
 Open the terminal in the virtual machine and enter the following command to start Movet2.
 
@@ -14,9 +14,9 @@ Open the terminal in the virtual machine and enter the following command to star
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"** , it indicates that the program has been successfully started, as shown in the figure below.
+After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
 
-![](_page_0_Figure_8.jpeg)
+![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
 Then enter the following command in the terminal to start the random movement program,
 
@@ -24,17 +24,17 @@ Then enter the following command in the terminal to start the random movement pr
 ros2 run MoveIt_demo random_move
 ```
 
-After the program runs, the robotic arm in rviz will move randomly, as shown in the figure below.
+After the program runs, the robotic arm in RViz will move randomly, as shown in the figure below.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
 The code path in the virtual machine
 
-is: /home/yahboom/moveit2\_ws/src/MoveIt\_demo/src/random\_move.cpp
+is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/random_move.cpp
 
 ```
 //Import necessary header files

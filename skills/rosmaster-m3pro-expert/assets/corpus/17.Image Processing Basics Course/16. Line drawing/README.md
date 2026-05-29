@@ -1,4 +1,4 @@
-## **Line drawing**
+## Line drawing
 
 When using OpenCV to process images, we sometimes need to draw line segments, rectangles, etc. on the image. In OpenCV, we use the line(dst, pt1, pt2, color, thickness=None, lineType=None, shift=None) function to draw line segments.
 
@@ -12,11 +12,11 @@ color: Required parameter. Used to set the color of the line segment
 
 thickness: optional parameter. Used to set the width of the line segment
 
-lineType: Optional parameter. Used to set the type of line segment. Optional values include 8 (8 adjacent connected lines - default), 4 (4 adjacent connected lines), and cv2.LINE\_AA for antialiasing.
+lineType: Optional parameter. Used to set the type of line segment. Optional values include 8 (8 adjacent connected lines - default), 4 (4 adjacent connected lines), and cv2.LINE_AA for antialiasing.
 
 Code path:
 
-opencv/opencv\_basic/03\_Image processing and text drawing/04 Line segment drawing.ipynb
+opencv/opencv_basic/03_Image processing and text drawing/04 Line segment drawing.ipynb
 
 ```
 import cv2
@@ -41,4 +41,4 @@ plt.imshow(dst)
     plt.show()
 ```
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)

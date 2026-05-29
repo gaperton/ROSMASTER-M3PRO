@@ -1,12 +1,12 @@
-## **13.Capacity expansion and resource allocation**
+## 13.Capacity expansion and resource allocation
 
-## **1. Question**
+## 1. Question
 
 After using TF to burn an image that is larger than the image memory, a part of the free memory will not be used, resulting in an error message indicating insufficient space, or failure to run large projects.
 
 **Note: If you are using the USB flash drive, SD card and system image file provided by Yahboom, you can skip this course. The expansion methods of U disk and SD card are the same. This section takes SD card as an example.**
 
-## **2. solution**
+## 2. solution
 
 Install the expansion software and use the expansion software to expand the capacity.
 
@@ -16,23 +16,23 @@ sudo apt install gparted
 
 ## Open software
 
-![](_page_0_Figure_8.jpeg)
+![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
 Click right key on mouse-->【/dev/mmcblk0p1】-->Resize/Move.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 Pull the right frame to the top until the gray area becomes completely white->Resize
 
-![](_page_1_Figure_2.jpeg)
+![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
 Click √ under the function bar -> Apply
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 Expansion completed!
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
 Input the following command in the terminal to query and verify
 

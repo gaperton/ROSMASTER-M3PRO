@@ -1,8 +1,8 @@
-## **Image Rotation**
+## Image Rotation
 
 Image rotation refers to the process of rotating an image by a certain angle according to a certain position, while maintaining the original size. After the image is rotated, the horizontal axis of symmetry, vertical axis of symmetry, and center coordinate origin of the image may change, so the coordinates of the image during rotation need to be converted accordingly. As shown in the figure below:
 
-![](_page_0_Picture_2.jpeg)
+![Picture: page 0: picture 2](_page_0_Picture_2.jpeg)
 
 Assuming that the image is rotated counterclockwise by θ, the rotation transformation can be obtained according to the coordinate transformation:
 
@@ -17,7 +17,7 @@ $$r = \sqrt{x^2 + y^2}, \sin \alpha = \frac{y}{\sqrt{x^2 + y^2}}, \cos \alpha = 
 (2) Substituting (1) into (2) yields:
 
 $$\begin{cases} x' = x\cos\theta + y\sin\theta \\ y' = -x\sin\theta + y\cos\theta \end{cases}$$
- (3)  $\leftarrow$ 
+ (3)  $\leftarrow$
 
 That is as follows:
 
@@ -80,4 +80,4 @@ image_widget1.value = bgr8_to_jpeg(img1)
     image_widget2.value = bgr8_to_jpeg(dst)
 ```
 
-![](_page_2_Picture_1.jpeg)
+![Picture: page 2: picture 1](_page_2_Picture_1.jpeg)

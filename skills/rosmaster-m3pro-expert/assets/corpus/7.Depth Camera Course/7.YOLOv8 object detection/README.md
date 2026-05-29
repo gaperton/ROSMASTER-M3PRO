@@ -1,10 +1,10 @@
-# **Yolov8 Object Detection**
+# YOLOv8 Object Detection
 
-### **1. Content Description**
+### 1. Content Description
 
 This section is exclusive to the **Orin motherboard** and primarily introduces the YOLOv8 framework and its use for object detection.
 
-### **1.1 Introduction to YOLOv8**
+### 1.1 Introduction to YOLOv8
 
 YOLOv8 is an object detection model launched by Ultralytics in 2023. Compared to previous versions (such as YOLOv5), it offers significant improvements in accuracy, speed, and ease of use. It is widely used in computer vision tasks such as object detection, image segmentation, and pose estimation.
 
@@ -25,29 +25,29 @@ YOLOv8 is an object detection model launched by Ultralytics in 2023. Compared to
 
 Visit the official website [Explore Ultralytics YOLOv8 - Ultralytics YOLO Docs](https://docs.ultralytics.com/models/yolov8/#performance-metrics) to download the trained model and learn more about using YOLOv8.
 
-## **2. Program Startup**
+## 2. Program Startup
 
 Enter the following command in the terminal to start the camera:
 
-ros2 launch orbbec\_camera dabai\_dcw2.launch.py
+ros2 launch orbbec_camera dabai_dcw2.launch.py
 
-Next, open another terminal and enter the following command to start Yolov8 object detection:
+Next, open another terminal and enter the following command to start YOLOv8 object detection:
 
-ros2 run yahboom\_yolov8 yolov8\_detect
+ros2 run yahboom_yolov8 yolov8_detect
 
-Then open a third terminal and enter the following command to start rqt\_image\_view to view the image:
+Then open a third terminal and enter the following command to start rqt_image_view to view the image:
 
 ```
 ros2 run rqt_image_view rqt_image_view
 ```
 
-Select the topic /detect\_image in the upper left corner and click the refresh button on the right to view the detected image, as shown below.
+Select the topic /detect_image in the upper left corner and click the refresh button on the right to view the detected image, as shown below.
 
-![](_page_1_Picture_3.jpeg)
+![Picture: page 1: picture 3](_page_1_Picture_3.jpeg)
 
-## **3. Core Code Analysis**
+## 3. Core Code Analysis
 
-Code Path: /home/jetson/yahboomcar\_ws/src/yahboom\_yolov8/yahboom\_yolov8/yolov8\_track.py Import necessary library files:
+Code Path: /home/jetson/yahboomcar_ws/src/yahboom_yolov8/yahboom_yolov8/yolov8_track.py Import necessary library files:
 
 ```
 import cv2
@@ -83,7 +83,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color topic callback function get\_RGBImageCallBack,
+Color topic callback function get_RGBImageCallBack,
 
 ```
 def get_RGBImageCallBack(self,rgb_msg):

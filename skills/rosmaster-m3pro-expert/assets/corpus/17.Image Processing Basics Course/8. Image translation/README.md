@@ -1,4 +1,4 @@
-## **Image panning**
+## Image panning
 
 The original image src is converted to the target image dst through the transformation matrix M:
 
@@ -40,7 +40,7 @@ Next, we directly use the transformation matrix M to call the function cv2.warpA
 
 Code path:
 
-opencv/opencv\_basic/02\_OpenCV Transform/03Picture Pan.ipynb
+opencv/opencv_basic/02_OpenCV Transform/03Picture Pan.ipynb
 
 ```
 import cv2
@@ -79,6 +79,6 @@ image_widget1.value = bgr8_to_jpeg(img1)
 image_widget2.value = bgr8_to_jpeg(dst)
 ```
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
 As can be seen from the image, the picture has moved to the lower right corner by (200, 100).

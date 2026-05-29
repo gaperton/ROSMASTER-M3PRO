@@ -1,14 +1,14 @@
-## **Trajectory planning**
+## Trajectory planning
 
-Preface: ROS on Raspberry Pi 5 and Jetson-nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson-nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
+Preface: ROS on Raspberry Pi 5 and Jetson Nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson Nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
 
 The following content uses running on a virtual machine as an example.
 
-## **1. Content Description**
+## 1. Content Description
 
 This section explains how to display the path planned by MoveIt. The robot arm moves along the planned path trajectory.
 
-## **2. Start**
+## 2. Start
 
 Open a terminal in the virtual machine and enter the following command to start MoveIt2.
 
@@ -16,17 +16,17 @@ Open a terminal in the virtual machine and enter the following command to start 
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"** , it indicates that the program has been successfully started, as shown in the figure below.
+After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
 
-![](_page_0_Figure_9.jpeg)
+![Figure: page 0: figure 9](_page_0_Figure_9.jpeg)
 
 Then, we need to add a plug-in to display the planned trajectory, and set it up as shown in the figure below.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 Next, we modify the topics that need to be displayed, as shown below.
 
-![](_page_1_Figure_2.jpeg)
+![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
 Finally, we enter the following command in the virtual machine terminal to start the trajectory planning program,
 
@@ -34,15 +34,15 @@ Finally, we enter the following command in the virtual machine terminal to start
 ros2 run MoveIt_demo multi_track_motion
 ```
 
-After the program runs, the trajectory is displayed in rviz and the robotic arm moves along the trajectory, as shown in the figure below.
+After the program runs, the trajectory is displayed in RViz and the robotic arm moves along the trajectory, as shown in the figure below.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The code path in the virtual machine is:
 
-/home/yahboom/moveit2\_ws/src/MoveIt\_demo/src/multi\_track\_motion.cpp
+/home/yahboom/moveit2_ws/src/MoveIt_demo/src/multi_track_motion.cpp
 
 ```
 #include <rclcpp/rclcpp.hpp>

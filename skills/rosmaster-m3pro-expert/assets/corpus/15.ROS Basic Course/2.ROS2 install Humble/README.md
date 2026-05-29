@@ -1,9 +1,9 @@
-# **2. Installing Humble in ROS2**
+# 2. Installing Humble in ROS2
 
 - The ROS2-Humble installation supports Ubuntu 22.04.
 - If you need to install a different version of ROS2, simply replace the **humble** version identifier in the installation command with the corresponding version. This applies to all other ROS-specific software in the ROS2 tutorial series and will not be covered in subsequent tutorials.
 
-## **1. Set the locale**
+## 1. Set the locale
 
 First, check whether the locale supports UTF-8 encoding. You can run the following command to check and set the UTF-8 encoding.
 
@@ -18,7 +18,7 @@ locale # Verify the configuration is successful
 
 Note: The locale can be different, but must support UTF-8 encoding.
 
-### **2. Set up the software source**
+### 2. Set up the software source
 
 Start the Ubuntu universe repository
 
@@ -44,7 +44,7 @@ release && echo $UBUNTU_CODENAME) main" | sudo tee
 /etc/apt/sources.list.d/ros2.list > /dev/null
 ```
 
-# **3. Install Humble**
+# 3. Install Humble
 
 First, update the apt repository cache:
 
@@ -70,7 +70,7 @@ Install the colcon build tool
 sudo apt install python3-colcon-common-extensions
 ```
 
-### **4. Configure the Environment**
+### 4. Configure the Environment
 
 If you are using a different version of ROS2, replace the "humble" version identifier with the corresponding version. For example, for the foxy version, replace "humble" with "foxy" in the command.
 
@@ -88,7 +88,7 @@ echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
 At this point, ROS2 has been installed and configured.
 
-#### **5. Run the publisher and subscriber example nodes**
+#### 5. Run the publisher and subscriber example nodes
 
 The ROS2 desktop version has integrated some example nodes. You can test whether ROS2 is successfully installed by running these example nodes.
 
@@ -104,7 +104,7 @@ Run the subscriber node
 ros2 run demo_nodes_cpp listener
 ```
 
-### **6. Run and experience the turtle example**
+### 6. Run and experience the turtle example
 
 The turtle simulator, TurtleSim, is a classic teaching tool in ROS. It helps you quickly understand core ROS concepts.
 
@@ -126,7 +126,7 @@ View velocity topic data
 ros2 topic echo /turtle1/cmd_vel
 ```
 
-## **7. Uninstallation**
+## 7. Uninstallation
 
 After installing ROS2, if you want to uninstall it, you can execute the following command:
 

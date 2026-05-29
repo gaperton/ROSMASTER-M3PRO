@@ -1,28 +1,28 @@
-# **Publish IMU data topic**
+# Publish IMU data topic
 
-[Publish](#page-0-0) IMU data topic
+Publish IMU data topic
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-3-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-4-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Learn about STM32-microROS components, access the ROS2 environment, and publish IMU data topics.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates a nine-axis IMU attitude sensor.
 
 Use a Type-C data cable to connect the USB port of the main control board and the USB Connect port of the STM32 control board.
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-#### <span id="page-1-0"></span>**3. Core code analysis**
+#### 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -50,7 +50,7 @@ micro_ros_string_utilities_set(imu_msg.header.frame_id, "imu_frame");
 }
 ```
 
-Create the node "imu\_publisher". The ROS\_NAMESPACE is empty by default and can be modified in the IDF configuration tool according to actual needs.
+Create the node "imu_publisher". The ROS_NAMESPACE is empty by default and can be modified in the IDF configuration tool according to actual needs.
 
 ```
 rcl_node_t node;
@@ -58,7 +58,7 @@ rcl_node_t node;
 &support));
 ```
 
-Create the publisher "imu/data\_raw" and specify the publisher's message type as sensor\_msgs/msg/Imu.
+Create the publisher "imu/data_raw" and specify the publisher's message type as sensor_msgs/msg/Imu.
 
 ```
 RCCHECK(rclc_publisher_init_default(
@@ -68,7 +68,7 @@ RCCHECK(rclc_publisher_init_default(
         "imu/data_raw"));
 ```
 
-To create the publisher "imu/mag", you need to specify that the publisher's information is of the sensor\_msgs/msg/MagneticField type.
+To create the publisher "imu/mag", you need to specify that the publisher's information is of the sensor_msgs/msg/MagneticField type.
 
 ```
 RCCHECK(rclc_publisher_init_default(
@@ -157,7 +157,7 @@ void publish_mag_data(void)
 }
 ```
 
-Call rclc\_executor\_spin\_some in a loop to make microros work properly.
+Call rclc_executor_spin_some in a loop to make microros work properly.
 
 ```
 while (ros_error < 3)
@@ -169,11 +169,11 @@ while (ros_error < 3)
     }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-3-0"></span>![](_page_3_Picture_5.jpeg)
+![Picture: page 3: picture 5](_page_3_Picture_5.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -181,9 +181,9 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-#### <span id="page-4-0"></span>**5. Experimental Results**
+#### 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
 
@@ -193,14 +193,14 @@ sh ~/start_agent.sh
 
 After the connection is successful, a node and a publisher are created.
 
-Open another terminal and view the /YB\_Example\_Node node.
+Open another terminal and view the /YB_Example_Node node.
 
 ```
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
-Subscribe to data from the /imu/data\_raw topic
+Subscribe to data from the /imu/data_raw topic
 
 ```
 ros2 topic echo /imu/data_raw
@@ -208,7 +208,7 @@ ros2 topic echo /imu/data_raw
 
 Press Ctrl+C to end the command.
 
-Check the frequency of the /imu/data\_raw topic. A frequency of about 25 Hz is normal.
+Check the frequency of the /imu/data_raw topic. A frequency of about 25 Hz is normal.
 
 ```
 ros2 topic hz /imu/data_raw

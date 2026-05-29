@@ -1,12 +1,12 @@
-## **Inverse kinematics design**
+## Inverse kinematics design
 
 Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
 
-## **1. Content Description**
+## 1. Content Description
 
-This course explains how to use functions in the MoveIt library to implement forward kinematics for a robotic arm. Forward kinematics involves calculating the required joint angles based on the desired pose of the end effector. In rviz, we assign the end effector a pose and have MoveIt2 plan to achieve that pose.
+This course explains how to use functions in the MoveIt library to implement forward kinematics for a robotic arm. Forward kinematics involves calculating the required joint angles based on the desired pose of the end effector. In RViz, we assign the end effector a pose and have MoveIt2 plan to achieve that pose.
 
-## **2. Start**
+## 2. Start
 
 Open a terminal in the virtual machine and enter the following command to start MoveIt2.
 
@@ -14,19 +14,19 @@ Open a terminal in the virtual machine and enter the following command to start 
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"** , it indicates that the program has been successfully started, as shown in the figure below.
+After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
 
-![](_page_0_Figure_8.jpeg)
+![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
 Then enter the following command in the terminal to start the inverse kinematics design program,
 
-After the program runs, the robotic arm in rviz will plan to move to the position we set, as shown in the figure below.
+After the program runs, the robotic arm in RViz will plan to move to the position we set, as shown in the figure below.
 
-![](_page_1_Figure_1.jpeg)
+![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
-The code path in the virtual machine is: /home/yahboom/moveit2\_ws/src/MoveIt\_demo/src/set\_target\_position.cpp
+The code path in the virtual machine is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_target_position.cpp
 
 ```
 #include <rclcpp/rclcpp.hpp>

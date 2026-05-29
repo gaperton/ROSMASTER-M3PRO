@@ -1,10 +1,10 @@
-## **Modify the firmware parameters of the car control board**
+## Modify the firmware parameters of the car control board
 
-Modify the firmware [parameters](#page-0-0) of the car control board
+Modify the firmware parameters of the car control board
 
-- <span id="page-0-0"></span>[1. Hardware](#page-0-1) Connection
-- 2. Modify [parameters](#page-0-2)
-- 3. Write [configuration](#page-2-0)
+- 1. Hardware Connection
+- 2. Modify parameters
+- 3. Write configuration
 
 This course requires that the car have already been pre-burned with the factory firmware to configure the firmware parameters. The purpose of modifying the control board firmware parameters is to make the car function more in line with personal needs. The factory firmware comes with default parameters and can be left unchanged unless necessary.
 
@@ -14,17 +14,17 @@ This course takes the Jetson Orin series motherboard as an example, and the oper
 
 Note: Before running the configuration modification script, you need to shut down the microros agent first.
 
-## <span id="page-0-1"></span>**1. Hardware Connection**
+## 1. Hardware Connection
 
 Make sure the Type-C USB Connect port on the control board is connected to the USB port on the mainboard.
 
-## **2. Modify parameters**
+## 2. Modify parameters
 
-Open the system terminal, find and open the [config\_robot.py] file in the user directory.
+Open the system terminal, find and open the [config_robot.py] file in the user directory.
 
-<span id="page-0-2"></span>vim ~/config\_robot.py
+vim ~/config_robot.py
 
-Scroll to the bottom of the file, and you will find the configuration parameters mainly including set\_ros\_domain\_id, set\_ros\_namespace, set\_motor\_pid\_parm, set\_imu\_yaw\_pid\_parm, set\_ros\_scale\_line, set\_ros\_scale\_angular, and set\_arm\_mid\_value.
+Scroll to the bottom of the file, and you will find the configuration parameters mainly including set_ros_domain_id, set_ros_namespace, set_motor_pid_parm, set_imu_yaw_pid_parm, set_ros_scale_line, set_ros_scale_angular, and set_arm_mid_value.
 
 If you need to modify a parameter, please remove the comment symbol before the corresponding function.
 
@@ -39,23 +39,23 @@ If you need to modify a parameter, please remove the comment symbol before the c
 # robot.set_arm_mid_value(arm_mid_value)
 ```
 
-Among them, set\_ros\_domain\_id means setting the car's ROS DOMAIN ID, which ranges from 0 to 100. If there are multiple devices in the LAN, each one should set a different ROS DOMAIN ID to avoid mutual interference. Note that the ROS\_DOMAIN\_ID value must be consistent with the system terminal .bashrc file to ensure communication.
+Among them, set_ros_domain_id means setting the car's ROS DOMAIN ID, which ranges from 0 to 100. If there are multiple devices in the LAN, each one should set a different ROS DOMAIN ID to avoid mutual interference. Note that the ROS_DOMAIN_ID value must be consistent with the system terminal.bashrc file to ensure communication.
 
-set\_ros\_namespace means setting the namespace of the car ROS, which is mainly used for the LAN multi-car control function.
+set_ros_namespace means setting the namespace of the car ROS, which is mainly used for the LAN multi-car control function.
 
-set\_motor\_pid\_parm means setting the PID parameters of the car motor speed.
+set_motor_pid_parm means setting the PID parameters of the car motor speed.
 
-set\_imu\_yaw\_pid\_parm means setting the PID parameters of the car using the IMU to calibrate the direction.
+set_imu_yaw_pid_parm means setting the PID parameters of the car using the IMU to calibrate the direction.
 
-set\_ros\_scale\_line means setting the car's ROS linear speed scaling ratio.
+set_ros_scale_line means setting the car's ROS linear speed scaling ratio.
 
-set\_ros\_scale\_angular means setting the car's ROS angular velocity scaling ratio.
+set_ros_scale_angular means setting the car's ROS angular velocity scaling ratio.
 
-The set\_arm\_mid\_value function sets the mid-value deviation of the robotic arm. This is primarily used to quickly restore the robotic arm calibration value and generally does not require modification. Note: Modifying this value will affect the calibration value of the robotic arm. If you need to calibrate the robotic arm, please refer to the tutorial for calibrating the robotic arm.
+The set_arm_mid_value function sets the mid-value deviation of the robotic arm. This is primarily used to quickly restore the robotic arm calibration value and generally does not require modification. Note: Modifying this value will affect the calibration value of the robotic arm. If you need to calibrate the robotic arm, please refer to the tutorial for calibrating the robotic arm.
 
 Here we take changing the domain ID to 31 as an example:
 
-## **3. Write configuration**
+## 3. Write configuration
 
 Note: Before running the configuration modification script, you need to shut down the microros agent first.
 

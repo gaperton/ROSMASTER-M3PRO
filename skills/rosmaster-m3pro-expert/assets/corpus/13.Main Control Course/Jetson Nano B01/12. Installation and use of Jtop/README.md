@@ -1,6 +1,6 @@
-# **Installation and Use of Jtop**
+# Installation and Use of Jtop
 
-### **Installation of Jtop**
+### Installation of Jtop
 
 (1) Installing JTOP to check CPU usage
 
@@ -15,7 +15,7 @@ sudo pip3 install jetson-stats
 jtop
 ```
 
-## **Check the installed system components**
+## Check the installed system components
 
 (1) The OS image of Jetson Nano B01 already comes with JetPack, cuda, cudnn, opencv, and other installed examples. The installation path for these examples is as follows
 
@@ -70,8 +70,8 @@ OpenCV4.1.1 version is already installed in Jetson Nano B01. You can use the com
 
 ### (4) Check cuDNN
 
-CuDNN has been installed in Jetson nano and there are examples available for operation. Let's run the examples to verify the CUDA above
+CuDNN has been installed in Jetson Nano and there are examples available for operation. Let's run the examples to verify the CUDA above
 
 Enter jtop at the terminal, press the right arrow key on the keyboard to select 7info, and you can see the version of cuDNN, as shown in the following figure:
 
-![](_page_2_Figure_4.jpeg)
+![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)

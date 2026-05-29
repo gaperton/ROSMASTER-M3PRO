@@ -1,16 +1,16 @@
-# **Mediapipe gesture recognition**
+# Mediapipe gesture recognition
 
-### **1. Content Description**
+### 1. Content Description
 
 This lesson explains how to subscribe to an image topic to retrieve images and use MediaPipe for gesture recognition.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
-#### **About Mediapipe:**
+#### About Mediapipe:
 
 MediaPipe is a data stream processing and machine learning application development framework developed and open-sourced by Google. It is a graph-based data processing pipeline used to build applications that utilize a variety of data sources, such as video, audio, sensor data, and any time series data. MediaPipe is cross-platform and can run on embedded platforms (such as the Raspberry Pi), mobile devices (iOS and Android), workstations, and servers, and supports mobile GPU acceleration. MediaPipe provides a cross-platform, customizable ML solution for real-time and streaming media. The core framework of MediaPipe is implemented in C++, with support for languages such as Java and Objective C. Key concepts in MediaPipe include packets, streams, calculators, graphs, and subgraphs.
 
-#### **Mediapipe Hands**
+#### Mediapipe Hands
 
 MediaPipe Hands is a high-fidelity hand and finger tracking solution. It uses machine learning (ML) to infer 21
 
@@ -18,11 +18,11 @@ After palm detection in the entire image, the 21 3D hand joint coordinates in th
 
 It is also robust to occlusion. To obtain ground truth data, we manually annotated approximately 30K real-world images with 21 3D coordinates, as shown below. To better cover possible hand poses and provide additional supervision on the properties of hand geometry, we also rendered high-quality synthetic hand models against various backgrounds and mapped them to corresponding 3D coordinates.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 Therefore, as long as we can obtain the coordinate value of each joint, we can perform gesture recognition through calculation.
 
-### **2. Program startup**
+### 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -36,25 +36,25 @@ After successfully starting the camera, open another terminal and enter the foll
 ros2 run M3Pro_demo mediapipe_gesture
 ```
 
-After the program is started, as shown in the figure below, it can recognize three gestures: [OK], [Yes] and [Thumb\_down].
+After the program is started, as shown in the figure below, it can recognize three gestures: [OK], [Yes] and [Thumb_down].
 
-![](_page_1_Figure_8.jpeg)
+![Figure: page 1: figure 8](_page_1_Figure_8.jpeg)
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-![](_page_2_Figure_1.jpeg)
+![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board The path in docker
+Raspberry Pi 5 and Jetson Nano board The path in docker
 
-is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/mediapipe\_gesture.py
+is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_gesture.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/mediapipe\_gesture.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_gesture.py
 
 Import the necessary library files,
 
@@ -140,19 +140,19 @@ def Gesture_Detect_threading(self, lmList,bbox):
     print("gesture: ",gesture)
 ```
 
-The definition of the Medipipe recognition class can be found in the media\_library library, which is located in the directory of the M3Pro\_demo function package.
+The definition of the Medipipe recognition class can be found in the media_library library, which is located in the directory of the M3Pro_demo function package.
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/media\_library.py
+The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/media\_library.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
 
 In this library, we use the native library of meidiapipe to expand and define many classes. Each class defines different functions. When we need them, we can pass the parameters into them. For example, we define the following function in the HandDetector class.
 
 - findHands: Find hands
 - fingersUp: fingers extended straight down
 - ThumbTOforefinger: Detects the angle between the thumb and index finger
-- get\_gesture: Detect gestures
+- get_gesture: Detect gestures

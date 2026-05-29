@@ -1,51 +1,51 @@
-# **multi\_brains Framework Source Code Analysis**
+# multi_brains Framework Source Code Analysis
 
-#### **multi\_brains [Framework Source Code Analysis](#page-0-0)**
+#### multi_brains Framework Source Code Analysis
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- 2. Source Code Package [Structure](#page-0-2)
-  - 2.1 [Functional](#page-0-3) Package File Structure
-- 3. Speech [Recognition](#page-1-0) Function
-  - 3.1 [Dynamic Recording](#page-2-0) with Voice Activity Detection
-  - 3.3 ASR Speech [Recognition](#page-3-0)
-- 4. Model Service [Functionality](#page-3-1)
-- 5. Action Server [Functionality](#page-5-0)
-- [6. Interruption](#page-6-0) Function
-  - 6.1 Recording Stage [Interruption](#page-6-1)
-  - 6.2 [Interrupting](#page-7-0) the Dialogue Phase
-  - 6.3 Action Phase [Interruption](#page-8-0)
-    - 6.3.1 Normal Action [Interruption](#page-8-1)
-    - 6.3.2 Interruption of Actions with [Subprocesses](#page-8-2)
+- 1. Course Content
+- 2. Source Code Package Structure
+  - 2.1 Functional Package File Structure
+- 3. Speech Recognition Function
+  - 3.1 Dynamic Recording with Voice Activity Detection
+  - 3.3 ASR Speech Recognition
+- 4. Model Service Functionality
+- 5. Action Server Functionality
+- 6. Interruption Function
+  - 6.1 Recording Stage Interruption
+  - 6.2 Interrupting the Dialogue Phase
+  - 6.3 Action Phase Interruption
+    - 6.3.1 Normal Action Interruption
+    - 6.3.2 Interruption of Actions with Subprocesses
 
-## **1. Course Content**
+## 1. Course Content
 
-- <span id="page-0-1"></span>This section analyzes the core functionalities of the multi\_brains functional package architecture.
+- This section analyzes the core functionalities of the multi_brains functional package architecture.
 - In subsequent lessons, each new action function introduced in the tutorials will be explained separately.
 
 #### [!TIP]
 
-<span id="page-0-3"></span><span id="page-0-2"></span>This course is a purely code-analysis course, intended for users who want a deeper understanding of the functionality. If you only need to experience the functionality, you can skip this section.
+This course is a purely code-analysis course, intended for users who want a deeper understanding of the functionality. If you only need to experience the functionality, you can skip this section.
 
-## **2. Source Code Package Structure**
+## 2. Source Code Package Structure
 
-## **2.1 Functional Package File Structure**
+## 2.1 Functional Package File Structure
 
 | ├── config                           |
 |--------------------------------------|
-| │<br>├── map_mapping.yaml            |
-| │<br>├── multi_brains_setting.yaml   |
-| │<br>└── README.MD                   |
+| │ ├── map_mapping.yaml            |
+| │ ├── multi_brains_setting.yaml   |
+| │ └── README.MD                   |
 | ├── language                         |
-| │<br>├── en.yaml                     |
-| │<br>└── zh.yaml                     |
+| │ ├── en.yaml                     |
+| │ └── zh.yaml                     |
 | ├── launch                           |
-| │<br>└── llm_agent_control.launch.py |
+| │ └── llm_agent_control.launch.py |
 | ├── multi_brains                     |
-| │<br>├── action_service.py           |
-| │<br>├── asr_detect.py               |
-| │<br>├──initpy                       |
-| │<br>├── model_service.py            |
-| │<br>└── utils                       |
+| │ ├── action_service.py           |
+| │ ├── asr_detect.py               |
+| │ ├──initpy                       |
+| │ ├── model_service.py            |
+| │ └── utils                       |
 
 ```
 ├── package.xml
@@ -76,16 +76,16 @@ config
 
 Configuration folder, used to store configuration **file templates**.
 
-- multi\_brains source code folder
-- asr\_detect.py
+- multi_brains source code folder
+- asr_detect.py
 
 Speech recognition program file
 
-model\_service.py
+model_service.py
 
 Model server program file, used to call various model interfaces to implement the model inference architecture
 
-action\_service.py
+action_service.py
 
 Action server program file, used to receive the action list requested by the model server and control the robot's movement
 
@@ -97,11 +97,11 @@ language package
 
 Stores log files in different languages
 
-<span id="page-1-0"></span>system\_voice
+system_voice
 
 System audio files
 
-## **3. Speech Recognition Function**
+## 3. Speech Recognition Function
 
 Source code path:
 
@@ -109,9 +109,9 @@ Source code path:
 ~/M3Pro_ws/src/multi_brains/multi_brains/asr_detect.py
 ```
 
-## **3.1 Dynamic Recording with Voice Activity Detection**
+## 3.1 Dynamic Recording with Voice Activity Detection
 
-- <span id="page-2-0"></span>1. Continuously read audio frames and perform voice activity detection.
+- 1. Continuously read audio frames and perform voice activity detection.
 - 2. If voice activity is detected, add the audio frames to the buffer; if continuous silence exceeding a threshold (90 frames, approximately 1.5 seconds) is detected, end the recording.
 - 3. After recording ends, remove the trailing silent portion and save the valid speech as a WAV file.
 - 4. If no valid speech is detected, no file will be saved.
@@ -180,9 +180,9 @@ if recording_active and audio_buffer:
 return False
 ```
 
-#### **3.3 ASR Speech Recognition**
+#### 3.3 ASR Speech Recognition
 
-<span id="page-3-0"></span>The recognize method of the speech engine is called for speech recognition. The speech engine is provided by instantiated objects of the classes Tongyi\_ASR , SenseVoiceSmall\_ASR , and XUNFEI\_ASR .
+The recognize method of the speech engine is called for speech recognition. The speech engine is provided by instantiated objects of the classes Tongyi_ASR, SenseVoiceSmall_ASR, and XUNFEI_ASR.
 
 ```
 def kws_handler(self) -> None:
@@ -210,7 +210,7 @@ is too short. Could it be that the user woke it up by mistake
 "+asr_result[1]+Fore.RESET)
 ```
 
-## **4. Model Service Functionality**
+## 4. Model Service Functionality
 
 Source code path:
 
@@ -220,7 +220,7 @@ Source code path:
 
 Core function explanation:
 
-- Checks the llm\_handler\_queue queue in a separate thread for requests to access the model.
+- Checks the llm_handler_queue queue in a separate thread for requests to access the model.
 - Once an element is pushed into the queue, it calls the chat function of the Dify access interface with different parameters depending on the request type.
 - After receiving the AI agent's response from the Dify platform, it parses the corresponding content for speech playback and sends the action list to the action server for execution.
 
@@ -280,11 +280,11 @@ Check whether the dify or AI model is normal.\
                 time.sleep(1.0)#Sleep for 1 second when there are no requests.
 ```
 
-## **5. Action Server Functionality**
+## 5. Action Server Functionality
 
-<span id="page-5-0"></span>Contains the implementation of all basic action functions that the robot can perform. It receives action list requests and executes the corresponding actions. It also has the functionality to interrupt and resume execution after being reactivated.
+Contains the implementation of all basic action functions that the robot can perform. It receives action list requests and executes the corresponding actions. It also has the functionality to interrupt and resume execution after being reactivated.
 
-Core callback function execute\_callback explanation:
+Core callback function execute_callback explanation:
 
 Accepts a string representing the list of actions.
 
@@ -342,16 +342,16 @@ self.get_logger().info(self.actionlog.get_text("system_log_2"))
         return result
 ```
 
-## <span id="page-6-0"></span>**6. Interruption Function**
+## 6. Interruption Function
 
 The robot supports interruptions at any stage, which can be specifically divided into recording stage interruptions, dialogue stage interruptions, and action stage interruptions. The principles of interruption at each stage are introduced below.
 
-## **6.1 Recording Stage Interruption**
+## 6.1 Recording Stage Interruption
 
 If you realize you've made a mistake while recording, or are dissatisfied with the recorded content and need to re-record, you can interrupt the previous recording and start speaking and recording again by re-activating the robot **during the recording process**.
 
-- <span id="page-6-1"></span>The logic is implemented in the asr\_detect\_run method in the asr.py file:
-- Each time the robot is activated, if there is already a thread running for wake-up recording, it is interrupted via the thread event stop\_event , and waits for it to end;
+- The logic is implemented in the asr_detect_run method in the asr.py file:
+- Each time the robot is activated, if there is already a thread running for wake-up recording, it is interrupted via the thread event stop_event, and waits for it to end;
 - After clearing the stop event flag, a new recording thread is started.
 
 ```
@@ -380,14 +380,14 @@ finish
             time.sleep(0.5)
 ```
 
-## <span id="page-7-0"></span>**6.2 Interrupting the Dialogue Phase**
+## 6.2 Interrupting the Dialogue Phase
 
 If you are dissatisfied with the robot's response during its speech or don't want the robot to continue speaking, you can use the wake word to interrupt the robot's speech and start recording your voice. At this point, you can give the robot a new command (still within the current task cycle), or you can say "End current task" to directly end the current task and start a new task cycle.
 
-- The logic is implemented in the **wakeup\_callback** and **play\_audio** methods of the **CustomActionServer** class in the action\_service.py file:
-- wakeup\_callback is the callback function for wake-up processing. In the asr.py program, each time a wake-up signal is detected, it publishes a wake-up signal via topic communication. wakeup\_callback subscribes to and processes this signal.
-- Each time a wake-up occurs, it checks whether **pygame.mixer** is currently playing audio. If so, it notifies the playback thread to stop playback via the thread event self.stop\_event.
-- If a previous action is detected to be running after the wake-up, the **self.interrupt\_flag** flag is set, which is used for subsequent action interruption.
+- The logic is implemented in the **wakeup_callback** and **play_audio** methods of the **CustomActionServer** class in the action_service.py file:
+- wakeup_callback is the callback function for wake-up processing. In the asr.py program, each time a wake-up signal is detected, it publishes a wake-up signal via topic communication. wakeup_callback subscribes to and processes this signal.
+- Each time a wake-up occurs, it checks whether **pygame.mixer** is currently playing audio. If so, it notifies the playback thread to stop playback via the thread event self.stop_event.
+- If a previous action is detected to be running after the wake-up, the **self.interrupt_flag** flag is set, which is used for subsequent action interruption.
 
 ```
 def wakeup_callback(self, msg):
@@ -400,7 +400,7 @@ def wakeup_callback(self, msg):
             self.pubSix_Arm(self.init_joints)
 ```
 
-When play\_audio is playing audio, it checks if self.asr\_detect.extern\_wakeup is set. If it detects that it is set, it immediately stops the currently playing audio.
+When play_audio is playing audio, it checks if self.asr_detect.extern_wakeup is set. If it detects that it is set, it immediately stops the currently playing audio.
 
 ```
 def play_audio(self,file_path: str) -> None:
@@ -419,15 +419,15 @@ def play_audio(self,file_path: str) -> None:
         pygame.mixer.quit()
 ```
 
-## <span id="page-8-0"></span>**6.3 Action Phase Interruption**
+## 6.3 Action Phase Interruption
 
 If the robot is interrupted during the execution of an action, it will stop the current action and return to its initial posture. This can be divided into two types: normal action interruption and action interruption with subprocesses.
 
-#### **6.3.1 Normal Action Interruption**
+#### 6.3.1 Normal Action Interruption
 
-- <span id="page-8-1"></span>The robot's chassis movement and robotic arm movement are controlled by publishing velocity topics and robotic arm joint angle topics.
-- The \_execute\_action chassis control function continuously checks the self.interrupt\_event interruption flag. If it is set, the chassis movement is immediately stopped.
-- Similarly, the pubSix\_Arm robotic arm control function checks the self.interrupt\_event interruption flag; it will only publish the robotic arm joint angle topics normally if the flag is not set.
+- The robot's chassis movement and robotic arm movement are controlled by publishing velocity topics and robotic arm joint angle topics.
+- The _execute_action chassis control function continuously checks the self.interrupt_event interruption flag. If it is set, the chassis movement is immediately stopped.
+- Similarly, the pubSix_Arm robotic arm control function checks the self.interrupt_event interruption flag; it will only publish the robotic arm joint angle topics normally if the flag is not set.
 
 ```
 def _execute_action(self, twist, num=1, durationtime=3.0):
@@ -452,11 +452,11 @@ def pubSix_Arm(self, joints, id=6, angle=180.0, runtime=2000):
         self.TargetAngle_pub.publish(arm_joint)
 ```
 
-#### <span id="page-8-2"></span>**6.3.2 Interruption of Actions with Subprocesses**
+#### 6.3.2 Interruption of Actions with Subprocesses
 
-For example, actions such as robotic arm gripping and sorting machine codes require starting external programs in subprocesses. Here, we'll use the robotic arm gripping action function grasp\_obj as an example:
+For example, actions such as robotic arm gripping and sorting machine codes require starting external programs in subprocesses. Here, we'll use the robotic arm gripping action function grasp_obj as an example:
 
-When the robotic arm gripping is not complete, it will continuously wait in a while not self.grasp\_obj\_future.done(): loop. During this process, if the self.interrupt\_event flag is detected as set, the corresponding \_\_reset\_grasp\_obj() function will be called first, recursively ending the subprocess tree, and then the action will stop.
+When the robotic arm gripping is not complete, it will continuously wait in a while not self.grasp_obj_future.done(): loop. During this process, if the self.interrupt_event flag is detected as set, the corresponding __reset_grasp_obj() function will be called first, recursively ending the subprocess tree, and then the action will stop.
 
 ```
 def grasp_obj(self, x1, y1, x2, y2) -> None:

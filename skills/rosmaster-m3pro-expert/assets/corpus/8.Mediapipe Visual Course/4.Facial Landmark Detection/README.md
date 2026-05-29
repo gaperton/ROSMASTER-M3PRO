@@ -1,32 +1,32 @@
-## **Facial Landmark Detection**
+## Facial Landmark Detection
 
-## **1. Content Description**
+## 1. Content Description
 
 This course implements color image acquisition and facial detection using the MediaPipe framework. This section requires entering commands in a terminal. The terminal you open depends on your motherboard. This section uses a Raspberry Pi 5 as an example.
 
-For Raspberry Pi and Jetson-Nano motherboards, you need to open a terminal on the host machine and enter the command to enter the Docker container. After entering the Docker container, enter the command mentioned in this course in the terminal. For the tutorial on entering the Docker container from the host machine, please refer to the content [Enter the Docker (Jetson-Nano and Raspberry Pi 5 users see here)] in [0. Instructions and Installation Steps] of this product tutorial.
+For Raspberry Pi and Jetson Nano motherboards, you need to open a terminal on the host machine and enter the command to enter the Docker container. After entering the Docker container, enter the command mentioned in this course in the terminal. For the tutorial on entering the Docker container from the host machine, please refer to the content [Enter the Docker (Jetson Nano and Raspberry Pi 5 users see here)] in [0. Instructions and Installation Steps] of this product tutorial.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
-ros2 launch orbbec\_camera dabai\_dcw2.launch.py
+ros2 launch orbbec_camera dabai_dcw2.launch.py
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the face detection program.
 
-ros2 run yahboomcar\_mediapipe 04\_FaceMesh
+ros2 run yahboomcar_mediapipe 04_FaceMesh
 
 After the program is run, as shown in the figure below, the points where the face is detected will be displayed on the right side of the image.
 
-![](_page_0_Picture_11.jpeg)
+![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
 ```
 The program code is in the running docker. The path in docker
@@ -135,4 +135,4 @@ self.lmDrawSpec, self.drawSpec)
     return frame, img
 ```
 
-The frame\_combine image merging function was mentioned in the first lesson of this chapter. Please refer to [Meediapipe Visual Fun Game] - [1. Hand Detection] for an analysis of this function.
+The frame_combine image merging function was mentioned in the first lesson of this chapter. Please refer to [Meediapipe Visual Fun Game] - [1. Hand Detection] for an analysis of this function.

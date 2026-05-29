@@ -1,16 +1,16 @@
-## **Edge detection**
+## Edge detection
 
-## **1. Content Description**
+## 1. Content Description
 
 This lesson explains how to use depth imaging for edge detection. Combined with the chassis, this allows the robot to stop at an edge, preventing the risk of a fall. This can be expanded to include depth imaging for obstacle avoidance.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
-ros2 run yahboom\_M3Pro\_DepthCam edge\_detection
+ros2 run yahboom_M3Pro_DepthCam edge_detection
 
 ```
 ros2 launch orbbec_camera dabai_dcw2.launch.py
@@ -18,23 +18,23 @@ ros2 launch orbbec_camera dabai_dcw2.launch.py
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the edge detection program.
 
-![](_page_0_Figure_8.jpeg)
+![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
 As shown in the figure above, after the program is started, it will print and display that the current state is stopped. Press the space bar to change the state. After pressing the space bar, if the robot does not detect an edge, it will move forward and print "Moving..."; if it detects an edge, it will stop and print "Stop!!!".
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-## **3. Core code**
+## 3. Core code
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboom\_M3Pro\_DepthCam/yahboom\_M3Pro\_DepthCam/Edge\_ Detection.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Edge_ Detection.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/yahboom\_M3Pro\_DepthCam/yahboom\_M3Pro\_DepthCam/Ed ge\_Detection.py
+The program code path is /home/jetson/yahboomcar_ws/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Ed ge_Detection.py
 
 Import the necessary library files,
 
@@ -126,4 +126,4 @@ def pubVel(self,vx,vy,vz):
     self.pub_vel.publish(vel)
 ```
 
-Three variables are passed in: the speed in the x-direction, the speed in the y-direction, and the angular velocity. After assigning the values, self.pub\_vel.publish(vel) the speed topic is called.
+Three variables are passed in: the speed in the x-direction, the speed in the y-direction, and the angular velocity. After assigning the values, self.pub_vel.publish(vel) the speed topic is called.

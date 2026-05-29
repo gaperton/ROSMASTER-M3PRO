@@ -1,6 +1,6 @@
-# **5. ROS2 Function Packages**
+# 5. ROS2 Function Packages
 
-## **1. Introduction to Function Packages**
+## 1. Introduction to Function Packages
 
 Each robot may have many functions, such as motion control, visual perception, and autonomous navigation. While it's possible to lump the source code for all of these functions together, when we want to share some of these functions with others, we often find the code all mixed together, making it difficult to separate them.
 
@@ -8,7 +8,7 @@ Function packages work in this way. We separate the code for different functions
 
 Thus, the function package mechanism is one of the key methods for increasing software reuse in ROS.
 
-#### **2. Creating Function Packages**
+#### 2. Creating Function Packages
 
 How do I create a function package in ROS2? We can use this command:
 
@@ -21,8 +21,8 @@ In the ros2 command:
 
 - **pkg**: Indicates the functions associated with the package;
 - **create**: Creates the package;
-- **package\_name**: Required: The name of the new package;
-- **build-type**: Required: Indicates whether the newly created package is C++ or Python. If using C++ or C, use ament\_cmake; if using Python, use ament\_python;
+- **package_name**: Required: The name of the new package;
+- **build-type**: Required: Indicates whether the newly created package is C++ or Python. If using C++ or C, use ament_cmake; if using Python, use ament_python;
 - **dependencies**: Optional: Indicates the package's dependencies. A C++ package must include rclcpp; a Python package must include rclpy, as well as other required dependencies;
 - **node-name**: Optional: The name of the executable program. The corresponding source files and configuration files will be automatically generated.
 
@@ -47,7 +47,7 @@ ros2 pkg create pkg_helloworld_py --build-type ament_python --dependencies rclpy
 --node-name helloworld
 ```
 
-## **3. Compile the package**
+## 3. Compile the package
 
 In the created package, we can continue writing code. We will then need to compile and configure environment variables for proper operation:
 
@@ -64,7 +64,7 @@ Compile a specific package
 colcon build --packages-select pkg1 pkg2
 ```
 
-# **4. Complete Workspace Structure with Feature Packages**
+# 4. Complete Workspace Structure with Feature Packages
 
 The directory structure of a ROS2 workspace is as follows:
 

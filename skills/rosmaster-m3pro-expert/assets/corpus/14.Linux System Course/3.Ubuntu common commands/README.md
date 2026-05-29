@@ -1,6 +1,6 @@
-# **3.Ubuntu common commands**
+# 3.Ubuntu common commands
 
-### **3.1、Add**
+### 3.1. Add
 
 New create file
 
@@ -22,7 +22,7 @@ Copy
 sudo cp test.txt test_copy.txt # Copy a file
 ```
 
-## **3.2、Delete**
+## 3.2. Delete
 
 | -i | To execute interactively                                       |
 |----|----------------------------------------------------------------|
@@ -34,7 +34,7 @@ sudo rm test.txt # Delete files | empty folders
 sudo rm -r test # Delete folders and their contents
 ```
 
-# **3.3、Modify**
+# 3.3. Modify
 
 move、re-name
 
@@ -53,11 +53,11 @@ Permission settings
 | -      | Revoke permission |
 | =      | Set permissions   |
 
-| Letter<br>permissions | Meaning                                                                                                                                                |
+| Letter permissions | Meaning                                                                                                                                                |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| r                     | read means read permission. For a directory, if there is no r permission, it<br>means that the contents of this directory cannot be viewed through ls. |
-| w                     | write means write permission. For a directory, if there is no w permission, it<br>means that new files cannot be created in the directory.             |
-| x                     | execute means executable permission. For a directory, if there is no x<br>permission, it means that the directory cannot be entered through cd.        |
+| r                     | read means read permission. For a directory, if there is no r permission, it means that the contents of this directory cannot be viewed through ls. |
+| w                     | write means write permission. For a directory, if there is no w permission, it means that new files cannot be created in the directory.             |
+| x                     | execute means executable permission. For a directory, if there is no x permission, it means that the directory cannot be entered through cd.        |
 
 ```
 sudo chmod +rwx test.txt
@@ -81,7 +81,7 @@ Set user password
 sudo passwd user name
 ```
 
-## **3.4、View**
+## 3.4. View
 
 View system version
 
@@ -132,7 +132,7 @@ find ./ -name "[A-Z]*" # Search for all files or directories starting with an
 uppercase letter in the current directory
 ```
 
-### **3.5、Other**
+### 3.5. Other
 
 tar command
 

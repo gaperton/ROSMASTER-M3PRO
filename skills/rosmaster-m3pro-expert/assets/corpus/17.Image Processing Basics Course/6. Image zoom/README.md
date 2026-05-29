@@ -1,4 +1,4 @@
-## **Image zoom**
+## Image zoom
 
 In OpenCV, the function for image scaling is: cv2.resize(InputArray src, OutputArray dst, Size, fx, fy, interpolation)
 
@@ -8,7 +8,7 @@ Code path:
 opencv/opencv_basic/02_OpenCV Transform/01 pixel operation.ipynb
 ```
 
-## **Parameter explanation:**
+## Parameter explanation:
 
 | InputArray src  | Input image                                |
 |-----------------|--------------------------------------------|
@@ -67,7 +67,7 @@ plt.show()
 
 After execution, you can see that the image is 800\*800
 
-![](_page_1_Figure_2.jpeg)
+![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
 ```
 # Display zoom 1/2
@@ -77,7 +77,7 @@ plt.show()
 
 After execution, you can see that the image is 400\*400, scaled by half
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
 ```
 # Display zoom 1/4 neighbor interpolation zoom
@@ -87,7 +87,7 @@ plt.show()
 
 After execution, you can see that the image is 200\*200, which is scaled by one quarter.
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
 Next, let's talk about matplotlib: Python's 2D plotting library.
 
@@ -105,4 +105,4 @@ plt.plot(x,y)
 plt.show()
 ```
 
-![](_page_2_Figure_6.jpeg)
+![Figure: page 2: figure 6](_page_2_Figure_6.jpeg)

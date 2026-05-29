@@ -1,12 +1,12 @@
-## **Jetson Nano B01 System and Desktop Introduction**
+## Jetson Nano B01 System and Desktop Introduction
 
 1. Insert the SD card/USB drive into Jetson Nano B01 and turn it on to see the graphical interface, as shown below.
 
-![](_page_0_Picture_2.jpeg)
+![Picture: page 0: picture 2](_page_0_Picture_2.jpeg)
 
 2. Version information of this system
 
-![](_page_0_Figure_4.jpeg)
+![Figure: page 0: figure 4](_page_0_Figure_4.jpeg)
 
 - Ubuntu 18.04 (64-bit system)
 - CUDA: 10.2

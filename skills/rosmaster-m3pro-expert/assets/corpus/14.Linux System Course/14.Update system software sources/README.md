@@ -1,6 +1,6 @@
-## **14.Update system software sources**
+## 14.Update system software sources
 
-## **1.Modify sources.list file**
+## 1.Modify sources.list file
 
 ```
 sudo nano /etc/apt/sources.list
@@ -16,10 +16,10 @@ deb-src <http://mirrors.aliyun.com/raspbian/raspbian/> buster main contrib non-f
 
 Save and exit: Ctrl+X Press Y (save data) and press 【Enter key】.
 
-## **2. Update local software sources**
+## 2. Update local software sources
 
 ```
 sudo apt-get update
 ```
 
-The system prompts Reading package lists ... Done to indicate that the update is complete.
+The system prompts Reading package lists... Done to indicate that the update is complete.

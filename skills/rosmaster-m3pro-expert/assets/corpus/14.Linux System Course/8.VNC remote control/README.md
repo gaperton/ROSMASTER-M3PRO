@@ -1,6 +1,6 @@
-## **8.VNC remote control**
+## 8.VNC remote control
 
-8.VNC [remote](#page-0-0) control
+8.VNC remote control
 
 VNC Software download URL:<https://www.realvnc.com/en/connect/download/viewer/>
 
@@ -8,15 +8,15 @@ VNC Software download URL:<https://www.realvnc.com/en/connect/download/viewer/>
 
 For example, in the picture below: IP address [192.168.2.119], user name [jetson], host name [yahboom].
 
-<span id="page-0-0"></span>![](_page_0_Picture_5.jpeg)
+![Picture: page 0: picture 5](_page_0_Picture_5.jpeg)
 
 **Note:**
 
-**Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom jetson nano version Muto RS image, username: jetson, password: yahboom**
+**Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom Jetson Nano version Muto RS image, username: jetson, password: yahboom**
 
 Just follow the login steps as shown in the picture. When using the vnc viewer software for VNC connection, you first need to query the IP address. You can query the IP address through the built-in OLED screen or by connecting the monitor to open a terminal and enter the ifconfig command. What I found here is [192.168.2.119]. Enter the IP address. Then click [Enter] on the keyboard.
 
-![](_page_0_Figure_9.jpeg)
+![Figure: page 0: figure 9](_page_0_Figure_9.jpeg)
 
 Enter the corresponding VNC user password [yahboom], select Remember Password, and click [OK] to enter the VNC interface.
 
@@ -24,7 +24,7 @@ There is no need to enter the password again when the IP remains unchanged next 
 
 Adjust resolution
 
-Jetson nano
+Jetson Nano
 
 Use the command line to adjust according to needs. It is only effective during this startup. Open the terminal and enter the following command.
 

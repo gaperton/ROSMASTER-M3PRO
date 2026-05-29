@@ -1,12 +1,12 @@
-## **Scene design**
+## Scene design
 
 Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
 
-## **1. Content Description**
+## 1. Content Description
 
-This course implements a scenario: in rviz, there is a three-layer shelf. After the robotic arm grabs the cylindrical object, it plans to move it to the upper and lower layers in the middle to simulate the action of placing the object.
+This course implements a scenario: in RViz, there is a three-layer shelf. After the robotic arm grabs the cylindrical object, it plans to move it to the upper and lower layers in the middle to simulate the action of placing the object.
 
-## **2. Program startup**
+## 2. Program startup
 
 Open a terminal in the virtual machine and enter the following command to start MoveIt2.
 
@@ -14,17 +14,17 @@ Open a terminal in the virtual machine and enter the following command to start 
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"** , it indicates that the program has been successfully started, as shown in the figure below.
+After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
 
-![](_page_0_Figure_8.jpeg)
+![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
-Then, we add the scene in rviz as shown below.
+Then, we add the scene in RViz as shown below.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 After selecting the scene file, click [Open] to complete the addition. The addition is as shown below.
 
-![](_page_1_Figure_2.jpeg)
+![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
 Click [Publish] to publish the obstacle information. The robot arm will then avoid obstacles during planning.
 
@@ -36,13 +36,13 @@ ros2 run MoveIt_demo set_scene
 
 After the program runs, the robot arm will plan to the set init posture, then a purple cylindrical object will be added to the gripper, and then the simulation action of placing the object will be planned and executed on the middle two layers.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The code path in the virtual machine
 
-is: /home/yahboom/moveit2\_ws/src/MoveIt\_demo/src/set\_scene.cpp
+is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_scene.cpp
 
 ```
 #include <rclcpp/rclcpp.hpp>

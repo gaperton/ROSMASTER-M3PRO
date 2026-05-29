@@ -1,16 +1,16 @@
-## **Sorting height abnormality machine code**
+## Sorting height abnormality machine code
 
-## **1. Content Description**
+## 1. Content Description
 
 This function allows the program to acquire an image through the camera and identify the machine code in the image, calculate the height of each machine code, and then remove the machine code with a height higher than 4 cm.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
 The wooden blocks used in this lesson are: **30x30x30mm and 30x30x60mm Machine Code blocks**.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
@@ -36,28 +36,28 @@ After starting this command, the second terminal should receive the current angl
 
 As shown,
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the height error sorting machine code program by pressing ctrl c and restart the height error sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end position.
+If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the height error sorting machine code program by pressing Ctrl+C and restart the height error sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end position.
 
 After the machine code ID sorting program is started, it will subscribe to the color image and depth image topics, and place the machine code block that comes with the product under the camera.
 
 If a machine code appears in the image, the program will recognize the machine code, as shown below.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-The program will print out the height of the machine code and the distance from the robot base\_link. Press the spacebar, and the robot arm will lower its claw to remove the machine code with a height of 6cm. There are two cases:
+The program will print out the height of the machine code and the distance from the robot base_link. Press the spacebar, and the robot arm will lower its claw to remove the machine code with a height of 6cm. There are two cases:
 
 - If the distance to the target machine code block is within [215, 225], the robot arm directly grabs the machine code block with its lower claw and places it at the set position according to the ID value;
-- If the target machine code block is outside [215, 225], the robot will first move and adjust it to within [215, 225] based on the distance between the machine code block and the robot base coordinate system (base\_link), then lower the claw to clamp it, and finally place it at the set position according to the ID value.
+- If the target machine code block is outside [215, 225], the robot will first move and adjust it to within [215, 225] based on the distance between the machine code block and the robot base coordinate system (base_link), then lower the claw to clamp it, and finally place it at the set position according to the ID value.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ apriltag\_list.py
+Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltag_list.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/apriltag\_list.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_list.py
 
 Import the necessary library files,
 

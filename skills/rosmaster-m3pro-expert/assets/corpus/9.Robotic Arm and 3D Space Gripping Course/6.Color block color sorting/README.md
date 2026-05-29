@@ -1,16 +1,16 @@
-# **Color block color sorting**
+# Color block color sorting
 
-### **1. Content Description**
+### 1. Content Description
 
 This function enables the program to obtain images through the camera, select the color of the color block to be sorted according to the key input, and the program will identify the color block that meets the requirements and clamp it with the lower claw, and finally place it in the set position.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
 **Wooden Blocks Used in This Lesson: 30x30x30mm Colored Blocks**
 
-### **2. Program startup**
+### 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
@@ -32,7 +32,7 @@ ros2 run M3Pro_demo color_recognize
 
 After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the color sorting program by pressing ctrl+c and restart the color sorting program until the robot gripping program obtains the current angle information and calculates the current end position.
+If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the color sorting program by pressing Ctrl+C and restart the color sorting program until the robot gripping program obtains the current angle information and calculates the current end position.
 
 Upon launching the color block sorting program, it subscribes to the color and depth image topics. Place the product's accompanying **30x30x30mm color block** beneath the camera; once the color block appears in the image, use the following keys to select or calibrate the color block's color:
 
@@ -44,33 +44,33 @@ Upon launching the color block sorting program, it subscribes to the color and d
 
 After pressing the button to select the color block, the selected color will be printed in the upper left corner of the image, and a binary image will appear on the right side of the image, showing the blue block that appeared in the left image, as shown in the figure below. Assuming that b is pressed to select the blue block,
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-At this point, press the spacebar to begin the gripping process. Similarly, the program determines the distance between the blue block and the robot's base\_link. If the distance is within [215, 225], the robot arm directly lowers its gripper to grab the block and place it at the set location. If the distance is outside [215, 225], the robot first moves the robot block to within [215, 225] based on the distance between the robot code block and the robot's base coordinate system (base\_link), then lowers its gripper to grab the block and place it at the set location.
+At this point, press the spacebar to begin the gripping process. Similarly, the program determines the distance between the blue block and the robot's base_link. If the distance is within [215, 225], the robot arm directly lowers its gripper to grab the block and place it at the set location. If the distance is outside [215, 225], the robot first moves the robot block to within [215, 225] based on the distance between the robot code block and the robot's base coordinate system (base_link), then lowers its gripper to grab the block and place it at the set location.
 
-#### **2.1. Color block color calibration**
+#### 2.1. Color block color calibration
 
 Due to lighting reasons, the HSV value preset by the program may not be able to accurately distinguish the color blocks. At this time, you can press the c key or the C key, and then use the mouse to select the color of the color block to recalibrate the HSV value of the color block. As shown in the figure below, suppose you press b or B to select blue first, but the binary image on the right cannot distinguish the blue. Then we need to press the c key or the C key to enter the calibration model and use the mouse to select the area of the blue block. The program will obtain the HSV value in the green box.
 
-![](_page_2_Picture_4.jpeg)
+![Picture: page 2: picture 4](_page_2_Picture_4.jpeg)
 
 Release the mouse to complete the calibration. Press the b or B key to identify. The binary image on the right can distinguish the blue block very well.
 
-![](_page_3_Picture_1.jpeg)
+![Picture: page 3: picture 1](_page_3_Picture_1.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
-#### **3.1、color\_recognize.py**
+#### 3.1. color_recognize.py
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ color\_recognize.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ color_recognize.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/color\_recognize.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_recognize.py
 
 Import the necessary library files,
 
@@ -400,19 +400,19 @@ cv2.FONT_HERSHEY_SIMPLEX, 1, self.text_color, 2)
     return rgb_img, binary
 ```
 
-#### **3.2, color\_common**
+#### 3.2, color_common
 
 The source code path of the library:
 
 Raspberry Pi 5 and Jetson motherboard
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/ color\_common.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ color_common.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/color\_common.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_common.py
 
-object\_follow color recognition function
+object_follow color recognition function
 
 ```
 def object_follow(self, img, hsv_msg):

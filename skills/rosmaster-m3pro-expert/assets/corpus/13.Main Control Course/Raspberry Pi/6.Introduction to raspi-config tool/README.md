@@ -1,26 +1,26 @@
-# **Introduction to raspi-config tool**
+# Introduction to raspi-config tool
 
-#### **[Introduction](#page-0-0) to raspi-config tool**
+#### Introduction to raspi-config tool
 
-[Open](#page-0-1)
+Open
 
-[Options](#page-0-2) list
+Options list
 
-<span id="page-0-0"></span>[System options](#page-1-0)
+System options
 
-Show [options](#page-2-0)
+Show options
 
-[Interface](#page-3-0) options
+Interface options
 
-[Performance](#page-4-0) options
+Performance options
 
-[Localization](#page-4-1) options
+Localization options
 
-[advanced options](#page-5-0)
+advanced options
 
-[Update](#page-5-1)
+Update
 
-About [raspi-config](#page-6-0)
+About raspi-config
 
 raspi-config is a pre-installed configuration tool in Raspberry Pi OS;
 
@@ -28,15 +28,14 @@ raspi-config provides a simple and convenient command line interface to manage t
 
 If you are using a Raspberry Pi desktop system, you can configure the Raspberry Pi system directly in the applications menu in the upper left corner of the desktop!
 
-# **Open**
+# Open
 
 To open the raspi-config tool, you need to run the following command in the terminal:
 
 sudo raspi-config
 
-<span id="page-0-2"></span><span id="page-0-1"></span>
 
-# **Options list**
+# Options list
 
 Since versions of the raspi-config tool are constantly being updated, the following list of options may not be exactly the same.
 
@@ -52,105 +51,105 @@ Since versions of the raspi-config tool are constantly being updated, the follow
 |                                                         |                      | Information about this configuration tool |
 |                                                         | <select></select>    | <finish></finish>                         |
 
-### <span id="page-1-0"></span>**System options**
+### System options
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-### **Wireless LAN**
+### Wireless LAN
 
 Set wireless LAN SSID and password.
 
-### **Audio**
+### Audio
 
 Specify the audio output destination.
 
-#### **password**
+#### password
 
 Change the "default" user password.
 
-#### **CPU name**
+#### CPU name
 
 Set the visible name of this Raspberry Pi on the network.
 
-#### **Start/auto login**
+#### Start/auto login
 
 Choose whether to boot to the console or desktop, and whether a login is required.
 
-### **Initial screen**
+### Initial screen
 
 Enable or disable the content displayed at startup. You can turn this feature on/off to observe the Raspberry Pi startup screen.
 
-#### **Power Indicator**
+#### Power Indicator
 
 Raspberry Pi 5 currently does not support changing power indicator options.
 
-#### <span id="page-2-0"></span>**Browser**
+#### Browser
 
 Set default browser options.
 
-# **Show options**
+# Show options
 
-![](_page_2_Figure_9.jpeg)
+![Figure: page 2: figure 9](_page_2_Figure_9.jpeg)
 
-#### **Screen pause**
+#### Screen pause
 
 Enable or disable screen snooze.
 
-### **VNC Resolution**
+### VNC Resolution
 
 The resolution of the remote display when there is no monitor.
 
-#### **Compound**
+#### Compound
 
 Set the video output to pass through the composite video output port.
 
-# <span id="page-3-0"></span>**Interface options**
+# Interface options
 
-![](_page_3_Figure_1.jpeg)
+![Figure: page 3: figure 1](_page_3_Figure_1.jpeg)
 
-### **SSH**
+### SSH
 
 Enable/disable SSH, which is remote command line access to the Raspberry Pi.
 
-### **VNC**
+### VNC
 
 Enable/disable WayVNC or RealVNC virtual network computing server.
 
-#### **SPI**
+#### SPI
 
 Enable/disable automatic loading of SPI interface and SPI kernel modules.
 
-#### **I2C**
+#### I2C
 
 Enable/disable automatic loading of I2C interface and I2C kernel modules.
 
-#### **Serial port**
+#### Serial port
 
 Enable/disable shell and kernel messages on serial connections.
 
-### **1-Wire**
+### 1-Wire
 
 Enable/disable the Dallas 1-wire interface. This is typically used for the DS18B20 temperature sensor.
 
-### **Remote GPIO**
+### Remote GPIO
 
 Enable or disable remote access to GPIO pins.
 
-# <span id="page-4-0"></span>**Performance options**
+# Performance options
 
-![](_page_4_Picture_1.jpeg)
+![Picture: page 4: picture 1](_page_4_Picture_1.jpeg)
 
 **Overwrite file system**
 
 Enable or disable read-only file systems.
 
-<span id="page-4-1"></span>**USB current**
+**USB current**
 
 Set the current output of the USB interface.
 
-### **Localization options**
+### Localization options
 
-![](_page_4_Figure_7.jpeg)
+![Figure: page 4: figure 7](_page_4_Figure_7.jpeg)
 
 **area**
 
@@ -164,48 +163,48 @@ Select your local time zone.
 
 Choose a keyboard layout.
 
-### <span id="page-5-0"></span>**WLAN Country**
+### WLAN Country
 
 Set the country for your wireless network.
 
-## **advanced options**
+## advanced options
 
-![](_page_5_Figure_3.jpeg)
+![Figure: page 5: figure 3](_page_5_Figure_3.jpeg)
 
-#### **Expand file system**
+#### Expand file system
 
 Extend SD card partition.
 
-#### **Network interface name**
+#### Network interface name
 
 Enable or disable predictable network interface names.
 
-#### **Network proxy settings**
+#### Network proxy settings
 
 Configure proxy settings for your network.
 
-#### **Startup sequence**
+#### Startup sequence
 
 Choose SD card, USB or network boot.
 
-#### **Bootloader version**
+#### Bootloader version
 
 Latest boot ROM software; revert to factory defaults if latest version causes issues.
 
-#### **Wayland**
+#### Wayland
 
 Use this option to switch between X11 and Wayland backends.
 
-#### <span id="page-5-1"></span>**Audio configuration**
+#### Audio configuration
 
 Use this option to switch between the PulseAudio and PipeWire audio backends.
 
-# **Update**
+# Update
 
 Update this tool to the latest version.
 
-# **About raspi-config**
+# About raspi-config
 
-<span id="page-6-0"></span>![](_page_6_Figure_1.jpeg)
+![Figure: page 6: figure 1](_page_6_Figure_1.jpeg)
 
 The above is an introduction to the options involved in the raspi-config tool!

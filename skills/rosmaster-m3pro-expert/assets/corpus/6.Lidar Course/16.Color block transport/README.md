@@ -1,22 +1,22 @@
-## **Color block transport**
+## Color block transport
 
-Color [block transport](#page-0-0)
+Color block transport
 
-- <span id="page-0-0"></span>1. Content [Description](#page-0-1)
-- [2. Program startup](#page-0-2)
-- <span id="page-0-1"></span>3. Core code [analysis](#page-3-0)
+- 1. Content Description
+- 2. Program startup
+- 3. Core code analysis
 
-## **1. Content Description**
+## 1. Content Description
 
 This section explains how to combine nav2 navigation, color block recognition, and threedimensional gripping with a robotic arm to achieve complex handling capabilities.
 
-This section requires entering commands in the terminal. The terminal you choose depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano motherboards, you'll need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to the product tutorial **[Configuration and Operation Guide] - [Enter the Docker (Jetson-Nano and Raspberry Pi 5 users, see here)**.
+This section requires entering commands in the terminal. The terminal you choose depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to the product tutorial **[Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## <span id="page-0-2"></span>**2. Program startup**
+## 2. Program startup
 
-The virtual machine needs to be on the same LAN as the car, and the ROS\_DOMAIN\_ID must be the same for both cars. Modify the ROS\_DOMAIN\_ID value in ~/.bashrc and refresh the environment variables after the modification.
+The virtual machine needs to be on the same LAN as the car, and the ROS_DOMAIN_ID must be the same for both cars. Modify the ROS_DOMAIN_ID value in ~/.bashrc and refresh the environment variables after the modification.
 
 Enter the following statement at the car terminal 1 to start the camera and robotic arm solving program:
 
@@ -44,7 +44,7 @@ ros2 run M3Pro_demo color_transport
 
 Then, we place the color block under the camera so that the entire color block appears in the image, as shown below.
 
-Enter the command in the virtual machine terminal 1 to start the navigation rviz display.
+Enter the command in the virtual machine terminal 1 to start the navigation RViz display.
 
 ```
 ros2 launch slam_view slam_view.launch.py
@@ -57,7 +57,7 @@ ros2 launch M3Pro_navigation navigation2.launch.py
 map_dir:=/root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml
 ```
 
-Among them, /root/M3Pro\_ws/src/yahboom\_mapping/maps/yahboom\_map.yaml is replaced with the file address of your own yaml map.
+Among them, /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml is replaced with the file address of your own yaml map.
 
 Enter the following statement in virtual machine terminal 2 to start the navigation status detection program:
 
@@ -65,13 +65,13 @@ Enter the following statement in virtual machine terminal 2 to start the navigat
 ros2 run yahboom_nav2_bringup get_nav2_status_V2
 ```
 
-After starting, in the virtual machine's rviz, use the [2D Pose Estimate] tool to give the car an initial pose based on its actual position in the environment and the map. Check whether the obstacles scanned by the car's radar overlap with the black part on the map, as shown in the figure below.
+After starting, in the virtual machine's RViz, use the [2D Pose Estimate] tool to give the car an initial pose based on its actual position in the environment and the map. Check whether the obstacles scanned by the car's radar overlap with the black part on the map, as shown in the figure below.
 
-![](_page_1_Figure_9.jpeg)
+![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
 Then click [Waypoint/Nav Through Poses Mode] in [Navigation2 navigation plug-in], and select it as shown below.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 Then, we use the button to select which color block to clamp or the color of the calibration block.
 
@@ -83,17 +83,17 @@ Then, we use the button to select which color block to clamp or the color of the
 
 After selecting the color of the color block, a binary image will be generated and stitched to the right of the color image. The white part of the binary image is the selected color block. Suppose we choose to clamp the blue block and press the b key, as shown below.
 
-![](_page_2_Picture_8.jpeg)
+![Picture: page 2: picture 8](_page_2_Picture_8.jpeg)
 
 If the blue color is not recognized at this time, you need to press the c key to calibrate the HSV value of the blue block. After entering the calibration mode, we use the mouse to select an area in the center of the blue block and release the mouse to complete the calibration, as shown in the figure below.
 
-![](_page_3_Figure_1.jpeg)
+![Figure: page 3: figure 1](_page_3_Figure_1.jpeg)
 
 After selecting a color, press the spacebar to begin gripping the machine code. If the distance is too far or too close, the program will control the robot to move the chassis to adjust the distance. After the robot arm grips the object, the buzzer will beep and the robot will move to the handling position. Finally, the robot will rotate 90 degrees and enter navigation transport mode.
 
-Enter the navigation and transportation mode. In rviz, use [Nav2 Goal] to give a target point. The robot will plan a path to navigate to that point. After reaching the destination, the robotic arm will lower its claw to place the color block, then autonomously navigate back to the starting position for the next color block recognition.
+Enter the navigation and transportation mode. In RViz, use [Nav2 Goal] to give a target point. The robot will plan a path to navigate to that point. After reaching the destination, the robotic arm will lower its claw to place the color block, then autonomously navigate back to the starting position for the next color block recognition.
 
-## <span id="page-3-0"></span>**3. Core code analysis**
+## 3. Core code analysis
 
 Import the necessary library files,
 

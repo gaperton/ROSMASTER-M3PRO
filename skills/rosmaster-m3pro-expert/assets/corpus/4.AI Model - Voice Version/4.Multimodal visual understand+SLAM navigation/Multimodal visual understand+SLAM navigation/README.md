@@ -1,43 +1,43 @@
-# **Multimodal Visual Understanding + SLAM Navigation**
+# Multimodal Visual Understanding + SLAM Navigation
 
-#### **[Multimodal Visual Understanding](#page-0-0) + SLAM Navigation**
+#### Multimodal Visual Understanding + SLAM Navigation
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Preparation](#page-0-2)
-  - 2.1 Content [Description](#page-0-3)
-  - 2.2 [Starting](#page-0-4) the Agent
-  - 2.3 Configuring the [Map Mapping](#page-1-0) File
-- [3. Running](#page-7-0) Example
-  - 3.1 Starting the [Program](#page-8-0)
-  - 3.2 Test [Cases](#page-9-0)
-- <span id="page-0-1"></span>[4. Source](#page-9-1) Code Analysis
+- 1. Course Content
+- 2. Preparation
+  - 2.1 Content Description
+  - 2.2 Starting the Agent
+  - 2.3 Configuring the Map Mapping File
+- 3. Running Example
+  - 3.1 Starting the Program
+  - 3.2 Test Cases
+- 4. Source Code Analysis
 
-# **1. Course Content**
+# 1. Course Content
 
 - Basic: Run example programs, combining the robot's visual understanding capabilities with SLAM navigation for integrated tasks.
-- <span id="page-0-3"></span><span id="page-0-2"></span>Advanced: Master the key source code introduced in this section.
+- Advanced: Master the key source code introduced in this section.
 
-# **2. Preparation**
+# 2. Preparation
 
-### **2.1 Content Description**
+### 2.1 Content Description
 
 This section of the course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host machine, then enter the command to enter the Docker container. After entering the Docker container, enter the commands mentioned in this section of the course in the terminal. Instructions on how to access the Docker container from the host machine can be found in the product tutorial [0. Instructions and Installation Steps], specifically the section [Accessing the Robot's Docker (For Jetson Nano and Raspberry Pi 5 users)]. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this section.
 
-### **2.2 Starting the Agent**
+### 2.2 Starting the Agent
 
 **Note: If the agent is already running, there is no need to start it again.**
 
 Enter the following command in the vehicle terminal:
 
-<span id="page-0-4"></span>sh start\_agent.sh
+sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
 #### [!NOTE]
 
-<span id="page-1-0"></span>Note: To experience this section, you need to have built at least one grid map according to the LiDAR section of the course.
+Note: To experience this section, you need to have built at least one grid map according to the LiDAR section of the course.
 
-### **2.3 Configuring the Map Mapping File**
+### 2.3 Configuring the Map Mapping File
 
 Connect to the robot's desktop via VNC and start the navigation node using the following commands:
 
@@ -46,7 +46,7 @@ ros2 launch M3Pro_navigation base_bringup.launch.py
 ros2 launch M3Pro_navigation navigation2.launch.py
 ```
 
-Start rviz on the robot:
+Start RViz on the robot:
 
 ```
 ros2 launch M3Pro_navigation nav_rviz.launch.py
@@ -62,23 +62,23 @@ Afterward, the rviz2 visualization interface will open. Click **2D Pose Estimate
 
 The robot model will be displayed in the map, as shown below:
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 We can name any precise point on the map. Here, we use "Master Bedroom" and "Kitchen" as examples.
 
-![](_page_2_Picture_2.jpeg)
+![Picture: page 2: picture 2](_page_2_Picture_2.jpeg)
 
 As shown in the figure below, we first click the **Nav2 Goal** tool to navigate the robot to the target point we need to mark.
 
-![](_page_3_Picture_0.jpeg)
+![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-![](_page_3_Picture_1.jpeg)
+![Picture: page 3: picture 1](_page_3_Picture_1.jpeg)
 
 Run the following command in the terminal to obtain the current robot's pose information in the map coordinate system:
 
-ros2 run tf2\_ros tf2\_echo map base\_footprint
+ros2 run tf2_ros tf2_echo map base_footprint
 
-Open the map\_mapping.yaml map mapping file (you can open it using VNC, VS Code, command line, or any other method):
+Open the map_mapping.yaml map mapping file (you can open it using VNC, VS Code, command line, or any other method):
 
 Here's an example of opening the file via the command line:
 
@@ -86,7 +86,7 @@ Here's an example of opening the file via the command line:
 nano ~/M3Pro_ws/multi_brains_file/map_mapping.yaml
 ```
 
-Modify the symbolic pose under the common\_map\_areas field. name is the location name. Fill in the previously obtained pose information into the position and orientation fields.
+Modify the symbolic pose under the common_map_areas field. name is the location name. Fill in the previously obtained pose information into the position and orientation fields.
 
 ```
 #根据实际的场景环境,自定义地图中的区域,可以添加任意个区域,注意和大模型的地图映射保持一致即可
@@ -134,25 +134,25 @@ Enter the vehicle's IP address directly in the browser's address bar to access t
 
 #### [!NOTE]
 
-International users: multi\_brains\_en
+International users: multi_brains_en
 
-![](_page_5_Picture_9.jpeg)
+![Picture: page 5: picture 9](_page_5_Picture_9.jpeg)
 
-Click to select Session Variables in the upper right corner, then click the edit button for the map\_mapping variable.
+Click to select Session Variables in the upper right corner, then click the edit button for the map_mapping variable.
 
-![](_page_6_Figure_0.jpeg)
+![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-In the pop-up Edit Session Variables window , edit the mapping relationship according to the settings in the previous map mapping file, and then click Save.
+In the pop-up Edit Session Variables window, edit the mapping relationship according to the settings in the previous map mapping file, and then click Save.
 
-![](_page_6_Figure_2.jpeg)
+![Figure: page 6: figure 2](_page_6_Figure_2.jpeg)
 
 Finally, remember to click Publish -> Publish Update to save the changes.
 
-![](_page_7_Figure_0.jpeg)
+![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-# <span id="page-7-0"></span>**3. Running Example**
+# 3. Running Example
 
-### **3.1 Starting the Program**
+### 3.1 Starting the Program
 
 On the vehicle's terminal, enter the command to start the AI intelligent agent system:
 
@@ -172,17 +172,17 @@ Start the navigation command on the vehicle's onboard computer:
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
-ros2 launch M3Pro\_navigation navigation2.launch.py
+ros2 launch M3Pro_navigation navigation2.launch.py
 
-Start rviz on the robot:
+Start RViz on the robot:
 
-ros2 launch M3Pro\_navigation nav\_rviz.launch.py
+ros2 launch M3Pro_navigation nav_rviz.launch.py
 
 Then, follow the procedure for starting the navigation function to initialize the positioning. This will open the rviz2 visualization interface. Click on **2D Pose Estimate** in the toolbar above to enter the selection state. Mark the approximate position and orientation of the robot on the map. After initializing the positioning, the preparation work is complete.
 
-![](_page_8_Picture_11.jpeg)
+![Picture: page 8: picture 11](_page_8_Picture_11.jpeg)
 
-### <span id="page-9-0"></span>**3.2 Test Cases**
+### 3.2 Test Cases
 
 The cases are for reference only; provide instructions according to your needs. - Please remember your current location first, then navigate to the kitchen and the master bedroom in sequence, remembering the items you see. Finally, return to your starting position and tell me what you saw in those two places?
 
@@ -190,21 +190,21 @@ Wake up the robot and issue commands. The execution layer large model will execu
 
 The robot executes the steps according to the output process of the decision layer as follows:
 
-# **4. Source Code Analysis**
+# 4. Source Code Analysis
 
-<span id="page-9-1"></span>Robot action source code path:
+Robot action source code path:
 
 ```
 ~/M3Pro_ws/src/multi_brains/multi_brains/action_service.py
 ```
 
-action\_service.py program:
+action_service.py program:
 
-Case 1 uses the seewhat , navigation , load\_target\_points , and get\_current\_pose methods in the CustomActionServer class. seewhat has been explained in the **Multimodal Visual Understanding + Robotic Arm Grasping** section. This section explains the newly introduced navigation , load\_target\_points , and get\_current\_pose functions.
+Case 1 uses the seewhat, navigation, load_target_points, and get_current_pose methods in the CustomActionServer class. seewhat has been explained in the **Multimodal Visual Understanding + Robotic Arm Grasping** section. This section explains the newly introduced navigation, load_target_points, and get_current_pose functions.
 
-init\_ros\_communication initialization function:
+init_ros_communication initialization function:
 
-Creates a nav2 navigation client to request the ros2 navigation action server for subsequent sending of navigation target point requests; creates a TF listener to listen to the coordinate transformation between map and base\_footprint.
+Creates a nav2 navigation client to request the ros2 navigation action server for subsequent sending of navigation target point requests; creates a TF listener to listen to the coordinate transformation between map and base_footprint.
 
 ```
 # Create a navigation action client to request the navigation action server
@@ -214,9 +214,9 @@ self.tf_buffer = Buffer()
 self.tf_listener = TransformListener(self.tf_buffer, self)
 ```
 
-#### **load\_target\_points** function:
+#### **load_target_points** function:
 
-This function is responsible for loading the target point coordinates from the map\_mapping.yaml map mapping file and creating a navigation dictionary to store characters and their corresponding map coordinates. Each point coordinate is of type PoseStamped.
+This function is responsible for loading the target point coordinates from the map_mapping.yaml map mapping file and creating a navigation dictionary to store characters and their corresponding map coordinates. Each point coordinate is of type PoseStamped.
 
 ```
 def load_target_points(self):
@@ -309,7 +309,7 @@ else:
         return self.res
 ```
 
-The **get\_current\_pose** function retrieves the robot's current map coordinates in the global coordinate system and stores these coordinates in a dictionary for easy retrieval later.
+The **get_current_pose** function retrieves the robot's current map coordinates in the global coordinate system and stores these coordinates in a dictionary for easy retrieval later.
 
 ```
 def get_current_pose(self):

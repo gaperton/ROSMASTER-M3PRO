@@ -1,22 +1,22 @@
-# **Robotic arm solution**
+# Robotic arm solution
 
-#### **Robotic arm [solution](#page-0-0)**
+#### Robotic arm solution
 
-- <span id="page-0-0"></span>1. Content [Description](#page-0-1)
-- [2. Program startup](#page-0-2)
-  - 2.1、[Call](#page-3-0) fk
-  - [2.2,](#page-4-0) call ik
-- <span id="page-0-1"></span>3. Core code [analysis](#page-5-0)
+- 1. Content Description
+- 2. Program startup
+  - 2.1、Call fk
+  - 2.2, call ik
+- 3. Core code analysis
 
-### **1. Content Description**
+### 1. Content Description
 
 This course implements the forward kinematics and inverse kinematics calculations of the robotic arm. Forward kinematics is the calculation of the end-point pose from the angle value of each servo of the robotic arm, while inverse kinematics is the calculation of the angle value of each servo from the end-point pose. Both play a vital role in three-dimensional space clamping. The forward kinematics algorithm can be used to determine the current pose of the end of the robotic arm. We need to know this value when performing coordinate system conversion. The inverse kinematics algorithm can be used to calculate the angle of each servo of the robotic arm in order for the end of the robotic arm to reach the target pose. Before clamping, this algorithm needs to be called to calculate the servo value and then control the servo to move to the clamping posture.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-# **2. Program startup**
+# 2. Program startup
 
 In the terminal, enter the following command to start,
 
@@ -26,9 +26,9 @@ ros2 run arm_kin kin_srv
 
 After startup, enter the terminal ros2 node list to view the node list,
 
-/kinemarics\_arm is the node that starts the forward and inverse solution. Enter ros2 node info /kinemarics\_arm in the terminal to query the node information.
+/kinemarics_arm is the node that starts the forward and inverse solution. Enter ros2 node info /kinemarics_arm in the terminal to query the node information.
 
-As shown in the figure above, the /kinemarics\_arm node provides a service /get\_kinemarics. The service type is arm\_interface/srv/ArmKinemarics. Enter the terminal ros2 interface show arm\_interface/srv/ArmKinemarics to view the content of this service data.
+As shown in the figure above, the /kinemarics_arm node provides a service /get_kinemarics. The service type is arm_interface/srv/ArmKinemarics. Enter the terminal ros2 interface show arm_interface/srv/ArmKinemarics to view the content of this service data.
 
 ```
 float64 tar_x
@@ -125,7 +125,7 @@ in radians
 float64 yaw
 ```
 
-#### <span id="page-3-0"></span>**2.1、Call fk**
+#### 2.1. Call fk
 
 We call fk to calculate: when the robot arm is straightened upward, what is the position of the end of the robot arm? First, we enter the following command to straighten the robot arm upward. After successfully connecting to the agent, enter the following command in the terminal,
 
@@ -143,7 +143,7 @@ cur_joint2: 90.0, cur_joint3: 90.0, cur_joint4: 90.0, cur_joint5: 90.0,
 cur_joint6: 90.0, kin_name: 'fk'}"
 ```
 
-The values to be entered here are cur\_joint1 to cur\_joint6. We enter 90.0 for each. For the value of kin\_name, we enter 'fk' to call the fk-positive solution service. The terminal will respond with the following content as shown below.
+The values to be entered here are cur_joint1 to cur_joint6. We enter 90.0 for each. For the value of kin_name, we enter 'fk' to call the fk-positive solution service. The terminal will respond with the following content as shown below.
 
 Check out the response section:
 
@@ -155,7 +155,7 @@ arm_interface.srv.ArmKinemarics_Response (joint1 = 0 .0, joint2 = 0 .0, joint3 =
 pitch = -1 .5707324948694676, yaw = -1 .5728927150075942)
 ```
 
-We only need to care about the following x, y, z, roll, pitch and yaw values. Here we represent the pose coordinates of the end of the robot arm, which means the position of the end of the robot arm in the world coordinate system, with base\_link (0, 0, 0) as the reference point. When the robot arm is straightened upward, the values of xyz and rpy are x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942 . Here, start the urdf display in the virtual machine and enter the following command in the virtual machine terminal to start the urdf display.
+We only need to care about the following x, y, z, roll, pitch and yaw values. Here we represent the pose coordinates of the end of the robot arm, which means the position of the end of the robot arm in the world coordinate system, with base_link (0, 0, 0) as the reference point. When the robot arm is straightened upward, the values of xyz and rpy are x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942. Here, start the urdf display in the virtual machine and enter the following command in the virtual machine terminal to start the urdf display.
 
 ```
 ros2 launch yahboom_M3Pro_description display_launch.py
@@ -163,9 +163,9 @@ ros2 launch yahboom_M3Pro_description display_launch.py
 
 As shown in the figure below, the TF plug-in is used to view the Gripping pose. The xyz coordinate values are almost the same as the response values, while the rpy value needs to be obtained by converting the quaternion to rpy.
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-#### <span id="page-4-0"></span>**2.2, call ik**
+#### 2.2, call ik
 
 We call fk to calculate: when the robot arm, the end of the robot arm pose is x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942, what is the value of each servo. In fact, this is reverse calculation. Theoretically, the result should be that the value of all six servos is 90.0. Enter the following command in the terminal,
 
@@ -177,7 +177,7 @@ cur_joint1: 0.0, cur_joint2: 0.0, cur_joint3: 0.0, cur_joint4: 0.0, cur_joint5:
 0.0, cur_joint6: 0.0, kin_name: 'ik'}"
 ```
 
-The values entered here are xyz and rpy. For cur\_joint1-cur\_joint6, we use the default values. The result is shown in the figure below.
+The values entered here are xyz and rpy. For cur_joint1-cur_joint6, we use the default values. The result is shown in the figure below.
 
 The final response value returned is as follows:
 
@@ -189,17 +189,17 @@ yaw=0.0)
 
 Here, we only need to focus on the values of joint1-joint5. Because the end of the robot arm is gripping and connected to servo No. 5, the value of servo No. 6 is not within the range of the inverse solution. Therefore, the value obtained here [90.0, 90.0, 90.0, 90.0, 90.0] is the same as the value of each servo in the current posture of the robot arm. Therefore, the result of the inverse solution can be considered correct.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-<span id="page-5-0"></span>The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/arm\_kin/src/kin\_srv.cpp
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/arm_kin/src/kin_srv.cpp
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/arm\_kin/src/kin\_srv.cpp
+The program code path is /home/jetson/yahboomcar_ws/src/arm_kin/src/kin_srv.cpp
 
 Main function main,
 
@@ -220,7 +220,7 @@ callback function handle_service
 }
 ```
 
-Service callback function handle\_service,
+Service callback function handle_service,
 
 ```
 void handle_service (

@@ -1,16 +1,16 @@
-# **Machine code handling**
+# Machine code handling
 
-### **1. Content Description**
+### 1. Content Description
 
 This section explains how to combine nav2 navigation, machine code recognition, and threedimensional gripping with a robotic arm to achieve complex handling capabilities.
 
-This section requires entering commands in the terminal. The terminal you choose depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano motherboards, you'll need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson-Nano and Raspberry Pi 5 users, see here)**.
+This section requires entering commands in the terminal. The terminal you choose depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-### **2. Program startup**
+### 2. Program startup
 
-The virtual machine needs to be on the same LAN as the car, and the ROS\_DOMAIN\_ID must be the same for both cars. Modify the ROS\_DOMAIN\_ID value in ~/.bashrc and refresh the environment variables after the modification.
+The virtual machine needs to be on the same LAN as the car, and the ROS_DOMAIN_ID must be the same for both cars. Modify the ROS_DOMAIN_ID value in ~/.bashrc and refresh the environment variables after the modification.
 
 Enter the following statement at the car terminal 1 to start the camera and robotic arm solving program:
 
@@ -36,7 +36,7 @@ Enter the following statement at the car terminal 4 to start the machine code re
 ros2 run M3Pro_demo apriltag_transport_V2
 ```
 
-Enter the command in the virtual machine terminal 1 to start the navigation rviz display.
+Enter the command in the virtual machine terminal 1 to start the navigation RViz display.
 
 ```
 ros2 launch slam_view slam_view.launch.py
@@ -49,7 +49,7 @@ ros2 launch M3Pro_navigation navigation2.launch.py map_dir: =
 /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml
 ```
 
-Among them, /root/M3Pro\_ws/src/yahboom\_mapping/maps/yahboom\_map.yaml replace it with the file address of your own yaml map.
+Among them, /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml replace it with the file address of your own yaml map.
 
 Enter the following statement in the virtual machine terminal 2 to start the rotation detection program:
 
@@ -63,13 +63,13 @@ Enter the following statement in the virtual machine terminal 3 to start the nav
 ros2 run yahboom_nav2_bringup get_nav2_status_V2
 ```
 
-After starting, in the virtual machine's rviz, use the [2D Pose Estimate] tool to give the car an initial pose based on its actual position in the environment and the map. Check whether the obstacles scanned by the car's radar overlap with the black part on the map, as shown in the figure below.
+After starting, in the virtual machine's RViz, use the [2D Pose Estimate] tool to give the car an initial pose based on its actual position in the environment and the map. Check whether the obstacles scanned by the car's radar overlap with the black part on the map, as shown in the figure below.
 
-![](_page_1_Figure_7.jpeg)
+![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 
 Then click [Waypoint/Nav Through Poses Mode] in [Navigation2 navigation plug-in], and select it as shown below.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 Then, we use the [Nav2 Goal] tool to give a target point. The car will navigate to this target point autonomously. When it reaches the destination, the car's buzzer will beep.
 
@@ -85,11 +85,11 @@ grasping, the buzzer will beep, and the robot arm will move to the handling post
 - If you do not see the machine code, the car terminal will prompt you to press the n key and use the [Nav2 Goal] tool to set a target point. The car will go to the next target point or press the b key to return to the origin (initial position).
 - Press the b key to select return mode, and the car will navigate back to the origin (initial position)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
-#### **3.1 get\_nav2\_status\_V2**
+#### 3.1 get_nav2_status_V2
 
-In the virtual machine, the source code path of the program is, /home/yahboom/yahboomcar\_ws/src/yahboom\_nav2\_bringup/yahboom\_nav2\_bringup/get\_nav2\_ status\_V2.py , the function of this program is to obtain the navigation status and publish and receive some topics.
+In the virtual machine, the source code path of the program is, /home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/get_nav2_ status_V2.py, the function of this program is to obtain the navigation status and publish and receive some topics.
 
 Import the necessary library files,
 
@@ -200,7 +200,7 @@ msg.markers[len(msg.markers)-2].pose.orientation.w
     self.send_goal()
 ```
 
-send\_goal,
+send_goal,
 
 ```
 def send_goal(self):
@@ -218,7 +218,7 @@ self._client.send_goal_async(goal_msg,feedback_callback=self.feedback_callback).
 add_done_callback(self.goal_response_callback)
 ```
 
-goal\_response\_callback,
+goal_response_callback,
 
 ```
 def goal_response_callback(self, future):
@@ -232,7 +232,7 @@ def goal_response_callback(self, future):
     result.get_result_async().add_done_callback(self.result_callback)
 ```
 
-feedback\_callback,
+feedback_callback,
 
 ```
 def feedback_callback(self,feedback_msg):
@@ -244,7 +244,7 @@ False:
         self.move_flag = True
 ```
 
-result\_callback,
+result_callback,
 
 ```
 def result_callback(self, future):
@@ -275,7 +275,7 @@ finally the corresponding message is published according to the current status
             self.cur_status = "Detect"
 ```
 
-get\_InitPoseCallBack,
+get_InitPoseCallBack,
 
 ```
 def get_InitPoseCallBack(self,msg):
@@ -288,11 +288,11 @@ def get_InitPoseCallBack(self,msg):
     self.orinal_pose.pose.orientation.w = msg.pose.pose.orientation.w
 ```
 
-#### **3.2 rotation\_detect\_V2**
+#### 3.2 rotation_detect_V2
 
 In the virtual machine, the source code path of the program is,
 
-/home/yahboom/yahboomcar\_ws/src/yahboom\_nav2\_bringup/yahboom\_nav2\_bringup/rotation\_ detect\_V2.py , the function of this program is to control the car to rotate 360 degrees, and publish and receive some topics.
+/home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/rotation_ detect_V2.py, the function of this program is to control the car to rotate 360 degrees, and publish and receive some topics.
 
 Import the necessary header files,
 
@@ -343,7 +343,7 @@ performed to find the machine code.
     self.get_angle()
 ```
 
-timer\_callback,
+timer_callback,
 
 ```
 def timer_callback(self):
@@ -401,17 +401,17 @@ here refers to the angle of rotation
         self.get_logger().warn(f"Could not transform: {e}")
 ```
 
-#### **3.3 apriltag\_transport\_V2**
+#### 3.3 apriltag_transport_V2
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/apriltag\_transport\_V2.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_transport_V2.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/M3Pro\_demo/M3Pro\_demo/apriltag\_transport\_V2.py
+The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_transport_V2.py
 
 Import the necessary library files,
 

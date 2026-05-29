@@ -1,16 +1,16 @@
-# **Install and start the Microros agent**
+# Install and start the Microros agent
 
-#### **Install and start [the Microros](#page-0-0) agent**
+#### Install and start the Microros agent
 
-- <span id="page-0-0"></span>[1. Docker](#page-0-1) starts the microros agent [Docker](#page-0-2) starts the serial port proxy Agent [startup failure](#page-0-3)
-- 2. Start microros agent [from source](#page-1-0) code Install tinyxml2 [dependencies](#page-1-1) Install the [python3-rosdep tool](#page-1-2) Compile the [micro\\_ros\\_setup environment](#page-1-3) Compile the [micro\\_ros\\_agent](#page-3-0) environment Start the microros serial port proxy [from source](#page-3-1) code
-- <span id="page-0-2"></span><span id="page-0-1"></span>3. Start the [microros](#page-3-2) agent with the factory image
+- 1. Docker starts the microros agent Docker starts the serial port proxy Agent startup failure
+- 2. Start microros agent from source code Install tinyxml2 dependencies Install the python3-rosdep tool Compile the micro_ros_setup environment Compile the micro_ros_agent environment Start the microros serial port proxy from source code
+- 3. Start the microros agent with the factory image
 
 **Note: You can select any one of the three startup methods.**
 
-# **1. Docker starts the microros agent**
+# 1. Docker starts the microros agent
 
-#### **Docker starts the serial port proxy**
+#### Docker starts the serial port proxy
 
 docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:humble serial --dev /dev/myserial -b 2000000 -v4
 
@@ -24,7 +24,7 @@ Note that you cannot close the terminal directly, otherwise Docker will continue
 
 If the MCU starts the reconnection proxy multiple times, causing ROS2 to search for multiple identical nodes, it will not actually affect the use. Press Ctrl+C to end the proxy and then reset the MCU to reconnect to the proxy.
 
-#### <span id="page-0-3"></span>**Agent startup failure**
+#### Agent startup failure
 
 The microROS agent can only be started in one terminal. If a terminal has already started the microROS agent in the background, an error will be reported when starting the agent again. Please press Ctrl+C to exit the agent in the original agent terminal before running the agent again.
 
@@ -39,9 +39,9 @@ docker ps -a | grep microros/micro-ros-agent
 docker stop xxxxxxxxxx
 ```
 
-# <span id="page-1-0"></span>**2. Start microros agent from source code**
+# 2. Start microros agent from source code
 
-#### <span id="page-1-1"></span>**Install tinyxml2 dependencies**
+#### Install tinyxml2 dependencies
 
 Enter the following command in the terminal to install tinyxml2
 
@@ -56,7 +56,7 @@ sudo make
 sudo make install
 ```
 
-#### <span id="page-1-2"></span>**Install the python3-rosdep tool**
+#### Install the python3-rosdep tool
 
 Enter the following command in the terminal to install the rosdep tool. If it has already been installed, you can skip this step.
 
@@ -64,7 +64,7 @@ Enter the following command in the terminal to install the rosdep tool. If it ha
 sudo apt install python3-rosdep
 ```
 
-### <span id="page-1-3"></span>**Compile the micro\_ros\_setup environment**
+### Compile the micro_ros_setup environment
 
 Activate the ROS2 environment variables. Here we take the humble version as an example. If it has already been activated, you can skip the activation step.
 
@@ -72,14 +72,14 @@ Activate the ROS2 environment variables. Here we take the humble version as an e
 source /opt/ros/humble/setup.bash
 ```
 
-Create and enter the workspace uros\_ws in the user directory
+Create and enter the workspace uros_ws in the user directory
 
 ```
 mkdir ~/uros_ws && cd ~/uros_ws
 mkdir src
 ```
 
-Download the micro\_ros\_setup file to the src folder
+Download the micro_ros_setup file to the src folder
 
 ```
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git
@@ -127,18 +127,18 @@ colcon build
 source install/local_setup.bash
 ```
 
-#### **Compile the micro\_ros\_agent environment**
+#### Compile the micro_ros_agent environment
 
 ```
 ros2 run micro_ros_setup create_agent_ws.sh
 ros2 run micro_ros_setup build_agent.sh
 ```
 
-If an error occurs when executing build\_agent.sh, compile again.
+If an error occurs when executing build_agent.sh, compile again.
 
-### <span id="page-3-1"></span>**Start the microros serial port proxy from source code**
+### Start the microros serial port proxy from source code
 
-Activate the micro\_ros\_agent agent environment
+Activate the micro_ros_agent agent environment
 
 ```
 source ~/uros_ws/install/local_setup.sh
@@ -157,8 +157,8 @@ Among them, --dev /dev/myserial is the bound serial port device, which can also 
 
 To exit the proxy, press Ctrl+C in the terminal.
 
-# <span id="page-3-2"></span>**3. Start the microros agent with the factory image**
+# 3. Start the microros agent with the factory image
 
 The factory image system has integrated the proxy function and made it into a script. You only need to run the following command to enable the proxy.
 
-sh ~/start\_agent.sh
+sh ~/start_agent.sh

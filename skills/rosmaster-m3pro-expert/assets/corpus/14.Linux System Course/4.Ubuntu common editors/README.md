@@ -1,8 +1,8 @@
-# **4.Ubuntu common editors**
+# 4.Ubuntu common editors
 
-## **4.1Editor**
+## 4.1Editor
 
-### **4.1.1、vim**
+### 4.1.1. vim
 
 vim is an upgraded version of vi. The most common difference is that it can display some special information of system files in multiple colors.
 
@@ -87,7 +87,7 @@ PageDown(or Ctrl+F) # Scroll down one screen
 PageUp(or Ctrl+B) # Scroll up one screen
 ```
 
-#### **4.1.2、nano**
+#### 4.1.2. nano
 
 nano is a text editor for Unix and Unix-like systems, a copy of Pico.
 
@@ -117,7 +117,7 @@ Ctrl+u # Paste lines of text
 Ctrl+c # Display the cursor position in the text
 ```
 
-#### **4.1.3、gedit**
+#### 4.1.3. gedit
 
 In the editor, we can click the "Open" button to browse the recently opened file list and open the file; click the "Save" button to save the file currently being edited; click the menu bar on the right to perform more operations.
 
@@ -127,4 +127,4 @@ Ctrl + Shift + s Save as
 Ctrl + f Search text content
 ```
 
-The gedit editor must be started when the interface can be displayed, and it cannot be started remotely without an interface such as ssh, jupyter, putty, etc.
+The gedit editor must be started when the interface can be displayed, and it cannot be started remotely without an interface such as ssh, jupyter, PuTTY, etc.

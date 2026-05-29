@@ -1,47 +1,47 @@
-# **Patrol**
+# Patrol
 
-#### **[Patrol](#page-0-0)**
+#### Patrol
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Preparation](#page-0-2)
-  - 2.1 Content [Description](#page-0-3)
-  - 2.2 [Starting](#page-0-4) the Agent
-- [3. Running](#page-1-0) the Example
-  - 3.1 Starting the [Program](#page-1-1)
-- <span id="page-0-1"></span>[4. Source](#page-3-0) Code Analysis
-  - 4.1 Viewing the Node [Relationship Graph](#page-4-0)
-  - 4.2 [Program Flowchart](#page-4-1)
-  - 4.3 Key [Programs](#page-4-2)
+- 1. Course Content
+- 2. Preparation
+  - 2.1 Content Description
+  - 2.2 Starting the Agent
+- 3. Running the Example
+  - 3.1 Starting the Program
+- 4. Source Code Analysis
+  - 4.1 Viewing the Node Relationship Graph
+  - 4.2 Program Flowchart
+  - 4.3 Key Programs
 
-# **1. Course Content**
+# 1. Course Content
 
 Learn the Robot Patrol Function
 
 Set the patrol route in the dynamic parameter controller and click Start. The robot will move along the patrol route. Simultaneously, the robot's radar will scan for obstacles within the specified radar angle and obstacle detection distance. If an obstacle is detected, the robot will stop and a buzzer will sound. If no obstacle is detected, the robot will resume patrolling.
 
-# <span id="page-0-2"></span>**2. Preparation**
+# 2. Preparation
 
-### <span id="page-0-3"></span>**2.1 Content Description**
+### 2.1 Content Description
 
 This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
 
-## <span id="page-0-4"></span>**2.2 Starting the Agent**
+## 2.2 Starting the Agent
 
 **Note: The Docker agent must be started before testing all examples. If it is already started, you do not need to restart it.**
 
 Enter the command in the vehicle terminal:
 
-sh start\_agent.sh
+sh start_agent.sh
 
 The following information will be printed on the terminal, indicating a successful connection.
 
-# **3. Running the Example**
+# 3. Running the Example
 
-#### **Note:**
+#### Note:
 
-<span id="page-1-1"></span><span id="page-1-0"></span>The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (for steps, see the [Docker course chapter - Entering the Robot's Docker Container]).
+The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (for steps, see the [Docker course chapter - Entering the Robot's Docker Container]).
 
-# **3.1 Starting the Program**
+# 3.1 Starting the Program
 
 Run the node on the vehicle terminal:
 
@@ -57,30 +57,30 @@ ros2 run rqt_reconfigure rqt_reconfigure
 
 Then click the **Patrol** node in the left-hand options bar. If there's no node on the left-hand options bar when you first start, click **Refresh** below.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 **[Command]** sets the patrol route. Here, we'll use a square patrol route as an example. The various patrol routes are explained below. After setting the route in the [Command] field, click Switch to start patrolling. The terminal prints the following information:
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
 If there is an obstacle on the patrol path, the robot will stop and display the **obsstance** prompt.
 
 Other parameters in the rqt interface are described below:
 
-- odom\_frame: The name of the odometry coordinate system.
-- base\_frame: The name of the base coordinate system.
-- circle\_adjust: If the patrol route is circular, this value can be used as a coefficient to adjust the circle size. See the code for details.
+- odom_frame: The name of the odometry coordinate system.
+- base_frame: The name of the base coordinate system.
+- circle_adjust: If the patrol route is circular, this value can be used as a coefficient to adjust the circle size. See the code for details.
 - Switch: Gameplay switch.
-- Command: Patrol route. There are the following types of routes: [LengthTest] Linear patrol, [Circle] - Circle patrol, [Square] - Square patrol, and [Triangle] - Triangle patrol. - Set\_loop: Restart patrol. Once set, the patrol will continue in a loop along the specified route.
+- Command: Patrol route. There are the following types of routes: [LengthTest] Linear patrol, [Circle] - Circle patrol, [Square] - Square patrol, and [Triangle] - Triangle patrol. - Set_loop: Restart patrol. Once set, the patrol will continue in a loop along the specified route.
 - ResponseDist: Obstacle detection distance
 - LaserAngle: Radar detection angle
 - Linear: Linear velocity
 - Angular: Angular velocity
 - Length: Distance of linear motion
 - RotationTolerance: Rotation error tolerance
-- <span id="page-3-0"></span>RotationScaling: Rotation scaling factor
+- RotationScaling: Rotation scaling factor
 
-# **4. Source Code Analysis**
+# 4. Source Code Analysis
 
 Source Code Path:
 
@@ -98,29 +98,29 @@ You need to enter Docker first.
 root/M3Pro_ws/src/patrol/patrol/patrol.py
 ```
 
-## <span id="page-4-0"></span>**4.1 Viewing the Node Relationship Graph**
+## 4.1 Viewing the Node Relationship Graph
 
 Open a terminal and enter the command:
 
-![](_page_4_Figure_2.jpeg)
+![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
 In the above node relationship diagram:
 
 - **patrol** is the key node for implementing the patrol function. This node subscribes to the coordinate transformation between the odometry data odom and the besefootprint, and uses the lidar data from /scan1 to determine whether there are obstacles ahead through distance measurement.
-- **YB\_Node**: The chassis node publishes lidar data **/scan1** and raw odometry data **/odom\_raw** . It subscribes to the **/cmd\_vel** topic data to control the robot chassis motion using inverse kinematics.
-- <span id="page-4-1"></span>**ekf\_filter\_node**: The extended Kalman filter is used to fuse raw odometry data with filtered IMU data and publish the fused odometry data **/odom**. - **imu\_filter**: IMU filter node, filters the raw IMU data **/imu/data\_raw** and publishes the filtered data **/imu/data**.
+- **YB_Node**: The chassis node publishes lidar data **/scan1** and raw odometry data **/odom_raw**. It subscribes to the **/cmd_vel** topic data to control the robot chassis motion using inverse kinematics.
+- **ekf_filter_node**: The extended Kalman filter is used to fuse raw odometry data with filtered IMU data and publish the fused odometry data **/odom**. - **imu_filter**: IMU filter node, filters the raw IMU data **/imu/data_raw** and publishes the filtered data **/imu/data**.
 
-### **4.2 Program Flowchart**
+### 4.2 Program Flowchart
 
 The image size is too large. Please see the original image in this course folder.
 
-# <span id="page-4-2"></span>**4.3 Key Programs**
+# 4.3 Key Programs
 
 The following explains the core of the program:
 
-**Movement Status Acquisition:** Monitors the TF transformations of odom and base\_footprint, and calculates the current XY coordinates and rotation angle.
+**Movement Status Acquisition:** Monitors the TF transformations of odom and base_footprint, and calculates the current XY coordinates and rotation angle.
 
-**Program Implementation:** The get\_position and get\_odom\_angle methods in the YahboomCarPatrol class
+**Program Implementation:** The get_position and get_odom_angle methods in the YahboomCarPatrol class
 
 ```
 def get_position(self):

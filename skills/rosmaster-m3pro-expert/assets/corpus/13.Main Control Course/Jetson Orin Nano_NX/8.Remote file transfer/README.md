@@ -1,65 +1,65 @@
-# **Remote file transfer**
+# Remote file transfer
 
-#### **[Remote file transfer](#page-0-0)**
+#### Remote file transfer
 
-- <span id="page-0-0"></span>[1. MobaXterm](#page-0-1)
-- [2. MobaXterm installation](#page-0-2)
-  - [2.1. Download MobaXterm](#page-0-3)
-  - 2.2. Install [MobaXterm](#page-1-0)
-- 3. Use [MobaXterm](#page-4-0)
-- <span id="page-0-2"></span><span id="page-0-1"></span>[4. MobaXterm: SFTP](#page-4-1) remote
+- 1. MobaXterm
+- 2. MobaXterm installation
+  - 2.1. Download MobaXterm
+  - 2.2. Install MobaXterm
+- 3. Use MobaXterm
+- 4. MobaXterm: SFTP remote
 
-### **1. MobaXterm**
+### 1. MobaXterm
 
 MobaXterm is a powerful remote tool that integrates SHH, VNC, FTP and other remote tools.
 
-## **2. MobaXterm installation**
+## 2. MobaXterm installation
 
 Official website: <https://mobaxterm.mobatek.net/>
 
-![](_page_0_Figure_12.jpeg)
+![Figure: page 0: figure 12](_page_0_Figure_12.jpeg)
 
-#### <span id="page-0-3"></span>**2.1. Download MobaXterm**
+#### 2.1. Download MobaXterm
 
 Select the free version to download:
 
 Select the installation version to download:
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-### **2.2. Install MobaXterm**
+### 2.2. Install MobaXterm
 
-Unzip the compressed package downloaded from the official website, open the MobaXterm\_installer\_24.4.msi file to install:
+Unzip the compressed package downloaded from the official website, open the MobaXterm_installer_24.4.msi file to install:
 
-<span id="page-1-0"></span>![](_page_1_Figure_3.jpeg)
+![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
 Agree to the agreement:
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 Select the software installation location: the default location is recommended
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
 Official installation:
 
-![](_page_3_Figure_0.jpeg)
+![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
 Complete installation:
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-### **3. Use MobaXterm**
+### 3. Use MobaXterm
 
 Find the MobaXterm icon on the desktop and open it:
 
-<span id="page-4-1"></span><span id="page-4-0"></span>![](_page_4_Picture_3.jpeg)
+![Picture: page 4: picture 3](_page_4_Picture_3.jpeg)
 
-![](_page_4_Figure_4.jpeg)
+![Figure: page 4: figure 4](_page_4_Figure_4.jpeg)
 
-### **4. MobaXterm: SFTP remote**
+### 4. MobaXterm: SFTP remote
 
-Select Session → FTP : Fill in the remote device IP and username
+Select Session → FTP: Fill in the remote device IP and username
 
 Default information of Jetson motherboard:
 
@@ -67,6 +67,6 @@ Username: jetson Password: yahboom
 
 Note: If MobaXterm uses SSH remotely, it will automatically use SFTP remote login in the sidebar
 
-![](_page_5_Figure_3.jpeg)
+![Figure: page 5: figure 3](_page_5_Figure_3.jpeg)
 
-![](_page_6_Figure_0.jpeg)
+![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)

@@ -1,10 +1,10 @@
-## **2.Ubuntu file system**
+## 2.Ubuntu file system
 
-## **2.1 Ubuntu Overview**
+## 2.1 Ubuntu Overview
 
 Ubuntu is a Linux operating system mainly based on desktop applications.
 
-## **2.2 Ubuntu file system**
+## 2.2 Ubuntu file system
 
 Ubuntu has only one root directory [/], and all files are under this directory
 

@@ -1,18 +1,18 @@
-# **Post a topic**
+# Post a topic
 
-#### Post a [topic](#page-0-0)
+#### Post a topic
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-7-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-7-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-## **1. Experimental Purpose**
+## 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and publish int32 topics.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the STM32H743 chip and can use the microros framework program.
 
@@ -22,31 +22,31 @@ If you have a USB-to-serial module such as CH340, you can connect to the serial 
 
 Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu22.04 and ROS2 environment on the main control board.
 
-![](_page_0_Picture_14.jpeg)
+![Picture: page 0: picture 14](_page_0_Picture_14.jpeg)
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
-<span id="page-1-0"></span>Board\_Samples/Microros\_Samples/Publisher
+Board_Samples/Microros_Samples/Publisher
 
 Since microros needs to handle more complex tasks, it is recommended to enable the FREERTOS function of STM32 and create a new microros processing task.
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
 Since the FreeRTOS component is used, in order to avoid warnings, the system basic clock source needs to be replaced with a timer, here it is replaced with timer 7.
 
-![](_page_1_Figure_7.jpeg)
+![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 
 Since Microros needs to transmit a large amount of data, the baud rate is changed to 2Mbps and the DMA channels of TX and RX are enabled.
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 Since serial port 1 is used for Microros communication, the debug information printing is changed to serial port 7. Set the baud rate to 115200, 8-bit data, no parity, and 1 stop bit.
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
 For ease of viewing, the debugging serial port of subsequent microros routines is redefined as serial port 7.
 
@@ -60,21 +60,21 @@ int _write(int file, char*p, int len)
 
 Right-click to open the project properties, then click [Settings]->[MCU/MPU GCC Compiler]-> [include paths] to add the microros include directory path, and then click [Apply] to take effect.
 
-![](_page_3_Figure_3.jpeg)
+![Figure: page 3: figure 3](_page_3_Figure_3.jpeg)
 
 Add the microros folder as the project source code path.
 
-![](_page_3_Figure_5.jpeg)
+![Figure: page 3: figure 5](_page_3_Figure_5.jpeg)
 
 Import the microros library path
 
-![](_page_4_Picture_0.jpeg)
+![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
 Link the microros library file to the project. Make sure the name matches the libmicroros.a static library file name (excluding the prefix and suffix "microros").
 
-![](_page_4_Picture_2.jpeg)
+![Picture: page 4: picture 2](_page_4_Picture_2.jpeg)
 
-Initialize the configuration of microROS. The default value of ros2\_domain\_id is 30, which is consistent with the factory image configuration. If the DOMAINID of the ROS2 environment is changed to another value, the ros2\_domain\_id variable must also be changed to the same value for normal communication.
+Initialize the configuration of microROS. The default value of ros2_domain_id is 30, which is consistent with the factory image configuration. If the DOMAINID of the ROS2 environment is changed to another value, the ros2_domain_id variable must also be changed to the same value for normal communication.
 
 ```
 allocator = rcl_get_default_allocator();
@@ -140,7 +140,7 @@ while (1)
     }
 ```
 
-After connecting to the proxy, create the node "YB\_Example\_Node" where ros2\_namespace is empty by default, indicating the namespace of the node.
+After connecting to the proxy, create the node "YB_Example_Node" where ros2_namespace is empty by default, indicating the namespace of the node.
 
 ```
 printf("Start YB_Example_Node\n");
@@ -149,7 +149,7 @@ printf("Start YB_Example_Node\n");
 (char*)ros2_namespace, &support));
 ```
 
-Create a publisher "int32\_publisher" and specify that the publisher's information is of type std\_msgs/msg/Int32.
+Create a publisher "int32_publisher" and specify that the publisher's information is of type std_msgs/msg/Int32.
 
 ```
 RCCHECK(rclc_publisher_init_default(
@@ -170,7 +170,7 @@ RCCHECK(rclc_timer_init_default(
         publisher_callback));
 ```
 
-Create an executor, where the executor\_count parameter is the number of executors controlled by the executor, which must be greater than or equal to the sum of the number of subscribers and publishers added to the executor. Add the publisher's timer to the executor.
+Create an executor, where the executor_count parameter is the number of executors controlled by the executor, which must be greater than or equal to the sum of the number of subscribers and publishers added to the executor. Add the publisher's timer to the executor.
 
 ```
 printf("executor_count:%d\n", executor_count);
@@ -196,7 +196,7 @@ void publisher_callback(rcl_timer_t *timer, int64_t last_call_time)
 }
 ```
 
-The node and topic are processed, and the power LED\_MCU indicator is on. Call rclc\_executor\_spin\_some in the loop to make Microros work normally.
+The node and topic are processed, and the power LED_MCU indicator is on. Call rclc_executor_spin_some in the loop to make Microros work normally.
 
 ```
 LED_ROS_ON();
@@ -218,11 +218,11 @@ printf("ROS Task End\n");
     HAL_NVIC_SystemReset();
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-7-0"></span>![](_page_7_Picture_4.jpeg)
+![Picture: page 7: picture 4](_page_7_Picture_4.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -230,9 +230,9 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-# <span id="page-7-1"></span>**5. Experimental Results**
+# 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
 
@@ -242,14 +242,14 @@ sh ~/start_agent.sh
 
 After the connection is successful, a node and a publisher are created.
 
-At this point, you can open another terminal in the virtual machine/computer to view the /YB\_Example\_Node node.
+At this point, you can open another terminal in the virtual machine/computer to view the /YB_Example_Node node.
 
 ```
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
-Subscribe to data from the /int32\_publisher topic
+Subscribe to data from the /int32_publisher topic
 
 ```
 ros2 topic echo /int32_publisher
@@ -257,7 +257,7 @@ ros2 topic echo /int32_publisher
 
 Press Ctrl+C to end the command.
 
-Check the frequency of the /int32\_publisher topic. A frequency of about 1 Hz is normal.
+Check the frequency of the /int32_publisher topic. A frequency of about 1 Hz is normal.
 
 ```
 ros2 topic hz /int32_publisher

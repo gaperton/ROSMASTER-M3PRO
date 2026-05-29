@@ -1,16 +1,16 @@
-# **15.ROS2 time related API**
+# 15.ROS2 time related API
 
-## **1. Introduction to Time-Related APIs**
+## 1. Introduction to Time-Related APIs
 
 ROS2's time-related APIs include Rate, Time, Duration, and operations on Time and Duration. These are explained below.
 
 First, create a function package to store the relevant program files.
 
-ros2 pkg create learning\_time --build-type ament\_python --dependencies rclpy
+ros2 pkg create learning_time --build-type ament_python --dependencies rclpy
 
-### **2. create\_rate**
+### 2. create_rate
 
-ROS2 also provides the create\_rate function, a tool for **controlling loop execution frequency**. Its core function is to periodically execute a section of code at a **fixed frequency**. Rate ensures the stability of the loop execution frequency by controlling the "sleep time" of the loop. **Remember** that Rate should generally not be used directly in the main thread, as doing so will permanently block callback events. It is generally only used in programs with multi-threaded callbacks or in child threads.
+ROS2 also provides the create_rate function, a tool for **controlling loop execution frequency**. Its core function is to periodically execute a section of code at a **fixed frequency**. Rate ensures the stability of the loop execution frequency by controlling the "sleep time" of the loop. **Remember** that Rate should generally not be used directly in the main thread, as doing so will permanently block callback events. It is generally only used in programs with multi-threaded callbacks or in child threads.
 
 #### How it works:
 
@@ -23,12 +23,12 @@ While both Rate and Timer can implement periodic execution, their application sc
 
 | Features                | Rate                                                                                                                      | Timer                                                                                                       |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Implementation          | Based on active sleep within a loop<br>(blocking the current thread)                                                      | Based on callback functions<br>(non-blocking, triggered by the<br>ROS 2 event loop)                         |
-| Applicable<br>Scenarios | Suitable for loops that need to<br>execute at a fixed frequency within<br>the same thread (such as main<br>control logic) | Suitable for periodic tasks that<br>need to execute<br>asynchronously (without<br>blocking the main thread) |
-| Flexibility             | Direct control flow within the loop<br>(such as break exit)                                                               | Callback execution must be<br>controlled using flags or other<br>methods                                    |
+| Implementation          | Based on active sleep within a loop (blocking the current thread)                                                      | Based on callback functions (non-blocking, triggered by the ROS 2 event loop)                         |
+| Applicable Scenarios | Suitable for loops that need to execute at a fixed frequency within the same thread (such as main control logic) | Suitable for periodic tasks that need to execute asynchronously (without blocking the main thread) |
+| Flexibility             | Direct control flow within the loop (such as break exit)                                                               | Callback execution must be controlled using flags or other methods                                    |
 
 - The following is a basic usage of Rate to implement a loop that executes twice per second:
-- Create a new file in the function package called rate\_demo.py
+- Create a new file in the function package called rate_demo.py
 
 ```
 from rclpy.node import Node
@@ -73,9 +73,9 @@ if __name__ == "__main__":
 
 Compile feature package
 
-colcon build --packages-select learning\_time
+colcon build --packages-select learning_time
 
-![](_page_2_Figure_3.jpeg)
+![Figure: page 2: figure 3](_page_2_Figure_3.jpeg)
 
 Refresh the workspace environment and run the node
 
@@ -84,11 +84,11 @@ source ./install/setup.bash
 ros2 run learning_time rate_demo
 ```
 
-# **3. Timer Application**
+# 3. Timer Application
 
 - Timer is used to create a timer that triggers periodic tasks.
 - Example: Create two timers: one that prints the execution count every 1 second, and one that prints the current time every 0.5 seconds.
-- Create a new program file called Timer\_demo.py
+- Create a new program file called Timer_demo.py
 
 ```
 import rclpy
@@ -145,7 +145,7 @@ Compile function package
 colcon build --packages-select learning_time
 ```
 
-![](_page_5_Figure_0.jpeg)
+![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
 Refresh the workspace environment and run the node
 
@@ -156,10 +156,10 @@ ros2 run learning_time Timer_demo
 
 It can be seen that the timer is triggered according to the set timing, and the corresponding log information is printed in each callback function
 
-### **4. Get the Current Time with get\_clock**
+### 4. Get the Current Time with get_clock
 
-- The get\_clock function can be used to obtain a clock object and then use the () method to get the current time.
-- Create a new program file, get\_clock\_demo.py, and fill it with the following example program:
+- The get_clock function can be used to obtain a clock object and then use the () method to get the current time.
+- Create a new program file, get_clock_demo.py, and fill it with the following example program:
 
 ```
 import rclpy
@@ -196,7 +196,7 @@ Compile feature package
 colcon build --packages-select learning_time
 ```
 
-![](_page_7_Figure_0.jpeg)
+![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
 Refresh the workspace environment and run the node
 
@@ -205,12 +205,12 @@ source ./install/setup.bash
 ros2 run learning_time get_clock_demo
 ```
 
-### **5. Time and Duration**
+### 5. Time and Duration
 
 - The Time class in ROS represents a specific time point (e.g., "2023-10-01 12:00:00"), typically used to mark the moment an event occurred.
 - The Duration class represents an interval between two time points (e.g., "5 seconds"), used to calculate time differences or delays.
 - Example: Time and Duration Application
-- Create a new program file, TimeDuration\_demo.py .
+- Create a new program file, TimeDuration_demo.py.
 
 ```
 import rclpy
@@ -259,7 +259,7 @@ Compile feature package
 colcon build --packages-select learning_time
 ```
 
-![](_page_9_Figure_0.jpeg)
+![Figure: page 9: figure 0](_page_9_Figure_0.jpeg)
 
 Refresh the workspace environment and run the node
 

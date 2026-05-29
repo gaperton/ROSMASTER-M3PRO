@@ -1,4 +1,4 @@
-## **Jetson Nano B01 Swap space increases**
+## Jetson Nano B01 Swap space increases
 
 Entering the following commands in sequence can increase the swap space by 3G and solve some program errors that run out of memory.
 
@@ -47,7 +47,7 @@ Mem [||||||||||||| 1.2G/3.9G] FAN [
                                                     0RPM
                     0k/5.9G] Jetson Clocks: inactive
 Emc RUNNING — ♦ 1.6GHz 0% NV Power[0]: MAXN
-Iram [                                   
+Iram [
                                              14.2%] 153MHz
 Dsk [####################################
                                              31.7G/57.0G]

@@ -1,18 +1,18 @@
-# **Driving PWM servos**
+# Driving PWM servos
 
-[Driving](#page-0-0) PWM servos
+Driving PWM servos
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-5-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-6-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Use the PWM output of the STM32 control board to learn how to control a PWM servo.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the PWM servo control interface, but it is necessary to connect an additional PWM servo, so the PWM servo must be prepared by yourself.
 
@@ -20,7 +20,7 @@ Please connect the type-C data cable to the computer and the USB Connect port of
 
 Since the PWM servo current is relatively large, if there is insufficient power supply, please plug in a battery.
 
-![](_page_0_Picture_13.jpeg)
+![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
 There are two PWM servo ports, S1 and S2, both of which can be connected to PWM servos.
 
@@ -28,19 +28,19 @@ Servo wiring sequence: brown wire connected to GND, red wire connected to 5V, ye
 
 There is a voltage selection function below the PWM servo interface. The default voltage is 5V. If needed, you can change the position of the jumper cap to switch to 6.8V. If you want to use a 6.8V servo, please plug in a battery for power.
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-Board\_Samples/STM32\_Samples/Pwm\_Servo
+Board_Samples/STM32_Samples/Pwm_Servo
 
 Servo S1 and S2 are assigned to timer TIM12. Servo S1 corresponds to hardware PB15 (TIM12 channel 2), and servo S2 corresponds to hardware PB14 (TIM12 channel 1).
 
-<span id="page-1-0"></span>![](_page_1_Picture_7.jpeg)
+![Picture: page 1: picture 7](_page_1_Picture_7.jpeg)
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 Initialize the timer TIM12 and configure the frequency division coefficient to 239, with a counting range of 0 to 19999. Based on the clock frequency of the timer TIM12 being 240 MHz, the PWM frequency is calculated to be 240000000/(239+1)/(19999+1)=50 Hz.
 
@@ -116,7 +116,7 @@ The relationship between the duty cycle and angle of the PWM servo is shown in t
 
 Note: Different servos may have different angles at the same duty cycle. The calculation method can be adjusted according to actual conditions.
 
-![](_page_4_Figure_1.jpeg)
+![Figure: page 4: figure 1](_page_4_Figure_1.jpeg)
 
 To control the servo angle, you can distinguish the control according to the input servo ID, and then convert the angle value into a PWM pulse value, thereby outputting square waves with different duty cycles to drive the servo to rotate.
 
@@ -145,7 +145,7 @@ void PwmServo_Set_Angle(uint8_t id, uint8_t angle)
 }
 ```
 
-Call the PwmServo\_Init function in App\_Handle to initialize the servo, and then change the servo angle every 1 second in the loop to make the servo swing back and forth.
+Call the PwmServo_Init function in App_Handle to initialize the servo, and then change the servo angle every 1 second in the loop to make the servo swing back and forth.
 
 ```
 void App_Handle(void)
@@ -178,11 +178,11 @@ void App_Handle(void)
 }
 ```
 
-### **4. Compile, download and burn firmware**
+### 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-5-0"></span>![](_page_5_Picture_3.jpeg)
+![Picture: page 5: picture 3](_page_5_Picture_3.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -190,10 +190,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-#### <span id="page-6-0"></span>**5. Experimental Results**
+#### 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 The angle of the servo is changed every second, from 0 to 180, and then from 180 to 0, and it keeps running, thus realizing the function of repeated rotation of the servo.
 
-![](_page_6_Picture_3.jpeg)
+![Picture: page 6: picture 3](_page_6_Picture_3.jpeg)

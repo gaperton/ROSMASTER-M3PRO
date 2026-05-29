@@ -1,28 +1,28 @@
-# **Multimodal Visual Understanding**
+# Multimodal Visual Understanding
 
-#### **[Multimodal Visual Understanding](#page-0-0)**
+#### Multimodal Visual Understanding
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Preparation](#page-0-2)
-  - 2.1 [Starting](#page-0-3) the Agent
-- [3. Running](#page-1-0) the Examples
-  - 3.1 Starting the [Program](#page-1-1)
-  - 3.2 Test [Cases](#page-1-2)
-    - [3.2.1](#page-1-3) Case 1
-    - [3.2.2](#page-2-0) Case 2
-- <span id="page-0-1"></span>[4. Source](#page-3-0) Code Analysis
+- 1. Course Content
+- 2. Preparation
+  - 2.1 Starting the Agent
+- 3. Running the Examples
+  - 3.1 Starting the Program
+  - 3.2 Test Cases
+    - 3.2.1 Case 1
+    - 3.2.2 Case 2
+- 4. Source Code Analysis
 
-## **1. Course Content**
+## 1. Course Content
 
 Run the example program, allowing the robot to observe the environment through text interaction in the terminal and perform tasks based on instructions.
 
 #### [!NOTE]
 
-<span id="page-0-3"></span><span id="page-0-2"></span>The only difference between the text version and the voice version is the method of instruction input; the text version does not include speech recognition and speech synthesis playback.
+The only difference between the text version and the voice version is the method of instruction input; the text version does not include speech recognition and speech synthesis playback.
 
-# **2. Preparation**
+# 2. Preparation
 
-### **2.1 Starting the Agent**
+### 2.1 Starting the Agent
 
 **Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.**
 
@@ -34,11 +34,11 @@ sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
-### **3. Running the Examples**
+### 3. Running the Examples
 
-### **3.1 Starting the Program**
+### 3.1 Starting the Program
 
-<span id="page-1-1"></span><span id="page-1-0"></span>Open the terminal on the vehicle and enter the command:
+Open the terminal on the vehicle and enter the command:
 
 ```
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode:=True
@@ -50,28 +50,28 @@ Start the text interaction node on the vehicle:
 ros2 run text_chat text_chat
 ```
 
-#### **3.2 Test Cases**
+#### 3.2 Test Cases
 
 Here are two example test cases; users can create their own test instructions.
 
-- <span id="page-1-2"></span>Tell me what objects are in front of you, and describe their functions.
-- <span id="page-1-3"></span>Please look to see if there is a blue block and a pack of tissues in front of you. If there is, nod your head; if not, shake your head.
+- Tell me what objects are in front of you, and describe their functions.
+- Please look to see if there is a blue block and a pack of tissues in front of you. If there is, nod your head; if not, shake your head.
 
-#### **3.2.1 Case 1**
+#### 3.2.1 Case 1
 
 Enter the test case in the text interaction terminal. After the model thinks, the model will reply to the user and perform the actions according to the user's instructions.
 
 After the robot completes a task, it enters a waiting state. At this point, you can continue the conversation. The instructions will be directly passed to the execution layer's large language model, and all conversation history will be retained. You can enter the "end current task" command again to have the robot end the current task cycle and start a new one.
 
-#### <span id="page-2-0"></span>**3.2.2 Case 2**
+#### 3.2.2 Case 2
 
 Similar to Case 1, entering Case 2 in the terminal will cause the model to respond and perform actions according to the instructions.
 
-![](_page_2_Figure_4.jpeg)
+![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)
 
-# **4. Source Code Analysis**
+# 4. Source Code Analysis
 
-<span id="page-3-0"></span>Robot action source code path:
+Robot action source code path:
 
 ```
 ~/M3Pro_ws/src/multi_brains/multi_brains/action_service.py
@@ -83,9 +83,9 @@ Model service source code:
 ~/M3Pro_ws/src/multi_brains/multi_brains/model_service.py
 ```
 
-- The main program that implements the robot's visual observation function is the seewhat method in the action\_service.py program:
+- The main program that implements the robot's visual observation function is the seewhat method in the action_service.py program:
 - The function implementation is: save and display an image from the latest viewpoint.
-- Then, it sends a request to the model\_service node, requesting to provide image feedback to the multi\_brains agent in Dify.
+- Then, it sends a request to the model_service node, requesting to provide image feedback to the multi_brains agent in Dify.
 
 ```
 def seewhat(self):
@@ -125,8 +125,8 @@ closing the window
 occurred while displaying the image...
 ```
 
-- In addition, the llm\_request\_callback function in model\_service.py is used to receive requests to access the multi\_brains agent.
-- If the llm\_request field in the request message indicates an image request, a list [msg.llm\_request, 'image\_request', True] is constructed and added to the model request processing queue.
+- In addition, the llm_request_callback function in model_service.py is used to receive requests to access the multi_brains agent.
+- If the llm_request field in the request message indicates an image request, a list [msg.llm_request, 'image_request', True] is constructed and added to the model request processing queue.
 
 ```
 def llm_request_callback(self, msg:LlmRequest):
@@ -153,7 +153,7 @@ self.get_logger().info(self.syslog.get_text("system_log_4"))
             self.llm_handler_queue.put([msg.llm_request,'text_request',None])
 ```
 
-In the handle\_llm\_thread method of model\_service.py , the response mode is determined by the self.text\_chat\_mode variable. If it's only text-based interaction mode, only text responses will be provided.
+In the handle_llm_thread method of model_service.py, the response mode is determined by the self.text_chat_mode variable. If it's only text-based interaction mode, only text responses will be provided.
 
 ```
 def handle_llm_thread(self)->None:

@@ -1,54 +1,54 @@
-# **Rapid Relocalization and Navigation**
+# Rapid Relocalization and Navigation
 
-#### **Rapid [Relocalization](#page-0-0) and Navigation**
+#### Rapid Relocalization and Navigation
 
-- <span id="page-0-0"></span>[1. Course](#page-0-1) Content
-- [2. Principle](#page-0-2) Overview
-  - 2.1 [Introduction](#page-0-3)
-  - 2.2 Differences Between the Two [Localization](#page-0-4) Methods
-- [3. Preparation](#page-0-5)
-  - 3.1 Content [Description](#page-1-0)
-  - 3.2 [Map Preparation](#page-1-1)
-- [4. Running](#page-1-2) the Example
-  - 4.1 [Single-Point](#page-1-3) Navigation Function
-  - 4.3 Viewing the Node [Communication](#page-2-0) Graph
-  - 4.4 [Viewing](#page-3-0) the TF Tree
-- <span id="page-0-1"></span>5. Principle [Explanation](#page-3-1)
+- 1. Course Content
+- 2. Principle Overview
+  - 2.1 Introduction
+  - 2.2 Differences Between the Two Localization Methods
+- 3. Preparation
+  - 3.1 Content Description
+  - 3.2 Map Preparation
+- 4. Running the Example
+  - 4.1 Single-Point Navigation Function
+  - 4.3 Viewing the Node Communication Graph
+  - 4.4 Viewing the TF Tree
+- 5. Principle Explanation
 
-## **1. Course Content**
+## 1. Course Content
 
 - 1. Learn the robot's rapid relocalization and navigation capabilities.
-- <span id="page-0-2"></span>2. Run the program. A real-time map and robot model will be loaded into RVIZ. The robot can quickly locate its position within the map and perform real-time SLAM mapping and navigation.
+- 2. Run the program. A real-time map and robot model will be loaded into RViz. The robot can quickly locate its position within the map and perform real-time SLAM mapping and navigation.
 
-## **2. Principle Overview**
+## 2. Principle Overview
 
-#### **2.1 Introduction**
+#### 2.1 Introduction
 
-- <span id="page-0-3"></span>Navigation 2 (Nav 2) is the navigation framework included with ROS 2. Its purpose is to safely move a mobile robot from point A to point B.
+- Navigation 2 (Nav 2) is the navigation framework included with ROS 2. Its purpose is to safely move a mobile robot from point A to point B.
 - The default localization algorithm used in Navigation 2 is AMCL (Adaptive Monte Carlo Localization). By replacing the default AMCL localization method with Cartographer's localization method, other navigation functions remain unchanged.
 
-### **2.2 Differences Between the Two Localization Methods**
+### 2.2 Differences Between the Two Localization Methods
 
-- <span id="page-0-4"></span>**AMCL**: Suitable for scenarios with a known map. For example, in an indoor environment with a pre-built map, the robot can use AMCL to determine its position when performing repetitive tasks or navigating.
-- <span id="page-0-5"></span>**Cartographer**: It is more suitable for scenarios where robots need to simultaneously map and localize in unknown environments. For example, when a robot enters a new area for the first time and needs to quickly build a map and determine its position, Cartographer is particularly effective.
+- **AMCL**: Suitable for scenarios with a known map. For example, in an indoor environment with a pre-built map, the robot can use AMCL to determine its position when performing repetitive tasks or navigating.
+- **Cartographer**: It is more suitable for scenarios where robots need to simultaneously map and localize in unknown environments. For example, when a robot enters a new area for the first time and needs to quickly build a map and determine its position, Cartographer is particularly effective.
 
-## **3. Preparation**
+## 3. Preparation
 
-### <span id="page-1-0"></span>**3.1 Content Description**
+### 3.1 Content Description
 
 This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
 
-### **3.2 Map Preparation**
+### 3.2 Map Preparation
 
-<span id="page-1-1"></span>For this lesson's rapid relocalization and navigation, you'll need to first save a map in pbstream format according to the tutorials [6. LiDAR - 7. Cartographer Mapping]. The pbstream file will automatically be saved in your home directory (for Raspberry Pi and Jetson Nano, it will be saved in the /root directory within Docker).
+For this lesson's rapid relocalization and navigation, you'll need to first save a map in pbstream format according to the tutorials [6. LiDAR - 7. Cartographer Mapping]. The pbstream file will automatically be saved in your home directory (for Raspberry Pi and Jetson Nano, it will be saved in the /root directory within Docker).
 
-## **4. Running the Example**
+## 4. Running the Example
 
-### **4.1 Single-Point Navigation Function**
+### 4.1 Single-Point Navigation Function
 
-#### **Note:**
+#### Note:
 
-<span id="page-1-3"></span><span id="page-1-2"></span>The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (see the [Docker Course Chapter - Entering the Robot's Docker Container] for steps).
+The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (see the [Docker Course Chapter - Entering the Robot's Docker Container] for steps).
 
 The robot's vehicle terminal starts the underlying sensor command:
 
@@ -68,24 +68,24 @@ Finally, start Navigation 2.
 ros2 launch M3Pro_navigation navigation_launch.py
 ```
 
-The rviz visualization function can be launched from either the vehicle or the virtual machine. **Select either** method. Do not launch both the virtual machine and the vehicle simultaneously:
+The RViz visualization function can be launched from either the vehicle or the virtual machine. **Select either** method. Do not launch both the virtual machine and the vehicle simultaneously:
 
-Command to launch the rviz visualization interface from the virtual machine:
+Command to launch the RViz visualization interface from the virtual machine:
 
 ```
 ros2 launch slam_view nav_rviz.launch.py
 ```
 
-Command to launch the rviz visualization interface from the vehicle:
+Command to launch the RViz visualization interface from the vehicle:
 
-#### ros2 launch M3Pro\_navigation nav\_rviz.launch.py
+#### ros2 launch M3Pro_navigation nav_rviz.launch.py
 
-![](_page_2_Figure_1.jpeg)
+![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-- From rviz, you can see that the robot automatically estimates its initial position, eliminating the need for manual initialization.
-- <span id="page-2-0"></span>If the robot's initial position deviates significantly, use the [2D Pose Estimate] tool in the rviz toolbar to estimate its approximate position for quick positioning.
+- From RViz, you can see that the robot automatically estimates its initial position, eliminating the need for manual initialization.
+- If the robot's initial position deviates significantly, use the [2D Pose Estimate] tool in the RViz toolbar to estimate its approximate position for quick positioning.
 
-#### **4.3 Viewing the Node Communication Graph**
+#### 4.3 Viewing the Node Communication Graph
 
 Enter the VM terminal:
 
@@ -95,9 +95,9 @@ ros2 run rqt_graph rqt_graph
 
 If it doesn't display initially, select [Nodes/Topics (all)] and click the refresh button in the upper left corner. The original image is too large; you can view it in the lesson folder.
 
-![](_page_2_Picture_8.jpeg)
+![Picture: page 2: picture 8](_page_2_Picture_8.jpeg)
 
-#### **4.4 Viewing the TF Tree**
+#### 4.4 Viewing the TF Tree
 
 Enter the VM terminal:
 
@@ -107,9 +107,9 @@ ros2 run rqt_tf_tree rqt_tf_tree
 
 If the page doesn't display initially, click the refresh icon in the upper left corner to refresh the page. The original image is too large; you can view it in the current lesson folder.
 
-![](_page_3_Figure_4.jpeg)
+![Figure: page 3: figure 4](_page_3_Figure_4.jpeg)
 
-## <span id="page-3-1"></span>**5. Principle Explanation**
+## 5. Principle Explanation
 
 The key to fast re-localization navigation is to replace the default amcl positioning method in navigation2 with the Cartographer positioning method. All other settings remain unchanged. The following explains how to replace the positioning method.
 
@@ -129,7 +129,7 @@ You need to first enter Docker.
 /root/M3Pro_ws/M3Pro_navigation/launch
 ```
 
-Find the navigation\_launch.py file in the launch directory. The contents are as follows:
+Find the navigation_launch.py file in the launch directory. The contents are as follows:
 
 This file modifies the default navigation2 launch file, removing the node that originally enabled the amcl positioning method. The rest of the navigation stack remains unchanged.
 
@@ -396,7 +396,7 @@ ld.add_action(load_composable_nodes)
 return ld
 ```
 
-在launch目录下找到 cartographer\_localization.launch.py 文件,内容如下:
+在launch目录下找到 cartographer_localization.launch.py 文件,内容如下:
 
 本文件是启动cartographer节点,用于替换navigation2中默认的定位方式。
 

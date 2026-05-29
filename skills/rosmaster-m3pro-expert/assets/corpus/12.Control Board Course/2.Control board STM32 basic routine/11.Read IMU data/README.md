@@ -1,24 +1,24 @@
-# **Read IMU data**
+# Read IMU data
 
-#### [Read IMU](#page-0-0) data
+#### Read IMU data
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-10-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-11-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-## **1. Experimental Purpose**
+## 1. Experimental Purpose
 
 Use the IMU attitude sensor chip of the STM32 control board to read the raw data of the IMU device.
 
-# **2. Hardware Connection**
+# 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the IMU attitude sensor chip. No additional external devices need to be connected. You only need to connect the type-C data cable to the computer and the Connect interface of the STM32 control board.
 
-![](_page_0_Picture_11.jpeg)
+![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -28,11 +28,11 @@ Board_Samples/STM32_Samples/Read_IMU
 
 The IMU sensor chip uses the ICM20948 chip, which uses SPI communication to transmit data. According to the pin assignment, you need to initialize SPI2 as the host first.
 
-![](_page_1_Figure_4.jpeg)
+![Figure: page 1: figure 4](_page_1_Figure_4.jpeg)
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 ```
 hspi2.Init.MasterReceiverAutoSusp = SPI_MASTER_RX_AUTOSUSP_DISABLE;
@@ -420,7 +420,7 @@ bool AK09916_mag_read_uT(axises_t* data)
 }
 ```
 
-Call ICM20948\_Read\_Data\_Handle to read and print relevant data.
+Call ICM20948_Read_Data_Handle to read and print relevant data.
 
 ```
 void ICM20948_Read_Data_Handle(void)
@@ -447,11 +447,11 @@ g_axises_mag.z);
 }
 ```
 
-#### **4. Compile, download and burn firmware**
+#### 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-10-0"></span>![](_page_10_Picture_5.jpeg)
+![Picture: page 10: picture 5](_page_10_Picture_5.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -459,10 +459,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-#### **5. Experimental Results**
+#### 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 Connect the control board to the computer via a Type-C data cable, open the serial port assistant (specific parameters are shown in the figure below), and you can see that the serial port assistant will display and print the relevant data of Accel Gyro Mag.
 
-<span id="page-11-0"></span>![](_page_11_Figure_6.jpeg)
+![Figure: page 11: figure 6](_page_11_Figure_6.jpeg)

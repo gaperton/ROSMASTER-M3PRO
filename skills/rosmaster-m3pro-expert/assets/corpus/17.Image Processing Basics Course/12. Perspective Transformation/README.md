@@ -1,4 +1,4 @@
-## **Perspective Transformation**
+## Perspective Transformation
 
 Perspective transformation is also called projection transformation. The affine transformation we often talk about is a special case of perspective transformation. The purpose of perspective transformation is to transform objects that are straight lines in reality, which may appear as diagonal lines in the image, into straight lines through perspective transformation. Perspective transformation can map rectangles into arbitrary quadrilaterals. This technology will be used later when our robot is driving autonomously. Perspective transformation is achieved through the function:
 
@@ -12,9 +12,9 @@ M: 3X3 transformation matrix
 
 dsize: Output image size.
 
-flags: interpolation method, the default is INTER\_LINEAR (bilinear interpolation). When it is WARP\_INVERSE\_MAP, it means that M is an inverse transform, which can achieve the inverse transform from the target dst to src.
+flags: interpolation method, the default is INTER_LINEAR (bilinear interpolation). When it is WARP_INVERSE_MAP, it means that M is an inverse transform, which can achieve the inverse transform from the target dst to src.
 
-borderMode: Border type. Defaults to BORDER\_CONSTANT. When this value is BORDER\_TRANSPARENT, the values in the target image are not changed; they correspond to the outliers in the original image.
+borderMode: Border type. Defaults to BORDER_CONSTANT. When this value is BORDER_TRANSPARENT, the values in the target image are not changed; they correspond to the outliers in the original image.
 
 borderValue: Boundary value, the default is 0. Like affine transformation, OpenCV still provides a function cv2.getPerspectiveTransform() to provide the transformation matrix above.
 
@@ -30,7 +30,7 @@ matDst: The coordinates of the four vertices of the output image.
 
 Code path:
 
-opencv/opencv\_basic/02\_OpenCV Transform/07 perspective transformation.ipynb
+opencv/opencv_basic/02_OpenCV Transform/07 perspective transformation.ipynb
 
 ```
 import cv2
@@ -55,4 +55,4 @@ plt.imshow(img_bgr2rgb)
     plt.show()
 ```
 
-![](_page_1_Figure_1.jpeg)
+![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)

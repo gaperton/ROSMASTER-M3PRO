@@ -1,6 +1,6 @@
-# **Rectangle and circle drawing**
+# Rectangle and circle drawing
 
-## **1. Drawing a rectangle**
+## 1. Drawing a rectangle
 
 rectangle(img, pt1, pt2, color, thickness=None, lineType=None, shift=None)
 
@@ -14,9 +14,9 @@ color: Required parameter. Used to set the color of the rectangle
 
 thickness: Optional parameter. Used to set the width of the rectangle side. When the value is negative, it means filling the rectangle.
 
-lineType: Optional parameter. Used to set the type of line segment. Optional values include 8 (8 adjacent connected lines - default), 4 (4 adjacent connected lines), and cv2.LINE\_AA for antialiasing.
+lineType: Optional parameter. Used to set the type of line segment. Optional values include 8 (8 adjacent connected lines - default), 4 (4 adjacent connected lines), and cv2.LINE_AA for antialiasing.
 
-## **2. Drawing a circle**
+## 2. Drawing a circle
 
 cv2.circle(img, center, radius, color[,thickness[,lineType]])
 
@@ -41,7 +41,7 @@ lineType: Line type. The default is 8, connection type. The following table desc
 | cv2.LINE_8  | 8 connection types                                         |
 | cv2.LINE_AA | Anti-aliasing, this parameter will make the lines smoother |
 
-#### **3. Draw an ellipse**
+#### 3. Draw an ellipse
 
 cv2.ellipse(img, center, axes, angle, StartAngle, endAngle, color[,thickness[,lineType]])
 
@@ -61,7 +61,7 @@ For img and color, please refer to the description of circle.
 
 #If the 456 parameter is added with a sign, it means the opposite direction, that is, clockwise.
 
-#### **4. Draw polygons**
+#### 4. Draw polygons
 
 cv2.polylines(img,[pts],isClosed, color[,thickness[,lineType]])
 
@@ -73,7 +73,7 @@ Other parameters refer to the circle drawing parameters
 
 Code path:
 
-opencv/opencv\_basic/03\_Image processing and text drawing/05Draw a rectangular circle.ipynb
+opencv/opencv_basic/03_Image processing and text drawing/05Draw a rectangular circle.ipynb
 
 ```
 import cv2
@@ -103,4 +103,4 @@ plt.imshow(dst)
 plt.show()
 ```
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)

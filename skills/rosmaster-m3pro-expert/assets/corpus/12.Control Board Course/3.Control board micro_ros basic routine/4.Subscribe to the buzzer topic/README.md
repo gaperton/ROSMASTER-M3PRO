@@ -1,18 +1,18 @@
-# **Subscribe to the buzzer topic**
+# Subscribe to the buzzer topic
 
-[Subscribe](#page-0-0) to the buzzer topic
+Subscribe to the buzzer topic
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-1-1) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-2-0) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to the topic of controlling the buzzer switch.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates an active buzzer.
 
@@ -20,11 +20,11 @@ Use a Type-C data cable to connect the USB port of the main control board and th
 
 Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu22.04 and ROS2 environment on the main control board.
 
-![](_page_0_Picture_13.jpeg)
+![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-### <span id="page-1-0"></span>**3. Core code analysis**
+### 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -65,7 +65,7 @@ void beep_Callback(const void *msgin)
 }
 ```
 
-Call rclc\_executor\_spin\_some in a loop to make microros work properly.
+Call rclc_executor_spin_some in a loop to make microros work properly.
 
 ```
 while (ros_error < 3)
@@ -77,11 +77,11 @@ while (ros_error < 3)
 }
 ```
 
-## <span id="page-1-1"></span>**4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -89,9 +89,9 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-## <span id="page-2-0"></span>**5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
 
@@ -101,7 +101,7 @@ sh ~/start_agent.sh
 
 After the connection is successful, a node and a subscriber are created.
 
-Open another terminal and view the /YB\_Example\_Node node.
+Open another terminal and view the /YB_Example_Node node.
 
 ```
 ros2 node list

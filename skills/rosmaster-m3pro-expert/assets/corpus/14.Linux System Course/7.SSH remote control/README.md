@@ -1,36 +1,36 @@
-## **7.SSH remote control**
+## 7.SSH remote control
 
-7.SSH [remote](#page-0-0) control [1. PuTTY](#page-0-1) log into [2.SSH](#page-1-0)
+7.SSH remote control 1. PuTTY log into 2.SSH
 
-putty download link:<https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
+PuTTY download link:<https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
 
 **Note: You must know the robot's username, password and IP address before logging in remotely.**
 
 For example, in the picture below: IP address [192.168.2.119], user name [jetson], host name [yahboom].
 
-<span id="page-0-1"></span><span id="page-0-0"></span>![](_page_0_Picture_5.jpeg)
+![Picture: page 0: picture 5](_page_0_Picture_5.jpeg)
 
-## **Note:**
+## Note:
 
-**Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom jetson nano version Muto RS image, username: jetson, password: yahboom**
+**Yahboom Raspberry Pi version Muto RS image, username: pi, password: yahboom Yahboom Jetson Nano version Muto RS image, username: jetson, password: yahboom**
 
-## **1. PuTTY log into**
+## 1. PuTTY log into
 
-Download the Putty installation file and double-click the [.exe] file to install it.
+Download the PuTTY installation file and double-click the [.exe] file to install it.
 
-![](_page_1_Figure_0.jpeg)
+![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
 Enter the robot IP address and click [open].
 
-![](_page_1_Figure_2.jpeg)
+![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
 Enter the username [jetson] and password [yahboom], and press Enter to confirm.
 
 After successful login, the following figure will appear.
 
-<span id="page-1-0"></span>![](_page_1_Picture_5.jpeg)
+![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
-## **2.SSH**
+## 2.SSH
 
 Log in
 

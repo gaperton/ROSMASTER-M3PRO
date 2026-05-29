@@ -1,20 +1,20 @@
-## **Lidar Guard**
+## LiDAR Guard
 
-Lidar [Guard](#page-0-0)
+LiDAR Guard
 
-- <span id="page-0-0"></span>1. Content [Description](#page-0-1)
-- [2. Program startup](#page-0-2)
-- <span id="page-0-1"></span>3. Core code [analysis](#page-1-0)
+- 1. Content Description
+- 2. Program startup
+- 3. Core code analysis
 
-## **1. Content Description**
+## 1. Content Description
 
 This section describes how the program combines chassis control with fused radar data to detect the nearest object to the vehicle in real time and control the chassis' rotation to track it. Furthermore, if the object's distance to the vehicle falls below an alarm threshold, a buzzer on the vehicle sounds an alarm.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson-Nano and Raspberry Pi 5 users, see here)**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
 
@@ -30,17 +30,17 @@ ros2 run yahboom_M3Pro_laser laser_Warning
 
 After the program starts, the radar will scan for the nearest object within the detection range. Slowly moving the object left or right will cause the chassis to rotate, tracking the object and aligning the front of the vehicle with it. If the distance between the vehicle and the object is less than 0.55 meters, the onboard buzzer will sound.
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi and Jetson-Nano board
+Raspberry Pi and Jetson Nano board
 
-<span id="page-1-0"></span>The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboom\_M3Pro\_laser/yahboom\_M3Pro\_laser/laser\_Warning.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Warning.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/yahboom\_M3Pro\_laser/yahboom\_M3Pro\_laser/laser\_War ning.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_War ning.py
 
 Import the necessary library files,
 

@@ -1,4 +1,4 @@
-## **Edge Detection**
+## Edge Detection
 
 The goal of edge detection is to significantly reduce the size of an image's data while preserving its original properties. Currently, there are multiple algorithms for edge detection. Although the Canny algorithm is quite old, it can be considered a standard algorithm for edge detection and is still widely used in research. Canny edge detection is a technique that extracts useful structural information from different visual objects and significantly reduces the amount of data to be processed. It is currently widely used in various computer vision systems. Canny discovered that the requirements for edge detection are relatively similar across different visual systems, thus enabling the development of a broadly applicable edge detection technique. General criteria for edge detection include:
 
@@ -57,11 +57,11 @@ plt.imshow(img_bgr2rgb1)
 plt.show()
 ```
 
-![](_page_1_Figure_4.jpeg)
+![Figure: page 1: figure 4](_page_1_Figure_4.jpeg)
 
 ## Code path:
 
-opencv/opencv\_basic/03\_Image processing and text drawing/03\_2 Edge detection 2.ipynb
+opencv/opencv_basic/03_Image processing and text drawing/03_2 Edge detection 2.ipynb
 
 ```
 #Method 2
@@ -100,6 +100,6 @@ gray[i+2,j+2]
     # cv2.waitKey(0)
 ```
 
-![](_page_2_Figure_1.jpeg)
+![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-![](_page_2_Figure_2.jpeg)
+![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)

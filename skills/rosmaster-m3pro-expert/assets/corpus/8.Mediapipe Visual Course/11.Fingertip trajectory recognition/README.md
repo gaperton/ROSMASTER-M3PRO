@@ -1,14 +1,14 @@
-## **11.Fingertip trajectory recognition**
+## 11.Fingertip trajectory recognition
 
-## **1. Content Description**
+## 1. Content Description
 
 This course implements color image acquisition and fingertip detection using the MediaPipe framework. Gestures are used to start and stop recording fingertip trajectories within the image. After recording is complete, a fingertip trajectory map is generated and the trajectory is recognized.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-## **2. Program startup**
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
@@ -24,37 +24,37 @@ ros2 run yahboomcar_mediapipe 15_ FingerTrajectory
 
 After the program is run, as shown in the figure below, place your palm flat on the camera screen, open your fingers, and face the camera with your palm, similar to the number 5 gesture. The image will draw the joints on the entire palm. Adjust the position of your palm and try to keep it in the upper middle part of the screen.
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
 At this time, the index finger remains unchanged and the other fingers are retracted, similar to the gesture of the number 1.
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
 While holding gesture 1, move the position of your finger and a red line will appear on the screen, drawing the path of your index finger.
 
-![](_page_2_Picture_0.jpeg)
+![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
 After the graphic is drawn, open all your fingers and make a gesture similar to the number 5, and the drawn graphic will be generated below.
 
-![](_page_2_Picture_2.jpeg)
+![Picture: page 2: picture 2](_page_2_Picture_2.jpeg)
 
-![](_page_3_Picture_0.jpeg)
+![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
 Note: The drawn graphics need to be closed, otherwise some content may be missing.
 
 There are currently four trajectory shapes that can be recognized, namely: triangle, rectangle, circle, and five-pointed star
 
-## **3. Core code analysis**
+## 3. Core code analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson-Nano board
+Raspberry Pi 5 and Jetson Nano board
 
-The program code is in the running docker. The path in docker is /root/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/15\_FingerTra jectory.py
+The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/15_FingerTra jectory.py
 
 Orin Motherboard
 
-The program code path is /home/jetson/yahboomcar\_ws/src/yahboomcar\_mediapipe/yahboomcar\_mediapipe/15\_Fi ngerTrajectory.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/15_Fi ngerTrajectory.py
 
 Import the library files used,
 
@@ -234,7 +234,7 @@ outline
         gc.collect()
 ```
 
-hand\_angle function, calculates the bending angle of each finger
+hand_angle function, calculates the bending angle of each finger
 
 ```
 def hand_angle(landmarks):
@@ -266,7 +266,7 @@ landmarks[20])
     return angle_list
 ```
 
-h\_gesture function, which determines the gesture of the finger through two-dimensional features
+h_gesture function, which determines the gesture of the finger through two-dimensional features
 
 ```
 def h_gesture(angle_list):
@@ -284,7 +284,7 @@ def h_gesture(angle_list):
     return gesture_str
 ```
 
-get\_track\_img function, generates the track map,
+get_track_img function, generates the track map,
 
 ```
 def get_track_img(points):

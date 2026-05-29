@@ -1,18 +1,18 @@
-# **Navigation2 Single-Point Navigation and Obstacle Avoidance**
+# Navigation2 Single-Point Navigation and Obstacle Avoidance
 
-# **1. Course Content**
+# 1. Course Content
 
 - 1. Learn the single-point navigation and obstacle avoidance function of Robot Navigation2.
-- 2. Run the program. A map will load in rviz. In the rviz interface, use the [2D Pose Estimate] tool to set the robot's initial pose, then use the [2D Goal Pose] tool to set a target point for the robot. The robot will calculate a path based on its surroundings and move to its destination. If it encounters obstacles, it will automatically avoid them and stop at its destination.
+- 2. Run the program. A map will load in RViz. In the RViz interface, use the [2D Pose Estimate] tool to set the robot's initial pose, then use the [2D Goal Pose] tool to set a target point for the robot. The robot will calculate a path based on its surroundings and move to its destination. If it encounters obstacles, it will automatically avoid them and stop at its destination.
 - 3. Learn the concepts of global and local costmaps, navigation parameter configuration, and the principles of the AMCL localization algorithm.
 
-# **2. Introduction to Navigation2**
+# 2. Introduction to Navigation2
 
-# **2.1 Introduction**
+# 2.1 Introduction
 
 Navigation2 Overall Architecture Diagram
 
-![](_page_0_Figure_8.jpeg)
+![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
 Navigation2 provides the following tools:
 
@@ -31,7 +31,7 @@ Navigation 2 (Nav2) is the native navigation framework in ROS 2. Its purpose is 
 
 Nav2 uses behavior trees (BTs) to call modular servers to complete an action. Actions can include path calculation, control efforts, recovery, or other navigation-related actions. These actions are independent nodes that communicate with the behavior tree (BT) through the action server.
 
-# **2.2 Related Materials**
+# 2.2 Related Materials
 
 Navigation2 Documentation:<https://navigation.ros.org/index.html>
 
@@ -39,13 +39,13 @@ Navigation2 GitHub:<https://github.com/ros-planning/navigation2>
 
 Navigation2 Paper:<https://arxiv.org/pdf/2003.00368.pdf>
 
-# **3. Preparation**
+# 3. Preparation
 
-### **3.1 Content Description**
+### 3.1 Content Description
 
 This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
 
-### **3.2 Starting the Agent**
+### 3.2 Starting the Agent
 
 **Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.**
 
@@ -57,11 +57,11 @@ sh start_agent.sh
 
 The terminal prints the following message, indicating a successful connection.
 
-# **4. Running the Example**
+# 4. Running the Example
 
-# **4.1 Single-Click Navigation**
+# 4.1 Single-Click Navigation
 
-#### **Note:**
+#### Note:
 
 - For Jetson Nano and Raspberry Pi series controllers, you must first enter the Docker container (see the [Docker Course Section - Entering the Robot's Docker Container] for steps).
 - This section requires at least one existing map. Refer to any of the SLAM mapping courses, such as Gmapping-SLAM Mapping, Cartographer Mapping, or Slam-Toolbox Mapping.
@@ -74,51 +74,51 @@ ros2 launch M3Pro_navigation base_bringup.launch.py
 
 To start navigation again:
 
-ros2 launch M3Pro\_navigation navigation2.launch.py
+ros2 launch M3Pro_navigation navigation2.launch.py
 
-The rviz visualization function can be started on either the vehicle terminal or the virtual machine. **Select either** method. Do not start both the virtual machine and the vehicle terminal at the same time:
+The RViz visualization function can be started on either the vehicle terminal or the virtual machine. **Select either** method. Do not start both the virtual machine and the vehicle terminal at the same time:
 
-For example, using a virtual machine, open a terminal and start the rviz visualization interface:
+For example, using a virtual machine, open a terminal and start the RViz visualization interface:
 
 ```
 ros2 launch slam_view nav_rviz.launch.py
 ```
 
-Command to launch the Rviz visualization interface on the vehicle:
+Command to launch the RViz visualization interface on the vehicle:
 
 ```
 ros2 launch M3Pro_navigation nav_rviz.launch.py
 ```
 
-![](_page_3_Figure_0.jpeg)
+![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-You can now see the map loading. Click [2D Pose Estimate] to set the initial pose for the car. Based on the car's actual position in the environment, click and drag the mouse in Rviz to move the car model to the set position. As shown in the figure below, if the radar scan area roughly overlaps with the actual obstacle, the pose is accurate.
+You can now see the map loading. Click [2D Pose Estimate] to set the initial pose for the car. Based on the car's actual position in the environment, click and drag the mouse in RViz to move the car model to the set position. As shown in the figure below, if the radar scan area roughly overlaps with the actual obstacle, the pose is accurate.
 
-![](_page_3_Figure_2.jpeg)
+![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-After pose initialization is complete, the robot model and the red LiDAR 2D point cloud will appear in the rviz interface.
+After pose initialization is complete, the robot model and the red LiDAR 2D point cloud will appear in the RViz interface.
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-For single-point navigation, click the [2D Goal Pose] tool, then use the mouse to select a target point and orientation in rviz, then release.
+For single-point navigation, click the [2D Goal Pose] tool, then use the mouse to select a target point and orientation in RViz, then release.
 
-![](_page_4_Figure_2.jpeg)
+![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
 The robot plans a path based on its surroundings and moves along it to the target point.
 
-![](_page_5_Figure_0.jpeg)
+![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
 After the robot successfully reaches the target point, the vehicle terminal will display "Goal succeeded," indicating successful navigation.
 
-![](_page_5_Figure_2.jpeg)
+![Figure: page 5: figure 2](_page_5_Figure_2.jpeg)
 
-# **4.2 Viewing the Costmap**
+# 4.2 Viewing the Costmap
 
 To view the global and local costmaps, locate Global Costmap under the Global Planner group in the left-hand configuration pane and select it to display the global costmap. Similarly, locate Local Costmap under the Controller group and select it. Click the Costmap option to display the costmap (the concept of costmaps will be explained in the theoretical section below).
 
-![](_page_6_Figure_0.jpeg)
+![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-# **4.3 Viewing the Node Communication Graph**
+# 4.3 Viewing the Node Communication Graph
 
 In the VM terminal, enter:
 
@@ -128,63 +128,63 @@ ros2 run rqt_graph rqt_graph
 
 If the graph does not display initially, select [Nodes/Topics (all)] and click the refresh button in the upper left corner. The original graph is too large; you can view it in the current lesson folder.
 
-![](_page_6_Figure_5.jpeg)
+![Figure: page 6: figure 5](_page_6_Figure_5.jpeg)
 
-# **4.4 Viewing the TF Tree**
+# 4.4 Viewing the TF Tree
 
 In the VM terminal, enter:
 
-ros2 run rqt\_tf\_tree rqt\_tf\_tree
+ros2 run rqt_tf_tree rqt_tf_tree
 
 If the page doesn't display initially, click the refresh icon in the upper left corner to refresh the page. The original image is too large; you can view it in the course folder.
 
-![](_page_7_Picture_1.jpeg)
+![Picture: page 7: picture 1](_page_7_Picture_1.jpeg)
 
-# **5. Navigation Explanation**
+# 5. Navigation Explanation
 
-### **5.1 Core Steps of the Navigation Process**
+### 5.1 Core Steps of the Navigation Process
 
-### **5.1.1 Phase 1: System Initialization and Map Loading**
+### 5.1.1 Phase 1: System Initialization and Map Loading
 
 - **Map Acquisition**
-- Load a pre-built raster map from map\_server
+- Load a pre-built raster map from map_server
 - The map contains static obstacle information and serves as the basic environment model for navigation.
 
-#### **Cost Map Initialization**
+#### Cost Map Initialization
 
 - **Global Costmap**: Based on the static map, used for global path planning.
 - **Local Costmap**: Integrates the real-time scan topic of the lidar for dynamic obstacle avoidance.
 
-### **5.1.2 Phase 2: Sensor Data Processing and Environmental Perception**
+### 5.1.2 Phase 2: Sensor Data Processing and Environmental Perception
 
-### **Sensor Data Access**
+### Sensor Data Access
 
 LiDAR (/scan), IMU (/imu/data), and odometry (/odom) data are input via ROS topics.
 
-#### **Cost Map Update**
+#### Cost Map Update
 
 - The local cost map updates dynamic obstacle information in real time. Each grid cell calculates occupancy probability and cost based on sensor data (e.g., the closer to the obstacle, the higher the cost).
 - Inflation: Expands the edges of obstacles to prevent the robot from getting too close.
 
-### **5.1.3 Phase 3: Path Planning (Global and Local Planning)**
+### 5.1.3 Phase 3: Path Planning (Global and Local Planning)
 
-#### **Global Path Planning**
+#### Global Path Planning
 
 - Input: Start point (current robot pose), end point (goal pose), and global cost map.
 - The Dijkstra planner algorithm generates an optimal path (a series of discrete coordinate points) from the start point to the end point.
 
-#### **Local Path Planning and Tracking**
+#### Local Path Planning and Tracking
 
 The local planner, DWBLocalPlanner, generates short-term control commands that the robot can execute based on the global path and the local costmap.
 
-### **5.1.4 Phase 4: Control Execution and Behavior Decision-Making**
+### 5.1.4 Phase 4: Control Execution and Behavior Decision-Making
 
-#### **Controller Output**
+#### Controller Output
 
-- The controller converts the local path into the robot's linear velocity ( linear.x ) and angular velocity ( angular.z ), which are published via the /cmd\_vel topic.
+- The controller converts the local path into the robot's linear velocity ( linear.x ) and angular velocity ( angular.z ), which are published via the /cmd_vel topic.
 - Velocity Smoothing: This prevents abrupt changes in robot motion and improves stability.
 
-#### **Behavior Tree Decision Process**
+#### Behavior Tree Decision Process
 
 The behavior tree defines the priority and state transition logic for navigation tasks. A typical process is as follows:
 
@@ -192,20 +192,20 @@ The behavior tree defines the priority and state transition logic for navigation
 - 2. **Performing Local Obstacle Avoidance**: When an obstacle is detected in the local costmap, temporarily deviate from the global path.
 - 3. **Reaching the Target**: When the error between the robot's pose and the target pose is less than a threshold, the task is completed.
 
-#### **Recovery Behavior Mechanism**
+#### Recovery Behavior Mechanism
 
 When navigation encounters an anomaly (such as a completely blocked path), a pre-set recovery strategy (such as rotating to search for a new path or backing off to replan) is triggered.
 
-# **5.2 Key Technical Principles**
+# 5.2 Key Technical Principles
 
-### **5.2.1 Costmap**
+### 5.2.1 Costmap
 
 - **Probabilistic Grid Representation**: Each grid stores an occupancy probability (0-1) and is updated based on sensor data (such as raycast detection by LiDAR).
 - **Multi-layer Cost Overlay**: Static cost (for obstacles in the map) + Dynamic cost (for obstacles detected by real-time sensors) + Inflated cost (for safety distance).
 
 A costmap is a 2D or 3D map created and updated by the robot using sensor information. The following figure provides a brief overview.
 
-![](_page_9_Figure_0.jpeg)
+![Figure: page 9: figure 0](_page_9_Figure_0.jpeg)
 
 In the figure above, the red area represents obstacles in the costmap, the blue area represents obstacles expanded by the radius of the robot's inscribed circle, and the red polygon represents the footprint (the vertical projection of the robot's outline). To avoid collisions, the footprint should not intersect the red area, and the robot's center should not intersect the blue area. The ROS costmap uses a grid format, with each cell value (cell cost) ranging from 0 to 255. It is divided into three states: occupied (obstacles present), free area (no obstacles), and unknown area.
 
@@ -221,51 +221,51 @@ The above figure can be divided into five parts, with the red polygon representi
 
 #### Global Costmap:
 
-![](_page_10_Picture_0.jpeg)
+![Picture: page 10: picture 0](_page_10_Picture_0.jpeg)
 
 ### Local Costmap:
 
-![](_page_10_Picture_2.jpeg)
+![Picture: page 10: picture 2](_page_10_Picture_2.jpeg)
 
-### **5.2.2 AMCL Localization Algorithm**
+### 5.2.2 AMCL Localization Algorithm
 
 AMCL (Adaptive Monte Carlo Localization) is a probabilistic localization system for 2D mobile robots. It implements an adaptive (or KLD sampling) Monte Carlo localization method that uses a particle filter to estimate the robot's position based on a given map.
 
-As shown in the figure below, if the odometry is error-free, in a perfect world, we can directly use the odometry information (top half) to infer the robot's (base\_frame) position relative to the odometry coordinate system. However, in reality, odometry drift and non-negligible cumulative errors exist. Therefore, AMCL uses the method in the bottom half. This method first uses the odometry information to preliminarily locate the base\_frame. Then, using the measurement model, we determine the base\_frame's position relative to the map\_frame (global map coordinate system), thus determining the robot's position within the map. (Note that although the conversion from base to map is estimated here, the conversion from map to odom is finally published, which can be understood as the drift of the odometry.)
+As shown in the figure below, if the odometry is error-free, in a perfect world, we can directly use the odometry information (top half) to infer the robot's (base_frame) position relative to the odometry coordinate system. However, in reality, odometry drift and non-negligible cumulative errors exist. Therefore, AMCL uses the method in the bottom half. This method first uses the odometry information to preliminarily locate the base_frame. Then, using the measurement model, we determine the base_frame's position relative to the map_frame (global map coordinate system), thus determining the robot's position within the map. (Note that although the conversion from base to map is estimated here, the conversion from map to odom is finally published, which can be understood as the drift of the odometry.)
 
-![](_page_11_Figure_4.jpeg)
+![Figure: page 11: figure 4](_page_11_Figure_4.jpeg)
 
-![](_page_11_Figure_5.jpeg)
+![Figure: page 11: figure 5](_page_11_Figure_5.jpeg)
 
-In the TF tree during robot navigation, the coordinate transformation between map (map coordinate system) and odom (odometry coordinate system) is published by the AMCL positioning algorithm, while the coordinate transformation between odom (odometry coordinate system) and besel\_footprint (robot chassis center projection coordinate system) is published by the **ekf\_filter\_node** node under the **robot\_localization** function package. Its function is to publish the odometry information after the fusion of the IMU sensor and the encoder raw mileage.
+In the TF tree during robot navigation, the coordinate transformation between map (map coordinate system) and odom (odometry coordinate system) is published by the AMCL positioning algorithm, while the coordinate transformation between odom (odometry coordinate system) and besel_footprint (robot chassis center projection coordinate system) is published by the **ekf_filter_node** node under the **robot_localization** function package. Its function is to publish the odometry information after the fusion of the IMU sensor and the encoder raw mileage.
 
-![](_page_12_Figure_1.jpeg)
+![Figure: page 12: figure 1](_page_12_Figure_1.jpeg)
 
-In the node communication diagram above, we can see the communication data flow for the ekf\_filter\_node.
+In the node communication diagram above, we can see the communication data flow for the ekf_filter_node.
 
-The /YB\_Node node is the robot chassis node, publishing **/imu/data\_raw** (raw IMU sensor data) and **/odom\_raw** (raw encoder odometry data).
+The /YB_Node node is the robot chassis node, publishing **/imu/data_raw** (raw IMU sensor data) and **/odom_raw** (raw encoder odometry data).
 
-The imu\_filter node subscribes to **/imu\_data\_raw** published by the robot chassis. u/data\_raw\*\* (raw IMU sensor data). The imu\_filter node filters the raw IMU sensor data and publishes it to the /imu/data topic.
+The imu_filter node subscribes to **/imu_data_raw** published by the robot chassis. u/data_raw\*\* (raw IMU sensor data). The imu_filter node filters the raw IMU sensor data and publishes it to the /imu/data topic.
 
-The **ekf\_filter\_node** node subscribes to the /**odom** and **/imu/data** topics, fuses the multi-sensor data, and publishes it to the **/odom** topic.
+The **ekf_filter_node** node subscribes to the /**odom** and **/imu/data** topics, fuses the multi-sensor data, and publishes it to the **/odom** topic.
 
-![](_page_13_Picture_0.jpeg)
+![Picture: page 13: picture 0](_page_13_Picture_0.jpeg)
 
-# **5.3 Path Planning**
+# 5.3 Path Planning
 
-### **5.3.1 Global Path Planning**
+### 5.3.1 Global Path Planning
 
 Global path planning calculates an optimal or feasible global path from a start point to a destination within a known environment map, disregarding real-time obstacles. The path from the start point to the destination is calculated with the global optimum as the goal. As shown in the figure below, the path connected by arrows is the global path.
 
-![](_page_13_Picture_4.jpeg)
+![Picture: page 13: picture 4](_page_13_Picture_4.jpeg)
 
-### **5.3.2 Local Path Planning**
+### 5.3.2 Local Path Planning
 
 Local path planning dynamically adjusts the robot's path based on real-time LiDAR sensor data during movement to avoid obstacles (obstacles are displayed in the costmap). As shown in the figure below, the blue path is the local path.
 
-![](_page_14_Picture_0.jpeg)
+![Picture: page 14: picture 0](_page_14_Picture_0.jpeg)
 
-# **5.4 Navigation Parameter Configuration**
+# 5.4 Navigation Parameter Configuration
 
 Configuration file path:
 
@@ -914,7 +914,7 @@ wait_at_waypoint :
   waypoint_pause_duration : 200
 ```
 
-The above are the configurable parameters of Navigation2. If the user needs to modify the configuration parameters, after the modification is completed, the M3Pro\_navigation function package needs to be recompiled in the M3Pro\_ws workspace to take effect:
+The above are the configurable parameters of Navigation2. If the user needs to modify the configuration parameters, after the modification is completed, the M3Pro_navigation function package needs to be recompiled in the M3Pro_ws workspace to take effect:
 
 ```
 colcon build --packages-select M3Pro_navigation

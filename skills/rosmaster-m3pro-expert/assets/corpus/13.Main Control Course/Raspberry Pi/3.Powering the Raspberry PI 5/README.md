@@ -1,10 +1,10 @@
-## **3. Powering the Raspberry PI 5**
+## 3. Powering the Raspberry Pi 5
 
-## **This section mainly introduces the power supply related content of Raspberry Pi 5**
+## This section mainly introduces the power supply related content of Raspberry Pi 5
 
 Raspberry Pi makes two different USB-C power supplies. The first is the Raspberry Pi 15W USB-C Power Supply, which is the recommended power supply for the Raspberry Pi 4 and Raspberry Pi 400. The second is the Raspberry Pi 27W USB-C power supply, which provides up to 5A at +5.1V and is the recommended power supply for the Raspberry Pi 5.
 
-![](_page_0_Picture_3.jpeg)
+![Picture: page 0: picture 3](_page_0_Picture_3.jpeg)
 
 Although mobile phone chargers that support USB-PD have a nominal power of more than 15W, they actually achieve this by increasing the voltage, rather than providing more current at +5V voltage. If you use a power supply that cannot deliver 5A at +5V when first booted, the operating system will warn you that the peripheral's current draw will be limited to 600mA.
 

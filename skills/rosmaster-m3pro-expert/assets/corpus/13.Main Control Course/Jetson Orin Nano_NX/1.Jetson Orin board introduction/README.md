@@ -1,20 +1,20 @@
-## **Jetson board introduction**
+## Jetson board introduction
 
-#### **Jetson board [introduction](#page-0-0)**
+#### Jetson board introduction
 
-- <span id="page-0-1"></span><span id="page-0-0"></span>1. Jetson Orin [development](#page-0-1) kit
-  - 1.1. Front of the [development](#page-0-2) board
-  - 1.2. Back of the [development](#page-1-0) board
+- 1. Jetson Orin development kit
+  - 1.1. Front of the development board
+  - 1.2. Back of the development board
 
-## **1. Jetson Orin development kit**
+## 1. Jetson Orin development kit
 
 The main difference between the Jetson Orin official development kit and the SUB version development kit: the official kit does not have ① switch button
 
-### <span id="page-0-2"></span>**1.1. Front of the development board**
+### 1.1. Front of the development board
 
-![](_page_0_Picture_8.jpeg)
+![Picture: page 0: picture 8](_page_0_Picture_8.jpeg)
 
-| Serial<br>number | Description                                 | Serial<br>number | Description                     |
+| Serial number | Description                                 | Serial number | Description                     |
 |------------------|---------------------------------------------|------------------|---------------------------------|
 | 1                | Power switch button (SUB)                   | 9                | CAN bus                         |
 | 2                | 12Pin button row                            | 10               | Fan interface                   |
@@ -25,11 +25,11 @@ The main difference between the Jetson Orin official development kit and the SUB
 | 7                | DisplayPort interface                       | 15               | Power indicator                 |
 | 8                | Power interface                             | 16               | USB Type C                      |
 
-# <span id="page-1-0"></span>1.2. Back of the development board
+# 1.2. Back of the development board
 
-![](_page_1_Picture_2.jpeg)
+![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-| Serial<br>number | Description                       | Serial<br>number | Description               |
+| Serial number | Description                       | Serial number | Description               |
 |------------------|-----------------------------------|------------------|---------------------------|
-| 1                | M.2 Key E connector slot (75-pin) | 3                | M.2KeyM slot (75-<br>pin) |
-| 2                | RTC battery holder (optional)     | 4                | M.2KeyM slot (75-<br>pin) |
+| 1                | M.2 Key E connector slot (75-pin) | 3                | M.2KeyM slot (75- pin) |
+| 2                | RTC battery holder (optional)     | 4                | M.2KeyM slot (75- pin) |

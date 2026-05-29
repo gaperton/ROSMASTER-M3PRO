@@ -1,26 +1,26 @@
-# **Driving RGB light strips**
+# Driving RGB light strips
 
-[Driving](#page-0-0) RGB light strips
+Driving RGB light strips
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-5-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-5-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-### **1. Experimental Purpose**
+### 1. Experimental Purpose
 
 Learn how to control a WS2812 RGB light strip using the SPI functionality of the STM32 controller board.
 
-### **2. Hardware Connection**
+### 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board has an integrated RGB interface, but you need to connect an additional RGB light strip. You need to prepare your own RGB light strip and connect the type-C data cable to the computer and the USB Connect interface of the STM32 control board.
 
 The RGB light strip is driven by the WS2812 chip, and the circuit design uses SPI+DMA to simulate the WS2812 control timing to drive the RGB light strip.
 
-![](_page_0_Picture_12.jpeg)
+![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
-#### **3. Core code analysis**
+#### 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -30,7 +30,7 @@ Board_Samples/STM32_Samples/RGB
 
 According to the pin assignment, the signal pin of the RGB light strip is connected to PE6 (SPI4- MOSI), so the SPI4 is initialized to master mode. The clock frequency of SPI4 is 120MHz, divided by 32, so the final communication frequency of SPI4 is 3.75Mhz.
 
-![](_page_1_Figure_4.jpeg)
+![Figure: page 1: figure 4](_page_1_Figure_4.jpeg)
 
 ```
 void MX_SPI4_Init(void)
@@ -227,11 +227,11 @@ RGB_Update();
 }
 ```
 
-### **4. Compile, download and burn firmware**
+### 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-5-0"></span>![](_page_5_Picture_3.jpeg)
+![Picture: page 5: picture 3](_page_5_Picture_3.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -239,16 +239,16 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-## <span id="page-5-1"></span>**5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 The RGB light strip updates the color of the RGB light strip every second, and the color sequence is red, green, blue, white and off.
 
-![](_page_6_Picture_0.jpeg)
+![Picture: page 6: picture 0](_page_6_Picture_0.jpeg)
 
-![](_page_6_Picture_1.jpeg)
+![Picture: page 6: picture 1](_page_6_Picture_1.jpeg)
 
-![](_page_6_Picture_2.jpeg)
+![Picture: page 6: picture 2](_page_6_Picture_2.jpeg)
 
-![](_page_6_Picture_3.jpeg)
+![Picture: page 6: picture 3](_page_6_Picture_3.jpeg)

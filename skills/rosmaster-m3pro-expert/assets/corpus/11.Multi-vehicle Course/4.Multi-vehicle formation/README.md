@@ -1,6 +1,6 @@
-# **Multi-vehicle Platoon**
+# Multi-vehicle Platoon
 
-## **1. Description**
+## 1. Description
 
 This function arranges three robots in a program-defined position. When the lead vehicle moves, the other two vehicles follow suit, maintaining the formation at the destination. The program offers three possible formations:
 
@@ -10,31 +10,31 @@ This function arranges three robots in a program-defined position. When the lead
 
 For ease of explanation, this tutorial uses robot1 to represent the lead vehicle, and robot2 and robot3 to represent the other two vehicles.
 
-#### **1.1. Functional Requirements**
+#### 1.1. Functional Requirements
 
-This feature requires three vehicles, and all three must have their namespaces and ROS\_DOMAIN\_IDs configured. For setup instructions, refer to [1.1. Functional Requirements] in [1. Multi-Vehicle Chassis Control] in the [11. Multi-Vehicle Functionality] section of this product's course.
+This feature requires three vehicles, and all three must have their namespaces and ROS_DOMAIN_IDs configured. For setup instructions, refer to [1.1. Functional Requirements] in [1. Multi-Vehicle Chassis Control] in the [11. Multi-Vehicle Functionality] section of this product's course.
 
-#### **1.2. Site Requirements**
+#### 1.2. Site Requirements
 
 To run this feature, choose a spacious site. Although the vehicles have obstacle avoidance, a narrow site can result in poor navigation performance or even navigation planning failure.
 
-#### **1.3. Navigation Map**
+#### 1.3. Navigation Map
 
-Before enabling multi-vehicle platooning, you need to place the map file in the /home/yahboom/yahboomcar\_ws/src/yahboom\_mapping/maps directory in the virtual machine. The map file includes a .yaml parameter file and a .pgm image file.
+Before enabling multi-vehicle platooning, you need to place the map file in the /home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps directory in the virtual machine. The map file includes a.yaml parameter file and a.pgm image file.
 
-## **2. Implementation Principle**
+## 2. Implementation Principle
 
 This feature relies on nav2 navigation when enabled. When robot1 is given a target point, it publishes two TF transforms: one from robot1 to point2 and one from robot1 to point3. Point2 and point3 are the target points that robot2 and robot3 need to reach. As robot1 moves, it publishes these two TF transforms. Robot2 and robot3 simply need to obtain the locations of point2 and point3 on the map and then navigate to them, respectively.
 
-## **3. Program Startup**
+## 3. Program Startup
 
-Because of multi-vehicle navigation, the virtual machine must be on the same local area network as the three cars, and its ROS\_DOMAIN\_ID must be set to the same value. For setup instructions, refer to the beginning of [3. Multi-vehicle Navigation] - [2. Program Startup] in [11. Multi-vehicle Functionality] and will not be repeated here.
+Because of multi-vehicle navigation, the virtual machine must be on the same local area network as the three cars, and its ROS_DOMAIN_ID must be set to the same value. For setup instructions, refer to the beginning of [3. Multi-vehicle Navigation] - [2. Program Startup] in [11. Multi-vehicle Functionality] and will not be repeated here.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson-Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
 For Orin boards, simply open a terminal and enter the commands mentioned in this lesson.
 
-#### **3.1. Start chassis data fusion**
+#### 3.1. Start chassis data fusion
 
 Enter the following commands in robot1, robot2, and robot3 respectively to start the robot and chassis data fusion.
 
@@ -47,7 +47,7 @@ ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name:=robot2
 ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name:=robot3
 ```
 
-#### **3.2. Start rviz display and publish map data**
+#### 3.2. Start RViz display and publish map data
 
 In the virtual machine, open two terminals and enter the following commands:
 
@@ -58,11 +58,11 @@ ros2 launch slam_view formation_rviz.launch.py
 ros2 launch yahboom_mapping map.launch.py
 ```
 
-As shown below, after a successful launch, rviz will load the map.
+As shown below, after a successful launch, RViz will load the map.
 
-![](_page_1_Picture_9.jpeg)
+![Picture: page 1: picture 9](_page_1_Picture_9.jpeg)
 
-#### **3.3. Starting AMCL Positioning**
+#### 3.3. Starting AMCL Positioning
 
 Enter the following commands in robot1, robot2, and robot3 to start AMCL positioning.
 
@@ -83,7 +83,7 @@ Next, in rviz2, use the [2D Pose Estimate] tool to give the robot an initial pos
 
 As shown in the figure below, the areas scanned by the two radars overlap with the black area on the map. The green area represents the point cloud scanned by Robot 1's radar, the red area represents the point cloud scanned by Robot 2's radar, and the blue area represents the point cloud scanned by Robot 3's radar.
 
-#### **3.4. Starting NAV Navigation**
+#### 3.4. Starting NAV Navigation
 
 Enter the following commands in Robot 1, Robot 2, and Robot 3 to start AMCL positioning.
 
@@ -98,7 +98,7 @@ ros2 launch yahboom_multi robot3_nav.launch.py
 
 As shown in the figure below, the "Creating bond" message appears in all three terminals that start NAV2 navigation. "timer..." indicates a successful startup.
 
-#### **3.5. Starting the Formation Program**
+#### 3.5. Starting the Formation Program
 
 In the VM, enter the following command in the terminal to start publishing the TF program:
 
@@ -106,7 +106,7 @@ In the VM, enter the following command in the terminal to start publishing the T
 ros2 run yahboom_multi_tf pub_follower_goal
 ```
 
-After the program runs, in rviz, use the first [2D Goal Pose] tool to assign a target pose to robot1 and have it navigate to that point. In rviz, you'll see that robot1/base\_link points to point2 and point3 based on the queue name (the default is convoy, meaning left and right guards). As shown below,
+After the program runs, in RViz, use the first [2D Goal Pose] tool to assign a target pose to robot1 and have it navigate to that point. In RViz, you'll see that robot1/base_link points to point2 and point3 based on the queue name (the default is convoy, meaning left and right guards). As shown below,
 
 Then, enter the following commands in the VM terminal to start the target point subscription and navigation program for Robot 2 and Robot 3:
 
@@ -114,15 +114,15 @@ Then, enter the following commands in the VM terminal to start the target point 
 ros2 run yahboom_multi_tf get_follower_point
 ```
 
-After running the program, Robot 2 and Robot 3 will navigate to point 2 and point 3, respectively. Once Robot 2 and Robot 3 reach the target point, they will form a left and right guard formation with Robot 1. In rviz, use the first [2D Goal Pose] tool to assign a target point to Robot 1. As Robot 1 navigates, Robot 2 and Robot 3 will follow.
+After running the program, Robot 2 and Robot 3 will navigate to point 2 and point 3, respectively. Once Robot 2 and Robot 3 reach the target point, they will form a left and right guard formation with Robot 1. In RViz, use the first [2D Goal Pose] tool to assign a target point to Robot 1. As Robot 1 navigates, Robot 2 and Robot 3 will follow.
 
-## **4. Core Code Analysis**
+## 4. Core Code Analysis
 
-#### **4.1. pub\_follower\_goal.py**
+#### 4.1. pub_follower_goal.py
 
 In the VM, code path:
 
-/home/yahboom/yahboomcar\_ws/src/yahboom\_multi\_tf/yahboom\_multi\_tf/pub\_follower\_goal .py
+/home/yahboom/yahboomcar_ws/src/yahboom_multi_tf/yahboom_multi_tf/pub_follower_goal.py
 
 Initialization function,
 
@@ -201,11 +201,11 @@ transformation.
     print("send TF.")
 ```
 
-#### **4.2、get\_follower\_point.py**
+#### 4.2. get_follower_point.py
 
 In the VM, code path:
 
-/home/yahboom/yahboomcar\_ws/src/yahboom\_multi\_tf/yahboom\_multi\_tf/get\_follower\_poin t.py
+/home/yahboom/yahboomcar_ws/src/yahboom_multi_tf/yahboom_multi_tf/get_follower_poin t.py
 
 Initialization function,
 
@@ -271,7 +271,7 @@ rclpy.time.Time())
         self.get_logger().warn(f"Could not transform: {e}")
 ```
 
-### **5. View the TF tree**
+### 5. View the TF tree
 
 Enter the following command in the VM terminal to view the TF tree:
 

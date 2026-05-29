@@ -1,12 +1,12 @@
-# **Using USB camera**
+# Using USB camera
 
-#### **Using USB [camera](#page-0-0)**
+#### Using USB camera
 
-<span id="page-0-0"></span>Install [FSWebcam](#page-0-1) View USB [camera](#page-1-0) device [Photograph](#page-1-1) Time-lapse [photography](#page-2-0) Using Cron [\(scheduled tasks\)](#page-3-0) [Web page](#page-5-0) preview camera Install [Motion](#page-5-1) Modify [configuration](#page-5-2) file Start [service](#page-6-0) [Web page](#page-6-1) preview screen
+Install FSWebcam View USB camera device Photograph Time-lapse photography Using Cron \(scheduled tasks\) Web page preview camera Install Motion Modify configuration file Start service Web page preview screen
 
 Take photos and videos on your Raspberry Pi using a standard USB camera.
 
-### <span id="page-0-1"></span>**Install FSWebcam**
+### Install FSWebcam
 
 FSWebcam is a simple and clear webcam application. The software installation command is as follows:
 
@@ -24,7 +24,7 @@ sudo usermod -a -G video pi
 
 Check if the user has been added to the group correctly Command: groups
 
-## <span id="page-1-0"></span>**View USB camera device**
+## View USB camera device
 
 Use the lsusb command to view all USB devices recognized by the system;
 
@@ -32,9 +32,9 @@ Use the ls /dev/video\* command to list all video devices recognized by the syst
 
 The next two commands are to detect the information displayed by the camera. You can compare the differences by yourself: One is image/video collection and the other is metadata collection.
 
-### **Photograph**
+### Photograph
 
-<span id="page-1-1"></span>fswebcam <image\_name>
+fswebcam <image_name>
 
 Example: Take a photo and save it as image.jpg (the file saving path defaults to the user directory)
 
@@ -42,7 +42,7 @@ Example: Take a photo and save it as image.jpg (the file saving path defaults to
 fswebcam image.jpg
 ```
 
-fswebcam -r resolution <image\_name>
+fswebcam -r resolution <image_name>
 
 Example: Take an image file with a resolution of 1280x720 and save it as image2.jpg
 
@@ -50,7 +50,7 @@ Example: Take an image file with a resolution of 1280x720 and save it as image2.
 fswebcam -r 1280x720 image2.jpg
 ```
 
-fswebcam -r resolution --no-banner <image\_name>
+fswebcam -r resolution --no-banner <image_name>
 
 Example: Take an image file with a resolution of 1280x720, no information such as time is displayed on the picture, and save it as image3.jpg
 
@@ -58,7 +58,7 @@ Example: Take an image file with a resolution of 1280x720, no information such a
 fswebcam -r 1280x720 --no-banner image3.jpg
 ```
 
-### <span id="page-2-0"></span>**Time-lapse photography**
+### Time-lapse photography
 
 Create a new Webcam folder and enter the file
 
@@ -95,11 +95,11 @@ run script
 ./webcam.sh
 ```
 
-### <span id="page-3-0"></span>**Using Cron (scheduled tasks)**
+### Using Cron (scheduled tasks)
 
 Open the cron table for editing. You will be prompted to select an editor when using it for the first time. It is recommended to use the nano editor.
 
-![](_page_3_Figure_3.jpeg)
+![Figure: page 3: figure 3](_page_3_Figure_3.jpeg)
 
 Add the following code to the edited document: the first 5 \* symbols represent a timer of 1 minute, and 2>&1 is to input the error output to the standard output.
 
@@ -107,7 +107,7 @@ Add the following code to the edited document: the first 5 \* symbols represent 
 * * * * * /home/pi/Webcam/webcam.sh 2>&1
 ```
 
-![](_page_4_Figure_0.jpeg)
+![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
 After saving the file and exiting, the terminal will output the following content:
 
@@ -119,11 +119,11 @@ For Cron jobs, you can learn about format and syntax by yourself!
 
 If no pictures are generated after one minute, you can restart the service and check whether the path is correct! Start cron service: sudo service cron start Stop the cron service: sudo service cron stop
 
-![](_page_4_Figure_5.jpeg)
+![Figure: page 4: figure 5](_page_4_Figure_5.jpeg)
 
 If you cannot turn off the camera to automatically shoot using the cron service stop command, it is recommended to use the crontab -e command directly to delete the previously edited content!
 
-## <span id="page-5-0"></span>**Web page preview camera**
+## Web page preview camera
 
 Use Motion to view the video captured by the USB camera in real time on the web page.
 
@@ -131,13 +131,13 @@ Use Motion to view the video captured by the USB camera in real time on the web 
 CSI cameras cannot use this method to preview the camera!
 ```
 
-### **Install Motion**
+### Install Motion
 
 ```
 sudo apt install motion
 ```
 
-#### <span id="page-5-2"></span>**Modify configuration file**
+#### Modify configuration file
 
 -motion.conf
 
@@ -160,11 +160,11 @@ height 480
 
 #### illustrate:
 
-- 1. The above options that are not found in the configuration file can be added directly to the file. For example, the stream\_maxrate option needs to be added by yourself, but other options are available.
+- 1. The above options that are not found in the configuration file can be added directly to the file. For example, the stream_maxrate option needs to be added by yourself, but other options are available.
 - 2. Frame rate: You can modify it yourself (the above parameters are my best results)
 - 3. The nano editor can use the Ctrl+W shortcut keys to search for keywords and quickly locate the content that needs to be modified.
 
-stream\_maxrate: real-time streaming frame rate
+stream_maxrate: real-time streaming frame rate
 
 framerate: frame rate width: image width height: image height
 
@@ -182,7 +182,7 @@ Add the following code: motion runs in the background
 start_motion_daemon=yes
 ```
 
-### **Start service**
+### Start service
 
 Start service
 
@@ -208,7 +208,7 @@ Turn on motion
 sudo motion
 ```
 
-#### **Web page preview screen**
+#### Web page preview screen
 
 Enter the start motion service and enable motion commands in the terminal:
 

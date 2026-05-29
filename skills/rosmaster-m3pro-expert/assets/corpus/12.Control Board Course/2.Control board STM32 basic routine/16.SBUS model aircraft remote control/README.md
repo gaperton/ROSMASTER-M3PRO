@@ -1,18 +1,18 @@
-# **SBUS model aircraft remote control**
+# SBUS model aircraft remote control
 
-SBUS model aircraft [remote](#page-0-0) control
+SBUS model aircraft remote control
 
-- <span id="page-0-0"></span>[1. Experimental](#page-0-1) Purpose
-- [2. Hardware](#page-0-2) Connection
-- 3. Core code [analysis](#page-1-0)
-- 4. Compile, [download and burn](#page-6-0) firmware
-- <span id="page-0-2"></span><span id="page-0-1"></span>[5. Experimental](#page-6-1) Results
+- 1. Experimental Purpose
+- 2. Hardware Connection
+- 3. Core code analysis
+- 4. Compile, download and burn firmware
+- 5. Experimental Results
 
-#### **1. Experimental Purpose**
+#### 1. Experimental Purpose
 
 Use the serial port function of the STM32 control board to learn how to receive and parse SBUS data.
 
-## **2. Hardware Connection**
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the SBUS interface, but an additional SBUS receiver needs to be connected. The SBUS receiver and aircraft remote control need to be prepared by yourself.
 
@@ -20,23 +20,23 @@ Please connect the Type-C data cable to the computer and the USB Connect port of
 
 Note: The SBUS interface has a direction. Please connect according to the silk screen on the control board: GND to ground, 5V to VCC, and SBUS to signal.
 
-![](_page_0_Picture_13.jpeg)
+![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
 Schematic diagram of the model aircraft remote control and SBUS receiver
 
-![](_page_1_Picture_0.jpeg)
+![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-### **3. Core code analysis**
+### 3. Core code analysis
 
 The path corresponding to the program source code is:
 
-<span id="page-1-0"></span>Board\_Samples/STM32\_Samples/SBus
+Board_Samples/STM32_Samples/SBus
 
-According to the pin assignment, the SBUS signal pin is connected to PA3 (USART2\_RX). To meet SBUS communication requirements, a reverse circuit has been added to the hardware circuit. Serial port 2 is initialized with a baud rate of 100,000 bits/s, a data length of 9, stop bits of 2, even parity, and the serial port hardware control setting of None. The serial port receive interrupt function also needs to be enabled.
+According to the pin assignment, the SBUS signal pin is connected to PA3 (USART2_RX). To meet SBUS communication requirements, a reverse circuit has been added to the hardware circuit. Serial port 2 is initialized with a baud rate of 100,000 bits/s, a data length of 9, stop bits of 2, even parity, and the serial port hardware control setting of None. The serial port receive interrupt function also needs to be enabled.
 
-![](_page_1_Figure_5.jpeg)
+![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
-![](_page_2_Figure_0.jpeg)
+![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
 ```
 void MX_USART2_UART_Init(void)
@@ -107,7 +107,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 }
 ```
 
-The BUS receives and processes the data. If it complies with the SBUS receiving protocol, the relevant data is extracted into sbus\_data.
+The BUS receives and processes the data. If it complies with the SBUS receiving protocol, the relevant data is extracted into sbus_data.
 
 ```
 void SBUS_Reveive(uint8_t rx_data)
@@ -143,7 +143,7 @@ inBuffer[sbus_buf_index] = data;
 }
 ```
 
-Parse the sbus\_data data to obtain data for sixteen channels.
+Parse the sbus_data data to obtain data for sixteen channels.
 
 ```
 static int SBUS_Parse_Data(void)
@@ -221,7 +221,7 @@ static void print_data(void)
 }
 ```
 
-The SBUS\_Handle function is called every 10 milliseconds to check whether any data has been parsed and print it out if so.
+The SBUS_Handle function is called every 10 milliseconds to check whether any data has been parsed and print it out if so.
 
 ```
 void App_Handle(void)
@@ -246,11 +246,11 @@ void SBUS_Handle(void)
 }
 ```
 
-## **4. Compile, download and burn firmware**
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
-<span id="page-6-0"></span>![](_page_6_Picture_2.jpeg)
+![Picture: page 6: picture 2](_page_6_Picture_2.jpeg)
 
 If there are no errors or warnings, the compilation is complete.
 
@@ -258,10 +258,10 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-## <span id="page-6-1"></span>**5. Experimental Results**
+## 5. Experimental Results
 
-The MCU\_LED light flashes every 200 milliseconds.
+The MCU_LED light flashes every 200 milliseconds.
 
 Open the serial port assistant (specific parameters are shown in the figure below), and you can see that the serial port assistant has been printing the data of each channel of the model aircraft remote control. When we manually turn the joystick or button of the model aircraft remote control, the data will change accordingly.
 
-![](_page_7_Figure_0.jpeg)
+![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
