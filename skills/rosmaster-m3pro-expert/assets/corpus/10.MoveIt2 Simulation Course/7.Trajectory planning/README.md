@@ -1,4 +1,4 @@
-## Trajectory planning
+# Trajectory planning
 
 Preface: ROS on Raspberry Pi 5 and Jetson Nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson Nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
 
@@ -12,7 +12,7 @@ This section explains how to display the path planned by MoveIt. The robot arm m
 
 Open a terminal in the virtual machine and enter the following command to start MoveIt2.
 
-```
+```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
@@ -30,7 +30,7 @@ Next, we modify the topics that need to be displayed, as shown below.
 
 Finally, we enter the following command in the virtual machine terminal to start the trajectory planning program,
 
-```
+```bash
 ros2 run MoveIt_demo multi_track_motion
 ```
 
@@ -44,7 +44,7 @@ The code path in the virtual machine is:
 
 /home/yahboom/moveit2_ws/src/MoveIt_demo/src/multi_track_motion.cpp
 
-```
+```python
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>

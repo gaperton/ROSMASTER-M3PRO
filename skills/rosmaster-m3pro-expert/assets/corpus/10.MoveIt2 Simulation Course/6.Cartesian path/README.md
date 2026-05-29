@@ -1,4 +1,4 @@
-## Cartesian path
+# Cartesian path
 
 Preface: ROS on Raspberry Pi 5 and Jetson Nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson Nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
 
@@ -24,7 +24,7 @@ Next, we modify the topics that need to be displayed, as shown below.
 
 Then, enter the following command in the virtual machine terminal to start the Cartesian path program,
 
-```
+```bash
 ros2 run MoveIt_demo cartesian_path
 ```
 
@@ -38,7 +38,7 @@ Virtual machine code
 
 path: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/cartesian_path.cpp
 
-```
+```python
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>

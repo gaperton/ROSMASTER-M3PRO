@@ -1,4 +1,4 @@
-## Forward kinematics design
+# Forward kinematics design
 
 Preface: ROS on Raspberry Pi 5 and Jetson Nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson Nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
 
@@ -12,7 +12,7 @@ This course explains how to use functions in the MoveIt library to implement for
 
 Open a terminal in the virtual machine and enter the following command to start MoveIt2.
 
-```
+```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
@@ -32,7 +32,7 @@ The code path in the virtual machine
 
 is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_target_joints.cpp
 
-```
+```python
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <rclcpp/rclcpp.hpp>

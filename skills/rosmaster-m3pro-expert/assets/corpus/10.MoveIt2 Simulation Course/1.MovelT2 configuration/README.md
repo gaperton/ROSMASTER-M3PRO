@@ -29,11 +29,11 @@ MoveIt 2 is the next generation of **MoveIt**, designed for **ROS 2 (Robot Opera
 - **Manipulation**: Provides a high-level interface for grabbing and placing objects.
 - **Task Planning**: Combines **Behavior Trees** for high-level task orchestration.
 
-#### 2.3. Install MoveIt2
+### 2.3. Install MoveIt2
 
 MoveIt2 has been installed in the virtual machine, so there is no need to install it here. If you need to install MoveIt2 in a new environment, enter the following command to install it.
 
-```
+```bash
 #Change the <distro> below to your own ROS version. It is recommended to use
 humble (22.04) or Rolling (24.04)
 sudo apt install ros-<distro>-moveit -y
@@ -47,20 +47,22 @@ MoveIt2 source code:
 
 Official tutorial documentation:
 
-[MoveIt 2 Documentation — MoveIt Documentation: Humble documentation](https://moveit.picknik.ai/humble/index.html)
+[MoveIt 2 Documentation - MoveIt Documentation: Humble documentation](https://moveit.picknik.ai/humble/index.html)
 
 ## 3. Program startup
 
 First, create a folder under the src folder of the ros workspace to store the files generated after MoveIt configuration. Taking the moveit2_ws workspace in the virtual machine as an example, enter the virtual machine terminal.
 
-```
+```bash
 cd moveit2_ws/src
 mkdir test_config
 ```
 
 Enter the following command in the virtual machine terminal to start MoveIt2 configuration,
 
+```bash
 ros2 run moveit_setup_assistant moveit_setup_assistant
+```
 
 After the program starts, the following configuration screen appears.
 
@@ -122,7 +124,7 @@ Down posture:
 
 ![Figure: page 8: figure 0](_page_8_Figure_0.jpeg)
 
-#### init posture:
+### init posture:
 
 ![Figure: page 8: figure 2](_page_8_Figure_2.jpeg)
 
@@ -314,14 +316,14 @@ max_acceleration: 0.0
 
 Save and exit, then return to the workspace directory, use colcon build to compile, and enter in the terminal,
 
-```
+```bash
 cd moveit2_ws
 colcon build --packages-select test_moveit_config
 ```
 
 After the compilation is complete, refresh the environment variables and enter the terminal source ~/.bashrc. Then enter the following command in the terminal to start moveit2. Enter the terminal,
 
-```
+```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
@@ -329,7 +331,7 @@ After the program is started, when the terminal displays **"You can start planni
 
 ![Figure: page 23: figure 6](_page_23_Figure_6.jpeg)
 
-Then we test Plan and Execute. Let's test arm_grou first. As shown in the figure below, select [Planning Group] as arm_group, select [Start State] as、Select【Goal State】,We let the posture of the robot arm change from the current up,motion planning to the previously set init,
+Then we test Plan and Execute. Let's test arm_grou first. As shown in the figure below, select [Planning Group] as arm_group, select [Start State], then select `Goal State`. We let the posture of the robot arm change from the current up,motion planning to the previously set init,
 
 ![Figure: page 24: figure 0](_page_24_Figure_0.jpeg)
 
@@ -341,7 +343,7 @@ After the motion planning is completed, as shown in the figure below,
 
 ![Figure: page 25: figure 0](_page_25_Figure_0.jpeg)
 
-If the plan and execution are successful, it means that the arm_group configuration is successful. Next, test the grip_group. Set it as shown below, set [Planning Group] to grip_group, select [Start State] to、Select【Goal State】,
+If the plan and execution are successful, it means that the arm_group configuration is successful. Next, test the grip_group. Set it as shown below, set [Planning Group] to grip_group, select [Start State], then select `Goal State`.
 
 ![Figure: page 25: figure 2](_page_25_Figure_2.jpeg)
 
@@ -353,8 +355,8 @@ If the gripper closes successfully, the plan is executed successfully.
 
 ## 4. Set up RViz
 
-When running MoveIt2, the robot arm may repeat the planned operation. This is because **the loop animation is enabled**. To disable this option, go to [Display], find [MotionPlanning] -> [Planned Path] -> [Loop Animation], and click the √ here to disable the loop animation.
+When running MoveIt2, the robot arm may repeat the planned operation. This is because **the loop animation is enabled**. To disable this option, go to [Display], find [MotionPlanning] -> [Planned Path] -> [Loop Animation], and click the check mark here to disable the loop animation.
 
-When running MoveIt2, the orange part represents the target pose. If we do not want to display the target pose, we can find [MotionPlanning]->[Query Goal State] and click the √ here to cancel the display of the target pose.
+When running MoveIt2, the orange part represents the target pose. If we do not want to display the target pose, we can find [MotionPlanning]->[Query Goal State] and click the check mark here to cancel the display of the target pose.
 
 After modifying the RViz settings here, you need **to press ctrl and s to save**.

@@ -8,21 +8,21 @@ Therefore, users of the Orin motherboard can run MoveIt2 related cases directly 
 
 The following content uses running on a virtual machine as an example.
 
-### 1. Content Description
+## 1. Content Description
 
 This section explains how to combine the simulated robotic arm in RViz with the real robotic arm to realize the function of driving the real machine.
 
-# 2. Preparation
+## 2. Preparation
 
 Preface: Since the real robot arm does not have an obstacle avoidance function, some positions may hit obstacles. Therefore, before driving the real machine, you need to ensure that there are no obstacles around the robot arm.
 
-#### 2.1. Start the agent
+### 2.1. Start the agent
 
 You need to start the agent on the motherboard. The agent will start the control node to control the robot and chassis. The agent will be automatically started when the computer is turned on. If the agent is not started, you can enter the following command in the terminal to start it.
 
 sh start_agent.sh
 
-#### 2.2 Distributed communication between virtual machines and cars
+### 2.2 Distributed communication between virtual machines and cars
 
 The virtual machine and the car need to be able to communicate. There are two steps to achieve this:
 
@@ -34,7 +34,7 @@ The virtual machine and the car need to be able to communicate. There are two st
 
 Enter the following command in the virtual machine to start MoveIt2,
 
-```
+```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
@@ -44,7 +44,7 @@ After the program is started, when the terminal displays **"You can start planni
 
 At this time, the posture of the robotic arm is straightened upwards. After running the program to drive the real machine, the robotic arm on the car will also straighten upwards. Be careful with the robotic arm and place it in an open space. Enter the following command in the virtual machine terminal to start the program to drive the real machine:
 
-```
+```bash
 ros2 run MoveIt_SimToMachine SimulationToMachine
 ```
 
@@ -58,11 +58,11 @@ The robotic arm in RViz will first plan and then slowly move to the init posture
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-### 4. Node Communication
+## 4. Node Communication
 
 Enter the following command in the virtual machine to view the current node communication diagram,
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 
@@ -76,7 +76,7 @@ We focus on the following diagrams:
 
 This section illustrates the communication between the three nodes.
 
-# 5. Core code analysis
+## 5. Core code analysis
 
 Program source code path:
 
@@ -86,7 +86,7 @@ machine: /home/yahboom/moveit2_ws/src/MoveIt_SimToMachine/MoveIt_SimToMachine/Si
 
 Import the library files used,
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 from control_msgs.msg import JointTrajectoryControllerState
@@ -97,7 +97,7 @@ from arm_msgs.msg import ArmJoints
 
 Program initialization, creating topic subscribers and publishers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     #Create a subscriber and define the /arm_group_controller/state topic message
@@ -114,7 +114,7 @@ and the underlying control node subscribes to the message
 
 /arm_group_controller/state topic callback function,
 
-```
+```python
 def get_ArmPosCallback(self,msg):
     #print("Get the position of arm : ",msg.actual.positions)
     #Get the actual joint status of the robotic arm
@@ -136,7 +136,7 @@ def get_ArmPosCallback(self,msg):
 
 Release the servo angle topic function,
 
-```
+```python
 def pubSixArm(self, joints, id=6, angle=180.0, runtime=2000):
     #Create topic data object
     arm_joints =ArmJoints()

@@ -1,4 +1,4 @@
-## Inverse kinematics design
+# Inverse kinematics design
 
 Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
 
@@ -10,7 +10,7 @@ This course explains how to use functions in the MoveIt library to implement for
 
 Open a terminal in the virtual machine and enter the following command to start MoveIt2.
 
-```
+```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
@@ -28,7 +28,7 @@ After the program runs, the robotic arm in RViz will plan to move to the positio
 
 The code path in the virtual machine is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_target_position.cpp
 
-```
+```python
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <geometry_msgs/msg/pose.hpp>

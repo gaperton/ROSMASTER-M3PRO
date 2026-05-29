@@ -94,6 +94,16 @@ RULES: list[Rule] = [
     compile_rule("button_x", r"\[x\]", "[X]", re.IGNORECASE),
     compile_rule("servo_no_space", r"\bNo\.\s*(\d+)\b", r"No. \1"),
     compile_rule("gripper_paren_space", r"\bgripper\(([^)]+)\)", r"gripper (\1)", re.IGNORECASE),
+    compile_rule(
+        "moveit_goal_state_sentence",
+        r"select \[Start State\]\s+(?:as|to),\s+Select `Goal State`,?\s*We",
+        "select [Start State], then select `Goal State`. We",
+    ),
+    compile_rule(
+        "moveit_goal_state_phrase",
+        r"select \[Start State\]\s+(?:as|to),\s+Select `Goal State`,?",
+        "select [Start State], then select `Goal State`.",
+    ),
 ]
 
 MOJIBAKE_REPLACEMENTS: dict[str, str] = {
@@ -103,11 +113,17 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
     "\u00e2\u20ac\u2122": "'",
     "\u00e2\u20ac\u0153": '"',
     "\u00e2\u20ac\u009d": '"',
+    "\u2013": "-",
+    "\u2014": "-",
+    "\u2018": "'",
+    "\u2019": "'",
+    "\u201c": '"',
+    "\u201d": '"',
     "\u00e2\u2020\u2019": "->",
     "\u00e2\u2020\u0092": "->",
     "\u2192": "->",
-    "\u00e2\u02c6\u0161": "the check mark",
-    "\u221a": "the check mark",
+    "\u00e2\u02c6\u0161": "check mark",
+    "\u221a": "check mark",
     "\u2022": "-",
     "\u00c3\u2014": "x",
     "\u00d7": "x",
@@ -120,9 +136,10 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
     "\u2502": "|",
     "\u2500": "-",
     "\u00c2": "",
-    "\u3010": "`",
+    "\u3010": " `",
     "\u3011": "`",
-    "\u00e3\u20ac\u0090": "`",
+    "\u3001": ", ",
+    "\u00e3\u20ac\u0090": " `",
     "\u00e3\u20ac\u2018": "`",
     "\u00e3\u20ac\u0081": ", ",
     "\u00e8\u017d\u00b7\u00e5\u008f\u2013": "Get",
@@ -176,6 +193,12 @@ def clean_text_line(line: str, counts: Counter[str]) -> str:
 
     if not NON_ASCII_RE.search(cleaned):
         return cleaned.rstrip()
+
+    if URL_RE.search(cleaned):
+        stripped = NON_ASCII_RE.sub("", cleaned)
+        stripped = re.sub(r"\s+", " ", stripped).strip()
+        counts["text_non_english_removed"] += 1
+        return stripped
 
     english = english_side_after_slash(cleaned)
     if english:

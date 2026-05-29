@@ -1,4 +1,4 @@
-## Random movement
+# Random movement
 
 Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
 
@@ -10,7 +10,7 @@ This section describes how to use the MoveIt2 library to implement random moveme
 
 Open the terminal in the virtual machine and enter the following command to start Movet2.
 
-```
+```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
@@ -20,7 +20,7 @@ After the program is started, when the terminal displays **"You can start planni
 
 Then enter the following command in the terminal to start the random movement program,
 
-```
+```bash
 ros2 run MoveIt_demo random_move
 ```
 
@@ -36,7 +36,7 @@ The code path in the virtual machine
 
 is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/random_move.cpp
 
-```
+```python
 //Import necessary header files
 #include <rclcpp/rclcpp.hpp>
 #include <moveit/move_group_interface/move_group_interface.h>
