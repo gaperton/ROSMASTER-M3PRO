@@ -1,19 +1,10 @@
 # Network configuration
 
-#### Network configuration
-
-- 1. Wi-Fi mode
-  - 1.1. Connect to Wi-Fi
-  - 1.3. Set static IP
-- 2. Hotspot mode
-  - 2.1. Create a hotspot
-  - 2.2, Hotspot information
-
 Wi-Fi and hotspot modes require the use of a wireless network card. Before making the following settings, check whether the wireless network card and antenna are installed!
 
 It is recommended to switch networks by connecting to the display screen. Once the network is switched to a new network, the system needs to re-enable network sharing for the new network before VNC remote
 
-### 1. Wi-Fi mode
+## 1. Wi-Fi mode
 
 ### 1.1. Connect to Wi-Fi
 
@@ -39,11 +30,13 @@ Click the settings icon of the connected Wi-Fi:
 
 The terminal can use the following command to view the IP addresses of all networks: enP8p1s0 is the IP connected by the network cable, and wlP1p1s0 is the IP connected by Wi-Fi
 
-## ifconfig
+```bash
+ifconfig
+```
 
 ![Figure: page 3: figure 6](_page_3_Figure_6.jpeg)
 
-#### 1.3. Set static IP
+### 1.3. Set static IP
 
 Click the setting icon of the connected Wi-Fi to modify the IPv4 option:
 
@@ -59,7 +52,7 @@ After completion, reconnect Wi-Fi to take effect:
 
 ![Picture: page 4: picture 7](_page_4_Picture_7.jpeg)
 
-### 2. Hotspot mode
+## 2. Hotspot mode
 
 The wireless network card needs to support hotspot to enable hotspot mode.
 
@@ -71,7 +64,7 @@ Enter Wi-Fi settings and select Turn On Wi-Fi Hotspot...
 
 ![Picture: page 5: picture 3](_page_5_Picture_3.jpeg)
 
-### 2.2, Hotspot information
+### 2.2. Hotspot information
 
 Hotspot name: Jetson_Orin_Hot (customizable)
 

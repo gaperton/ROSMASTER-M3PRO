@@ -1,10 +1,4 @@
-## Jetson board introduction
-
-#### Jetson board introduction
-
-- 1. Jetson Orin development kit
-  - 1.1. Front of the development board
-  - 1.2. Back of the development board
+# Jetson board introduction
 
 ## 1. Jetson Orin development kit
 
@@ -25,7 +19,7 @@ The main difference between the Jetson Orin official development kit and the SUB
 | 7                | DisplayPort interface                       | 15               | Power indicator                 |
 | 8                | Power interface                             | 16               | USB Type C                      |
 
-# 1.2. Back of the development board
+### 1.2. Back of the development board
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 

@@ -20,15 +20,19 @@ In Windows, setting the virtual machine to "bridge mode" will place them on the 
 
 Here, we assume we have two hosts, A and B. These can be any network-capable host, such as a virtual machine, Raspberry Pi, Jetson, x86/ARM host, or card motherboard. They only need to have the same version of the ROS2 environment installed.
 
-#### 1. Execute on host A:
+##### 1. Execute on host A:
 
 This demonstration shows the car running in Docker. Docker uses host mode. Simply put, host mode means the car shares the same network, so executing the command is identical to running the command on the car.
 
+```bash
 ros2 run demo_nodes_py talker
+```
 
-#### 2. Host B executes:
+##### 2. Host B executes:
 
+```bash
 ros2 run demo_nodes_py listener
+```
 
 If the following display appears: The slaves can subscribe to the topics published by the host, multi-machine communication has been achieved.
 
@@ -44,13 +48,13 @@ $ export ROS_DOMAIN_ID=<your_domain_id>
 
 If the host (car) and the slave (virtual machine) are assigned different IDs, they will not be able to communicate, thus achieving the purpose of grouping.
 
-### 2.2.1 Example 1
+#### 2.2.1 Example 1
 
-1. Execute on the host (car):
+- 1. Execute on the host (car):
 
 This demonstrates the car running in Docker, which uses host network mode. Simply put, host mode means the car shares the same network with the car, so the execution is identical to running on the car.
 
-```
+```bash
 echo "export ROS_DOMAIN_ID=6" >> ~/.bashrc # The value 6 here refers to the
 ROS_DOMAIN_ID. It doesn't have to be 6, as long as it conforms to the
 ROS_DOMAIN_ID rules.
@@ -58,9 +62,9 @@ source ~/.bashrc
 ros2 run demo_nodes_py talker
 ```
 
-2. Simultaneously, execute the following command on the slave machine [virtual machine]:
+- 2. Simultaneously, execute the following command on the slave machine [virtual machine]:
 
-```
+```bash
 echo "export ROS_DOMAIN_ID=6" >> ~/.bashrc # This value matches the value on the
 master machine.
 source ~/.bashrc
@@ -71,17 +75,21 @@ If the following message appears: The slave machine can subscribe to the topic p
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-### 2.2.2 Case 2
+#### 2.2.2 Case 2
 
 Controlling turtle movement through distributed communication
 
 Host A run command
 
+```bash
 ros2 run turtlesim turtlesim_node
+```
 
 Host B run command
 
+```bash
 ros2 run turtlesim turtle_teleop_key
+```
 
 ## 3. Notes
 

@@ -1,6 +1,6 @@
 # 7. ROS2 Topic Communication
 
-### 1. Introduction to Topic Communication
+## 1. Introduction to Topic Communication
 
 Topic communication is the most frequently used communication method in ROS2. A publisher publishes data on a specified topic, and subscribers who subscribe to that topic receive the data.
 
@@ -17,20 +17,20 @@ Next, we will explain how to implement topic communication between nodes using P
 - Switch to the src directory of the workspace
 - Create a new pkg_topic package
 
-```
+```bash
 ros2 pkg create pkg_topic --build-type ament_python --dependencies rclpy --node-
 name publisher_demo
 ```
 
 After executing the above command, the pkg_topic package will be created, along with a publisher_demo node and the relevant configuration files.
 
-# 3. Publisher Implementation
+## 3. Publisher Implementation
 
-#### 3.1 Create a Publisher
+### 3.1 Create a Publisher
 
 Next, edit [publisher_demo.py] to implement the publisher functionality and add the following code:
 
-```
+```python
 #Import the rclpy library
 import rclpy
 from rclpy.node import Node
@@ -64,23 +64,23 @@ Topic_Pub class object just created as a parameter
     rclpy.shutdown() #Shut down the ROS2 Python interface
 ```
 
-#### 3.2 Editing the Configuration File
+### 3.2 Editing the Configuration File
 
-#### 3.3 Compiling the Package
+### 3.3 Compiling the Package
 
 Compiling the Package
 
-```
+```bash
 colcon build --packages-select pkg_topic
 ```
 
 Refresh the environment variables in the workspace
 
-#### 3.4 Running the Program
+### 3.4 Running the Program
 
 After refreshing the environment variables, run the command
 
-```
+```bash
 ros2 run pkg_topic publisher_demo
 ```
 
@@ -88,15 +88,15 @@ After the program successfully runs, nothing is printed. We can use the ros2 top
 
 This topic_demo is the topic data defined in the program. Next, we'll use ros2 topic echo to print this data. In the terminal, enter:
 
-```
+```bash
 ros2 topic echo /topic_demo
 ```
 
 As you can see, the output "Hi, I send a message." from the terminal matches the line msg.data = "Hi, I send a message." in our code.
 
-# 4. Subscriber Implementation
+## 4. Subscriber Implementation
 
-#### 4.1 Creating a Subscriber
+### 4.1 Creating a Subscriber
 
 Create a new file, [subscriber_demo.py], in the same directory as [publisher_demo.py].
 
@@ -104,7 +104,7 @@ Create a new file, [subscriber_demo.py], in the same directory as [publisher_dem
 
 Next, edit [subscriber_demo.py] to implement the subscriber functionality and add the following code:
 
-```
+```python
 #Import related libraries
 import rclpy
 from rclpy.node import Node
@@ -128,23 +128,23 @@ def main():
     rclpy.shutdown() #Shut down the ROS2 Python interface
 ```
 
-#### 4.2 Editing the Configuration File
+### 4.2 Editing the Configuration File
 
-#### 4.3 Compile the Workspace
+### 4.3 Compile the Workspace
 
 Compile the package
 
-```
+```bash
 colcon build --packages-select pkg_topic
 ```
 
 Refresh the environment variables in the workspace
 
-#### 4.4 Run the Program
+### 4.4 Run the Program
 
 Execute the following command in a separate terminal:
 
-```
+```bash
 # Start the publisher node
 ros2 run pkg_topic publisher_demo
 # Start the subscriber node

@@ -1,18 +1,5 @@
 # Backup SSD system
 
-#### Backup SSD system
-
-- 1. Hardware connection
-- 2. Compress the SSD
-  - 2.1. Install Gparted
-  - 2.2. Use GParted
-    - 2.2.1. Select the SSD
-    - 2.2.2. Unmount the partition
-    - 2.2.3. Perform disk compression
-- 3. Back up the SSD
-  - 3.1. Check disk information
-  - 3.2. Start disk backup
-
 During the development process, users may need to back up the system to prevent subsequent development from affecting the current system environment.
 
 The image file demonstrated in the tutorial is not the actual factory image, it is only for tutorial demonstration
@@ -54,7 +41,7 @@ Before operating the disk, you need to unmount the disk: select the APP partitio
 
 ![Figure: page 2: figure 3](_page_2_Figure_3.jpeg)
 
-### 2.2.3. Perform disk compression
+#### 2.2.3. Perform disk compression
 
 Right-click the uninstalled disk partition and resize the previously uninstalled partition space:
 
@@ -78,7 +65,7 @@ Wait for the operation to complete:
 
 After completing the above operations, close GParted!
 
-### 3. Back up the SSD
+## 3. Back up the SSD
 
 ### 3.1. Check disk information
 

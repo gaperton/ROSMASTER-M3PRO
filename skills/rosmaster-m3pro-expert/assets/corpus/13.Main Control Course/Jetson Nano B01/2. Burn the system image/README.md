@@ -21,22 +21,24 @@ Under normal circumstances, the following window will pop up after inserting the
 - 2. Start burning
 - 2.1 Please transfer the Jetson_Boot_USB.tar.gz file in the document to the Ubuntu 18.04 system and open the terminal to run the decompression command.
 
+```bash
 tar xzvf Jetson_Boot_USB.tar.gz
+```
 
-2.2 After decompression, enter the Jetson_Boot_USB folder, then
+- 2.2. After decompression, enter the Jetson_Boot_USB folder, then
 
 ```
 cd Jetson_Boot_USB/
 ls
 ```
 
-2.3 Run the following command to burn the EMMC boot file.
+- 2.3. Run the following command to burn the EMMC boot file.
 
 ```
 sudo ./flash.sh -r jetson-nano-devkit-emmc mmcblk0p1
 ```
 
-2.4 Finally, wait for the file to be burned into the EMMC. If successful, it will prompt **"The target t210ref has been flashed successfully. Reset the board to boot from internal eMMC."**
+- 2.4. Finally, wait for the file to be burned into the EMMC. If successful, it will prompt **"The target t210ref has been flashed successfully. Reset the board to boot from internal eMMC."**
 
 If an error message appears, please confirm whether the Jetson Nano B01 is connected properly and enter the flashing mode, and then reconnect according to the first step.
 
@@ -52,7 +54,7 @@ Password: yahboom
 
 The system in the U disk needs to use Win32DiskImager to burn the system.
 
-#### 1. Prepare for installation
+### 1. Prepare for installation
 
 The process of burning the USB disk system is the same as that of burning the TF card system.
 
@@ -65,13 +67,13 @@ Do not download the official NVIDIA image, as it may fail to boot due to configu
 
 The default system username configured by yahboom is: jetson, and the password is: yahboom
 
-3. Format SD card
+- 3. Format SD card
 
 Use SDFormatter to format the USB drive. Be careful not to select the wrong Drive, otherwise it will cause unnecessary trouble. If the USB drive has already been burned with the system, the first formatting may fail. Just try it again.
 
 ![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
-#### 2. Burn the USB system
+### 2. Burn the USB system
 
 - 1. Unzip the downloaded system compressed file to get the img image file
 - 2. Insert the USB drive into the computer's USB port
@@ -80,7 +82,7 @@ Use SDFormatter to format the USB drive. Be careful not to select the wrong Driv
 
 ![Figure: page 4: figure 6](_page_4_Figure_6.jpeg)
 
-\5. After the burning is completed, a completion dialog box will pop up, indicating that the installation is complete. If it is unsuccessful, please disable the firewall and other software, and reinsert the USB drive to burn. Please note that after the installation, the USB drive will be divided into multiple partitions in Windows and cannot be accessed. This is normal because the disk
+- 5. After the burning is completed, a completion dialog box will pop up, indicating that the installation is complete. If it is unsuccessful, please disable the firewall and other software, and reinsert the USB drive to burn. Please note that after the installation, the USB drive will be divided into multiple partitions in Windows and cannot be accessed. This is normal because the disk
 
 partitions in Linux cannot be seen in Windows!
 
@@ -88,7 +90,7 @@ At this point, the USB flash drive system has been successfully burned into the 
 
 ### 3. If the system cannot start after burning the USB flash drive, the solution
 
-1. Insert the U disk into the virtual machine, open the U disk in the virtual machine, open the terminal in the U disk interface, and enter the following command
+- 1. Insert the U disk into the virtual machine, open the U disk in the virtual machine, open the terminal in the U disk interface, and enter the following command
 
 ```
 cd boot/extlinux
