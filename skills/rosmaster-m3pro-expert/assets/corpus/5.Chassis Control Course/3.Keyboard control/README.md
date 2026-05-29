@@ -1,31 +1,12 @@
 # Keyboard Control
 
-#### Keyboard Control
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running the Example
-  - 3.1 Starting Keyboard Control
-  - 3.2 Key Control Instructions
-    - 3.2.1 Direction Control
-    - 3.2.2 Speed Control
-- 4. Source Code Analysis
-  - 4.1 View the Node Relationship Graph
-  - 4.2 Viewing Topic Messages and Message Types
-  - 4.3 Program Flowchart
-  - 4.4 Source Code Analysis
-    - 4.41 Published Topic: cmd_vel
-    - 4.42 Movement Dictionary and Speed Dictionary
-
-# 1. Course Content
+## 1. Course Content
 
 Learn how to control robot movement using the keyboard and its principles.
 
 After running the program, use keyboard keys to publish speed topics to control the robot chassis' movement.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Content Description
 
@@ -33,7 +14,7 @@ This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson N
 
 ### 2.2 Starting the Agent
 
-**Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.**
+Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.
 
 Enter the command in the vehicle terminal:
 
@@ -53,7 +34,7 @@ The Jetson Nano and Raspberry Pi series controllers must first enter the Docker 
 
 Run the keyboard control node on the vehicle terminal or in the virtual machine:
 
-```
+```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
@@ -71,12 +52,12 @@ ros2 run yahboomcar_ctrl yahboom_keyboard
 
 | Key | Speed Change                                          | Key | Speed Change                                          |
 |-----|-------------------------------------------------------|-----|-------------------------------------------------------|
-| 【q】 | Increase both linear and angular velocities by 10% | 【z】 | Decrease both linear and angular velocities by 10% |
-| 【w】 | Increase only linear velocity by 10%               | 【x】 | Decrease only linear velocity by 10%               |
-| 【e】 | Increase only angular velocity by 10%              | 【c】 | Decrease only angular velocity by 10%              |
-| 【t】 | Switch linear velocity between X axis and Y-axis   | 【s】 | Stop keyboard control                                 |
+| `q` | Increase both linear and angular velocities by 10% | `z` | Decrease both linear and angular velocities by 10% |
+| `w` | Increase only linear velocity by 10%               | `x` | Decrease only linear velocity by 10%               |
+| `e` | Increase only angular velocity by 10%              | `c` | Decrease only angular velocity by 10%              |
+| `t` | Switch linear velocity between X axis and Y-axis   | `s` | Stop keyboard control                                 |
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Source code path:
 
@@ -94,7 +75,9 @@ root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.py
 
 Open a terminal and enter the command:
 
+```bash
 ros2 run rqt_graph rqt_graph
+```
 
 ![Picture: page 2: picture 14](_page_2_Picture_14.jpeg)
 
@@ -108,7 +91,7 @@ From the node relationship diagram, we can see:
 
 Open a terminal and enter the command:
 
-```
+```bash
 ros2 topic echo /cmd_vel
 ```
 
@@ -116,13 +99,13 @@ When controlling the robot chassis' movements using the keyboard, data is publis
 
 Enter the following command to view the message type of the **/cmd_vel** topic:
 
-```
+```bash
 ros2 topic info /cmd_vel
 ```
 
 The Type column indicates that the message type of the **/cmd_vel** topic is **geometry_msgs/msg/Twist**. Enter the following command to view the composition of the **geometry_msgs/msg/Twist** message type:
 
-```
+```bash
 ros2 interface show geometry_msgs/msg/Twist
 ```
 
@@ -157,7 +140,7 @@ You need to first enter Docker.
 root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.py
 ```
 
-#### 4.41 Published Topic: cmd_vel
+### 4.41 Published Topic: cmd_vel
 
 ```
 pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
@@ -165,7 +148,7 @@ pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
 
 Just package the speed and publish it via pub.publish(twist). The chassis' speed subscriber will receive the speed data and then drive the car.
 
-#### 4.42 Movement Dictionary and Speed Dictionary
+### 4.42 Movement Dictionary and Speed Dictionary
 
 The movement dictionary mainly stores characters related to direction control
 
@@ -210,9 +193,9 @@ speedBindings = {
 }
 ```
 
-#### 4.43 Get the current key information
+### 4.43 Get the current key information
 
-```
+```python
 def getKey(self):
     tty.setraw(sys.stdin.fileno())
     rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
@@ -222,7 +205,7 @@ def getKey(self):
     return key
 ```
 
-#### 4.44 Determine the key value and publish the /cmd_vel speed topic
+### 4.44 Determine the key value and publish the /cmd_vel speed topic
 
 ```
 while (1):

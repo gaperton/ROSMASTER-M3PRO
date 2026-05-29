@@ -1,33 +1,20 @@
 # Patrol
 
-#### Patrol
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running the Example
-  - 3.1 Starting the Program
-- 4. Source Code Analysis
-  - 4.1 Viewing the Node Relationship Graph
-  - 4.2 Program Flowchart
-  - 4.3 Key Programs
-
-# 1. Course Content
+## 1. Course Content
 
 Learn the Robot Patrol Function
 
 Set the patrol route in the dynamic parameter controller and click Start. The robot will move along the patrol route. Simultaneously, the robot's radar will scan for obstacles within the specified radar angle and obstacle detection distance. If an obstacle is detected, the robot will stop and a buzzer will sound. If no obstacle is detected, the robot will resume patrolling.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Content Description
 
 This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
 
-## 2.2 Starting the Agent
+### 2.2 Starting the Agent
 
-**Note: The Docker agent must be started before testing all examples. If it is already started, you do not need to restart it.**
+Note: The Docker agent must be started before testing all examples. If it is already started, you do not need to restart it.
 
 Enter the command in the vehicle terminal:
 
@@ -35,23 +22,23 @@ sh start_agent.sh
 
 The following information will be printed on the terminal, indicating a successful connection.
 
-# 3. Running the Example
+## 3. Running the Example
 
-#### Note:
+### Note:
 
 The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (for steps, see the [Docker course chapter - Entering the Robot's Docker Container]).
 
-# 3.1 Starting the Program
+### 3.1 Starting the Program
 
 Run the node on the vehicle terminal:
 
-```
+```bash
 ros2 launch patrol patrol.launch.py
 ```
 
 Using the accompanying virtual machine as an example, run the parameter configuration node:
 
-```
+```bash
 ros2 run rqt_reconfigure rqt_reconfigure
 ```
 
@@ -80,7 +67,7 @@ Other parameters in the rqt interface are described below:
 - RotationTolerance: Rotation error tolerance
 - RotationScaling: Rotation scaling factor
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Source Code Path:
 
@@ -98,7 +85,7 @@ You need to enter Docker first.
 root/M3Pro_ws/src/patrol/patrol/patrol.py
 ```
 
-## 4.1 Viewing the Node Relationship Graph
+### 4.1 Viewing the Node Relationship Graph
 
 Open a terminal and enter the command:
 
@@ -114,7 +101,7 @@ In the above node relationship diagram:
 
 The image size is too large. Please see the original image in this course folder.
 
-# 4.3 Key Programs
+### 4.3 Key Programs
 
 The following explains the core of the program:
 
@@ -122,7 +109,7 @@ The following explains the core of the program:
 
 **Program Implementation:** The get_position and get_odom_angle methods in the YahboomCarPatrol class
 
-```
+```python
 def get_position(self):
     try:
         now = rclpy.time.Time()
@@ -137,7 +124,7 @@ def get_odom_angle(self):
      try:
 ```
 
-```
+```python
 now = rclpy.time.Time()
         rot =
 self.tf_buffer.lookup_transform(self.odom_frame,self.base_frame,now)
@@ -156,7 +143,7 @@ rot.transform.rotation.y, rot.transform.rotation.z, rot.transform.rotation.w)
 
 **Program Implementation:** The advance and spin methods in the YahboomCarPatrol class
 
-```
+```python
 def advancing(self,target_distance):
     self.position.x = self.get_position().transform.translation.x
     self.position.y = self.get_position().transform.translation.y
@@ -191,7 +178,7 @@ rclpy.parameter.Parameter('Switch',rclpy.Parameter.Type.BOOL,False)
         return False
 ```
 
-```
+```python
 def Spin(self,angle):
     self.target_angle = radians(angle)
     self.odom_angle = self.get_odom_angle()

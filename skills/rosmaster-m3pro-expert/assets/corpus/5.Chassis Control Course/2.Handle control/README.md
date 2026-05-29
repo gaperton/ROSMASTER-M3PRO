@@ -1,32 +1,12 @@
 # Controller Control
 
-#### Controller Control
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Start the agent
-  - 2.3 Check the device
-  - 2.4 Testing the Controller Input
-- 3. Run the Example
-  - 3.1 Start the PS2 Controller Control Node
-  - 3.2 Button Control Instructions
-- 4. Source Code Analysis
-  - 4.1 View the Node Relationship Graph
-  - 4.2 Viewing Topic Messages and Message Types
-  - 4.3 Program Flowchart
-  - 4.4 Source Code Analysis
-    - 4.4.1 Topic Communication
-    - 4.4.2 Robotic Arm Control
-    - 4.4.3 Chassis Movement Control
-
 ## 1. Course Content
 
 Learn to control robot movement using a PS2 controller.
 
 After running the program, use the PS2 controller to control the robot chassis and the robotic arm.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Content Description
 
@@ -34,7 +14,7 @@ This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson N
 
 ### 2.2 Start the agent
 
-**Note: All test cases must start the docker agent first. If it has already started, there is no need to restart it**
+Note: All test cases must start the docker agent first. If it has already started, there is no need to restart it
 
 Enter the command in the car terminal:
 
@@ -60,11 +40,11 @@ sudo jstest /dev/input/js0
 
 If jstest is not installed, run the following command:
 
-```
+```bash
 sudo apt-get install joystick
 ```
 
-# 3. Run the Example
+## 3. Run the Example
 
 ### 3.1 Start the PS2 Controller Control Node
 
@@ -76,13 +56,13 @@ Open two terminals on the car computer and run the following two nodes respectiv
 
 Run the controller receiving node:
 
-```
+```bash
 ros2 launch yahboomcar_ctrl yahboomcar_joy_launch.py
 ```
 
 Run the robot controller control node:
 
-```
+```bash
 ros2 run yahboomcar_ctrl yahboom_joy_M3Pro
 ```
 
@@ -108,7 +88,7 @@ ros2 run yahboomcar_ctrl yahboom_joy_M3Pro
 | Left "2" Button           | Servo 6 Clamp (Loose) / Servo 5 Turn Left     |
 | SELECT Button             | Switching Control Between Servo 6 and Servo 5 |
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Source Code Path:
 
@@ -126,7 +106,9 @@ root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_joy_M3Pro.py
 
 Open a terminal and enter the command:
 
+```bash
 ros2 run rqt_graph rqt_graph
+```
 
 ![Picture: page 4: picture 10](_page_4_Picture_10.jpeg)
 
@@ -140,7 +122,9 @@ In the above node relationship graph:
 
 Open a terminal on the vehicle or virtual machine and enter the following command:
 
+```bash
 ros2 interface show sensor_msgs/msg/Joy
+```
 
 The data in the /joy topic is a float32 array containing timestamps.
 
@@ -189,7 +173,7 @@ The essential principle of controlling the robot with a controller is to first p
 
 The function of controlling the robotic arm with a PS2 controller is implemented through the arm_ctrl method in the JoyTeleop class:
 
-```
+```python
 def arm_ctrl(self, id, direction):
     while 1:
         if self.loop_active:
@@ -215,7 +199,7 @@ def arm_ctrl(self, id, direction):
 
 Chassis movement control with the PS2 controller is implemented using the user_jetson method in the JoyTeleop class:
 
-```
+```python
 def user_jetson(self, joy_data):
     #arm_ctrl_start
     if joy_data.buttons[10] == 1: self.gripper_active = not self.gripper_active
@@ -240,11 +224,11 @@ def user_jetson(self, joy_data):
             self.pub_armjoint(2, 1) # Y
             print("2,+")
         if joy_data.axes[6] != 0:
-            self.pub_armjoint(3, -joy_data.axes[6]) # 左按键左正右负 Left button
+            self.pub_armjoint(3, -joy_data.axes[6]) # Left button
 left positive right negative
             print("3,-/+")
         if joy_data.axes[7] != 0:
-            self.pub_armjoint(4, joy_data.axes[7]) # 左按键上正下负 Left button up
+            self.pub_armjoint(4, joy_data.axes[7]) # Left button up
 positive down negative
             print("4,-/+")
         if self.gripper_active:

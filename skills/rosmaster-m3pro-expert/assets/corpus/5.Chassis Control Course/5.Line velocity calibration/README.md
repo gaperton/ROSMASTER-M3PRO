@@ -1,32 +1,18 @@
 # Linear speed calibration
 
-#### Linear speed calibration
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Start the Agent
-- 3. Run the case
-  - 3.1 Startup Program
-  - 3.2 Start calibration
-  - 3.3 Writing calibration parameters to the chassis
-- 4. Code explanation
-  - 4.1 View the node relationship diagram
-  - 4.2 Source code analysis
-
 ## 1. Course Content
 
 Learn the function of robot linear speed calibration. After running the program, click Start on the visual interface. The robot chassis will start to move forward and stop when the error is less than the tolerance value.
 
-# 2. Preparation
+## 2. Preparation
 
-#### 2.1 Content Description
+### 2.1 Content Description
 
 This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
 
 ### 2.2 Start the Agent
 
-**Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.**
+Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.
 
 Enter the command in the vehicle terminal:
 
@@ -34,23 +20,25 @@ sh start_agent.sh
 
 The terminal prints the following information, indicating that the connection is successful
 
-### 3. Run the case
+## 3. Run the case
 
-#### Notice:
+### Notice:
 
 **Jetson Nano and Raspberry Pi** series controllers need to enter the Docker container first (please refer to the [Docker course chapter - Entering the robot's Docker container] for steps).
 
-#### 3.1 Startup Program
+### 3.1 Startup Program
 
 Run the Linear Speed Calibration node:
 
+```bash
 ros2 launch calibration calibrate_linear.launch.py
+```
 
 If the error message is displayed as follows when running for the first time, indicating that there is no tf transformation, press **Ctrl+C** to exit the program and run it again.
 
 Open the dynamic parameter adjuster and run in the terminal:
 
-```
+```bash
 ros2 run rqt_reconfigure rqt_reconfigure
 ```
 
@@ -72,7 +60,7 @@ The rqt interface parameters are described as follows:
 - base_frame: the name of the base coordinate system;
 - odom_frame: The name of the odometry coordinate frame.
 
-#### 3.2 Start calibration
+### 3.2 Start calibration
 
 In the rqt_reconfigure interface, select the calibrate_linear node (if it is not displayed, click **Refresh** ).
 
@@ -92,13 +80,13 @@ Uncomment line 551, enter the previous calibration coefficients in the brackets 
 
 Open a terminal on the car and enter the command:
 
-```
+```bash
 python3 config_robot.py
 ```
 
 Wait for the parameter writing to be completed. The ros_scale_line:0.890 in the terminal print information is the written parameter, and the chassis linear speed calibration is completed.
 
-# 4. Code explanation
+## 4. Code explanation
 
 Source code path:
 
@@ -120,7 +108,7 @@ root/M3Pro_ws/src/patrol/patrol/patrol.py
 
 Open a terminal and enter the command:
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 
@@ -133,11 +121,11 @@ In the above node relationship diagram:
 
 **The calibrate_linear** node monitors the TF transformation of odom->base_footprint and publishes the /cmd_vel topic to control the movement of the robot chassis.
 
-#### 4.2 Source code analysis
+### 4.2 Source code analysis
 
 Among them, the implementation of monitoring tf coordinate transformation is the get_position method in the CalibrateLinear class:
 
-```
+```python
 def get_position ( self ):
      try :
         now = rclpy . time . Time ()
@@ -155,7 +143,7 @@ def get_position ( self ):
 
 The on_timer method (timer callback function) in the CalibrateLinear class is used to determine the displacement of the robot chassis and control its movement:
 
-```
+```python
 def on_timer ( self ):
     move_cmd = Twist ()
     #self.get_param()

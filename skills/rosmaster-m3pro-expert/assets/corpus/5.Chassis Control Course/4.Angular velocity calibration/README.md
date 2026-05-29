@@ -1,34 +1,20 @@
 # Angular velocity calibration
 
-#### Angular velocity calibration
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Start the Agent
-- 3. Run the case
-  - 3.1 Startup Program
-  - 3.2 Start calibration
-  - 3.3 Writing calibration parameters to the chassis
-- 4. Source code analysis
-  - 4.1 View the node relationship diagram
-  - 4.2 Source code analysis
-
-# 1. Course Content
+## 1. Course Content
 
 Learn the function of robot angular velocity calibration
 
 Run the angular velocity calibration program. After clicking Start on the visual interface, the robot chassis will begin to rotate and will stop when the error is less than the tolerance value.
 
-# 2. Preparation
+## 2. Preparation
 
-# 2.1 Content Description
+### 2.1 Content Description
 
 This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
 
-# 2.2 Start the Agent
+### 2.2 Start the Agent
 
-**calibrate_angular Note: All test cases must start the docker agent first. If it has already been started, there is no need to start it again**
+calibrate_angular Note: All test cases must start the docker agent first. If it has already been started, there is no need to start it again
 
 Enter the command in the vehicle terminal:
 
@@ -38,21 +24,23 @@ The terminal prints the following information, indicating that the connection is
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-# 3. Run the case
+## 3. Run the case
 
-#### Notice:
+### Notice:
 
 **Jetson Nano and Raspberry Pi** series controllers need to enter the Docker container first (please refer to the [Docker course chapter - Entering the robot's Docker container] for steps).
 
-## 3.1 Startup Program
+### 3.1 Startup Program
 
 The vehicle computer opens the terminal and runs the angular velocity calibration node:
 
+```bash
 ros2 launch calibration calibrate_angular.launch.py
+```
 
 Open the dynamic parameter adjuster in the virtual machine terminal and run:
 
-```
+```bash
 ros2 run rqt_reconfigure rqt_reconfigure
 ```
 
@@ -92,13 +80,13 @@ Uncomment line 552, enter the previous calibration coefficients in the brackets 
 
 Open a terminal on the car and enter the command:
 
-```
+```bash
 python3 config_robot.py
 ```
 
 Wait for the parameter writing to be completed. The ros_scale_angluar:1.000 printed in the terminal information is the written parameter, and the chassis angular velocity calibration is completed.
 
-# 4. Source code analysis
+## 4. Source code analysis
 
 Source code path:
 
@@ -116,7 +104,7 @@ You need to enter docker first
 
 Open a terminal on the virtual machine and enter the command:
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 
@@ -128,11 +116,11 @@ In the above node relationship diagram:
 - **The /ekf_filter_node** node subscribes to the chassis raw odometer **/odom_raw** and filtered IMU data **/imu/data**, performs data fusion and publishes to the **/odom** topic
 - **The calibrate_angular** node monitors the TF transformation of odom->base_footprint and publishes the /cmd_vel topic to control the movement of the robot chassis.
 
-# 4.2 Source code analysis
+### 4.2 Source code analysis
 
 Among them, the implementation of monitoring tf coordinate transformation is the get_odom_angle method in the Calibrateangular class:
 
-```
+```python
 def get_odom_angle ( self ):
      try :
         now = rclpy . time . Time ()
@@ -155,7 +143,7 @@ transform . rotation . w )
 
 The on_timer (timer callback function) method in the Calibrateangular class is used to determine the rotation angle of the robot chassis and control the chassis movement:
 
-```
+```python
 def on_timer ( self ):
 ```
 

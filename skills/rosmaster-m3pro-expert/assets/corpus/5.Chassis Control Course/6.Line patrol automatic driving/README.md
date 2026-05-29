@@ -1,26 +1,12 @@
 # Autonomous Line Patrol
 
-#### Autonomous Line Patrol
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running the Example
-  - 3.1 Starting the Program
-  - 3.2 Color Calibration
-- 4. Source Code Analysis
-  - 4.1 View the Node Relationship Graph
-  - 4.2 Program Flowchart
-  - 4.3 Key Programs
-
 ## 1. Course Content
 
 Learn the Robot's Autonomous Line Patrol Function
 
 After starting the program, the robot will lock onto the landmark in front of it. Press the spacebar to start, and the robot will follow the ground landmark. If an obstacle appears along the way, the robot will pause and sound a buzzer until the landmark disappears and the robot stops moving.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Content Description
 
@@ -32,7 +18,7 @@ For Orin and NX boards, simply open a terminal and enter the commands mentioned 
 
 ### 2.2 Starting the Agent
 
-**Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.**
+Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.
 
 Enter the command in the vehicle terminal:
 
@@ -40,9 +26,9 @@ The terminal will print the following message, indicating a successful connectio
 
 ![Picture: page 1: picture 1](_page_1_Picture_1.jpeg)
 
-# 3. Running the Example
+## 3. Running the Example
 
-#### Note:
+### Note:
 
 **Jetson Nano** and **Raspberry Pi** series controllers must first enter the Docker container (for steps, see the [Docker Course Section - Entering the Robot's Docker Container]).
 
@@ -50,11 +36,13 @@ The terminal will print the following message, indicating a successful connectio
 
 First, start the depth camera runtime node in the vehicle terminal:
 
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
+```
 
 Then open a terminal:
 
-```
+```bash
 ros2 run M3Pro_demo follow_line
 ```
 
@@ -74,7 +62,7 @@ After recalibrating the color, the terminal will prompt **Reset successful!!!**,
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Source Code Path:
 
@@ -96,7 +84,7 @@ root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/follow_line.py
 
 Open a terminal and enter the command:
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 
@@ -124,9 +112,9 @@ The following explains the core of the program:
 
 **Program Implementation:** Callback function in the LineDetect class
 
-```
+```python
 def callback(self,color_frame,depth_frame):
-    # 将画面转为 opencv 格式
+    # opencv
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_frame,'rgb8')
     rgb_image = np.copy(rgb_image)
     depth_image = self.depth_bridge.imgmsg_to_cv2(depth_frame, encoding[1])
@@ -164,7 +152,7 @@ Line Patrol: Follows the road markings and stops when encountering an obstacle.
 
 Implementation: Use the execute method in the LineDetect class.
 
-```
+```python
 def execute(self, point_x, color_radius):
     if self.Joy_active == True:
         if self.Start_state == True:
