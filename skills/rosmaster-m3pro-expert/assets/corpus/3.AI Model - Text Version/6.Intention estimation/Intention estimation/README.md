@@ -4,13 +4,13 @@
 
 Master the ability to customize unique user intent understanding functions through the RAG knowledge base.
 
-#### [!IMPORTANT]
+### [!IMPORTANT]
 
 Intent understanding is designed to increase the rapport between the robot and the user, allowing the robot to better understand the user. This function should not be used to perform "strange" and "unconventional" tasks.
 
 ## 2. Starting the Agent
 
-**Note: If already started, no need to start again.**
+Note: If already started, no need to start again.
 
 Enter the following command in the vehicle terminal:
 
@@ -20,7 +20,7 @@ sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
-## 2.2 Configuring the Intent Mapping File
+### 2.2 Configuring the Intent Mapping File
 
 - This file is used to store personal fuzzy intents and the corresponding tasks the robot should perform.
 - Open the example file in this tutorial folder. You can add multiple custom intents according to the reference format. The following is a simple example:
@@ -49,25 +49,35 @@ You can modify the Intent mapping.xlsx template, or you can delete it and add yo
 
 To ensure optimal intent understanding performance, it is recommended to set the Intent mapping knowledge base to high-quality mode, as intent understanding often requires retrieving relevant snippets from semantically similar cues. ## 4. Running Examples
 
-## 4.1 Starting the Program
+### 4.1 Starting the Program
 
 On the vehicle's onboard computer, open a terminal and enter the command to start the AI agent function:
 
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode
+```
 
 Alternatively, you can use the shortcut command:
 
-#### multi_brains
+```bash
+multi_brains
+```
 
 On the vehicle's onboard computer, open two more terminals and enter the commands to start the navigation function:
 
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
+```
 
+```bash
 ros2 launch M3Pro_navigation navigation2.launch.py
+```
 
 Start RViz on the robot:
 
+```bash
 ros2 launch M3Pro_navigation nav_rviz.launch.py
+```
 
 Then, follow the procedure for starting the navigation function to initialize the positioning. This will open the rviz2 visualization interface. Click on **2D Pose Estimate** in the toolbar at the top to enter the selection state. Mark the approximate position and orientation of the robot on the map. After initializing the positioning, the preparation is complete.
 
@@ -75,25 +85,35 @@ Then, follow the procedure for starting the navigation function to initialize th
 
 ## 4. Running Examples
 
-## 4.1 Starting the Program
+### 4.1 Starting the Program
 
 Run the text interaction node:
 
+```bash
 ros2 run text_chat text_chat
+```
 
 AI agent function on the vehicle's onboard computer:
 
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode:=True
+```
 
 On the vehicle's onboard computer, open two more terminals and enter the commands to start the navigation function:
 
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
+```
 
+```bash
 ros2 launch M3Pro_navigation navigation2.launch.py
+```
 
 Start RViz on the robot:
 
+```bash
 ros2 launch M3Pro_navigation nav_rviz.launch.py
+```
 
 Then, follow the procedure for starting the navigation function to initialize the positioning. This will open the rviz2 visualization interface. Click on **2D Pose Estimate**, enter selection mode, roughly mark the robot's location and orientation on the map. After initialization and localization, the preparation work is complete.
 

@@ -1,6 +1,6 @@
 # Robotic Arm Grasping + Multimodal Visual Understanding + SLAM Navigation
 
-**Robotic Arm Grasping + Multimodal Visual Understanding + SLAM Navigation**
+Robotic Arm Grasping + Multimodal Visual Understanding + SLAM Navigation
 
 - 1. Course Content
 - 2. Starting the Agent
@@ -13,13 +13,13 @@
 - After running the example program, combine Nav2 navigation, robotic arm grasping, and AI large model visual understanding to perform complex task functions.
 - **Note: This chapter requires prior configuration of the map mapping file.**
 
-#### [!NOTE]
+### [!NOTE]
 
 The difference between the text version and the voice version lies in the instruction input method, and the text version does not require speech recognition and speech synthesis.
 
-### 2. Starting the Agent
+## 2. Starting the Agent
 
-**Note: All test cases must start the Docker agent first. If it is already started, there is no need to start it again.**
+Note: All test cases must start the Docker agent first. If it is already started, there is no need to start it again.
 
 Enter the following command in the vehicle terminal:
 
@@ -29,23 +29,23 @@ sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
-# 3. Running the Cases
+## 3. Running the Cases
 
-#### 3.1 Starting the Program
+### 3.1 Starting the Program
 
 Open the terminal on the vehicle and enter the following command:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode:=True
 ```
 
 Start the text interaction node in the terminal:
 
-```
+```bash
 ros2 run text_chat text_chat
 ```
 
-#### 3.2 Testing Cases
+### 3.2 Testing Cases
 
 Here are two reference test cases; users can create their own test instructions.
 

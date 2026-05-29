@@ -129,6 +129,7 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
 COMMENT_TRANSLATIONS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"(?:\u914d\u7f6e|\u00e9\u2026\u008d\u00e7\u00bd\u00ae)\s*VNC\s*server", re.IGNORECASE), "Configure VNC server"),
 ]
+NON_ENGLISH_OUTPUT_PLACEHOLDER = "[non-English output omitted]"
 
 
 def normalize_newlines(text: str) -> str:
@@ -142,6 +143,12 @@ def repair_mojibake(text: str, counts: Counter[str]) -> str:
             text = text.replace(bad, good)
             counts["mojibake"] += n
     return text
+
+
+def english_side_after_slash(text: str) -> str | None:
+    parts = [part.strip() for part in re.split(r"\s*/\s*", text) if part.strip()]
+    english_parts = [part for part in parts[1:] if re.search(r"[A-Za-z]", part) and not NON_ASCII_RE.search(part)]
+    return english_parts[-1] if english_parts else None
 
 
 def clean_code_comment(line: str, counts: Counter[str]) -> str:
@@ -160,31 +167,75 @@ def clean_code_comment(line: str, counts: Counter[str]) -> str:
             counts["code_comment_translation"] += n
 
     if NON_ENGLISH_RE.search(cleaned):
-        parts = [part.strip() for part in re.split(r"\s+/\s+", cleaned) if part.strip()]
-        english_parts = [part for part in parts if re.search(r"[A-Za-z]", part) and not NON_ENGLISH_RE.search(part)]
-        if english_parts:
-            cleaned = english_parts[-1]
+        english = english_side_after_slash(cleaned)
+        if english:
+            cleaned = english
             counts["code_comment_english_side"] += 1
 
     if NON_ENGLISH_RE.search(cleaned):
-        cleaned = NON_ENGLISH_RE.sub("", cleaned)
-        cleaned = re.sub(r"\s+", " ", cleaned).strip(" -:/")
+        cleaned = NON_ASCII_RE.sub("", cleaned)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip(" -:/,.;")
         counts["code_comment_non_english_removed"] += 1
 
-    return f"{prefix}{cleaned}{suffix}".rstrip() if cleaned else prefix.rstrip()
+    return f"{prefix}{cleaned}{suffix}".rstrip() if cleaned else ""
 
 
 def clean_code_line(line: str, counts: Counter[str]) -> str:
+    line = repair_mojibake(line, counts)
     comment_match = CODE_COMMENT_RE.match(line)
     if comment_match:
         return clean_code_comment(line, counts)
     if not NON_ENGLISH_RE.search(line) and not NON_ASCII_RE.search(line):
         return line.rstrip()
-    cleaned = repair_mojibake(line, counts)
-    cleaned = cleaned.replace("\u83b7\u53d6", "Get").replace("\u79d2", "s")
+
+    cleaned = line.replace("\u83b7\u53d6", "Get").replace("\u79d2", "s")
     cleaned = re.sub(r"[\U0001f300-\U0001faff]", "", cleaned)
+
+    docstring = re.match(r"^(\s*)(?P<quote>'''|\"\"\")(.*)$", cleaned)
+    if docstring and NON_ASCII_RE.search(docstring.group(3)):
+        quote = docstring.group("quote")
+        body = docstring.group(3).strip()
+        closing = quote if body.endswith(quote) else ""
+        if closing:
+            body = body[: -len(quote)].strip()
+        english = english_side_after_slash(body)
+        if english:
+            counts["code_comment_english_side"] += 1
+            return f"{docstring.group(1)}{quote}{english}{closing}".rstrip()
+
+    if "#" in cleaned:
+        before, comment = cleaned.split("#", 1)
+        if NON_ASCII_RE.search(comment):
+            english = english_side_after_slash(comment)
+            if english:
+                counts["code_comment_english_side"] += 1
+                return f"{before.rstrip()} # {english}".rstrip()
+            ascii_comment = NON_ASCII_RE.sub("", comment)
+            ascii_comment = re.sub(r"\s+", " ", ascii_comment).strip(" -:/,.;")
+            if re.search(r"[A-Za-z]", ascii_comment):
+                counts["code_comment_non_english_removed"] += 1
+                return f"{before.rstrip()} # {ascii_comment}".rstrip()
+            counts["code_comment_non_english_removed"] += 1
+            return before.rstrip()
+
     if NON_ASCII_RE.search(cleaned):
-        cleaned = NON_ASCII_RE.sub("", cleaned)
+        english = english_side_after_slash(cleaned)
+        if english:
+            counts["code_comment_english_side"] += 1
+            indent = re.match(r"^(\s*)", cleaned).group(1)
+            return f"{indent}{english}".rstrip()
+
+    if NON_ASCII_RE.search(cleaned) and re.search(r"(?:re)?sponse\"?\s*:", cleaned):
+        prefix = re.split(r"[\u3400-\u9fff]", cleaned, maxsplit=1)[0].rstrip(" ,")
+        counts["code_line_non_english_removed"] += 1
+        return f'{prefix} "{NON_ENGLISH_OUTPUT_PLACEHOLDER}"'.rstrip()
+
+    if NON_ASCII_RE.search(cleaned):
+        stripped = NON_ASCII_RE.sub("", cleaned)
+        if not re.search(r"[A-Za-z0-9_~/.$-]", stripped) or re.fullmatch(r"[\s,.;:!?()\"'\[\]{}-]*", stripped):
+            cleaned = NON_ENGLISH_OUTPUT_PLACEHOLDER
+        else:
+            cleaned = stripped
         counts["code_line_non_english_removed"] += 1
     return cleaned.rstrip()
 

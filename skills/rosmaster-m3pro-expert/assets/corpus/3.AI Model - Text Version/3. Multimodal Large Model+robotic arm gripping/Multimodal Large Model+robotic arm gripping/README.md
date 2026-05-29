@@ -1,7 +1,5 @@
 # Multimodal Visual Understanding + Robotic Arm Grasping
 
-#### Multimodal Visual Understanding + Robotic Arm Grasping
-
 ```
 1. Course Content
 ```
@@ -25,13 +23,13 @@ centimeters"
 
 Run the example program, using the robot's visual understanding combined with robotic arm grasping for a comprehensive task.
 
-#### [!NOTE]
+### [!NOTE]
 
 The only difference between the text version and the voice version is the method of command input; the text version does not include speech recognition and speech synthesis playback.
 
 ## 2. Starting the Agent
 
-**Note: If already started, there is no need to start again.**
+Note: If already started, there is no need to start again.
 
 Enter the following command in the vehicle terminal:
 
@@ -43,17 +41,17 @@ The terminal will print the following information, indicating a successful conne
 
 ## 3. Running the Examples
 
-## 3.1 Starting the Program
+### 3.1 Starting the Program
 
 Connect to the vehicle's screen via VNC and start the AI agent function:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode:=True
 ```
 
 Start text interaction in any terminal:
 
-```
+```bash
 ros2 run text_chat text_chat
 ```
 
@@ -85,7 +83,7 @@ Here, we use Method 2 as an example to make the robot end the task and reset the
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-### 3.2.2 Case 2: "Put the red block in front of you to the right of the blue block"
+#### 3.2.2 Case 2: "Put the red block in front of you to the right of the blue block"
 
 Enter "Put the red block in front of you to the right of the blue block" in the terminal. The terminal will print the following information:
 
@@ -101,7 +99,7 @@ Then the robot will translate to the right for a certain distance, and then use 
 
 When commands such as "End current task" or "You can rest now," which indicate that the robot is no longer needed, are entered, the robot will end the current task.
 
-### 3.2.3 Case 3: "Please help me remove the machine code in front of you that is taller than 5 centimeters"
+#### 3.2.3 Case 3: "Please help me remove the machine code in front of you that is taller than 5 centimeters"
 
 Entering "Please help me remove the machine code in front of you that is taller than 5 centimeters" in the virtual machine terminal will print the following information:
 
@@ -119,7 +117,7 @@ Robot action source code path:
 
 ~/M3Pro_ws/src/multi_brains/multi_brains/action_service.py
 
-## 4.1 Case 1
+### 4.1 Case 1
 
 action_service.py program:
 
@@ -133,7 +131,7 @@ The **grasp_obj(x1, y1, x2, y2)** function is used to call the robotic arm to gr
 
 grasp_obj starts three subprocesses: **grasp_desktop**, **KCF_follow**, and **ALM_KCF_Tracker_Node3**, and passes the parameters given by the AI large model to the **ALM_KCF_Tracker_Node** node via topics.
 
-```
+```python
 def grasp_obj(self, x1, y1, x2, y2) -> None:
         """grasp_obj: Grasping object x1, y1, x2, y2: Coordinates of the
 object's bounding box """
@@ -176,9 +174,9 @@ object's bounding box """
 
 After the grasping is complete, the **KCF_follow** node will publish a signal on the **largemodel_arm_done** topic with the content "**grasp_obj_done**", which sets the **grasp_obj_future** object in the **largemodel_arm_done_callback** callback function.
 
-```
+```python
 def action_feedback_callback(self, msg:String):
-        ''' 外部动作反馈回调函数 / External action feedback callback function '''
+        '''External action feedback callback function'''
         if msg.data =="follow_line_finish":
             if not self.follow_line_clear_future.done():
                 self.follow_line_clear_future.set_result(msg)
@@ -206,14 +204,14 @@ def action_feedback_callback(self, msg:String):
                 self.follow_line_clear_future.set_result(msg)
 ```
 
-## 4.2 Case Study 2
+### 4.2 Case Study 2
 
 The set_cmdvel function controls the robot's base movement by publishing the cmd_vel velocity topic.
 
-```
+```python
 def set_cmdvel(self, linear_x:str, linear_y:str, angular_z:str,
 duration:str)->None:
-        ''' 发布cmd_vel速度指令 / Publish cmd_vel velocity command '''
+        '''Publish cmd_vel velocity command'''
         linear_x = float(linear_x)
         linear_y = float(linear_y)
         angular_z = float(angular_z)
@@ -229,7 +227,7 @@ duration:str)->None:
 
 The putdown method is used to make the robotic arm put down the object it is holding.
 
-```
+```python
 def putdown(self):
         self.pubSix_Arm(self.putsown_joints) # Deployment of robotic arm
         time.sleep(4)
@@ -244,7 +242,7 @@ releases the object.
 
 The apriltag_remove_higher method starts the external grasp_desktop_remove and apriltag_remove_higher nodes via a subprocess. This is an example from the robotic arm chapter demonstrating the removal of machine code at a specified height.
 
-```
+```python
 def apriltag_remove_higher(self, target_high):
         '''Remove machine code at the specified height.'''
         def __reset_apriltag_remove_higher():

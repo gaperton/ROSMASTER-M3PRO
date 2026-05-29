@@ -1,30 +1,18 @@
 # Multimodal Visual Understanding
 
-#### Multimodal Visual Understanding
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Starting the Agent
-- 3. Running the Examples
-  - 3.1 Starting the Program
-  - 3.2 Test Cases
-    - 3.2.1 Case 1
-    - 3.2.2 Case 2
-- 4. Source Code Analysis
-
 ## 1. Course Content
 
 Run the example program, allowing the robot to observe the environment through text interaction in the terminal and perform tasks based on instructions.
 
-#### [!NOTE]
+### [!NOTE]
 
 The only difference between the text version and the voice version is the method of instruction input; the text version does not include speech recognition and speech synthesis playback.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Starting the Agent
 
-**Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.**
+Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.
 
 Enter the following command in the vehicle terminal:
 
@@ -34,23 +22,23 @@ sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
-### 3. Running the Examples
+## 3. Running the Examples
 
 ### 3.1 Starting the Program
 
 Open the terminal on the vehicle and enter the command:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode:=True
 ```
 
 Start the text interaction node on the vehicle:
 
-```
+```bash
 ros2 run text_chat text_chat
 ```
 
-#### 3.2 Test Cases
+### 3.2 Test Cases
 
 Here are two example test cases; users can create their own test instructions.
 
@@ -69,7 +57,7 @@ Similar to Case 1, entering Case 2 in the terminal will cause the model to respo
 
 ![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Robot action source code path:
 
@@ -87,7 +75,7 @@ Model service source code:
 - The function implementation is: save and display an image from the latest viewpoint.
 - Then, it sends a request to the model_service node, requesting to provide image feedback to the multi_brains agent in Dify.
 
-```
+```python
 def seewhat(self):
         """
         Save the current view image and send it as feedback to the Dify agent.
@@ -99,7 +87,7 @@ def seewhat(self):
         self.llm_request_pub.publish(msg)
         return None
     def save_single_image(self):
-        """保存一张图片 / Save a single image"""
+        """Save a single image"""
         cv_image = self.bridge.imgmsg_to_cv2(self.image_msg, "bgr8")
         cv2.imwrite(self.image_cache_path, cv_image)
         time.sleep(0.05)
@@ -107,14 +95,14 @@ def seewhat(self):
         display_thread.start()
     def __display_saved_image(self):
         """
-        显示已保存的图片4秒后关闭窗口 / Display the saved image for 4 seconds before
+        Display the saved image for 4 seconds before
 closing the window
         """
         try:
             img = cv2.imread(self.image_cache_path)
             if img is not None:
                 cv2.imshow("Saved Image", img)
-                cv2.waitKey(4000) # 等待4秒 / Wait for 4 seconds
+                cv2.waitKey(4000) # Wait for 4 seconds
                 cv2.destroyAllWindows()
             else:
                 self.get_logger().error(
@@ -128,9 +116,9 @@ occurred while displaying the image...
 - In addition, the llm_request_callback function in model_service.py is used to receive requests to access the multi_brains agent.
 - If the llm_request field in the request message indicates an image request, a list [msg.llm_request, 'image_request', True] is constructed and added to the model request processing queue.
 
-```
+```python
 def llm_request_callback(self, msg:LlmRequest):
-        '''话题回调函数,接收调用模型请求并放入队列中 / Topic callback function, receive
+        '''Topic callback function, receive
 model request and put into queue
         '''if self.debug_mode: self.get_logger().info(f"robot_feedback:
 {msg.robot_feedback},llm_request:{msg.llm_request}")
@@ -155,9 +143,9 @@ self.get_logger().info(self.syslog.get_text("system_log_4"))
 
 In the handle_llm_thread method of model_service.py, the response mode is determined by the self.text_chat_mode variable. If it's only text-based interaction mode, only text responses will be provided.
 
-```
+```python
 def handle_llm_thread(self)->None:
-        '''处理模型请求/ Handle model request
+        '''Handle model request
         '''while True:
             if not self.llm_handler_queue.empty():#The queue is not empty,
 processing model requests.
@@ -211,7 +199,7 @@ Check whether the dify or AI model is normal.\
 
 When initializing the model engine, the speech recognition and speech synthesis models are loaded only in speech interaction mode.
 
-```
+```python
 def init_largemodel(self):
       # Initialize Dify
  self.dify_llmclient=Dify_LLM_Client(api_key=self.dify_api_key,base_url=self.dif
@@ -246,7 +234,7 @@ handle wake-up and speech recognition related tasks.
             asr_thread.start()
             #Initialize TTS
  self.tts_out_path=os.path.join(os.path.expanduser('~'),'M3Pro_ws','multi_brains
-_file','tts_output.wav') # 语音合成输出路径 / TTS output path
+_file','tts_output.wav') # TTS output path
             if self.config_param.get("USE_OLINE_TTS", False):
                 tts_supplier=self.config_param.get("TTS_SUPPLIER")
                 if tts_supplier=="aliyun":
