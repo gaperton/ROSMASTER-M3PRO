@@ -1,4 +1,4 @@
-## Image panning
+# Image panning
 
 The original image src is converted to the target image dst through the transformation matrix M:
 
@@ -15,7 +15,7 @@ dst(x, y) = src(x+200, y+100)
 Complete the above expression:
 
 ```
- dst(x, y) = src(1·x + 0·y + 200, 0·x + 1·y + 100)
+ dst(x, y) = src(1x + 0y + 200, 0x + 1y + 100)
 ```
 
 According to the above expression, the values of each element in the corresponding transformation matrix M can be determined as:
@@ -42,7 +42,7 @@ Code path:
 
 opencv/opencv_basic/02_OpenCV Transform/03Picture Pan.ipynb
 
-```
+```python
 import cv2
 import numpy as np
 img = cv2.imread('yahboom.jpg',1)
@@ -60,7 +60,7 @@ dst = cv2.warpAffine(img, matShift, (height, width)) #1 data 2 mat 3 info
 
 The following will show the original image and the translated image in the JupyterLab control:
 
-```
+```python
 #bgr8 to jpeg format
 import enum
 import cv2

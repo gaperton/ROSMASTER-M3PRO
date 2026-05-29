@@ -1,4 +1,4 @@
-## Affine transformation
+# Affine transformation
 
 Affine Transformation (Affine Transformation or Affine Map) is a linear transformation from twodimensional coordinates (x, y) to two-dimensional coordinates (u, v). Its mathematical expression
 
@@ -19,7 +19,7 @@ Code path:
 
 opencv/opencv_basic/02_OpenCV Transform/05Affine transformation.ipynb
 
-```
+```python
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt

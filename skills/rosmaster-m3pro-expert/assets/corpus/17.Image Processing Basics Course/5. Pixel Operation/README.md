@@ -1,4 +1,4 @@
-## 5.OpenCV pixel operations
+# 5.OpenCV pixel operations
 
 Pixel operations allow us to change the color of any pixel at any position. Here we first read the image and then assign an area to white.
 
@@ -11,7 +11,7 @@ operation.ipynb
 
 The main code is as follows:
 
-```
+```python
 import cv2
 img = cv2.imread('yahboom.jpg',1)
 (b,g,r) = img[100,100]
@@ -26,7 +26,7 @@ for j in range(1,500):
 # cv2.waitKey(0) #1000 ms
 ```
 
-```
+```python
 #bgr8 to jpeg format
 import enum
 import cv2
@@ -36,11 +36,11 @@ def bgr8_to_jpeg(value, quality=75):
 
 JupyterLab displays the before and after image comparison:
 
-```
+```python
 import ipywidgets.widgets as widgets
 image_widget1 = widgets.Image(format='jpg', )
 image_widget2 = widgets.Image(format='jpg', )
-# create a horizontal box container to place the image widget next to 、each
+# create a horizontal box container to place the image widget next to , each
 other
 image_container = widgets.HBox([image_widget1, image_widget2])
 # display the container in this cell's output

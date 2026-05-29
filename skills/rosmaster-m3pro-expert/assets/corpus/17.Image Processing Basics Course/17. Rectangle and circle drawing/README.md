@@ -41,7 +41,7 @@ lineType: Line type. The default is 8, connection type. The following table desc
 | cv2.LINE_8  | 8 connection types                                         |
 | cv2.LINE_AA | Anti-aliasing, this parameter will make the lines smoother |
 
-#### 3. Draw an ellipse
+## 3. Draw an ellipse
 
 cv2.ellipse(img, center, axes, angle, StartAngle, endAngle, color[,thickness[,lineType]])
 
@@ -61,7 +61,7 @@ For img and color, please refer to the description of circle.
 
 #If the 456 parameter is added with a sign, it means the opposite direction, that is, clockwise.
 
-#### 4. Draw polygons
+## 4. Draw polygons
 
 cv2.polylines(img,[pts],isClosed, color[,thickness[,lineType]])
 
@@ -75,7 +75,7 @@ Code path:
 
 opencv/opencv_basic/03_Image processing and text drawing/05Draw a rectangular circle.ipynb
 
-```
+```python
 import cv2
 import numpy as np
 newImageInfo = (500,500,3)
@@ -96,7 +96,7 @@ cv2.polylines(dst,[points],True,(255,255,0))
     # cv2.waitKey(0)
 ```
 
-```
+```python
 import matplotlib.pyplot as plt
 dst = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
 plt.imshow(dst)

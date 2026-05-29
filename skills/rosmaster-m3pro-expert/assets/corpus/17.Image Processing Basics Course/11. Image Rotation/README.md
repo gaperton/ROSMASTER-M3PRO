@@ -1,10 +1,10 @@
-## Image Rotation
+# Image Rotation
 
 Image rotation refers to the process of rotating an image by a certain angle according to a certain position, while maintaining the original size. After the image is rotated, the horizontal axis of symmetry, vertical axis of symmetry, and center coordinate origin of the image may change, so the coordinates of the image during rotation need to be converted accordingly. As shown in the figure below:
 
 ![Picture: page 0: picture 2](_page_0_Picture_2.jpeg)
 
-Assuming that the image is rotated counterclockwise by θ, the rotation transformation can be obtained according to the coordinate transformation:
+Assuming that the image is rotated counterclockwise by, the rotation transformation can be obtained according to the coordinate transformation
 
 $$\begin{cases} x' = r\cos(\alpha - \theta) \\ y' = r\sin(\alpha - \theta) \end{cases}$$
 (1)
@@ -26,7 +26,7 @@ $$\begin{bmatrix} [x' & y' & 1] &= [x & y & 1] \ \begin{bmatrix} \cos \theta & -
 The grayscale value of the rotated image is equal to the grayscale value of the corresponding position in the original image as follows:
 
 ```
-f(x′,y′)=f(x,y)
+f(x,y)=f(x,y)
 ```
 
 The above is the principle of rotation, but the API provided by OpenCV can directly obtain the transformation matrix through the function. The syntax format of this function is:
@@ -41,7 +41,7 @@ scale: The scale of the transformation (zoom in or out). 1 means no change, less
 
 Code path:
 
-```
+```python
 opencv/opencv_basic/02_OpenCV Transform/06 pictures rotating.ipynb
 import cv2
 import numpy as np
@@ -58,7 +58,7 @@ dst = cv2.warpAffine(img, matRotate, (height,width))
 
 The following will show the original image and the rotated image in the JupyterLab control.
 
-```
+```python
 #bgr8 to jpeg format
 import enum
 import cv2
@@ -66,7 +66,7 @@ def bgr8_to_jpeg(value, quality=75):
     return bytes(cv2.imencode('.jpg', value)[1])
 ```
 
-```
+```python
 import ipywidgets.widgets as widgets
 image_widget1 = widgets.Image(format='jpg', )
 image_widget2 = widgets.Image(format='jpg', )

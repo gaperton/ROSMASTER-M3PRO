@@ -1,14 +1,5 @@
 # 2. Common commands for docker image containers
 
-### 2. Common commands for docker image containers
-
-- 2.1、do not use the sudo command
-- 2.2、help commands
-- 2.3、mirror command
-- 2.4、container commands
-- 2.5、common other commands
-- 2.6、Command Summary
-
 The operating environment and software and hardware reference configurations are as follows:
 
 - REFERENCE MODEL: ROSMASTER X3
@@ -21,7 +12,7 @@ The operating environment and software and hardware reference configurations are
 
 Usually, to operate docker commands, you need to add the prefix sudo, as follows:
 
-```
+```bash
 sudo docker version
 ```
 
@@ -44,22 +35,22 @@ WARNING: Error loading config file: /home/pi/.docker/config.json: open
 
 Run the following command on the host to solve the problem:
 
-```
+```bash
 sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 sudo chmod g+rwx "/home/$USER/.docker" -R
 ```
 
-# 2.2. help commands
+### 2.2. help commands
 
-```
+```bash
 docker info # Displays Docker system information, including the number of images and
 containers.
 docker --help # Help
 ```
 
-## 2.3. mirror command
+### 2.3. mirror command
 
-### 1. Docker pull download image
+## 1. Docker pull download image
 
 ```
 # Download the image
@@ -72,7 +63,7 @@ Status: Downloaded newer image for ubuntu:latest
 docker.io/library/ubuntu:latest # Real Location
 ```
 
-### 2. Docker images lists the images
+## 2. Docker images lists the images
 
 ```
 # Lists the images on the local host
@@ -103,7 +94,7 @@ default!
 --digests: Displays the summary information of the image
 ```
 
-### 3. docker search
+## 3. docker search
 
 ```
 # Search for mirrors
@@ -111,11 +102,11 @@ jetson@ubuntu:~$ docker search ros2
 NAME DESCRIPTION
         STARS OFFICIAL AUTOMATED
 osrf/ros2 **Experimental** Docker Images for
-ROS2 deve… 60 [OK]
+ROS2 deve 60 [OK]
 tiryoh/ros2-desktop-vnc A Docker image to provide HTML5 VNC
-interfac… 11
+interfac 11
 althack/ros2 An assortment of development
-containers for … 7
+containers for  7
 tiryoh/ros2 unofficial ROS2 image
         6
 athackst/ros2 [Deprecated-> use althack/ros2]
@@ -131,9 +122,9 @@ repository
 value.
 ```
 
-#### 4. docker rmi delete the image
+## 4. docker rmi delete the image
 
-```
+```bash
 # Delete the image
 docker rmi -f image id # deletes a single
 docker rmi -f image name: tag image name: tag # Delete multiple
@@ -144,13 +135,13 @@ docker rmi -f $(docker images -qa) # deletes all
 
 To create a container with an image, we use the image of ubuntu here to test and download the image:
 
-```
+```bash
 docker pull ubuntu
 ```
 
-### 1. docker run
+## 1. docker run
 
-```
+```bash
 # command
 docker run [OPTIONS] IMAGE [COMMAND][ARG...]
 # Description of common parameters
@@ -189,7 +180,7 @@ exit
 jetson@ubuntu:~$
 ```
 
-#### 2. docker ps
+## 2. docker ps
 
 ```
 # command
@@ -209,14 +200,14 @@ c54bf9efae47 ubuntu:latest "/bin/bash" 2 hours ago Up 4 seconds
          jovial_brown
 ```
 
-### 3. Exit the container
+## 3. Exit the container
 
 ```
 exit # The container stops exiting
 ctrl+P+Q # container does not stop exiting
 ```
 
-### 4. Multiple terminals enter a running container
+## 4. Multiple terminals enter a running container
 
 ```
 # Command 1
@@ -251,26 +242,26 @@ root@c54bf9efae47:/#
 start a new process
 ```
 
-### 5. Start and stop the container
+## 5. Start and stop the container
 
-```
+```bash
 docker start (container ID or container name) # Start the container
 docker restart (container id or container name) # Restart the container
 docker stop (container id or container name) # Stop the container
 docker kill (container ID or container name) # Forces the container to stop
 ```
 
-### 6. Delete the container
+## 6. Delete the container
 
-```
+```bash
 Docker rm docker_id # Deletes the specified container
 docker rm -f $(docker ps -a -q) # Delete all containers
 docker ps -a -q|xargs docker rm # Delete all containers
 ```
 
-# 2.5. common other commands
+### 2.5. common other commands
 
-1. View the process information running in the container and support ps command parameters.
+- 1. View the process information running in the container and support ps command parameters.
 
 ```
 # command
@@ -290,7 +281,7 @@ root 9667 9647 0
 14:20 pts/0 00:00:00 /bin/bash
 ```
 
-2、View the metadata of the container/image
+2, View the metadata of the container/image
 
 ```
 # Command
@@ -402,6 +393,6 @@ jetson@ubuntu:~$ docker inspect bab8ce5c00ca
 ]
 ```
 
-# 2.6. Command Summary
+### 2.6. Command Summary
 
 ![Figure: page 8: figure 0](_page_8_Figure_0.jpeg)

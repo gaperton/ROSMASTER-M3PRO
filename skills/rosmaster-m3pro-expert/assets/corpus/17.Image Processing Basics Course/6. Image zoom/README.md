@@ -1,4 +1,4 @@
-## Image zoom
+# Image zoom
 
 In OpenCV, the function for image scaling is: cv2.resize(InputArray src, OutputArray dst, Size, fx, fy, interpolation)
 
@@ -33,7 +33,7 @@ The interpolation method used by the options:
 
 The main code is as follows:
 
-```
+```python
 # 1 load 2 info 3 resize 4 check
 import cv2
 import matplotlib.pyplot as plt # Python 2D plotting library
@@ -93,7 +93,7 @@ Next, let's talk about matplotlib: Python's 2D plotting library.
 
 Reference tutorial:<https://www.runoob.com/numpy/numpy-matplotlib.html>
 
-```
+```python
 import numpy as np
 from matplotlib import pyplot as plt
 x = np.arange(1,11)

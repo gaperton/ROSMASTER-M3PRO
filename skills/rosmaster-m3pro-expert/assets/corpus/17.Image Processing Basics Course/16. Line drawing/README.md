@@ -1,4 +1,4 @@
-## Line drawing
+# Line drawing
 
 When using OpenCV to process images, we sometimes need to draw line segments, rectangles, etc. on the image. In OpenCV, we use the line(dst, pt1, pt2, color, thickness=None, lineType=None, shift=None) function to draw line segments.
 
@@ -18,7 +18,7 @@ Code path:
 
 opencv/opencv_basic/03_Image processing and text drawing/04 Line segment drawing.ipynb
 
-```
+```python
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt

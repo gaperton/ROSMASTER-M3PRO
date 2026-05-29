@@ -1,4 +1,4 @@
-## Image writing
+# Image writing
 
 Function method: cv2.imwrite('yahboom1.jpg', img).
 
@@ -8,7 +8,7 @@ Next, we demonstrate how to write an image. First, we read an image yahboom.jpg 
 
 Code path:
 
-```
+```python
 ~/opencv/opencv_basic/01_Getting_Started_with_OpenCV/02_OpenCV Image
 writing.ipynb
 import cv2
@@ -20,7 +20,7 @@ cv2.imwrite('yahboom1.jpg', img) # 1 name 2 dat
 
 The cv2.imshow('yahboom, img) function in jupyLab cannot be executed. If you need to use this sentence to display the read image, you need to execute the python file through the command: python3 XX.py
 
-```
+```python
 #bgr8 to jpeg format
 import enum
 import cv2

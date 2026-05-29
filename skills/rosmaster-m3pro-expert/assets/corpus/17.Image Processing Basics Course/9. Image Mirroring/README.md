@@ -1,4 +1,4 @@
-## Image mirroring
+# Image mirroring
 
 There are two types of image mirroring: horizontal and vertical. Horizontal mirroring swaps the image's pixels around its vertical centerline, essentially swapping the left and right halves. Vertical mirroring swaps the top and bottom halves around its horizontal centerline.
 
@@ -34,7 +34,7 @@ Code path:
 opencv/opencv_basic/02_OpenCV Transform/04 Image mirroring.ipynb
 ```
 
-```
+```python
 import cv2
 import numpy as np
 img = cv2.imread('yahboom.jpg',1)
@@ -57,7 +57,7 @@ for i in range(0,width):
     dst[height,i] = (0,0,255) #BGR
 ```
 
-```
+```python
 #bgr8 to jpeg format
 import enum
 import cv2
@@ -65,7 +65,7 @@ def bgr8_to_jpeg(value, quality=75):
     return bytes(cv2.imencode('.jpg', value)[1])
 ```
 
-```
+```python
 import ipywidgets.widgets as widgets
 image_widget1 = widgets.Image(format='jpg', )
 # image_widget2 = widgets.Image(format='jpg', )

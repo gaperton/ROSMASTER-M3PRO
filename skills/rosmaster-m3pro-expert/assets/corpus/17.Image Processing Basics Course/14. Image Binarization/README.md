@@ -1,4 +1,4 @@
-## Image binarization
+# Image binarization
 
 The core idea of binarization is to set a threshold, with values above the threshold being set to 0 (black) or 255 (white), making the image black and white. The threshold can be fixed or adaptive. An adaptive threshold typically compares a pixel at a point with the average value of the pixels in the region around that point, or with a weighted sum of Gaussian distributions. This difference can be set or not.
 
@@ -34,7 +34,7 @@ Code path:
 
 opencv/opencv_basic/03_Image processing and text drawing/02Binarization processing.ipynb
 
-```
+```python
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt

@@ -1,4 +1,4 @@
-## Grayscale processing
+# Grayscale processing
 
 The process of converting a color image to a grayscale image is called grayscaling. The color of each pixel in a color image is determined by three components: R, G, and B. Each component can take values from 0 to 255, resulting in a pixel with a range of over 16 million possible colors (256 *256* 256 = 1,677,256). A grayscale image is a special type of color image where the R, G, and B components are identical, but the range of possible colors for a single pixel is 256. Therefore, in digital image processing, images of various formats are generally converted to grayscale to reduce the amount of computation required for subsequent image processing. Like color images, grayscale images still reflect the distribution and characteristics of the overall and local chromaticity and highlight levels of the entire image.
 
@@ -8,7 +8,7 @@ Grayscale is the process of making the R, G, and B components of a color equal. 
 
 White), whereas it is darker (the bottom pixel is 0, which is black).
 
-**The core idea of image grayscale is R = G = B, and this value is also called grayscale value.**
+The core idea of image grayscale is R = G = B, and this value is also called grayscale value.
 
 Image grayscale algorithm
 
@@ -22,7 +22,7 @@ Code path:
 
 opencv/opencv_basic/03_Image processing and text drawing/01gray processing.ipynb
 
-```
+```python
 #Method 1 imread
 #Note: Sometimes the image will not be displayed the first time you run it, but
 will be displayed the second time
@@ -48,7 +48,7 @@ img_bgr2rgb0 = cv2.cvtColor(img0, cv2.COLOR_BGR2RGB)
 
 ![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)
 
-```
+```python
 #Method 2 cvtColor
 #Note: Sometimes the image will not be displayed the first time you run it, but
 will be displayed the second time
@@ -70,7 +70,7 @@ img_bgr2rgb0 = cv2.cvtColor(dst, cv2.COLOR_BGR2RGB)
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-```
+```python
 #Method 3 Average Method
 import cv2
 import numpy as np
@@ -99,7 +99,7 @@ plt.imshow(img_bgr2rgb0)
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-```
+```python
 #Method 4 Weighted Average Method
 # gray = r*0.299+g*0.587+b*0.114
 import cv2

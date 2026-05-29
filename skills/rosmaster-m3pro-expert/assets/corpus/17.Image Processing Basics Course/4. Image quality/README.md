@@ -1,4 +1,4 @@
-## Image quality
+# Image quality
 
 Code path:
 
@@ -7,7 +7,7 @@ opencv/opencv_basic/01_Getting_Started_with_OpenCV/03_OpenCV Picture
 quality.ipynb
 ```
 
-1. Compression method.
+- 1. Compression method.
 
 cv2.imwrite('yahboomTest.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 50])
 
@@ -19,14 +19,14 @@ cv2.CV_IMWRITE_PNG_COMPRESSION: Sets the compression ratio of the.png format. Th
 
 The main code is as follows:
 
-```
+```python
 import cv2
 img = cv2.imread('yahboom.jpg',1)
 cv2.imwrite('yahboomTest.jpg', img, [cv2.IMWRITE_JPEG_QUALITY, 50])
 #1M 100k 10k 0-100 lossy compression
 ```
 
-```
+```python
 # 1 Lossless 2 transparency attribute
 import cv2
 img = cv2.imread('yahboom.jpg',1)
@@ -34,7 +34,7 @@ cv2.imwrite('yahboomTest.png', img, [cv2.IMWRITE_PNG_COMPRESSION,0])
 # jpg 0 high compression ratio 0-100 png 0 low compression ratio 0-9
 ```
 
-```
+```python
 #bgr8 to jpeg format
 import enum
 import cv2
@@ -42,7 +42,7 @@ def bgr8_to_jpeg(value, quality=75):
       return bytes(cv2.imencode('.jpg', value)[1])
 ```
 
-```
+```python
 import ipywidgets.widgets as widgets
 image_widget1 = widgets.Image(format='jpg', )
 image_widget2 = widgets.Image(format='jpg', )

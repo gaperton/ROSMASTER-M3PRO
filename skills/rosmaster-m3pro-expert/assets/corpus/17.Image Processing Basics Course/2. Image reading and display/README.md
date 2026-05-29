@@ -1,4 +1,4 @@
-## Image reading and display
+# Image reading and display
 
 ## 1. Image reading:
 
@@ -22,7 +22,7 @@ The first parameter indicates the name of the window to be opened.
 
 The second parameter indicates the image to be displayed
 
-## 2.1. Code and actual effect display
+### 2.1. Code and actual effect display
 
 Source code path:
 
@@ -33,7 +33,7 @@ display.ipynb
 
 Main code:
 
-```
+```python
 import cv2
 img = cv2.imread('yahboom.jpg', 1)
 # cv2.imshow('image', img) #This line can only be executed by the command line py

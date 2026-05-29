@@ -2,17 +2,17 @@
 
 *At present, ROS2's courses are all placed in Docker containers, and customers can experience learning to use containerized development methods.*
 
-### 1. Docker overview and docker installation
+## 1. Docker overview and docker installation
 
-- 1.1、Docker overview
-  - 1.1.1、why docker appears
-  - 1.1.2、Docker's core idea
-  - 1.1.3、Compare virtual machines to Docker
-  - 1.1.4、docker architecture
-  - 1.1.5、Docker core objects
-  - 1.1.6、images, containers, repositories
-  - 1.1.7、Docker operation mechanism
-- 1.2、docker installation
+- 1.1, Docker overview
+  - 1.1.1, why docker appears
+  - 1.1.2, Docker's core idea
+  - 1.1.3, Compare virtual machines to Docker
+  - 1.1.4, docker architecture
+  - 1.1.5, Docker core objects
+  - 1.1.6, images, containers, repositories
+  - 1.1.7, Docker operation mechanism
+- 1.2, docker installation
 
 Docker Chinese website: [https://www.docker-cn.com](https://www.docker-cn.com/)
 
@@ -26,11 +26,11 @@ The operating environment and software and hardware reference configurations are
 - PC Virtual Machine: Ubuntu (20.04) + ROS2 (Foxy)
 - Usage scenario: Use on a relatively clean 2D plane
 
-## 1.1. Docker overview
+### 1.1. Docker overview
 
 Docker is an application container engine project, developed based on the Go language and open source.
 
-## 1.1.1. why docker appears
+#### 1.1.1. why docker appears
 
 Let's start with a few scenarios:
 
@@ -46,7 +46,7 @@ For example, the project involves environments such as REDIS, MYSQL, JDK, ES, et
 
 Docker is here to solve this problem!
 
-## 1.1.2. Docker's core idea
+#### 1.1.2. Docker's core idea
 
 ![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
@@ -54,7 +54,7 @@ This is the logo of Docker, a whale full of containers, on the back of the whale
 
 For example, if there were multiple applications running on the same server before, there may be port occupation conflicts of software, but now they can run alone after isolation. In addition, Docker can maximize the power of the server.
 
-### 1.1.3. Compare virtual machines to Docker
+#### 1.1.3. Compare virtual machines to Docker
 
 ![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
@@ -63,7 +63,7 @@ The docker daemon can communicate directly with the main operating system to all
 - Virtual machines are better at completely isolating the entire operating environment. For example, cloud service providers often use virtual machine technology to isolate different users. Docker is often used to isolate different applications, such as front-end, back-end, and database.
 - Docker containers are more resource-efficient and faster (start, shut down, create, delete) than virtual machines
 
-## 1.1.4. docker architecture
+#### 1.1.4. docker architecture
 
 Docker uses a client-server architecture. The Docker client communicates with the Docker daemon, which is responsible for building, running, and distributing the Docker container. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The docker client and daemon communicate using REST APIs over UNIX sockets or network interfaces. Another Docker client is Docker Compose, which lets you work with applications that consist of a set of containers.
 
@@ -75,11 +75,11 @@ Docker uses a client-server architecture. The Docker client communicates with th
 - registry is a remote repository where docker pulls images, providing a large number of images for download, and saving them in images (local image repository) after downloading.
 - Images is a local image repository of docker, and image files can be viewed through docker images.
 
-## 1.1.5. Docker core objects
+#### 1.1.5. Docker core objects
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-### 1.1.6. images, containers, repositories
+#### 1.1.6. images, containers, repositories
 
 ### Image:
 
@@ -100,7 +100,7 @@ You need to correctly understand the concepts of warehousing/image/container:
 - A container runs a service, and when we need it, we can create a corresponding running instance through the docker client, which is our container.
 - As for the repository, it is a place where a bunch of images are placed, we can publish the images to the repository, and pull them from the repository when needed.
 
-### 1.1.7. Docker operation mechanism
+#### 1.1.7. Docker operation mechanism
 
 Docker pull execution process:
 
@@ -108,7 +108,9 @@ Docker pull execution process:
 - 2. Docker Daemon first check whether there are relevant images in the local images
 - 3. If there is no relevant image locally, request the mirror server to download the remote mirror to the local computer
 
+```bash
 docker run execution process:
+```
 
 - 1. Check whether the specified image exists locally and download it from the public repository
 - 2. Create and start a container from the image
@@ -117,7 +119,7 @@ docker run execution process:
 - 5. Configure an IP address from the address pool to the container
 - 6. Execute the application specified by the user
 
-## 1.2. docker installation
+### 1.2. docker installation
 
 - 1. [Official website installation reference manual: https://docs.docker.com/engine/install/ubunt](https://docs.docker.com/engine/install/ubuntu/) u/
 - 2. You can use the following commands to install with one click:
@@ -126,13 +128,17 @@ docker run execution process:
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
-3. Check the docker version
+- 3. Check the docker version
 
+```bash
 sudo docker version
+```
 
-4. Test the command
+- 4. Test the command
 
+```bash
 sudo docker run hello-world
+```
 
 The following output indicates that the Docker installation was successful
 
@@ -153,7 +159,7 @@ Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
 To generate this message, Docker took the following steps:
-1. The Docker client contacted the Docker daemon.
+- 1. The Docker client contacted the Docker daemon.
 
 - 2. The Docker daemon pulled the "hello-world" image from the Docker Hub. (arm64v8)
 - 3. The Docker daemon created a new container from that image which runs the executable that produces the output you are currently reading.
