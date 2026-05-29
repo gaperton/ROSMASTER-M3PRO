@@ -4,11 +4,11 @@
 
 This function enables the use of handles to control the robotic arms of multiple robots.
 
-#### 1.1 Functional Requirements
+### 1.1 Functional Requirements
 
 For more information, please refer to this product course **[11. Multi-vehicle Function] - [1. Multi-vehicle Chassis Control] - [1.1. Functional Requirements]**
 
-#### 1.2. Connect the controller to the virtual machine
+### 1.2. Connect the controller to the virtual machine
 
 After the virtual machine starts, plug the handle receiver into the USB port of the computer, and then select Connect handle receiver in the virtual machine, as shown below.
 
@@ -20,7 +20,7 @@ Click [Connect] to complete the connection.
 
 After completing the namespace settings for the two robots and successfully reconnecting to the proxy, open two terminals in the corresponding virtual machines and enter the following commands respectively to start the handle to control the robotic arm.
 
-```
+```bash
 #Terminal 1
 ros2 run joy joy_node
 #Terminal 2
@@ -49,7 +49,7 @@ The left joystick controls forward/backward/left/right movement, and the right j
 
 Enter the following command in the virtual machine terminal to view the node communication diagram.
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 

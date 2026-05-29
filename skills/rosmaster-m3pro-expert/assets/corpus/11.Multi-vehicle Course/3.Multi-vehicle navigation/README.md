@@ -1,6 +1,6 @@
 # Multi-vehicle navigation
 
-# 1. Content Description
+## 1. Content Description
 
 This feature allows you to assign two cars different navigation points in RViz. The two cars will plan paths based on their positions on the map and navigate to the designated locations, avoiding obstacles in real time during the navigation process.
 
@@ -12,7 +12,7 @@ For more information, please refer to this product course **[11. Multi-vehicle F
 
 Before starting multi-vehicle navigation, you need to put the map file into /home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps the path of the virtual machine. The map file includes a parameter file in.yaml format and an image file in.pgm format.
 
-# 2. Program startup
+## 2. Program startup
 
 The virtual machine needs to be in the same LAN as the two cars, and the ROS_DOMAIN_ID must be the same as the two cars. The modification method can refer to the content of setting the car's ros_domain_id above. All you need to do is modify the content in ~/.bashrc and refresh the environment variables after the modification is completed.
 
@@ -24,19 +24,21 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 Open the terminal of robot1 and enter the following command to start the chassis data fusion, including dual radar fusion, filtering imu and odom data for ekf fusion.
 
-```
+```bash
 ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name: = robot1
 ```
 
 Similarly, open the terminal on robot2 and enter the following command to start chassis data fusion.
 
+```bash
 ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name:=robot2
+```
 
-#### 2.2. Start RViz and publish map data
+### 2.2. Start RViz and publish map data
 
 In the virtual machine, we open the terminal and enter the following command to start RViz.
 
-```
+```bash
 ros2 launch slam_view multi_nav_rviz.launch.py
 ```
 
@@ -46,7 +48,7 @@ After startup, it is as shown below:
 
 Then start the map loading program. The default map is yahboom_map.yaml, and the file path is /home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps. Enter the following command in the terminal to start,
 
-```
+```bash
 ros2 launch yahboom_mapping map.launch.py
 ```
 
@@ -58,13 +60,13 @@ After successful operation, the map will be loaded in RViz.
 
 Open the terminal of robot1 and enter the following command to start amcl positioning.
 
-```
+```bash
 ros2 launch yahboom_multi robot1_amcl.launch.py
 ```
 
 Open the terminal of robot2 and enter the following command to start amcl positioning.
 
-```
+```bash
 ros2 launch yahboom_multi robot2_amcl.launch.py
 ```
 
@@ -80,13 +82,13 @@ As shown in the figure below, the areas scanned by the two radars overlap with t
 
 Open the terminal of robot1 and enter the following command to start the nav2 navigation of robot1.
 
-```
+```bash
 ros2 launch yahboom_multi robot1_nav.launch.py
 ```
 
 Open the terminal of robot2 and enter the following command to start the nav2 navigation of robot2.
 
-```
+```bash
 ros2 launch yahboom_multi robot2_nav.launch.py
 ```
 
@@ -98,7 +100,7 @@ Next, we use the [2D Goal Pose] tool on rviz2 to give the car an initial pose. T
 
 Enter the following command in the virtual machine terminal to view the TF tree.
 
-```
+```bash
 ros2 run rqt_tf_tree rqt_tf_tree
 ```
 
@@ -106,7 +108,7 @@ As shown in the figure below, this is the TF tree for multi-vehicle navigation.
 
 ![Figure: page 3: figure 6](_page_3_Figure_6.jpeg)
 
-# 4. Expansion
+## 4. Expansion
 
 This tutorial takes two cars as an example. If you want to increase the number of cars, for example, adding a third car, you need to modify the following parts. The following directories involving the files to be added need to be found according to the motherboard type.
 
@@ -118,11 +120,11 @@ Orin motherboard: Search in the /home/jetson directory
 
 In the /M3Pro_ws/src/M3Pro/urdf directory, add the urdf model of robot3 and name it M3Pro_robot3.urdf. You can copy the content of M3Pro_robot1.urdf and replace the places where robot1 appears with robot3. Save and exit.
 
-#### 4.2. Add car URDF startup file
+### 4.2. Add car URDF startup file
 
 In the M3Pro_ws/src/M3Pro/launch/ directory, add the robot3 urdf startup file and name it display_robot3.launch.py. You can copy the content of display_robot1.launch.py and replace the robot1 with robot3. Save and exit, then return to the M3Pro_ws directory and use it colcon build --packages-select M3Pro to compile. After successful compilation, enter the command source ~/.bashrc and refresh the environment variables.
 
-#### 4.3. Add the amcl parameter file of the car
+### 4.3. Add the amcl parameter file of the car
 
 In the M3Pro_ws/src/yahboom_multi/param/ directory, add the amcl parameter file for robot3 and name it robot3_amcl_param.yaml. You can copy the content of robot1_amcl_param.yaml and replace the robot1 with robot3. Save and exit.
 
@@ -134,6 +136,6 @@ In the M3Pro_ws/src/yahboom_multi/launch/ directory, add the amcl startup file o
 
 In the M3Pro_ws/src/yahboom_multi/param/ directory, add the nav2 navigation parameter file of robot3 and name it robot3_nav_param.yaml. You can copy the content of robot1_nav_param.yaml and replace the occurrences of robot1 with robot3. Save and exit.
 
-#### 4.6. Add the nav2 navigation startup file of the car
+### 4.6. Add the nav2 navigation startup file of the car
 
 In the M3Pro_ws/src/yahboom_multi/launch/ directory, add the nav2 navigation startup file of robot3 and name it robot3_nav.launch.py. You can copy the content of robot1_nav.launch.py and replace the robot1 with robot3. Save and exit, then return to the M3Pro_ws directory and use it colcon build --packages-select yahboom_multi to compile. After successful compilation, enter the command source ~/.bashrc and refresh the environment variables.

@@ -1,10 +1,10 @@
 # Multi-vehicle chassis control
 
-### 1. Content Description
+## 1. Content Description
 
 This function enables the use of a keyboard to control multiple cars at the same time.
 
-#### 1.1 Functional Requirements
+### 1.1 Functional Requirements
 
 Taking two cars as an example, these two cars need to meet the following three requirements at the same time:
 
@@ -23,7 +23,7 @@ Repeat the same steps for the other car, setting the namespac to robot2.
 
 After setting the namespace and successfully reconnecting to the proxy, enter the following command in the terminal to verify that the namespace is set correctly. The virtual machine needs to be on the same LAN as the two cars, and the ROS_DOMAIN_ID must be the same for both cars. To modify it, refer to the setting of the car's ros_domain_id above. All you need to do is modify the contents of ~/.bashrc and refresh the environment variables after the modification is complete.
 
-```
+```bash
 ros2 node list
 ```
 
@@ -31,7 +31,7 @@ As shown in the figure below, the appearance of /robot1/YB_Node and /robot2/YB_N
 
 Enter the following command in the virtual machine terminal to start keyboard control,
 
-```
+```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
@@ -52,7 +52,7 @@ After the program starts, click to start the keyboard controlled terminal and pr
 
 Enter the following command in the virtual machine terminal to view the node communication diagram.
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 
