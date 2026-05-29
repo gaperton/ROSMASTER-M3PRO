@@ -18,6 +18,12 @@ def main() -> int:
     parser.add_argument("-k", "--top-k", type=int, default=8, help="Number of JSON results")
     parser.add_argument("--db", default=str(DEFAULT_DB), help="SQLite index path")
     parser.add_argument("--corpus", default=str(DEFAULT_CORPUS), help="Markdown corpus root")
+    parser.add_argument(
+        "--cos-floor",
+        type=float,
+        default=0.0,
+        help="Drop semantic candidates with cosine below this value before fusion (0 = disabled)",
+    )
     args = parser.parse_args()
 
     db_path = Path(args.db).resolve()
@@ -33,7 +39,10 @@ def main() -> int:
 
     from rag_query import search
 
-    print(json.dumps(search(args.query, args.top_k, db_path, corpus_root), indent=2))
+    print(json.dumps(
+        search(args.query, args.top_k, db_path, corpus_root, cos_floor=args.cos_floor),
+        indent=2,
+    ))
     return 0
 
 

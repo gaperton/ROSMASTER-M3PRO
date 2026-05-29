@@ -18,6 +18,7 @@ QUERY_INSTRUCTION = "Represent this sentence for searching relevant passages: "
 RRF_K = 60
 BM25_HEADING_WEIGHT = 1.0
 SNIPPET_CHARS = 700
+DEFAULT_COS_FLOOR = 0.0
 
 STOP_WORDS = frozenset({
     "a", "an", "and", "are", "as", "at", "be", "by", "but", "can", "did", "do",
@@ -26,6 +27,12 @@ STOP_WORDS = frozenset({
     "that", "the", "their", "them", "then", "there", "these", "they", "this",
     "to", "was", "we", "were", "what", "when", "where", "which", "who", "why",
     "will", "with", "you", "your",
+})
+
+# Product-name tokens. Their cumulative BM25 score otherwise dominates because
+# they appear in nearly every document, drowning out the actual topic words.
+PRODUCT_TOKENS = frozenset({
+    "rosmaster", "m3", "m3pro", "pro", "x3", "yahboom",
 })
 
 _MODEL: Any = None
@@ -63,7 +70,10 @@ def serialize_f32(vec: Any) -> bytes:
 
 def to_fts5_query(query: str) -> str:
     raw = re.findall(r"\w+", query, flags=re.UNICODE)
-    kept = [token for token in raw if token.lower() not in STOP_WORDS]
+    kept = [
+        token for token in raw
+        if token.lower() not in STOP_WORDS and token.lower() not in PRODUCT_TOKENS
+    ]
     tokens = kept or raw
     return " OR ".join(f'"{token}"' for token in tokens)
 
@@ -182,13 +192,19 @@ def search(
     top_k: int = 8,
     db_path: Path = DEFAULT_DB,
     corpus_root: Path = DEFAULT_CORPUS,
+    cos_floor: float = DEFAULT_COS_FLOOR,
 ) -> dict[str, Any]:
     pool = max(top_k * 4, 30)
     conn = open_db(db_path)
     try:
-        semantic = search_semantic(conn, query, pool)
+        semantic_all = search_semantic(conn, query, pool)
+        semantic = (
+            [(rowid, score) for rowid, score in semantic_all if score >= cos_floor]
+            if cos_floor > 0.0
+            else semantic_all
+        )
         keyword = search_keyword(conn, query, pool)
-        semantic_scores = {chunk_id: score for chunk_id, score in semantic}
+        semantic_scores = {chunk_id: score for chunk_id, score in semantic_all}
         keyword_scores = {chunk_id: score for chunk_id, score in keyword}
         fused = rrf_fuse([
             [chunk_id for chunk_id, _ in semantic],
@@ -223,6 +239,7 @@ def search(
         "top_k": top_k,
         "model": MODEL_NAME,
         "retrieval": "hybrid_rrf",
+        "cos_floor": cos_floor,
         "results": results,
     }
 
@@ -233,6 +250,12 @@ def main() -> int:
     parser.add_argument("-k", "--top-k", type=int, default=8, help="Number of JSON results")
     parser.add_argument("--db", default=str(DEFAULT_DB), help="SQLite index path")
     parser.add_argument("--corpus", default=str(DEFAULT_CORPUS), help="Markdown corpus root")
+    parser.add_argument(
+        "--cos-floor",
+        type=float,
+        default=DEFAULT_COS_FLOOR,
+        help="Drop semantic candidates with cosine below this value before fusion (0 = disabled)",
+    )
     args = parser.parse_args()
 
     db_path = Path(args.db).resolve()
@@ -242,7 +265,7 @@ def main() -> int:
     if not corpus_root.exists():
         return emit({"error": "corpus_not_found", "corpus_root": str(corpus_root)}, status=2)
 
-    return emit(search(args.query, args.top_k, db_path, corpus_root))
+    return emit(search(args.query, args.top_k, db_path, corpus_root, cos_floor=args.cos_floor))
 
 
 if __name__ == "__main__":
