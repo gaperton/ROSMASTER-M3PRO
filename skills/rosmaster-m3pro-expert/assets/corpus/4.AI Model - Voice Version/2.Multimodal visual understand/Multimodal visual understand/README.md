@@ -1,25 +1,12 @@
 # Multimodal Visual Understanding
 
-#### Multimodal Visual Understanding
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running Examples
-  - 3.1 Starting the Program
-  - 3.2 Test Cases
-    - 3.2.1 Case 1
-    - 3.2.2 Case 2
-- 4. Source Code Analysis
-
 ## 1. Course Content
 
 Basic: Run the example program, allowing the robot to observe the environment and execute tasks based on instructions.
 
 Advanced: Understand the key source code introduced in this section.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Content Description
 
@@ -27,7 +14,7 @@ This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson N
 
 ### 2.2 Starting the Agent
 
-**Note: If the agent is already running, you do not need to start it again.**
+Note: If the agent is already running, you do not need to start it again.
 
 Enter the following command in the vehicle terminal:
 
@@ -37,13 +24,13 @@ sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
-# 3. Running Examples
+## 3. Running Examples
 
 ### 3.1 Starting the Program
 
 Open the terminal on the vehicle and enter the following command:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py
 ```
 
@@ -55,7 +42,7 @@ multi_brains
 
 Wait for the initialization program to complete, as shown in the image below:
 
-#### 3.2 Test Cases
+### 3.2 Test Cases
 
 These test cases are for demonstration purposes only; users can create their own dialogue commands.
 
@@ -84,7 +71,7 @@ Robot's perspective view:
 
 ![Picture: page 4: picture 1](_page_4_Picture_1.jpeg)
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Robot action source code path:
 
@@ -102,7 +89,7 @@ Model service source code:
 - The function saves and displays an image from the latest perspective.
 - Then, it sends a request to the model_service node, requesting to provide the image feedback to the multi_brains agent in Dify.
 
-```
+```python
 def seewhat(self):
     """
   Save the current view image and send it as feedback to the Dify agent.
@@ -116,8 +103,8 @@ def seewhat(self):
 def save_single_image(self):
 ```
 
-```
-"""保存一张图片 / Save a single image"""
+```python
+"""Save a single image"""
        cv_image = self.bridge.imgmsg_to_cv2(self.image_msg, "bgr8")
        cv2.imwrite(self.image_cache_path, cv_image)
        time.sleep(0.05)
@@ -125,14 +112,14 @@ def save_single_image(self):
        display_thread.start()
    def __display_saved_image(self):
        """
-       显示已保存的图片4秒后关闭窗口 / Display the saved image for 4 seconds before
+       Display the saved image for 4 seconds before
 closing the window
        """
        try:
            img = cv2.imread(self.image_cache_path)
            if img is not None:
                cv2.imshow("Saved Image", img)
-               cv2.waitKey(4000) # 等待4秒 / Wait for 4 seconds
+               cv2.waitKey(4000) # Wait for 4 seconds
                cv2.destroyAllWindows()
            else:
                self.get_logger().error(
@@ -146,9 +133,9 @@ occurred while displaying the image...
 - In addition, the llm_request_callback function in model_service.py is used to receive requests to access the multi_brains agent.
 - If the llm_request field in the request message indicates an image request, a list [msg.llm_request, 'image_request', True] is constructed and added to the model request processing queue.
 
-```
+```python
 def llm_request_callback(self, msg:LlmRequest):
-        '''话题回调函数,接收调用模型请求并放入队列中 / Topic callback function, receive
+        '''Topic callback function, receive
 model request and put into queue
         '''if self.debug_mode: self.get_logger().info(f"robot_feedback:
 {msg.robot_feedback},llm_request:{msg.llm_request}")

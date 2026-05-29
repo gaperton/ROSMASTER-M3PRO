@@ -1,42 +1,25 @@
 # Multimodal Visual Understanding + Robotic Arm Grasping
 
-#### Multimodal Visual Understanding + Robotic Arm Grasping
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running the Cases
-  - 3.1 Starting the Program
-  - 3.2 Testing Cases
-    - 3.2.1 Case 1: "Find the red square in front of you and pick it up"
-    - 3.2.2 Case 2: "Put the red cube in front of you to the right of the blue cube"
-    - 3.2.3 Case 3: "Please remove the machine code in front of you that is taller than 5 centimeters"
-- 4. Source Code Analysis
-  - 4.1 Case 1
-  - 4.2 Case Study 2
-  - 4.3 Case Study 3
-
-# 1. Course Content
+## 1. Course Content
 
 - Basic: Run the example program and perform integrated tasks using the robot's visual understanding combined with robotic arm grasping.
 - Advanced: Master the key source code introduced in this section.
 
 [!NOTE]
 
-#### Note
+### Note
 
 The AI large language model's responses to the same test commands will not be exactly the same each time, and may differ slightly from the screenshots in the tutorial.
 
-# 2. Preparation
+## 2. Preparation
 
-## 2.1 Content Description
+### 2.1 Content Description
 
 This section of the course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host machine, then enter the command to enter the Docker container. After entering the Docker container, enter the commands mentioned in this section of the course in the terminal. For instructions on entering the Docker container from the host machine, please refer to the "Entering the Robot's Docker (For Jetson Nano and Raspberry Pi 5 Users)" section in the product tutorial [0. Instructions and Installation Steps]. For Orin and NX boards, simply open the terminal and enter the commands mentioned in this section.
 
 ### 2.2 Starting the Agent
 
-**Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.**
+Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.
 
 Enter the following command in the vehicle terminal:
 
@@ -46,13 +29,13 @@ sh start_agent.sh
 
 The terminal will print the following information, indicating a successful connection:
 
-# 3. Running the Cases
+## 3. Running the Cases
 
-#### 3.1 Starting the Program
+### 3.1 Starting the Program
 
 Open the terminal on the vehicle and enter the command to start the AI agent function:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py
 ```
 
@@ -103,7 +86,7 @@ The terminal will open a window titled **result_image**, showing the height of e
 
 ![Figure: page 5: figure 2](_page_5_Figure_2.jpeg)
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 The path to the robot's action source code:
 
@@ -111,7 +94,7 @@ The path to the robot's action source code:
 ~/M3Pro_ws/src/multi_brains/multi_brains/action_service.py
 ```
 
-#### 4.1 Case 1
+### 4.1 Case 1
 
 action_service.py program:
 
@@ -123,7 +106,7 @@ The object coordinate rules in the robotic arm's grasping view are shown in the 
 
 The **grasp_obj(x1, y1, x2, y2)** function is used to call the robotic arm to grasp the target object. The parameters are the coordinates of the top-left and bottom-right vertices of the bounding box of the object to be grasped (the top-left corner of the image is the pixel coordinate origin). For example, in Case 1, the bounding box coordinates of the red square to be grasped can be obtained from the large model's response: the top-left corner coordinates are (365, 200), and the bottom-right corner coordinates are (408, 261). - grasp_obj launched the subprocesses **grasp_desktop**, **KCF_follow**, and **ALM_KCF_Tracker_Node3**, and passed the parameters provided by the large AI model to the **ALM_KCF_Tracker_Node** node via a topic.
 
-```
+```python
 def grasp_obj(self, x1, y1, x2, y2) -> None:
         """grasp_obj: Grasping object x1, y1, x2, y2: Coordinates of the
 object's bounding box """
@@ -169,9 +152,9 @@ return res
 
 After the grasping is complete, the **KCF_follow** node will publish a signal on the **largemodel_arm_done** topic with the content "**grasp_obj_done**", which sets the **grasp_obj_future** object in the **largemodel_arm_done_callback** callback function.
 
-```
+```python
 def action_feedback_callback(self, msg:String):
-        ''' 外部动作反馈回调函数 / External action feedback callback function '''
+        '''External action feedback callback function'''
         if msg.data =="follow_line_finish":
             if not self.follow_line_clear_future.done():
                 self.follow_line_clear_future.set_result(msg)
@@ -203,10 +186,10 @@ def action_feedback_callback(self, msg:String):
 
 The set_cmdvel function controls the robot's base movement by publishing the cmd_vel velocity topic.
 
-```
+```python
 def set_cmdvel(self, linear_x:str, linear_y:str, angular_z:str,
 duration:str)->None:
-        ''' 发布cmd_vel速度指令 / Publish cmd_vel velocity command '''
+        '''Publish cmd_vel velocity command'''
         linear_x = float(linear_x)
         linear_y = float(linear_y)
         angular_z = float(angular_z)
@@ -222,7 +205,7 @@ duration:str)->None:
 
 The putdown method is used to make the robotic arm put down the object it is holding.
 
-```
+```python
 def putdown(self):
         self.pubSix_Arm(self.putsown_joints) # Deployment of robotic arm
         time.sleep(4)
@@ -237,9 +220,9 @@ releases the object.
 
 The apriltag_remove_higher method starts the external grasp_desktop_remove and apriltag_remove_higher nodes via a subprocess. This is an example from the robotic arm chapter demonstrating the removal of machine code at a specified height.
 
-```
+```python
 def apriltag_remove_higher(self, target_high):
-        '''移除指定高度的机器码/Remove machine code at the specified height.'''
+        '''Remove machine code at the specified height.'''
         def __reset_apriltag_remove_higher():
             kill_process_tree(self.apriltag_remove_higher_process_1.pid)
             kill_process_tree(self.apriltag_remove_higher_process_2.pid)

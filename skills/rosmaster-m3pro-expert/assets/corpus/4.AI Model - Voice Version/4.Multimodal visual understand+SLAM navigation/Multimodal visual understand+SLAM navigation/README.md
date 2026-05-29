@@ -1,23 +1,11 @@
 # Multimodal Visual Understanding + SLAM Navigation
 
-#### Multimodal Visual Understanding + SLAM Navigation
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-  - 2.3 Configuring the Map Mapping File
-- 3. Running Example
-  - 3.1 Starting the Program
-  - 3.2 Test Cases
-- 4. Source Code Analysis
-
-# 1. Course Content
+## 1. Course Content
 
 - Basic: Run example programs, combining the robot's visual understanding capabilities with SLAM navigation for integrated tasks.
 - Advanced: Master the key source code introduced in this section.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 2.1 Content Description
 
@@ -25,7 +13,7 @@ This section of the course uses the Jetson Orin NX as an example. For Raspberry 
 
 ### 2.2 Starting the Agent
 
-**Note: If the agent is already running, there is no need to start it again.**
+Note: If the agent is already running, there is no need to start it again.
 
 Enter the following command in the vehicle terminal:
 
@@ -41,20 +29,20 @@ Note: To experience this section, you need to have built at least one grid map a
 
 Connect to the robot's desktop via VNC and start the navigation node using the following commands:
 
-```
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ros2 launch M3Pro_navigation navigation2.launch.py
 ```
 
 Start RViz on the robot:
 
-```
+```bash
 ros2 launch M3Pro_navigation nav_rviz.launch.py
 ```
 
 Alternatively, you can start the display on the virtual machine; there is no need to start the display window repeatedly.
 
-```
+```bash
 ros2 launch slam_view nav_rviz.launch.py
 ```
 
@@ -76,25 +64,27 @@ As shown in the figure below, we first click the **Nav2 Goal** tool to navigate 
 
 Run the following command in the terminal to obtain the current robot's pose information in the map coordinate system:
 
+```bash
 ros2 run tf2_ros tf2_echo map base_footprint
+```
 
 Open the map_mapping.yaml map mapping file (you can open it using VNC, VS Code, command line, or any other method):
 
 Here's an example of opening the file via the command line:
 
-```
+```bash
 nano ~/M3Pro_ws/multi_brains_file/map_mapping.yaml
 ```
 
 Modify the symbolic pose under the common_map_areas field. name is the location name. Fill in the previously obtained pose information into the position and orientation fields.
 
 ```
-#根据实际的场景环境,自定义地图中的区域,可以添加任意个区域,注意和大模型的地图映射保持一致即可
+
 #According to the actual scene environment, customize the areas in the map. You
 can add any number of areas, just make sure they are consistent with the map
 mapping of the large model
-#地图映射Map mapping
-common_map_areas: #常规导航 common navigation
+#Map mapping
+common_map_areas: # common navigation
  A:
  name: 'Master Bedroom'
  position:
@@ -150,13 +140,13 @@ Finally, remember to click Publish -> Publish Update to save the changes.
 
 ![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-# 3. Running Example
+## 3. Running Example
 
 ### 3.1 Starting the Program
 
 On the vehicle's terminal, enter the command to start the AI intelligent agent system:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py`
 ```
 
@@ -168,15 +158,19 @@ multi_brains
 
 Start the navigation command on the vehicle's onboard computer:
 
-```
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
+```bash
 ros2 launch M3Pro_navigation navigation2.launch.py
+```
 
 Start RViz on the robot:
 
+```bash
 ros2 launch M3Pro_navigation nav_rviz.launch.py
+```
 
 Then, follow the procedure for starting the navigation function to initialize the positioning. This will open the rviz2 visualization interface. Click on **2D Pose Estimate** in the toolbar above to enter the selection state. Mark the approximate position and orientation of the robot on the map. After initializing the positioning, the preparation work is complete.
 
@@ -190,7 +184,7 @@ Wake up the robot and issue commands. The execution layer large model will execu
 
 The robot executes the steps according to the output process of the decision layer as follows:
 
-# 4. Source Code Analysis
+## 4. Source Code Analysis
 
 Robot action source code path:
 
@@ -214,14 +208,14 @@ self.tf_buffer = Buffer()
 self.tf_listener = TransformListener(self.tf_buffer, self)
 ```
 
-#### **load_target_points** function:
+### **load_target_points** function:
 
 This function is responsible for loading the target point coordinates from the map_mapping.yaml map mapping file and creating a navigation dictionary to store characters and their corresponding map coordinates. Each point coordinate is of type PoseStamped.
 
-```
+```python
 def load_target_points(self):
         """
-        加载地图映射文件 /Load map mapping file
+        Load map mapping file
         """
         self.navpose_dict = {}
         self.road_net_dict = {}
@@ -231,7 +225,7 @@ def load_target_points(self):
 {})
             road_net_target_points =
 full_target_points.get("road_net_map_areas", {})
-        for name, data in common_target_points.items():#加载常规导航点 / Load
+        for name, data in common_target_points.items(): # Load
 common navigation points
             pose = PoseStamped()
             pose.header.frame_id = "map"
@@ -247,9 +241,9 @@ common navigation points
 
 Receives a character parameter (corresponding to the characters in the map mapping described above), parses the coordinates corresponding to that character from the dictionary, and uses the self.navclient navigation client object to request the ROS2 navigation action server. When the navigation action server returns a value of 4, it indicates successful navigation; other values indicate failure (possibly due to obstacles, planning failures, etc.). After the navigation is complete, the function provides feedback on the action execution result to the large language model.
 
-```
+```python
 def __normal_navigation(self, point_name)->None:
-        '''常规导航功能 / Normal navigation function '''
+        '''Normal navigation function'''
        self.navigation_finish_flag = False
        self.goal_handle = None
        self.result = None
@@ -260,7 +254,7 @@ def __normal_navigation(self, point_name)->None:
 in the navigation dictionary." )
            return None
        if self.first_record:
-           # 出发前记录当前在全局地图中的坐标(只有在每个任务周期的第一次执行时才会记录)/
+           # ()
 before starting a new task, record the current pose in the global map
            transform = self.tf_buffer.lookup_transform(
                "map", "base_footprint", rclpy.time.Time()
@@ -274,7 +268,7 @@ before starting a new task, record the current pose in the global map
            self.navpose_dict["zero"] = pose
            self.road_net_dict["zero"] = pose
            self.first_record = False
-       # 获取目标点坐标 /get_target_pose
+       # get_target_pose
        target_pose = self.navpose_dict.get(point_name)
        goal_msg = NavigateToPose.Goal()
        goal_msg.pose = target_pose
@@ -311,10 +305,10 @@ else:
 
 The **get_current_pose** function retrieves the robot's current map coordinates in the global coordinate system and stores these coordinates in a dictionary for easy retrieval later.
 
-```
+```python
 def get_current_pose(self):
         """
-        获取当前在全局地图坐标系下的位置 /Get the current position in the global map
+        Get the current position in the global map
 coordinate system
         """
         transform = self.tf_buffer.lookup_transform("map", "base_footprint",

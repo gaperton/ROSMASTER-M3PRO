@@ -1,47 +1,30 @@
 # Semantic Understanding and Instruction Following
 
-#### Semantic Understanding and Instruction Following
+## 1. Course Content
 
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running the Cases
-  - 3.1 Starting the Program
-  - 3.2 Test Cases
-    - 3.2.1 Case 1
-    - 3.2.2 Case 2
-- 4. Code Analysis
-- 5. Solutions to Common Problems
-  - 5.1 Microphone Recording is Too Sensitive
-  - 5.2 Microphone Recording Insensitivity
-  - 5.3 Software Adjustment of Speech Recognition Sensitivity
+- 1. After running the large language model program, users can interact with the robot through voice conversation. User voice commands are first converted into text by a speech recognition large language model, then the text generation large language model and visual multimodal model accurately understand the user's instructions and speech. Finally, the robot performs the specified actions according to the user's instructions and responds to the user.
 
-# 1. Course Content
+## 2. Preparation
 
-1. After running the large language model program, users can interact with the robot through voice conversation. User voice commands are first converted into text by a speech recognition large language model, then the text generation large language model and visual multimodal model accurately understand the user's instructions and speech. Finally, the robot performs the specified actions according to the user's instructions and responds to the user.
-
-# 2. Preparation
-
-# 2.1 Content Description
+### 2.1 Content Description
 
 This section of the course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host machine, then enter the command to enter the Docker container. After entering the Docker container, enter the commands mentioned in this section of the course in the terminal. For instructions on entering the Docker container from the host machine, please refer to the "Entering the Robot's Docker (For Jetson Nano and Raspberry Pi 5 Users)" section in the product tutorial [0. Instructions and Installation Steps]. For Orin and NX boards, simply open the terminal and enter the commands mentioned in this section of the course.
 
 ### 2.2 Starting the Agent
 
-**Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.**
+Note: The Docker agent must be started before testing all cases. If it is already running, there is no need to start it again.
 
 Enter the following command in the vehicle terminal:
 
 The terminal will print the following information, indicating a successful connection:
 
-# 3. Running the Cases
+## 3. Running the Cases
 
 ### 3.1 Starting the Program
 
 Open the terminal on the vehicle and enter the following command to start the program:
 
-```
+```bash
 ros2 launch multi_brains llm_agent_control.launch.py
 ```
 
@@ -75,11 +58,11 @@ The action list includes **finish()**
 
 Similar to Case 1, after being awakened and speaking, the robot responds to the user and performs a dance according to the instructions.
 
-# 4. Code Analysis
+## 4. Code Analysis
 
 This section of the course applies the basic program framework of AI embodied intelligence. For code analysis, please refer to the chapter [1. Basic Knowledge of AI Large Models - 4. Core Source Code Interpretation].
 
-# 5. Solutions to Common Problems
+## 5. Solutions to Common Problems
 
 ### 5.1 Microphone Recording is Too Sensitive
 
@@ -118,19 +101,19 @@ Find the VAD_MODE parameter. The parameter range is 1-3; a higher number indicat
 ```
 ####################
 #ASR function setting
-#语音识别功能设置
+
 ####################
 USE_OLINE_ASR : True # Whether to use online
 ASR
 ASR_SUPPLIER : 'aliyun' #ASR Supplier (only
 effective when using online ASR): Chinese mainland: aliyun International: xunfei
 OLINE_ASR_MODEL : 'paraformer-realtime-v2'
-ASR_THREASHOLD : 3 #ASR识别结果阈值,单位:字符ASR
+ASR_THREASHOLD : 3 # ASR,:ASR
 recognition result threshold. Unit: characters
-WAKEUP_THREASHOLD : 5.0 #唤醒时间阈值,防止
-WAKEUP_THREASHOLD时间内被多次唤醒,单位:秒 Wake-up time threshold, preventing
+WAKEUP_THREASHOLD : 5.0
+WAKEUP_THREASHOLD,:s Wake-up time threshold, preventing
 multiple awakenments within the WAKEUP_THREASHOLD time, unit: seconds
-VAD_MODE: 1 #vad灵敏度 VAD sensitivity
-MAX_SILENCE_FRAMES: 90 #尾音时长检测,单位:帧数
+VAD_MODE: 1 # vad VAD sensitivity
+MAX_SILENCE_FRAMES: 90
 Tail sound duration detection, unit: frames
 ```
