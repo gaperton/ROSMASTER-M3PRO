@@ -1,26 +1,16 @@
 # Deploying a Local RAG Knowledge Base
 
-#### Deploying a Local RAG Knowledge Base
-
-- 1. Course Content
-- 2. Starting the Dify Service
-- 3. Viewing the Preset Knowledge Base
-- 4. Expanding the RAG Knowledge Base
-  - 4.1 Economic Mode Knowledge Base
-  - 4.2 High-Quality Mode Knowledge Base
-  - 4.3 Recall Test
-
-### 1. Course Content
+## 1. Course Content
 
 - Master the process and methods for local deployment, debugging, and testing of the RAG knowledge base.
 - Master the method for extending the RAG knowledge base based on your specific task scenarios.
 
-#### [TIP]
+### [TIP]
 
 - The RAG knowledge base helps general AI large models provide reference knowledge in vertical domains, preventing AI large models from generating hallucinatory responses and increasing the model's ability to respond with knowledge in vertical domains.
 - The RAG knowledge base can help robots quickly expand their generalization capabilities in different task scenarios.
 
-# 2. Starting the Dify Service
+## 2. Starting the Dify Service
 
 Connect to the vehicle's computer via VNC or SSH, and enter the following command in the terminal:
 
@@ -28,11 +18,11 @@ bringup_dify
 
 Check the vehicle's IP address (you can check it on the OLED screen, using ifconfig, or directly in the terminal). Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page.
 
-# 3. Viewing the Preset Knowledge Base
+## 3. Viewing the Preset Knowledge Base
 
 Click on the Knowledge Base page on the homepage. Dify comes pre-configured with two RAG knowledge bases, with the same content but different languages.
 
-#### [TIP]
+### [TIP]
 
 The preset knowledge base provides training examples for some task scenarios to help the AI model quickly master relevant skills.
 
@@ -43,7 +33,7 @@ The preset knowledge base provides training examples for some task scenarios to 
 
 ![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
-# 4. Expanding the RAG Knowledge Base
+## 4. Expanding the RAG Knowledge Base
 
 To expand with a new knowledge base, click "Create Knowledge".
 
@@ -56,7 +46,7 @@ To expand with a new knowledge base, click "Create Knowledge".
 
 Then, you'll enter the knowledge base configuration page. Click the preview block to view the file chunking effect. Here, select "Economic" for the indexing mode.
 
-#### [!TIP]
+### [!TIP]
 
 - For beginners, it is recommended to use the economic mode for learning and testing. The difference between the two indexing modes:
   - Economic: Retrieves content from the knowledge base using **keywords**. It cannot perform extended retrieval of similar semantics, and the method of retrieving knowledge fragments is relatively rigid.

@@ -1,17 +1,10 @@
 # AI Application Development - Chatbot
 
-#### AI Application Development - Chatbot
-
-- 1. Course Content
-- 2. Starting the Dify Service
-- 3. Chatbot
-- 4. Accessing the Chatbot via Web
-
-### 1. Course Content
+## 1. Course Content
 
 Master the use of Dify to quickly develop a chatbot
 
-# 2. Starting the Dify Service
+## 2. Starting the Dify Service
 
 Connect to the vehicle's computer via VNC or SSH, and enter the following command in the terminal:
 
@@ -35,18 +28,18 @@ Then, we enter our role prompt in the "INSTRUCTIONS"
 
 Example prompt:
 
-#### # Role Definition
+### Role Definition
 
 You are a friendly, patient, and talkative general-purpose chatbot named "Yahboom". Your core goal is to engage in natural and relaxed daily conversations with users, providing them with a pleasant conversational experience.
 
-#### # Conversation Rules
+#### Conversation Rules
 
 - 1. Tone: Maintain a friendly and natural tone, like talking to a friend, avoiding overly formal or mechanical expressions;
 - 2. Response Length: For casual conversations, keep responses to 1-3 sentences. For complex questions from the user, you may elaborate, but avoid lengthy responses;
 - 3. Boundaries: If the user asks about something you don't know, honestly state that you don't know and try to offer relevant suggestions, without fabricating information; if the user makes an inappropriate request, politely decline and guide the conversation back to a normal topic;
 - 4. Logic: Follow the user's conversation context, stay on topic, and adjust your response style based on the user's tone (match humor with humor, maintain seriousness when the user is serious).
 
-#### # Start Conversation
+#### Start Conversation
 
 Please respond to each of the user's messages according to the settings above.
 
@@ -67,7 +60,7 @@ If you are not satisfied with the model's response, you can adjust the prompt an
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-### 4. Accessing the Chatbot via Web
+## 4. Accessing the Chatbot via Web
 
 - To access the AI application we created, there are two methods: web access and backend API access. Here, we will use web access as an example.
 - Click the settings button for the chatbot on the left.
@@ -80,7 +73,7 @@ Click to copy the public access URL of the Web App.
 
 Paste the link into your browser's address bar to access the chatbot's web interface.
 
-#### [!TIP]
+### [!TIP]
 
 As long as the device is on the same network segment as the vehicle's infotainment system, you can access the page. Therefore, Dify can also be deployed on a server.
 

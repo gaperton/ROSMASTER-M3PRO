@@ -1,17 +1,10 @@
 # Introduction to Dify
 
-#### Introduction to Dify
-
-- 1. Course Content
-- 2. Dify
-  - 2.1 Introduction
-  - 2.2 Features
-
 ## 1. Course Content
 
 Understand the basic functions of Dify to facilitate the development of subsequent AI agents.
 
-# 2. Dify
+## 2. Dify
 
 ### 2.1 Introduction
 

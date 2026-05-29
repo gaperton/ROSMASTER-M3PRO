@@ -1,15 +1,10 @@
 # Personalized Wake-Up Response
 
-#### Personalized Wake-Up Response
-
-- 1. Course Content
-- 3. Loading Audio Files
-
 ## 1. Course Content
 
 Add audio files to the multi_brains program's audio library to customize the voice response after wake-up.
 
-#### [!NOTE]
+### [!NOTE]
 
 - This section of the tutorial is only for users who need to customize personalized voice responses and does not affect normal use.
 - If you do not need to customize personalized responses, you can skip this section. ## 2. Preparing Audio Files
@@ -62,7 +57,7 @@ International (Singapore) China (Beijing)
 | qwen3-tts-flash-2025-11-27                                                  | Snapshot |
 | qwen3-tts-flash-2025-09-18                                                  | Snapshot |
 
-• Reference Tone
+- Reference Tone
 
 | Name    | voice parameter |
 |---------|-----------------|

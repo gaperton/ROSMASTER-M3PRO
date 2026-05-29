@@ -1,18 +1,10 @@
 # AI Agent Workflow
 
-#### AI Agent Workflow
-
-- 1. Course Content
-- 2. Start the Dify Service
-- 3. Case Study: Categorized Question-Answering Chatbot
-- 4. Visualizing and Debugging Workflows
-- 5. Accessing AI Agent Applications
-
-#### 1. Course Content
+## 1. Course Content
 
 Build intelligent agent workflows using multiple large AI models to implement complex logical functions.
 
-#### 2. Start the Dify Service
+## 2. Start the Dify Service
 
 Connect to the car's infotainment system via VNC or SSH. Enter the following command in the terminal:
 
@@ -49,7 +41,7 @@ The LLM-2 branch is used to answer physics-related questions. The prompt and set
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
-#### 4. Visualizing and Debugging Workflows
+## 4. Visualizing and Debugging Workflows
 
 To debug and test the workflow, click the preview in the upper right corner, and then enter the problem in the pop-up dialog box for testing.
 
@@ -63,7 +55,7 @@ To expand your workflow, click the "+" sign on the left, which provides access t
 
 ![Figure: page 7: figure 2](_page_7_Figure_2.jpeg)
 
-### 5. Accessing AI Agent Applications
+## 5. Accessing AI Agent Applications
 
 After orchestrating your AI application, click "Publish Application" to save the configuration. Then, click "Copy URL" or "API Access Credentials" to access the created AI application via the web interface or backend service API.
 

@@ -63,6 +63,7 @@ def compile_rule(name: str, pattern: str, repl: str | Callable[[re.Match[str]], 
 
 RULES: list[Rule] = [
     compile_rule("heading_bold_wrapper", r"^(#{1,6})\s+\*\*(.+?)\*\*\s*$", r"\1 \2", re.MULTILINE),
+    compile_rule("heading_extra_hash", r"^(#{1,6})\s+#\s+", r"\1 ", re.MULTILINE),
     compile_rule("heading_chinese_comma", r"^(\s*#{1,6}\s+\d+(?:\.\d+)*)\s*[\u3001\uff0c]\s*", r"\1. ", re.MULTILINE),
     compile_rule("heading_number_comma", r"^(\s*#{1,6}\s+\d+(?:\.\d+)*),\s*", r"\1. ", re.MULTILINE),
     compile_rule("page_anchor_link", r"\[([^\]]+)\]\(#page-[^)]+\)", r"\1"),
@@ -107,6 +108,7 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
     "\u2192": "->",
     "\u00e2\u02c6\u0161": "the check mark",
     "\u221a": "the check mark",
+    "\u2022": "-",
     "\u00c3\u2014": "x",
     "\u00ae": "(R)",
     "\u00c2\u00ae": "(R)",
@@ -290,8 +292,10 @@ def normalize_heading_level(
             number_depth = numbered.group("num").count(".") + 1
             if numbered_parent_level:
                 target_level = min(6, numbered_parent_level + number_depth)
-            elif number_depth == 1 and original_level > 2 and last_level >= 2:
-                target_level = min(6, last_level + 1 if original_level > last_level else last_level)
+            elif number_depth == 1 and numbered.group("num") != "1":
+                target_level = 2
+            elif number_depth == 1 and original_level > 2 and last_level >= 2 and original_level > last_level:
+                target_level = min(6, last_level + 1)
             else:
                 target_level = min(6, number_depth + 1)
         elif last_level and original_level > last_level + 1:

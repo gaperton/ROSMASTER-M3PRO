@@ -1,16 +1,6 @@
 # Dify Basic Functions
 
-#### Dify Basic Functions
-
-- 1. Course Content
-- 2. Starting the Dify Service
-- 3. Basic Usage
-  - 3.1 Switching Dify Language
-  - 3.2 Switching the AI Application's Access Model
-- 4. Account Settings
-- 5. Development Documentation
-
-### 1. Course Content
+## 1. Course Content
 
 Understand and master the basic operations and functions of Dify
 
@@ -24,7 +14,7 @@ Check the vehicle's IP address. This can be done via the OLED screen, ifconfig, 
 
 Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page. If this is the first time logging in, you will need to use the account and password. You can select the language in the upper left corner.
 
-#### [!NOTE]
+### [!NOTE]
 
 - Account: yahboom@163.com
 - Password: yahboom123
@@ -33,9 +23,9 @@ Enter the vehicle's IP address directly in the browser's address bar to access t
 
 ![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
-### 3. Basic Usage
+## 3. Basic Usage
 
-#### [!TIP]
+### [!TIP]
 
 If you need to use cloud-based AI models from model providers, please ensure the vehicle's computer is connected to the internet.
 
@@ -103,9 +93,9 @@ Note that after modifying the AI application, you need to click Publish - Publis
 
 ![Picture: page 8: picture 0](_page_8_Picture_0.jpeg)
 
-### 4. Account Settings
+## 4. Account Settings
 
-#### [!NOTE]
+### [!NOTE]
 
 Dify account information is stored locally and has no privacy risks. The ROSMASTER-M3 Pro comes with a pre-configured administrator account. Refer to this section of the tutorial only if you need to modify account information.
 

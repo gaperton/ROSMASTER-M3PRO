@@ -1,15 +1,6 @@
 # RAG Knowledge Base + Chatbot
 
-#### RAG Knowledge Base + Chatbot
-
-- 1. Course Content
-- 2. Starting the Dify Service
-- 3. Case Study 1: Task Planning
-- 4. Case Study 2: Knowledge Management
-  - 4.1 Creating a Knowledge Base
-  - 4.2 Creating an Application
-
-### 1. Course Content
+## 1. Course Content
 
 Based on the previous RAG knowledge base and chatbot, develop an AI application that combines the two to improve the answering capabilities of large AI models in specific domains, reducing AI model hallucinations through the RAG knowledge base.
 
@@ -21,7 +12,7 @@ bringup_dify
 
 Check the vehicle's IP address (you can view it on the OLED screen, using ifconfig, or directly in the terminal). Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page.
 
-# 3. Case Study 1: Task Planning
+## 3. Case Study 1: Task Planning
 
 [!TIP]
 
@@ -56,13 +47,13 @@ After that, enter the test dialogue content. Here, we use removing machine code 
 
 We can first delete the knowledge base to compare the AI large language model's response without the RAG knowledge base. You can see that without a knowledge base, the generalpurpose AI model from the model provider cannot handle tasks in vertical domains.
 
-#### [!TIP]
+### [!TIP]
 
 This practical example can be understood and mastered in conjunction with the theoretical knowledge of 2. RAG Retrieval Augmentation and Training Examples.
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-# 4. Case Study 2: Knowledge Management
+## 4. Case Study 2: Knowledge Management
 
 When we have internal documents that need to be managed by a large language model, we can use the AI large language model combined with RAG and a knowledge base to allow the large language model to respond based on actual business documents. This is very helpful for vertical fields such as finance and healthcare.
 
@@ -76,7 +67,7 @@ Here, we use a sample document as an example, which contains a fictional author 
 
 Example Prompt
 
-#### # Role Positioning
+#### Role Positioning
 
 Born in 1988 in a southern coastal city, he worked as an advertising copywriter for 5 years before resigning in 2015 to write full-time. He excels at blending delicate emotional portrayals with light science fiction elements, exploring the loneliness and connection of modern urban dwellers, and the balance between technological development and human warmth. His works combine a healing quality with thought-provoking themes, targeting primarily urban youth aged 25-40.
 
