@@ -1,18 +1,10 @@
 # Subscribe to the Bus Servo Topic
 
-Subscribe to the Bus Servo Topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to topics related to controlling the servo angle on the bus.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates three bus servo interfaces. You need to prepare additional bus servos and connect them to see the effect.
 
@@ -26,7 +18,7 @@ Note: There are many types of main control boards. Here we take the Jetson Orin 
 
 Note: There are three bus servo interfaces (S3/S4/S5), of which S3 is a 6.8V bus servo interface, and S4 and S5 are 12V bus servo interfaces. Since the M3PRO's robotic arm bus servo is 6.8V, we will use S3 as an example.
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -90,7 +82,7 @@ while (ros_error < 3)
 }
 ```
 
-### 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -116,7 +108,7 @@ After the connection is successful, a node and two subscribers are created.
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
@@ -125,14 +117,14 @@ Note: Before running commands to control the robotic arm, please confirm the cur
 
 Publish data to the /arm_joint topic to control the bus servo with ID=1 to rotate to 60 degrees. Observe that servo No. 1 slowly rotates to the 60-degree position.
 
-```
+```bash
 ros2 topic pub --once /arm_joint arm_msgs/msg/ArmJoint "{id: 1, joint: 60, time:
 1000}"
 ```
 
 Publish data to the /arm_joint topic to control the bus servo with ID=1 to rotate to 120 degrees. Observe that servo No. 1 slowly rotates to the 120-degree position.
 
-```
+```bash
 ros2 topic pub --once /arm_joint arm_msgs/msg/ArmJoint "{id: 1, joint: 120, time:
 1000}"
 ```

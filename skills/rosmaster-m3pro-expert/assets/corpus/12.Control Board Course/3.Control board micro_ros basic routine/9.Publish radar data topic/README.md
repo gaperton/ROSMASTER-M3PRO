@@ -1,18 +1,10 @@
 # Publish radar data topic
 
-Publish radar data topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about STM32-microROS components, access the ROS2 environment, and publish radar data topics.
 
-# 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the Tmini-Plus LiDAR serial port interface, and an external Tmini-Plus LiDAR is required to complete the experiment.
 
@@ -26,7 +18,7 @@ Note: There are many types of main control boards. Here we take the Jetson Orin 
 
 Note: The M3 Pro series car products come with a Tmini-Plus serial port adapter cable. The adapter cable has an anti-misinsertion function and can be inserted into the left radar port.
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -122,7 +114,7 @@ while (ros_error < 3)
     }
 ```
 
-# 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -134,7 +126,7 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-# 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 
@@ -148,14 +140,14 @@ After the connection is successful, a node and a publisher are created.
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Subscribe to/scan topic data,
 
-```
+```bash
 ros2 topic echo /scan
 ```
 
@@ -163,7 +155,7 @@ Press Ctrl+C to end the command.
 
 Check the frequency of the /scan topic. A frequency of about 7 Hz is normal.
 
-```
+```bash
 ros2 topic hz /scan
 ```
 

@@ -1,10 +1,4 @@
-## Burning STM32 firmware using SWD
-
-Burning STM32 firmware using SWD
-
-- 1. Hardware Connection
-- 2. STM32CUBEIDE burning
-- 3. STM32CubeProgrammer burns firmware
+# Burning STM32 firmware using SWD
 
 ## 1. Hardware Connection
 

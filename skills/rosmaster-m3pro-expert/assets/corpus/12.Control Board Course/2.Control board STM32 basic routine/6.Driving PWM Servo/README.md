@@ -1,14 +1,6 @@
 # Driving PWM servos
 
-Driving PWM servos
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the PWM output of the STM32 control board to learn how to control a PWM servo.
 
@@ -178,7 +170,7 @@ void App_Handle(void)
 }
 ```
 
-### 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -190,7 +182,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-#### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

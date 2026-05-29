@@ -1,4 +1,4 @@
-## Import Project
+# Import Project
 
 Open STM32CUBEIDE and select a workspace, or create a new one.
 

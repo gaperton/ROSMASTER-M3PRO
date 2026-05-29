@@ -1,14 +1,6 @@
 # SBUS model aircraft remote control
 
-SBUS model aircraft remote control
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the serial port function of the STM32 control board to learn how to receive and parse SBUS data.
 
@@ -26,7 +18,7 @@ Schematic diagram of the model aircraft remote control and SBUS receiver
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 

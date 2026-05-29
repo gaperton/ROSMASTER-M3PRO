@@ -1,14 +1,6 @@
 # Serial communication
 
-Serial communication
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the serial port on the STM32 control board to learn how to receive and send data.
 
@@ -22,7 +14,7 @@ If the CP2104 serial port driver is not installed, please open the browser and e
 
 https://www.silabs.com/documents/public/software/CP210x\_Windows\_Drivers.zip
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -127,7 +119,7 @@ while (1)
 }
 ```
 
-# 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 

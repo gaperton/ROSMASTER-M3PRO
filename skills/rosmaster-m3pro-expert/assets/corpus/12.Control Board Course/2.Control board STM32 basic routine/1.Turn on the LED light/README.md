@@ -1,13 +1,5 @@
 # Light up the LED light
 
-Light up the LED light
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
 ## 1. Experimental Purpose
 
 Control the LED indicator on the STM32 control board to flash.
@@ -18,7 +10,7 @@ As shown in the figure below, the LED indicator is an onboard component, so no e
 
 ![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 Open STM32CUBEIDE and import the project. The path corresponding to the program source code is:
 
@@ -102,7 +94,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

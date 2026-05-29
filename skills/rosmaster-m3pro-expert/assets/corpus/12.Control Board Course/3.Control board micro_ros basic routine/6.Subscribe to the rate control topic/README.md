@@ -1,18 +1,10 @@
 # Subscribe to the speed control topic
 
-Subscribe to the speed control topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to topics about controlling the car's speed.
 
-#### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates four encoder motor drivers and interfaces, connecting the four motors to the motor interfaces. The corresponding names of the four motor interfaces are: left front wheel -> M1, left rear wheel -> M2, right front wheel -> M3, and right rear wheel -> M4.
 
@@ -24,7 +16,7 @@ Use a Type-C data cable to connect the USB port of the main control board and th
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -104,28 +96,28 @@ After the connection is successful, a node and a subscriber are created.
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Publish data to the /cmd_vel topic to control the robot car to move forward at 0.5m/s.
 
-```
+```bash
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ```
 
 Publish data to the /cmd_vel topic to control the robot car to rotate at 1.5 rad/s.
 
-```
+```bash
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.5}}"
 ```
 
 Publish data to the /cmd_vel topic to control the robot car to stop.
 
-```
+```bash
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ```

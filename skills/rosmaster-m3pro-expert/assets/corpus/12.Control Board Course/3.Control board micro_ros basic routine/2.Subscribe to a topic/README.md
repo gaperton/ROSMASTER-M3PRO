@@ -1,14 +1,6 @@
 # Subscribe to a topic
 
-Subscribe to a topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to the int32 topic.
 
@@ -26,7 +18,7 @@ Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu2
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -241,7 +233,7 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-#### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 
@@ -255,14 +247,14 @@ After the connection is successful, a node and a subscriber are created.
 
 At this point, you can open another terminal in the virtual machine/computer to view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Send data to the /int32_subscriber topic
 
-```
+```bash
 ros2 topic pub --once /int32_subscriber std_msgs/msg/Int32 "data: 100"
 ```
 

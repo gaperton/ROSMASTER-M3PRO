@@ -1,15 +1,5 @@
 # Robot kinematics analysis theory
 
-Robot kinematics analysis theory
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Introduction of Mecanum Wheel
-- 4. Mecanum Wheel Motion Analysis and Direction Determination
-- 6. Mecanum Wheel Installation Combination and Motion Analysis
-- 7. Installation location of Mecanum wheel
-- 8. Final installation method
-
 ## 1. Experimental Purpose
 
 Analyze the kinematics of the car based on its structural characteristics. Since real cars have structural errors and factors like resistance and friction during motion, the kinematics are quite complex. For simplicity, we will only analyze the car in an ideal state.
@@ -38,11 +28,11 @@ A Mecanum wheel (hereafter referred to as a Mecanum wheel) consists of a hub and
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-# 4. Mecanum Wheel Motion Analysis and Direction Determination
+## 4. Mecanum Wheel Motion Analysis and Direction Determination
 
 As mentioned earlier, there are two types of wheels: A and B. If wheel A moves forward and to the right at the same time, that is, it moves diagonally to the right front, then on the contrary, wheel A will move backward and to the left at the same time, that is, it moves diagonally to the left rear; accordingly, wheel B can move diagonally to the left front and right rear.
 
-**With the front of the car as the positive direction, the direction of the wheel moving forward is considered the motor's forward rotation, and the direction of the wheel moving backward is considered the motor's reverse rotation. (All the following lessons will be explained in this direction)**
+With the front of the car as the positive direction, the direction of the wheel moving forward is considered the motor's forward rotation, and the direction of the wheel moving backward is considered the motor's reverse rotation. (All the following lessons will be explained in this direction)
 
 ![Figure: page 3: figure 4](_page_3_Figure_4.jpeg)
 
@@ -68,7 +58,7 @@ Do all combinations allow for full range of motion?
 
 Below we will only give one wrong example and one correct example, and you can infer the rest on your own (actually there are too many).
 
-#### Analysis error example [AAAA]
+### Analysis error example [AAAA]
 
 ![Picture: page 5: picture 5](_page_5_Picture_5.jpeg)
 
@@ -138,7 +128,7 @@ By comparing with traditional vehicles, we can find that when ordinary vehicles 
 
 Omnidirectional wheels and Mecanum wheels are commonly used to achieve omnidirectional motion. The above mainly describes the motion methods and installation combinations of Mecanum wheels. Omnidirectional wheels and Mecanum wheels differ in structure, mechanical properties, and kinematic characteristics. The fundamental reason for this is the different angles between the hub axis and the roller axis. The following table summarizes the differences in their kinematic and mechanical properties.
 
-| 6/23/10 © Ether                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | - 7        | Standard         | Omni                            | Mecanum                   |
+| 6/23/10 Ether | - 7 | Standard | Omni | Mecanum |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------------|---------------------------------|---------------------------|
 | kinematics                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | <b>V</b> f | $\omega \cdot r$ | $\omega \cdot r \cdot \sqrt{2}$ | $\omega \cdot r$          |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Vr         | -                | $\omega \cdot r \cdot \sqrt{2}$ | $\omega \cdot r$          |

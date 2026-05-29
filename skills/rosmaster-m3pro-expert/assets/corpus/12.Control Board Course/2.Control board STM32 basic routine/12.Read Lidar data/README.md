@@ -1,18 +1,10 @@
 # Read LiDAR data
 
-#### Read LiDAR data
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the radar interface of the STM32 control board to read data from the T-MiniPlus lidar and parse the radar data packets.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the T-MiniPlus LiDAR interface. You need to connect the T-MiniPlus LiDAR cable to the STM32 control board and the LiDAR.
 
@@ -24,7 +16,7 @@ The T-MiniPlus LiDAR interface cable has an anti-reverse connection function. Ju
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -327,7 +319,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-# 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

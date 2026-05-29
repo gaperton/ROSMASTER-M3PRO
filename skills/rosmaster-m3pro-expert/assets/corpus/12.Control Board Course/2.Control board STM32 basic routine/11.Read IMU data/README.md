@@ -1,18 +1,10 @@
 # Read IMU data
 
-#### Read IMU data
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
 ## 1. Experimental Purpose
 
 Use the IMU attitude sensor chip of the STM32 control board to read the raw data of the IMU device.
 
-# 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the IMU attitude sensor chip. No additional external devices need to be connected. You only need to connect the type-C data cable to the computer and the Connect interface of the STM32 control board.
 
@@ -68,7 +60,7 @@ static uint8_t read_single_reg(userbank_t ub, uint8_t reg)
     select_user_bank(ub);
     ICM20948_Active();
     HAL_SPI_Transmit(ICM20948_SPI, &read_reg, 1, 1000);
-    HAL_SPI_Receive(ICM20948_SPI, ®_val, 1, 1000);
+    HAL_SPI_Receive(ICM20948_SPI, (R)_val, 1, 1000);
     ICM20948_NoActive();
     return reg_val;
 }
@@ -447,7 +439,7 @@ g_axises_mag.z);
 }
 ```
 
-#### 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -459,7 +451,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-#### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

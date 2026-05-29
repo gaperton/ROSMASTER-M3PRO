@@ -1,18 +1,8 @@
 # Set up the STM32CUBEIDE development environment
 
-Set up the STM32CUBEIDE development environment
-
-- 1. Introduction to STM32CubeIDE
-- 2. Download the installation package
-- 3. Start installation
-- 4. New construction projects
-- 5. Pin configuration
-- 6. Write code
-- 7. Compile the program
-
 ## 1. Introduction to STM32CubeIDE
 
-STM32CubeIDE is an all-in-one, multi-OS development tool and an advanced C/C++ development platform with peripheral configuration, code generation, compilation, and debugging capabilities for STM32 microcontrollers and microprocessors. Based on the Eclipse®/CDT™ framework and the GCC toolchain for development, and GDB for debugging, it allows you to select an STM32 microprocessor, create a project, and generate initialization code. It supports graphical configuration of the STM32's clocks and pins, and supports mainstream platforms including Windows, Linux, and Mac. Its functionality is extremely powerful and practical.
+C++ development platform with peripheral configuration, code generation, compilation, and debugging capabilities for STM32 microcontrollers and microprocessors. Based on the Eclipse(R)
 
 ## 2. Download the installation package
 
@@ -27,7 +17,7 @@ If you have an account on my.st.com, you can log in directly and download the so
 Unzip the downloaded file, and do not use Chinese characters in the unzip path.
 
 
-# 3. Start installation
+## 3. Start installation
 
 Double-click to open the installation package. Then follow the tutorial.
 
@@ -45,27 +35,27 @@ Then just wait for the installation to complete.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-#### 4. New construction projects
+## 4. New construction projects
 
-\1. Double-click the shortcut on the desktop to open STM32CubeIDE. You need to select a workspace and save it in a different path (without Chinese characters).
+- 1. Double-click the shortcut on the desktop to open STM32CubeIDE. You need to select a workspace and save it in a different path (without Chinese characters).
 
 ![Picture: page 3: picture 3](_page_3_Picture_3.jpeg)
 
 ![Picture: page 3: picture 7](_page_3_Picture_7.jpeg)
 
-\2. Click File->New->STM32 Project.
+- 2. Click File->New->STM32 Project.
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-\3. Search and select the STM32H743VGT6 chip, then click Next in the lower right corner to proceed to the next step.
+- 3. Search and select the STM32H743VGT6 chip, then click Next in the lower right corner to proceed to the next step.
 
 ![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
-\4. Enter the project name. Here we take LED as an example. Other parameters can be left as default.
+- 4. Enter the project name. Here we take LED as an example. Other parameters can be left as default.
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
-\5. Click Yes and the graphical content will be loaded.
+- 5. Click Yes and the graphical content will be loaded.
 
 ![Figure: page 5: figure 2](_page_5_Figure_2.jpeg)
 
@@ -73,13 +63,13 @@ The completion is as shown below:
 
 ![Picture: page 6: picture 0](_page_6_Picture_0.jpeg)
 
-# 5. Pin configuration
+## 5. Pin configuration
 
-\1. First, you need debug information. Under Pinout & Configuration, click [Trace and Debug] -> [Debug] and select [Serial Wire].
+- 1. First, you need debug information. Under Pinout & Configuration, click [Trace and Debug] -> [Debug] and select [Serial Wire].
 
 ![Figure: page 6: figure 3](_page_6_Figure_3.jpeg)
 
-\2. Modify the system clock of STM32 and the external crystal oscillator 25M frequency.
+- 2. Modify the system clock of STM32 and the external crystal oscillator 25M frequency.
 
 In Pinout & Configuration, select [RCC] -> [HSE] and select [Crystal/Ceramic Resonator]. HSE is the external clock, and LSE is the internal clock. Using an external clock is more stable and efficient than the internal clock.
 
@@ -91,7 +81,7 @@ Switch to the [Clock Configuration] interface, set the chip main frequency to 48
 
 ![Picture: page 7: picture 3](_page_7_Picture_3.jpeg)
 
-\3. Add LED_MCU pin configuration. From the pin assignment diagram, we can see that the LED is connected to the PC13 pin.
+- 3. Add LED_MCU pin configuration. From the pin assignment diagram, we can see that the LED is connected to the PC13 pin.
 
 ![Picture: page 7: picture 5](_page_7_Picture_5.jpeg)
 
@@ -103,17 +93,17 @@ Then press Ctrl+S to save, check Remember my decision, and click Yes. This will 
 
 ![Figure: page 8: figure 2](_page_8_Figure_2.jpeg)
 
-#### 6. Write code
+## 6. Write code
 
-\1. Since the system initialization code has been generated in the previous graphical configuration, we only need to add the functions to be implemented.
+- 1. Since the system initialization code has been generated in the previous graphical configuration, we only need to add the functions to be implemented.
 
 Find the main function in the main.c file and add the code below while(1) to control the LED. This will cause the LED to flash every 200 milliseconds. Press Ctrl+S to save the code.
 
-**Note: Code content must be added between USER CODE BEGIN and USER CODE END. Otherwise, the code content will be overwritten the next time you generate code using the graphical tool. Code added between USER CODE BEGIN and USER CODE END will not be overwritten. Do not write Chinese comments in this section, as this may result in garbled characters.**
+Note: Code content must be added between USER CODE BEGIN and USER CODE END. Otherwise, the code content will be overwritten the next time you generate code using the graphical tool. Code added between USER CODE BEGIN and USER CODE END will not be overwritten. Do not write Chinese comments in this section, as this may result in garbled characters.
 
-#### 7. Compile the program
+## 7. Compile the program
 
-\1. Add the function of generating HEX file.
+- 1. Add the function of generating HEX file.
 
 Click Project->Properties->C/C++ Build->Settings->MCU Post build outputs, and then check Convert to Intel Hex file (-O ihex), as shown in the figure below.
 
@@ -121,7 +111,7 @@ Click Project->Properties->C/C++ Build->Settings->MCU Post build outputs, and th
 
 ![Figure: page 10: figure 0](_page_10_Figure_0.jpeg)
 
-\2. Click the hammer in the toolbar to start compiling the project.
+- 2. Click the hammer in the toolbar to start compiling the project.
 
 ![Picture: page 10: picture 2](_page_10_Picture_2.jpeg)
 

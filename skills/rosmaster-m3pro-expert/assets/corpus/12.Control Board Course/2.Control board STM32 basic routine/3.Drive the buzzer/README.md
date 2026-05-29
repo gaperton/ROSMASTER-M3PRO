@@ -1,24 +1,16 @@
 # Drive the buzzer
 
-#### Drive the buzzer
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Read the KEY1 button on the STM32 control board and control the active buzzer to sound.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the KEY1 button and buzzer are onboard components, so no external devices are required. Please connect the Type-C data cable to the computer and the USB Connect port on the STM32 control board.
 
 ![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 Open STM32CUBEIDE and import the project. The path corresponding to the program source code is:
 
@@ -155,7 +147,7 @@ while (1)
 }
 ```
 
-# 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -167,7 +159,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-# 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

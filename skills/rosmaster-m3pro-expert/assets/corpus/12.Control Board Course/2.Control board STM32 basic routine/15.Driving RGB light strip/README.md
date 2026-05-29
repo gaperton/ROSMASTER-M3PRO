@@ -1,18 +1,10 @@
 # Driving RGB light strips
 
-Driving RGB light strips
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn how to control a WS2812 RGB light strip using the SPI functionality of the STM32 controller board.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board has an integrated RGB interface, but you need to connect an additional RGB light strip. You need to prepare your own RGB light strip and connect the type-C data cable to the computer and the USB Connect interface of the STM32 control board.
 
@@ -20,7 +12,7 @@ The RGB light strip is driven by the WS2812 chip, and the circuit design uses SP
 
 ![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -227,7 +219,7 @@ RGB_Update();
 }
 ```
 
-### 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 

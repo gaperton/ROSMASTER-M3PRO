@@ -1,19 +1,6 @@
 # Compile the microros driver library
 
-Compile the microros driver library
-
-- 1. Install the cross-compiler
-- 2. Get the STM32-microros library file
-- 3. Modify parameters
-- 4. Add environment variables
-- 5. Start compiling
-- 6. Solve the include problem
-- 7. The final file
-- 8. Import STM32CUBEIDE project
-
-**Note: You must use Ubuntu to compile the microros driver library. Ubuntu 22.04 is recommended.**
-
-# 1. Install the cross-compiler
+## 1. Install the cross-compiler
 
 Open the download address and download the Linux version of the cross-compiler.
 
@@ -28,11 +15,11 @@ And add the executable file path to the.bashrc environment variable in the user 
 
 export PATH=\$PATH:/opt/gcc-arm-none-eabi/bin
 
-# 2. Get the STM32-microros library file
+## 2. Get the STM32-microros library file
 
 Download and compile the microros setup tool
 
-```
+```bash
 mkdir uros_ws && cd uros_ws
 git clone -b humble https://github.com/micro-ROS/micro_ros_setup.git
 src/micro_ros_setup
@@ -43,17 +30,17 @@ source install/local_setup.bash
 
 Use the microros setup tool to generate the STM32-microros library file.
 
-```
+```bash
 ros2 run micro_ros_setup create_firmware_ws.sh generate_lib
 ```
 
 Check the workspace. We should now have five folders, among which the firmware folder contains the STM32-microros library files. build firmware install log src
 
-# 3. Modify parameters
+## 3. Modify parameters
 
 Open the toolchain.cmake file
 
-```
+```bash
 vim ~/uros_ws/firmware/toolchain.cmake
 ```
 
@@ -92,7 +79,7 @@ Save and exit.
 
 Open the colcon.meta file
 
-```
+```bash
 vim ~/uros_ws/firmware/colcon.meta
 ```
 
@@ -175,35 +162,35 @@ Copy the following content into
 
 Save and exit.
 
-# 4. Add environment variables
+## 4. Add environment variables
 
 ```
 export RMW_IMPLEMENTATION=rmw_microxrcedds
 ```
 
-### 5. Start compiling
+## 5. Start compiling
 
-```
+```bash
 cd ~/uros_ws/
 ros2 run micro_ros_setup build_firmware.sh $(pwd)/firmware/toolchain.cmake
 $(pwd)/firmware/colcon.meta
 ```
 
-**Note: Since the compilation process requires downloading many files, and most file servers are located abroad, if there is a network anomaly, please solve the network download problem yourself.**
+Note: Since the compilation process requires downloading many files, and most file servers are located abroad, if there is a network anomaly, please solve the network download problem yourself.
 
 View the generated static library and header files
 
-```
+```bash
 ls firmware/build
 ```
 
-# 6. Solve the include problem
+## 6. Solve the include problem
 
 Since the generated include folder path is too long, you need to use a script to fix it.
 
 Create a new fix_include.sh script in the firmware folder
 
-```
+```bash
 cd ~/uros_ws/firmware
 vim fix_include.sh
 ```
@@ -236,9 +223,9 @@ Run the following command to fix the include folder problem.
 bash fix_include.sh
 ```
 
-#### 7. The final file
+## 7. The final file
 
-```
+```bash
 ls ~/uros_ws/firmware/build
 ls ~/uros_ws/firmware/build/libmicroros
 ls ~/uros_ws/firmware/build/include
@@ -258,7 +245,7 @@ Add the microros folder as the project source code path.
 
 ![Figure: page 6: figure 2](_page_6_Figure_2.jpeg)
 
-#### Import the microros library path
+### Import the microros library path
 
 ![Figure: page 6: figure 4](_page_6_Figure_4.jpeg)
 

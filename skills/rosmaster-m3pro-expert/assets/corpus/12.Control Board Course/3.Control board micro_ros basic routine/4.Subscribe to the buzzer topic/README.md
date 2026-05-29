@@ -1,14 +1,6 @@
 # Subscribe to the buzzer topic
 
-Subscribe to the buzzer topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to the topic of controlling the buzzer switch.
 
@@ -24,7 +16,7 @@ Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu2
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -103,25 +95,25 @@ After the connection is successful, a node and a subscriber are created.
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Publish data to the /beep topic to control the buzzer to keep beeping.
 
-```
+```bash
 ros2 topic pub --once /beep std_msgs/msg/UInt16 "data: 1"
 ```
 
 Publish data to the /beep topic to turn off the buzzer.
 
-```
+```bash
 ros2 topic pub --once /beep std_msgs/msg/UInt16 "data: 0"
 ```
 
 Publish data to the /beep topic to control the buzzer to sound for 300 milliseconds and then turn off automatically.
 
-```
+```bash
 ros2 topic pub --once /beep std_msgs/msg/UInt16 "data: 300"
 ```

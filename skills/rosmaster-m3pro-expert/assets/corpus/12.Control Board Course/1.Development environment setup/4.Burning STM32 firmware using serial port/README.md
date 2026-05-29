@@ -1,12 +1,6 @@
 # Burning STM32 firmware using serial port
 
-Burning STM32 firmware using serial port
-
-- 1. Download and install the tool
-- 2. Hardware Connection
-- 3. STM32CubeProgrammer burns firmware
-
-### 1. Download and install the tool
+## 1. Download and install the tool
 
 Here we take Win 64-bit system as an example
 
@@ -22,7 +16,7 @@ https://www.silabs.com/documents/public/software/CP210x\_Windows\_Drivers.zip
 
 After downloading the burning tool and serial port driver, unzip them and follow the prompts to install them.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 Use a Type-C data cable to connect to the computer.
 

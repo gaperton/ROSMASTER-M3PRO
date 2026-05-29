@@ -1,18 +1,12 @@
 # Install and start the Microros agent
 
-#### Install and start the Microros agent
+## 1. Docker starts the microros agent
 
-- 1. Docker starts the microros agent Docker starts the serial port proxy Agent startup failure
-- 2. Start microros agent from source code Install tinyxml2 dependencies Install the python3-rosdep tool Compile the micro_ros_setup environment Compile the micro_ros_agent environment Start the microros serial port proxy from source code
-- 3. Start the microros agent with the factory image
+### Docker starts the serial port proxy
 
-**Note: You can select any one of the three startup methods.**
-
-# 1. Docker starts the microros agent
-
-#### Docker starts the serial port proxy
-
+```bash
 docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:humble serial --dev /dev/myserial -b 2000000 -v4
+```
 
 Among them, --dev /dev/myserial is the bound serial port device, which can also be changed to /dev/ttyUSB0, etc.
 
@@ -34,18 +28,18 @@ How to manually end docker:
 
 Please first query the current Docker process number and end the current proxy Docker process.
 
-```
+```bash
 docker ps -a | grep microros/micro-ros-agent
 docker stop xxxxxxxxxx
 ```
 
-# 2. Start microros agent from source code
+## 2. Start microros agent from source code
 
-#### Install tinyxml2 dependencies
+### Install tinyxml2 dependencies
 
 Enter the following command in the terminal to install tinyxml2
 
-```
+```bash
 cd ~/
 git clone https://github.com/leethomason/tinyxml2.git
 cd tinyxml2
@@ -60,7 +54,7 @@ sudo make install
 
 Enter the following command in the terminal to install the rosdep tool. If it has already been installed, you can skip this step.
 
-```
+```bash
 sudo apt install python3-rosdep
 ```
 
@@ -68,20 +62,20 @@ sudo apt install python3-rosdep
 
 Activate the ROS2 environment variables. Here we take the humble version as an example. If it has already been activated, you can skip the activation step.
 
-```
+```bash
 source /opt/ros/humble/setup.bash
 ```
 
 Create and enter the workspace uros_ws in the user directory
 
-```
+```bash
 mkdir ~/uros_ws && cd ~/uros_ws
 mkdir src
 ```
 
 Download the micro_ros_setup file to the src folder
 
-```
+```bash
 git clone -b $ROS_DISTRO https://github.com/micro-ROS/micro_ros_setup.git
 src/micro_ros_setup
 ```
@@ -121,15 +115,17 @@ rosdep update && rosdep install --from-paths src --ignore-src -y
 
 Compile Workspace
 
+```bash
 colcon build
-
 ```
+
+```bash
 source install/local_setup.bash
 ```
 
 #### Compile the micro_ros_agent environment
 
-```
+```bash
 ros2 run micro_ros_setup create_agent_ws.sh
 ros2 run micro_ros_setup build_agent.sh
 ```
@@ -140,13 +136,13 @@ If an error occurs when executing build_agent.sh, compile again.
 
 Activate the micro_ros_agent agent environment
 
-```
+```bash
 source ~/uros_ws/install/local_setup.sh
 ```
 
 Enter the following command to start the serial port proxy from the ROS2 environment
 
-```
+```bash
 ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/myserial -b 2000000
 -v4
 ```
@@ -157,7 +153,7 @@ Among them, --dev /dev/myserial is the bound serial port device, which can also 
 
 To exit the proxy, press Ctrl+C in the terminal.
 
-# 3. Start the microros agent with the factory image
+## 3. Start the microros agent with the factory image
 
 The factory image system has integrated the proxy function and made it into a script. You only need to run the following command to enable the proxy.
 

@@ -1,18 +1,10 @@
 # Publish IMU data topic
 
-Publish IMU data topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about STM32-microROS components, access the ROS2 environment, and publish IMU data topics.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates a nine-axis IMU attitude sensor.
 
@@ -22,7 +14,7 @@ Use a Type-C data cable to connect the USB port of the main control board and th
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -181,7 +173,7 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-#### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 
@@ -195,14 +187,14 @@ After the connection is successful, a node and a publisher are created.
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Subscribe to data from the /imu/data_raw topic
 
-```
+```bash
 ros2 topic echo /imu/data_raw
 ```
 
@@ -210,7 +202,7 @@ Press Ctrl+C to end the command.
 
 Check the frequency of the /imu/data_raw topic. A frequency of about 25 Hz is normal.
 
-```
+```bash
 ros2 topic hz /imu/data_raw
 ```
 
@@ -218,7 +210,7 @@ Press Ctrl+C to end the command.
 
 Subscribe to data on the /imu/mag topic
 
-```
+```bash
 ros2 topic echo /imu/mag
 ```
 
@@ -226,7 +218,7 @@ Press Ctrl+C to end the command.
 
 Check the frequency of the /imu/mag topic. A frequency of about 25 Hz is normal.
 
-```
+```bash
 ros2 topic hz /imu/mag
 ```
 

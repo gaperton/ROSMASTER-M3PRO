@@ -1,18 +1,10 @@
 # CAN bus communication
 
-CAN bus communication
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the FDCAN function of the STM32 control board, configure the FDCAN as a traditional CAN function, and learn how to receive and parse CAN data.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the FDCAN interface. For testing convenience, this routine uses the loopback mode and the CAN interface does not need to be connected to other CAN devices.
 
@@ -26,7 +18,7 @@ If you need to connect other CAN devices, please align the CAN interface silkscr
 
 ![Picture: page 1: picture 1](_page_1_Picture_1.jpeg)
 
-# 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -40,9 +32,9 @@ According to the CAN component provided by STM32CUBEIDE, configure the frame for
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-#### Set the baud rate of FDCAN to 1000kbps
+### Set the baud rate of FDCAN to 1000kbps
 
-| → Bit Timings Parameters |               |
+| -> Bit Timings Parameters |               |
 |--------------------------|---------------|
 | Nominal Prescaler        | 3             |
 | Nominal Time Quantum     | 25.0 ns       |
@@ -170,7 +162,7 @@ void App_Handle(void)
 }
 ```
 
-# 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -182,7 +174,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

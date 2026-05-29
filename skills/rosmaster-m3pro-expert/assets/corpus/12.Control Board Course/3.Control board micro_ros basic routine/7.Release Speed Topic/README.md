@@ -1,18 +1,10 @@
 # Release speed topic
 
-#### Release speed topic
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-# 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about STM32-microROS components, access the ROS2 environment, and publish a topic on the robot car's odom speed.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates four encoder motor drivers and interfaces, connecting the four motors to the motor interfaces. The corresponding names of the four motor interfaces are: left front wheel -> M1, left rear wheel -> M2, right front wheel -> M3, and right rear wheel -> M4.
 
@@ -24,7 +16,7 @@ Use a Type-C data cable to connect the USB port of the main control board and th
 
 Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
 
-# 3. Core code analysis
+## 3. Core code analysis
 
 The virtual machine path corresponding to the program source code is:
 
@@ -144,7 +136,7 @@ while (ros_error < 3)
     }
 ```
 
-# 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -156,7 +148,7 @@ Since the Type-C communication serial port used by the microros agent is multipl
 
 If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
 
-# 5. Experimental Results
+## 5. Experimental Results
 
 Note: When using ROS2 to control the car's motor, it will rotate. Please place the car in the air first to prevent it from moving around on the table.
 
@@ -172,21 +164,21 @@ After the connection is successful, a node, a publisher and a subscriber are cre
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Publish data to the /cmd_vel topic to control the robot car to move forward at 0.5m/s.
 
-```
+```bash
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ```
 
 Subscribe to the data of the /odom_raw topic,
 
-```
+```bash
 ros2 topic echo /odom_raw
 ```
 
@@ -194,7 +186,7 @@ Press Ctrl+C to end the command.
 
 Check the frequency of the /odom_raw topic. A frequency of around 20 Hz is normal.
 
-```
+```bash
 ros2 topic hz /odom_raw
 ```
 
@@ -202,7 +194,7 @@ Press Ctrl+C to end the command.
 
 Publish data to the /cmd_vel topic to control the robot car to stop.
 
-```
+```bash
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0,
 z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ```

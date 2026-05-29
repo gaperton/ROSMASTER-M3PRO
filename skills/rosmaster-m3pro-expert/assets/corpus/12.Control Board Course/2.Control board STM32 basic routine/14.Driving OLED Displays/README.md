@@ -1,14 +1,6 @@
 # Driving OLED displays
 
-Driving OLED displays
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the analog I2C function of the STM32 control board to learn how to control the OLED screen.
 
@@ -22,7 +14,7 @@ The two rows of interfaces have the same function. Just choose one of them and a
 
 ![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 
@@ -257,7 +249,7 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### 5. Experimental Results
+## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 

@@ -1,14 +1,6 @@
 # Flash access data
 
-Flash access data
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the flash storage function of the STM32 control board to learn the power-off saving function.
 
@@ -20,7 +12,7 @@ You need to connect the USB-C cable between the computer and the USB Connect por
 
 ![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 

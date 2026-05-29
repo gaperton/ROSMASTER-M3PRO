@@ -1,20 +1,12 @@
 # Drive motor
 
-#### Drive motor
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn how to control motors using the PWM output of the STM32 control board.
 
-**Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.**
+Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.
 
-#### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates four encoder motor control interfaces. This requires additional connection to the encoder motor. The motor control interface supports 520 encoder motors. Because the encoder voltage requires high voltage and high current, a battery must be plugged in for power.
 
@@ -124,7 +116,7 @@ sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
 }
 ```
 
-定时器TIM8的初始化参数与定时器TIM1的参数一致。
+TIM8TIM1
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
@@ -215,7 +207,7 @@ void Motor_Init(void)
 }
 ```
 
-将电机PWM通道与定时器的对应关系使用宏定义关联。
+PWM
 
 ```
 #define PWM_M1_A TIM1->CCR3
@@ -228,7 +220,6 @@ void Motor_Init(void)
 #define PWM_M4_B TIM8->CCR4
 ```
 
-由于电机的启动电压过低时无法转动,所以需要增加死区过滤,控制电机才更加敏捷。
 
 ```
 #define MOTOR_IGNORE_PULSE (999)
@@ -240,7 +231,7 @@ static int16_t Motor_Ignore_Dead_Zone(int16_t pulse)
 }
 ```
 
-需要限制输入的PWM值。
+PWM
 
 ```
 #define MOTOR_MAX_PULSE (1999)
@@ -252,7 +243,7 @@ static int16_t Motor_Limit_Pulse(int16_t pulse)
 }
 ```
 
-设置电机速度,传入电机ID值来区分电机,speed用来控制电机的速度,取值范围是 ±MOTOR_MAX_SPEED。
+ID,speed, MOTOR_MAX_SPEED
 
 ```
 #define MOTOR_MAX_SPEED (1000)
@@ -269,7 +260,7 @@ typedef enum {
 void Motor_Set_Pwm(uint8_t id, int16_t speed)
 {
     int16_t pulse = Motor_Ignore_Dead_Zone(speed);
-    // Limit input 限制输入
+    // Limit input
     pulse = Motor_Limit_Pulse(pulse);
     switch (id)
     {
@@ -366,7 +357,7 @@ break;
 }
 ```
 
-电机停止函数,brake函数为停止状态,brake=MOTOR_STOP表示自由停止,brake=MOTOR_BRAKE 表示刹车停止。
+brake,brake=MOTOR_STOP,brake=MOTOR_BRAKE
 
 ```
 typedef enum {
@@ -390,7 +381,7 @@ void Motor_Stop(uint8_t brake)
 }
 ```
 
-在App_Handle函数里控制电机循环执行:前进1秒,停止1秒,后退1秒,停止1秒。
+App_Handle:1,1,1,1
 
 ```
 void App_Handle(void)
@@ -429,9 +420,9 @@ Press and hold the BOOT0 button, then press the RESET button to reset, release t
 
 If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
 
-### 5. Experimental Results
+## 5. Experimental Results
 
-**Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.**
+Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.
 
 The MCU_LED light flashes every 200 milliseconds.
 

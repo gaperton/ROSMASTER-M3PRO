@@ -1,18 +1,10 @@
 # Battery voltage detection
 
-Battery voltage detection
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Use the voltage detection function on the STM32 control board to learn how to read ADC values.
 
-### 2. Hardware Connection
+## 2. Hardware Connection
 
 As shown in the figure below, the battery voltage detection circuit has been integrated into the STM32 control board, and the battery needs to be plugged into the battery interface.
 
@@ -20,7 +12,7 @@ Please connect the type-C data cable to the computer and the USB Connect port of
 
 ![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 The path corresponding to the program source code is:
 

@@ -1,12 +1,5 @@
 # Introduction to the Control Board
 
-Introduction to the Control Board
-
-- 1. Component distribution diagram on the front of the control board
-- 2. Component distribution diagram on the back of the control board
-- 3. Control board pin assignment diagram
-- 4. Analysis of Common Problems
-
 ## 1. Component distribution diagram on the front of the control board
 
 ![Picture: page 0: picture 7](_page_0_Picture_7.jpeg)
@@ -46,7 +39,7 @@ Introduction to the Control Board
 - 32. Nine-axis attitude sensor: including 3-axis accelerometer, 3-axis gyroscope, and 3-axis magnetometer
 - 33. SWD debug interface: users can use ST-LINK for debugging
 
-# 2. Component distribution diagram on the back of the control board
+## 2. Component distribution diagram on the back of the control board
 
 ![Picture: page 1: picture 18](_page_1_Picture_18.jpeg)
 
@@ -54,7 +47,7 @@ Introduction to the Control Board
 - 2. Charging port: 12.6V charging port
 - 3. Self-locking switch interface: can be used to connect an external self-locking switch to control the switch of the entire board
 
-#### 3. Control board pin assignment diagram
+## 3. Control board pin assignment diagram
 
 ![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
@@ -94,17 +87,17 @@ Introduction to the Control Board
 | CAN interface                             | PD0/PD1   |                                                     |
 | M1 motor encoder                       | PB4/PB5   | Encoder mode, Timer 3 channel 1 and channel 2    |
 
-#### 4. Analysis of Common Problems
+## 4. Analysis of Common Problems
 
-1. How does a main control board (such as Jetson Nano) drive a control board? How do I communicate with the control board?
+- 1. How does a main control board (such as Jetson Nano) drive a control board? How do I communicate with the control board?
 
 A: The factory firmware of the control board integrates the Microros framework program. Jetson Nano is connected to the control board through the USB Connect interface, opens the Microros agent and sends the corresponding topic instructions. The microcontroller integrated in the control board receives and parses the data, and then processes the specific commands to be executed.
 
-2. How is the robot powered? Does the main control board need a separate power supply?
+- 2. How is the robot powered? Does the main control board need a separate power supply?
 
 A: The car comes with a battery pack. Plug the battery pack into the DC 12V T-type power connector on the control board and turn on the main power switch. The control board has an integrated voltage conversion chip. For the Jetson Nano motherboard, power is supplied via the DC 5V power cable. For the Raspberry Pi 5, power is supplied via the Type-C 5V output power cable with protocol. For the Jetson Orin series, power is supplied via the DC 12V output power cable.
 
-3. How to update the MCU firmware? Why do we need to update the MCU firmware?
+- 3. How to update the MCU firmware? Why do we need to update the MCU firmware?
 
 A: The MCU integrated into the control board is pre-loaded with factory firmware. You do not need to update the firmware unless necessary. If you need to update the firmware, please refer to the firmware update tutorial to update the MCU firmware. If the control board has been preloaded with a separate hex file, please re-load the firmware to the factory firmware before
 

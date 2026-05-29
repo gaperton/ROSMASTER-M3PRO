@@ -1,14 +1,6 @@
 # Multi-topic subscription and publishing
 
-Multi-topic subscription and publishing
-
-- 1. Experimental Purpose
-- 2. Hardware Connection
-- 3. Core code analysis
-- 4. Compile, download and burn firmware
-- 5. Experimental Results
-
-#### 1. Experimental Purpose
+## 1. Experimental Purpose
 
 Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to and publish multiple int32 topics.
 
@@ -213,7 +205,7 @@ while (ros_error < 3)
 }
 ```
 
-#### 4. Compile, download and burn firmware
+## 4. Compile, download and burn firmware
 
 Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
 
@@ -241,26 +233,26 @@ After the connection is successful, three nodes and three subscribers are create
 
 Open another terminal and view the /YB_Example_Node node.
 
-```
+```bash
 ros2 node list
 ros2 node info /YB_Example_Node
 ```
 
 Publish a message with the int data 123 to the topic /subscriber_1.
 
-```
+```bash
 ros2 topic pub /subscriber_1 std_msgs/msg/Int32 "data: 123"
 ```
 
 Publish a message with the int data value 456 to the topic /subscriber_2.
 
-```
+```bash
 ros2 topic pub /subscriber_2 std_msgs/msg/Int32 "data: 456"
 ```
 
 Publish a message with the integer value 789 to the topic /subscriber_3.
 
-```
+```bash
 ros2 topic pub /subscriber_3 std_msgs/msg/Int32 "data: 789"
 ```
 
@@ -268,7 +260,7 @@ You can see the corresponding information printed on the serial port assistant, 
 
 Check the frequency of /publisher_1, /publisher_2, and /publisher_3 topics
 
-```
+```bash
 ros2 topic hz /int32_publisher_1
 ros2 topic hz /int32_publisher_2
 ros2 topic hz /int32_publisher_3
@@ -278,7 +270,7 @@ Press Ctrl+C to end the command.
 
 Subscribe to data from topics /int32_publisher_1, /int32_publisher_2, and /int32_publisher_3
 
-```
+```bash
 ros2 topic echo /int32_publisher_1
 ros2 topic echo /int32_publisher_2
 ros2 topic echo /int32_publisher_3
