@@ -30,7 +30,7 @@ Features of DaBai DCW2:
 
 - Low reflective objects: can effectively identify objects with a reflectivity of 5%
 - Anti-interference: comprehensively improves electromagnetic compatibility and anti-static capabilities
-- Balanced field of view: H-FOV: 91° V-FOV: 62°
+- Balanced field of view: H-FOV: 91 degrees V-FOV: 62 degrees
 - Energy level switching: Provide two energy level modes for customers to adapt
 - Depth image: supports up to 640\*400 depth resolution
 - Working distance: 0.15m-5m
@@ -43,7 +43,7 @@ Interface: USB2.0 Type C
 
 This product has compiled the ROS SDK of Dabai_DCW2. You can directly enter the following command in the terminal to start the camera. Terminal input,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
@@ -53,7 +53,7 @@ If the camera cannot be started, you need to check whether the connection betwee
 
 You can use the ros2 node tool to view which topics the camera node has published and which services it has provided. Enter the terminal input,
 
-```
+```bash
 ros2 node info /camera/camera
 ```
 
@@ -75,7 +75,7 @@ After the camera is started, you can enter the following command in the terminal
 
 As shown in the red box in the figure above, the image of the color image topic /camera/color/image_raw is selected.
 
-#### 4.2. Subscribe to depth image
+### 4.2. Subscribe to depth image
 
 According to the query node information, we can find the following deep image topics:
 

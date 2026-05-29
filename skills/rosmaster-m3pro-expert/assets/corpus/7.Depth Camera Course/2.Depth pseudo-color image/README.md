@@ -1,10 +1,4 @@
-## Depth pseudo-color image
-
-Depth pseudo-color image
-
-- 1. Content Description
-- 2. Program startup
-- 3. Core code analysis
+# Depth pseudo-color image
 
 ## 1. Content Description
 
@@ -18,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the deep pseudo-color image conversion program:
 
-```
+```bash
 ros2 run yahboom_M3Pro_DepthCam GetDepthColor
 ```
 
@@ -48,7 +42,7 @@ is, /home/jetson/yahboomcar_ws/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Get
 
 Import the library files used
 
-```
+```python
 from cv_bridge import CvBridge
 import cv2
 from rclpy.node import Node

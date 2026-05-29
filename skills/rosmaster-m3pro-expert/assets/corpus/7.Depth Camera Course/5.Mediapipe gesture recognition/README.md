@@ -1,12 +1,12 @@
 # Mediapipe gesture recognition
 
-### 1. Content Description
+## 1. Content Description
 
 This lesson explains how to subscribe to an image topic to retrieve images and use MediaPipe for gesture recognition.
 
 This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
 
-#### About Mediapipe:
+### About Mediapipe:
 
 MediaPipe is a data stream processing and machine learning application development framework developed and open-sourced by Google. It is a graph-based data processing pipeline used to build applications that utilize a variety of data sources, such as video, audio, sensor data, and any time series data. MediaPipe is cross-platform and can run on embedded platforms (such as the Raspberry Pi), mobile devices (iOS and Android), workstations, and servers, and supports mobile GPU acceleration. MediaPipe provides a cross-platform, customizable ML solution for real-time and streaming media. The core framework of MediaPipe is implemented in C++, with support for languages such as Java and Objective C. Key concepts in MediaPipe include packets, streams, calculators, graphs, and subgraphs.
 
@@ -22,17 +22,17 @@ It is also robust to occlusion. To obtain ground truth data, we manually annotat
 
 Therefore, as long as we can obtain the coordinate value of each joint, we can perform gesture recognition through calculation.
 
-### 2. Program startup
+## 2. Program startup
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the mediapipe gesture recognition program.
 
-```
+```bash
 ros2 run M3Pro_demo mediapipe_gesture
 ```
 
@@ -58,7 +58,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/me
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 from sensor_msgs.msg import Image
@@ -70,7 +70,7 @@ import time
 from M3Pro_demo.media_library import *
 ```
 
-```
+```python
 from rclpy.node import Node
 import rclpy
 from message_filters import Subscriber,
@@ -81,7 +81,7 @@ import threading
 
 Initialize some variables and create subscribers and publishers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -106,7 +106,7 @@ gesture
 
 Color image callback function and image processing,
 
-```
+```python
 def callback(self,color_msg):
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_msg, "bgr8")
     self.process(rgb_image)
@@ -132,7 +132,7 @@ parameter passed in is lmList
             cv.destroyAllWindows()
 ```
 
-```
+```python
 cv.imshow('frame', frame)
 def Gesture_Detect_threading(self, lmList,bbox):
     #Call the function to get gesture in Medipipe recognition class

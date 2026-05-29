@@ -27,23 +27,23 @@ TensorRT-optimized models typically achieve several times or even dozens of time
 
 In this lesson, converting the YOLOv8.pt model to the TensorRT engine significantly improves inference speed on the Orin motherboard, meeting real-time requirements.
 
-### 2. Program Startup
+## 2. Program Startup
 
 Enter the following commands in the terminal to start the camera and radar:
 
-```
+```bash
 ros2 launch yahboom_yolov8 yolov8_deep_track.launch.py
 ```
 
 Open another terminal and enter the following command to start the tracking program:
 
-```
+```bash
 ros2 run yahboom_yolov8 yolov8_track
 ```
 
 Then, open a third terminal and enter the following command to start rqt_image_view to view the image:
 
-```
+```bash
 ros2 run rqt_image_view rqt_image_view
 ```
 
@@ -53,7 +53,7 @@ Select the topic /detect_image in the upper left corner and click the refresh bu
 
 Then, based on the ID in the image, enter the following command to publish to the target topic /track_id. For example, if we want to track an object with ID 4, enter the following command and press Enter to publish the message.
 
-```
+```bash
 ros2 topic pub /tracker_id std_msgs/msg/Int16 "data: 4" --once
 ```
 
@@ -67,7 +67,7 @@ Then slowly move the object, and the robot will slowly follow it. The program wi
 
 Import the necessary library files.
 
-```
+```python
 import cv2
 import numpy as np
 from collections import OrderedDict, namedtuple
@@ -95,7 +95,7 @@ import os
 
 The image preprocessing function letterbox returns the processed image im, the scaling factor r, and the padding (dw, dh) (which can be used to map the coordinates of the model output back to the original image).
 
-```
+```python
 def letterbox(im, new_shape=(640, 640), color=(114, 114, 114), auto=False,
 scaleup=True, stride=32):
     # Resize and pad image while meeting stride-multiple constraints
@@ -125,7 +125,7 @@ value=color) # add border
 
 The image preprocessing function preprocess is used to convert the original input image into an input format acceptable to the model, and returns the processed model input tensor img, the original image image, the padding dw and dh ( dw / dh are used to subsequently map the bounding box predicted by the model from the processed image back to the original image).
 
-```
+```python
 def preprocess(image, imgsz=640):
     img, ratio, (dw, dh) = letterbox(image, imgsz, stride=32, auto=False)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -138,7 +138,7 @@ def preprocess(image, imgsz=640):
 
 The post-processing function post_process is mainly used to process the detection results output by the model (such as coordinate mapping) and organize the results into a format that is convenient for subsequent use. At the same time, it prepares for drawing bounding boxes on the original image and returns the original image img and the organized detection results list detections.
 
-```
+```python
 def post_process(img, det, frames):
     """
     Draw bounding boxes on the input image.
@@ -160,10 +160,10 @@ def post_process(img, det, frames):
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self, weight, thres=0.60, size=640, video_path='', batch_size=3) ->
 None:
-    super().__init__('yolov8_node') # ½ύμãÃû³Æ
+    super().__init__('yolov8_node')
     self.video_path = video_path
     self.imgsz = size
     #Engine file, the file address is
@@ -216,7 +216,7 @@ self.ResponseDist = 1.2
 
 Initialize the engine init_engine, the method to initialize the TensorRT reasoning engine, its main function is to load the precompiled TensorRT engine file, parse the engine's input and output information, and complete the initialization of the reasoning environment to prepare for subsequent efficient reasoning.
 
-```
+```python
 def init_engine(self):
     # Infer TensorRT Engine
     self.Binding = namedtuple('Binding', ('name', 'dtype', 'shape', 'data',
@@ -244,7 +244,7 @@ self.shape, self.data,
 
 Image processing function process,
 
-```
+```python
 def process(self):
     #Convert received image topic messages into image data
     frame = self.msg2img_bridge.imgmsg_to_cv2(self.frame, "rgb8")
@@ -341,7 +341,7 @@ the angular velocity is taken as the calculated angular velocity.
 
 LiDAR topic callback function registerScan,
 
-```
+```python
 def registerScan(self, scan_data):
     if not isinstance(scan_data, LaserScan): return
     ranges = np.array(scan_data.ranges)

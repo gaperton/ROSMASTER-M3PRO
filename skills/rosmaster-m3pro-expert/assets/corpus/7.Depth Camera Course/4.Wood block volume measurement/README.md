@@ -1,10 +1,4 @@
-## Wood block volume measurement
-
-Wood block volume measurement
-
-- 1. Content Description
-- 2. Program startup
-- 3. Core code analysis
+# Wood block volume measurement
 
 ## 1. Content Description
 
@@ -18,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera and robotic arm inverse solution program. The content of inverse solution will be introduced in this product course [9. Robotic Arm and 3D Space Gripping] - [Robotic Arm Inverse Solution]. Here you only need to understand that the inverse solution is to calculate the coordinate value.
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 After starting the camera and robotic arm inverse solution program, enter the following command to start the wood block volume measurement program. Enter the terminal,
 
-```
+```bash
 ros2 run M3Pro_demo estimate_volume
 ```
 
@@ -32,7 +26,7 @@ After the startup is complete, we place a rectangular wooden block as close to t
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-The dimensions of the cuboid are 2.8cm x 2.8cm x 5.8cm. The theoretical volume is 45.472 cubic centimeters. The calculated value is 4.87, which is within ±1 cubic centimeter. The error comes from the depth information and the virtual position of the servo.
+The dimensions of the cuboid are 2.8cm x 2.8cm x 5.8cm. The theoretical volume is 45.472 cubic centimeters. The calculated value is 4.87, which is within 1 cubic centimeter. The error comes from the depth information and the virtual position of the servo
 
 ## 3. Core code analysis
 
@@ -48,7 +42,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/es
 
 Import necessary library files
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -109,7 +103,7 @@ self.client = self.create_client(ArmKinemarics, 'get_kinemarics')
 
 Control the robot arm to move to the recognized posture and calculate the current posture of the end of the robot arm.
 
-```
+```python
 self.pubSixArm(self.init_joints)
 self.get_current_end_pos()
 def get_current_end_pos(self):
@@ -164,7 +158,7 @@ gray_image = cv2.cvtColor(depth_to_color_image, cv2.COLOR_BGR2GRAY)
 #Create an all-zero array with exactly the same shape and data type as
 gray_image
 black_image = np.zeros_like(gray_image)
-#Assign values to the array and copy the pixel values of the first 420 rows × the
+#Assign values to the array and copy the pixel values of the first 420 rows x the
 first 640 columns of the grayscale image to the same position in black_image
 black_image[0:420, 0:640] = gray_image[0:420, 0:640]
 #Threshold black_image and set all pixels with values < 90 to 0 (pure black).
@@ -239,7 +233,7 @@ center = rect[0]
 
 Calculate the pose of the center point, which represents the value of the point in the world coordinate system.
 
-```
+```python
 cx = int(center[0])
 cy = int(center[1])
 dist = depth_image_info[int(cy),int(cx)]/1000

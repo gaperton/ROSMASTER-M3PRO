@@ -1,10 +1,4 @@
-## Depth camera distance measurement
-
-Depth camera distance measurement
-
-- 1. Content Description
-- 2. Program startup
-- 3. Core code analysis
+# Depth camera distance measurement
 
 ## 1. Content Description
 
@@ -18,11 +12,15 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
+```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the deep pseudo-color image conversion program:
 
+```bash
 ros2 run yahboom_M3Pro_DepthCam Measure_Distance
+```
 
 After startup, as shown below,
 
@@ -41,7 +39,7 @@ is /home/jetson/yahboomcar_ws/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Meas
 
 Import the library files used
 
-```
+```python
 from cv_bridge import CvBridge
 import cv2
 from rclpy.node import Node
@@ -106,7 +104,7 @@ cv2.putText(depth_to_color_image, dist, (10, 40), cv2.FONT_HERSHEY_SIMPLEX,
 
 Call the opecv function to get the mouse click event, click a point in the valid area of the image, and get the xy value of the point.
 
-```
+```python
 cv2.setMouseCallback(self.window_name, self.click_callback)
 def click_callback(self, event, x, y, flags, params):
     if event == 1:

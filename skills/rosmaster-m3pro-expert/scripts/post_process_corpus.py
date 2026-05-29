@@ -110,6 +110,7 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
     "\u221a": "the check mark",
     "\u2022": "-",
     "\u00c3\u2014": "x",
+    "\u00d7": "x",
     "\u00ae": "(R)",
     "\u00c2\u00ae": "(R)",
     "\u00b0": " degrees",
