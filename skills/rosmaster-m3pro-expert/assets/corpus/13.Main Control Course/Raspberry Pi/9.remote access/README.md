@@ -1,18 +1,6 @@
 # remote access
 
-#### remote access
-
-- 1. Preliminary preparation
-  - 1.1. Enable SSH and VNC Graphical interface
-    - Command Line
-  - 1.2. Obtain IP
-    - Graphical interface
-- 2. SSH remote control
-- 3. VNC remote login
-
-We often use SSH and VNC tools to remotely control the Raspberry Pi system.
-
-### 1. Preliminary preparation
+## 1. Preliminary preparation
 
 Before performing SSH or VNC remote login, you need to enable SSH and VNC functions in the Raspberry Pi system settings or use the raspi-config tool.
 
@@ -20,7 +8,7 @@ Before performing SSH or VNC remote login, you need to enable SSH and VNC functi
 
 ### Graphical interface
 
-Enable SSH and VNC: applications menu → Preferences → Raspberry Pi Configuration
+Enable SSH and VNC: applications menu -> Preferences -> Raspberry Pi Configuration
 
 ![Figure: page 0: figure 15](_page_0_Figure_15.jpeg)
 
@@ -28,7 +16,7 @@ Enable SSH and VNC: applications menu → Preferences → Raspberry Pi Configura
 
 #### Command Line
 
-Use the raspi-config tool to enable SSH and VNC functions: Interface Options → SSH/VNC: enable
+Use the raspi-config tool to enable SSH and VNC functions: Interface Options -> SSH/VNC: enable
 
 ![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 

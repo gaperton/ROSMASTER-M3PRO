@@ -18,7 +18,7 @@ Since the SSD capacity of the Jetson Orin series motherboard is relatively large
 
 ### 2.1. Install Gparted
 
-```
+```bash
 sudo apt update
 sudo apt install gparted -y
 ```

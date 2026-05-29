@@ -1,16 +1,14 @@
 # Using USB camera
 
-#### Using USB camera
-
 Install FSWebcam View USB camera device Photograph Time-lapse photography Using Cron \(scheduled tasks\) Web page preview camera Install Motion Modify configuration file Start service Web page preview screen
 
 Take photos and videos on your Raspberry Pi using a standard USB camera.
 
-### Install FSWebcam
+## Install FSWebcam
 
 FSWebcam is a simple and clear webcam application. The software installation command is as follows:
 
-```
+```bash
 sudo apt install fswebcam
 ```
 
@@ -62,14 +60,14 @@ fswebcam -r 1280x720 --no-banner image3.jpg
 
 Create a new Webcam folder and enter the file
 
-```
+```bash
 mkdir Webcam
 cd Webcam
 ```
 
 Create a new webcam.sh script file and edit the content
 
-```
+```bash
 sudo nano webcam.sh
 ```
 
@@ -85,7 +83,7 @@ Hold down Ctrl+X, enter Y, and press Enter.
 
 Add executable permissions
 
-```
+```bash
 sudo chmod +x webcam.sh
 ```
 
@@ -133,7 +131,7 @@ CSI cameras cannot use this method to preview the camera!
 
 ### Install Motion
 
-```
+```bash
 sudo apt install motion
 ```
 
@@ -141,7 +139,7 @@ sudo apt install motion
 
 -motion.conf
 
-```
+```bash
 sudo nano /etc/motion/motion.conf
 ```
 
@@ -172,7 +170,7 @@ The above parameters can be adjusted!
 
 motion
 
-```
+```bash
 sudo nano /etc/default/motion
 ```
 

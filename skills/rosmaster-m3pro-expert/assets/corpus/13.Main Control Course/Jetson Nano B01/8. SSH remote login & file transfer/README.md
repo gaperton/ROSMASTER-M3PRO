@@ -1,16 +1,16 @@
-## Jason Nano Remote Login Tutorial&Remote File Transfer Tutorial
+# Jason Nano Remote Login Tutorial&Remote File Transfer Tutorial
 
-**Tip: The configured image has a username of Jetson, and the original password is yahboom,**
+Tip: The configured image has a username of Jetson, and the original password is yahboom,
 
 ## 1.Remote login tutorial
 
-1. First, determine the IP address of your board.
+- 1. First, determine the IP address of your board.
 
 Method 1: Directly during the system installation process, through the interfaceCtr+Alt+T Open the Command Prompt and enter ifconfigFind the IP address of the corresponding wired network card eth0. If you have purchased a wireless network card, please refer to the address under wlan.
 
 Method 2: You can log in to the wireless router management system and find the IP address of the board
 
-2. Open PuTTY and enter the IP address and port number below. By default, the SSH service has been enabled in the system.
+- 2. Open PuTTY and enter the IP address and port number below. By default, the SSH service has been enabled in the system.
 
 ![Figure: page 0: figure 7](_page_0_Figure_7.jpeg)
 
@@ -18,13 +18,13 @@ Finally, open Open and click Yes when prompted.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-3. Enter the login name we entered in the installation system, if this is nano.
+- 3. Enter the login name we entered in the installation system, if this is nano.
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
 Then enter the password and enter terminal mode.
 
-**Note: Enter the password here. The password you entered is hidden. After entering it, simply press Enter**
+Note: Enter the password here. The password you entered is hidden. After entering it, simply press Enter
 
 ## 2.Remote File Transfer Tutorial
 

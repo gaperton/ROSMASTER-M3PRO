@@ -2,7 +2,7 @@
 
 ## 1. Jetson Orin development kit
 
-The main difference between the Jetson Orin official development kit and the SUB version development kit: the official kit does not have ① switch button
+The main difference between the Jetson Orin official development kit and the SUB version development kit: the official kit does not have switch button
 
 ### 1.1. Front of the development board
 

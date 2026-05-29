@@ -6,9 +6,13 @@ Tip: The configured image has a username of Jetson and the original password is 
 
 ### 1. Install Vino
 
+```bash
 sudo apt update
+```
 
+```bash
 sudo apt install vino
+```
 
 ### 2. Set Enable VNC service (at this time, the VNC server can be manually opened)
 
@@ -17,7 +21,7 @@ sudo ln -s ../vino-server.service
 /usr/lib/systemd/user/graphical-session.target.wants
 ```
 
-```
+```bash
 # Configure VNC server:
 gsettings set org.gnome.Vino prompt-enabled false
 gsettings set org.gnome.Vino require-encryption false
@@ -25,7 +29,7 @@ gsettings set org.gnome.Vino require-encryption false
 
 Edit org.gnome, restore the missing 'enabled' parameter, enter the command to enter the file, and add the key content below to the end of the file. Save and exit.
 
-```
+```bash
 sudo vi /usr/share/glib-2.0/schemas/org.gnome.Vino.gschema.xml
 ```
 
@@ -58,7 +62,7 @@ sudo reboot
 
 The VNC server is only available after you log in locally to Jetson. If you want VNC to be automatically available, please use the system settings application to enable automatic login.
 
-```
+```bash
 gsettings set org.gnome.Vino enabled true
 mkdir -p ~/.config/autostart
 vi ~/.config/autostart/vino-server.desktop

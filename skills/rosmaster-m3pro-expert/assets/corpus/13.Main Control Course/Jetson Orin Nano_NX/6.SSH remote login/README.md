@@ -1,15 +1,6 @@
 # SSH remote login
 
-#### SSH remote login
-
-- 1. MobaXterm
-- 2. MobaXterm installation
-  - 2.1. Download MobaXterm
-  - 2.2. Install MobaXterm
-- 3. Use MobaXterm
-- 4. MobaXterm: SSH remote
-
-### 1. MobaXterm
+## 1. MobaXterm
 
 MobaXterm is a powerful remote tool that integrates SHH, VNC, FTP and other remote tools.
 
@@ -19,7 +10,7 @@ Official website: <https://mobaxterm.mobatek.net/>
 
 ![Figure: page 0: figure 12](_page_0_Figure_12.jpeg)
 
-#### 2.1. Download MobaXterm
+### 2.1. Download MobaXterm
 
 Select the free version to download:
 
@@ -49,7 +40,7 @@ Complete installation:
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-### 3. Use MobaXterm
+## 3. Use MobaXterm
 
 Find the MobaXterm icon on the desktop and open it:
 
@@ -57,9 +48,9 @@ Find the MobaXterm icon on the desktop and open it:
 
 ![Figure: page 4: figure 4](_page_4_Figure_4.jpeg)
 
-### 4. MobaXterm: SSH remote
+## 4. MobaXterm: SSH remote
 
-Select Session → SSH: Fill in the remote device IP and username
+Select Session -> SSH: Fill in the remote device IP and username
 
 Default information of Jetson motherboard:
 

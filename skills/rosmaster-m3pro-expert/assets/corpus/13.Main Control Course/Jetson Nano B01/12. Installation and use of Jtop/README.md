@@ -1,16 +1,16 @@
 # Installation and Use of Jtop
 
-### Installation of Jtop
+## Installation of Jtop
 
 (1) Installing JTOP to check CPU usage
 
-```
+```bash
 sudo apt-get update
 sudo apt-get full-upgrade
 sudo apt install curl
 sudo apt install nano
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py #下载安装脚本
-sudo python3 get-pip.py # 运行安装脚本
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+sudo python3 get-pip.py
 sudo pip3 install jetson-stats
 jtop
 ```
@@ -35,14 +35,14 @@ The CUDA10.2 version has already been installed in Jetson Nano B01, but at this 
 
 Firstly, check if there is nvcc in the bin directory of cuda:
 
-```
+```bash
 ls /usr/local/cuda/bin
 ```
 
 If present,
 
-```
-sudo vim ~/.bashrc进入配置文件; 在最后面添加以下两行:
+```bash
+sudo vim ~/.bashrc; :
 ```
 
 Note: In vim, use Esc to return to command mode, and switch to the input module through I to enter text in input mode
@@ -56,7 +56,7 @@ Note: After exiting the command mode through Esc, press: to start inputting comm
 
 Then it needs to take effect under the source.
 
-```
+```bash
 source ~/.bashrc
 ```
 

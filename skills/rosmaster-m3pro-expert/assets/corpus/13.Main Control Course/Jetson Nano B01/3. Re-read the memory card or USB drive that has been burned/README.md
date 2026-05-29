@@ -1,4 +1,4 @@
-## Tutorial on how to re-burn a burned image
+# Tutorial on how to re-burn a burned image
 
 This tutorial is for re-burning a previously burned image on a memory card or USB drive that is no longer recognized by the computer. This **is usually caused by Windows 7 not being able to recognize the burned Ubuntu system drive. Windows 10 can use SDformat to format the drive.**
 

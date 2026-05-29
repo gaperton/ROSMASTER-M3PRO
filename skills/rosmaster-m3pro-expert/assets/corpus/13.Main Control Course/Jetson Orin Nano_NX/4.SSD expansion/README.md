@@ -1,18 +1,8 @@
 # SSD expansion
 
-#### SSD expansion
+## 1. Install GParted
 
-- 1. Install GParted
-- 2. Use GParted
-- 3. Adjust partitions
-
-The factory image system will perform disk compression, so the capacity displayed in the system will be inconsistent with the actual capacity. Users can follow the tutorial to expand the SSD.
-
-The tutorial is located in the Jetson Orin motherboard system
-
-### 1. Install GParted
-
-```
+```bash
 sudo apt update
 sudo apt install gparted -y
 ```
@@ -27,7 +17,7 @@ gparted
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-### 3. Adjust partitions
+## 3. Adjust partitions
 
 Right-click the disk partition that needs to be expanded: generally select the largest partition in the disk
 

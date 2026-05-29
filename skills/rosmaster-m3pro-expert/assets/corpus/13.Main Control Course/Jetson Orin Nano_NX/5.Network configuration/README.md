@@ -8,7 +8,7 @@ It is recommended to switch networks by connecting to the display screen. Once t
 
 ### 1.1. Connect to Wi-Fi
 
-Select the menu option in the upper right corner of the system desktop → Wi-Fi options → Wi-Fi Settings:
+Select the menu option in the upper right corner of the system desktop -> Wi-Fi options -> Wi-Fi Settings:
 
 ![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 

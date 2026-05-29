@@ -82,7 +82,9 @@ Enter Y during the process to confirm the update. The second process may take ab
 
 The first step is to click on the network symbol above. The second step is to select the network we need to connect to, and enter the password. I have already connected to the network of yahboom2Obtain the IP address of the motherboard (when connected to the network)
 
+```bash
 ifconfig
+```
 
 Because I am using Wi-Fi, looking at the IP address in the wlan0 line, I can see that my IP address here is 192.168.2.52.
 

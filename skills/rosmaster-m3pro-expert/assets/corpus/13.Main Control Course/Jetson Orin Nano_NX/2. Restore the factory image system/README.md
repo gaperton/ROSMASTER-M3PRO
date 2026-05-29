@@ -1,22 +1,10 @@
 # Restore the factory image system
 
-#### Restore the factory image system
-
-- 1. Format the SSD
-  - 1.1. Download DiskGenius
-  - 1.1. Use DiskGenius
-    - 1.1.1, Delete partition
-    - 1.1.2. Create a new partition
-- 2. Restore the factory image
-  - 2.1. Install Win32DiskImager
-  - 2.2. Use Win32DiskImager
-- 3. Description
-
-# 1. Format the SSD
+## 1. Format the SSD
 
 Before restoring the factory image, you need to format the SSD into exFAT format.
 
-## 1.1. Download DiskGenius
+### 1.1. Download DiskGenius
 
 Download URL: <https://www.diskgenius.com/>
 
@@ -28,9 +16,9 @@ Double-click the exe file you just downloaded to install DiskGenius. Follow the 
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-## 1.1. Use DiskGenius
+### 1.1. Use DiskGenius
 
-#### 1.1.1, Delete partition
+#### 1.1.1. Delete partition
 
 Deleting a partition will clear the disk data. Please confirm whether the drive letter is the disk that needs to be formatted before confirming the operation: you can judge based on the disk size and the newly added drive letter of the connected disk
 
@@ -52,11 +40,11 @@ Select the drive letter corresponding to the SSD, and then click New Partition:
 
 ![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-# 2. Restore the factory image
+## 2. Restore the factory image
 
 You need to download and decompress the factory image system in the data to the local computer in advance.
 
-## 2.1. Install Win32DiskImager
+### 2.1. Install Win32DiskImager
 
 Download URL: <https://sourceforge.net/projects/win32diskimager/>
 
@@ -88,9 +76,9 @@ Start installation:
 
 ### 2.2. Use Win32DiskImager
 
-- ①: Select the factory image file (\*.img) in the data
-- ②: Select the drive letter corresponding to the solid-state drive
-- ③: Write the factory image to the solid-state drive
+Select the factory image file (\*.img) in the data
+Select the drive letter corresponding to the solid-state drive
+Write the factory image to the solid-state drive
 
 ![Picture: page 11: picture 4](_page_11_Picture_4.jpeg)
 

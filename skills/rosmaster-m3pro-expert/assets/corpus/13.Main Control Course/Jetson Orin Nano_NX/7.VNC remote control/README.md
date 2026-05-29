@@ -1,38 +1,5 @@
 # VNC remote control
 
-#### VNC remote control
-
-- 1. VNC Viewer
-  - 1.1. VNC download
-  - 1.2. VNC Installation
-- 2. System Settings (Jetson)
-  - 2.1. Enable desktop remote
-    - 2.1.1. Sharing
-    - 2.1.2. Remote Desktop
-    - 2.1.3, Media Sharing
-    - 2.1.4 Remote Login
-  - 2.2, Fixed remote password
-    - Passwords and Keys
-  - 2.3, Start VNC automatically after booting
-
-Desktop extension manager
-
-3. VNC remote control
-
-Frequently Asked Questions
-
-VNC Remote Display Reconnection
-
-Reconnection Phenomenon
-
-Solution
-
-VNC remote switch uppercase and lowercase
-
-Tutorial to configure the built-in screen sharing of Ubuntu22.04 system for VNC remote control.
-
-Windows computer needs to download and install VNC Viewer in advance and the remote device and the remote device are in the same LAN
-
 ## 1. VNC Viewer
 
 ### 1.1. VNC download
@@ -41,7 +8,7 @@ Official website download address:<https://www.realvnc.com/en/connect/download/v
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-## 1.2. VNC Installation
+### 1.2. VNC Installation
 
 Run VNC-Viewer-xxx.exe as an administrator:
 
@@ -59,7 +26,7 @@ Run VNC-Viewer-xxx.exe as an administrator:
 
 #### 2.1.1. Sharing
 
-Settings → Sharing
+Settings -> Sharing
 
 ![Picture: page 5: picture 3](_page_5_Picture_3.jpeg)
 
@@ -71,7 +38,7 @@ Turn on the remote desktop and enable the traditional VNC protocol (need to chec
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-#### 2.1.3, Media Sharing
+#### 2.1.3. Media Sharing
 
 You need to check this option every time you switch networks and turn on the switch of the new network:
 
@@ -83,7 +50,7 @@ Turn on remote login:
 
 ![Picture: page 7: picture 0](_page_7_Picture_0.jpeg)
 
-### 2.2, Fixed remote password
+### 2.2. Fixed remote password
 
 You can perform VNC remote control by completing the above settings, but the access password of the Jetson motherboard will change every time it restarts. The fixed password needs to be operated as follows!
 
@@ -107,7 +74,7 @@ Set an empty key: Submit without filling in any content
 
 ![Picture: page 9: picture 1](_page_9_Picture_1.jpeg)
 
-### 2.3, Start VNC automatically after booting
+### 2.3. Start VNC automatically after booting
 
 After completing the above operations, the Jetson motherboard cannot be remotely accessed by VNC after the screen is locked. We can follow the following operations to solve the remote problem of locked screen.
 
@@ -115,7 +82,9 @@ After completing the above operations, the Jetson motherboard cannot be remotely
 
 Install desktop extension manager:
 
+```bash
 sudo apt install gnome-shell-extension-manager -y
+```
 
 Get the gnome-shell version number:
 
@@ -157,13 +126,13 @@ Fill in the motherboard system password:
 
 ## VNC Remote Display Reconnection
 
-**Reconnection Phenomenon**
+Reconnection Phenomenon
 
 ![Picture: page 14: picture 0](_page_14_Picture_0.jpeg)
 
-#### Solution
+### Solution
 
-Modify the options of the corresponding remote device → Specify remote image quality
+Modify the options of the corresponding remote device -> Specify remote image quality
 
 ![Figure: page 14: figure 3](_page_14_Figure_3.jpeg)
 
@@ -173,6 +142,6 @@ Modify the options of the corresponding remote device → Specify remote image q
 
 ## VNC remote switch uppercase and lowercase
 
-Enter Settings → Compose Key → Caps Lock: Set to Caps Lock to switch uppercase and lowercase input
+Enter Settings -> Compose Key -> Caps Lock: Set to Caps Lock to switch uppercase and lowercase input
 
 ![Figure: page 16: figure 0](_page_16_Figure_0.jpeg)

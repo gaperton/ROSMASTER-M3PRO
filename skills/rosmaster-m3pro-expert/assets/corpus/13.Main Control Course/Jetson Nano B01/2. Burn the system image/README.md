@@ -27,7 +27,7 @@ tar xzvf Jetson_Boot_USB.tar.gz
 
 - 2.2. After decompression, enter the Jetson_Boot_USB folder, then
 
-```
+```bash
 cd Jetson_Boot_USB/
 ls
 ```
@@ -92,7 +92,7 @@ At this point, the USB flash drive system has been successfully burned into the 
 
 - 1. Insert the U disk into the virtual machine, open the U disk in the virtual machine, open the terminal in the U disk interface, and enter the following command
 
-```
+```bash
 cd boot/extlinux
 sudo gedit extlinux.conf
 ```

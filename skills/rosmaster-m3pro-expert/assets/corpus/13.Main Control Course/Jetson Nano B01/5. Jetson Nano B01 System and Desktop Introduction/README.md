@@ -1,10 +1,8 @@
-## Jetson Nano B01 System and Desktop Introduction
-
-1. Insert the SD card/USB drive into Jetson Nano B01 and turn it on to see the graphical interface, as shown below.
+# Jetson Nano B01 System and Desktop Introduction
 
 ![Picture: page 0: picture 2](_page_0_Picture_2.jpeg)
 
-2. Version information of this system
+- 2. Version information of this system
 
 ![Figure: page 0: figure 4](_page_0_Figure_4.jpeg)
 
@@ -15,4 +13,4 @@
 - OPENCV:4.1.1
 - jetpack:4.6.1
 
-**If you want to build the environment from scratch, you must keep the same jetpack version as us, otherwise you will get an error according to the case we provide.**
+If you want to build the environment from scratch, you must keep the same jetpack version as us, otherwise you will get an error according to the case we provide.

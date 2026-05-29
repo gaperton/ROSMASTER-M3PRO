@@ -1,7 +1,5 @@
 # Set screen to sleep
 
-#### Set screen to sleep
-
 ```
 environment
 Idea 1 (recommended)
@@ -23,19 +21,19 @@ Raspbian is the old name of Raspberry Pi's official Debian-based operating syste
 
 # Idea 1 (recommended)
 
-### Graphical interface
+## Graphical interface
 
-Turn on automatic screen break: applications menu → Preferences → Raspberry Pi Configuration
+Turn on automatic screen break: applications menu -> Preferences -> Raspberry Pi Configuration
 
 ![Figure: page 0: figure 10](_page_0_Figure_10.jpeg)
 
-Display → Screen Blanking: Turn on (if you need to turn off the screen blanking, just turn off the switch)
+Display -> Screen Blanking: Turn on (if you need to turn off the screen blanking, just turn off the switch)
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-#### Command Line
+### Command Line
 
-Use the raspi-config tool to automatically blank the screen: Display Options → Screen Blanking: enable
+Use the raspi-config tool to automatically blank the screen: Display Options -> Screen Blanking: enable
 
 ### Restart
 
@@ -49,7 +47,9 @@ You can configure the lightdm desktop display manager to use xservice to keep th
 
 lightdm.conf file location:/etc/lightdm
 
+```bash
 sudo nano /etc/lightdm/lightdm.conf
+```
 
 Cancel the comment character # of xserver-command=X in the file and change it to xservercommand=X -s 0-dpms. After the modification is completed.
 

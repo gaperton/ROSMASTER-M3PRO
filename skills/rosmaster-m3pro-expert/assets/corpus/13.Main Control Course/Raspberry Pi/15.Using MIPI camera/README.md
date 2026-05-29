@@ -1,7 +1,5 @@
 # Using MIPI camera
 
-#### Using MIPI camera
-
 Configure camera Use camera Preview camera Photograph rpicam-still Video rpicam-vid Error resolution Web page preview camera Run script Web access
 
 The Raspberry Pi 5 combines the previous CSI and DSI interfaces into two dual-purpose CSI/DSI (MIPI) ports.
@@ -23,7 +21,9 @@ When using a Raspberry Pi camera or a third-party camera, you can modify the cam
 
 If you are not using the official Raspberry Pi camera, you can modify the config.txt file as shown in the table and add the dtoverlay content to the /boot/firmware/config.txt file.
 
+```bash
 sudo nano /boot/firmware/config.txt
+```
 
 For example: Raspberry Pi uses IMX219 camera, connect the camera to the Raspberry Pi J4 interface, and then modify the /boot/firmware/config.txt file:
 
@@ -45,7 +45,9 @@ rpicam-hello -t 0
 
 Running this command in the terminal will always display the preview window. You can use the window close button and Ctrl+C to exit!
 
-# Photograph
+```bash
+Photograph
+```
 
 rpicam-jpeg -o test.jpg
 
@@ -55,7 +57,7 @@ rpicam-jpeg -o test.jpg -t 2000 --width 640 --height 480
 
 Show a preview for 2 seconds, then capture and save the image as a test.jpg file, with the image having a width of 640 pixels and a height of 480 pixels.
 
-### rpicam-still
+## rpicam-still
 
 This command can be used to save files in different formats:
 
@@ -82,7 +84,7 @@ rpicam-still -t 30000 --timelapse 2000 -o image%04d.jpg
 
 # Video
 
-### rpicam-vid
+## rpicam-vid
 
 Commands for video recording using the camera module on the Raspberry Pi.
 
@@ -100,7 +102,7 @@ vlc test.h264
 
 **Note**: If the test.h264 file cannot be played and an error occurs, please try the following method to solve it.
 
-#### Error resolution
+### Error resolution
 
 Modify the frame rate of H264 playback per second
 
@@ -114,11 +116,13 @@ Modify the frame rate of H264 playback per second
 
 Use Python script files to preview camera images on web pages.
 
-### Run script
+## Run script
 
 Code path:/home/pi/Camera_Web_Preview/
 
+```bash
 cd /home/pi/Camera_Web_Preview/ python3 mjpeg_server.py
+```
 
 ### Web access
 

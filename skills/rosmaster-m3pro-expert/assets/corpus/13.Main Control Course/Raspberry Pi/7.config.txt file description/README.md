@@ -1,7 +1,5 @@
 # config.txt file description
 
-#### config.txt file description
-
 Check status file format Common options GPIO control
 
 illustrate
@@ -57,7 +55,7 @@ dtoverlay=vc4-kms-v3d
 
 # Common options
 
-### camera_auto_detect
+## camera_auto_detect
 
 When this setting is enabled, the firmware will automatically load overlays for the CSI cameras it recognizes.
 
@@ -67,7 +65,7 @@ Set to disabled:
 camera_auto_detect=0
 ```
 
-#### display_auto_detect
+### display_auto_detect
 
 When this setting is enabled, the firmware will automatically load overlays for the DSI monitors it recognizes.
 
@@ -106,7 +104,7 @@ The pin settings are followed by one or more comma-separated properties.
 | pd           | Pull down                  | pull down                        |
 | pn/np        | No pull                    | No pull-down                     |
 
-#### Example:
+### Example:
 
 ```
 # Select Alt2 for GPIO pins 0 to 27 (for DPI24)

@@ -1,7 +1,5 @@
 # Play audio and video
 
-#### Play audio and video
-
 Graphical interface Command Line Play video Play audio
 
 The easiest way to play audio and video on a Raspberry Pi is to use the preinstalled VLC application;
@@ -18,7 +16,7 @@ Select the file you want to play, right-click and select "VLC Media Player"
 
 Note: To play audio or video from the command line, you need to enter the directory where the file is located.
 
-### Play video
+## Play video
 
 vlc <video_name>
 

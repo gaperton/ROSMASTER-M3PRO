@@ -1,4 +1,4 @@
-## Jetson Nano B01 SUB board startup
+# Jetson Nano B01 SUB board startup
 
 ## 1. Power supply
 

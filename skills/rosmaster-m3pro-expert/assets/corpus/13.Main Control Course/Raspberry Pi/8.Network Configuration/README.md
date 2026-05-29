@@ -1,14 +1,6 @@
 # Network Configuration
 
-#### Network Configuration
-
-- 1. Wi-Fi connection
-- 2. Turn on hotspot
-- 3. Hotspot/Wi-Fi starts automatically after booting
-
-Network configuration mainly introduces Wi-Fi connection and hotspot opening.
-
-# 1. Wi-Fi connection
+## 1. Wi-Fi connection
 
 ### Graphical interface
 
@@ -28,7 +20,7 @@ Use the raspi-config tool: enter sudo raspi-config in the terminal
 
 Set WLAN country:
 
-Localization Options → WLAN Country → CN China → OK
+Localization Options -> WLAN Country -> CN China -> OK
 
 After completing the above option settings, select Finish to exit the raspi-config tool.
 
@@ -56,7 +48,7 @@ Using the Raspberry Pi graphical desktop system, we can create a hotspot by clic
 
 After the creation is successful, you can use your mobile phone to view the hotspot!
 
-# 3. Hotspot/Wi-Fi starts automatically after booting
+## 3. Hotspot/Wi-Fi starts automatically after booting
 
 We can set up the Raspberry Pi system to connect to Wi-Fi or turn on a hotspot by modifying the priority of the network settings.
 

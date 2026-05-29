@@ -1,7 +1,5 @@
 # Introduction to raspi-config tool
 
-#### Introduction to raspi-config tool
-
 Open
 
 Options list
@@ -51,7 +49,7 @@ Since versions of the raspi-config tool are constantly being updated, the follow
 |                                                         |                      | Information about this configuration tool |
 |                                                         | <select></select>    | <finish></finish>                         |
 
-### System options
+## System options
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
@@ -91,7 +89,7 @@ Set default browser options.
 
 ![Figure: page 2: figure 9](_page_2_Figure_9.jpeg)
 
-#### Screen pause
+## Screen pause
 
 Enable or disable screen snooze.
 
@@ -107,15 +105,17 @@ Set the video output to pass through the composite video output port.
 
 ![Figure: page 3: figure 1](_page_3_Figure_1.jpeg)
 
-### SSH
+## SSH
 
 Enable/disable SSH, which is remote command line access to the Raspberry Pi.
 
-### VNC
+```bash
+VNC
+```
 
 Enable/disable WayVNC or RealVNC virtual network computing server.
 
-#### SPI
+### SPI
 
 Enable/disable automatic loading of SPI interface and SPI kernel modules.
 
@@ -139,27 +139,27 @@ Enable or disable remote access to GPIO pins.
 
 ![Picture: page 4: picture 1](_page_4_Picture_1.jpeg)
 
-**Overwrite file system**
+Overwrite file system
 
 Enable or disable read-only file systems.
 
-**USB current**
+USB current
 
 Set the current output of the USB interface.
 
-### Localization options
+## Localization options
 
 ![Figure: page 4: figure 7](_page_4_Figure_7.jpeg)
 
-**area**
+area
 
 select area.
 
-**Time zone**
+Time zone
 
 Select your local time zone.
 
-**Keyboard**
+Keyboard
 
 Choose a keyboard layout.
 
@@ -171,7 +171,7 @@ Set the country for your wireless network.
 
 ![Figure: page 5: figure 3](_page_5_Figure_3.jpeg)
 
-#### Expand file system
+### Expand file system
 
 Extend SD card partition.
 

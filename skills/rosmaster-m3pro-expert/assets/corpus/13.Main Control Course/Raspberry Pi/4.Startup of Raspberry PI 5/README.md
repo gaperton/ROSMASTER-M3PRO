@@ -1,4 +1,4 @@
-## 4. Startup of Raspberry Pi 5
+# 4. Startup of Raspberry Pi 5
 
 After burning the image, insert the SD card directly into the Raspberry Pi, then connect the monitor, power supply, mouse, and keyboard to the Raspberry Pi to enter the Raspberry Pi system.
 
