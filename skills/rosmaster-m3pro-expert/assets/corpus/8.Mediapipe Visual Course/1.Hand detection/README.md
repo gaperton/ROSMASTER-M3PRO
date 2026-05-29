@@ -1,4 +1,4 @@
-## Hand detection
+# Hand detection
 
 ## 1. Content Description
 
@@ -12,11 +12,15 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
+```
 
 After successfully starting the camera, open another terminal and enter the following command to start the hand detection program.
 
+```bash
 ros2 run yahboomcar_mediapipe 01_HandDetector
+```
 
 After the program is run, the following figure will be shown. The hand joint points detected will be displayed on the right side of the image.
 
@@ -36,7 +40,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 import mediapipe as mp
@@ -52,7 +56,7 @@ import cv2
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name, mode=False, maxHands=2, detectorCon=0.5, trackCon=0.5):
     super().__init__(name)
     self.mpHand = mp.solutions.hands
@@ -79,7 +83,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -93,7 +97,7 @@ means not to draw the joint points on the original color image
 
 pubHandsPoint function,
 
-```
+```python
 def pubHandsPoint(self, frame, draw=True):
     #Create a new image based on the incoming image size. The image data type is
 uint8
@@ -121,7 +125,7 @@ self.lmDrawSpec, self.drawSpec)
 
 frame_combine merge image function,
 
-```
+```python
 def frame_combine(slef,frame, src):
     #Judge whether the image is a 3-channel, that is, RGB image
     if len(frame.shape) == 3:

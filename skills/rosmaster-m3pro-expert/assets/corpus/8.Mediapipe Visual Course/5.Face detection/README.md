@@ -1,4 +1,4 @@
-## Face detection
+# Face detection
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the face detection program.
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 07_FaceDetection
 ```
 
@@ -40,7 +40,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import time
 import cv2 as cv
 import numpy as np
@@ -56,7 +56,7 @@ import cv2
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
 ```
 
@@ -82,7 +82,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -95,7 +95,7 @@ detection program
 
 findFaces function,
 
-```
+```python
 def findFaces(self, frame):
     #Convert the color space of the incoming image from BGR to RGB to facilitate
 subsequent image processing
@@ -125,7 +125,7 @@ bbox[1] - 20), cv.FONT_HERSHEY_PLAIN,3, (255, 0, 255), 2)
 
 fancyDraw function draws the bounding box according to the value of the detection result bbox
 
-```
+```python
 def fancyDraw(self, frame, bbox, l=30, t=10):
     x, y, w, h = bbox
     x1, y1 = x + w, y + h

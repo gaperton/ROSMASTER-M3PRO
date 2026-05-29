@@ -1,4 +1,4 @@
-## 3D object recognition
+# 3D object recognition
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the 3D object detection program.
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 08_Objectron
 ```
 
@@ -38,7 +38,7 @@ Program code path /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar
 
 Import the library files used,
 
-```
+```python
 import cv2 as cv
 import time
 import rclpy
@@ -54,7 +54,7 @@ print("import done")
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
 ```
 
@@ -86,7 +86,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
     action = cv2.waitKey(1)
@@ -98,7 +98,7 @@ def get_RGBImageCallBack(self,msg):
 
 configUP switches the object recognition function and selects self.modelNames by modifying the value of self.index. The options for self.modelNames are ['Shoe', 'Chair', 'Cup', 'Camera']
 
-```
+```python
 def configUP(self):
     self.index += 1
     if self.index>=4:self.index=0
@@ -109,7 +109,7 @@ self.minTrackingCon,self.modelNames[self.index])
 
 findObjectron object recognition function,
 
-```
+```python
 def findObjectron(self, frame):
     cv.putText(frame, self.modelNames[self.index], (int(frame.shape[1] / 2) -
 30, 30),

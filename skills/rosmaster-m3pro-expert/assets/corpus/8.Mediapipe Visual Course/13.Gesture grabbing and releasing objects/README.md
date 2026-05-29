@@ -1,4 +1,4 @@
-## Gesture grabbing and releasing objects
+# Gesture grabbing and releasing objects
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the gesture grab and release program.
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 16_GestureGrasp
 ```
 
@@ -44,7 +44,7 @@ The program code is in the running docker. The path in docker is /root/yahboomca
 
 Import the library files used,
 
-```
+```python
 import math
 import time
 import cv2 as cv
@@ -61,7 +61,7 @@ import threading
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     self.drawing = mp.solutions.drawing_utils
@@ -105,7 +105,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -164,7 +164,7 @@ name="arm_ctrl_threading", args=(gesture, ))
 
 arm_ctrl_threading is the thread function of the robot arm gripping. The parameter passed in is the gesture.
 
-```
+```python
 def arm_ctrl_threading(self, gesture):
     if gesture == 'OK':
         #The placement position can be modified according to actual needs

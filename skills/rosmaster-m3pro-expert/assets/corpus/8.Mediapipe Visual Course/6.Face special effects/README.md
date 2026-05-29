@@ -1,4 +1,4 @@
-## 1. Content Description
+# 1. Content Description
 
 This program implements the functions of acquiring color images and using the dlib library to implement face detection and face effects.
 
@@ -10,11 +10,15 @@ Open the terminal directly on the Orin motherboard and enter the commands mentio
 
 First, in the terminal, enter the following command to start the camera,
 
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
+```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the face effects program:
 
+```bash
 ros2 run yahboomcar_mediapipe 06_FaceLandmarks
+```
 
 After the program is run, as shown in the figure below, it will first detect the face, and then perform special effects processing on the eyebrows, eyes and mouth areas.
 
@@ -34,7 +38,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import time
 #Import dlib library
 import dlib
@@ -65,7 +69,7 @@ The 68 facial key points of dlib are arranged in the following order:
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     #Import database
@@ -88,7 +92,7 @@ ck,100)
 
 The topic of color images returns to the function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
     #Put the obtained image into the defined get_face function and return the
@@ -104,7 +108,7 @@ draw=True)
 
 get_face function, detects faces,
 
-```
+```python
 def get_face(self, frame, draw=True):
     #Convert the image space and convert bgr into grayscale image to facilitate
 subsequent image processing
@@ -125,7 +129,7 @@ subsequent image processing
 
 prettify_face function, add special effects to the face,
 
-```
+```python
 def prettify_face(self, frame, eye=True, lips=True, eyebrow=True, draw=True):
     #Eye
     if eye:
@@ -168,7 +172,7 @@ np.mat(righteyebrow), (255, 255, 255))
 
 get_lmList gets the facial coordinate function,
 
-```
+```python
 def get_lmList(self, frame, p1, p2, draw=True):
     #Define an empty list
     lmList = []

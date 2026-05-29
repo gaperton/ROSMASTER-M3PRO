@@ -1,4 +1,4 @@
-## Fingertip gesture control robotic arm
+# Fingertip gesture control robotic arm
 
 ## 1. Content Description
 
@@ -12,11 +12,15 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
+```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the program for controlling the robotic arm with fingertip trajectory gestures:
 
+```bash
 ros2 run yahboomcar_mediapipe 14_FingerAction
+```
 
 After the program is run, as shown in the figure below, place your palm flat on the camera screen, open your fingers, and face the camera with your palm, similar to the number 5 gesture. The image will draw the joints on the entire palm. Adjust the position of your palm and try to keep it in the upper middle part of the screen.
 
@@ -56,7 +60,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import math
 import time
 import cv2 as cv
@@ -75,7 +79,7 @@ import enum
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     self.drawing = mp.solutions.drawing_utils
@@ -121,7 +125,7 @@ args= (graph_name, ))
 
 The arm_move_action thread executes the function and executes the corresponding function according to the passed name.
 
-```
+```python
 def arm_move_action(self, name):
     time.sleep(1)
     print("-----------------")
@@ -143,7 +147,7 @@ self.move_state = False
 
 Take self.arm_move_square() as an example,
 
-```
+```python
 def arm_move_square(self):
     move_joints = [90, 0, 180, 20, 90, 30]
     #Publish a topic message to control 6 servos and change the posture of the

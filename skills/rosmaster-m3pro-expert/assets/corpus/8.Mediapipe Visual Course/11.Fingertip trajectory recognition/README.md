@@ -1,4 +1,4 @@
-## 11.Fingertip trajectory recognition
+# 11.Fingertip trajectory recognition
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the fingertip trajectory recognition program:
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 15_ FingerTrajectory
 ```
 
@@ -58,7 +58,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import math
 import time
 import cv2 as cv
@@ -77,7 +77,7 @@ import enum
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
 ```
@@ -110,10 +110,10 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
-    rgb_image = cv2.flip(rgb_image, 1) # 水平翻转
+    rgb_image = cv2.flip(rgb_image, 1)
     result_image = np.copy(rgb_image)
     if self.timer <= time.time() and self.state == State.RUNNING:
         self.state = State.NULL
@@ -236,29 +236,29 @@ outline
 
 hand_angle function, calculates the bending angle of each finger
 
-```
+```python
 def hand_angle(landmarks):
     angle_list = []
-    # thumb 大拇指
+    # thumb
     angle_ = vector_2d_angle(landmarks[3] - landmarks[4], landmarks[0] -
 landmarks[2])
     angle_list.append(angle_)
-    # index 食指
+    # index
 ```
 
 ```
 angle_ = vector_2d_angle(landmarks[0] - landmarks[6], landmarks[7] -
 landmarks[8])
     angle_list.append(angle_)
-    # middle 中指
+    # middle
     angle_ = vector_2d_angle(landmarks[0] - landmarks[10], landmarks[11] -
 landmarks[12])
     angle_list.append(angle_)
-    # ring 无名指
+    # ring
     angle_ = vector_2d_angle(landmarks[0] - landmarks[14], landmarks[15] -
 landmarks[16])
     angle_list.append(angle_)
-    # pink 小拇指
+    # pink
     angle_ = vector_2d_angle(landmarks[0] - landmarks[18], landmarks[19] -
 landmarks[20])
     angle_list.append(angle_)
@@ -268,7 +268,7 @@ landmarks[20])
 
 h_gesture function, which determines the gesture of the finger through two-dimensional features
 
-```
+```python
 def h_gesture(angle_list):
     thr_angle, thr_angle_thumb, thr_angle_s = 65.0, 53.0, 49.0
     if (angle_list[0] < thr_angle_s) and (angle_list[1] < thr_angle_s) and
@@ -286,7 +286,7 @@ def h_gesture(angle_list):
 
 get_track_img function, generates the track map,
 
-```
+```python
 def get_track_img(points):
     points = np.array(points).astype(dtype=np.int32)
     x_min, y_min = np.min(points, axis=0).tolist()

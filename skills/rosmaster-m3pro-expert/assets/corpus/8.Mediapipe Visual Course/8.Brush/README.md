@@ -1,4 +1,4 @@
-## Brush
+# Brush
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the brush program.
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 09_VirtualPaint
 ```
 
@@ -46,7 +46,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import math
 import time
 import cv2 as cv
@@ -63,7 +63,7 @@ print("import done")
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     self.xp = self.yp = self.pTime = self.boxx = 0
@@ -119,7 +119,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -225,7 +225,7 @@ cv.FILLED)
 
 fingersUp finger straightening finger detection function,
 
-```
+```python
 def fingersUp(self):
     fingers=[]
     # Thumb, determine whether the angle of each joint of the thumb is greater
@@ -258,7 +258,7 @@ As shown in the figure below, the ID of each joint of the finger,
 
 findHands detects the palm function,
 
-```
+```python
 def findHands(self, frame, draw=True):
     #Create a test list and store the test results
     self.lmList = []

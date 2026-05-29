@@ -1,4 +1,4 @@
-## Finger control robotic arm
+# Finger control robotic arm
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the program for controlling the gripper with your finger:
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 13_FingerCtrl
 ```
 
@@ -40,7 +40,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import math
 import time
 import cv2 as cv
@@ -57,7 +57,7 @@ import cv2
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.lmList = []
@@ -88,7 +88,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     frame = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -114,7 +114,7 @@ maximum value of the servo is 180
     action = cv2.waitKey(1)
 ```
 
-```
+```python
 def findPosition(self, frame, draw=True):
     #Define a list to store the id of each joint and the xy coordinates
 corresponding to the id
@@ -133,7 +133,7 @@ coordinates corresponding to the joint id
 
 calc_angle function, calculates the angle formed by 3 points,
 
-```
+```python
 def calc_angle(self, pt1, pt2, pt3):
     #Extract xy coordinates from the list based on the joint id
     point1 = self.lmList[pt1][1], self.lmList[pt1][2]

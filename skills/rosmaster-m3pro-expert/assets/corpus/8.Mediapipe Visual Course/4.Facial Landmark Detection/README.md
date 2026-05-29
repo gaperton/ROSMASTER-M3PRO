@@ -1,4 +1,4 @@
-## Facial Landmark Detection
+# Facial Landmark Detection
 
 ## 1. Content Description
 
@@ -12,11 +12,15 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
+```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the face detection program.
 
+```bash
 ros2 run yahboomcar_mediapipe 04_FaceMesh
+```
 
 After the program is run, as shown in the figure below, the points where the face is detected will be displayed on the right side of the image.
 
@@ -44,7 +48,7 @@ ceMesh.py
 
 Import the library files used,
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 #Import mediapipe library
@@ -62,7 +66,7 @@ print("import done")
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self, name,staticMode=False, maxFaces=2, minDetectionCon=0.5,
 minTrackingCon=0.5):
     super().__init__(name)
@@ -96,7 +100,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -111,7 +115,7 @@ draw=False means not to draw joint points on the original color image
 
 pubFaceMeshPoint function,
 
-```
+```python
 def pubFaceMeshPoint(self, frame, draw=True):
     #Create a new image based on the incoming image size. The image data type is
 uint8

@@ -1,4 +1,4 @@
-## Finger control
+# Finger control
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the finger control program.
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 10_HandCtrl
 ```
 
@@ -42,7 +42,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the necessary library files,
 
-```
+```python
 import math
 import time
 import cv2 as cv
@@ -58,7 +58,7 @@ import cv2
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     #Define the image processing effect list
@@ -96,7 +96,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     frame = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -162,7 +162,7 @@ Gaussian matrix are both 21, and the standard deviation is value
 
 findPosition obtains the id of each joint and the xy coordinates of each joint.
 
-```
+```python
 def findPosition(self, frame, draw=True):
     #Create a detection list to store the detection results
     self.lmList = []
@@ -186,7 +186,7 @@ As shown in the figure below, the ID of each joint of the finger,
 
 calc_angle calculates the angle, here we calculate the angle between the thumb tip, wrist joint and index finger tip.
 
-```
+```python
 def calc_angle(self, pt1, pt2, pt3):
     point1 = self.lmList[pt1][1], self.lmList[pt1][2]
     point2 = self.lmList[pt2][1], self.lmList[pt2][2]

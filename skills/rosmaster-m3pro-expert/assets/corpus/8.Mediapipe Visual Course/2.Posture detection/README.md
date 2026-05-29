@@ -1,4 +1,4 @@
-## Posture Detection
+# Posture Detection
 
 ## 1. Content Description
 
@@ -12,13 +12,15 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the posture detection program.
 
+```bash
 ros2 run yahboomcar_mediapipe 02_PoseDetector
+```
 
 After the program is run, the following figure will be shown. The joint points of the detected posture will be displayed on the right side of the image.
 
@@ -38,10 +40,10 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import rclpy
 from rclpy.node import Node
-#导入mediapipe库
+#mediapipe
 import mediapipe as mp
 import cv2 as cv
 import numpy as np
@@ -56,7 +58,7 @@ print("import done")
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self, name,mode=False, smooth=True, detectionCon=0.5,
 trackCon=0.5):
     super().__init__(name)
@@ -91,7 +93,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -106,7 +108,7 @@ means not to draw the joint points on the original color image
 
 pubPosePoint function,
 
-```
+```python
 def pubPosePoint(self, frame, draw=True):
     #Create a new image based on the incoming image size. The image data type is
 uint8

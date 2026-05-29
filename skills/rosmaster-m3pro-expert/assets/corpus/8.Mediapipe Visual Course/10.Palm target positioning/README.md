@@ -1,4 +1,4 @@
-## Palm target positioning
+# Palm target positioning
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the palm positioning program.
 
-```
+```bash
 ros2 run yahboomcar_mediapipe 12_FindHand
 ```
 
@@ -44,7 +44,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yah
 
 Import the library files used,
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 from M3Pro_demo.media_library import *
@@ -61,7 +61,7 @@ import cv2
 
 Initialize data and define publishers and subscribers,
 
-```
+```python
 def __init__(self,name, mode=False, maxHands=2, detectorCon=0.5, trackCon=0.5):
     super().__init__(name)
     #Call the media_library library to create an object of the HandDetector
@@ -81,7 +81,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -93,7 +93,7 @@ def get_RGBImageCallBack(self,msg):
 
 process function,
 
-```
+```python
 def process(self, frame):
     #Call the object method to perform palm detection and return the detected
 image as well as the lmList list and bbox list

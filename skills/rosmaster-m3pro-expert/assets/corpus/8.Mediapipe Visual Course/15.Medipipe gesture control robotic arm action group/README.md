@@ -1,4 +1,4 @@
-## Medipipe gesture control robotic arm action group
+# Medipipe gesture control robotic arm action group
 
 ## 1. Content Description
 
@@ -12,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, in the terminal, enter the following command to start the camera,
 
-```
+```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
 After successfully starting the camera, open another terminal and enter the following command in the terminal to start the gesture control program of the robotic arm.
 
-```
+```bash
 ros2 run M3Pro_demo Gesture_Moving
 ```
 
@@ -53,7 +53,7 @@ is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 from sensor_msgs.msg import Image
@@ -71,7 +71,7 @@ import threading
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -103,7 +103,7 @@ ck,100)
 
 Color image callback function,
 
-```
+```python
 def get_RGBImageCallBack(self,color_msg):
     #Use CvBridge to convert color image message data into image data
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_msg, "bgr8")
@@ -113,7 +113,7 @@ def get_RGBImageCallBack(self,color_msg):
 
 process function,
 
-```
+```python
 def process(self, frame):
     #Call the object method to perform palm detection and return the detected
 image as well as the lmList list and bbox list
@@ -144,7 +144,7 @@ self.pTime = self.cTime
 
 Arm_Moving_threadin gesture recognition thread program,
 
-```
+```python
 def Arm_Moving_threading(self, lmList,bbox):
     if self.event.is_set():
         self.event.clear()
