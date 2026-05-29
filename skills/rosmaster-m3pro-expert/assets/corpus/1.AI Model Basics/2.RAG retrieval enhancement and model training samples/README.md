@@ -4,7 +4,7 @@
 
 - 1. This course introduces the concepts of large model hallucination, RAG retrieval enhancement, and model training samples, laying the theoretical foundation for subsequent practical application and facilitating subsequent understanding and operation.
 
-### 2. What is large model hallucination? Why do large models experience hallucinations?
+## 2. What is large model hallucination? Why do large models experience hallucinations?
 
 RAG retrieval enhancement and model training samples are primarily designed to reduce large model hallucinations. Let's first understand large model hallucinations.
 
@@ -12,7 +12,7 @@ Large model hallucinations refer to situations where the model outputs content t
 
 Why do large model hallucinations occur? **Large models are essentially probabilistic prediction systems trained on massive amounts of text**. In certain domains or scenarios, the training data may lack sufficient samples, causing the model to "fabricate" content to fill gaps.
 
-### 3. RAG Retrieval Enhancement and Training Examples
+## 3. RAG Retrieval Enhancement and Training Examples
 
 ### 3.1 RAG Retrieval Enhancement
 

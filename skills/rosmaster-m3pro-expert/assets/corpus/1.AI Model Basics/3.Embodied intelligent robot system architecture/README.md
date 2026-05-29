@@ -87,7 +87,7 @@ orientation:
 
 When we want the robot to go to a specific real-world area, we simply have the large language model convert the area name into the corresponding letter symbol, allowing the robot to understand the location in the real-world environment.
 
-### 7. Action Function Library
+## 7. Action Function Library
 
 - The API functions in the robot action function library are the bridge for the large language model to control the robot and interact with the real world.
 - These API functions define the minimum actions that the physical robot can perform in the physical world.
