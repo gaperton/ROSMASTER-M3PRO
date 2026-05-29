@@ -1,6 +1,6 @@
 # 17. Using ROS2 Rviz2
 
-#### 1. Introduction to Rviz2
+## 1. Introduction to Rviz2
 
 During robot development, various functions require analysis at the data level, making it difficult to quickly understand their impact. For example, for robot models, we need to understand the design's appearance and the positions of the model's numerous internal coordinate systems during motion.
 
@@ -17,13 +17,13 @@ If you have a physical robot, you can launch RViz on the robot controller to pra
 - This lesson uses a simulated robot as an example to teach you the visualization capabilities of Rviz2. The operation process is the same for both real and simulated robots.
 - Install the TutleBot3 simulator package
 
-```
+```bash
 sudo apt install ros-${ROS_DISTRO}-turtlebot3*
 ```
 
 Install the ROS and Gazebo bridge tool
 
-```
+```bash
 sudo apt install ros-${ROS_DISTRO}-ros-gz
 ```
 
@@ -35,7 +35,7 @@ export TURTLEBOT3_MODEL=waffle
 
 Start the Gazebo simulation environment
 
-```
+```bash
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
 
@@ -51,7 +51,7 @@ If starting in Docker, make sure the GUI is enabled.
 
 ![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
-#### 4. Image Data Visualization
+## 4. Image Data Visualization
 
 Click "Add" in the Displays window on the left, find the Image display item, and confirm it to add it to the display list. Then, configure the image topic to which the display item is subscribed. You can then view the robot's camera image.
 
@@ -74,7 +74,7 @@ Click "Add" in the Displays window on the left, select Laserscan, and then confi
 
 ![Figure: page 3: figure 3](_page_3_Figure_3.jpeg)
 
-# 6. Robot Model Visualization
+## 6. Robot Model Visualization
 
 Click "Add" in the Displays window on the left and select RobotModel.
 
@@ -85,7 +85,7 @@ Click "Add" in the Displays window on the left and select RobotModel.
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
-# 7. Other Data Visualizations
+## 7. Other Data Visualizations
 
 The rivz_default_plugins section lists many commonly used data visualization plugins. Feel free to try them out.
 

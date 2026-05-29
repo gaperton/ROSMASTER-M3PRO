@@ -8,11 +8,11 @@ Function packages work in this way. We separate the code for different functions
 
 Thus, the function package mechanism is one of the key methods for increasing software reuse in ROS.
 
-#### 2. Creating Function Packages
+## 2. Creating Function Packages
 
 How do I create a function package in ROS2? We can use this command:
 
-```
+```bash
 ros2 pkg create <package_name> --build-type <build-type> --dependencies
 <dependencies> --node-name <node-name>
 ```
@@ -31,18 +31,20 @@ For example, to create C++ and Python versions of the package in the terminal:
 - Switch to the src directory of the workspace.
 - Replace "workspace" with your actual folder path.
 
+```bash
 cd workspace/src
+```
 
 Create a C++ package example
 
-```
+```bash
 ros2 pkg create pkg_helloworld_cpp --build-type ament_cmake --dependencies
 rclcpp --node-name helloworld
 ```
 
 Create a Python package example
 
-```
+```bash
 ros2 pkg create pkg_helloworld_py --build-type ament_python --dependencies rclpy
 --node-name helloworld
 ```
@@ -54,17 +56,17 @@ In the created package, we can continue writing code. We will then need to compi
 - Switch to the workspace directory
 - Compile all packages
 
-```
+```bash
 colcon build
 ```
 
 Compile a specific package
 
-```
+```bash
 colcon build --packages-select pkg1 pkg2
 ```
 
-# 4. Complete Workspace Structure with Feature Packages
+## 4. Complete Workspace Structure with Feature Packages
 
 The directory structure of a ROS2 workspace is as follows:
 

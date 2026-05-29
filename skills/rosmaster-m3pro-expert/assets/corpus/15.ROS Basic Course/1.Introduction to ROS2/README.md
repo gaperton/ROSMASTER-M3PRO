@@ -7,7 +7,7 @@ ROS2 is the second-generation Robot Operating System, an upgrade to ROS1 that ad
 | ROS2 version        | Release date | Maintenance deadline | Ubuntu version                                            |
 |---------------------|--------------|-------------------------|-----------------------------------------------------------|
 | Ardent Apalone      | 2017.12      | 2018.12                 | Ubuntu 16.04 (Xenial Xerus)                               |
-| Bouncy Bolson       | 2018.7       | 2019.7                  | Ubuntu 16.04 (Xenial Xerus) 、Ubuntu 18.04 (Bionic Beaver) |
+| Bouncy Bolson       | 2018.7       | 2019.7                  | Ubuntu 16.04 (Xenial Xerus), Ubuntu 18.04 (Bionic Beaver) |
 | Crystal Clemmys     | 2018.12      | 2019.12                 | Ubuntu 18.04 (Bionic Beaver)                              |
 | Dashing Diademata   | 2019.5       | 2021.5                  | Ubuntu 18.04 (Bionic Beaver)                              |
 | Eloquent Elusor     | 2019.11      | 2020.11                 | Ubuntu 18.04 (Bionic Beaver)                              |
@@ -21,17 +21,17 @@ ROS2 is the second-generation Robot Operating System, an upgrade to ROS1 that ad
 
 ## 2. Features of ROS2
 
-#### 2.1. **ROS2 Fully Supports Three Platforms**
+### 2.1. **ROS2 Fully Supports Three Platforms**
 
 - Ubuntu
 - Mac OS X
 - Windows 10
 
-#### 2.2. Implemented a Distributed Architecture
+### 2.2. Implemented a Distributed Architecture
 
 The master node is eliminated, enabling distributed node discovery, publish/subscribe, and request/response communication.
 
-#### 2.3. **Real-time Support**
+### 2.3. **Real-time Support**
 
 - 2.4. New Programming Language
   - C++11
@@ -41,7 +41,7 @@ The master node is eliminated, enabling distributed node discovery, publish/subs
 
 ## 3. Differences between ROS2 and ROS1
 
-## 3.1. Platform
+### 3.1. Platform
 
 ROS1 currently only supports Linux, and is commonly built and used in Ubuntu. ROS2, on the other hand, can be built and used in Ubuntu, Windows, and even on embedded development boards, making it a more widely used platform.
 
@@ -61,6 +61,6 @@ ROS 1 requires starting roscore before starting. This master controls all inter-
 
 ![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
-## 3.4 Compilation Commands
+### 3.4 Compilation Commands
 
 ROS 1 compiles using the catkin_make command, while ROS 2 compiles using the colcon build command.

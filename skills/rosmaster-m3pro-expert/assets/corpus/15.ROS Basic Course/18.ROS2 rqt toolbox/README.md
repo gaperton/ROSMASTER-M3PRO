@@ -13,7 +13,9 @@ Rqt is another modular visualization tool provided by ROS. Like RViz, it is base
 - Generally, the RQT toolbox is installed by default if you install the desktop version.
 - If you do not install the full version when installing ROS and need to install it, you can install it as follows:
 
+```bash
 sudo apt install ros-\${ROS_DISTRO}-rqt\*
+```
 
 ## 3. Startup
 
@@ -35,19 +37,19 @@ After starting RQT, you can add the required plugins through the plugins section
 
 The plugins section includes plugins related to topics, services, actions, parameters, logging, and more. You can select plugins as needed to facilitate debugging of ROS2 programs. An example usage is shown below.
 
-#### 4.1. Topic Plugin
+### 4.1. Topic Plugin
 
 Add the topic plugin and send speed commands to control the turtle's movement.
 
 ![Picture: page 2: picture 4](_page_2_Picture_4.jpeg)
 
-#### 4.2. Service Plugin
+### 4.2. Service Plugin
 
 Add the service plugin and send a request to spawn a turtle at a specified location.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-#### 4.3. Parameter Plugin
+### 4.3. Parameter Plugin
 
 Use the parameter plugin to dynamically change the background color of the turtle window.
 

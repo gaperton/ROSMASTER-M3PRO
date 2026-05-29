@@ -20,9 +20,11 @@ In ROS2, you'll frequently use the terminal. We recommend a relatively easy-to-u
 
 ![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
-#### 2.1. Installation
+### 2.1. Installation
 
+```bash
 sudo apt install terminator
+```
 
 ### 2.2. Launching
 
@@ -93,17 +95,17 @@ Super+i // Open a new window; the new window will use a
 different process than the original window
 ```
 
-### 3. Using Git
+## 3. Using Git
 
-#### 3.1. Installation
+### 3.1. Installation
 
 Since daily work involves teamwork and version management, Git is an essential skill. Git is a free and open source distributed version control system. To install Git in Ubuntu:
 
-```
+```bash
 sudo apt install git
 ```
 
-#### 3.2. Basic Git Operations
+### 3.2. Basic Git Operations
 
 Git's job is to create and save snapshots of your project and compare them with subsequent snapshots.
 

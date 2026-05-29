@@ -16,11 +16,11 @@ Regardless of the communication method used, the construction of communication o
 
 This section uses the Python package as an example.
 
-#### 3.1. Creating the Python Package
+### 3.1. Creating the Python Package
 
 Replace -workspace with your actual workspace path.
 
-```
+```bash
 cd workspace/src
 ros2 pkg create pkg_helloworld_py --build-type `ment_python` --dependencies
 `rclpy` --node-name `helloworld`
@@ -34,7 +34,7 @@ Executing the above command will create pkg_helloworld_py and a helloworld.py fi
 
 Delete the original helloworld.py Write the following code:
 
-```
+```python
 import rclpy # ROS2 Python interface library
 from rclpy.node import Node # ROS2 node class
 import time
@@ -64,23 +64,23 @@ interface
 
 After writing the code, you need to set the package's compilation options to let the system know the entry point for the Python program. Open the package's setup.py file and add the following entry point configuration:
 
-#### 3.3. Compiling the Package
+### 3.3. Compiling the Package
 
 Compiling the Package
 
-```
+```bash
 colcon build --packages-select pkg_helloworld_py
 ```
 
 Refresh the environment variables in the workspace
 
-```
+```bash
 source install/setup.bash
 ```
 
-#### 3.4. Running the Node
+### 3.4. Running the Node
 
-```
+```bash
 ros2 run pkg_helloworld_py helloworld
 ```
 

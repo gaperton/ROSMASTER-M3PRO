@@ -1,6 +1,6 @@
 # 19. ROS2 Launch startup file configuration
 
-### 1. Introduction to Launch
+## 1. Introduction to Launch
 
 Until now, every time we launched a ROS node, we had to open a new terminal and run a command. With so many nodes in a robotic system, doing this every time is cumbersome. Is there a way to launch all nodes at once? The answer is, of course, a launch file, a script that launches and configures multiple nodes in the ROS system.
 
@@ -11,23 +11,23 @@ In ROS2, launch is used to launch multiple nodes and configure program parameter
 
 The key to writing ROS2 launch files in Python is to abstract each node, file, script, etc. into an action, launching them using a unified interface.
 
-#### References:
+### References:
 
 - Launch System Design Document: [ROS 2 Launch System](https://design.ros2.org/articles/roslaunch.html)
 - Official Launch API Documentation: [Architecture of launch launch 0.4.0 documentation](https://docs.ros.org/en/rolling/p/launch/architecture.html)
 - Preparation: Create a package to store program files
 
-```
+```bash
 ros2 pkg create learn_launch --build-type ament_python
 ```
 
-### 2. Writing a Single Node Launch Program
+## 2. Writing a Single Node Launch Program
 
-#### 2.1. Creating a Launch File
+### 2.1. Creating a Launch File
 
 Create a launch folder under the package, then create a file called [single_node_launch.py] within the launch folder. Copy the following content into the file:
 
-```
+```python
 from launch import LaunchDescription
 from launch_ros.actions import Node
 def generate_launch_description():
@@ -39,46 +39,46 @@ def generate_launch_description():
     return LaunchDescription([node])
 ```
 
-#### 2.2 Configuring the setup.py File
+### 2.2 Configuring the setup.py File
 
 The launch file is often named "LaunchName_launch.py." LaunchName is customizable, while _launch.py is considered fixed. You need to modify the setup.py file in the package to add the files in the launch path and compile to generate the executable.py file.
 
-```
+```python
 #1. Import related header files
 import os
 from glob import glob
-#2. In the data_files list, add the launch path and the launch.py ••file under
+#2. In the data_files list, add the launch path and the launch.py --file under
 the path
 (os.path.join('share',package_name,'launch'),glob(os.path.join('launch','*launch
 .py')))
 ```
 
-#### 2.3. Compile the package
+### 2.3. Compile the package
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
-#### 2.4. Run the program
+### 2.4. Run the program
 
 Refresh the environment variables and run the launch file
 
-```
+```bash
 ros2 launch learn_launch single_node_launch.py
 ```
 
-#### 2.5. Source Code Analysis
+### 2.5. Source Code Analysis
 
-1. Import related libraries
+- 1. Import related libraries
 
-```
+```python
 from launch import LaunchDescription
 from launch_ros.actions import Node
 ```
 
-2. Define a function called generate_launch_description and return a launch_description.
+- 2. Define a function called generate_launch_description and return a launch_description.
 
-```
+```python
 def generate_launch_description():
     node = Node(
         package='pkg_helloworld_py',
@@ -94,13 +94,13 @@ We define a variable called node as the return value of a node startup. We then 
 
 Finally, we call the LaunchDescription function, passing in the node parameter, and execute the function.
 
-### 3. Writing a Launch Program for Multiple Nodes
+## 3. Writing a Launch Program for Multiple Nodes
 
-#### 3.1. Creating a Launch File
+### 3.1. Creating a Launch File
 
 Create a new file called [multi_node_launch.py] and add the following content:
 
-```
+```python
 from launch import LaunchDescription
 from launch_ros.actions import Node
 def generate_launch_description():
@@ -122,35 +122,35 @@ def generate_launch_description():
 
 ### 3.2. Compile the package
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
-#### 3.3. Run the program
+### 3.3. Run the program
 
 Refresh the environment variables and run the launch file.
 
-```
+```bash
 ros2 launch learn_launch multi_node_launch.py
 ```
 
 If the terminal does not print anything, we can verify that the nodes have started successfully by checking which nodes have started. In the terminal, enter:
 
-```
+```bash
 ros2 node list
 ```
 
-#### 3.4 Source Code Analysis
+### 3.4 Source Code Analysis
 
 Similar to simple_node_launch.py, except for one more node.
 
-### 4 Topic Remapping Example
+## 4 Topic Remapping Example
 
-#### 4.1 Creating a New Launch File
+### 4.1 Creating a New Launch File
 
 Create a new file called [remap_name_launch.py] in the same directory as multi_node_launch.py and add the following content:
 
-```
+```python
 from launch import LaunchDescription
 from launch_ros.actions import Node
 def generate_launch_description():
@@ -165,17 +165,17 @@ def generate_launch_description():
     ])
 ```
 
-#### 4.2. Compile the package
+### 4.2. Compile the package
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
-#### 4.3. Run the program
+### 4.3. Run the program
 
 Let's first see what topics the publisher_demo node publishes before remapping topics:
 
-```
+```bash
 ros2 launch learn_launch multi_node_launch.py
 ros2 topic list
 ```
@@ -184,14 +184,14 @@ The topic here is [/topic_demo]
 
 Refresh the environment variables again and run the program after remapping the topic to see the changes:
 
-```
+```bash
 ros2 launch learn_launch remap_name_launch.py
 ros2 topic list
 ```
 
 As shown above, the topic name has been remapped to [/topic_update]
 
-#### 4.4 Source Code Analysis
+### 4.4 Source Code Analysis
 
 The following sections have been added:
 
@@ -203,11 +203,11 @@ Here, the original /topic_demo topic is remapped to /topic_update
 
 ## 5. Example of Launching Another Launch File from a Nested Launch File
 
-#### 5.1. Creating a New Launch File
+### 5.1. Creating a New Launch File
 
 Create a new file, [include_launch.py], in the same directory as multi_node_launch.py and add the following content:
 
-```
+```python
 from launch import LaunchDescription
 from launch_ros.actions import Node
 import os
@@ -224,26 +224,28 @@ def generate_launch_description():
     ])
 ```
 
-#### 5.2. Compiling the Function Package
+### 5.2. Compiling the Function Package
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
-#### 5.3. Running the Program
+### 5.3. Running the Program
 
 Refresh the environment variables and run the launch file
 
+```bash
 ros2 launch learn_launch include_launch.py
+```
 
-#### 5.4. Source Code Analysis
+### 5.4. Source Code Analysis
 
 - Nested launch files require the use of the launch system's IncludeLaunchDescription and PythonLaunchDescriptionSource classes.
 - os.path.join(get_package_share_directory('learn_launch')): Gets the package location, where 'learn_launch' is the package name;
 - launch): Specifies the folder where the launch file is stored within the package;
 - /multi_node_launch.py: Specifies the /multi_node_launch.py file within the launch folder of the package.
 
-### 6. Comprehensive Launch File Example
+## 6. Comprehensive Launch File Example
 
 This example primarily demonstrates how to write a complex launch file; the program's functionality is ignored.
 
@@ -251,14 +253,14 @@ This example primarily demonstrates how to write a complex launch file; the prog
 
 Create a new file, [complex_launch.py], in the same directory as [multi_node_launch.py] and add the following content:
 
-```
+```python
 import os
 from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 ```
 
-```
+```python
 from launch.actions import IncludeLaunchDescription
 from launch.actions import GroupAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -348,7 +350,7 @@ return LaunchDescription([
 
 ### 6.2. Compile the Workspace
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
@@ -356,7 +358,7 @@ colcon build --packages-select learn_launch
 
 Refresh the environment variables in the terminal and run the launch file.
 
-```
+```bash
 ros2 launch learn_launch complex_launch.py
 ```
 
@@ -366,7 +368,7 @@ Two turtles will appear on the host machine's VNC.
 
 Start the keyboard control node and add the namespace (because we added the namespace when starting the node in the launch file).
 
-```
+```bash
 ros2 run turtlesim turtle_teleop_key --ros-args -r __ns:=/turtlesim1
 ```
 
@@ -374,7 +376,7 @@ Use the up, down, left, and right keys to control the movement of turtle 1. Turt
 
 ![Picture: page 10: picture 4](_page_10_Picture_4.jpeg)
 
-#### 6.4. Program Description
+### 6.4. Program Description
 
 The program mainly starts:
 
@@ -384,9 +386,9 @@ The program mainly starts:
 - 4. Turtle 2, which has been namespaced as turtlesim2
 - 5. Perform remapping so that both turtles can hear the same command topic
 
-### 7. XML Implementation
+## 7. XML Implementation
 
-#### 7.1. Creating a Launch File
+### 7.1. Creating a Launch File
 
 Create a file called [complex_launch.xml] in the same directory as complex_launch.py and add the following content:
 
@@ -427,21 +429,21 @@ namespace="turtlesim2">
 </launch>
 ```
 
-#### 7.2. setup.py File Configuration
+### 7.2. setup.py File Configuration
 
 You need to configure the compilation file. During compilation, copy our.xml launch file to the install directory so that the ROS system can find it.
 
-#### 7.3. Compile the Function Package
+### 7.3. Compile the Function Package
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
-#### 7.4. Run the Program
+### 7.4. Run the Program
 
 Enter the terminal:
 
-```
+```bash
 ros2 launch learn_launch complex_launch.xml
 ```
 
@@ -451,15 +453,15 @@ As expected, two turtles will appear, and the terminal will print log informatio
 
 Start the keyboard control node and add a namespace.
 
-```
+```bash
 ros2 run turtlesim turtle_teleop_key --ros-args -r __ns:=/turtlesim1
 ```
 
 Use keyboard control to start Turtle 1. Turtle 2 will completely mimic Turtle 1's behavior.
 
-### 8. YAML Implementation
+## 8. YAML Implementation
 
-#### 8.1. Create a New Launch File
+### 8.1. Create a New Launch File
 
 Create a new file, [complex_launch.yaml], in the same directory as complex_launch.py and add the following content:
 
@@ -529,21 +531,21 @@ parameters
         to: "/turtlesim2/turtle1/cmd_vel"
 ```
 
-#### 8.2. Configuration
+### 8.2. Configuration
 
 You need to configure the compilation file. During compilation, copy the.yaml launch file to the install directory so that the ROS system can find it.
 
-#### 8.3. Compile the package
+### 8.3. Compile the package
 
-```
+```bash
 colcon build --packages-select learn_launch
 ```
 
-#### 8.4. Run the program
+### 8.4. Run the program
 
 Refresh the environment variables and run
 
-```
+```bash
 ros2 launch learn_launch complex_launch.yaml
 ```
 
@@ -553,7 +555,7 @@ As expected, two baby turtles appear, and the terminal prints log information.
 
 Start the keyboard control node and add a namespace.
 
-```
+```bash
 ros2 run turtlesim turtle_teleop_key --ros-args -r __ns:=/turtlesim1
 ```
 

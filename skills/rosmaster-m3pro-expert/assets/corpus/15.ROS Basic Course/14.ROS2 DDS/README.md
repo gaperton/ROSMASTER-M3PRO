@@ -9,7 +9,7 @@ DDS emphasizes data-centricity and provides a rich set of quality-of-service pol
 ## References
 
 - Fast DDS Official Documentation: [3.3.0](https://fast-dds.docs.eprosima.com/en/latest/)
-- [ROS2 official document DDS advanced functions: Using Fast DDS Discovery Server as](https://docs.ros.org/en/humble/Tutorials/Advanced/Discovery-Server/Discovery-Server.html) discovery protocol community-contributed] — ROS 2 Documentation: Humble documentation
+- [ROS2 official document DDS advanced functions: Using Fast DDS Discovery Server as](https://docs.ros.org/en/humble/Tutorials/Advanced/Discovery-Server/Discovery-Server.html) discovery protocol community-contributed] - ROS 2 Documentation: Humble documentation
 
 ## 2. Communication Model
 
@@ -28,7 +28,7 @@ The core of DDS is communication. Numerous models and software frameworks exist 
 
 Of these communication models, DDS has a clear advantage.
 
-# 3. Application of DDS in ROS2
+## 3. Application of DDS in ROS2
 
 DDS plays a crucial role in the ROS2 system. All upper-layer infrastructure is built on DDS. In this ROS2 architecture diagram, the blue and red components represent DDS.
 
@@ -51,41 +51,41 @@ The policies are as follows:
 - **RELIABILITY** policy: This policy specifies the data communication mode. Configuring BEST_EFFORT ensures smooth data transmission even when network conditions are poor, which may result in data loss. Configuring RELIABLE ensures reliable communication and maximizes image integrity. We can choose the appropriate communication mode based on the application scenario.
 - **DURABILITY** policy: This policy ensures that a certain amount of historical data is sent to late-joining nodes, allowing new nodes to quickly adapt to the system.
 
-# 5. Test Cases
+## 5. Test Cases
 
-## 5.1 Case 1—Configuring DDS via the Command Line
+### 5.1 Case 1-Configuring DDS via the Command Line
 
 Open the first terminal and publish the topic using the following command:
 
-```
+```bash
 ros2 topic pub /chatter std_msgs/msg/Int32 "data: 66" --qos-reliability
 best_effort
 ```
 
 Open another terminal and print the topic using a different QoS. If the QoS policy used differs from the publisher's, a warning message will appear indicating that the topic data cannot be received properly:
 
-```
+```bash
 ros2 topic echo /chatter --qos-reliability reliable
 ```
 
 We can receive topic data using the same QoS policy as the topic publisher.
 
-```
+```bash
 ros2 topic echo /chatter --qos-reliability best_effort
 ```
 
-## 5.2 Example 2—Configuring QoS Service Policies for Topic Nodes
+### 5.2 Example 2-Configuring QoS Service Policies for Topic Nodes
 
 Create a new function package using the following command
 
-```
+```bash
 ros2 pkg create learning_dds --build-type ament_python --dependencies rclpy
 std_msgs
 ```
 
 Create a new file, dds_controller_pub.py, as the publisher for topic communication. Fill in the following content:
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -115,7 +115,7 @@ policy
        self.cmd_list = ["forward", "backward", "stop"] # Instruction List
        self.cmd_index = 0 #Instruction index, loop switching
    def timer_callback(self):
-       # Cycle switching instructions (forward → backward → stop → forward...)
+       # Cycle switching instructions (forward -> backward -> stop -> forward...)
        current_cmd = self.cmd_list[self.cmd_index % 3]
        # Create a message and fill it with data
        msg = String()
@@ -123,12 +123,12 @@ policy
        # Publish a message
        self.publisher.publish(msg)
        # Print log (shows issued commands)
-       self.get_logger().info(f"发布控制指令:{msg.data}")
+       self.get_logger().info(f":{msg.data}")
        # Update command index
        self.cmd_index += 1
 ```
 
-```
+```python
 def main(args=None):
     # Initializing ROS2
     rclpy.init(args=args)
@@ -145,7 +145,7 @@ if __name__ == "__main__":
 
 To implement the subscriber code, create a new dds_robot_sub.py file and fill in the following subscriber implementation code
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -170,7 +170,7 @@ data
         )
     def cmd_callback(self, msg):
         # Callback function: Processes received instructions
-        self.get_logger().info(f"接收控制指令:{msg.data} → 执行对应动作")
+        self.get_logger().info(f":{msg.data} -> ")
 def main(args=None):
     rclpy.init(args=args)
     node = RobotSubscriber("robot_subscriber")
@@ -199,17 +199,19 @@ entry_points={
 
 Open the terminal in the workspace directory and compile the function package
 
+```bash
 colcon build --packages-select learning_dds
+```
 
 Set environment variables. You need to set environment variables every time you recompile.
 
-```
+```bash
 source install/setup.bash
 ```
 
 Running publisher and subscriber nodes
 
-```
+```bash
 ros2 run learning_dds dds_controller_pub
 ```
 

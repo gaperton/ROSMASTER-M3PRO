@@ -8,13 +8,15 @@ For example, if we want to develop a Mars rover, we can simulate the Martian sur
 
 Simulation platforms like Gazebo can help us verify robotic algorithms, optimize robot designs, and test robot applications, providing more possibilities for robotics development.
 
-**Note: This section is for learning purposes only. The tutorial does not configure the environment because we are using real-device debugging**
+Note: This section is for learning purposes only. The tutorial does not configure the environment because we are using real-device debugging
 
-#### 2. Installation and Operation
+## 2. Installation and Operation
 
 Install gazebo using the apt command
 
+```bash
 sudo apt install ros-\${ROS_DISTRO}-gazebo-\*
+```
 
 - Run gazebo
 - Launch gazebo using the following command or directly from the desktop icon
@@ -31,15 +33,17 @@ Optional: To ensure smooth model loading, you can download the offline model and
 
 ## 3. Start the Gazebo Node and Service
 
-1. View the Node
+- 1. View the Node
 
+```bash
 ros2 node list
+```
 
 Correct return: /gazebo
 
-2. View the external services provided by the node:
+- 2. View the external services provided by the node:
 
-```
+```bash
 ros2 service list
 ```
 
@@ -55,7 +59,7 @@ Excluding the last few regular services, we will only focus on the first three s
 
 Create a myrobot package to store our URDF model and launch files.
 
-```
+```bash
 ros2 pkg create myrobot --build-type ament_cmake
 ```
 
@@ -111,7 +115,7 @@ output='screen')
 
 Note the following two parameters in this command: -entity is the name of the model file, and file is the parameter loaded through the urdf file. Later we can also see how the model is loaded through the topic. Create a bringup_model.launch.py file in the launch directory. The complete startup file is as follows:
 
-```
+```python
 import os
 from launch import LaunchDescription
 from launch.actions import ExecuteProcess
@@ -156,13 +160,15 @@ install(
 
 Then compile and run the function package
 
-```
+```bash
 colcon build --packages-select myrobot
 ```
 
 Refresh the environment variables and run the launch startup file
 
+```bash
 ros2 launch myrobot bringup_model.launch.py
+```
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 

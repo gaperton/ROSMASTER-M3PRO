@@ -1,6 +1,6 @@
 # 8. ROS2 Service Communication
 
-# 1. Introduction to Service Communication
+## 1. Introduction to Service Communication
 
 Service communication is a request-response communication model. On both sides of the communication chain, the client sends a request to the server, and the server responds to the client.
 
@@ -12,24 +12,24 @@ From the perspective of service implementation, this Q&A format is called the cl
 
 This communication mechanism is also very common in everyday life. For example, in the various web pages we frequently browse, your computer browser is the client. It sends a request to the website server using a domain name or various operations. The server then responds with the page data to be displayed.
 
-# 2. Create a new package
+## 2. Create a new package
 
 In the src directory of the workspace:
 
-```
+```bash
 ros2 pkg create pkg_service --build-type ament_python --dependencies rclpy --
 node-name server_demo
 ```
 
 After executing the above command, the pkg_service package will be created, along with a server_demo node and the relevant configuration files.
 
-# 3. Server Implementation
+## 3. Server Implementation
 
-## 3.1 Creating the Server
+### 3.1 Creating the Server
 
 Next, edit [server_demo.py] to implement the server functionality and add the following code:
 
-```
+```python
 #Import related libraries
 import rclpy
 from rclpy.node import Node
@@ -63,7 +63,7 @@ You can use the following command to view it:
 
 The "---" character divides the data type into two parts: the top part represents the request, and the bottom part represents the response. Each field then contains its own variable, such as int64 a and int64 b. When passing parameters, you must specify the values of a and b. Similarly, the feedback result also needs to specify the sum value.
 
-#### 3.2 Editing the Configuration File
+### 3.2 Editing the Configuration File
 
 Open setup.py and add the following line to the console_scripts list:
 
@@ -71,11 +71,11 @@ Open setup.py and add the following line to the console_scripts list:
 'server_demo = pkg_service.server_demo:main',
 ```
 
-## 3.3 Compiling the Package
+### 3.3 Compiling the Package
 
 Compiling the Package
 
-```
+```bash
 colcon build --packages-select pkg_service
 ```
 
@@ -83,19 +83,19 @@ colcon build --packages-select pkg_service
 
 Refresh the environment variables and run the node.
 
-```
+```bash
 ros2 run pkg_service server_demo
 ```
 
 After running, since the service is not called, there is no feedback. You can call the service through the command line. First, query the current services. In another terminal, enter:
 
-```
+```bash
 ros2 service list
 ```
 
 /add_two_ints is the service we need to call. Call it with the following command. In the terminal, enter:
 
-```
+```bash
 ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 1, b: 4}"
 ```
 
@@ -105,7 +105,7 @@ As shown in the image above, after calling the service, the result returned is 5
 
 ## 4. Client Implementation
 
-#### 4.1 Creating the Client
+### 4.1 Creating the Client
 
 Create a new file, [client_demo.py], in the same directory as [server_demo.py].
 
@@ -113,7 +113,7 @@ Create a new file, [client_demo.py], in the same directory as [server_demo.py].
 
 Next, edit [client_demo.py] to implement the client functionality and add the following code:
 
-```
+```python
 #Import related libraries
 import rclpy
 from rclpy.node import Node
@@ -149,7 +149,7 @@ def main():
                 print("service_client.request.b = ",service_client.request.b)
 ```
 
-```
+```python
 print("Result = ",response.sum)
             except Exception as e:
                 service_client.get_logger().info('Service call failed %r' %
@@ -159,7 +159,7 @@ print("Result = ",response.sum)
     rclpy.shutdown()
 ```
 
-#### 4.2 Edit the Configuration File
+### 4.2 Edit the Configuration File
 
 Open setup.py and add the following line to the console_scripts list:
 
@@ -167,17 +167,17 @@ Open setup.py and add the following line to the console_scripts list:
 'client_demo = pkg_service.client_demo:main'
 ```
 
-## 4.3 Compile the Package
+### 4.3 Compile the Package
 
-```
+```bash
 colcon build --packages-select pkg_service
 ```
 
-#### 4.4 Run the Program
+### 4.4 Run the Program
 
 Refresh the environment variables and run the node
 
-```
+```bash
 # Start the server node
 ros2 run pkg_service server_demo
 # Start the client node

@@ -1,6 +1,6 @@
 # 21. ROS2 URDF Model
 
-# 1. Introduction to URDF
+## 1. Introduction to URDF
 
 The modeling method in ROS is called URDF, which stands for Unified Robot Description Format. It not only clearly describes the robot model itself, but also describes the robot's external environment. URDF model files use the XML format.
 
@@ -21,7 +21,7 @@ The robot modeling process follows a similar approach, using a modeling language
 
 ## 3. URDF Syntax
 
-#### 3.1. Link Description
+### 3.1. Link Description
 
 The tag is used to describe the appearance and physical properties of a robot's rigid body. Appearance includes size, color, and shape, while physical properties include mass, inertia matrix, collision parameters, and so on.
 
@@ -79,7 +79,7 @@ In a URDF model, each link is described using an XML file, such as the name of t
 - axis: indicates the unit vector of the joint's motion axis. For example, if z is equal to 1, the rotation is about the positive z-axis;
 - limit: indicates any limitations on the motion, such as minimum position, maximum position, and maximum speed.
 
-# 4. Complete Robot Model
+## 4. Complete Robot Model
 
 ![Picture: page 4: picture 7](_page_4_Picture_7.jpeg)
 
@@ -100,13 +100,17 @@ Using the muto model as an example, copy the yahboomcar_description package from
 
 Then compile the package.
 
+```bash
 colcon build --packages-select yahboomcar_description
+```
 
 ### 4.2. Model Visualization
 
 Refresh the environment variables and run the launch command.
 
+```bash
 ros2 launch yahboomcar_description display.launch.py
+```
 
 RViz will automatically launch and display the robot model:
 

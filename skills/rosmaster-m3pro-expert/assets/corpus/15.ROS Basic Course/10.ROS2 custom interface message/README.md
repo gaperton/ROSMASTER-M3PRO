@@ -1,6 +1,6 @@
 # 10. ROS2 Custom Interface Messages
 
-#### 1. Introduction to Communication Interfaces
+## 1. Introduction to Communication Interfaces
 
 In the ROS system, whether it's topics, services, or actions, a key concept is used: the communication interface.
 
@@ -12,7 +12,7 @@ Interfaces reduce dependencies between programs, making it easier for us to use 
 
 ROS has three common communication mechanisms: topics, services, and actions. Through the interfaces defined for each communication type, various nodes are organically connected.
 
-#### 2. Creating a Custom Interface Process
+## 2. Creating a Custom Interface Process
 
 The process for creating custom interface messages is similar to writing an executable program in a function package. The main steps are as follows:
 
@@ -28,7 +28,7 @@ In the [11. ROS2 Action Communication Server Implementation] example, we demonst
 
 ## 4. Create a custom interface for topic communication
 
-1. In the [ROS2 Action Communication Server Implementation] course, we created a custom interface package. Create a folder called msg in the package pkg_interfaces and a file called **Person.msg** in the msg folder. Enter the following content in the file:
+- 1. In the [ROS2 Action Communication Server Implementation] course, we created a custom interface package. Create a folder called msg in the package pkg_interfaces and a file called **Person.msg** in the msg folder. Enter the following content in the file:
 
 ```
 string name
@@ -57,30 +57,32 @@ package.xml
 <member_of_group>rosidl_interface_packages</member_of_group>
 ```
 
-3. Enter the current workspace in the terminal and compile the function package:
+- 3. Enter the current workspace in the terminal and compile the function package:
 
+```bash
 colcon build --packages-select pkg_interfaces
+```
 
 ![Figure: page 2: figure 3](_page_2_Figure_3.jpeg)
 
 - 4. Test whether the interface is functioning properly.
 - First, refresh the environment variables.
 
-```
+```bash
 source install/setup.bash
 ```
 
 Check the interface type
 
-```
+```bash
 ros2 interface show pkg_interfaces/msg/Person
 ```
 
 Under normal circumstances, the terminal output will be consistent with the Person.msg file.
 
-#### 5. Create a custom service communication interface
+## 5. Create a custom service communication interface
 
-1. In the [ROS2 Action Communication Server Implementation] course, we created a custom interface function package. Create a new folder called srv under the function package pkg_interfaces. Create a new file called Add.srv within the srv folder and enter the following content in the file:
+- 1. In the [ROS2 Action Communication Server Implementation] course, we created a custom interface function package. Create a new folder called srv under the function package pkg_interfaces. Create a new file called Add.srv within the srv folder and enter the following content in the file:
 
 ```
 int32 num1
@@ -111,17 +113,17 @@ package.xml
 <member_of_group>rosidl_interface_packages</member_of_group>
 ```
 
-3. Enter the current workspace in the terminal and compile the feature package:
+- 3. Enter the current workspace in the terminal and compile the feature package:
 
-```
+```bash
 cd ~/yahboomcar_ros2_ws/yahboomcar_ws
 colcon build --packages-select pkg_interfaces
 source install/setup.bash
 ```
 
-4. Testing
+- 4. Testing
 
-```
+```bash
 ros2 interface show pkg_interfaces/srv/Add
 ```
 

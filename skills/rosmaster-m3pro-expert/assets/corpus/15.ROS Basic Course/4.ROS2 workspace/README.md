@@ -4,23 +4,23 @@
 
 In ROS robot development, when developing specific robot functions, various code, parameters, scripts, and other files need to be stored and managed in a folder. This folder is called a workspace in the ROS system. A workspace is a folder that stores project-related files and serves as the central repository for all data during the development process.
 
-### 2. Create a Workspace
+## 2. Create a Workspace
 
 Create a folder to store the project files. yahboomcar_ws is the folder name; you can name it anything.
 
-```
+```bash
 mkdir -p yahboomcar_ws/src
 ```
 
 Switch to the workspace folder
 
-```
+```bash
 cd ~/yahboomcar_ws
 ```
 
-### 3. Compile the Workspace
+## 3. Compile the Workspace
 
-```
+```bash
 colcon build
 ```
 
@@ -49,7 +49,7 @@ The above scenarios are completely permitted, just like creating multiple new pr
 
 After successfully compiling, we need to set environment variables to ensure the system can find our package and executable files:
 
-```
+```bash
 # Valid only in the current terminal
 source install/setup.bash
 # Valid in all terminals

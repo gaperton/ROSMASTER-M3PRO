@@ -8,55 +8,55 @@ In the ROS system, parameters exist in the form of a global dictionary. What is 
 
 Parameters have a rich set of features. For example, if a node shares a parameter, other nodes can access it. If a node modifies a parameter, other nodes can immediately be notified and obtain the latest value.
 
-# 2. Parameters in the Little Turtle Example
+## 2. Parameters in the Little Turtle Example
 
 In the Little Turtle example, the emulator provides a number of parameters. Let's use this example to familiarize ourselves with the meaning of parameters and command line usage.
 
 Since a GUI is displayed here, the following examples are demonstrated in the virtual machine that comes with the tutorial for ease of operation.
 
-1. Launch two terminals in the virtual machine, running the turtle simulator and the keyboard control node respectively:
+- 1. Launch two terminals in the virtual machine, running the turtle simulator and the keyboard control node respectively:
 
-```
+```bash
 ros2 run turtlesim turtlesim_node
 ros2 run turtlesim turtle_teleop_key
 ```
 
 ![Picture: page 0: picture 10](_page_0_Picture_10.jpeg)
 
-2. Launch a terminal in the virtual machine and use the following command to view the parameter list:
+- 2. Launch a terminal in the virtual machine and use the following command to view the parameter list:
 
-```
+```bash
 ros2 param list
 ```
 
-3. Querying and Modifying Parameters
+- 3. Querying and Modifying Parameters
 
 To query or modify the value of a parameter, follow the param command with a get or set subcommand:
 
-```
+```bash
 ros2 param describe turtlesim background_b # View the description of a parameter
 ros2 param get turtlesim background_b # Query the value of a parameter
 ros2 param set turtlesim background_b 10 # Modify the value of a parameter
 ```
 
-4. Saving and Loading Parameter Files
+- 4. Saving and Loading Parameter Files
 
 Querying/modifying parameters one by one is too cumbersome. Why not try using a parameter file? Parameter files in ROS use the YAML format. You can follow the param command with the dump subcommand to save all the parameters for a node to a file, or use the load command to load all the contents of a parameter file at once:
 
-```
+```bash
 ros2 param dump turtlesim >> turtlesim.yaml # Save the parameters of a node to a
 parameter file
 ros2 param load turtlesim turtlesim.yaml # Load all parameters from a file at
 once
 ```
 
-# 3. Parameter Examples
+## 3. Parameter Examples
 
-#### 3.1. Creating a New Function Package
+### 3.1. Creating a New Function Package
 
 Create a new function package in the src directory of the workspace
 
-```
+```bash
 ros2 pkg create pkg_param --build-type ament_python --dependencies rclpy --node-
 name param_demo
 ```
@@ -67,7 +67,7 @@ After executing the above command, the pkg_param package will be created, a para
 
 Next, edit [param_demo.py] to implement the publisher functionality and add the following code:
 
-```
+```python
 import rclpy # ROS2 Python interface library
 from rclpy.node import Node # ROS2 Node Class
 class ParameterNode(Node):
@@ -86,7 +86,7 @@ self.get_parameter('robot_name').get_parameter_value().string_value # Read
 parameter values from the ROS2 system
 ```
 
-```
+```python
 self.get_logger().info('Hello %s!' % robot_name_param) # Output log
 information and print the parameter values read
 def main(args=None): # ROS2 node main entry main
@@ -104,7 +104,7 @@ interface
 
 ### 3.3. Compile the package
 
-```
+```bash
 colcon build --packages-select pkg_param
 ```
 
@@ -112,13 +112,13 @@ colcon build --packages-select pkg_param
 
 Refresh the environment variables first, then run the node.
 
-```
+```bash
 ros2 run pkg_param param_demo
 ```
 
 Open another terminal and set robot_name to robot:
 
-```
+```bash
 ros2 param set param_declare robot_name Robot
 ```
 

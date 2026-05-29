@@ -1,4 +1,4 @@
-## 12.ROS2 meta-function package
+# 12.ROS2 meta-function package
 
 ## 1. Introduction to Metapackages
 
@@ -20,13 +20,13 @@ This package facilitates installation. We only need this one package to organize
 
 ## 3. Implementation
 
-1. Create a new package
+- 1. Create a new package
 
-```
+```bash
 ros2 pkg create pkg_metapackage
 ```
 
-2、Modify the package.xml file and add the packages that the execution depends on
+2, Modify the package.xml file and add the packages that the execution depends on
 
 ```
 <?xml version="1.0"?>
@@ -56,7 +56,7 @@ schematypens="http://www.w3.org/2001/XMLSchema"?>
 </package>
 ```
 
-3. The contents of the file CMakeLists.txt are as follows
+- 3. The contents of the file CMakeLists.txt are as follows
 
 ```
 cmake_minimum_required(VERSION 3.5)
@@ -71,6 +71,8 @@ ament_package()
 - 4. Compile the meta-package
 - No actual executable files will be generated
 
+```bash
 colcon build --packages-select pkg_metapackage
+```
 
 ![Figure: page 1: figure 6](_page_1_Figure_6.jpeg)

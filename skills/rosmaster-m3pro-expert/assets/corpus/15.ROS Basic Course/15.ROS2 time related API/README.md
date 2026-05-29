@@ -6,13 +6,15 @@ ROS2's time-related APIs include Rate, Time, Duration, and operations on Time an
 
 First, create a function package to store the relevant program files.
 
+```bash
 ros2 pkg create learning_time --build-type ament_python --dependencies rclpy
+```
 
-### 2. create_rate
+## 2. create_rate
 
 ROS2 also provides the create_rate function, a tool for **controlling loop execution frequency**. Its core function is to periodically execute a section of code at a **fixed frequency**. Rate ensures the stability of the loop execution frequency by controlling the "sleep time" of the loop. **Remember** that Rate should generally not be used directly in the main thread, as doing so will permanently block callback events. It is generally only used in programs with multi-threaded callbacks or in child threads.
 
-#### How it works:
+### How it works:
 
 - 1. Records the start time of each loop;
 - 2. Executes the code within the loop;
@@ -30,24 +32,24 @@ While both Rate and Timer can implement periodic execution, their application sc
 - The following is a basic usage of Rate to implement a loop that executes twice per second:
 - Create a new file in the function package called rate_demo.py
 
-```
+```python
 from rclpy.node import Node
 import threading
 class RateExampleNode(Node):
     def __init__(self):
         super().__init__("rate_example_node")
-        self.get_logger().info("Rate 示例节点启动")
+        self.get_logger().info("Rate ")
     def run_loop(self):
         # Use the node's create_rate() to create a 2Hz Rate
         rate = self.create_rate(2)
         count = 0
         try:
             while rclpy.ok():
-                self.get_logger().info(f"循环执行 {count} 次")
+                self.get_logger().info(f" {count} ")
                 count += 1
                 rate.sleep() # Sleep until the next cycle (0.5 seconds)
         except KeyboardInterrupt:
-            self.get_logger().info("循环被中断")
+            self.get_logger().info("")
 def main(args=None):
     rclpy.init(args=args)
     node = RateExampleNode()
@@ -73,24 +75,26 @@ if __name__ == "__main__":
 
 Compile feature package
 
+```bash
 colcon build --packages-select learning_time
+```
 
 ![Figure: page 2: figure 3](_page_2_Figure_3.jpeg)
 
 Refresh the workspace environment and run the node
 
-```
+```bash
 source ./install/setup.bash
 ros2 run learning_time rate_demo
 ```
 
-# 3. Timer Application
+## 3. Timer Application
 
 - Timer is used to create a timer that triggers periodic tasks.
 - Example: Create two timers: one that prints the execution count every 1 second, and one that prints the current time every 0.5 seconds.
 - Create a new program file called Timer_demo.py
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 class TimerDemoNode(Node):
@@ -102,24 +106,24 @@ class TimerDemoNode(Node):
        self.timer = self.create_timer(1.0, self.timer_callback)
        # Create a faster timer: execute every 0.5 seconds
        self.fast_timer = self.create_timer(0.5, self.fast_timer_callback)
-       self.get_logger().info("定时器节点已启动")
+       self.get_logger().info("")
    def timer_callback(self):
        """1 second timer callback function"""
        self.counter += 1
        current_time = self.get_clock().now()
        # Print the current time and counter value
        self.get_logger().info(
-           f"[1秒定时器] 第 {self.counter} 次执行,当前时间:
+           f"[1s]  {self.counter} ,:
 {current_time.seconds_nanoseconds()}"
        )
 ```
 
-```
+```python
 def fast_timer_callback(self):
         """0.5 second timer callback function"""
         # Print the current timestamp (nanoseconds)
         self.get_logger().info(
-            f"[0.5秒定时器] 当前时间戳: {self.get_clock().now().nanoseconds}"
+            f"[0.5s] : {self.get_clock().now().nanoseconds}"
         )
 def main(args=None):
     # Initializing ROS 2
@@ -141,7 +145,7 @@ if __name__ == '__main__':
 
 Compile function package
 
-```
+```bash
 colcon build --packages-select learning_time
 ```
 
@@ -149,19 +153,19 @@ colcon build --packages-select learning_time
 
 Refresh the workspace environment and run the node
 
-```
+```bash
 source ./install/setup.bash
 ros2 run learning_time Timer_demo
 ```
 
 It can be seen that the timer is triggered according to the set timing, and the corresponding log information is printed in each callback function
 
-### 4. Get the Current Time with get_clock
+## 4. Get the Current Time with get_clock
 
 - The get_clock function can be used to obtain a clock object and then use the () method to get the current time.
 - Create a new program file, get_clock_demo.py, and fill it with the following example program:
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 from rclpy.time import Time
@@ -169,13 +173,13 @@ class TimeExampleNode(Node):
     def __init__(self):
 ```
 
-```
+```python
 super().__init__("time_example_node")
         # Get the node's clock object (the system clock is used by default)
         self.clock = self.get_clock()
         # Get the current time (return a Time object)
         current_time = self.clock.now()
-        self.get_logger().info(f"当前时间:{current_time}")
+        self.get_logger().info(f":{current_time}")
 def main(args=None):
     rclpy.init(args=args)
     node = TimeExampleNode()
@@ -192,7 +196,7 @@ if __name__ == "__main__":
 
 Compile feature package
 
-```
+```bash
 colcon build --packages-select learning_time
 ```
 
@@ -200,19 +204,19 @@ colcon build --packages-select learning_time
 
 Refresh the workspace environment and run the node
 
-```
+```bash
 source ./install/setup.bash
 ros2 run learning_time get_clock_demo
 ```
 
-### 5. Time and Duration
+## 5. Time and Duration
 
 - The Time class in ROS represents a specific time point (e.g., "2023-10-01 12:00:00"), typically used to mark the moment an event occurred.
 - The Duration class represents an interval between two time points (e.g., "5 seconds"), used to calculate time differences or delays.
 - Example: Time and Duration Application
 - Create a new program file, TimeDuration_demo.py.
 
-```
+```python
 import rclpy
 from rclpy.time import Time
 from rclpy.duration import Duration
@@ -230,7 +234,7 @@ def main():
     node.get_logger().info("time1 < time2 ? %d" % (time1 < time2))
 ```
 
-```
+```python
 # Time periods and times can be mathematically operated
     t3 = time1 + duration1
     t4 = time1 - time2
@@ -255,7 +259,7 @@ if __name__ == "__main__":
 
 Compile feature package
 
-```
+```bash
 colcon build --packages-select learning_time
 ```
 
@@ -263,7 +267,7 @@ colcon build --packages-select learning_time
 
 Refresh the workspace environment and run the node
 
-```
+```bash
 source ./install/setup.bash
 ros2 run learning_time TimeDuration_demo
 ```
