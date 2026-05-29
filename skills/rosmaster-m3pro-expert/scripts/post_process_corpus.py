@@ -133,6 +133,20 @@ MOJIBAKE_REPLACEMENTS: dict[str, str] = {
 COMMENT_TRANSLATIONS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"(?:\u914d\u7f6e|\u00e9\u2026\u008d\u00e7\u00bd\u00ae)\s*VNC\s*server", re.IGNORECASE), "Configure VNC server"),
 ]
+TEXT_TRANSLATIONS: list[tuple[re.Pattern[str], str]] = [
+    (
+        re.compile(r"[\u5728]?launch[\u76ee\u5f55\u4e0b]*[\u627e\u5230]*\s*(cartographer_localization\.launch\.py)\s*[\u6587\u4ef6,\uff0c:：\u5185\u5bb9\u5982\u4e0b]*"),
+        r"Find the \1 file in the launch directory. The contents are as follows:",
+    ),
+    (
+        re.compile(r"\u672c\u6587\u4ef6\u662f\u542f\u52a8cartographer\u8282\u70b9.*navigation2.*\u5b9a\u4f4d\u65b9\u5f0f.*"),
+        "This file starts the Cartographer node and replaces the default Navigation 2 localization method.",
+    ),
+    (
+        re.compile(r"(registerScan)\u96f7\u8fbe\u8bdd\u9898\u56de\u8c03\u51fd\u6570[,，]?"),
+        r"\1 radar topic callback function.",
+    ),
+]
 NON_ENGLISH_OUTPUT_PLACEHOLDER = "[non-English output omitted]"
 
 
@@ -147,6 +161,34 @@ def repair_mojibake(text: str, counts: Counter[str]) -> str:
             text = text.replace(bad, good)
             counts["mojibake"] += n
     return text
+
+
+def clean_text_line(line: str, counts: Counter[str]) -> str:
+    if not NON_ASCII_RE.search(line):
+        return line.rstrip()
+
+    cleaned = line
+    for pattern, replacement in TEXT_TRANSLATIONS:
+        cleaned, n = pattern.subn(replacement, cleaned)
+        if n:
+            counts["text_translation"] += n
+
+    if not NON_ASCII_RE.search(cleaned):
+        return cleaned.rstrip()
+
+    english = english_side_after_slash(cleaned)
+    if english:
+        counts["text_english_side"] += 1
+        return english.rstrip()
+
+    stripped = NON_ASCII_RE.sub("", cleaned)
+    stripped = re.sub(r"\s+", " ", stripped).strip(" -:/,.;")
+    if stripped and re.search(r"[A-Za-z0-9_~/.$-]", stripped):
+        counts["text_non_english_removed"] += 1
+        return stripped
+
+    counts["text_non_english_removed"] += 1
+    return ""
 
 
 def english_side_after_slash(text: str) -> str | None:
@@ -371,6 +413,18 @@ def normalize_title_for_compare(title: str) -> str:
 
 def is_toc_line(line: str) -> bool:
     return TOC_ITEM_RE.match(line) is not None
+
+
+def is_tocish_numbered_line(line: str) -> bool:
+    stripped = line.strip()
+    if not stripped or FENCE_RE.match(stripped):
+        return False
+    if is_toc_line(line):
+        return True
+    match = NUMBERED_HEADING_RE.match(stripped)
+    if not match:
+        return False
+    return len(match.group("title")) <= 100
 
 
 def is_command_like_heading(title: str) -> bool:
@@ -605,6 +659,36 @@ def remove_duplicate_title_and_toc(lines: list[str], counts: Counter[str]) -> li
             while i < len(lines) and not lines[i].strip():
                 remove.add(i)
                 i += 1
+        elif normalize_title_for_compare(lines[i].strip()) == title_key:
+            remove.add(i)
+            counts["duplicate_title_paragraph"] += 1
+            i += 1
+            while i < len(lines) and not lines[i].strip():
+                remove.add(i)
+                i += 1
+
+    outline_start = i
+    j = i
+    outline_markers = 0
+    outline_nonblank = 0
+    while j < len(lines) and not HEADING_RE.match(lines[j]):
+        if lines[j].strip():
+            outline_nonblank += 1
+            if is_tocish_numbered_line(lines[j]):
+                outline_markers += 1
+        j += 1
+    next_heading = HEADING_RE.match(lines[j]) if j < len(lines) else None
+    if (
+        next_heading
+        and numbered_heading_depth(next_heading.group(2).strip()) == 1
+        and next_heading.group(2).lstrip().startswith("1")
+        and outline_markers >= 2
+        and outline_nonblank <= 40
+    ):
+        for idx in range(outline_start, j):
+            remove.add(idx)
+        counts["toc_lines_removed"] += j - outline_start
+        i = j
 
     toc_start = i
     while i < len(lines) and is_toc_line(lines[i]):
@@ -745,6 +829,7 @@ def process_markdown(
             counts["orphan_table_separator_removed"] += 1
             continue
         line = repair_mojibake(line, counts)
+        line = clean_text_line(line, counts)
         line = apply_rules(line, counts)
         normalized_lines.append(line.rstrip())
 

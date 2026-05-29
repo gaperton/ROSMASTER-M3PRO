@@ -1,16 +1,5 @@
 # Robotic Arm Grasping + Multimodal Visual Understanding + SLAM Navigation
 
-Robotic Arm Grasping + Multimodal Visual Understanding + SLAM Navigation
-
-- 1. Course Content
-- 2. Preparation
-  - 2.1 Content Description
-  - 2.2 Starting the Agent
-- 3. Running Examples
-  - 3.1 Starting the Program
-  - 3.2 Test Cases
-- 4. Source Code Analysis
-
 ## 1. Course Content
 
 Basic: After running the example program, combine Nav2 navigation, robotic arm grasping, and AI large model visual understanding to perform complex task functions.

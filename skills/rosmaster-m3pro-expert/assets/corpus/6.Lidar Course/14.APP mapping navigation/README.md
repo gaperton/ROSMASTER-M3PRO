@@ -1,17 +1,6 @@
 # App Mapping and Navigation
 
-App Mapping and Navigation
-
-- 1. Content Description
-  - 1.1. Preparation
-- 2. Mapping with the app
-  - 2.1. Program Startup
-  - 2.2. Launch Command Parsing
-- 3. App Navigation
-  - 3.1. Program Startup
-  - 3.2. Instruction Analysis
-
-# 1. Content Description
+## 1. Content Description
 
 This course explains how to use the [ROS Robot] app to control the robot for mapping and navigation.
 
@@ -19,7 +8,7 @@ This section requires entering commands in the terminal. The terminal you choose
 
 For Orin boards, simply open the terminal and enter the commands mentioned in this section.
 
-#### 1.1. Preparation
+### 1.1. Preparation
 
 You must first download the [ROS Rotbot] app on your phone. Android/iOS phone users, please scan the QR code to download the remote control software. iOS users can also search and download the ROSRobot mapping and navigation app from the App Store.
 
@@ -29,11 +18,11 @@ The robot and phone must be on the same local area network. This can be achieved
 
 ## 2. Mapping with the app
 
-#### 2.1. Program Startup
+### 2.1. Program Startup
 
 Enter the following command on the robot terminal to launch the robot app mapping.
 
-```
+```bash
 #Start the camera
 ros2 launch slam_mapping app_camera.launch.py
 #Choose one of the following three mapping methods
@@ -67,7 +56,7 @@ Orin board:
 
 /home/jetson/M3Pro_ws/src/M3Pro_navigation/map
 
-#### 2.2. Launch Command Parsing
+### 2.2. Launch Command Parsing
 
 Code Path:
 
@@ -101,25 +90,25 @@ laserscan_to_point_publisher: Node for publishing radar point cloud data to the 
 
 robot_pose_publisher_launch.py: Node for publishing vehicle position information yahboom_app_save_map.launch.py: Node for saving maps
 
-# 3. App Navigation
+## 3. App Navigation
 
-#### 3.1. Program Startup
+### 3.1. Program Startup
 
 Enter the following command on the car terminal to start the car chassis and radar.
 
-```
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
 Enter the following command on the car terminal to start the camera.
 
-```
+```bash
 ros2 launch slam_mapping app_camera.launch.py
 ```
 
 Enter the following command on the car terminal to start the navigation app.
 
-```
+```bash
 ros2 launch M3Pro_navigation app_Navigation2.xml
 map:=/root/M3Pro_ws/src/M3Pro_navigation/map/tea.yaml
 ```

@@ -1,10 +1,4 @@
-## LiDAR tracking
-
-LiDAR tracking
-
-- 1. Content Description
-- 2. Program startup
-- 3. Core code analysis
+# LiDAR tracking
 
 ## 1. Content Description
 
@@ -18,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
 
-```
+```bash
 ros2 launch yahboom_M3Pro_laser laser_driver.launch.py
 ```
 
 Next, you can refer to this product tutorial [5. Chassis Control] - [2. Handle Control] to start the handle control to control the car conveniently. Press the R2 button on the handle to cancel and start the radar tracking gameplay. If you do not start the handle control, it will not affect the operation of this program. Enter the following command in the terminal to start the radar tracking program,
 
-```
+```bash
 ros2 run yahboom_M3Pro_laser laser_Tracker
 ```
 
@@ -44,7 +38,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahb
 
 Import the necessary library files,
 
-```
+```python
 #ros lib
 import rclpy
 from rclpy.node import Node
@@ -62,7 +56,7 @@ import os
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     #create a sub
@@ -106,7 +100,7 @@ self.ang_pid = SinglePID(2.0, 0.0, 2.0)
 
 registerScan radar topic callback function,
 
-```
+```python
 def registerScan(self, scan_data):
     if not isinstance(scan_data, LaserScan): return
     ranges = np.array(scan_data.ranges)

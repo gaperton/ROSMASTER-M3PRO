@@ -1,6 +1,6 @@
 # Machine code handling
 
-### 1. Content Description
+## 1. Content Description
 
 This section explains how to combine nav2 navigation, machine code recognition, and threedimensional gripping with a robotic arm to achieve complex handling capabilities.
 
@@ -8,43 +8,43 @@ This section requires entering commands in the terminal. The terminal you choose
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-### 2. Program startup
+## 2. Program startup
 
 The virtual machine needs to be on the same LAN as the car, and the ROS_DOMAIN_ID must be the same for both cars. Modify the ROS_DOMAIN_ID value in ~/.bashrc and refresh the environment variables after the modification.
 
 Enter the following statement at the car terminal 1 to start the camera and robotic arm solving program:
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Enter the following statement at the car terminal 2 to start the chassis data fusion and radar data fusion filtering program:
 
-```
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
 Enter the following statement at the trolley terminal 3 to start the gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_transport
 ```
 
 Enter the following statement at the car terminal 4 to start the machine code recognition program:
 
-```
+```bash
 ros2 run M3Pro_demo apriltag_transport_V2
 ```
 
 Enter the command in the virtual machine terminal 1 to start the navigation RViz display.
 
-```
+```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
 Enter the following statement on the car terminal 5 to start navigation2:
 
-```
+```bash
 ros2 launch M3Pro_navigation navigation2.launch.py map_dir: =
 /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml
 ```
@@ -53,13 +53,13 @@ Among them, /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml replace it 
 
 Enter the following statement in the virtual machine terminal 2 to start the rotation detection program:
 
-```
+```bash
 ros2 run yahboom_nav2_bringup rotation_detect_V2
 ```
 
 Enter the following statement in the virtual machine terminal 3 to start the navigation status detection program:
 
-```
+```bash
 ros2 run yahboom_nav2_bringup get_nav2_status_V2
 ```
 
@@ -87,13 +87,13 @@ grasping, the buzzer will beep, and the robot arm will move to the handling post
 
 ## 3. Core code analysis
 
-#### 3.1 get_nav2_status_V2
+### 3.1 get_nav2_status_V2
 
 In the virtual machine, the source code path of the program is, /home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/get_nav2_ status_V2.py, the function of this program is to obtain the navigation status and publish and receive some topics.
 
 Import the necessary library files,
 
-```
+```python
 import rclpy
 from rclpy.action import ActionClient
 from geometry_msgs.msg import PoseStamped,Twist,PoseWithCovarianceStamped
@@ -106,7 +106,7 @@ from visualization_msgs.msg import MarkerArray
 
 The program initializes and creates clients, publishers, and subscribers for actions.
 
-```
+```python
 def __init__(self):
     super().__init__('navigation_client')
     #Create an action client, the action service called is
@@ -156,7 +156,7 @@ machine code transport and program placement
     self.pub_Transport = self.create_publisher(Bool, "/start_transport", 10)
      #Create a publisher, publish the topic /back_to_orin, publish the topic back
 to the origin
-    self.pub_BackToOrin = self.create_publisher(Bool, "/back_to_orin", 10)】
+    self.pub_BackToOrin = self.create_publisher(Bool, "/back_to_orin", 10)`
     #Create a publisher, publish the topic /transport_done, publish the topic of
 transport completion
     self.pub_done = self.create_publisher(Bool, "/transport_done", 10)
@@ -179,7 +179,7 @@ and "Transbot"
     self.cur_status = "Detect"
 ```
 
-```
+```python
 def get_waypointsPoseCallBack(self,msg):
     print("get the pose: ")
     #Get the coordinate value according to the array subscript and assign the
@@ -202,7 +202,7 @@ msg.markers[len(msg.markers)-2].pose.orientation.w
 
 send_goal,
 
-```
+```python
 def send_goal(self):
     #Create a NavigateThroughPoses Action target (Goal) message object, used to
 send a navigation request to the NavigateThroughPoses action server (Action
@@ -220,7 +220,7 @@ add_done_callback(self.goal_response_callback)
 
 goal_response_callback,
 
-```
+```python
 def goal_response_callback(self, future):
     result = future.result()
     if not result.accepted:
@@ -234,7 +234,7 @@ def goal_response_callback(self, future):
 
 feedback_callback,
 
-```
+```python
 def feedback_callback(self,feedback_msg):
     #If the remaining distance of the navigation point is less than 0.1m and the
 value of self.move_flag is false (navigation speed is 0), then change the value
@@ -246,7 +246,7 @@ False:
 
 result_callback,
 
-```
+```python
 def result_callback(self, future):
     result_msg = future.result()
     print("the result_status is ",result_msg.status)
@@ -277,7 +277,7 @@ finally the corresponding message is published according to the current status
 
 get_InitPoseCallBack,
 
-```
+```python
 def get_InitPoseCallBack(self,msg):
     #Assign values to the data in the origin coordinate object
     self.orinal_pose.pose.position.x = msg.pose.pose.position.x
@@ -288,7 +288,7 @@ def get_InitPoseCallBack(self,msg):
     self.orinal_pose.pose.orientation.w = msg.pose.pose.orientation.w
 ```
 
-#### 3.2 rotation_detect_V2
+### 3.2 rotation_detect_V2
 
 In the virtual machine, the source code path of the program is,
 
@@ -296,7 +296,7 @@ In the virtual machine, the source code path of the program is,
 
 Import the necessary header files,
 
-```
+```python
 import rclpy
 from rclpy.node import Node
 import tf2_ros
@@ -309,7 +309,7 @@ from std_msgs.msg import Float32,Bool,Int16,UInt16
 
 The program initializes and defines publishers and definers,
 
-```
+```python
 def __init__(self):
     super().__init__('tf_listener_node')
     #Create a subscriber, subscribe to the topic /start_rotate, the callback
@@ -345,7 +345,7 @@ performed to find the machine code.
 
 timer_callback,
 
-```
+```python
 def timer_callback(self):
     self.error = self.target_angle - self.turn_angle
     #If the value of self.compute_flag is True, start rotating
@@ -381,7 +381,7 @@ self.first_angle)
 
 getangle,
 
-```
+```python
 def get_angle(self):
     try:
         # Get the transformation between two coordinate systems
@@ -401,7 +401,7 @@ here refers to the angle of rotation
         self.get_logger().warn(f"Could not transform: {e}")
 ```
 
-#### 3.3 apriltag_transport_V2
+### 3.3 apriltag_transport_V2
 
 Program code path:
 
@@ -415,11 +415,11 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 ```
 
-```
+```python
 import os
 import numpy as np
 from sensor_msgs.msg import Image
@@ -449,7 +449,7 @@ from geometry_msgs.msg import Twist
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 120, 0, 0, 90, 90]
@@ -598,7 +598,7 @@ rotation is stopped.
     self.stop_rotate = False
 ```
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #rgb_image
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_frame,'rgb8')

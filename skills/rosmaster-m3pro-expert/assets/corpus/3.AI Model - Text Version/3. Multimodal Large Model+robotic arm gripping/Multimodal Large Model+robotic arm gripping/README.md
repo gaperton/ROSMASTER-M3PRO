@@ -1,24 +1,5 @@
 # Multimodal Visual Understanding + Robotic Arm Grasping
 
-```
-1. Course Content
-```
-
-- 2. Starting the Agent
-- 3. Running the Examples
-  - 3.1 Starting the Program
-  - 3.2 Test Cases
-    - 3.2.1 Case 1: "Find the red cube in front of you and grasp it"
-    - 3.2.2 Case 2: "Put the red block in front of you to the right of the blue block"
-    - 3.2.3 Case 3: "Please help me remove the machine code in front of you that is taller than 5
-
-centimeters"
-
-- 4. Source Code Analysis
-  - 4.1 Case 1
-  - 4.2 Case Study 2
-  - 4.3 Case Study 3
-
 ## 1. Course Content
 
 Run the example program, using the robot's visual understanding combined with robotic arm grasping for a comprehensive task.

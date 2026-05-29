@@ -4,7 +4,7 @@ This product uses two radars, one on the left rear and one on the right front of
 
 ## 1. ira_laser_tools package
 
-#### 1.1. Introduction to the Feature Package
+### 1.1. Introduction to the Feature Package
 
 The main functions of the ira_laser_tools package are as follows:
 
@@ -15,7 +15,7 @@ The main functions of the ira_laser_tools package are as follows:
 
 The front and rear dual radar fusion of this product is achieved by calling the laser scanning merging interface here.
 
-#### 1.2. Function package source code
+### 1.2. Function package source code
 
 **laserscan_multi_merger.cpp** source code path:
 
@@ -64,7 +64,7 @@ The points of attention here are as follows:
 - angle_increment: Output the scan angle increment, here it is 0.017453, the unit is radian
 - range_min and range_max: Output the minimum and maximum distances of the scan, in meters, here 0.05 meters to 4.0 meters
 
-#### 1.3. Program startup
+### 1.3. Program startup
 
 This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
@@ -72,7 +72,7 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 After the car successfully connects to the agent, enter the following command in the terminal to start it:
 
-```
+```bash
 ros2 launch ira_laser_tools merge_multi.launch.py
 ```
 
@@ -90,7 +90,7 @@ After adding, the white point cloud is the fused radar data, as shown in the fig
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-# 2. Radar Filtering
+## 2. Radar Filtering
 
 After successfully fusing the two radars using ira_laser_tools, we need to filter the fused data. Otherwise, during the map building and navigation process, the vehicle body will be scanned by the radar and treated as an obstacle. Therefore, we need to filter the fused radar data.
 
@@ -148,11 +148,11 @@ infinity (); // invalid data
 }
 ```
 
-#### 2.2 Program Startup
+### 2.2 Program Startup
 
 Enter the following command in the terminal to start radar filtering,
 
-```
+```bash
 ros2 launch yahboom_laser_filter laser_filter_node.launch.py
 ```
 
@@ -176,11 +176,11 @@ Filtered/scan point cloud data,
 
 ![Figure: page 5: figure 1](_page_5_Figure_1.jpeg)
 
-#### 2.3 Node Communication
+### 2.3 Node Communication
 
 Enter the following command in the terminal to view the communication between nodes,
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 

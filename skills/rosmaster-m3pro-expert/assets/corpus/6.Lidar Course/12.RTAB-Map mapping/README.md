@@ -1,19 +1,10 @@
 # RTAB-Map Mapping
 
-RTAB-Map Mapping
-
-- 1. Contents
-  - 1.1 Introduction to RTAB-Map
-  - 1.2. RTAB-Map Working Principle
-- 2. Preparation
-- 3. Program Startup
-- 4. Instruction analysis
-
-### 1. Contents
+## 1. Contents
 
 This section explains how to combine a vehicle chassis, LiDAR, and a depth camera to implement RTAB-Map mapping.
 
-#### 1.1 Introduction to RTAB-Map
+### 1.1 Introduction to RTAB-Map
 
 RTAB-MAP (Real-Time Appearance-Based Mapping) is a vision-based real-time simultaneous localization and mapping (SLAM) algorithm primarily used for mapping and navigation tasks in fields such as robotics and augmented reality. RTAB-Map has the following features.
 
@@ -22,7 +13,7 @@ RTAB-MAP (Real-Time Appearance-Based Mapping) is a vision-based real-time simult
 - **Multi-sensor support**: Supports RGB-D cameras, stereo cameras, and monocular cameras
 - **3D map construction**: Creates dense 3D point cloud maps
 
-#### 1.2. RTAB-Map Working Principle
+### 1.2. RTAB-Map Working Principle
 
 - Front-end processing
 - Acquire image data from sensors
@@ -50,17 +41,17 @@ Due to performance limitations, the Raspberry Pi 5 and Jetson Nano cannot smooth
 
 The Orin motherboard can be run directly on the motherboard.
 
-### 3. Program Startup
+## 3. Program Startup
 
 First, enter the following command in the robot terminal to start the chassis, radar, and camera.
 
-```
+```bash
 ros2 launch M3Pro_navigation rtab_bringup.launch.py
 ```
 
 Then, open a terminal in the virtual machine and enter the following command to control the robotic arm to move to the mapping pose.
 
-```
+```bash
 ros2 topic pub /arm6_joints arm_msgs/msg/ArmJoints {"joint1: 90,joint2:
 180,joint3: 5,joint4: 0,joint5: 90,joint6: 0,time: 1500"} --once
 ```
@@ -87,7 +78,9 @@ Modify the settings in RViz to change the point cloud display to RGB, as shown b
 
 Finally, open a terminal in the virtual machine and enter the following command to enable keyboard control of the car's movement and mapping.
 
+```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
+```
 
 Here, control the car's movement as slowly as possible. Press the [z] key to reduce the linear velocity and deceleration. Then, press the [i] key to move the car forward, the [,] key to move it backward, the [j] key to rotate the car left, and the [l] key to rotate the car right.
 
@@ -97,7 +90,7 @@ As shown below, the map is complete.
 
 After the map is created, press Ctrl+C in the terminal where you launched rtabmap.launch.py to close the program. The map will be saved in /home/yahboom/.ros/rtabmap.db.
 
-# 4. Instruction analysis
+## 4. Instruction analysis
 
 RTAB-Map mapping instructions are as follows:
 

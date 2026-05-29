@@ -1,20 +1,12 @@
 # Radar Introduction and Usage
 
-Radar Introduction and Usage
+## 1. Radar Introduction
 
-- 1. Radar Introduction
-  - 1.1. T-mini Plus Radar
-  - 1.2 Radar Characteristics
-  - 1.3 Performance Parameters
-- 2. Using the Radar
+### 1.1. T-mini Plus Radar
 
-### 1. Radar Introduction
+This product uses the T-mini Plus, a 360 degrees 2D lidar. Based on the pulsed Time of Flight (ToF) ranging principle and equipped with relevant optical, electrical, and algorithmic designs, the Tmini Plus achieves high-frequency, high-precision distance measurement. Simultaneously, its mechanical structure rotates 360 degrees, continuously acquiring angle information, enabling 360-degree scanning and ranging, and outputting point cloud data of the scanned environment.
 
-#### 1.1. T-mini Plus Radar
-
-This product uses the T-mini Plus, a 360° 2D lidar. Based on the pulsed Time of Flight (ToF) ranging principle and equipped with relevant optical, electrical, and algorithmic designs, the Tmini Plus achieves high-frequency, high-precision distance measurement. Simultaneously, its mechanical structure rotates 360 degrees, continuously acquiring angle information, enabling 360-degree scanning and ranging, and outputting point cloud data of the scanned environment.
-
-#### 1.2 Radar Characteristics
+### 1.2 Radar Characteristics
 
 - 360-degree omnidirectional scanning, adjustable scanning frequency of 6-12 Hz
 - High-speed ranging, ranging frequency of 4000 Hz
@@ -22,7 +14,7 @@ This product uses the T-mini Plus, a 360° 2D lidar. Based on the pulsed Time of
 - Strong immunity to ambient light interference
 - Class I eye-safe standard
 
-#### 1.3 Performance Parameters
+### 1.3 Performance Parameters
 
 | Item               | Value    | Unit    |
 |--------------------|----------|---------|

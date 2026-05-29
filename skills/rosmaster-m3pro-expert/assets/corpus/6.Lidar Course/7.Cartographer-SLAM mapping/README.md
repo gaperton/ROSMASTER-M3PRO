@@ -1,32 +1,14 @@
 # Cartographer-SLAM mapping
 
-#### Cartographer-SLAM mapping
+## 1. Course Content
 
-- 1. Course Content
-- 2. Introduction to Cartographer
-  - 2.1 Introduction
-  - 2.2 Related Materials
-- 3. Preparation
-  - 3.1 Content Description
-  - 3.2 Starting the Agent
-- 4. Run the case
-  - 4.1 Mapping Process
-  - 4.2 Save the map
-  - 4.3 Saving pbstream format maps
-- 5. Node parsing
-  - 5.1 Displaying the Node Computation Graph
-  - 5.2 TF Transformation
-  - 5.3 Cartographer Node Details
-
-# 1. Course Content
-
-1. Learn the robot cartographer mapping algorithm for SLAM mapping function
+- 1. Learn the robot cartographer mapping algorithm for SLAM mapping function
 
 After running the sample program, use the keyboard or handle to control the robot to move and complete the map construction and save the map.
 
-# 2. Introduction to Cartographer
+## 2. Introduction to Cartographer
 
-#### 2.1 Introduction
+### 2.1 Introduction
 
 Cartographer is an open-source 2D and 3D SLAM (simultaneous localization and mapping) library from Google, supported by the ROS system. This mapping algorithm utilizes graph optimizations (multi-threaded backend optimization and problem optimization built using Cere). It combines data from multiple sensors (such as LIDAR, IMU, and cameras) to simultaneously calculate sensor positions and map the surrounding environment.
 
@@ -42,21 +24,21 @@ cartographer_ros runs under ROS and can receive various sensor data in the form 
 
 After processing, it is published in the form of a message to facilitate debugging and visualization.
 
-#### 2.2 Related Materials
+### 2.2 Related Materials
 
 [GitHub repository](https://github.com/cartographer-project/cartographer)
 
 [Official Documentation](https://google-cartographer.readthedocs.io/en/latest/)
 
-# 3. Preparation
+## 3. Preparation
 
 ### 3.1 Content Description
 
 This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
 
-#### 3.2 Starting the Agent
+### 3.2 Starting the Agent
 
-**Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.**
+Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.
 
 Enter the command in the vehicle terminal:
 
@@ -66,7 +48,7 @@ sh start_agent.sh
 
 The terminal prints the following information, indicating that the connection is successful
 
-# 4. Run the case
+## 4. Run the case
 
 ### 4.1 Mapping Process
 
@@ -77,13 +59,13 @@ The terminal prints the following information, indicating that the connection is
 
 The vehicle terminal starts the underlying sensor command:
 
-```
+```bash
 ros2 launch slam_mapping bringup.launch.py
 ```
 
 Restart the mapping command:
 
-```
+```bash
 ros2 launch slam_mapping cartographer.launch.py
 ```
 
@@ -91,7 +73,7 @@ The RViz visualization function can be started on the vehicle side or the virtua
 
 Taking the configuration of a virtual machine as an example, open a terminal and start the RViz visualization interface:
 
-```
+```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
@@ -103,7 +85,7 @@ Start the RViz visualization interface command on the vehicle:
 
 Open another terminal in the virtual machine to start the keyboard control node (you can also use the handle remote control):
 
-```
+```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
@@ -115,7 +97,7 @@ Click the window in the terminal with the mouse, press z to reduce the speed app
 
 Open a new terminal on the car and save the map
 
-```
+```bash
 ros2 launch yahboomcar_nav save_map_launch.py
 ```
 
@@ -157,13 +139,13 @@ free_thresh: 0.25
 - occupied_thresh: Pixels with an occupancy probability greater than this threshold are considered fully occupied.
 - free_thresh: Pixels with an occupancy probability less than this threshold are considered completely free.
 
-## 4.3 Saving pbstream format maps
+### 4.3 Saving pbstream format maps
 
 Map files in pbstream format are used for repositioning navigation, which will be explained in subsequent chapters.
 
 After the map is built, open a new terminal and enter the command to end the map track:
 
-```
+```bash
 ros2 service call /finish_trajectory cartographer_ros_msgs/srv/FinishTrajectory "
 {trajectory_id: 0}"
 ```
@@ -172,7 +154,7 @@ Then open another terminal to save the pbstream format map file:
 
 Save command on jetson Orin Nano and jetson Orin NX s:
 
-```
+```bash
 ros2 service call /write_state cartographer_ros_msgs/srv/WriteState "{filename:
 '/home/jetson/yahboom_map.pbstream'}"
 ```
@@ -181,16 +163,18 @@ Save the command on Jetson Orin Nano and Raspberry Pi:
 
 You need to enter docker first
 
-```
+```bash
 ros2 service call /write_state cartographer_ros_msgs/srv/WriteState "{filename:
 '/root/yahboom_map.pbstream'}"
 ```
 
-# 5. Node parsing
+## 5. Node parsing
 
-#### 5.1 Displaying the Node Computation Graph
+### 5.1 Displaying the Node Computation Graph
 
+```bash
 ros2 run rqt_graph rqt_graph
+```
 
 ![Figure: page 6: figure 3](_page_6_Figure_3.jpeg)
 
@@ -198,7 +182,7 @@ ros2 run rqt_graph rqt_graph
 
 The virtual machine terminal runs:
 
-```
+```bash
 ros2 run rqt_tf_tree rqt_tf_tree
 ```
 
@@ -208,7 +192,9 @@ The image size is too large. The original image can be viewed in the folder of t
 
 ### 5.3 Cartographer Node Details
 
+```bash
 ros2 node info /slam_gmapping
+```
 
 Enter the above command in the terminal to view the subscription and publishing topics related to the gmapping node.
 

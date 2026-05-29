@@ -1,24 +1,12 @@
 # Navigation2 Multi-Point Navigation and Obstacle Avoidance
 
-Navigation2 Multi-Point Navigation and Obstacle Avoidance
-
-- 1. Course Content
-- 2. Preparation
-  - 3.1 Content Description
-  - 3.2 Starting the Agent
-- 3. Running the Example
-  - 3.1 Multi-Point Navigation
-- 4. Principle Analysis
-  - 4.1 Waypoint Data
-  - 4.2 Data transmission execution
-
-### 1. Course Content
+## 1. Course Content
 
 **Note:** This course requires you to have studied [Navigation2 Single-Point Navigation and Obstacle Avoidance] first and have a basic understanding of Navigation2 navigation.
 
 Learn the robot's Navigation2 - Waypoint Multi-Point Navigation and Obstacle Avoidance function.
 
-# 2. Preparation
+## 2. Preparation
 
 ### 3.1 Content Description
 
@@ -26,7 +14,7 @@ This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson N
 
 ### 3.2 Starting the Agent
 
-**Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.**
+Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.
 
 Enter the command in the vehicle terminal:
 
@@ -34,7 +22,7 @@ sh start_agent.sh
 
 The terminal prints the following message, indicating a successful connection.
 
-# 3. Running the Example
+## 3. Running the Example
 
 ### 3.1 Multi-Point Navigation
 
@@ -45,23 +33,29 @@ The terminal prints the following message, indicating a successful connection.
 
 To start the underlying sensor on the robot terminal:
 
-```
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
 To start navigation again:
 
+```bash
 ros2 launch M3Pro_navigation navigation2.launch.py
+```
 
 The RViz visualization function can be started on either the vehicle terminal or the virtual machine. You can choose either method. Do not start both the virtual machine and the vehicle terminal simultaneously:
 
 For example, using a virtual machine, open a terminal and start the RViz visualization interface:
 
+```bash
 ros2 launch slam_view nav_rviz.launch.py
+```
 
 Command to launch the RViz visualization interface on the vehicle:
 
+```bash
 ros2 launch M3Pro_navigation nav_rviz.launch.py
+```
 
 ![Figure: page 2: figure 5](_page_2_Figure_5.jpeg)
 
@@ -89,7 +83,7 @@ The robot car navigates sequentially according to the marked points.
 
 ![Figure: page 5: figure 2](_page_5_Figure_2.jpeg)
 
-# 4. Principle Analysis
+## 4. Principle Analysis
 
 ### 4.1 Waypoint Data
 
@@ -97,7 +91,9 @@ Users open \*\*[Waypoint/Nav Through After entering multi-point navigation mode,
 
 VM terminal startup command:
 
+```bash
 ros2 run rqt_graph rqt_graph
+```
 
 In the rqt interface, we can see the topic **/waypoints**. After checking it, we can observe the data on the topic (you need to check the topic first, then publish the waypoints in the RViz interface). The waypoints we manually mark in RViz will be published to this topic.
 
@@ -107,13 +103,13 @@ Click on a waypoint to view the waypoint data. Here we take [0] as an example, w
 
 ![Picture: page 6: picture 3](_page_6_Picture_3.jpeg)
 
-#### 4.2 Data transmission execution
+### 4.2 Data transmission execution
 
 After setting the waypoint coordinates, click **Start Waypoint Following**, and the RViz plugin will package the waypoint coordinate sequence into a FollowWaypoints action request and send it to the /follow_waypoint action server to execute all the waypoints in sequence.
 
 Open a terminal in the virtual machine and enter the following command:
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 

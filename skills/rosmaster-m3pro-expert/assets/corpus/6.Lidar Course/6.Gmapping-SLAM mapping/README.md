@@ -1,23 +1,5 @@
 # Gmapping-SLAM mapping
 
-#### Gmapping-SLAM mapping
-
-- 1. Course Content
-- 2. Introduction to gmapping
-  - 2.1 Introduction
-  - 2.2 Related Materials
-- 3. Preparation
-  - 3.1 Content Description
-  - 3.2 Start the Agent
-- 4. Run the case
-  - 4.1 Mapping Process
-  - 4.2 Save the map
-- 5. Node parsing
-  - 5.1 Displaying the Node Computation Graph
-  - 5.2 TF Transformation
-  - 5.3 gmapping node details
-  - 5.4 Configuration Files
-
 ## 1. Course Content
 
 Learn the robot gmapping mapping algorithm for SLAM mapping function
@@ -26,7 +8,7 @@ After running the program, control the robot through the keyboard or handle to p
 
 ## 2. Introduction to gmapping
 
-#### 2.1 Introduction
+### 2.1 Introduction
 
 - gmapping only works when the number of 2D laser points in a single frame is less than 1440. If the number of laser points in a single frame is greater than 1440, the error [[mapping-4] process has died] will occur.
 - Gmapping is a commonly used open source SLAM algorithm based on the filtering SLAM framework.
@@ -51,13 +33,13 @@ Misalignment, although increasing the number of particles can make the map close
 
 ## 3. Preparation
 
-#### 3.1 Content Description
+### 3.1 Content Description
 
 This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
 
-## 3.2 Start the Agent
+### 3.2 Start the Agent
 
-**Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.**
+Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.
 
 Enter the command in the vehicle terminal:
 
@@ -67,7 +49,7 @@ The terminal prints the following information, indicating that the connection is
 
 ## 4. Run the case
 
-#### 4.1 Mapping Process
+### 4.1 Mapping Process
 
 #### Notice:
 
@@ -76,7 +58,7 @@ The terminal prints the following information, indicating that the connection is
 
 The vehicle terminal starts the mapping command:
 
-```
+```bash
 ros2 launch slam_mapping gmapping.launch.py
 ```
 
@@ -84,13 +66,13 @@ The RViz visualization function can be started on the vehicle side or the virtua
 
 Taking the configuration of a virtual machine as an example, open a terminal and start the RViz visualization interface:
 
-```
+```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
 Start the RViz visualization interface command on the vehicle:
 
-```
+```bash
 ros2 launch slam_mapping slam_view.launch.py
 ```
 
@@ -98,7 +80,7 @@ ros2 launch slam_mapping slam_view.launch.py
 
 Open another terminal in the virtual machine and start the keyboard control node (you can also use the controller remote control, you need to start the controller control node in advance, refer to [5. Chassis Control - 2. Controller Control]):
 
-```
+```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
@@ -112,7 +94,7 @@ Press I, <, J, and L to control the car to move forward, backward, turn left, an
 
 Open a new terminal on the car and save the map
 
-```
+```bash
 ros2 launch slam_mapping save_map.launch.py
 ```
 
@@ -154,15 +136,17 @@ occupied_thresh: 0.65 free_thresh: 0.25
 
 The virtual machine terminal runs:
 
+```bash
 ros2 run rqt_graph rqt_graph
+```
 
 ![Figure: page 5: figure 20](_page_5_Figure_20.jpeg)
 
-#### 5.2 TF Transformation
+### 5.2 TF Transformation
 
 The virtual machine terminal runs:
 
-```
+```bash
 ros2 run rqt_tf_tree rqt_tf_tree
 ```
 
@@ -170,9 +154,9 @@ The image size is too large. The original image can be viewed in the folder of t
 
 ![Figure: page 6: figure 4](_page_6_Figure_4.jpeg)
 
-## 5.3 gmapping node details
+### 5.3 gmapping node details
 
-```
+```bash
 ros2 node info /slam_gmapping
 ```
 
@@ -334,6 +318,6 @@ ymin: -100.0
 
 The above are the configurable parameters of gmapping. If the user needs to modify the configuration parameters, M3Pro_ws the gmapping function package needs to be recompiled in the workspace after the modification is completed to take effect:
 
-```
+```bash
 colcon build --packages-select slam_gmapping
 ```

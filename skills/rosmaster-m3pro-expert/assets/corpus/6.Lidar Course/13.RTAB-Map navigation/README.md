@@ -1,10 +1,4 @@
-## RTAB-Map Navigation
-
-RTAB-Map Navigation
-
-- 1. Content Description
-- 2. Preparation
-- 3. Command Analysis
+# RTAB-Map Navigation
 
 ## 1. Content Description
 
@@ -26,17 +20,19 @@ The Orin motherboard can be run directly on the motherboard.
 
 Also, you need to copy the map created using RTAB-Map to the terminal directory. In the virtual machine/Orin mainboard terminal, enter the following command to copy it:
 
-```
+```bash
 cp ~/.ros/rtabmap.db ~
 ```
 
 Then, open a terminal on the robot and enter the following command to start the chassis, radar, and camera.
 
+```bash
 ros2 launch M3Pro_navigation rtab_bringup.launch.py
+```
 
 Then, open a terminal in the virtual machine and enter the following command to control the robot arm to move to the navigation posture.
 
-```
+```bash
 ros2 topic pub /arm6_joints arm_msgs/msg/ArmJoints {"joint1: 90,joint2:
 180,joint3: 5,joint4: 0,joint5: 90,joint6: 0,time: 1500"} --once
 ```
@@ -73,7 +69,7 @@ rtabmap_args:="--Mem/IncrementalMemory false"
 
 Then run the following command in the VM/Orin motherboard terminal to start Navigation 2.
 
-```
+```bash
 ros2 launch nav2_bringup navigation_launch.py
 ```
 

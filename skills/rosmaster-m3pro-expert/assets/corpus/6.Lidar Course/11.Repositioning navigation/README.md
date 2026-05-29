@@ -1,20 +1,5 @@
 # Rapid Relocalization and Navigation
 
-#### Rapid Relocalization and Navigation
-
-- 1. Course Content
-- 2. Principle Overview
-  - 2.1 Introduction
-  - 2.2 Differences Between the Two Localization Methods
-- 3. Preparation
-  - 3.1 Content Description
-  - 3.2 Map Preparation
-- 4. Running the Example
-  - 4.1 Single-Point Navigation Function
-  - 4.3 Viewing the Node Communication Graph
-  - 4.4 Viewing the TF Tree
-- 5. Principle Explanation
-
 ## 1. Course Content
 
 - 1. Learn the robot's rapid relocalization and navigation capabilities.
@@ -22,7 +7,7 @@
 
 ## 2. Principle Overview
 
-#### 2.1 Introduction
+### 2.1 Introduction
 
 - Navigation 2 (Nav 2) is the navigation framework included with ROS 2. Its purpose is to safely move a mobile robot from point A to point B.
 - The default localization algorithm used in Navigation 2 is AMCL (Adaptive Monte Carlo Localization). By replacing the default AMCL localization method with Cartographer's localization method, other navigation functions remain unchanged.
@@ -52,19 +37,19 @@ The Jetson Nano and Raspberry Pi series controllers must first enter the Docker 
 
 The robot's vehicle terminal starts the underlying sensor command:
 
-```
+```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
 Then start the Cartographer node for positioning:
 
-```
+```bash
 ros2 launch M3Pro_navigation cartographer_localization.launch.py
 ```
 
 Finally, start Navigation 2.
 
-```
+```bash
 ros2 launch M3Pro_navigation navigation_launch.py
 ```
 
@@ -72,7 +57,7 @@ The RViz visualization function can be launched from either the vehicle or the v
 
 Command to launch the RViz visualization interface from the virtual machine:
 
-```
+```bash
 ros2 launch slam_view nav_rviz.launch.py
 ```
 
@@ -85,11 +70,11 @@ Command to launch the RViz visualization interface from the vehicle:
 - From RViz, you can see that the robot automatically estimates its initial position, eliminating the need for manual initialization.
 - If the robot's initial position deviates significantly, use the [2D Pose Estimate] tool in the RViz toolbar to estimate its approximate position for quick positioning.
 
-#### 4.3 Viewing the Node Communication Graph
+### 4.3 Viewing the Node Communication Graph
 
 Enter the VM terminal:
 
-```
+```bash
 ros2 run rqt_graph rqt_graph
 ```
 
@@ -97,11 +82,11 @@ If it doesn't display initially, select [Nodes/Topics (all)] and click the refre
 
 ![Picture: page 2: picture 8](_page_2_Picture_8.jpeg)
 
-#### 4.4 Viewing the TF Tree
+### 4.4 Viewing the TF Tree
 
 Enter the VM terminal:
 
-```
+```bash
 ros2 run rqt_tf_tree rqt_tf_tree
 ```
 
@@ -133,7 +118,7 @@ Find the navigation_launch.py file in the launch directory. The contents are as 
 
 This file modifies the default navigation2 launch file, removing the node that originally enabled the amcl positioning method. The rest of the navigation stack remains unchanged.
 
-```
+```python
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -143,7 +128,7 @@ from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
 ```
 
-```
+```python
 from launch_ros.actions import LoadComposableNodes
 from launch_ros.actions import Node
 from launch_ros.descriptions import ComposableNode, ParameterFile
@@ -396,11 +381,11 @@ ld.add_action(load_composable_nodes)
 return ld
 ```
 
-在launch目录下找到 cartographer_localization.launch.py 文件,内容如下:
+Find the cartographer_localization.launch.py file in the launch directory. The contents are as follows:
 
-本文件是启动cartographer节点,用于替换navigation2中默认的定位方式。
+This file starts the Cartographer node and replaces the default Navigation 2 localization method.
 
-```
+```python
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.conditions import IfCondition

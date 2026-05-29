@@ -1,11 +1,5 @@
 # LiDAR obstacle avoidance
 
-#### LiDAR obstacle avoidance
-
-- 1. Content Description
-- 2. Program startup
-- 3. Core code analysis
-
 ## 1. Content Description
 
 This section describes how the program combines chassis control with fused radar data to detect obstacles in real time as the car moves forward and steer the car to avoid them based on their locations.
@@ -18,13 +12,13 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
 
-```
+```bash
 ros2 launch yahboom_M3Pro_laser laser_driver.launch.py
 ```
 
 Next, you can refer to this product tutorial [5. Chassis Control] - [2. Handle Control] to start the handle control to control the car conveniently. Press the R2 button on the handle to cancel and start the radar obstacle avoidance gameplay. If the handle control is not started, it will not affect the operation of this program. Enter the following command in the terminal to start the radar obstacle avoidance program,
 
-```
+```bash
 ros2 run yahboom_M3Pro_laser laser_Avoidance
 ```
 
@@ -36,7 +30,7 @@ The obstacle avoidance detection distance set by the program is 0.825 meters, an
 
 ![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
-#### 3. Core code analysis
+## 3. Core code analysis
 
 Program code path:
 
@@ -50,7 +44,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahb
 
 Import the necessary library files,
 
-```
+```python
 #ros lib
 import rclpy
 from rclpy.node import Node
@@ -67,7 +61,7 @@ import os
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     #create a sub
@@ -117,7 +111,7 @@ obstacle ahead within the detection range.
 
 registerScan radar topic callback function,
 
-```
+```python
 def registerScan(self, scan_data):
     if not isinstance(scan_data, LaserScan): return
     ranges = np.array(scan_data.ranges)
