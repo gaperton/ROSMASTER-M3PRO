@@ -8,17 +8,17 @@ This section requires entering commands in the terminal. The terminal you open d
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-#### 2. Program startup
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
@@ -32,7 +32,7 @@ If the current angle information is not received and the current posture is not 
 
 Then enter the following command in the fourth terminal to start the Mediapipe gesture recognition program,
 
-```
+```bash
 ros2 run M3Pro_demo mediapipe_detect
 ```
 
@@ -52,7 +52,7 @@ If machine code No. 2 is not found or no machine code is found, the buzzer on th
 
 ## 3. Core code analysis
 
-#### 3.1. mediapipe_detect.py
+### 3.1. mediapipe_detect.py
 
 Program code path:
 
@@ -66,7 +66,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/me
 
 Import the necessary libraries,
 
-```
+```python
 import cv2
 import os
 import numpy as npX5Plus
@@ -87,7 +87,7 @@ import threading
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     #Robotic arm gesture recognition
@@ -126,7 +126,7 @@ self.create_subscription(Bool,"reset_gesture",self.get_resetCallBack,100)
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_msg):
     #Get color image topic data and use CvBridge to convert message data into
 image data
@@ -137,7 +137,7 @@ image data
 
 process function,
 
-```
+```python
 def process(self, frame):
     #Call the findHands function to detect the palm. The function will return the
 lmList list, which stores the detection results.
@@ -164,7 +164,7 @@ self.pub_gesture is True, which means that the gesture topic can be published
 
 Gesture_Detect_threading gesture detection program,
 
-```
+```python
 def Gesture_Detect_threading(self, lmList,bbox):
 ```
 
@@ -197,7 +197,7 @@ fingers stretched
     self.last_sum = sum(fingers)
 ```
 
-#### 3.2, apriltagID_gesture.py
+### 3.2. apriltagID_gesture.py
 
 Program code path:
 
@@ -211,7 +211,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -229,7 +229,7 @@ from M3Pro_demo.compute_joint5 import *
 from std_msgs.msg import Float32,Bool,UInt16,Int16
 ```
 
-```
+```python
 import time
 import yaml
 import math
@@ -245,7 +245,7 @@ import tf_transformations as tf
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name).
     #Robot arm sorting posture
@@ -319,7 +319,7 @@ self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
 
 callback image topic processing function,
 
-```
+```python
 def callback(self,color_msg,depth_msg):
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_msg, "rgb8")
     depth_image = self.depth_bridge.imgmsg_to_cv2(depth_msg, "32FC1")

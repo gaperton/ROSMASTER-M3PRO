@@ -1,6 +1,6 @@
 # Color block color sorting
 
-### 1. Content Description
+## 1. Content Description
 
 This function enables the program to obtain images through the camera, select the color of the color block to be sorted according to the key input, and the program will identify the color block that meets the requirements and clamp it with the lower claw, and finally place it in the set position.
 
@@ -8,25 +8,25 @@ This section requires entering commands in the terminal. The terminal you open d
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-**Wooden Blocks Used in This Lesson: 30x30x30mm Colored Blocks**
+Wooden Blocks Used in This Lesson: 30x30x30mm Colored Blocks
 
-### 2. Program startup
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
 Finally, open the third terminal and enter the following command to start the color sorting program:
 
-```
+```bash
 ros2 run M3Pro_demo color_recognize
 ```
 
@@ -48,7 +48,7 @@ After pressing the button to select the color block, the selected color will be 
 
 At this point, press the spacebar to begin the gripping process. Similarly, the program determines the distance between the blue block and the robot's base_link. If the distance is within [215, 225], the robot arm directly lowers its gripper to grab the block and place it at the set location. If the distance is outside [215, 225], the robot first moves the robot block to within [215, 225] based on the distance between the robot code block and the robot's base coordinate system (base_link), then lowers its gripper to grab the block and place it at the set location.
 
-#### 2.1. Color block color calibration
+### 2.1. Color block color calibration
 
 Due to lighting reasons, the HSV value preset by the program may not be able to accurately distinguish the color blocks. At this time, you can press the c key or the C key, and then use the mouse to select the color of the color block to recalibrate the HSV value of the color block. As shown in the figure below, suppose you press b or B to select blue first, but the binary image on the right cannot distinguish the blue. Then we need to press the c key or the C key to enter the calibration model and use the mouse to select the area of the blue block. The program will obtain the HSV value in the green box.
 
@@ -60,7 +60,7 @@ Release the mouse to complete the calibration. Press the b or B key to identify.
 
 ## 3. Core code analysis
 
-#### 3.1. color_recognize.py
+### 3.1. color_recognize.py
 
 Program code path:
 
@@ -74,7 +74,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/co
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -102,9 +102,8 @@ from ament_index_python.packages import get_package_share_directory
 import threading
 ```
 
-程序初始化以及创建发布者和订阅者,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 100, 0, 0, 90, 0]
@@ -203,7 +202,7 @@ the HSV value of the selected color can be updated.
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data
@@ -299,7 +298,7 @@ else:
 
 process button image processing function,
 
-```
+```python
 def process(self,rgb_img,key):
     rgb_img = cv.resize(rgb_img, (640, 480))
     binary = []
@@ -400,7 +399,7 @@ cv2.FONT_HERSHEY_SIMPLEX, 1, self.text_color, 2)
     return rgb_img, binary
 ```
 
-#### 3.2, color_common
+### 3.2. color_common
 
 The source code path of the library:
 
@@ -414,31 +413,31 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/co
 
 object_follow color recognition function
 
-```
+```python
 def object_follow(self, img, hsv_msg):
    src = img.copy()
-   # 由颜色范围创建NumPy数组
+   # NumPy
    # Create NumPy array from color range
    src = cv.cvtColor(src, cv.COLOR_BGR2HSV)
    lower = np.array(hsv_msg[0], dtype="uint8")
    upper = np.array(hsv_msg[1], dtype="uint8")
-   # 根据特定颜色范围创建mask
+   # mask
    # Create a mask based on a specific color range
    mask = cv.inRange(src, lower, upper)
    color_mask = cv.bitwise_and(src, src, mask=mask)
-   # 将图像转为灰度图
+
    # Convert the image to grayscale
    gray_img = cv.cvtColor(color_mask, cv.COLOR_RGB2GRAY)
-   # 获取不同形状的结构元素
+
    # Get structure elements of different shapes
    kernel = cv.getStructuringElement(cv.MORPH_RECT, (5, 5))
-   # 形态学闭操作
+
    # Morphological closed operation
    gray_img = cv.morphologyEx(gray_img, cv.MORPH_CLOSE, kernel)
-   # 图像二值化操作
+
    # Image binarization operation
    ret, binary = cv.threshold(gray_img, 10, 255, cv.THRESH_BINARY)
-   # 获取轮廓点集(坐标)
+   # ()
    # Get the set of contour points (coordinates)
    find_contours = cv.findContours(binary, cv.RETR_EXTERNAL,
 cv.CHAIN_APPROX_SIMPLE)
@@ -455,14 +454,14 @@ cv.CHAIN_APPROX_SIMPLE)
        #print("max_box: ",max_box)
        self.max_box = np.int0(self.max_box)
        #print("max_box: ",max_box)
-       #计算一组二维点的最小外接圆,返回的是这个圆的圆形坐标xy和这个圆的半径、
+       #xy
 ```
 
 ```
 #Calculate the minimum circumscribed circle of a set of two-dimensional
 points, and return the circular coordinates xy and radius of the circle
         (color_x, color_y), color_radius = cv.minEnclosingCircle(self.max_box)
-        # 将检测到的颜色用原形线圈标记出来
+
         # Mark the detected color with the original shape coil
         self.Center_x = int(color_x)
         self.Center_y = int(color_y)

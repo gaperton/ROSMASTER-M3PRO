@@ -1,6 +1,6 @@
 # Sorting height abnormality color block
 
-### 1. Content Description
+## 1. Content Description
 
 This function enables the program to obtain images through the camera and select the color of the color blocks to be sorted according to the key input. The program will identify the color blocks that meet the requirements and the lower claw will grab the color blocks with a height of more than 4 cm and finally place them in the set position.
 
@@ -10,23 +10,23 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 The wooden blocks used in this lesson are: **30x30x30mm and 30x30x60mm colored blocks**.
 
-#### 2. Program startup
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
 Finally, open the third terminal and input the following command to start the program for sorting highly abnormal color blocks:
 
-```
+```bash
 ros2 run M3Pro_demo color_list
 ```
 
@@ -48,7 +48,7 @@ Suppose we place four color blocks, two **30x30x60mm**red blocks and green block
 
 Pressing the spacebar starts the gripping process. Similarly, the program determines the distance between the target green block and the robot's base_link. If the distance is within [215, 225], the robot arm directly lowers its gripper to grab the target green block and place it at the set location. If the distance is outside [215, 225], the robot first moves the target green block to within [215, 225] based on the distance between the target green block and the robot's base coordinate system (base_link), then lowers its gripper to grab the block and finally place it at the set location.
 
-#### 2.1. Color block color calibration
+### 2.1. Color block color calibration
 
 You can refer to the content of [2.1, Color Block Color Calibration] in [6. Color Block Color Sorting] in the tutorial [9. Robotic Arm and 3D Space Gripping]. The calibration method is the same.
 
@@ -63,7 +63,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/co
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -80,7 +80,7 @@ from std_msgs.msg import Bool,Int16
 import time
 ```
 
-```
+```python
 import transforms3d as tfs
 import tf_transformations as tf
 import yaml
@@ -98,7 +98,7 @@ from M3Pro_demo.compute_joint5 import *
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 110, 0, 0, 90, 0]
@@ -210,7 +210,7 @@ the HSV value of the selected color can be updated.
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data

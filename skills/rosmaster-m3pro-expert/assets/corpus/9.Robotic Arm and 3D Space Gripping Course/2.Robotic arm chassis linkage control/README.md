@@ -1,4 +1,4 @@
-## Robotic arm chassis linkage control
+# Robotic arm chassis linkage control
 
 ## 1. Content Description
 
@@ -12,19 +12,19 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, open the terminal and enter the following command to start the robot arm solver.
 
-```
+```bash
 ros2 run arm_kin kin_srv
 ```
 
 In another terminal, enter
 
-```
+```bash
 ros2 run M3Pro_demo M3Pro_Dancing
 ```
 
 After the program is started, the robot arm will reach the initial posture. Then enter the following command in the terminal to start it:
 
-```
+```bash
 ros2 topic pub /start_dancing std_msgs/msg/Bool "data: True" --once
 ```
 
@@ -44,7 +44,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ M
 
 Import the used libraries,
 
-```
+```python
 import rclpy
 from std_msgs.msg import Bool
 import time
@@ -59,7 +59,7 @@ from geometry_msgs.msg import Twist
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -97,7 +97,7 @@ posture
 
 The startFlagCallBack callback function processes the message data released. If the message is true, two threads are started to control the operation of the robotic arm and chassis respectively. The parameters passed in are self.direction and -self.direction, which indicate the relative direction of movement.
 
-```
+```python
 def startFlagCallBack(self,msg):
     if msg.data == True:
         base = threading.Thread(target=self.base_move, args=(self.direction,))
@@ -108,7 +108,7 @@ def startFlagCallBack(self,msg):
 
 base_move controls the chassis movement function,
 
-```
+```python
 def base_move(self,base_dir):
     self.vx = self.direction * 0.1
     #Publish movement speed
@@ -123,7 +123,7 @@ direction
 
 arm_move controls the movement of the robotic arm.
 
-```
+```python
 def arm_move(self,arm_dir):
     print("------------------------------------------------")
     #print("pose_T: ",pose_T)
@@ -155,7 +155,7 @@ from various angles
 
 get_ik_respone_callback receives the callback function that returns the result of calling the ik service.
 
-```
+```python
 def get_ik_respone_callback(self, future):
     try:
 ```
@@ -182,7 +182,7 @@ responses returned after the service is processed.
 
 get_current_end_pos gets the current end position function of the robotic arm.
 
-```
+```python
 def get_current_end_pos(self):
     #Create service request data
     request = ArmKinemarics.Request()
@@ -201,7 +201,7 @@ values are the joint angle values of the current robot arm.
 
 get_fk_respone_callback receives the callback function that returns the result of calling the fk service.
 
-```
+```python
 def get_fk_respone_callback(self, future):
     try:
         #Receive the result returned after calling the service

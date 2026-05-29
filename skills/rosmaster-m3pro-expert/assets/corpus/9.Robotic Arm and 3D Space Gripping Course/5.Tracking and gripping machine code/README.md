@@ -1,4 +1,4 @@
-## Tracking and gripping machine code
+# Tracking and gripping machine code
 
 ## 1. Content Description
 
@@ -14,13 +14,13 @@ The wooden blocks used in this lesson: **40x40x40mm Machine Code Blocks**.
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp
 ```
 
@@ -28,7 +28,9 @@ After running, it is shown as follows:
 
 Finally, open the third terminal and enter the following command to start the tracking and grabbing machine code program:
 
+```bash
 ros2 run M3Pro_demo apriltag_follow_2D
+```
 
 After the program is run, the 4 cm machine code wooden block that comes with the handheld device appears in the image, as shown below.
 
@@ -48,7 +50,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -88,7 +90,7 @@ with open(offset_file, 'r') as file:
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -181,7 +183,7 @@ True, it means that the next tracking and clamping can be performed.
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data

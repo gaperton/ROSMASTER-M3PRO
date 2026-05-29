@@ -1,10 +1,10 @@
 # KFC tracks gripped objects
 
-### 1. Content Description
+## 1. Content Description
 
 This function allows the program to acquire an image through the camera, then use the mouse to select the object to be tracked and gripped. After pressing the spacebar, slowly move the object to be tracked. The robotic arm will track the object, keeping its center at the center of the image. After the robotic arm stops tracking, the program will adjust the distance between the object and the robot's base_link and then control the robotic arm to grip the object.
 
-#### Notice:
+### Notice:
 
 - The object you select should be as large as possible. If the object is too small, it will not be possible to accurately obtain depth information, resulting in the program being unable to control the robotic arm and chassis. It is recommended that the object has a cross-section of no more than 7 cm.
 - The gripping angle of the robot arm's gripper needs to be adjusted according to the selected object. Otherwise, it will not be able to clamp firmly or clamp too tightly, which may burn out the No. 6 servo. For the first grip, you can prevent the gripper from gripping the object. Then, modify the No. 6 servo angle in the program and then grip again. The smaller the value, the wider the gripper opens. The minimum is 0 degrees, and the maximum value results in a smaller gripper opening.
@@ -17,21 +17,25 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
+```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
+```bash
 ros2 run M3Pro_demo grasp
+```
 
 Then, open the third terminal and enter the following command to start the KCF tracking program:
 
-```
+```bash
 ros2 run M3Pro_demo KCF_follow
 ```
 
 Then open the fourth terminal and enter the following command to start the KCF program,
 
-```
+```bash
 ros2 run M3Pro_KCF KCF_Tracker_Node
 ```
 
@@ -43,9 +47,9 @@ Then press the spacebar to start tracking. Slowly move the selected object, and 
 
 until the condition that both are within the range of [240, 260] is met, and then the gripping, placement, and homing operations will be performed.
 
-### 3. Core code analysis
+## 3. Core code analysis
 
-#### 3.1, KCF_Tracker_Node
+### 3.1. KCF_Tracker_Node
 
 Program code path:
 
@@ -232,7 +236,7 @@ not enabled, then the parking information is released
 }
 ```
 
-#### 3.2, KCF_follow.py
+### 3.2. KCF_follow.py
 
 Program code path:
 
@@ -246,7 +250,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/KC
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -271,7 +275,7 @@ from M3Pro_demo.PID import *
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -335,7 +339,7 @@ self.create_subscription(Bool,"grasp_done",self.get_graspStatusCallBack,100)
 
 callback object position information topic callback function,
 
-```
+```python
 def callback(self,msg):
 ```
 

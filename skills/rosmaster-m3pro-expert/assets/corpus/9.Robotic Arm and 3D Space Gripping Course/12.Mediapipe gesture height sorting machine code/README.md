@@ -1,10 +1,4 @@
-## Mediapipe gesture height sorting machine code
-
-Mediapipe gesture height sorting machine code
-
-- 1. Content Description
-- 2. Program startup
-- 3. Core code analysis
+# Mediapipe gesture height sorting machine code
 
 ## 1. Content Description
 
@@ -20,13 +14,13 @@ The wooden blocks used in this lesson: **30x30x30mm Machine Code Blocks.**
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
@@ -34,7 +28,7 @@ After running, it is as shown below:
 
 Then enter the following command in the third terminal to start the Mediapipe gesture height sorting machine code program,
 
-```
+```bash
 ros2 run M3Pro_demo apriltagHeight_gesture
 ```
 
@@ -44,7 +38,7 @@ If the current angle information and the current pose are not received, the grip
 
 Then enter the following command in the fourth terminal to start the Mediapipe gesture recognition program,
 
-```
+```bash
 ros2 run M3Pro_demo mediapipe_detect
 ```
 
@@ -78,7 +72,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -105,14 +99,14 @@ from sensor_msgs . msg import Image
 from geometry_msgs . msg import Twist
 ```
 
-```
+```python
 import transforms3d as tfs
 import tf_transformations as tf
 ```
 
 The program initializes and creates publishers and subscribers,
 
-```
+```python
 def __init__ ( self , name ):
     super (). __init__ ( name )
     #Robot arm sorting posture
@@ -202,7 +196,7 @@ the machine code height can be calculated.
 
 callback image topic callback function,
 
-```
+```python
 def callback ( self , color_msg , depth_msg ):
     rgb_image = self . rgb_bridge . imgmsg_to_cv2 ( color_msg , "rgb8" )
     depth_image = self . depth_bridge . imgmsg_to_cv2 ( depth_msg , "32FC1" )

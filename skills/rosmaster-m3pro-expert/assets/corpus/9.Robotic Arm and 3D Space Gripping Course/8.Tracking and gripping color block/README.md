@@ -12,23 +12,25 @@ Simply open the terminal on the Orin motherboard and enter the commands mentione
 
 The wooden blocks used in this lesson: **40x40x40mm colored blocks**.
 
-# 2. Program startup
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
+```bash
 ros2 run M3Pro_demo grasp
+```
 
 After running, it is shown as follows:
 
 Finally, open the third terminal and enter the following command to start the tracking and clamping color block program:
 
-```
+```bash
 ros2 run M3Pro_demo color_follow
 ```
 
@@ -46,13 +48,13 @@ As shown in the image below, after the program runs, the matching blue block (40
 
 Slowly move the color block, and the robotic arm will follow. The program will keep the center of the color block in the center of the image. After the robotic arm stops tracking, the program will determine whether the distance between the robot base_link and the color block is less than or equal to 26 cm. If so, a buzzer will sound, and the program will control the robotic arm to grab the color block, place it in the set position, and finally return to the initial position. If the distance between the robot base_link and the color block is greater than 26 cm, the program will control the chassis to move forward until the condition of less than or equal to 26 cm is met, and then the gripping, placement, and homing operations will be carried out.
 
-#### 2.1. Color block color calibration
+### 2.1. Color block color calibration
 
 You can refer to the content of [2.1, Color Block Color Calibration] in [6. Color Block Color Sorting] in the tutorial [9. Robotic Arm and 3D Space Gripping].
 
 The calibration method is consistent.
 
-### 3. Core code analysis
+## 3. Core code analysis
 
 Program code path:
 
@@ -66,7 +68,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/co
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -99,7 +101,7 @@ from M3Pro_demo.PID import *
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -210,7 +212,7 @@ means that the x value threshold is exceeded.
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data

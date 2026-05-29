@@ -1,6 +1,6 @@
 # Line patrol and obstacle removal
 
-# 1. Content Description
+## 1. Content Description
 
 This function enables the program to acquire images through the camera and recognize the color of the patrol line. The program controls the robot to move along the line. During this process, the lidar scans for obstacles on the path. If an obstacle is encountered, the robot stops. If a machine code appears on the route, the robot adjusts its posture, grabs the machine code with its lower claw, puts it aside, and continues patrolling the line.
 
@@ -8,25 +8,25 @@ This section requires entering commands in the terminal. The terminal you open d
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-**The machine code blocks used in this lesson have the following dimensions: 30 x 30 x 30 mm.**
+The machine code blocks used in this lesson have the following dimensions: 30 x 30 x 30 mm.
 
-### 2. Program startup
+## 2. Program startup
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
 Finally, open the third terminal and enter the following command to start the line inspection and obstacle removal program:
 
-```
+```bash
 ros2 run M3Pro_demo follow_line
 ```
 
@@ -36,7 +36,7 @@ After the start command, a graphic window titled " **frame"** will be opened. Th
 
 If it encounters a machine code, the car will stop and adjust the distance between the car body and the machine code according to the position of the machine code. After adjusting to the distance set by the program, the robotic arm will lower its claws to clamp the machine code and place it aside, and then continue to move along the line.
 
-#### 2.1. Color calibration
+### 2.1. Color calibration
 
 The robot has been calibrated with a specific color when it leaves the factory. If you find that the color recognition of road markings is not ideal during line patrol, or you need to change the color of the road markings, you need to change the line patrol color.
 
@@ -46,7 +46,7 @@ After the frame graphics window appears after the previous step ros2 run M3Pro_d
 
 After recalibrating the color, the terminal prompts **Reset success!!!**, and the color calibration is completed.
 
-# 3. Core code analysis
+## 3. Core code analysis
 
 Program code path:
 
@@ -60,7 +60,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/fo
 
 Import the necessary library files,
 
-```
+```python
 #ros lib
 import rclpy
 from rclpy.node import Node
@@ -88,7 +88,7 @@ from M3Pro_demo.compute_joint5 import *
 
 Program initialization and creation of publishers and subscribers
 
-```
+```python
 def __init__(self,name):
     super().__init__(name)
     #create a publisher
@@ -200,7 +200,7 @@ self.get_parameter('ResponseDist').get_parameter_value().double_value
 
 callback color image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     # Convert the image to opencv format
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_frame,'rgb8')
@@ -233,7 +233,7 @@ bin_img])))
 
 process image processing function,
 
-```
+```python
 def process(self, rgb_img, action):
     #print("************************************")
     binary = []
@@ -277,7 +277,7 @@ rclpy.parameter.Parameter('Smin',rclpy.Parameter.Type.INTEGER,self.hsv_range[0]
 [1])
 ```
 
-```
+```python
 self.Vmin =
 rclpy.parameter.Parameter('Vmin',rclpy.Parameter.Type.INTEGER,self.hsv_range[0]
 [2])
@@ -290,7 +290,7 @@ rclpy.parameter.Parameter('Smax',rclpy.Parameter.Type.INTEGER,self.hsv_range[1]
             self.Vmax =
 rclpy.parameter.Parameter('Vmax',rclpy.Parameter.Type.INTEGER,self.hsv_range[1]
 [2])
-•
+-
             all_new_parameters =
 [self.Hmin,self.Smin,self.Vmin,self.Hmax,self.Smax,self.Vmax]
             self.set_parameters(all_new_parameters)
@@ -363,7 +363,7 @@ int(self.tags[0].corners[1][1])
 
 execute line patrol function,
 
-```
+```python
 def execute(self, point_x, color_radius):
     #If the R2 button on the remote control is pressed, then return directly and
 press it again to modify self.Joy_active to False

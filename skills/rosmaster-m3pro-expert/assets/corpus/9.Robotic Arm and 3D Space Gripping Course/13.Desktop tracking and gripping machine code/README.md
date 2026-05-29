@@ -1,4 +1,4 @@
-## Desktop tracking and gripping machine code
+# Desktop tracking and gripping machine code
 
 ## 1. Content Description
 
@@ -14,13 +14,13 @@ The wooden blocks used in this lesson: **30x30x30mm Machine Code Blocks.**
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
@@ -28,7 +28,7 @@ After running, it is shown as follows:
 
 Then enter the following command in the third terminal to start the desktop tracking and grabbing machine code program,
 
-```
+```bash
 ros2 run M3Pro_demo apriltag_track_desktop
 ```
 
@@ -52,7 +52,7 @@ Program code path:
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -83,7 +83,7 @@ import threading
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 120, 0, 0, 90, 90]
@@ -162,7 +162,7 @@ tracking mode.
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
 ```
 

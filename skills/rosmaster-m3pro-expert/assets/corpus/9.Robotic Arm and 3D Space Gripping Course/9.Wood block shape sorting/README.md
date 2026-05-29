@@ -1,4 +1,4 @@
-## Wood block shape sorting
+# Wood block shape sorting
 
 ## 1. Content Description
 
@@ -14,19 +14,19 @@ Wooden blocks used in this lesson: **30x30x30mm, 30x30x60mm, and 30x30mm colored
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
 Finally, open the third terminal and enter the following command to start the wood block shape sorting program:
 
-```
+```bash
 ros2 run M3Pro_demo shape_recognize
 ```
 
@@ -49,7 +49,7 @@ Program code path:
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -62,7 +62,7 @@ from arm_msgs.msg import ArmJoints
 from std_msgs.msg import Float32,Bool,Int16
 ```
 
-```
+```python
 import time
 import transforms3d as tfs
 import tf_transformations as tf
@@ -79,7 +79,7 @@ from M3Pro_demo.compute_joint5 import *
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 100, 0, 0, 90, 0]
@@ -138,7 +138,7 @@ self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data
@@ -158,7 +158,7 @@ processing
     #Create an all-zero array with exactly the same shape and data type as
 gray_image
     black_image = np.zeros_like(gray_image)
-    #Assign values to the array and copy the pixel values of the first 420 rows ×
+    #Assign values to the array and copy the pixel values of the first 420 rows x
 the first 640 columns of the grayscale image to the same position in black_image
     black_image[0:400, 0:640] = gray_image[0:400, 0:640]
     #Threshold black_image and set all pixels with values < 90 to 0 (pure black)

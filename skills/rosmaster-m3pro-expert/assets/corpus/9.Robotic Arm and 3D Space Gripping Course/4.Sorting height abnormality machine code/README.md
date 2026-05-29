@@ -1,4 +1,4 @@
-## Sorting height abnormality machine code
+# Sorting height abnormality machine code
 
 ## 1. Content Description
 
@@ -14,13 +14,13 @@ The wooden blocks used in this lesson are: **30x30x30mm and 30x30x60mm Machine C
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
-```
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
@@ -28,7 +28,7 @@ After running, it is shown as follows:
 
 Finally, open the third terminal and enter the following command to start the program to remove highly abnormal machine code:
 
-```
+```bash
 ros2 run M3Pro_demo apriltag_list
 ```
 
@@ -61,14 +61,14 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
 from sensor_msgs.msg import Image
 ```
 
-```
+```python
 #Import the function of drawing machine code information
 from M3Pro_demo.vutils import draw_tags
 #Import the function to calculate the angle value of servo No. 5
@@ -107,7 +107,7 @@ with open(offset_file, 'r') as file:
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 120, 0, 0, 90, 90]
@@ -184,7 +184,7 @@ self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data

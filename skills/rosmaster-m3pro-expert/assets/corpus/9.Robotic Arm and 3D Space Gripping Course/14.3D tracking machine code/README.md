@@ -1,4 +1,4 @@
-## 3D tracking machine code
+# 3D tracking machine code
 
 ## 1. Content Description
 
@@ -14,11 +14,15 @@ The wooden blocks used in this lesson: **40x40x40mm Machine Code Blocks.**
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
+```
 
 Then, open another terminal and enter the following command to start the 3D tracking machine code program.
 
+```bash
 ros2 run M3Pro_demo apriltag_follow
+```
 
 After the program is started, the robotic arm will move to the tracking posture, holding a **40x40x40mm** machine code wooden block, as shown in the figure below.
 
@@ -40,7 +44,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -55,7 +59,7 @@ import time
 import transforms3d.euler as t3d_euler
 ```
 
-```
+```python
 import math
 from rclpy.node import Node
 import rclpy
@@ -70,7 +74,7 @@ import tf_transformations as tf
 
 Program initialization and definition of related variables,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     self.init_joints = [90, 150, 12, 20, 90, 0]
@@ -130,7 +134,7 @@ downwards
 
 callback image topic callback function,
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     # Convert the image to opencv format
     rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_frame,'rgb8')
@@ -240,7 +244,7 @@ judgment of the next moving distance
 
 Adjust adjustment function,
 
-```
+```python
 def adjust(self,offset_x,offset_y,offset_z):
     request = ArmKinemarics.Request()
     #Here, the x of the target of our robot arm's gripper is the difference

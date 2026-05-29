@@ -20,9 +20,9 @@ AprilTag's "machine code" refers to its internal encoding structure, a binary ma
 
 AprilTag has multiple predefined "families", each with different encoding rules and capacities:
 
-- tag16h5: 4×4 matrix, small, low redundancy
-- tag25h9: 5×5 matrix, balancing size and reliability
-- tag36h11: 6×6 matrix, high capacity, strong anti-blocking ability
+- tag16h5: 4x4 matrix, small, low redundancy
+- tag25h9: 5x5 matrix, balancing size and reliability
+- tag36h11: 6x6 matrix, high capacity, strong anti-blocking ability
 - tagCircle21h7: circular design, suitable for rotating scenes
 
 h5, h9 etc. suffixes indicate distance (error correction capability). The larger the number, the stronger the fault tolerance.
@@ -31,11 +31,13 @@ h5, h9 etc. suffixes indicate distance (error correction capability). The larger
 
 First, open the terminal and enter the following command to start the robot arm solver and camera driver,
 
+```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
+```
 
 Then, open another terminal and enter the following command to start the robotic arm gripping program:
 
-```
+```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
@@ -43,7 +45,7 @@ After running, it is shown as follows:
 
 Finally, open the third terminal and enter the following command to start the machine code ID sorting program:
 
-```
+```bash
 ros2 run M3Pro_demo apriltag_detect
 ```
 
@@ -62,7 +64,7 @@ Press the spacebar to start the clamping process. There are two situations:
 
 ## 3. Core code analysis
 
-### 3.1, apriltag_detect.py
+### 3.1. apriltag_detect.py
 
 Program code path:
 
@@ -74,7 +76,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ap
 
 Import the necessary library files,
 
-```
+```python
 import cv2
 import os
 import numpy as np
@@ -84,7 +86,7 @@ from M3Pro_demo.vutils import draw_tags
 #Import the function to calculate the angle value of servo No. 5
 ```
 
-```
+```python
 from M3Pro_demo.compute_joint5 import *
 #Import the library for detecting machine code
 from dt_apriltags import Detector
@@ -120,7 +122,7 @@ with open(offset_file, 'r') as file:
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
    super().__init__(name)
    self.init_joints = [90, 120, 0, 0, 90, 90]
@@ -131,13 +133,13 @@ True, it means publishing, and when it is False, it means not publishing
    self.pubPos_flag = False
    self.pr_time = time.time()
    #Create an object that recognizes machine code. The parameters include
-    '''families:要检测的标签家族
-   nthreads:使用的线程数
-   quad_decimate:检测四边形时的降采样比率,值越大检测越快但精度越低
-   quad_sigma:高斯模糊的标准差
-   refine_edges:是否优化边缘检测,1表示是,0表示否
-   decode_sharpening:解码时的锐化程度
-   debug:是否启用调试模式,1表示是,0表示否
+    '''families:
+   nthreads:
+   quad_decimate:,
+   quad_sigma:
+   refine_edges:,1,0
+   decode_sharpening:
+   debug:,1,0
    families: tag families to be detected
    nthreads: number of threads used
    quad_decimate: Downsampling ratio when detecting quadrilaterals. The larger
@@ -225,7 +227,7 @@ is calculated. If the value is False, the distance is not calculated.
 
 callbackImage topic callback function
 
-```
+```python
 def callback(self,color_frame,depth_frame):
     #Get color image topic data and use CvBridge to convert message data into
 image data
@@ -365,7 +367,7 @@ servo
 
 move_dist chassis movement adjustment distance function,
 
-```
+```python
 def move_dist(self,dist):
     #Call the pid calculation function, the value passed in is the current
 distance value
@@ -376,7 +378,7 @@ distance value
 
 compute_heigh calculates the machine code pose function. The parameters passed in are the xy pixel coordinates of the center point and the depth distance information corresponding to the center point.
 
-```
+```python
 def compute_heigh(self,x,y,z):
     #Calculate the three-dimensional coordinates of the center point and convert
 it from the image coordinate system to the camera coordinate system
@@ -414,7 +416,7 @@ value of the machine code in the world coordinate system.
 
 get_current_end_pos gets the current end position function of the robotic arm.
 
-```
+```python
 def get_current_end_pos(self):
     #Create service request data
     request = ArmKinemarics.Request()
@@ -433,7 +435,7 @@ values are the joint angle values of the current robot arm.
 
 get_fk_respone_callback receives the callback function that returns the result of calling the fk service.
 
-```
+```python
 def get_fk_respone_callback(self, future):
     try:
         #Receive the result returned after calling the service
@@ -456,7 +458,7 @@ except Exception as e:
     self.get_logger().error(f'Service call failed: {e}')
 ```
 
-#### 3.2. compute_joint5 function
+### 3.2. compute_joint5 function
 
 Program source code path:
 
@@ -468,7 +470,7 @@ Orin Motherboard
 
 The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/compute_joint5.py
 
-```
+```python
 import math
 #Calculate the inverse tangent of the incoming value to get the offset angle of
 the machine code
@@ -478,7 +480,7 @@ def compute_joint5(vy,vx):
     return angle_degrees
 ```
 
-### 3.3, grab_desktop.py
+### 3.3. grab_desktop.py
 
 Program source code path:
 
@@ -492,7 +494,7 @@ The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/gr
 
 Import the necessary library files,
 
-```
+```python
 import rclpy
 import numpy as np
 from std_msgs.msg import Bool,Int16
@@ -520,7 +522,7 @@ print(offset_config)
 
 Program initialization and creation of publishers and subscribers,
 
-```
+```python
 def __init__(self, name):
     super().__init__(name)
     #Define the flag for clamping. When the value is True, it means that clamping
@@ -592,7 +594,7 @@ placement point
 
 pos_info_callback machine code position information topic callback function,
 
-```
+```python
 def pos_info_callback(self,msg):
     print(msg)
     pos_x = msg.x
@@ -643,7 +645,7 @@ in is the value of xyz
 
 grasp
 
-```
+```python
 def grasp(self,pose_T):
     print("------------------------------------------------")
     #print("pose_T: ",pose_T)
@@ -670,7 +672,7 @@ you can adjust this parameter
 
 get_ik_respone_callback receives the callback function that returns the result of calling the ik service.
 
-```
+```python
 def get_ik_respone_callback(self, future):
     try:
         response = future.result()
@@ -728,7 +730,7 @@ six servos, so that the robotic arm can move its claws downwards
 
 Move robot arm gripping and placement function,
 
-```
+```python
 def move(self):
     #Call the function to publish the topic of controlling the angle of servo No.
 6, so that the robot arm clamps

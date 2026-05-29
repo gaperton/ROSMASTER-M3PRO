@@ -1,14 +1,6 @@
 # Robotic arm solution
 
-#### Robotic arm solution
-
-- 1. Content Description
-- 2. Program startup
-  - 2.1、Call fk
-  - 2.2, call ik
-- 3. Core code analysis
-
-### 1. Content Description
+## 1. Content Description
 
 This course implements the forward kinematics and inverse kinematics calculations of the robotic arm. Forward kinematics is the calculation of the end-point pose from the angle value of each servo of the robotic arm, while inverse kinematics is the calculation of the angle value of each servo from the end-point pose. Both play a vital role in three-dimensional space clamping. The forward kinematics algorithm can be used to determine the current pose of the end of the robotic arm. We need to know this value when performing coordinate system conversion. The inverse kinematics algorithm can be used to calculate the angle of each servo of the robotic arm in order for the end of the robotic arm to reach the target pose. Before clamping, this algorithm needs to be called to calculate the servo value and then control the servo to move to the clamping posture.
 
@@ -16,11 +8,11 @@ This section requires entering commands in the terminal. The terminal you open d
 
 Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
 
-# 2. Program startup
+## 2. Program startup
 
 In the terminal, enter the following command to start,
 
-```
+```bash
 ros2 run arm_kin kin_srv
 ```
 
@@ -125,11 +117,11 @@ in radians
 float64 yaw
 ```
 
-#### 2.1. Call fk
+### 2.1. Call fk
 
 We call fk to calculate: when the robot arm is straightened upward, what is the position of the end of the robot arm? First, we enter the following command to straighten the robot arm upward. After successfully connecting to the agent, enter the following command in the terminal,
 
-```
+```bash
 ros2 topic pub /arm6_joints arm_msgs/msg/ArmJoints { "joint1: 90,joint2:
 90,joint3: 90,joint4: 90,joint5: 90,joint6: 90,time: 1500" } --once
 ```
@@ -157,7 +149,7 @@ pitch = -1 .5707324948694676, yaw = -1 .5728927150075942)
 
 We only need to care about the following x, y, z, roll, pitch and yaw values. Here we represent the pose coordinates of the end of the robot arm, which means the position of the end of the robot arm in the world coordinate system, with base_link (0, 0, 0) as the reference point. When the robot arm is straightened upward, the values of xyz and rpy are x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942. Here, start the urdf display in the virtual machine and enter the following command in the virtual machine terminal to start the urdf display.
 
-```
+```bash
 ros2 launch yahboom_M3Pro_description display_launch.py
 ```
 
@@ -165,7 +157,7 @@ As shown in the figure below, the TF plug-in is used to view the Gripping pose. 
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-#### 2.2, call ik
+### 2.2. call ik
 
 We call fk to calculate: when the robot arm, the end of the robot arm pose is x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942, what is the value of each servo. In fact, this is reverse calculation. Theoretically, the result should be that the value of all six servos is 90.0. Enter the following command in the terminal,
 
