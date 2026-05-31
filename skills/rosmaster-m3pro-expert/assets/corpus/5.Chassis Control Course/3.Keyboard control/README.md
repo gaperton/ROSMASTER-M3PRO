@@ -2,37 +2,37 @@
 
 ## 1. Course Content
 
-Learn how to control robot movement using the keyboard and its principles.
+Learn how to control robot movement with the keyboard and understand the control principle.
 
-After running the program, use keyboard keys to publish speed topics to control the robot chassis' movement.
+After the program starts, keyboard keys publish velocity topics to control chassis movement.
 
 ## 2. Preparation
 
 ### 2.1 Content Description
 
-This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
+This lesson uses Jetson Orin NX as the example. For Raspberry Pi and Jetson Nano boards, open a terminal, enter the Docker container, and then run the commands from this lesson inside the container. For instructions, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-### 2.2 Starting the Agent
+For Orin and NX boards, open a terminal directly on the robot and run the commands from this lesson.
 
-Note: The Docker agent must be started before testing all examples. If it's already started, you don't need to restart it.
+### 2.2 Start the Agent
 
-Enter the command in the vehicle terminal:
+The Docker agent must be started before testing. If it is already running, you do not need to restart it.
 
-```
+Run the following command in the robot terminal:
+
+```bash
 sh start_agent.sh
 ```
 
-The terminal prints the following message, indicating a successful connection.
+The terminal prints connection information when the agent connects successfully.
 
-## 3. Running the Example
+## 3. Run the Example
 
-### 3.1 Starting Keyboard Control
+### 3.1 Start Keyboard Control
 
-#### Note:
+Jetson Nano and Raspberry Pi users must enter the Docker container first.
 
-The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (for steps, see the [Docker Course Section - Entering the Robot's Docker Container]).
-
-Run the keyboard control node on the vehicle terminal or in the virtual machine:
+Run the keyboard control node on the robot terminal or in the virtual machine:
 
 ```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
@@ -42,38 +42,39 @@ ros2 run yahboomcar_ctrl yahboom_keyboard
 
 #### 3.2.1 Direction Control
 
-| [i] or [I] | [linear, 0]   | [u] or [U] | [linear, angular]   |
-|------------|---------------|------------|---------------------|
-| [,]        | [-linear, 0]  | [o] or [O] | [linear, -angular]  |
-| [j] or [J] | [0, angular]  | [m] or [M] | [-linear, -angular] |
-| [l] or [L] | [0, -angular] | [.]        | [-linear, angular]  |
+| Key        | Motion            | Key        | Motion             |
+|------------|-------------------|------------|--------------------|
+| `i` or `I` | `[linear, 0]`     | `u` or `U` | `[linear, angular]` |
+| `,`        | `[-linear, 0]`    | `o` or `O` | `[linear, -angular]` |
+| `j` or `J` | `[0, angular]`    | `m` or `M` | `[-linear, -angular]` |
+| `l` or `L` | `[0, -angular]`   | `.`        | `[-linear, angular]` |
 
 #### 3.2.2 Speed Control
 
-| Key | Speed Change                                          | Key | Speed Change                                          |
-|-----|-------------------------------------------------------|-----|-------------------------------------------------------|
-| `q` | Increase both linear and angular velocities by 10% | `z` | Decrease both linear and angular velocities by 10% |
-| `w` | Increase only linear velocity by 10%               | `x` | Decrease only linear velocity by 10%               |
-| `e` | Increase only angular velocity by 10%              | `c` | Decrease only angular velocity by 10%              |
-| `t` | Switch linear velocity between X axis and Y-axis   | `s` | Stop keyboard control                                 |
+| Key | Speed change                                      | Key | Speed change                                      |
+|-----|---------------------------------------------------|-----|---------------------------------------------------|
+| `q` | Increase both linear and angular velocity by 10%  | `z` | Decrease both linear and angular velocity by 10%  |
+| `w` | Increase only linear velocity by 10%              | `x` | Decrease only linear velocity by 10%              |
+| `e` | Increase only angular velocity by 10%             | `c` | Decrease only angular velocity by 10%             |
+| `t` | Switch linear velocity between X axis and Y axis  | `s` | Stop keyboard control                             |
 
 ## 4. Source Code Analysis
 
-Source code path:
+Source code path on Jetson Orin Nano and Jetson Orin NX:
 
-jetson Orin Nano, jetson Orin NX:
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.py
+```
 
-/home/jetson/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard. py
+For Jetson Nano and Raspberry Pi, enter Docker first. Source code path:
 
-Jetson Orin Nano, Raspberry Pi:
-
-You need to enter Docker first.
-
-root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.py
+```
 
 ### 4.1 View the Node Relationship Graph
 
-Open a terminal and enter the command:
+Open a terminal and run:
 
 ```bash
 ros2 run rqt_graph rqt_graph
@@ -81,41 +82,37 @@ ros2 run rqt_graph rqt_graph
 
 ![Picture: page 2: picture 14](_page_2_Picture_14.jpeg)
 
-From the node relationship diagram, we can see:
+From the node relationship graph:
 
-**yahboom_keyboard_ctrl**: Controls the robot chassis by publishing the **/cmd_vel** topic
+- `yahboom_keyboard_ctrl`: Controls the robot chassis by publishing `/cmd_vel`.
+- `/YB_Node`: The chassis node subscribes to `/cmd_vel` and uses inverse kinematics to calculate each wheel speed, controlling robot movement.
 
-**/YB_Node**: The robot chassis node subscribes to the **/cmd_vel** topic and uses the inverse kinematic solution to calculate the speed of each wheel, thereby controlling the robot's movement.
+### 4.2 View Topic Messages and Message Types
 
-### 4.2 Viewing Topic Messages and Message Types
-
-Open a terminal and enter the command:
+View `/cmd_vel` data:
 
 ```bash
 ros2 topic echo /cmd_vel
 ```
 
-When controlling the robot chassis' movements using the keyboard, data is published to the **/cmd_vel** topic by printing messages.
-
-Enter the following command to view the message type of the **/cmd_vel** topic:
+View the message type of `/cmd_vel`:
 
 ```bash
 ros2 topic info /cmd_vel
 ```
 
-The Type column indicates that the message type of the **/cmd_vel** topic is **geometry_msgs/msg/Twist**. Enter the following command to view the composition of the **geometry_msgs/msg/Twist** message type:
+The message type is `geometry_msgs/msg/Twist`. View the message structure:
 
 ```bash
 ros2 interface show geometry_msgs/msg/Twist
 ```
 
-From the composition of the above message types, we can see that the robot chassis movement is controlled by two vector groups: linear (linear velocity) and angular (angular velocity). Each data element is a float64 floating-point number. The following explains the meaning of each data element.
+`Twist` contains two vector groups:
 
-linear float64 x: x-axis velocity float64 y: y-axis velocity float64 z: z-axis velocity
+- `linear`: linear velocity.
+- `angular`: angular velocity.
 
-angular float64 x: x-axis angular velocity float64 y: y-axis angular velocity float64 z: z-axis velocity: z-axis angular velocity
-
-Because the robot chassis can only move within a two-dimensional plane, only linear-x (x-axis velocity), linear-y (y-axis velocity), and angular-z (z-axis angular velocity) are published when controlling the robot via the keyboard.
+Each field is a `float64`. Because the chassis moves on a two-dimensional plane, keyboard control publishes only `linear.x`, `linear.y`, and `angular.z`.
 
 ### 4.3 Program Flowchart
 
@@ -123,36 +120,19 @@ Because the robot chassis can only move within a two-dimensional plane, only lin
 
 ### 4.4 Source Code Analysis
 
-Source Code Path:
+#### 4.4.1 Published Topic: `cmd_vel`
 
-Jetson Orin Nano, Jetson Orin NX:
-
-```
-/home/jetson/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.
-py
-```
-
-Jetson Orin Nano, Raspberry Pi:
-
-You need to first enter Docker.
-
-```
-root/yahboomcar_ws/src/yahboomcar_ctrl/yahboomcar_ctrl/yahboom_keyboard.py
-```
-
-### 4.41 Published Topic: cmd_vel
-
-```
+```python
 pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
 ```
 
-Just package the speed and publish it via pub.publish(twist). The chassis' speed subscriber will receive the speed data and then drive the car.
+The program packages velocity data and publishes it with `pub.publish(twist)`. The chassis velocity subscriber receives the data and drives the robot.
 
-### 4.42 Movement Dictionary and Speed Dictionary
+#### 4.4.2 Movement and Speed Dictionaries
 
-The movement dictionary mainly stores characters related to direction control
+The movement dictionary stores direction-control keys.
 
-```
+```python
 moveBindings = {
     'i': (1, 0),
     'o': (1, -1),
@@ -171,9 +151,9 @@ moveBindings = {
 }
 ```
 
-The speed dictionary mainly stores the characters related to speed control
+The speed dictionary stores speed-control keys.
 
-```
+```python
 speedBindings = {
     'Q': (1.1, 1.1),
     'Z': (.9, .9),
@@ -184,16 +164,13 @@ speedBindings = {
     'q': (1.1, 1.1),
     'z': (.9, .9),
     'w': (1.1, 1),
-```
-
-```
-'x': (.9, 1),
+    'x': (.9, 1),
     'e': (1, 1.1),
     'c': (1, .9),
 }
 ```
 
-### 4.43 Get the current key information
+#### 4.4.3 Read the Current Key
 
 ```python
 def getKey(self):
@@ -205,15 +182,19 @@ def getKey(self):
     return key
 ```
 
-### 4.44 Determine the key value and publish the /cmd_vel speed topic
+#### 4.4.4 Determine the Key Value and Publish `/cmd_vel`
 
-```
+The main loop reads the key, checks whether it is a movement or speed-control key, updates the current velocity, packages the value into a `Twist` message, and publishes it to `/cmd_vel`.
+
+```python
 while (1):
     key = yahboom_keyboard.getKey()
-    if key=="t" or key == "T": xspeed_switch = not xspeed_switch
+    if key == "t" or key == "T":
+        xspeed_switch = not xspeed_switch
     elif key == "s" or key == "S":
-        print ("stop keyboard control: {}".format(not stop))
+        print("stop keyboard control: {}".format(not stop))
         stop = not stop
+
     if key in moveBindings.keys():
         x = moveBindings[key][0]
         th = moveBindings[key][1]
@@ -229,16 +210,25 @@ while (1):
             turn = yahboom_keyboard.angular_speed_limit
             print("Angular speed limit reached!")
         print(yahboom_keyboard.vels(speed, turn))
-        if (status == 14): print(msg)
+        if status == 14:
+            print(msg)
         status = (status + 1) % 15
-    elif key == ' ': (x, th) = (0, 0)
+    elif key == ' ':
+        (x, th) = (0, 0)
     else:
         count = count + 1
-        if count > 4: (x, th) = (0, 0)
-        if (key == '\x03'): break
-    if xspeed_switch: twist.linear.x = speed * x
-    else: twist.linear.y = speed * x
+        if count > 4:
+            (x, th) = (0, 0)
+        if key == '\x03':
+            break
+
+    if xspeed_switch:
+        twist.linear.x = speed * x
+    else:
+        twist.linear.y = speed * x
     twist.angular.z = turn * th
-    if not stop: yahboom_keyboard.pub.publish(twist)
-    if stop:yahboom_keyboard.pub.publish(Twist())
+    if not stop:
+        yahboom_keyboard.pub.publish(twist)
+    if stop:
+        yahboom_keyboard.pub.publish(Twist())
 ```

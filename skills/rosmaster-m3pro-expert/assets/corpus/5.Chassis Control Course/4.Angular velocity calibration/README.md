@@ -1,108 +1,108 @@
-# Angular velocity calibration
+# Angular Velocity Calibration
 
 ## 1. Course Content
 
-Learn the function of robot angular velocity calibration
+Learn how to calibrate robot angular velocity.
 
-Run the angular velocity calibration program. After clicking Start on the visual interface, the robot chassis will begin to rotate and will stop when the error is less than the tolerance value.
+After the angular velocity calibration program starts, click **Start** in the visual interface. The chassis rotates and stops when the error is less than the tolerance value.
 
 ## 2. Preparation
 
 ### 2.1 Content Description
 
-This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
+This lesson uses Jetson Orin NX as the example. For Raspberry Pi and Jetson Nano boards, open a terminal, enter the Docker container, and then run the commands from this lesson inside the container. For instructions, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+
+For Orin and NX boards, open a terminal directly on the robot and run the commands from this lesson.
 
 ### 2.2 Start the Agent
 
-calibrate_angular Note: All test cases must start the docker agent first. If it has already been started, there is no need to start it again
+The Docker agent must be started before testing. If it is already running, you do not need to restart it.
 
-Enter the command in the vehicle terminal:
+Run the following command in the robot terminal:
 
+```bash
 sh start_agent.sh
+```
 
-The terminal prints the following information, indicating that the connection is successful
+The terminal prints connection information when the agent connects successfully.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Run the case
+## 3. Run the Example
 
-### Notice:
+### Notice
 
-**Jetson Nano and Raspberry Pi** series controllers need to enter the Docker container first (please refer to the [Docker course chapter - Entering the robot's Docker container] for steps).
+Jetson Nano and Raspberry Pi users must enter the Docker container first.
 
-### 3.1 Startup Program
+### 3.1 Start the Program
 
-The vehicle computer opens the terminal and runs the angular velocity calibration node:
+Open a terminal on the robot computer and start the angular velocity calibration node:
 
 ```bash
 ros2 launch calibration calibrate_angular.launch.py
 ```
 
-Open the dynamic parameter adjuster in the virtual machine terminal and run:
+Open the dynamic parameter adjuster from the virtual machine terminal:
 
 ```bash
 ros2 run rqt_reconfigure rqt_reconfigure
 ```
 
-**Click the calibrate_angular** node in the node options on the left:
+Click the **calibrate_angular** node in the node list on the left.
 
 ![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-**Note:** The above nodes may not be present when you first open the application. Click Refresh to see all nodes. The **calibrate_angular** node displayed is the node for calibrating angular velocity.
+Note: The nodes may not appear the first time you open the tool. Click **Refresh** to display all nodes. The **calibrate_angular** node is used to calibrate angular velocity.
 
-Other parameters of the rqt interface are described as follows:
+The rqt parameters are:
 
-- test_angle: calibration test angle, here the test rotates 360 degrees;
-- speed: angular velocity;
-- Tolerance: the tolerance allowed for error;
-- odom_angular_scale_correction: Linear velocity proportional coefficient. If the test result is not ideal, modify this value.
-- start_test: test switch;
-- base_frame: the name of the base coordinate system;
-- odom_frame: The name of the odometry coordinate frame.
+- `test_angle`: Calibration test angle. This example rotates 360 degrees.
+- `speed`: Angular velocity.
+- `tolerance`: Allowed error tolerance.
+- `odom_angular_scale_correction`: Angular velocity scale correction. If the test result is not ideal, modify this value.
+- `start_test`: Test switch.
+- `base_frame`: Base coordinate frame name.
+- `odom_frame`: Odometry coordinate frame name.
 
-### 3.2 Start calibration
+### 3.2 Start Calibration
 
-In the rqt_reconfigure interface, select the calibrate_angular node. There is a **start_test** node below. Click the box to the right of it to start calibration.
+In `rqt_reconfigure`, select the `calibrate_angular` node. Click the box beside `start_test` to start calibration.
 
-Click start_test to start calibration. The car will monitor the TF transformation of base_footprint and odom, calculate the theoretical rotation angle of the car, and issue a stop command when the error is less than tolerance.
+The robot monitors the TF transform between `base_footprint` and `odom`, calculates the theoretical rotation angle, and sends a stop command when the error is less than `tolerance`.
 
-If the actual rotation angle of the car is not 360 degrees, then modify the odom_angular_scale_correction parameter in rqt. After modification, click a blank space, click start_test again, reset start_test, and then click start_test again to calibrate. Modifying other parameters is the same. You need to click a blank space to write the modified parameters. Record the last calibrated **odom_angular_scale_correction** parameter
+If the actual rotation angle is not 360 degrees, modify `odom_angular_scale_correction` in rqt. After modifying the value, click a blank area so the parameter is written, reset `start_test`, and then start calibration again. Record the final calibrated `odom_angular_scale_correction` value.
 
-### 3.3 Writing calibration parameters to the chassis
+### 3.3 Write Calibration Parameters to the Chassis
 
-To write parameters to the chassis, you need to disconnect the chassis agent first. Press **Ctrl+C** or directly close the chassis connection agent terminal.
+To write parameters to the chassis, first disconnect the chassis agent. Press Ctrl+C or close the agent terminal.
 
-**Open the config_robot.py** file in the home directory of the vehicle
+Open `config_robot.py` in the robot home directory.
 
 ![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
-Uncomment line 552, enter the previous calibration coefficients in the brackets of **robot.set_ros_scale_angluar(xx), and click Save**.
+Uncomment line 552, enter the calibrated coefficient in `robot.set_ros_scale_angluar(xx)`, and save the file.
 
-Open a terminal on the car and enter the command:
+Open a terminal on the robot and run:
 
 ```bash
 python3 config_robot.py
 ```
 
-Wait for the parameter writing to be completed. The ros_scale_angluar:1.000 printed in the terminal information is the written parameter, and the chassis angular velocity calibration is completed.
+Wait for parameter writing to finish. The terminal prints the written value, such as `ros_scale_angluar:1.000`, indicating that angular velocity calibration is complete.
 
-## 4. Source code analysis
+## 4. Source Code Analysis
 
-Source code path:
+Source code path on Jetson Orin Nano and Jetson Orin NX:
 
-jetson Orin Nano, jetson Orin NX host:
-
-```
+```text
 /home/jetson/M3Pro_ws/src/calibration/calibration/calibrate_angular.py
 ```
 
-Jetson Orin Nano, Raspberry Pi host:
+For Jetson Nano and Raspberry Pi, enter Docker first.
 
-You need to enter docker first
+### 4.1 View the Node Relationship Graph
 
-### 4.1 View the node relationship diagram
-
-Open a terminal on the virtual machine and enter the command:
+Open a terminal on the virtual machine and run:
 
 ```bash
 ros2 run rqt_graph rqt_graph
@@ -110,90 +110,93 @@ ros2 run rqt_graph rqt_graph
 
 ![Figure: page 5: figure 4](_page_5_Figure_4.jpeg)
 
-In the above node relationship diagram:
+In the node relationship graph:
 
-- **The imu_filter node is responsible for filtering the original IMU data /imu/data** of the chassis and publishing the filtered data **/imu/data**
-- **The /ekf_filter_node** node subscribes to the chassis raw odometer **/odom_raw** and filtered IMU data **/imu/data**, performs data fusion and publishes to the **/odom** topic
-- **The calibrate_angular** node monitors the TF transformation of odom->base_footprint and publishes the /cmd_vel topic to control the movement of the robot chassis.
+- `imu_filter` filters raw chassis IMU data from `/imu/data_raw` and publishes filtered data to `/imu/data`.
+- `/ekf_filter_node` subscribes to raw odometry `/odom_raw` and filtered IMU data `/imu/data`, performs data fusion, and publishes `/odom`.
+- `calibrate_angular` monitors the TF transform from `odom` to `base_footprint` and publishes `/cmd_vel` to control chassis movement.
 
-### 4.2 Source code analysis
+### 4.2 Source Code Analysis
 
-Among them, the implementation of monitoring tf coordinate transformation is the get_odom_angle method in the Calibrateangular class:
+The `get_odom_angle` method in the `Calibrateangular` class monitors TF coordinate transforms.
 
 ```python
-def get_odom_angle ( self ):
-     try :
-        now = rclpy . time . Time ()
-        rot = self . tf_buffer . lookup_transform (
-            self . base_frame ,
-            self . odom_frame ,
-            now ,
-            timeout = rclpy . duration . Duration ( seconds = 1.0 ))
-        cacl_rot = PyKDL . Rotation . Quaternion ( rot . transform . rotation .
-x , rot . transform . rotation . y , rot . transform . rotation . z , rot .
-transform . rotation . w )
-        #print("cacl_rot: ",cacl_rot)
-        angle_rot = cacl_rot . GetRPY ()[ 2 ]
-        #print("angle_rot: ",angle_rot)
-     except ( LookupException , ConnectivityException , ExtrapolationException
-):
-        # self.get_logger().info('transform not ready')
+def get_odom_angle(self):
+    try:
+        now = rclpy.time.Time()
+        rot = self.tf_buffer.lookup_transform(
+            self.base_frame,
+            self.odom_frame,
+            now,
+            timeout=rclpy.duration.Duration(seconds=1.0)
+        )
+        cacl_rot = PyKDL.Rotation.Quaternion(
+            rot.transform.rotation.x,
+            rot.transform.rotation.y,
+            rot.transform.rotation.z,
+            rot.transform.rotation.w
+        )
+        angle_rot = cacl_rot.GetRPY()[2]
+    except (LookupException, ConnectivityException, ExtrapolationException):
         return
 ```
 
-The on_timer (timer callback function) method in the Calibrateangular class is used to determine the rotation angle of the robot chassis and control the chassis movement:
+The `on_timer` method, the timer callback in the `Calibrateangular` class, calculates the robot rotation angle and controls chassis movement.
 
 ```python
-def on_timer ( self ):
-```
+def on_timer(self):
+    self.start_test = self.get_parameter(
+        'start_test'
+    ).get_parameter_value().bool_value
+    self.odom_angular_scale_correction = self.get_parameter(
+        'odom_angular_scale_correction'
+    ).get_parameter_value().double_value
+    self.test_angle = self.get_parameter(
+        'test_angle'
+    ).get_parameter_value().double_value
+    self.test_angle = radians(self.test_angle)
+    self.speed = self.get_parameter(
+        'speed'
+    ).get_parameter_value().double_value
 
-```
-self . start_test = self . get_parameter ( 'start_test' ).
-get_parameter_value (). bool_value
-    self . odom_angular_scale_correction = self . get_parameter (
-'odom_angular_scale_correction' ) . get_parameter_value () . double_value
-    self . test_angle = self . get_parameter ( 'test_angle' ) .
-get_parameter_value () . double_value
-    self . test_angle = radians ( self . test_angle ) # Convert angle to radians
-    self . speed = self . get_parameter ( 'speed' ). get_parameter_value ().
-double_value
-    move_cmd = Twist ()
-    self . test_angle *= self . reverse
-    #self.test_angle *= self.reverse
-    #self.error = self.test_angle - self.turn_angle
-    if self . start_test :
-        self . error = self . turn_angle - self . test_angle
-        if abs ( self . error ) > self . tolerance :
-            #move_cmd.linear.x = 0.2
-            move_cmd . angular . z = copysign ( self . speed , self . error )
-            #print("angular: ",move_cmd.angular.z)
-            self . cmd_vel . publish ( move_cmd )
-            self . odom_angle = self . get_odom_angle ()
-            self . delta_angle = self . odom_angular_scale_correction * self .
-normalize_angle ( self . odom_angle - self . first_angle )
-            #print("delta_angle: ",self.delta_angle)
-            self . turn_angle += self . delta_angle
-            print ( "turn_angle: " , self . turn_angle , flush = True )
-            #self.error = self.test_angle - self.turn_angle
-            print ( "error: " , self . error , flush = True )
-            self . first_angle = self . odom_angle
-            #print("first_angle: ",self.first_angle)
-        else :
-            self . error = 0.0
-            self . turn_angle = 0.0
-            print ( "done" , flush = True )
-            self . first_angle = 0
-            self . reverse = - self . reverse
-            self . start_test = rclpy . parameter . Parameter ( 'start_test' ,
-rclpy . Parameter . Type . BOOL , False )
-            all_new_parameters = [ self . start_test ]
-            self . set_parameters ( all_new_parameters )
-    else :
-        self . error = 0.0
-        self . cmd_vel . publish ( Twist ())
-        self . turn_angle = 0.0
-        self . start_test = rclpy . parameter . Parameter ( 'start_test' ,
-rclpy . Parameter . Type . BOOL , False )
-        all_new_parameters = [ self . start_test ]
-        self . set_parameters ( all_new_parameters )
+    move_cmd = Twist()
+    self.test_angle *= self.reverse
+    if self.start_test:
+        self.error = self.turn_angle - self.test_angle
+        if abs(self.error) > self.tolerance:
+            move_cmd.angular.z = copysign(self.speed, self.error)
+            self.cmd_vel.publish(move_cmd)
+            self.odom_angle = self.get_odom_angle()
+            self.delta_angle = (
+                self.odom_angular_scale_correction *
+                self.normalize_angle(self.odom_angle - self.first_angle)
+            )
+            self.turn_angle += self.delta_angle
+            print("turn_angle: ", self.turn_angle, flush=True)
+            print("error: ", self.error, flush=True)
+            self.first_angle = self.odom_angle
+        else:
+            self.error = 0.0
+            self.turn_angle = 0.0
+            print("done", flush=True)
+            self.first_angle = 0
+            self.reverse = -self.reverse
+            self.start_test = rclpy.parameter.Parameter(
+                'start_test',
+                rclpy.Parameter.Type.BOOL,
+                False
+            )
+            all_new_parameters = [self.start_test]
+            self.set_parameters(all_new_parameters)
+    else:
+        self.error = 0.0
+        self.cmd_vel.publish(Twist())
+        self.turn_angle = 0.0
+        self.start_test = rclpy.parameter.Parameter(
+            'start_test',
+            rclpy.Parameter.Type.BOOL,
+            False
+        )
+        all_new_parameters = [self.start_test]
+        self.set_parameters(all_new_parameters)
 ```

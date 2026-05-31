@@ -2,35 +2,39 @@
 
 ## 1. Course Content
 
-Learn the Robot Patrol Function
+Learn the robot patrol function.
 
-Set the patrol route in the dynamic parameter controller and click Start. The robot will move along the patrol route. Simultaneously, the robot's radar will scan for obstacles within the specified radar angle and obstacle detection distance. If an obstacle is detected, the robot will stop and a buzzer will sound. If no obstacle is detected, the robot will resume patrolling.
+Set the patrol route in the dynamic parameter controller and click **Start**. The robot moves along the patrol route while LiDAR scans for obstacles within the specified angle and detection distance. If an obstacle is detected, the robot stops and the buzzer sounds. When no obstacle is detected, the robot resumes patrolling.
 
 ## 2. Preparation
 
 ### 2.1 Content Description
 
-This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this course in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this course.
+This lesson uses Jetson Orin NX as the example. For Raspberry Pi and Jetson Nano boards, open a terminal, enter the Docker container, and then run the commands from this lesson inside the container. For instructions, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-### 2.2 Starting the Agent
+For Orin and NX boards, open a terminal directly on the robot and run the commands from this lesson.
 
-Note: The Docker agent must be started before testing all examples. If it is already started, you do not need to restart it.
+### 2.2 Start the Agent
 
-Enter the command in the vehicle terminal:
+The Docker agent must be started before testing. If it is already running, you do not need to restart it.
 
+Run the following command in the robot terminal:
+
+```bash
 sh start_agent.sh
+```
 
-The following information will be printed on the terminal, indicating a successful connection.
+The terminal prints connection information when the agent connects successfully.
 
-## 3. Running the Example
+## 3. Run the Example
 
-### Note:
+### Notice
 
-The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (for steps, see the [Docker course chapter - Entering the Robot's Docker Container]).
+Jetson Nano and Raspberry Pi users must enter the Docker container first.
 
-### 3.1 Starting the Program
+### 3.1 Start the Program
 
-Run the node on the vehicle terminal:
+Run the patrol node in the robot terminal:
 
 ```bash
 ros2 launch patrol patrol.launch.py
@@ -42,126 +46,133 @@ Using the accompanying virtual machine as an example, run the parameter configur
 ros2 run rqt_reconfigure rqt_reconfigure
 ```
 
-Then click the **Patrol** node in the left-hand options bar. If there's no node on the left-hand options bar when you first start, click **Refresh** below.
+Click the **Patrol** node in the left options bar. If no node appears when the tool first opens, click **Refresh**.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-**[Command]** sets the patrol route. Here, we'll use a square patrol route as an example. The various patrol routes are explained below. After setting the route in the [Command] field, click Switch to start patrolling. The terminal prints the following information:
+The **Command** field sets the patrol route. This example uses a square patrol route. After setting the route in **Command**, click **Switch** to start patrolling. The terminal prints status information.
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-If there is an obstacle on the patrol path, the robot will stop and display the **obsstance** prompt.
+If there is an obstacle on the patrol path, the robot stops and prints the **obstacle** prompt.
 
-Other parameters in the rqt interface are described below:
+The rqt parameters are:
 
-- odom_frame: The name of the odometry coordinate system.
-- base_frame: The name of the base coordinate system.
-- circle_adjust: If the patrol route is circular, this value can be used as a coefficient to adjust the circle size. See the code for details.
-- Switch: Gameplay switch.
-- Command: Patrol route. There are the following types of routes: [LengthTest] Linear patrol, [Circle] - Circle patrol, [Square] - Square patrol, and [Triangle] - Triangle patrol. - Set_loop: Restart patrol. Once set, the patrol will continue in a loop along the specified route.
-- ResponseDist: Obstacle detection distance
-- LaserAngle: Radar detection angle
-- Linear: Linear velocity
-- Angular: Angular velocity
-- Length: Distance of linear motion
-- RotationTolerance: Rotation error tolerance
-- RotationScaling: Rotation scaling factor
+- `odom_frame`: Odometry coordinate frame name.
+- `base_frame`: Base coordinate frame name.
+- `circle_adjust`: Adjustment coefficient for circular patrol route size. See the code for details.
+- `Switch`: Patrol switch.
+- `Command`: Patrol route. Available routes include `LengthTest` for linear patrol, `Circle` for circular patrol, `Square` for square patrol, and `Triangle` for triangular patrol.
+- `Set_loop`: Restart patrol. When enabled, patrol continues in a loop along the specified route.
+- `ResponseDist`: Obstacle detection distance.
+- `LaserAngle`: LiDAR detection angle.
+- `Linear`: Linear velocity.
+- `Angular`: Angular velocity.
+- `Length`: Linear movement distance.
+- `RotationTolerance`: Rotation error tolerance.
+- `RotationScaling`: Rotation scaling factor.
 
 ## 4. Source Code Analysis
 
-Source Code Path:
+Source code path on Jetson Orin Nano and Jetson Orin NX:
 
-Jetson Orin Nano, Jetson Orin NX Host:
-
-```
+```text
 /home/jetson/M3Pro_ws/src/patrol/patrol/patrol.py
 ```
 
-Jetson Orin Nano, Raspberry Pi Host:
+For Jetson Nano and Raspberry Pi, enter Docker first. Source code path:
 
-You need to enter Docker first.
-
-```
-root/M3Pro_ws/src/patrol/patrol/patrol.py
+```text
+/root/M3Pro_ws/src/patrol/patrol/patrol.py
 ```
 
-### 4.1 Viewing the Node Relationship Graph
+### 4.1 View the Node Relationship Graph
 
-Open a terminal and enter the command:
+Open a terminal and run:
+
+```bash
+ros2 run rqt_graph rqt_graph
+```
 
 ![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
-In the above node relationship diagram:
+In the node relationship graph:
 
-- **patrol** is the key node for implementing the patrol function. This node subscribes to the coordinate transformation between the odometry data odom and the besefootprint, and uses the lidar data from /scan1 to determine whether there are obstacles ahead through distance measurement.
-- **YB_Node**: The chassis node publishes lidar data **/scan1** and raw odometry data **/odom_raw**. It subscribes to the **/cmd_vel** topic data to control the robot chassis motion using inverse kinematics.
-- **ekf_filter_node**: The extended Kalman filter is used to fuse raw odometry data with filtered IMU data and publish the fused odometry data **/odom**. - **imu_filter**: IMU filter node, filters the raw IMU data **/imu/data_raw** and publishes the filtered data **/imu/data**.
+- `patrol` is the main node for the patrol function. It subscribes to the coordinate transform between odometry data `odom` and `base_footprint`, and uses `/scan1` LiDAR data to detect obstacles ahead.
+- `YB_Node` publishes LiDAR data `/scan1` and raw odometry `/odom_raw`. It subscribes to `/cmd_vel` to control chassis motion through inverse kinematics.
+- `ekf_filter_node` uses an extended Kalman filter to fuse raw odometry with filtered IMU data and publishes fused odometry to `/odom`.
+- `imu_filter` filters raw IMU data `/imu/data_raw` and publishes filtered data to `/imu/data`.
 
 ### 4.2 Program Flowchart
 
-The image size is too large. Please see the original image in this course folder.
+The flowchart image is large. View the original image in this lesson's folder.
 
-### 4.3 Key Programs
+### 4.3 Key Program Logic
 
-The following explains the core of the program:
-
-**Movement Status Acquisition:** Monitors the TF transformations of odom and base_footprint, and calculates the current XY coordinates and rotation angle.
-
-**Program Implementation:** The get_position and get_odom_angle methods in the YahboomCarPatrol class
+Movement status acquisition monitors the TF transforms between `odom` and `base_footprint`, then calculates the current XY coordinates and rotation angle. This is implemented by the `get_position` and `get_odom_angle` methods in the `YahboomCarPatrol` class.
 
 ```python
 def get_position(self):
     try:
         now = rclpy.time.Time()
-        trans =
-self.tf_buffer.lookup_transform(self.odom_frame,self.base_frame,now)
+        trans = self.tf_buffer.lookup_transform(
+            self.odom_frame,
+            self.base_frame,
+            now
+        )
         return trans
     except (LookupException, ConnectivityException, ExtrapolationException):
         self.get_logger().info('transform not ready')
         raise
-        return
-def get_odom_angle(self):
-     try:
-```
 
-```python
-now = rclpy.time.Time()
-        rot =
-self.tf_buffer.lookup_transform(self.odom_frame,self.base_frame,now)
-        #print("oring_rot: ",rot.transform.rotation)
-        cacl_rot = PyKDL.Rotation.Quaternion(rot.transform.rotation.x,
-rot.transform.rotation.y, rot.transform.rotation.z, rot.transform.rotation.w)
-        #print("cacl_rot: ",cacl_rot)
+def get_odom_angle(self):
+    try:
+        now = rclpy.time.Time()
+        rot = self.tf_buffer.lookup_transform(
+            self.odom_frame,
+            self.base_frame,
+            now
+        )
+        cacl_rot = PyKDL.Rotation.Quaternion(
+            rot.transform.rotation.x,
+            rot.transform.rotation.y,
+            rot.transform.rotation.z,
+            rot.transform.rotation.w
+        )
         angle_rot = cacl_rot.GetRPY()[2]
-     except (LookupException, ConnectivityException, ExtrapolationException):
+    except (LookupException, ConnectivityException, ExtrapolationException):
         self.get_logger().info('transform not ready')
         return
-     return angle_rot
+    return angle_rot
 ```
 
-**Movement Control:** Basic movement of the robot chassis. All patrol routes are a combination of linear and rotational movements.
-
-**Program Implementation:** The advance and spin methods in the YahboomCarPatrol class
+Movement control handles basic chassis movement. All patrol routes are combinations of linear movement and rotation. This is implemented by the `advancing` and `Spin` methods in the `YahboomCarPatrol` class.
 
 ```python
-def advancing(self,target_distance):
+def advancing(self, target_distance):
     self.position.x = self.get_position().transform.translation.x
     self.position.y = self.get_position().transform.translation.y
     move_cmd = Twist()
-    self.distance = sqrt(pow((self.position.x - self.x_start), 2) +
-                        pow((self.position.y - self.y_start), 2))
+    self.distance = sqrt(
+        pow((self.position.x - self.x_start), 2) +
+        pow((self.position.y - self.y_start), 2)
+    )
     self.distance *= self.LineScaling
     self.get_logger().info(f"distance: {self.distance}")
     self.error = self.distance - target_distance
     move_cmd.linear.x = self.Linear
-    if abs(self.error) < self.LineTolerance :
+
+    if abs(self.error) < self.LineTolerance:
         self.get_logger().info("stop")
         self.distance = 0.0
         self.pub_cmdVel.publish(Twist())
-        self.x_start = self.position.x;
-        self.y_start = self.position.y;
-        self.Switch =
-rclpy.parameter.Parameter('Switch',rclpy.Parameter.Type.BOOL,False)
+        self.x_start = self.position.x
+        self.y_start = self.position.y
+        self.Switch = rclpy.parameter.Parameter(
+            'Switch',
+            rclpy.Parameter.Type.BOOL,
+            False
+        )
         all_new_parameters = [self.Switch]
         self.set_parameters(all_new_parameters)
         return True
@@ -172,33 +183,31 @@ rclpy.parameter.Parameter('Switch',rclpy.Parameter.Type.BOOL,False)
                 self.moving = False
                 self.get_logger().info("obstacles")
         else:
-            #print("Go")
             self.pub_cmdVel.publish(move_cmd)
         self.moving = True
         return False
 ```
 
 ```python
-def Spin(self,angle):
+def Spin(self, angle):
     self.target_angle = radians(angle)
     self.odom_angle = self.get_odom_angle()
-    self.delta_angle = self.RotationScaling *
-self.normalize_angle(self.odom_angle - self.last_angle)
+    self.delta_angle = (
+        self.RotationScaling *
+        self.normalize_angle(self.odom_angle - self.last_angle)
+    )
     self.turn_angle += self.delta_angle
-    # print("turn_angle: ",self.turn_angle)
     self.get_logger().info(f"turn_angle: {self.turn_angle}")
     self.error = self.target_angle - self.turn_angle
     self.get_logger().info(f"error: {self.error}")
     self.last_angle = self.odom_angle
     move_cmd = Twist()
-    if abs(self.error) < self.RotationTolerance or self.Switch==False :
+
+    if abs(self.error) < self.RotationTolerance or self.Switch == False:
         self.pub_cmdVel.publish(Twist())
         self.turn_angle = 0.0
-        '''self.Switch =
-rclpy.parameter.Parameter('Switch',rclpy.Parameter.Type.BOOL,False)
-        all_new_parameters = [self.Switch]
-        self.set_parameters(all_new_parameters)'''
         return True
+
     if self.Joy_active or self.front_warning > 10:
         if self.moving == True:
             self.pub_cmdVel.publish(Twist())
@@ -206,16 +215,11 @@ rclpy.parameter.Parameter('Switch',rclpy.Parameter.Type.BOOL,False)
             self.get_logger().info("obstacles")
     else:
         if self.Command == "Square" or self.Command == "Triangle":
-            #move_cmd.linear.x = 0.2
             move_cmd.angular.z = copysign(self.Angular, self.error)
         elif self.Command == "Circle":
             length = self.Linear * self.circle_adjust / self.Length
-            #print("length: ",length)
             move_cmd.linear.x = self.Linear
             move_cmd.angular.z = copysign(length, self.error)
-            #print("angular: ",move_cmd.angular.z)
-            '''move_cmd.linear.x = 0.2
-            move_cmd.angular.z = copysign(2, self.error)'''
         self.pub_cmdVel.publish(move_cmd)
     self.moving = True
 ```
