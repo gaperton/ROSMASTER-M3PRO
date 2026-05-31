@@ -1,150 +1,174 @@
-# Connect the car and view the code
+# Log In to the Robot and View the Code
 
-This section introduces several ways to connect the car to your computer and how to view the code.
+This section explains how to connect the robot to your computer and how to view the source code.
 
-The recommended operation process in this section is: connect to the car's hotspot/insert the network cable to obtain the IP -> check the OLED screen's IP -> log in via VNC -> turn off the hotspot and connect to your own Wi-Fi (to facilitate the subsequent operation of large model functions) -> check the updated IP of the OLED -> reconnect to VNC -> view the source code.
+Recommended workflow:
 
-**The default hotspot name of the factory image is: ROSMASTER, the password is: 12345678, and the default IP is: 192.168.8.88**.
+1. Connect to the robot's hotspot, or connect an Ethernet cable to obtain an IP address.
+2. Check the IP address shown on the OLED screen.
+3. Log in through VNC.
+4. Turn off the robot's hotspot and connect it to your own Wi-Fi network. This is required later for large-model functions that need internet access.
+5. Check the updated IP address on the OLED screen.
+6. Reconnect through VNC.
+7. View the source code.
 
-## 1. Connect the car
+**The default hotspot name in the factory image is `ROSMASTER`, the password is `12345678`, and the default IP address is `192.168.8.88`.**
 
-Regardless of the method used to connect to the car, the computer and the car need to be in the same local area network. The simplest condition to meet the same LAN is to connect to the same Wi-Fi or hotspot. First, connect to the car's default hotspot ROSMASTER, the Wi-Fi password is 12345678. After the connection is successful, you can use the following method to log in.
+## 1. Connect to the Robot
 
-You can also directly connect the motherboard to the network cable. After connecting the network cable, the OLED screen will automatically update the IP address. The following text will demonstrate various operations using the IP address after connecting the network cable.
+No matter which connection method you use, the computer and the robot must be on the same local area network (LAN). The simplest way to do this is to connect both devices to the same Wi-Fi network or hotspot. First, connect your computer to the robot's default hotspot, `ROSMASTER`, using the Wi-Fi password `12345678`. After the connection succeeds, use one of the login methods below.
 
-### 1.1. SSH connection (optional, only for customers who need to use it)
+You can also connect the mainboard directly with an Ethernet cable. After the cable is connected, the OLED screen automatically updates the displayed IP address. The examples below use the IP address obtained after connecting the Ethernet cable.
 
-We can use PuTTY or MobaXterm or other SSH login tools to connect to the car. Here we take PuTTY as an example. The download address of PuTTY is as follows: [Download PuTTY: latest release \(0.83\)](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+### 1.1 SSH Connection (Optional)
 
-Select the installation according to your computer version. After successful installation, double-click to open. The PuTTY interface is as shown below.
+You can use PuTTY, MobaXterm, or another SSH client to connect to the robot. This example uses PuTTY. Download PuTTY here: [Download PuTTY: latest release \(0.83\)](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+
+Install the version that matches your computer, then open PuTTY. The PuTTY interface is shown below.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-Select **SSH** here, then enter the IP address displayed by OLED in the Host Name (or IP address) column. My IP address here is 192.168.2.92, so enter the IP address as shown in the figure below.
+Select **SSH**, then enter the IP address shown on the OLED screen in the **Host Name (or IP address)** field. In this example, the IP address is `192.168.2.92`.
 
 ![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
-Then click Open, you will enter a terminal interface and a pop-up window, we click Accept to select receive, as shown below,
+Click **Open**. A terminal window and a confirmation dialog will appear. Click **Accept** to continue.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-Then the terminal will display **login as**, here enter the user name of the car motherboard, and then press Enter, then it will prompt you to enter the password, then we enter the password, the user name and password of each motherboard are as follows:
+When the terminal displays **login as**, enter the username for your robot mainboard and press Enter. Then enter the password. The default usernames and passwords are:
 
-| motherboard    | username | password |
+| Mainboard      | Username | Password |
 |----------------|----------|----------|
 | Raspberry Pi 5 | pi       | yahboom  |
-| Jetson Nano    | Jetson   | yahboom  |
-| Orin Nano      | Jetson   | yahboom  |
-| Orin NX        | Jetson   | yahboom  |
+| Jetson Nano    | jetson   | yahboom  |
+| Orin Nano      | jetson   | yahboom  |
+| Orin NX        | jetson   | yahboom  |
 
-Assuming that my motherboard here is Orin Nano, then enter jetson, then press Enter, and then enter the password. **Nothing is displayed when entering the password**. Enter yahboom and press Enter.
+For example, if the mainboard is an Orin Nano, enter `jetson`, press Enter, then enter `yahboom` as the password. **The password is not displayed while you type it.**
 
-The interface of successfully connecting to the car is as follows:
+After login succeeds, you will see a terminal connected to the robot.
 
-Only one terminal will be opened here, and the graphical interface cannot be displayed. Therefore, ssh is suitable for logging in without starting the graphical program.
+SSH opens only a command-line terminal. It does not show the graphical desktop, so SSH is best for command-line work and for programs that do not require a graphical interface.
 
-### 1.2 VNC login
+### 1.2 VNC Login
 
-- 1.2.1. Orin motherboard without screen (Users of Orin motherboard without screen need to configure this section for visualization. Other users do not need to configure this section and can directly proceed to 1.2.2)
+#### 1.2.1 Orin Mainboard Without a Monitor
 
-Since the Orin motherboard system is Ubuntu 22.04, this system needs to be connected to a monitor to enter visualization. Users who have not purchased a monitor package may not be able to open visualization. Here is a method to display visualization on a virtual desktop. It is only for users who have not connected a monitor to the Orin motherboard. Orin motherboard users who
+Users with an Orin mainboard and no connected monitor need to configure a virtual desktop before using VNC. Other users can skip this section and continue with [1.2.2 VNC Desktop Login](#122-vnc-desktop-login).
 
-have purchased a monitor and Jetson Nano and Raspberry Pi users can skip this step.
+The Orin mainboard runs Ubuntu 22.04. By default, the desktop may require a physical monitor. If you did not purchase or connect a monitor, use the virtual desktop method below.
 
-Open Document 19. Attachment - Virtual Desktop Files and copy xorg.conf.backup_dp and xorg.conf.backup_vnc to the /etc/X11 directory.
+If you have connected a monitor to the Orin mainboard, or if you are using a Jetson Nano or Raspberry Pi 5, skip this step.
 
-Install the virtual desktop environment xserver-xorg-video-dummy:
+Open document `19. Attachment - Virtual Desktop Files`, then copy `xorg.conf.backup_dp` and `xorg.conf.backup_vnc` to the `/etc/X11` directory.
+
+Install the virtual desktop environment:
 
 ```bash
 sudo apt-get install xserver-xorg-video-dummy
 ```
 
-Open the terminal and enter the following command to open the virtual desktop and switch to VNC mode.
+Open a terminal and run the following command to switch to VNC virtual desktop mode:
 
 ```bash
 sudo cp /etc/X11/xorg.conf.backup_vnc /etc/X11/xorg.conf
 ```
 
-Restart the system and you can enter the desktop without a screen (continue with tutorial 1.2.2 to connect to VNC).
+Restart the system. After rebooting, continue with section 1.2.2 to connect through VNC.
 
-```
+```bash
 sudo reboot
 ```
 
-Note: After switching to VNC mode, the DP connection cable will become invalid (even if the monitor is connected to the motherboard, no display will be displayed). You need to modify the configuration back before you can use the DP interface to connect to the display normally.
+Note: After switching to VNC virtual desktop mode, the DP display cable will no longer output video, even if a monitor is connected. To use a DP monitor again, switch the configuration back.
 
-To shut down a virtual desktop:
-
-If you need to connect a DP display, open the terminal and enter the following command to switch to the DP interface connection display mode.
+To disable the virtual desktop and restore DP display output, run:
 
 ```bash
 sudo cp /etc/X11/xorg.conf.backup_dp /etc/X11/xorg.conf
 ```
 
-Restart the system and you can use the DP cable to connect the display.
+Restart the system. After rebooting, you can use the DP cable to connect a display.
 
-```
+```bash
 sudo reboot
 ```
 
-### 1.2.2
+#### 1.2.2 VNC Desktop Login
 
-VNC allows users to remotely access and control the desktop environment of another computer through the network. So when we need to access the desktop environment of the car, for example, when we want to start the image display, we can use VNC to connect and log in to the car. The download address of VNC is as follows: [Download VNC Viewer by RealVNC(R)](https://www.realvnc.com/en/connect/download/viewer/?lai_vid=0XwM1MAv5h60&lai_sr=5-9&lai_sl=l)
+VNC lets you remotely access and control the robot's graphical desktop over the network. Use VNC when you need the desktop environment, such as when starting a program with an image display. Download VNC Viewer here: [Download VNC Viewer by RealVNC(R)](https://www.realvnc.com/en/connect/download/viewer/?lai_vid=0XwM1MAv5h60&lai_sr=5-9&lai_sl=l)
 
-Download and install according to your computer version. After successful installation, double-click to open it. The displayed screen is as follows:
+Install the version that matches your computer, then open VNC Viewer. The start screen is shown below.
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
-Enter the IP address of the car. Here my IP address is 192.168.2.92, as shown below.
+Enter the robot's IP address. In this example, the IP address is `192.168.2.92`.
 
 ![Figure: page 5: figure 2](_page_5_Figure_2.jpeg)
 
-Then press Enter,
+Press Enter.
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-Enter the user name in Username and the password in Password. Refer to the table in 1.1. The password for all motherboards is yahboom. Then click OK to enter the desktop, as shown below.
+Enter the username in **Username** and the password in **Password**. Refer to the table in section 1.1. The password for all listed mainboards is `yahboom`. Click **OK** to enter the desktop.
 
 ![Picture: page 6: picture 2](_page_6_Picture_2.jpeg)
 
-If an abnormal screen is displayed, such as the following situation,
+If the screen displays abnormally, as shown below:
 
 ![Picture: page 7: picture 0](_page_7_Picture_0.jpeg)
 
-If it keeps flashing back, you need to set it up as shown in the figure below.
+or if the connection keeps closing immediately, change the VNC settings as shown below.
 
 ![Picture: page 7: picture 2](_page_7_Picture_2.jpeg)
 
-Then reconnect. The Orin motherboard can only connect to one remote desktop at a time. If the connection fails, you need to check whether the remote desktop is already connected.
+Then reconnect. The Orin mainboard supports only one remote desktop connection at a time. If VNC cannot connect, check whether another remote desktop session is already active.
 
-After connecting, since the AI large model needs to be used online, the hotspot is only the local area network and has no actual data, so you need to switch the network to facilitate the use of the AI large model function later.
+After connecting through VNC, switch the robot from its local hotspot to a Wi-Fi network with internet access. The AI large-model functions need internet access, while the robot's hotspot provides only a local network.
 
-## 2. View the code
+## 2. View the Code
 
-The code for the Orin motherboard is in the /home/jetson directory, so as long as we can connect to the car, we can see the code; the code for the Raspberry Pi 5 and Jetson Nano motherboard is in the started Docker container, so we need to enter the container first to see the code.
+On Orin mainboards, the source code is in `/home/jetson`. After you connect to the robot, you can view the code directly.
 
-The following introduces several ways to view the code, which will facilitate our subsequent editing and modification of the code.
+On Raspberry Pi 5 and Jetson Nano mainboards, the source code is inside the running Docker container. Enter the container first, then view the code there.
 
-### 2.1. jupyter-lab
+The following methods are useful for viewing and editing code during later tutorials.
 
-2.1.1: Orin motherboard (it is not recommended to use jupyter-lab to view and modify code)
+### 2.1 JupyterLab
 
-Jupyter-lab will be started directly after booting up, so you only need to enter IP address +:8888 in the browser to use jupyter to view the code. My IP address here is 192.168.2.92, so I enter the following content in the browser,
+#### 2.1.1 Orin Mainboard
+
+JupyterLab is not recommended for editing code on the Orin mainboard, but it can be used for quick code viewing.
+
+JupyterLab starts automatically after boot. In a browser, enter the robot IP address followed by `:8888`. In this example, the address is:
+
+```text
+192.168.2.92:8888
+```
 
 ![Picture: page 8: picture 3](_page_8_Picture_3.jpeg)
 
-Then press Enter to display the password. Enter yahboom in the same way, and then you can enter the jupyter-lab interface, as shown below.
+Press Enter. If a password is required, enter `yahboom`. The JupyterLab interface will open.
 
 ![Picture: page 8: picture 5](_page_8_Picture_5.jpeg)
 
-Select the contents of the folder on the left to view the code.
+Use the folder browser on the left to view the source code.
 
-- 2.1.2. Raspberry Pi 5 and Jetson Nano motherboard:
+#### 2.1.2 Raspberry Pi 5 and Jetson Nano Mainboards
 
-You need to enter the docker container and enter the command jupyter-lab --allow-root, then enter the car IP address +:8888 in the browser to start jupyter-lab to view the car code. As shown in the figure below, I enter the car container and cd to the /root directory, and then enter jupyter-lab - allow-root in the terminal.
+For Raspberry Pi 5 and Jetson Nano mainboards, enter the Docker container first. Then run:
 
-Then enter the car's IP address +:8888 in the browser. The IP of my Raspberry Pi motherboard is 192.168.2.22, so enter 192.168.2.22:8888, as shown below.
+```bash
+jupyter-lab --allow-root
+```
+
+In your browser, enter the robot IP address followed by `:8888`. For example, if the Raspberry Pi mainboard IP address is `192.168.2.22`, enter:
+
+```text
+192.168.2.22:8888
+```
 
 ![Picture: page 8: picture 11](_page_8_Picture_11.jpeg)
 
-Press Enter. If you need to enter a password, enter yahboom to enter jupyter-lab to view the code.
+Press Enter. If a password is required, enter `yahboom` to open JupyterLab and view the code.

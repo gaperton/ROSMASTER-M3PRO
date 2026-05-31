@@ -1,39 +1,38 @@
-# Enter the Vehicle Docker
+# Enter the Robot Docker Container
 
 ## 1. Course Content
 
-This section of the course is only for reference by users of **Raspberry Pi 5** mainboard and **Jetson Nano** mainboard
+This section is for users of the **Raspberry Pi 5** mainboard and **Jetson Nano** mainboard.
 
-[!NOTE]
-
-Raspberry Pi 5 and Jetson Nano cannot directly install the ros2 humble environment due to system version limitations, so the ros2 humble environment is placed in Docker. The host machine does not have a ros2 environment.
+> [!NOTE]
+> Raspberry Pi 5 and Jetson Nano cannot install ROS 2 Humble directly because of system-version limitations. For these boards, ROS 2 Humble runs inside Docker. The host system itself does not include a ROS 2 environment.
 
 ## 2. Basic Operations
 
-### 2.1 Start the m3pro container
+### 2.1 Start the `m3pro` Container
 
-If you need to run the example programs in the tutorial, you must first start the m3pro Docker container
+Before running the example programs in the tutorial, start the `m3pro` Docker container:
 
-```
+```bash
 bringup_m3pro
 ```
 
-Display container rosmaster-m3pro Started indicates successful startup
+If the terminal displays `container rosmaster-m3pro Started`, the container started successfully.
 
-### 2.2 Enter the m3pro container terminal
+### 2.2 Enter the `m3pro` Container Terminal
 
-The commands in subsequent tutorials need to be operated within the container. Open the container terminal command:
+Commands in later tutorials must be run inside the container. To open a terminal inside the container, run:
 
-```
+```bash
 exec_m3pro
 ```
 
-If you need to exit the container terminal, press ctrl+D
+To exit the container terminal, press Ctrl+D.
 
-### 2.3 Shut down the m3pro container
+### 2.3 Shut Down the `m3pro` Container
 
-When you really need to manually shut down the m3pro container (generally no need to shut down):
+Usually, you do not need to shut down the container manually. If you do need to stop it, run:
 
-```
+```bash
 shut_m3pro
 ```

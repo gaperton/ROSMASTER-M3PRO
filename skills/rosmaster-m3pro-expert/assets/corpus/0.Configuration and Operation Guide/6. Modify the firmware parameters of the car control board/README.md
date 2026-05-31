@@ -1,36 +1,36 @@
-# Modify the firmware parameters of the car control board
+# Modify the Firmware Parameters of the Car Control Board
 
-Modify the firmware parameters of the car control board
+This section explains how to modify the firmware parameters of the car control board.
 
-- 1. Hardware Connection
-- 2. Modify parameters
-- 3. Write configuration
+- Hardware connection
+- Modify parameters
+- Write the configuration
 
-This course requires that the car have already been pre-burned with the factory firmware to configure the firmware parameters. The purpose of modifying the control board firmware parameters is to make the car function more in line with personal needs. The factory firmware comes with default parameters and can be left unchanged unless necessary.
+The robot must already be flashed with the factory firmware before you configure these parameters. The purpose of modifying the control board firmware parameters is to adjust the robot behavior for your own use case. The factory firmware already includes default parameters, and you do not need to change them unless necessary.
 
-The car control board has been pre-burned with factory firmware. If other firmware has been preburned, please follow the course [12. Control Board Course\1. Setting up the Control Board Development Environment\4. Burning STM32 Firmware via Serial Port] to re-burn the factory firmware. The factory firmware is stored in the document [Appendix\Control Board Factory Firmware].
+The car control board is flashed with the factory firmware before shipment. If you have flashed other firmware, re-flash the factory firmware by following **12. Control Board Course - 1. Development Environment Setup - 4. Burning STM32 Firmware via Serial Port**. The factory firmware is stored in **Appendix - Control Board Factory Firmware**.
 
-This course takes the Jetson Orin series motherboard as an example, and the operations for other motherboards are the same.
+This section uses a Jetson Orin series mainboard as the example. The operation is the same for other mainboards.
 
-Note: Before running the configuration modification script, you need to shut down the microros agent first.
+Note: Before running the configuration script, stop the micro-ROS agent.
 
 ## 1. Hardware Connection
 
-Make sure the Type-C USB Connect port on the control board is connected to the USB port on the mainboard.
+Make sure the Type-C **USB Connect** port on the control board is connected to a USB port on the mainboard.
 
-## 2. Modify parameters
+## 2. Modify Parameters
 
-Open the system terminal, find and open the [config_robot.py] file in the user directory.
+Open a system terminal and edit the `config_robot.py` file in the user directory:
 
 ```bash
 vim ~/config_robot.py
 ```
 
-Scroll to the bottom of the file, and you will find the configuration parameters mainly including set_ros_domain_id, set_ros_namespace, set_motor_pid_parm, set_imu_yaw_pid_parm, set_ros_scale_line, set_ros_scale_angular, and set_arm_mid_value.
+Scroll to the bottom of the file. The main configuration functions are `set_ros_domain_id`, `set_ros_namespace`, `set_motor_pid_parm`, `set_imu_yaw_pid_parm`, `set_ros_scale_line`, `set_ros_scale_angular`, and `set_arm_mid_value`.
 
-If you need to modify a parameter, please remove the comment symbol before the corresponding function.
+To modify a parameter, remove the comment symbol (`#`) before the corresponding function call.
 
-```
+```python
 # robot.set_ros_domain_id(30)
 # robot.set_ros_namespace("")
 # robot.set_motor_pid_parm(0.8, 0.06, 0.5)
@@ -41,30 +41,30 @@ If you need to modify a parameter, please remove the comment symbol before the c
 # robot.set_arm_mid_value(arm_mid_value)
 ```
 
-Among them, set_ros_domain_id means setting the car's ROS DOMAIN ID, which ranges from 0 to 100. If there are multiple devices in the LAN, each one should set a different ROS DOMAIN ID to avoid mutual interference. Note that the ROS_DOMAIN_ID value must be consistent with the system terminal.bashrc file to ensure communication.
+`set_ros_domain_id` sets the robot's ROS domain ID. The value range is 0 to 100. If multiple robots or ROS devices are on the same LAN, assign each one a different ROS domain ID to avoid interference. The `ROS_DOMAIN_ID` value must also match the value in the system terminal's `.bashrc` file so ROS communication works correctly.
 
-set_ros_namespace means setting the namespace of the car ROS, which is mainly used for the LAN multi-car control function.
+`set_ros_namespace` sets the robot's ROS namespace. This is mainly used for multi-robot control on a LAN.
 
-set_motor_pid_parm means setting the PID parameters of the car motor speed.
+`set_motor_pid_parm` sets the PID parameters for motor speed control.
 
-set_imu_yaw_pid_parm means setting the PID parameters of the car using the IMU to calibrate the direction.
+`set_imu_yaw_pid_parm` sets the PID parameters used by the IMU yaw correction.
 
-set_ros_scale_line means setting the car's ROS linear speed scaling ratio.
+`set_ros_scale_line` sets the ROS linear velocity scale.
 
-set_ros_scale_angular means setting the car's ROS angular velocity scaling ratio.
+`set_ros_scale_angular` sets the ROS angular velocity scale.
 
-The set_arm_mid_value function sets the mid-value deviation of the robotic arm. This is primarily used to quickly restore the robotic arm calibration value and generally does not require modification. Note: Modifying this value will affect the calibration value of the robotic arm. If you need to calibrate the robotic arm, please refer to the tutorial for calibrating the robotic arm.
+`set_arm_mid_value` sets the robotic arm center-position offset values. It is mainly used to quickly restore robotic arm calibration values and usually does not need to be modified. Changing this value affects robotic arm calibration. If you need to calibrate the arm, refer to the robotic arm calibration tutorial.
 
-Here we take changing the domain ID to 31 as an example:
+The following example changes the domain ID to `31`.
 
-## 3. Write configuration
+## 3. Write the Configuration
 
-Note: Before running the configuration modification script, you need to shut down the microros agent first.
+Note: Before running the configuration script, stop the micro-ROS agent.
 
-Open the system terminal and run the following command to start writing the configuration
+Open a system terminal and run the following command to write the configuration:
 
 ```bash
 python3 ~/config_robot.py
 ```
 
-You can see all the parameter values finally read out.
+After the script finishes, it prints the parameter values read back from the control board.
