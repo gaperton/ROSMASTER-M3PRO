@@ -60,4 +60,15 @@
 - [5.6 Autonomous Line Following](./5.Chassis%20Control%20Course/6.Line%20patrol%20automatic%20driving/README.md)
 - [5.7 LiDAR-Aware Patrol Routes](./5.Chassis%20Control%20Course/7.Patrol/README.md)
 
+## 7. Depth Camera and Vision Perception
+
+- [7.1 Orbbec Dabai DCW2 Camera Overview](./7.Depth%20Camera%20Course/1.Dabai_DCW2%20camera%20introduction/README.md)
+- [7.2 Depth Pseudocolor Visualization](./7.Depth%20Camera%20Course/2.Depth%20pseudo-color%20image/README.md)
+- [7.3 Depth-Based Distance Measurement](./7.Depth%20Camera%20Course/3.Depth%20camera%20distance%20measurement/README.md)
+- [7.4 Depth-Based Object Volume Measurement](./7.Depth%20Camera%20Course/4.Wood%20block%20volume%20measurement/README.md)
+- [7.5 MediaPipe Gesture Recognition](./7.Depth%20Camera%20Course/5.Mediapipe%20gesture%20recognition/README.md)
+- [7.6 Depth-Based Edge Detection](./7.Depth%20Camera%20Course/6.Edge%20detection/README.md)
+- [7.7 YOLOv8 Object Detection](./7.Depth%20Camera%20Course/7.YOLOv8%20object%20detection/README.md)
+- [7.8 TensorRT Object Tracking](./7.Depth%20Camera%20Course/8.Deep%20learning%20object%20tracking/README.md)
+
 ---

@@ -1,42 +1,40 @@
-# Mediapipe gesture recognition
+# MediaPipe Gesture Recognition
 
 ## 1. Content Description
 
-This lesson explains how to subscribe to an image topic to retrieve images and use MediaPipe for gesture recognition.
+This lesson explains how to subscribe to an image topic, obtain camera images, and use MediaPipe for gesture recognition.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. This lesson uses Raspberry Pi 5 as the example. Raspberry Pi and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker instructions, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-### About Mediapipe:
+### About MediaPipe
 
-MediaPipe is a data stream processing and machine learning application development framework developed and open-sourced by Google. It is a graph-based data processing pipeline used to build applications that utilize a variety of data sources, such as video, audio, sensor data, and any time series data. MediaPipe is cross-platform and can run on embedded platforms (such as the Raspberry Pi), mobile devices (iOS and Android), workstations, and servers, and supports mobile GPU acceleration. MediaPipe provides a cross-platform, customizable ML solution for real-time and streaming media. The core framework of MediaPipe is implemented in C++, with support for languages such as Java and Objective C. Key concepts in MediaPipe include packets, streams, calculators, graphs, and subgraphs.
+MediaPipe is a data-stream processing and machine-learning application framework developed and open-sourced by Google. It is a graph-based processing pipeline for applications that use video, audio, sensor data, and other time-series data. MediaPipe is cross-platform and can run on embedded platforms such as Raspberry Pi, mobile devices, workstations, and servers. It also supports mobile GPU acceleration. Key MediaPipe concepts include packets, streams, calculators, graphs, and subgraphs.
 
-#### Mediapipe Hands
+#### MediaPipe Hands
 
-MediaPipe Hands is a high-fidelity hand and finger tracking solution. It uses machine learning (ML) to infer 21
+MediaPipe Hands is a high-fidelity hand and finger tracking solution. It uses machine learning to infer 21 hand landmarks.
 
-After palm detection in the entire image, the 21 3D hand joint coordinates in the detected hand region are accurately located by regression based on the hand landmark model, i.e. direct coordinate prediction. The model learns a consistent internal hand pose representation, even for partially visible hands and
-
-It is also robust to occlusion. To obtain ground truth data, we manually annotated approximately 30K real-world images with 21 3D coordinates, as shown below. To better cover possible hand poses and provide additional supervision on the properties of hand geometry, we also rendered high-quality synthetic hand models against various backgrounds and mapped them to corresponding 3D coordinates.
+After detecting the palm in the full image, the hand landmark model locates 21 3D hand joint coordinates in the detected hand region by direct coordinate prediction. The model learns a consistent hand pose representation and remains robust when hands are partially visible or occluded. The training data includes about 30,000 real-world images annotated with 21 3D coordinates, plus rendered synthetic hand models mapped to corresponding 3D coordinates.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-Therefore, as long as we can obtain the coordinate value of each joint, we can perform gesture recognition through calculation.
+After obtaining the coordinates of each joint, the program can recognize gestures through geometric calculation.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the mediapipe gesture recognition program.
+After the camera starts successfully, open another terminal and start the MediaPipe gesture recognition program:
 
 ```bash
 ros2 run M3Pro_demo mediapipe_gesture
 ```
 
-After the program is started, as shown in the figure below, it can recognize three gestures: [OK], [Yes] and [Thumb_down].
+After startup, the program can recognize three gestures: `OK`, `Yes`, and `Thumb_down`.
 
 ![Figure: page 1: figure 8](_page_1_Figure_8.jpeg)
 
@@ -44,19 +42,21 @@ After the program is started, as shown in the figure below, it can recognize thr
 
 ![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-Program code path:
+Program code path for Raspberry Pi 5 and Jetson Nano:
 
-Raspberry Pi 5 and Jetson Nano board The path in docker
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_gesture.py
+```
 
-is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_gesture.py
+Program code path for Orin boards:
 
-Orin Motherboard
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_gesture.py
+```
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_gesture.py
-
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -79,7 +79,7 @@ from sensor_msgs.msg import Image
 import threading
 ```
 
-Initialize some variables and create subscribers and publishers,
+Initialize variables and create subscribers and publishers:
 
 ```python
 def __init__(self, name):
@@ -104,7 +104,7 @@ gesture
     self.start_time = 0.0
 ```
 
-Color image callback function and image processing,
+Color image callback function and image processing:
 
 ```python
 def callback(self,color_msg):
@@ -140,19 +140,23 @@ def Gesture_Detect_threading(self, lmList,bbox):
     print("gesture: ",gesture)
 ```
 
-The definition of the Medipipe recognition class can be found in the media_library library, which is located in the directory of the M3Pro_demo function package.
+The MediaPipe recognition class is defined in the `media_library` library, which is located in the `M3Pro_demo` package.
 
-Raspberry Pi 5 and Jetson Nano board
+Path for Raspberry Pi 5 and Jetson Nano:
 
-The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```
 
-Orin Motherboard
+Path for Orin boards:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```
 
-In this library, we use the native library of meidiapipe to expand and define many classes. Each class defines different functions. When we need them, we can pass the parameters into them. For example, we define the following function in the HandDetector class.
+This library extends the native MediaPipe library and defines multiple classes. Each class provides different functions that can be called with the required parameters. For example, the `HandDetector` class defines:
 
 - findHands: Find hands
-- fingersUp: fingers extended straight down
-- ThumbTOforefinger: Detects the angle between the thumb and index finger
+- fingersUp: Detect whether fingers are extended
+- ThumbTOforefinger: Detect the angle between the thumb and index finger
 - get_gesture: Detect gestures

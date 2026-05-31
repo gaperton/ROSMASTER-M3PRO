@@ -1,44 +1,46 @@
-# Edge detection
+# Depth-Based Edge Detection
 
 ## 1. Content Description
 
-This lesson explains how to use depth imaging for edge detection. Combined with the chassis, this allows the robot to stop at an edge, preventing the risk of a fall. This can be expanded to include depth imaging for obstacle avoidance.
+This lesson explains how to use depth imaging for edge detection. Combined with chassis control, the robot can stop at an edge to reduce the risk of falling. The same idea can be extended to depth-based obstacle avoidance.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. This lesson uses Raspberry Pi 5 as the example. Raspberry Pi and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker instructions, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
-
-```bash
-ros2 run yahboom_M3Pro_DepthCam edge_detection
-```
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the edge detection program.
+After the camera starts successfully, open another terminal and start the edge detection program:
+
+```bash
+ros2 run yahboom_M3Pro_DepthCam edge_detection
+```
 
 ![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
-As shown in the figure above, after the program is started, it will print and display that the current state is stopped. Press the space bar to change the state. After pressing the space bar, if the robot does not detect an edge, it will move forward and print "Moving..."; if it detects an edge, it will stop and print "Stop!!!".
+After startup, the program prints and displays that the current state is stopped. Press the spacebar to change the state. If the robot does not detect an edge after the spacebar is pressed, it moves forward and prints `Moving...`. If it detects an edge, it stops and prints `Stop!!!`.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-## 3. Core code
+## 3. Core Code Analysis
 
-Program code path:
+Program code path for Raspberry Pi 5 and Jetson Nano:
 
-Raspberry Pi 5 and Jetson Nano board
+```text
+/root/yahboomcar_ws/src/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Edge_ Detection.py
+```
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Edge_ Detection.py
+Program code path for Orin boards:
 
-Orin Motherboard
+```text
+/home/jetson/yahboomcar_ws/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Ed ge_Detection.py
+```
 
-The program code path is /home/jetson/yahboomcar_ws/yahboom_M3Pro_DepthCam/yahboom_M3Pro_DepthCam/Ed ge_Detection.py
-
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -52,13 +54,13 @@ import numpy as np
 import threading
 ```
 
-Depth image decoding format,
+Depth image decoding formats:
 
-```
+```python
 encoding = ['16UC1', '32FC1']
 ```
 
-Initialize variables and define publishers and subscribers,
+Initialize variables and define publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -78,7 +80,7 @@ Back,100)
     self.move_flag = False
 ```
 
-Depth image topic callback function, and calculate the center point depth distance information,
+The depth image topic callback calculates depth information at the center point:
 
 ```python
 def get_DepthImageCallBack(self,msg):
@@ -101,7 +103,7 @@ the information.
     if self.move_flag == True:
 ```
 
-```
+```python
 #Judge whether the depth information of the center point, that is, the
 point x=320, y=240, is greater than 0.5m. If so, call the function to issue a
 stop command. If not, call the function to issue a forward command.
@@ -117,7 +119,7 @@ stop command. If not, call the function to issue a forward command.
         print("Stop status now!Press the SPACEBAR to change the state.")
 ```
 
-Release speed function,
+Publish the velocity command:
 
 ```python
 def pubVel(self,vx,vy,vz):
@@ -128,4 +130,4 @@ def pubVel(self,vx,vy,vz):
     self.pub_vel.publish(vel)
 ```
 
-Three variables are passed in: the speed in the x-direction, the speed in the y-direction, and the angular velocity. After assigning the values, self.pub_vel.publish(vel) the speed topic is called.
+The three inputs are x-axis speed, y-axis speed, and angular velocity. After assigning these values, the program calls `self.pub_vel.publish(vel)` to publish the velocity topic.

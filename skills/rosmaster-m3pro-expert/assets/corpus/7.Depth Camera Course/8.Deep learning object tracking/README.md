@@ -1,71 +1,72 @@
-# Deep Learning Object Tracking
+# TensorRT Object Tracking
 
 ## 1. Content Description
 
-This section is exclusive to the Orin motherboard and primarily introduces optimizing the YOLOv8 object detection framework using TensorRT. Users control the robot to track a target by selecting a track_id.
+This lesson is for Orin boards only. It introduces how to optimize the YOLOv8 object detection framework with TensorRT. Users select a `track_id`, and the robot tracks the corresponding target.
 
 ### 1.1 Introduction to TensorRT
 
-TensorRT is a high-performance deep learning inference optimization SDK (Software Development Kit) released by NVIDIA. It is primarily used to optimize trained deep learning models to improve their inference efficiency (speed and throughput) on NVIDIA GPUs. It is widely used in real-time inference scenarios in fields such as computer vision and natural language processing, such as autonomous driving, robotics, and video analysis.
+TensorRT is NVIDIA's high-performance deep-learning inference optimization SDK. It optimizes trained deep-learning models to improve inference speed and throughput on NVIDIA GPUs. TensorRT is widely used in real-time inference scenarios such as computer vision, autonomous driving, robotics, and video analysis.
 
-Core Features and Benefits:
+Core features and benefits:
 
 - **Model Optimization**
-- **Operator Fusion**: Combines multiple consecutive operations (such as convolution + activation function) into a single optimized operator, reducing computational overhead and memory access. - **Precision Calibration**: Supports converting models from FP32 (singleprecision floating point) to FP16 (half-precision) or INT8 (integer) with minimal loss of accuracy, significantly improving computation speed and reducing memory usage.
+- **Operator Fusion**: Combines multiple consecutive operations, such as convolution plus activation, into a single optimized operator to reduce computation and memory access.
+- **Precision Calibration**: Supports converting models from FP32 single-precision floating point to FP16 half-precision or INT8 integer precision with minimal loss of accuracy, improving speed and reducing memory usage.
 - **Inter-Layer Optimization**: Adjusts the execution order and computational methods of layers based on GPU hardware features (such as Tensor Cores) to maximize hardware utilization.
 - **Efficient Inference Engine**
 
-Optimized models are converted to a TensorRT-specific inference engine. This engine is binary code compiled for specific GPU hardware and can run directly and efficiently on the GPU, avoiding the redundant computation and overhead of general-purpose frameworks.
+Optimized models are converted into a TensorRT-specific inference engine. This engine is binary code compiled for specific GPU hardware and can run efficiently on the GPU, avoiding the extra overhead of general-purpose frameworks.
 
 #### Multi-Framework Support
 
-Models trained in various deep learning frameworks can be imported, including PyTorch, TensorFlow, and ONNX. (ONNX is a common intermediate format; most frameworks can be exported as ONNX models and then imported into TensorRT.)
+Models trained in various deep-learning frameworks can be imported, including PyTorch, TensorFlow, and ONNX. ONNX is a common intermediate format; most frameworks can export ONNX models that can then be imported into TensorRT.
 
 #### Low Latency and High Throughput
 
-TensorRT-optimized models typically achieve several times or even dozens of times faster inference speeds. They also support batch inference and concurrent processing, making them ideal for scenarios with high real-time requirements, such as real-time object detection in autonomous driving.
+TensorRT-optimized models often achieve several times, or even dozens of times, faster inference. They also support batch inference and concurrent processing, making them suitable for real-time scenarios such as object detection in autonomous driving.
 
-In this lesson, converting the YOLOv8.pt model to the TensorRT engine significantly improves inference speed on the Orin motherboard, meeting real-time requirements.
+In this lesson, converting the `YOLOv8.pt` model to a TensorRT engine significantly improves inference speed on the Orin board, meeting real-time tracking requirements.
 
 ## 2. Program Startup
 
-Enter the following commands in the terminal to start the camera and radar:
+Start the camera and LiDAR:
 
 ```bash
 ros2 launch yahboom_yolov8 yolov8_deep_track.launch.py
 ```
 
-Open another terminal and enter the following command to start the tracking program:
+Open another terminal and start the tracking program:
 
 ```bash
 ros2 run yahboom_yolov8 yolov8_track
 ```
 
-Then, open a third terminal and enter the following command to start rqt_image_view to view the image:
+Open a third terminal and start `rqt_image_view` to view the image:
 
 ```bash
 ros2 run rqt_image_view rqt_image_view
 ```
 
-Select the topic /detect_image in the upper left corner and click the refresh button on the right to view the detected image, as shown below.
+Select `/detect_image` in the upper-left corner and click the refresh button on the right to view the detected image, as shown below.
 
 ![Picture: page 1: picture 8](_page_1_Picture_8.jpeg)
 
-Then, based on the ID in the image, enter the following command to publish to the target topic /track_id. For example, if we want to track an object with ID 4, enter the following command and press Enter to publish the message.
+Then, based on the ID shown in the image, publish the target ID to `/tracker_id`. For example, to track an object with ID `4`, run:
 
 ```bash
 ros2 topic pub /tracker_id std_msgs/msg/Int16 "data: 4" --once
 ```
 
-After publishing, the tracked object will be outlined in a blue box, as shown below.
+After publishing, the tracked object is outlined in a blue box, as shown below.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-Then slowly move the object, and the robot will slowly follow it. The program will adjust the robot so that the center point of the tracked object (yellow circle) is near the center of the screen. After completing left and right tracking, the robot will maintain a distance of 1.2 meters from the object based on radar information.
+Slowly move the object, and the robot follows it. The program adjusts the robot so the tracked object's center point, marked by the yellow circle, stays near the center of the screen. After left/right alignment is complete, the robot uses LiDAR information to keep a distance of `1.2 m` from the object.
 
 ## 3. Core Code Analysis
 
-Import the necessary library files.
+Import the required libraries:
 
 ```python
 import cv2
@@ -93,7 +94,7 @@ import math
 import os
 ```
 
-The image preprocessing function letterbox returns the processed image im, the scaling factor r, and the padding (dw, dh) (which can be used to map the coordinates of the model output back to the original image).
+The `letterbox` image preprocessing function returns the processed image `im`, the scaling factor `r`, and the padding `(dw, dh)`. These values are used to map model output coordinates back to the original image.
 
 ```python
 def letterbox(im, new_shape=(640, 640), color=(114, 114, 114), auto=False,
@@ -123,7 +124,7 @@ value=color) # add border
     return im, r, (dw, dh)
 ```
 
-The image preprocessing function preprocess is used to convert the original input image into an input format acceptable to the model, and returns the processed model input tensor img, the original image image, the padding dw and dh ( dw / dh are used to subsequently map the bounding box predicted by the model from the processed image back to the original image).
+The `preprocess` function converts the original input image into the model input format. It returns the processed model input tensor `img`, the original image, and the padding values `dw` and `dh`, which are used to map predicted bounding boxes back to the original image.
 
 ```python
 def preprocess(image, imgsz=640):
@@ -136,7 +137,7 @@ def preprocess(image, imgsz=640):
     return img, image, dw, dh
 ```
 
-The post-processing function post_process is mainly used to process the detection results output by the model (such as coordinate mapping) and organize the results into a format that is convenient for subsequent use. At the same time, it prepares for drawing bounding boxes on the original image and returns the original image img and the organized detection results list detections.
+The `post_process` function processes model output, including coordinate mapping, and organizes detection results for later use. It also prepares bounding boxes for drawing on the original image and returns the original image `img` and the `detections` list.
 
 ```python
 def post_process(img, det, frames):
@@ -158,7 +159,7 @@ def post_process(img, det, frames):
     return img, detections
 ```
 
-The program initializes and creates publishers and subscribers,
+The program initializes and creates publishers and subscribers:
 
 ```python
 def __init__(self, weight, thres=0.60, size=640, video_path='', batch_size=3) ->
@@ -214,7 +215,7 @@ self.rotation_done = False
 self.ResponseDist = 1.2
 ```
 
-Initialize the engine init_engine, the method to initialize the TensorRT reasoning engine, its main function is to load the precompiled TensorRT engine file, parse the engine's input and output information, and complete the initialization of the reasoning environment to prepare for subsequent efficient reasoning.
+The `init_engine` method initializes the TensorRT inference engine. It loads the precompiled TensorRT engine file, parses input and output tensor information, and prepares the inference environment.
 
 ```python
 def init_engine(self):
@@ -242,7 +243,7 @@ self.shape, self.data,
         self.context_.set_tensor_address(name, binding.ptr)
 ```
 
-Image processing function process,
+Image processing function `process`:
 
 ```python
 def process(self):
@@ -304,8 +305,7 @@ int(y2)), color, 2)
 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             ros_image = self.rgb_bridge.cv2_to_imgmsg(result, encoding='rgb8')
             self.yolov8_img_pub.publish(ros_image)
-        #If the target tracking object is found and the current handle control
-is not enabled
+        #If the target object is found and controller control is not enabled
         if self.found == True and self.joy_ctrl == False:
             #If the x coordinate of the tracking target center is not between
 [315,325]
@@ -339,7 +339,7 @@ the angular velocity is taken as the calculated angular velocity.
         self.found = False
 ```
 
-LiDAR topic callback function registerScan,
+LiDAR topic callback function `registerScan`:
 
 ```python
 def registerScan(self, scan_data):
@@ -350,8 +350,8 @@ def registerScan(self, scan_data):
     for i in range(len(ranges)):
         #Radians
         angle = (scan_data.angle_min + scan_data.angle_increment * i) * RAD2DEG
-        #The radar detection range is self.LaserAngle, which is set to 5 degrees
-to the left and right of 0 degrees, that is, 10 degrees in front of the radar,
+        #The LiDAR detection range is self.LaserAngle, which is set to 5 degrees
+        #to the left and right of 0 degrees, that is, 10 degrees in front of the LiDAR,
 and the distance of the current angle is not 0
         if abs(angle) < self.LaserAngle and ranges[i] !=0.0 :
             minDistList.append(ranges[i])

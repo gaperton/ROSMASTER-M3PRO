@@ -1,46 +1,50 @@
-# Wood block volume measurement
+# Depth-Based Object Volume Measurement
 
 ## 1. Content Description
 
-This lesson explains how to combine depth information and coordinate system transformation to calculate the volume of a wooden block.
+This lesson explains how to combine depth information with coordinate-frame transformations to calculate the volume of a wooden block.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. This lesson uses Raspberry Pi 5 as the example. Raspberry Pi and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker instructions, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin board users can open a terminal directly on the robot and run the commands from this lesson.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera and robotic arm inverse solution program. The content of inverse solution will be introduced in this product course [9. Robotic Arm and 3D Space Gripping] - [Robotic Arm Inverse Solution]. Here you only need to understand that the inverse solution is to calculate the coordinate value.
+Start the camera and robotic arm kinematics program:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-After starting the camera and robotic arm inverse solution program, enter the following command to start the wood block volume measurement program. Enter the terminal,
+Robotic arm inverse kinematics is explained in **9. Robotic Arm and 3D Space Gripping - Robotic Arm Inverse Solution**. For this lesson, you only need to understand that kinematics are used to calculate coordinate values.
+
+After starting the camera and robotic arm kinematics program, start the wooden block volume measurement program:
 
 ```bash
 ros2 run M3Pro_demo estimate_volume
 ```
 
-After the startup is complete, we place a rectangular wooden block as close to the camera as possible (this is done to make the depth information as accurate as possible), then click on the image frame, and finally press the spacebar. The program will calculate the coordinates of the center point and the shape's vertices in the world coordinate system based on the recognized depth information and the posture of its own robotic arm. This value is generally represented by (x, y, z) in meters, indicating the distance from the base coordinate system base_link (0,0,0); then, combined with the recognized shape of the wooden block, the volume is calculated. As shown in the figure below, the recognized shape of the wooden block is a rectangular block, and the calculated volume is displayed on the terminal.
+After startup, place a rectangular wooden block as close to the camera as practical so the depth information is more accurate. Click inside the image frame, then press the spacebar. Based on the recognized depth information and the robotic arm pose, the program calculates the coordinates of the center point and the shape vertices in the world coordinate system. These values are generally represented as `(x, y, z)` in meters and describe the distance from the `base_link` coordinate frame at `(0, 0, 0)`. The program then combines those coordinates with the recognized block shape to calculate volume. In the example below, the recognized object is a cuboid and the calculated volume is displayed in the terminal.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-The dimensions of the cuboid are 2.8cm x 2.8cm x 5.8cm. The theoretical volume is 45.472 cubic centimeters. The calculated value is 4.87, which is within 1 cubic centimeter. The error comes from the depth information and the virtual position of the servo
+The cuboid dimensions are `2.8 cm x 2.8 cm x 5.8 cm`. The theoretical volume is `45.472 cm^3`. The remaining error mainly comes from depth measurement error and the virtual servo position.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-Program code path:
+Program code path for Raspberry Pi 5 and Jetson Nano:
 
-Raspberry Pi 5 and Jetson Nano board
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/estimate_volume.py
+```
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/estimate_volume.py
+Program code path for Orin boards:
 
-Orin Motherboard
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/estimate_volume.py
+```
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/estimate_volume.py
-
-Import necessary library files
+Import the required libraries:
 
 ```python
 import cv2
@@ -67,11 +71,11 @@ TimeSynchronizer,ApproximateTimeSynchronizer
 from sensor_msgs.msg import Image
 ```
 
-Load the offset of the robot arm to compensate for the error caused by virtual position,
+Load the robotic arm offset values to compensate for errors caused by the virtual position:
 
 ```
-#The robotic arm offset parameter file address in the docker of pi and jetson-
-nano motherboard: /root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml
+#The robotic arm offset parameter file address in the Docker container for Pi and Jetson
+#Nano boards: /root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml
 #Orin mainboard docker robot arm offset parameter file address:
 /home/jetson/yahboomcar_ws/src/arm_kin/param/offset_value.yaml
 offset_file = "/root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml"
@@ -84,7 +88,7 @@ print("y_offset: ",offset_config.get('y_offset'))
 print("z_offset: ",offset_config.get('z_offset'))
 ```
 
-Subscribe to the depth and color image topics and synchronize the two topics. When the message times of the two topics are close, call the callback function to process the image message.
+Subscribe to the depth and color image topics and synchronize them. When the message timestamps are close, the callback function processes the image messages.
 
 ```
 self.depth_image_sub = Subscriber(self, Image, '/camera/depth/image_raw')
@@ -94,14 +98,14 @@ self.depth_image_sub], 1, 0.5)
 self.ts.registerCallback(self.callback)
 ```
 
-Create a publisher that publishes messages to control the six servos and a client that requests the inverse solution service.
+Create a publisher for controlling the six servos and a client for requesting the kinematics service.
 
 ```
 self.pub_SixTargetAngle = self.create_publisher(ArmJoints, "arm6_joints", 10)
 self.client = self.create_client(ArmKinemarics, 'get_kinemarics')
 ```
 
-Control the robot arm to move to the recognized posture and calculate the current posture of the end of the robot arm.
+Move the robotic arm to the recognition posture and calculate the current end-effector pose.
 
 ```python
 self.pubSixArm(self.init_joints)
@@ -140,7 +144,7 @@ except Exception as e:
     self.get_logger().error(f'Service call failed: {e}')
 ```
 
-In the image callback function, after a series of image processing, the shape of the wooden block is obtained. The content is as follows:
+In the image callback function, image processing is used to identify the wooden block shape:
 
 ```
 rgb_image = self.rgb_bridge.imgmsg_to_cv2(color_frame,'rgb8')
@@ -224,14 +228,14 @@ considered a circle, that is, the top of the cylinder
         objType = "None"
 ```
 
-Get the minimum enclosing rectangle of an outline of the shape and return the center point of a minimum area rectangle.
+Get the minimum-area enclosing rectangle for the contour and return the rectangle center point.
 
 ```
 rect = cv2.minAreaRect(obj)
 center = rect[0]
 ```
 
-Calculate the pose of the center point, which represents the value of the point in the world coordinate system.
+Calculate the pose of the center point in the world coordinate system.
 
 ```python
 cx = int(center[0])
@@ -266,13 +270,13 @@ include the offset of the robotic arm
     return pose_T
 ```
 
-x value: the value of the point and base_link in the x-axis direction
+x value: The point's x-axis distance from `base_link`.
 
-y value: the value of the point and base_link in the y-axis direction
+y value: The point's y-axis distance from `base_link`.
 
-z value: The value of the point and base_link in the z-axis direction, which can be considered as the height.
+z value: The point's z-axis distance from `base_link`, which can be treated as height.
 
-If we can get the position of each point in the world coordinate system, we can solve the side length based on the identified shape. For example, for the simplest cube, we only need the z value to determine the volume. The side lengths of the cubes are the same, and the volume is the cube of the side length.
+After obtaining each point in the world coordinate system, the program can calculate side lengths according to the recognized shape. For a cube, only the `z` value is needed because all side lengths are equal, so the volume is the side length cubed.
 
 ```
 if objType == "Square":
@@ -281,7 +285,7 @@ if objType == "Square":
     print("------------------")
 ```
 
-To calculate the volume of a cuboid, you need to first calculate the length of one side. The side length can be calculated by the distance between the two vertices. The distance calculation can be calculated by Euclid's theorem, using the coordinates of the two points to calculate the distance between the two points. Here, the distance between the vertex and the terminal is recommended, which is to get 1/2 of the diagonal length. The volume is calculated by the length of the diagonal and the height.
+To calculate cuboid volume, the program first calculates one side length. The side length can be calculated from the distance between two vertices using Euclidean distance. In this example, the distance between the vertex and the center is used to obtain half of the diagonal length. The volume is then calculated from the diagonal length and height.
 
 ```
 elif objType == "Rectangle":
@@ -306,7 +310,7 @@ print("volume: ",volume)
 print("------------------")
 ```
 
-The volume of a cylinder is calculated by calculating the distance between the vertex and the center point to obtain the radius of the circle at the top of the cylinder, and finally the volume is calculated using the formula for calculating the volume of the cylinder.
+For a cylinder, the program calculates the distance between a contour point and the center point to obtain the radius of the top circle, then calculates volume using the cylinder volume formula.
 
 ```
 elif objType == "Cylinder":
