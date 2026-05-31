@@ -50,5 +50,14 @@
 - [4.5 Voice-Guided Navigation and Object Transfer](./4.AI%20Model%20-%20Voice%20Version/5.Robotic%20arm%20gripping%2BMultimodal%20visual%20understand%2BSLAM%20navigation/README.md)
 - [4.6 Voice-Based Personal Intent Understanding](./4.AI%20Model%20-%20Voice%20Version/6.Intention%20estimation/Intention%20estimation/README.md)
 
----
+## 5. Chassis Control Course
 
+- [5.1 ROS 2 Topic Control](./5.Chassis%20Control%20Course/1.ROS%20control/README.md)
+- [5.2 PS2 Controller Control](./5.Chassis%20Control%20Course/2.Handle%20control/README.md)
+- [5.3 Keyboard Teleoperation](./5.Chassis%20Control%20Course/3.Keyboard%20control/README.md)
+- [5.4 Angular Velocity Calibration](./5.Chassis%20Control%20Course/4.Angular%20velocity%20calibration/README.md)
+- [5.5 Linear Velocity Calibration](./5.Chassis%20Control%20Course/5.Line%20velocity%20calibration/README.md)
+- [5.6 Autonomous Line Following](./5.Chassis%20Control%20Course/6.Line%20patrol%20automatic%20driving/README.md)
+- [5.7 Patrol Route Control](./5.Chassis%20Control%20Course/7.Patrol/README.md)
+
+---
