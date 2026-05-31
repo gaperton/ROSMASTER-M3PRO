@@ -2,99 +2,101 @@
 
 ## 1. Course Content
 
-multi_brains provides a minimal test program for testing the core modules of the large language model functionality, used to quickly pinpoint the source of problems in abnormal situations.
+`multi_brains` provides minimal test programs for testing the core modules of the large language model function. These tools help quickly locate the source of abnormal behavior.
 
-## 2. Starting the Dify Service
+## 2. Start the Dify Service
 
-## 3. Entering the Test Tool Path
+Start Dify before testing modules that need to access the Dify service.
+
+## 3. Enter the Test Tool Path
 
 ```bash
 cd ~/M3Pro_ws/src/multi_brains/test
 ls
 ```
 
-The test tools are as follows:
+The test tools are listed in this directory.
 
-## 4. Testing Local Speech Synthesis Functionality
+## 4. Test Local Speech Synthesis
 
-Test the local speech synthesis function for Chinese and English in sequence.
+Run the following command to test local speech synthesis for Chinese and English:
 
 ```bash
 python3 test_PiperTTS.py
 ```
 
-After running, the synthesized speech results for Chinese and English will be played in sequence.
+After it runs, the synthesized Chinese and English speech results are played in sequence.
 
-## 5. Testing Local Speech Recognition Functionality
+## 5. Test Local Speech Recognition
 
-After running, the preset Chinese and English audio files will be tested in sequence.
+Run the following command to test the preset Chinese and English audio files:
 
 ```bash
 python3 test_SenseVoiceSmall.py
 ```
 
-After running, the speech recognition results for the test audio will be printed.
+After it runs, the speech recognition results for the test audio are printed.
 
-## 6. Testing if the robot can access Dify normally
+## 6. Test Whether the Robot Can Access Dify
 
-When the program shows that the model service is unavailable, you can test if the robot's vehicle system can access Dify due to a network address error.
+If the program reports that the model service is unavailable, use this test to check whether the robot system can access Dify. A network address error may prevent access.
 
 ```bash
 python3 test_dify_connection.py
 ```
 
-If the robot displays the following information normally, it proves that the robot is connected to Dify correctly. Otherwise, Dify may not be started or the Dify program may have crashed and needs to be restarted.
+If the robot displays normal connection information, it is connected to Dify correctly. Otherwise, Dify may not be started, or the Dify program may have crashed and needs to be restarted.
 
 ## 7. Online Voice Services for Domestic Users
 
-### 7.1 BaiLian Speech Recognition
+### 7.1 Bailian Speech Recognition
 
-If there is an error in online speech recognition, you can test the BaiLian speech recognition service separately.
+If online speech recognition reports an error, test the Bailian speech recognition service separately.
 
 ```bash
 python3 test_TongyiASR.py
 ```
 
-After running, it will perform speech recognition testing on the preset test audio.
+After it runs, the preset test audio is used for speech recognition testing.
 
-### 7.2 BaiLian Speech Synthesis
+### 7.2 Bailian Speech Synthesis
 
-If there is an error in online speech recognition, you can test the BaiLian speech recognition service separately.
+If online speech synthesis reports an error, test the Bailian speech synthesis service separately.
 
 ```bash
 python3 test_TongyiTTS.py
 ```
 
-After running, it will first perform speech synthesis on the default text, and then play the corresponding audio.
+After it runs, the default text is synthesized first, then the corresponding audio is played.
 
-### 7.3 BaiLian Speech Synthesis
+### 7.3 Baidu Speech Synthesis
 
-If there is an error in online speech recognition, you can test the BaiLian speech recognition service separately.
+If the Baidu online speech synthesis service reports an error, test it separately.
 
 ```bash
 python3 test_baiduTTS.py
 ```
 
-After running, it will first perform speech synthesis on the default text, and then play the corresponding audio.
+After it runs, the default text is synthesized first, then the corresponding audio is played.
 
 ## 8. Online Voice Services for International Users
 
-### 8.1 iFlytek Speech Recognition Service
+### 8.1 iFlytek Speech Recognition
 
-If online speech recognition encounters errors, you can test the Tongyi speech recognition service separately.
-
-```bash
-python3 test_TongyiASR.py
-```
-
-After running, it will perform speech recognition testing on the preset test audio.
-
-### 8.2 iFlytek Speech Synthesis Service
-
-If online speech synthesis encounters errors, you can test the Tongyi speech synthesis service separately.
+If online speech recognition reports an error, test the iFlytek speech recognition service separately.
 
 ```bash
-python3 test_TongyiTTS.py
+python3 test_xunfeiASR.py
 ```
 
-After running, it will first perform speech synthesis on the default text, and then play the corresponding audio.
+After it runs, the preset test audio is used for speech recognition testing.
+
+### 8.2 iFlytek Speech Synthesis
+
+If online speech synthesis reports an error, test the iFlytek speech synthesis service separately.
+
+```bash
+python3 test_xunfeiTTS.py
+```
+
+After it runs, the default text is synthesized first, then the corresponding audio is played.

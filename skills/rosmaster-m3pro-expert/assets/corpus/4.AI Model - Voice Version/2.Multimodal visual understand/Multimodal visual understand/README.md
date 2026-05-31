@@ -2,7 +2,7 @@
 
 ## 1. Course Content
 
-Basic: Run the example program, allowing the robot to observe the environment and execute tasks based on instructions.
+Basic: Run the example program so the robot can observe the environment and perform tasks according to voice instructions.
 
 Advanced: Understand the key source code introduced in this section.
 
@@ -10,64 +10,65 @@ Advanced: Understand the key source code introduced in this section.
 
 ### 2.1 Content Description
 
-This course uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host machine and then enter the command to access the Docker container. After entering the Docker container, enter the commands mentioned in this section in the terminal. For instructions on accessing the Docker container from the host machine, please refer to the "Accessing the Robot's Docker (For Jetson Nano and Raspberry Pi 5 users)" section in the product tutorial [0. Instructions and Installation Steps]. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this section.
+This lesson uses Jetson Orin NX as the example. For Raspberry Pi and Jetson Nano boards, open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For instructions, see **Entering the Robot Docker Container (for Jetson Nano and Raspberry Pi 5 users)** in **0. Configuration and Operation Guide**.
 
-### 2.2 Starting the Agent
+For Orin and NX boards, open a terminal directly on the robot and run the commands from this lesson.
 
-Note: If the agent is already running, you do not need to start it again.
+### 2.2 Start the Agent
 
-Enter the following command in the vehicle terminal:
+If the agent is already running, you do not need to start it again.
 
-```
+Run the following command in the robot terminal:
+
+```bash
 sh start_agent.sh
 ```
 
-The terminal will print the following information, indicating a successful connection:
+The terminal prints connection information when the agent connects successfully.
 
-## 3. Running Examples
+## 3. Run the Example
 
-### 3.1 Starting the Program
+### 3.1 Start the Program
 
-Open the terminal on the vehicle and enter the following command:
+Open a terminal on the robot and run:
 
 ```bash
 ros2 launch multi_brains llm_agent_control.launch.py
 ```
 
-Alternatively, you can use the shortcut command:
+Alternatively, use the shortcut command:
 
-```
+```bash
 multi_brains
 ```
 
-Wait for the initialization program to complete, as shown in the image below:
+Wait for initialization to complete.
 
 ### 3.2 Test Cases
 
-These test cases are for demonstration purposes only; users can create their own dialogue commands.
+These test cases are for demonstration. You can also create your own dialogue commands.
 
 - Tell me what objects are in front of you and what their functions are.
 - Please check if there is a blue cube and a pack of tissues in front of you. If there is, nod your head; if not, shake your head.
 
 #### 3.2.1 Case 1
 
-First, use "Hello yahboom" to wake up the robot. The robot will respond. After the recording prompt, the user can speak. The robot will perform dynamic sound detection. If there is sound activity, it will print "1-1-1-1"; if there is no sound activity, it will print "---------". After speaking, it will perform end-of-speech detection. If there is silence for more than 1.5 seconds, the recording will stop. - The robot will first respond to the user, then perform the actions according to the instructions, while simultaneously printing the following information on the terminal:
+Wake the robot by saying `Hello yahboom`. The robot responds. After the recording prompt, speak your command. The robot performs dynamic sound detection. If voice activity is detected, the terminal prints `1-1-1-1`; if no voice activity is detected, it prints `---------`. After you finish speaking, end-of-speech detection runs. If silence lasts more than 1.5 seconds, recording stops.
 
-Robot's perspective screen:
+The robot first responds to the user, then performs actions according to the instruction while printing information in the terminal.
+
+Robot perspective:
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-#### [!IMPORTANT]
-
-It is important to note that:
-
-The robot has short-term memory. After being activated, all interactions will be stored in the AI large language model's historical context memory. The robot will only clear its previous memory when the user explicitly requests to end the current task or gives similar commands such as asking the robot to stop or rest.
+> [!IMPORTANT]
+> The robot has short-term memory. After wake-up, all interactions are stored in the large language model's historical context. The robot clears previous memory only when the user explicitly asks to end the current task or gives a similar stop/rest command.
 
 #### 3.2.2 Case 2
 
-Wake up the robot and speak the test command. The terminal prints the following information:
+Wake the robot and speak the test command. The terminal prints the response information.
 
-Robot's perspective view:
+Robot perspective:
 
 ![Picture: page 4: picture 1](_page_4_Picture_1.jpeg)
 
@@ -75,85 +76,16 @@ Robot's perspective view:
 
 Robot action source code path:
 
-```
+```text
 ~/M3Pro_ws/src/multi_brains/multi_brains/action_service.py
 ```
 
-Model service source code:
+Model service source code path:
 
-```
+```text
 ~/M3Pro_ws/src/multi_brains/multi_brains/model_service.py
 ```
 
-- The main program that implements the robot's visual observation function is the seewhat method in the action_service.py program:
-- The function saves and displays an image from the latest perspective.
-- Then, it sends a request to the model_service node, requesting to provide the image feedback to the multi_brains agent in Dify.
+The visual observation function is mainly implemented by `seewhat` in `action_service.py`. It saves and displays an image from the latest perspective, then sends a request to the `model_service` node so image feedback can be provided to the `multi_brains` agent in Dify.
 
-```python
-def seewhat(self):
-    """
-  Save the current view image and send it as feedback to the Dify agent.
-    """
-    self.save_single_image()
-    msg=LlmRequest()
-    msg.llm_request=self.actionlog.get_text("image_feedback")
-    msg.robot_feedback=True
-    self.llm_request_pub.publish(msg)
-    return None
-def save_single_image(self):
-```
-
-```python
-"""Save a single image"""
-       cv_image = self.bridge.imgmsg_to_cv2(self.image_msg, "bgr8")
-       cv2.imwrite(self.image_cache_path, cv_image)
-       time.sleep(0.05)
-       display_thread = threading.Thread(target=self.__display_saved_image)
-       display_thread.start()
-   def __display_saved_image(self):
-       """
-       Display the saved image for 4 seconds before
-closing the window
-       """
-       try:
-           img = cv2.imread(self.image_cache_path)
-           if img is not None:
-               cv2.imshow("Saved Image", img)
-               cv2.waitKey(4000) # Wait for 4 seconds
-               cv2.destroyAllWindows()
-           else:
-               self.get_logger().error(
-                   "Failed to load saved image for display."
-               ) # Failed to load the saved image for display...
-       except Exception as e:
-           self.get_logger().error(f"Error displaying image: {e}") # An error
-occurred while displaying the image...
-```
-
-- In addition, the llm_request_callback function in model_service.py is used to receive requests to access the multi_brains agent.
-- If the llm_request field in the request message indicates an image request, a list [msg.llm_request, 'image_request', True] is constructed and added to the model request processing queue.
-
-```python
-def llm_request_callback(self, msg:LlmRequest):
-        '''Topic callback function, receive
-model request and put into queue
-        '''if self.debug_mode: self.get_logger().info(f"robot_feedback:
-{msg.robot_feedback},llm_request:{msg.llm_request}")
-       if msg.robot_feedback:
-           # Robot Feedback Request
-           if msg.llm_request ==self.syslog.get_text("image_feedback"):
-self.llm_handler_queue.put([msg.llm_request,'image_request',True])
-           elif msg.llm_request =="finish":
-               # Upon receiving the finish command from dify-agent, the current
-task cycle ends. This clears the historical context and starts a new task cycle.
-               self.clear_request_queue() # Clear the request queue
-               self.dify_llmclient.reset_conversation() # Reset session
-           else:
-               #Regular robot feedback results
-               if self.debug_mode:
-self.get_logger().info(self.syslog.get_text("system_log_4"))
-self.llm_handler_queue.put([msg.llm_request,'text_request',True])
-```
-
-else:# Model requests from other sources
- self.llm_handler_queue.put([msg.llm_request,'text_request',None])
+For the detailed code flow, see the text-version chapter **Multimodal Visual Understanding**. The voice version uses the same visual feedback path, with speech recognition and speech synthesis added around the interaction.

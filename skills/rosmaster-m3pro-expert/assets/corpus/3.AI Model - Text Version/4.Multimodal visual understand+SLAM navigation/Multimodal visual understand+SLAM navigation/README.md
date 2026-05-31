@@ -2,27 +2,26 @@
 
 ## 1. Course Content
 
-Run example programs to perform integrated tasks using the robot's visual understanding capabilities combined with SLAM navigation through text-based interaction.
+Run example programs to perform integrated tasks using the robot's visual understanding and SLAM navigation through text-based interaction.
 
-## 2. Starting the Agent
+## 2. Start the Agent
 
-Note: If the agent is already running, you do not need to start it again.
+If the agent is already running, you do not need to start it again.
 
-Enter the following command in the vehicle terminal:
+Run the following command in the robot terminal:
 
-```
+```bash
 sh start_agent.sh
 ```
 
-The terminal will print the following information, indicating a successful connection:
+The terminal prints connection information when the agent connects successfully.
 
-### [!NOTE]
+> [!NOTE]
+> To use this lesson, you must first build at least one grid map by following the LiDAR course.
 
-Note: To experience this section of the course, you need to first build at least one grid map according to the LiDAR section of the course.
+### 2.1 Configure the Map Mapping File
 
-### 2.3 Configuring the Map Mapping File
-
-Connect to the robot's desktop via VNC and start the navigation node using the following commands:
+Connect to the robot desktop through VNC and start the navigation nodes:
 
 ```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
@@ -38,111 +37,112 @@ Start RViz on the robot:
 ros2 launch M3Pro_navigation nav_rviz.launch.py
 ```
 
-Alternatively, you can start the display on the virtual machine; there is no need to start the display window repeatedly.
+Alternatively, start the display on the virtual machine. Do not start the display window repeatedly.
 
 ```bash
 ros2 launch slam_view nav_rviz.launch.py
 ```
 
-Afterward, the rviz2 visualization interface will open. Click **2D Pose Estimate** in the top toolbar to enter the selection state, and roughly mark the robot's position and orientation on the map.
+After RViz opens, click **2D Pose Estimate** in the top toolbar and roughly mark the robot's position and orientation on the map.
 
-The robot model will be displayed on the map, as shown below:
+The robot model appears on the map:
 
 ![Picture: page 1: picture 10](_page_1_Picture_10.jpeg)
 
-We can name any precise point on the map. Here, we use "Master Bedroom" and "Kitchen" as examples.
+You can give precise points on the map readable names. This example uses **Master Bedroom** and **Kitchen**.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-As shown in the figure below, we first click the **Nav2 Goal** tool to navigate the robot to the target point we need to mark.
+Click **Nav2 Goal** to navigate the robot to the target point that you want to mark.
 
 ![Picture: page 2: picture 2](_page_2_Picture_2.jpeg)
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-Run the following command in the terminal to obtain the current robot's pose information in the map coordinate system:
+Run the following command to get the robot's current pose in the map coordinate system:
 
 ```bash
 ros2 run tf2_ros tf2_echo map base_footprint
 ```
 
-Open the map_mapping.yaml map mapping file (you can open it using VNC, VS Code, command line, or any other method):
-
-Here's an example of opening the file via the command line:
+Open the `map_mapping.yaml` map mapping file using VNC, VS Code, the command line, or another method. For example:
 
 ```bash
 nano ~/M3Pro_ws/multi_brains_file/map_mapping.yaml
 ```
 
-Modify the symbolic pose under the common_map_areas field. name is the location name. Fill in the previously obtained pose information into the position and orientation fields.
+Modify the symbolic poses under `common_map_areas`. The `name` field is the location name. Fill the `position` and `orientation` fields with the pose information obtained earlier.
 
+```yaml
+# According to the actual scene environment, customize the areas in the map.
+# You can add any number of areas, as long as they are consistent with the
+# map mapping used by the large model.
+common_map_areas:
+  A:
+    name: 'Master Bedroom'
+    position:
+      x: 3.974
+      y: -2.634
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: -0.688
+      w: 0.726
+  B:
+    name: 'xxx'
+    position:
+      x: 1.488
+      y: 0.661
+      z: 0.0
+    orientation:
+      x: 0.0
+      y: 0.0
+      z: 0.725
+      w: 0.688
 ```
 
-#According to the actual scene environment, customize the areas in the map. You
-can add any number of areas, just make sure they are consistent with the map
-mapping of the large model
-#Map mapping
-common_map_areas: # common navigation
- A:
- name: 'Master Bedroom'
- position:
-   x: 3.974
-   y: -2.634
- orientation:
-   x: 0.0
-   y: 0.0
-   z: -0.688
-   w: 0.726
- B:
-   name: 'xxx'
-   position:
-     x: 1.488
-     y: 0.661
-     z: 0.0
-   orientation:
-     x: 0.0
-     y: 0.0
-     z: 0.725
-     w: 0.688
-```
+After you save the file, the changes take effect immediately.
 
-After the modifications are complete, saving the file will take effect immediately. 2.4 Configuring Map Mapping Variables in Dify
+### 2.2 Configure Map Mapping Variables in Dify
 
-After configuring the map mapping file as described above, we need to let the AI large language model know the relationship between the locations and symbols in these maps. Start the Dify service (if already started, no need to restart):
+After configuring the map mapping file, tell the large language model the relationship between map symbols and location names.
 
+Start Dify if it is not already running:
+
+```bash
 bringup_dify
+```
 
-Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page, then click to select the corresponding AI application.
+Enter the robot's IP address in the browser address bar to open the Dify management page, then select the corresponding AI application.
 
-#### [!NOTE]
-
-International users: multi_brains_en
+> [!NOTE]
+> International users: `multi_brains_en`
 
 ![Picture: page 5: picture 6](_page_5_Picture_6.jpeg)
 
-Click to select Session Variables in the upper right corner, then click the edit button for the map_mapping variable.
+Click **Session Variables** in the upper-right corner, then click the edit button for the `map_mapping` variable.
 
 ![Figure: page 5: figure 8](_page_5_Figure_8.jpeg)
 
-In the pop-up Edit Session Variables window, edit the mapping relationship according to the settings in the previous map mapping file, and then click Save.
+In the **Edit Session Variables** pop-up window, edit the mapping relationship according to the map mapping file, then click **Save**.
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-Finally, remember to click Publish -> Publish Update to save the changes.
+Finally, click **Publish** -> **Publish Update** to save the changes.
 
 ![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-## 3. Running Example
+## 3. Run the Example
 
-### 3.1 Starting the Program
+### 3.1 Start the Program
 
-Connect to the robot's desktop via VNC, open a terminal, and run the command:
+Connect to the robot desktop through VNC, open a terminal, and run:
 
 ```bash
 ros2 launch multi_brains llm_agent_control.launch.py text_chat_mode:=True
 ```
 
-Start navigation commands on the vehicle's control unit:
+Start the navigation nodes on the robot:
 
 ```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
@@ -158,11 +158,11 @@ Start RViz on the robot:
 ros2 launch M3Pro_navigation nav_rviz.launch.py
 ```
 
-Then, follow the procedure for initializing the navigation function. This will open the rviz2 visualization interface. Click on **2D Pose Estimate** in the toolbar at the top to enter selection mode. Roughly mark the robot's position and orientation on the map. After initialization, the preparation is complete.
+Initialize navigation by clicking **2D Pose Estimate** in RViz and roughly marking the robot's position and orientation on the map. After initialization, preparation is complete.
 
 ![Picture: page 8: picture 9](_page_8_Picture_9.jpeg)
 
-Start the text interaction program in the terminal:
+Start the text interaction program:
 
 ```bash
 ros2 run text_chat text_chat
@@ -170,54 +170,14 @@ ros2 run text_chat text_chat
 
 ### 3.2 Test Case
 
-Here is a sample test case; users can create their own dialogue commands.
+The following is a sample test case. You can also create your own dialogue commands.
 
+```text
 Please remember your current location, then navigate to the kitchen and the master bedroom in sequence, remembering the items you see in each place. Finally, return to your starting position and tell me what you saw in those two places?
+```
 
-Copy and paste the above test case into the text interaction terminal:
+Copy and paste the test case into the text interaction terminal.
 
 ![Figure: page 9: figure 4](_page_9_Figure_4.jpeg)
 
-The decision-making AI outputs the planned task steps:
-
-Then the execution layer AI will execute according to these task steps:
-
-```
-user input: [INFO] [1750387878.350106583] [text chat node]: robot response: "acti
-on": ['get_current_pose()'], "response": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750387882.255020679] [text chat node]: robot response: "action": ['naviq
-ation(G)'], "response": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750387948.665910436] [text chat node]: robot response: "action": ['navig
-ation(G)'],"response": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750387957.637532129] [text chat node]: robot response: "action": ['seewh
-at()'], "response": "[non-English output omitted]"
-[INFO] [1750387963.313431519] [text chat node]: robot response: "action": [], "re
-sponse": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750387966.771073792] [text_chat_node]: robot response: "action": ['navig
-ation(A)']. "response": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750388031.398516666] [text chat node]: robot response: "action": ['navig
-ation(A)'],"response": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750388037.382963440] [text chat node]: robot response: "action": ['seewh
-at()'],"response": "[non-English output omitted]"
-[INFO] [1750388045.402025419] [text_chat_node]: robot response: "action": [], "re
-sponse": "[non-English output omitted]"
-[non-English output omitted]
-[non-English output omitted]
-[INFO] [1750388050.039975630] [text chat node]: robot response: "action": ['navig
-ation(zero)'], "response": "[non-English output omitted]"
-[non-English output omitted]
-[INFO] [1750388091.405150056] [text_chat_node]: robot response: "action": [], "re
-sponse": "[non-English output omitted]"
-[non-English output omitted]
-[non-English output omitted]
-[non-English output omitted]
-[INFO] [1750388104.844933245] [text_chat_node]: robot response: "action": ['finis
-htask()'],"response": "[non-English output omitted]"
-[non-English output omitted]
-```
+The decision-making AI outputs the planned task steps, and the execution-layer AI executes those steps.

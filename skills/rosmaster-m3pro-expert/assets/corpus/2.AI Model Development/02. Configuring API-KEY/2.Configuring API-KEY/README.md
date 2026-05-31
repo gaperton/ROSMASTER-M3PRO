@@ -1,66 +1,70 @@
-# Configuring the API Key
+# Configure the API Key
 
 ## 1. Course Content
 
-Use the previously registered API key to configure the robot car's API key.
+Use the API key registered earlier to configure the robot's model-service access.
 
-[!WARNING]
+> [!WARNING]
+> Make sure the robot is connected to the internet before using cloud-based model services.
 
-**Note**: Please ensure the car is connected to the internet to use the cloud-based model services.
+## 2. Start the Dify Service
 
-## 2. Starting the Dify Service
+> [!TIP]
+> ROSMASTER-M3 Pro uses Dify to build a multi-agent system. Dify manages calls to cloud-based models.
 
-[!TIP]
+Connect to the robot system through VNC or SSH, then run the following command in a terminal:
 
-ROSMASTER-M3 Pro uses Dify to build a multi-agent system, with Dify managing the calls to the cloud-based models. - Connect to the vehicle's system via VNC or SSH, and enter the following command in the terminal:
-
+```bash
 bringup_dify
+```
 
-View the vehicle's IP address. This can be done via the OLED screen or by using ifconfig in the terminal.
+Check the robot's IP address. You can view it on the OLED screen or run `ifconfig` in the terminal.
 
-Enter the vehicle's IP address directly into your browser's address bar to access the Dify management page. If this is the first time logging in, you will need to use the account and password. You can select the language in the upper left corner.
+Enter the robot's IP address directly in your browser address bar to open the Dify management page. If this is your first login, use the account and password below. You can change the page language in the upper-left corner.
 
-### [!NOTE]
+> [!NOTE]
+> Account: `yahboom@163.com`
+>
+> Password: `yahboom123`
+>
+> All account passwords, AI agent applications, and RAG data are stored locally.
 
-- Account name: yahboom@163.com
-- Password: yahboom123
-- All account passwords, intelligent agent applications, and RAG data are stored locally.
-- After logging in, the page will look like this:
+After login, the page looks like this:
 
 ![Picture: page 1: picture 7](_page_1_Picture_7.jpeg)
 
-## 3. Configuring the Model Service Provider API Key
+## 3. Configure the Model Service Provider API Key
 
-Click Settings
+Click **Settings**.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-Here, we'll use configuring the Alibaba Cloud Model Studio Platform account API as an example. Click Model Provider -> Setup
+This example uses the Alibaba Cloud Model Studio API. Click **Model Provider** -> **Setup**.
 
 ![Picture: page 2: picture 2](_page_2_Picture_2.jpeg)
 
-Enter your Alibaba Cloud Model Studio Platform API key, then select whether it's an international account, and click Save.
+Enter your Alibaba Cloud Model Studio API key, select whether it is an international account, and click **Save**.
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-## 4. Testing the API Key
+## 4. Test the API Key
 
-[!TIP]
+> [!TIP]
+> Use this section if you need to test whether your API key is valid. Otherwise, you can skip it.
 
-- If you need to test whether your API key is valid, you can refer to this section of the tutorial. Otherwise, you can skip it.
-- Click on the "TEST_API" application in the studio.
+Click the **TEST_API** application in the studio.
 
 ![Picture: page 3: picture 5](_page_3_Picture_5.jpeg)
 
-Then, select any model in the model selection to test.
+Select any model from the model selector for testing.
 
 ![Figure: page 3: figure 7](_page_3_Figure_7.jpeg)
 
-Enter any content in the chat box. If the registered API key is valid, you will see the model's response.
+Enter any content in the chat box. If the API key is valid, the model will respond.
 
 ![Picture: page 4: picture 1](_page_4_Picture_1.jpeg)
 
-## 5. Configuring the multi_brains Function Package API
+## 5. Configure the `multi_brains` Package API
 
 Generate the parameter file by running the following commands in the terminal:
 
@@ -69,14 +73,14 @@ cd ~/M3Pro_ws/multi_brains_file
 cp .multi_brains_setting_example_en.yaml multi_brains_setting.yaml
 ```
 
-If you later use Alibaba Cloud's speech synthesis service to generate a custom voice file, please apply for an API-KEY from Alibaba Cloud International and fill in ALIYUN_API_KEY. **This does not affect normal use; you can ignore this if you don't need it.**
+If you later use Alibaba Cloud speech synthesis to generate custom voice files, apply for an API key from Alibaba Cloud International and fill in `ALIYUN_API_KEY`. **This does not affect normal use; ignore this setting if you do not need it.**
 
 ![Figure: page 4: figure 6](_page_4_Figure_6.jpeg)
 
-## 6. Using Local Speech Services
+## 6. Use Local Speech Services
 
-- By default, online speech services are used for speech recognition and speech synthesis. If you need to use local speech services, please refer to this section of the tutorial; otherwise, you can skip this section.
-- Note that due to memory and performance limitations, local speech services are not currently available on Jetson Nano.
+- By default, online speech services are used for speech recognition and speech synthesis. If you need local speech services, follow this section. Otherwise, skip it.
+- Because of memory and performance limits, local speech services are not currently available on Jetson Nano.
 
 ### 6.1 Local Speech Recognition
 
@@ -84,10 +88,11 @@ If you later use Alibaba Cloud's speech synthesis service to generate a custom v
 nano ~/M3Pro_ws/multi_brains_file/multi_brains_setting.yaml
 ```
 
-- Find the USE_ONLINE_ASR option in the ASR function setting section and set it to False. Save and exit with Ctrl+x to enable local speech recognition.
-- Other parameters are used to configure some parameters of the recording process. See the comments for details on the function of each parameter. Beginners can use the default settings.
+Find `USE_ONLINE_ASR` in the ASR settings and set it to `False`. Save and exit with Ctrl+X to enable local speech recognition.
 
-```
+Other parameters configure the recording process. See the comments for each parameter. Beginners can keep the default settings.
+
+```yaml
 ####################
 #ASR function setting
 #Speech Recognition Function Settings
@@ -112,9 +117,9 @@ detection, unit: frames
 nano ~/M3Pro_ws/multi_brains_file/multi_brains_setting.yaml
 ```
 
-Find the USE_OLINE_TTS option in the TS function setting section and set it to False. Save and exit with Ctrl+x to enable local speech synthesis.
+Find `USE_OLINE_TTS` in the TTS settings and set it to `False`. Save and exit with Ctrl+X to enable local speech synthesis.
 
-```
+```yaml
 ####################
 #TTS function setting
 #Speech Synthesis Function Settings
@@ -124,20 +129,21 @@ USE_OLINE_TTS : False
 ... .
 ```
 
-## 7. Modifying the Dfiy Service API
+## 7. Modify the Dify Service API
 
-- **Note**: This section is for users with development needs only and can generally be ignored.
-- If you need to modify the address that the vehicle's infotainment system uses to access the Dify application's API, or if Dify is deployed on a different server, you need to modify the access address in the configuration file:
+- **Note:** This section is only for users with development needs and can usually be ignored.
+- If you need to modify the address used by the robot system to access the Dify application API, or if Dify is deployed on another server, modify the access address in the configuration file:
 
 ```bash
 nano ~/M3Pro_ws/multi_brains_file/multi_brains_setting.yaml
 ```
 
-- Find the DIFY_API_KEY and DIFY_BASE_URL parameters, where:
-- DIFY_BASE_URL is the address for accessing the Dify backend service.
-- DIFY_API_KEY is the API key for the AI application in Dify.
+Find the `DIFY_API_KEY` and `DIFY_BASE_URL` parameters:
 
-```
+- `DIFY_BASE_URL` is the address used to access the Dify backend service.
+- `DIFY_API_KEY` is the API key for the AI application in Dify.
+
+```yaml
 ####################
 # dify setting
 # dify configuration options

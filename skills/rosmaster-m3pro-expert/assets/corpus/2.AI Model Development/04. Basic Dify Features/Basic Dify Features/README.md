@@ -1,122 +1,119 @@
-# Dify Basic Functions
+# Basic Dify Functions
 
 ## 1. Course Content
 
-Understand and master the basic operations and functions of Dify
+Learn and practice the basic operations and functions of Dify.
 
-## 2. Starting the Dify Service
+## 2. Start the Dify Service
 
-Connect to the vehicle's computer via VNC or SSH, and enter the following command in the terminal:
+Connect to the robot computer through VNC or SSH, then run the following command in the terminal:
 
+```bash
 bringup_dify
+```
 
-Check the vehicle's IP address. This can be done via the OLED screen, ifconfig, or directly in the terminal.
+Check the robot's IP address. You can view it on the OLED screen, use `ifconfig`, or check it directly in the terminal.
 
-Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page. If this is the first time logging in, you will need to use the account and password. You can select the language in the upper left corner.
+Enter the robot's IP address directly in the browser address bar to open the Dify management page. If this is the first login, use the account and password below. You can change the language in the upper-left corner.
 
-### [!NOTE]
+> [!NOTE]
+> Account: `yahboom@163.com`
+>
+> Password: `yahboom123`
+>
+> All account passwords, AI agent applications, and RAG data are stored locally.
 
-- Account: yahboom@163.com
-- Password: yahboom123
-- All account passwords, AI agent applications, and RAG data are stored locally.
-- The Dify main interface is shown below:
+The Dify main interface is shown below:
 
 ![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
 ## 3. Basic Usage
 
-### [!TIP]
+> [!TIP]
+> If you need cloud-based AI models from model providers, make sure the robot computer is connected to the internet.
 
-If you need to use cloud-based AI models from model providers, please ensure the vehicle's computer is connected to the internet.
+### 3.1 Switch the Dify Language
 
-### 3.1 Switching Dify Language
-
-Generally, the Dify page will follow the browser's language. If you need to switch manually, you can select the language in the settings.
+Usually, Dify follows the browser language. To switch manually, select the language in the settings.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-### 3.1 Accessing Model Provider Services
+### 3.2 Access Model Provider Services
 
-- Dify has built-in model interface plugins for various model providers. These plugins are maintained and upgraded by their respective model providers. We can install the corresponding model provider's plugin to quickly access cloud models from different vendors.
-- Click on "Plugins" -> "Explore Marketplace" -> "Models" in the upper left corner of the homepage to access the model interface plugin page.
+- Dify includes model interface plugins for many model providers. These plugins are maintained and upgraded by their respective providers. Install the corresponding plugin to quickly access cloud models from different vendors.
+- On the home page, click **Plugins** -> **Explore Marketplace** -> **Models** in the upper-left corner to open the model plugin page.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-This example demonstrates installing and configuring the Tongyi Qianwen plugin. The method is the same for other plugins; simply click "Install".
+This example installs and configures the Tongyi Qianwen plugin. Other plugins are installed the same way: click **Install**.
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-Afterwards, simply enter the API-KEY obtained from the corresponding platform in the Model Provider section of the Settings page. If the API-KEY is valid, the APIKEY for the corresponding plugin will show a green light.
+Then enter the API key from the corresponding platform in the **Model Provider** section of the **Settings** page. If the API key is valid, the corresponding plugin shows a green indicator.
 
-#### [!TIP]
-
-For more detailed steps on configuring the API-KEY and testing the API-KEY, please refer to section 6. Configuring API-KEY in the previous chapter.
+> [!TIP]
+> For detailed API key configuration and testing steps, see section 6, **Configuring API-KEY**, in the previous chapter.
 
 ![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
-### 3.2 Switching the AI Application's Access Model
+### 3.3 Switch the AI Application Model
 
-For already developed AI intelligent agent applications, you can quickly switch between different models to test their effects. Here, we take the multi_brains core intelligent agent of ROSMASTER-M3 Pro as an example. Click on the intelligent agent application on the homepage.
+For existing AI agent applications, you can quickly switch between different models to compare their behavior. This example uses the ROSMASTER-M3 Pro `multi_brains` core AI agent. Click the AI agent application on the home page.
 
 ![Picture: page 4: picture 3](_page_4_Picture_3.jpeg)
 
-There are three core AIs: Task Routing, Decision Layer AI, and Execution Layer AI.
+There are three core AI modules: Task Routing, Decision Layer AI, and Execution Layer AI.
 
 ![Figure: page 4: figure 5](_page_4_Figure_5.jpeg)
 
-Here, we take switching the Decision Layer AI as an example. Click on the Decision MAKING AI card, and you can switch between different vendor models in the model selection dropdown menu.
+This example switches the Decision Layer AI. Click the **Decision MAKING AI** card, then select a different vendor model from the model dropdown menu.
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
-- You can also fine-tune the parameters to adjust the model's response. The detailed function of each parameter can be viewed by hovering the mouse over it.
-- Taking the temperature parameter as an example:
+- You can also tune parameters to adjust model responses. Hover over each parameter to view its function.
+- For example, the temperature parameter controls randomness and diversity. A higher temperature smooths the probability distribution and allows more low-probability words to be selected, producing more diverse text. A lower temperature makes high-probability words more likely, producing more deterministic text.
 
-This parameter is used to control the degree of randomness and diversity. The temperature value controls the degree to which the probability distribution of each candidate word is smoothed during text generation. A higher temperature value reduces the peaks in the probability distribution, allowing more lowprobability words to be selected, resulting in more diverse generated text; a lower temperature value, on the other hand, enhances the peaks in the probability distribution, making high-probability words more likely to be selected, resulting in more deterministic generated text.
-
-#### [!TIP]
-
-Beginners can generally use the default parameters without adjustment.
+> [!TIP]
+> Beginners can usually keep the default parameters.
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-Note that after modifying the AI application, you need to click Publish - Publish Update to save the changes.
+After modifying the AI application, click **Publish** -> **Publish Update** to save the changes.
 
 ![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-#### [!WARNING]
-
-### Note:
-
-- For the execution layer model, because it needs to process images, only multimodal models can be selected (visual models will have special symbols as shown in the image below).
-- There are no restrictions on the models for the task routing and decision-making layers.
-- Task routing can select a smaller parameter model to improve response speed.
+> [!WARNING]
+> For the execution layer model, only multimodal models can be selected because this layer processes images. Visual models have special icons, as shown below.
+>
+> Task routing and decision-making layers do not have this restriction.
+>
+> Task routing can use a smaller model to improve response speed.
 
 ![Picture: page 8: picture 0](_page_8_Picture_0.jpeg)
 
 ## 4. Account Settings
 
-### [!NOTE]
+> [!NOTE]
+> Dify account information is stored locally and has no privacy risk. ROSMASTER-M3 Pro includes a preconfigured administrator account. Use this section only if you need to modify account information.
 
-Dify account information is stored locally and has no privacy risks. The ROSMASTER-M3 Pro comes with a pre-configured administrator account. Refer to this section of the tutorial only if you need to modify account information.
-
-Click the avatar in the upper right corner -> Account
+Click the avatar in the upper-right corner, then click **Account**.
 
 ![Picture: page 9: picture 0](_page_9_Picture_0.jpeg)
 
-Account information is shown below. You can modify the information as needed.
+The account information is shown below. Modify it as needed.
 
 ![Figure: page 9: figure 3](_page_9_Figure_3.jpeg)
 
-To log out, click the avatar again to log out.
+To log out, click the avatar again.
 
 ![Figure: page 10: figure 0](_page_10_Figure_0.jpeg)
 
 ## 5. Development Documentation
 
-For users who require further development, more detailed development documentation is available. Click the avatar in the upper right corner -> View Docs
+For users who need further development, detailed development documentation is available. Click the avatar in the upper-right corner, then click **View Docs**.
 
 ![Figure: page 10: figure 3](_page_10_Figure_3.jpeg)
 
-This will open Dify's online development documentation page. You can select and view different documentation content from the dropdown list on the left.
+Dify's online development documentation page opens. Select different documentation content from the dropdown list on the left.
 
 ![Figure: page 11: figure 1](_page_11_Figure_1.jpeg)

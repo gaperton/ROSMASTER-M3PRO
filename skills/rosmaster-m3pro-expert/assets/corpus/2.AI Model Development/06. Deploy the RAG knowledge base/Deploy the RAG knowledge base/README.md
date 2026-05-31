@@ -1,100 +1,106 @@
-# Deploying a Local RAG Knowledge Base
+# Deploy a Local RAG Knowledge Base
 
 ## 1. Course Content
 
-- Master the process and methods for local deployment, debugging, and testing of the RAG knowledge base.
-- Master the method for extending the RAG knowledge base based on your specific task scenarios.
+- Learn the process and methods for deploying, debugging, and testing a local RAG knowledge base.
+- Learn how to extend the RAG knowledge base for your own task scenarios.
 
-### [TIP]
+> [!TIP]
+> The RAG knowledge base helps general AI large models use reference knowledge in vertical domains. This reduces hallucinated responses and improves domain-specific answers.
+>
+> The RAG knowledge base also helps robots quickly expand their generalization capabilities for different task scenarios.
 
-- The RAG knowledge base helps general AI large models provide reference knowledge in vertical domains, preventing AI large models from generating hallucinatory responses and increasing the model's ability to respond with knowledge in vertical domains.
-- The RAG knowledge base can help robots quickly expand their generalization capabilities in different task scenarios.
+## 2. Start the Dify Service
 
-## 2. Starting the Dify Service
+Connect to the robot computer through VNC or SSH, then run the following command in the terminal:
 
-Connect to the vehicle's computer via VNC or SSH, and enter the following command in the terminal:
-
+```bash
 bringup_dify
+```
 
-Check the vehicle's IP address (you can check it on the OLED screen, using ifconfig, or directly in the terminal). Enter the vehicle's IP address directly in the browser's address bar to access the Dify management page.
+Check the robot's IP address. You can view it on the OLED screen, use `ifconfig`, or check it directly in the terminal. Enter the robot's IP address directly in the browser address bar to open the Dify management page.
 
-## 3. Viewing the Preset Knowledge Base
+## 3. View the Preset Knowledge Base
 
-Click on the Knowledge Base page on the homepage. Dify comes pre-configured with two RAG knowledge bases, with the same content but different languages.
+On the home page, click **Knowledge Base**. Dify is preconfigured with two RAG knowledge bases that contain the same content in different languages.
 
-### [TIP]
-
-The preset knowledge base provides training examples for some task scenarios to help the AI model quickly master relevant skills.
+> [!TIP]
+> The preset knowledge base provides training examples for task scenarios, helping the AI model quickly learn relevant skills.
 
 ![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
-- Open a knowledge base; it contains a preset file called Sample training for the decisionmaking level, which includes:
-- Sample training for the decision-making level: Stores preset reference examples related to specific task scenarios.
+Open a knowledge base. It contains a preset file named **Sample training for the decision-making level**.
+
+- **Sample training for the decision-making level**: Stores preset reference examples related to specific task scenarios.
 
 ![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
-## 4. Expanding the RAG Knowledge Base
+## 4. Expand the RAG Knowledge Base
 
-To expand with a new knowledge base, click "Create Knowledge".
+To create a new knowledge base, click **Create Knowledge**.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-- Here, we'll use importing local data as an example.
-- Click "Import Existing file" -> Select File -> Next
+This example imports local data.
+
+Click **Import Existing file** -> **Select File** -> **Next**.
 
 ![Picture: page 2: picture 3](_page_2_Picture_3.jpeg)
 
-Then, you'll enter the knowledge base configuration page. Click the preview block to view the file chunking effect. Here, select "Economic" for the indexing mode.
+The knowledge base configuration page opens. Click the preview block to view the file chunking result. For this example, select **Economic** as the indexing mode.
 
-### [!TIP]
-
-- For beginners, it is recommended to use the economic mode for learning and testing. The difference between the two indexing modes:
-  - Economic: Retrieves content from the knowledge base using **keywords**. It cannot perform extended retrieval of similar semantics, and the method of retrieving knowledge fragments is relatively rigid.
-  - High-Quality Mode: Requires an embedding model to consume extra tokens and requires a rerank model, enabling more accurate retrieval of similar semantic fragments.
-- The default knowledge base mode is High-Quality Mode.
+> [!TIP]
+> Beginners are advised to use Economic mode for learning and testing.
+>
+> Economic mode retrieves content from the knowledge base using **keywords**. It cannot perform expanded retrieval of semantically similar content, so fragment retrieval is relatively rigid.
+>
+> High-Quality mode requires an embedding model, consumes extra tokens, and requires a rerank model, but it provides more accurate retrieval of semantically similar fragments.
+>
+> The default knowledge base mode is High-Quality mode.
 
 ### 4.1 Economic Mode Knowledge Base
 
-After selecting the following configuration, click "Save and Process".
+After selecting the following configuration, click **Save and Process**.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-Then wait for the embedding to complete, and click to go to document.
+Wait for embedding to complete, then click to open the document.
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-When the knowledge base is functioning normally, the status will show as available. Then click on the knowledge base file.
+When the knowledge base is working normally, its status is shown as available. Then click the knowledge base file.
 
 ![Figure: page 3: figure 4](_page_3_Figure_4.jpeg)
 
-Afterwards, you can see the segmented knowledge base fragments. The small text below each segment shows the automatically generated keywords for that segment (only available in economic mode).
+You can then view the segmented knowledge base fragments. The small text under each fragment shows automatically generated keywords for that segment, which are available only in Economic mode.
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-If the keywords do not accurately describe the knowledge fragment, click "Edit" on the right side of the fragment to edit the content or keywords of that fragment. The image below shows the modified keywords, then click save.
+If the keywords do not accurately describe a knowledge fragment, click **Edit** on the right side of that fragment to edit its content or keywords. The image below shows modified keywords. Click **Save** afterward.
 
 ![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
 ### 4.2 High-Quality Mode Knowledge Base
 
-- If you need to use a high-quality knowledge base later, refer to this section of the tutorial.
-- The knowledge base creation and file import process is the same as before.
-- Here, select "High-Quality" for the indexing method, and choose any retrieval method. Here, we use hybrid retrieval as an example. Finally, save and process.
+- If you need a high-quality knowledge base later, refer to this section.
+- The knowledge base creation and file import process is the same as above.
+- Select **High-Quality** as the indexing method and choose a retrieval method. This example uses hybrid retrieval. Then click **Save and Process**.
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
 ### 4.3 Recall Test
 
-- Retrieval testing tests the actual effectiveness of retrieving relevant knowledge snippets from the knowledge base based on the input, helping to optimize the AI model's response performance.
-- After opening a knowledge base, click on "Retrieval Testing" on the left side.
+- Retrieval testing checks whether relevant knowledge fragments are retrieved from the knowledge base for a given input. This helps optimize AI model response quality.
+- After opening a knowledge base, click **Retrieval Testing** on the left side.
 
 ![Figure: page 5: figure 4](_page_5_Figure_4.jpeg)
 
-- Enter the test content in the source text (simulating user input during actual use), and then click "Test".
-- The retrieved paragraphs and the knowledge base related to the input content will appear on the right. The knowledge base tested here is the economic model knowledge base, which retrieves information based on keywords.
+Enter test content in the source text field, simulating real user input, then click **Test**.
+
+The retrieved paragraphs and related knowledge base content appear on the right. The example below uses the Economic mode knowledge base, which retrieves information based on keywords.
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-If it's a high-quality mode knowledge base, the retrieved snippets will have a SCORE rating. A higher score indicates a higher relevance between the snippet and the input content. Highquality mode knowledge bases can perform associative retrieval of similar semantics, but also consume tokens.
+In a High-Quality mode knowledge base, retrieved snippets include a SCORE rating. A higher score means the snippet is more relevant to the input. High-Quality mode can retrieve semantically similar content, but it consumes tokens.
 
 ![Figure: page 6: figure 2](_page_6_Figure_2.jpeg)
