@@ -2,47 +2,47 @@
 
 ## 1. Content Description
 
-This section describes how the program combines chassis control with fused radar data to detect obstacles in real time as the car moves forward and steer the car to avoid them based on their locations.
+This section explains the LiDAR obstacle-avoidance example. The program reads the fused and filtered LiDAR scan while the robot moves forward, counts nearby obstacles in the front-left, front, and front-right sectors, and publishes velocity commands that steer the chassis away from obstacles.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+This section requires terminal commands. The terminal you use depends on the mainboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano mainboards, open a terminal and enter the Docker container. After entering the Docker container, run the commands from this section there. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+On an Orin mainboard, open a terminal directly and run the commands from this section.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
+First, start the LiDAR driver, fusion, and filtering launch file:
 
 ```bash
 ros2 launch yahboom_M3Pro_laser laser_driver.launch.py
 ```
 
-Next, you can refer to this product tutorial [5. Chassis Control] - [2. Handle Control] to start the handle control to control the car conveniently. Press the R2 button on the handle to cancel and start the radar obstacle avoidance gameplay. If the handle control is not started, it will not affect the operation of this program. Enter the following command in the terminal to start the radar obstacle avoidance program,
+Optionally, refer to [5. Chassis Control] - [2. Gamepad Control] to start gamepad control. Press R2 on the gamepad to pause or resume LiDAR obstacle avoidance. The program can still run if gamepad control is not started. Run the following command to start LiDAR obstacle avoidance:
 
 ```bash
 ros2 run yahboom_M3Pro_laser laser_Avoidance
 ```
 
-After startup, as shown in the figure below, the radar will print out the situation of detecting surrounding obstacles and control the movement of the car.
+After startup, the terminal prints the detected obstacle state and the program begins controlling robot motion.
 
-If there is no obstacle, the car will go straight forward; if there is an obstacle on the left, the car will turn right to avoid the obstacle and continue to move forward; if there is an obstacle on the right, the car will turn left to avoid the obstacle and continue to move forward.
+When no obstacle is detected, the robot moves forward. If an obstacle is detected on the left, the robot turns right and continues forward. If an obstacle is detected on the right, the robot turns left and continues forward.
 
-The obstacle avoidance detection distance set by the program is 0.825 meters, and the radar detection angle is 45 degrees to the left and right of 0 degrees. After the dual radar fusion, the radar data at 0 degrees is the front of the vehicle, the left half of the vehicle is 0 degrees-180 degrees, and the right half of the vehicle is -180 degrees-0 degrees. The radar starts from 0 degrees and rotates counterclockwise, as shown in the figure below.
+The program uses an obstacle detection distance of 0.825 m and checks 45 degrees to the left and right of 0 degrees. After dual-LiDAR fusion, 0 degrees points toward the front of the robot. The left side spans 0 to 180 degrees, and the right side spans -180 to 0 degrees. The scan starts at 0 degrees and increases counterclockwise, as shown below.
 
 ![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi and Jetson Nano boards
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Avoidance.p y
+The program code is in the running Docker. The path in Docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Avoidance.py
 
-Orin Motherboard
+Orin mainboard
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Avoi dance.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Avoidance.py
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 #ros lib
@@ -59,7 +59,7 @@ from yahboom_M3Pro_laser.common import *
 import os
 ```
 
-The program initializes and creates publishers and subscribers,
+The program initializes publishers and subscribers:
 
 ```python
 def __init__(self,name):
@@ -109,7 +109,7 @@ obstacle ahead within the detection range.
     self.conut = 10
 ```
 
-registerScan radar topic callback function,
+The registerScan callback processes LiDAR messages:
 
 ```python
 def registerScan(self, scan_data):

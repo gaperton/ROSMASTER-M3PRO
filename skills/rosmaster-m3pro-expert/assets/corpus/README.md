@@ -60,6 +60,25 @@
 - [5.6 Autonomous Line Following](./5.Chassis%20Control%20Course/6.Line%20patrol%20automatic%20driving/README.md)
 - [5.7 LiDAR-Aware Patrol Routes](./5.Chassis%20Control%20Course/7.Patrol/README.md)
 
+## 6. LiDAR Mapping and Navigation
+
+- [6.1 LiDAR Introduction and Usage](./6.Lidar%20Course/1.Lidar%20introduction%20and%20use/README.md)
+- [6.2 Dual LiDAR Fusion and Filtering](./6.Lidar%20Course/2.Dual%20Lidar%20fusion/README.md)
+- [6.3 LiDAR Obstacle Avoidance](./6.Lidar%20Course/3.Lidar%20obstacle%20avoidance/README.md)
+- [6.4 LiDAR Tracking](./6.Lidar%20Course/4.Lidar%20tracking/README.md)
+- [6.5 LiDAR Guard](./6.Lidar%20Course/5.Lidar%20guard/README.md)
+- [6.6 Gmapping-SLAM Mapping](./6.Lidar%20Course/6.Gmapping-SLAM%20mapping/README.md)
+- [6.7 Cartographer-SLAM Mapping](./6.Lidar%20Course/7.Cartographer-SLAM%20mapping/README.md)
+- [6.8 slam_toolbox Mapping](./6.Lidar%20Course/8.slam_toolbox%20mapping/README.md)
+- [6.9 Navigation2 Single-Point Navigation and Obstacle Avoidance](./6.Lidar%20Course/9.Navigation2%20single-point%20navigation%20avoid/README.md)
+- [6.10 Navigation2 Multi-Point Navigation and Obstacle Avoidance](./6.Lidar%20Course/10.Navigation2%20multi-point%20navigation%20avoid/README.md)
+- [6.11 Rapid Relocalization and Navigation](./6.Lidar%20Course/11.Repositioning%20navigation/README.md)
+- [6.12 RTAB-Map Mapping](./6.Lidar%20Course/12.RTAB-Map%20mapping/README.md)
+- [6.13 RTAB-Map Navigation](./6.Lidar%20Course/13.RTAB-Map%20navigation/README.md)
+- [6.14 App Mapping and Navigation](./6.Lidar%20Course/14.APP%20mapping%20navigation/README.md)
+- [6.15 AprilTag Object Transport](./6.Lidar%20Course/15.Machine%20code%20handling/README.md)
+- [6.16 Colored Block Transport](./6.Lidar%20Course/16.Color%20block%20transport/README.md)
+
 ## 7. Depth Camera and Vision Perception
 
 - [7.1 Orbbec Dabai DCW2 Camera Overview](./7.Depth%20Camera%20Course/1.Dabai_DCW2%20camera%20introduction/README.md)

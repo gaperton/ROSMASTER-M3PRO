@@ -1,43 +1,33 @@
-# Dual radar fusion and filtering
+# Dual LiDAR Fusion and Filtering
 
-This product uses two radars, one on the left rear and one on the right front of the vehicle. Because mapping and navigation algorithms typically only accept data from a single radar topic, the data from both radars must be fused and filtered before mapping and navigation can begin. Radar fusion can be achieved using the ira_laser_tools package.
+The robot has two LiDAR sensors: one at the left rear and one at the right front. Mapping and navigation nodes usually consume a single LaserScan topic, so the two scans must be merged and filtered before they are used for SLAM or Navigation2. This chapter uses the ira_laser_tools package for scan fusion.
 
-## 1. ira_laser_tools package
+## 1. ira_laser_tools Package
 
-### 1.1. Introduction to the Feature Package
+### 1.1 Package Overview
 
-The main functions of the ira_laser_tools package are as follows:
+The ira_laser_tools package provides these functions:
 
 - **Laser Scan Merge**: Merge data from multiple laser scanners into a single scan.
 - **Laser Scan Segmentation**: Split a single laser scan into multiple virtual scans.
-- **Angle limit**: Clip the angle range of laser scanning data
-- **Scan denoising**: removing noise points from laser scans
+- **Angle limiting**: Clip the angular range of laser scan data.
+- **Scan denoising**: Remove noisy points from laser scans.
 
-The front and rear dual radar fusion of this product is achieved by calling the laser scanning merging interface here.
+On this robot, the laser scan merge interface combines the front and rear LiDAR scans into a single output scan.
 
-### 1.2. Function package source code
+### 1.2 Package Source Code
 
 **laserscan_multi_merger.cpp** source code path:
 
-Raspberry Pi 5 and Jetson Nano
-
-The program code is in the running docker. The path in docker is /root/M3Pro_ws/src/M3Pro_core/ira_laser_tools/src/laserscan_multi_merger.cpp
-
-Orin Motherboard
-
-The program code path is /home/jetson/M3Pro_ws/src/M3Pro_core/ira_laser_tools/src/laserscan_multi_merger.cpp
+- Raspberry Pi 5 and Jetson Nano: /root/M3Pro_ws/src/M3Pro_core/ira_laser_tools/src/laserscan_multi_merger.cpp inside the running Docker container
+- Orin mainboard: /home/jetson/M3Pro_ws/src/M3Pro_core/ira_laser_tools/src/laserscan_multi_merger.cpp
 
 #### **laserscan_merge.yaml** parameter file path:
 
-Raspberry Pi 5 and Jetson Nano
+- Raspberry Pi 5 and Jetson Nano: /root/M3Pro_ws/src/M3Pro_core/ira_laser_tools/config/laserscan_merge.yaml inside the running Docker container
+- Orin mainboard: /home/jetson/M3Pro_ws/src/M3Pro_core/ira_laser_tools/config/laserscan_merge.yaml
 
-The program code is in the running docker. The path in docker is /root/M3Pro_ws/src/M3Pro_core/ira_laser_tools/config/laserscan_merge.yaml
-
-Orin Motherboard
-
-The program code path is /home/jetson/M3Pro_ws/src/M3Pro_core/ira_laser_tools/config/laserscan_merge.yaml
-
-The content of laserscan_merge.yaml is as follows,
+The laserscan_merge.yaml file contains:
 
 ```
 laserscan_multi_merger :
@@ -54,54 +44,54 @@ laserscan_multi_merger :
     range_max : 4.0
 ```
 
-The points of attention here are as follows:
+Key parameters are as follows:
 
-- destination_frame: the coordinate system after radar fusion, here is base_link
-- cloud_destination_topic: The topic of the fused radar point cloud data, here is /merged_cloud
-- scan_destination_topic: The topic of the fused radar data, here is /scan_multi
-- laserscan_topics: The radar topics that need to be fused are /scan0 and /scan1, which correspond to the two previous and next radar data topics published by the underlying control node.
-- angle_min and angle_max: Output the minimum and maximum angles of the scan, in radians. Here, -3.14 to 3.14 indicates that the scan angle is 360 degrees.
-- angle_increment: Output the scan angle increment, here it is 0.017453, the unit is radian
-- range_min and range_max: Output the minimum and maximum distances of the scan, in meters, here 0.05 meters to 4.0 meters
+- destination_frame: Output coordinate frame for the fused scan. Here it is base_link.
+- cloud_destination_topic: Fused point cloud topic. Here it is /merged_cloud.
+- scan_destination_topic: Fused LaserScan topic. Here it is /scan_multi.
+- laserscan_topics: Input scan topics, /scan0 and /scan1, published by the low-level control node.
+- angle_min and angle_max: Output scan limits in radians. The range -3.14 to 3.14 represents 360 degrees.
+- angle_increment: Output angular resolution, in radians. Here it is 0.017453.
+- range_min and range_max: Output range limits, in meters. Here the valid range is 0.05-4.0 m.
 
-### 1.3. Program startup
+### 1.3 Program Startup
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+This section requires terminal commands. The terminal you use depends on the mainboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano mainboards, open a terminal and enter the Docker container. After entering the Docker container, run the commands from this section there. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+On an Orin mainboard, open a terminal directly and run the commands from this section.
 
-After the car successfully connects to the agent, enter the following command in the terminal to start it:
+After the robot successfully connects to the agent, run the following command:
 
 ```bash
 ros2 launch ira_laser_tools merge_multi.launch.py
 ```
 
-After the program is running, you can use RViz to view the fused radar data. Enter the following command to start RViz:
+After the program starts, use RViz to view the fused scan:
 
 ```
 rviz2
 ```
 
-As shown in the figure below, add topic display in RViz and modify frame_id to view the data.
+In RViz, add a topic display and set the correct frame_id to view the data.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-After adding, the white point cloud is the fused radar data, as shown in the figure below.
+After the topic is added, the white point cloud shows the fused LiDAR data.
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-## 2. Radar Filtering
+## 2. LiDAR Filtering
 
-After successfully fusing the two radars using ira_laser_tools, we need to filter the fused data. Otherwise, during the map building and navigation process, the vehicle body will be scanned by the radar and treated as an obstacle. Therefore, we need to filter the fused radar data.
+After the two scans are fused, the scan still contains points from the robot body. If those points are passed directly to mapping or navigation, the robot can treat itself as an obstacle. The laser filter removes those body points before publishing the /scan topic.
 
-### 2.1. Function package source code
+### 2.1 Package Source Code
 
 laser_filter_processor.cpp source code path:
 
-- Raspberry Pi 5 and Jetson Nano The program code is in the running docker. The path in docker is /root/M3Pro_ws/src/M3Pro_core/yahboom_laser_filter/src/laser_filter_processor.cpp
-- Orin Motherboard
+- Raspberry Pi 5 and Jetson Nano: /root/M3Pro_ws/src/M3Pro_core/yahboom_laser_filter/src/laser_filter_processor.cpp inside the running Docker container
+- Orin mainboard: the corresponding yahboom_laser_filter source path in the M3Pro_ws workspace
 
-The source code is as follows,
+The source code is shown below:
 
 ```
 #include "laser_filter_processor.hpp"
@@ -150,40 +140,40 @@ infinity (); // invalid data
 
 ### 2.2 Program Startup
 
-Enter the following command in the terminal to start radar filtering,
+Run the following command to start LiDAR filtering:
 
 ```bash
 ros2 launch yahboom_laser_filter laser_filter_node.launch.py
 ```
 
-After the program is running, you can use RViz to view the fused radar data. Enter the following command to start RViz:
+After the filter starts, use RViz to compare the fused and filtered scans:
 
 ```
 rviz2
 ```
 
-As shown in the figure below, add topic display in RViz and modify frame_id to view the data.
+In RViz, add the scan topic display and set the correct frame_id.
 
 ![Figure: page 4: figure 6](_page_4_Figure_6.jpeg)
 
-After adding, the white point cloud is the fused radar data. Compared with scan_multi, you can see that the points of the car body have been filtered out, as shown in the figure below.
+Compared with /scan_multi, the filtered /scan output no longer includes the points from the robot body.
 
-Unfiltered /scan_multi point cloud data,
+Unfiltered /scan_multi point cloud data:
 
 ![Figure: page 4: figure 9](_page_4_Figure_9.jpeg)
 
-Filtered/scan point cloud data,
+Filtered /scan point cloud data:
 
 ![Figure: page 5: figure 1](_page_5_Figure_1.jpeg)
 
 ### 2.3 Node Communication
 
-Enter the following command in the terminal to view the communication between nodes,
+Run the following command to view node communication:
 
 ```bash
 ros2 run rqt_graph rqt_graph
 ```
 
-After running, select [Node/Topics(all)] in the upper left corner, and then click the refresh button on the left, as shown below.
+After it opens, select [Node/Topics (all)] in the upper left corner, then click the refresh button as shown below.
 
 ![Figure: page 5: figure 6](_page_5_Figure_6.jpeg)

@@ -1,95 +1,95 @@
-# Color block transport
+# Color Block Transport
 
 ## 1. Content Description
 
-This section explains how to combine nav2 navigation, color block recognition, and threedimensional gripping with a robotic arm to achieve complex handling capabilities.
+This section explains how to combine Nav2 navigation, colored-block recognition, and 3D robotic-arm gripping to pick up, transport, and place colored blocks.
 
-This section requires entering commands in the terminal. The terminal you choose depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to the product tutorial **[Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+This section requires terminal commands. The terminal you use depends on the mainboard type. This section uses the Raspberry Pi 5 as an example. On Raspberry Pi and Jetson Nano mainboards, open a terminal on the host computer and enter the Docker container. After entering Docker, run the commands from this section there. For Docker entry steps, refer to **[Configuration and Operation Guide] - [Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+On an Orin mainboard, open a terminal directly and run the commands from this section.
 
-## 2. Program startup
+## 2. Program Startup
 
-The virtual machine needs to be on the same LAN as the car, and the ROS_DOMAIN_ID must be the same for both cars. Modify the ROS_DOMAIN_ID value in ~/.bashrc and refresh the environment variables after the modification.
+The virtual machine and robot must be on the same LAN and must use the same ROS_DOMAIN_ID. If needed, edit ROS_DOMAIN_ID in ~/.bashrc and run source ~/.bashrc to refresh the environment.
 
-Enter the following statement at the car terminal 1 to start the camera and robotic arm solving program:
+In robot terminal 1, run the following command to start the camera and robotic arm solving program:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Enter the following statement at the car terminal 2 to start the chassis data fusion and radar data fusion filtering program:
+In robot terminal 2, run the following command to start the chassis data fusion and LiDAR data fusion filtering program:
 
 ```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
-Enter the following statement at the trolley terminal 3 to start the gripping program:
+In robot terminal 3, run the following command to start the gripping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_transport
 ```
 
-Enter the following statement at the car terminal 4 to start the color block recognition program:
+In robot terminal 4, run the following command to start the colored block recognition program:
 
 ```bash
 ros2 run M3Pro_demo color_transport
 ```
 
-Then, we place the color block under the camera so that the entire color block appears in the image, as shown below.
+Place the colored block under the camera so the entire block appears in the image.
 
-Enter the command in the virtual machine terminal 1 to start the navigation RViz display.
+In virtual machine terminal 1, start the navigation RViz display:
 
 ```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
-Enter the following statement on the car terminal 5 to start navigation2:
+In robot terminal 5, run the following command to start Navigation2:
 
 ```bash
 ros2 launch M3Pro_navigation navigation2.launch.py
 map_dir:=/root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml
 ```
 
-Among them, /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml is replaced with the file address of your own yaml map.
+Replace /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml with the path to your own YAML map file.
 
-Enter the following statement in virtual machine terminal 2 to start the navigation status detection program:
+In virtual machine terminal 2, start the navigation status detection program:
 
 ```bash
 ros2 run yahboom_nav2_bringup get_nav2_status_V2
 ```
 
-After starting, in the virtual machine's RViz, use the [2D Pose Estimate] tool to give the car an initial pose based on its actual position in the environment and the map. Check whether the obstacles scanned by the car's radar overlap with the black part on the map, as shown in the figure below.
+After all programs are running, use [2D Pose Estimate] in the virtual machine's RViz to set the robot's initial pose based on its real position on the map. The pose is accurate when the LiDAR scan overlaps the mapped obstacles.
 
 ![Figure: page 1: figure 9](_page_1_Figure_9.jpeg)
 
-Then click [Waypoint/Nav Through Poses Mode] in [Navigation2 navigation plug-in], and select it as shown below.
+In the Navigation2 plugin, click [Waypoint/Nav Through Poses Mode] as shown below.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-Then, we use the button to select which color block to clamp or the color of the calibration block.
+Use the keyboard to choose which colored block to grip or calibrate:
 
-- Press R or r: sort red blocks
-- Press G or g: sort the green blocks
-- Press B or b: sort blue blocks
-- Press Y or y: sort yellow blocks
-- Press C or c: calibrate the color of the selected color block
+- Press R or r: select red blocks.
+- Press G or g: select green blocks.
+- Press B or b: select blue blocks.
+- Press Y or y: select yellow blocks.
+- Press C or c: calibrate the selected block color.
 
-After selecting the color of the color block, a binary image will be generated and stitched to the right of the color image. The white part of the binary image is the selected color block. Suppose we choose to clamp the blue block and press the b key, as shown below.
+After a color is selected, the program generates a binary image and stitches it to the right side of the color image. The white region in the binary image is the selected block. The example below shows a blue block selected with the b key.
 
 ![Picture: page 2: picture 8](_page_2_Picture_8.jpeg)
 
-If the blue color is not recognized at this time, you need to press the c key to calibrate the HSV value of the blue block. After entering the calibration mode, we use the mouse to select an area in the center of the blue block and release the mouse to complete the calibration, as shown in the figure below.
+If the blue block is not recognized, press c to calibrate its HSV range. In calibration mode, drag over an area near the center of the blue block and release the mouse to complete calibration.
 
 ![Figure: page 3: figure 1](_page_3_Figure_1.jpeg)
 
-After selecting a color, press the spacebar to begin gripping the machine code. If the distance is too far or too close, the program will control the robot to move the chassis to adjust the distance. After the robot arm grips the object, the buzzer will beep and the robot will move to the handling position. Finally, the robot will rotate 90 degrees and enter navigation transport mode.
+After selecting a color, press the spacebar to begin gripping the colored block. If the robot is too far or too close, the program moves the chassis to adjust the distance. After the robotic arm grips the block, the buzzer beeps and the arm moves to the transport pose. The robot then rotates 90 degrees and enters navigation transport mode.
 
-Enter the navigation and transportation mode. In RViz, use [Nav2 Goal] to give a target point. The robot will plan a path to navigate to that point. After reaching the destination, the robotic arm will lower its claw to place the color block, then autonomously navigate back to the starting position for the next color block recognition.
+In navigation transport mode, use [Nav2 Goal] in RViz to set a target point. The robot plans a path and navigates to the target. After reaching the destination, the robotic arm lowers the gripper to place the colored block, then the robot returns to the starting position for the next recognition cycle.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -123,7 +123,7 @@ import threading
 from M3Pro_demo.compute_joint5 import *
 ```
 
-The program initializes and creates publishers and subscribers,
+The program initializes publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -257,7 +257,7 @@ block
     self.corners = np.empty((4, 2), dtype=np.int32)
 ```
 
-callback image topic callback function,
+Image topic callback function:
 
 ```python
 def callback(self,color_frame,depth_frame):

@@ -2,41 +2,41 @@
 
 ## 1. Content Description
 
-This section describes how the program combines chassis control with fused radar data to detect the nearest object to the vehicle in real time and control the chassis' rotation to track it. Furthermore, if the object's distance to the vehicle falls below an alarm threshold, a buzzer on the vehicle sounds an alarm.
+This section explains the LiDAR guard example. The program detects the nearest object in front of the robot, rotates the chassis to keep the object centered, and triggers the onboard buzzer when the object is closer than the alarm threshold.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+This section requires terminal commands. The terminal you use depends on the mainboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano mainboards, open a terminal and enter the Docker container. After entering the Docker container, run the commands from this section there. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+On an Orin mainboard, open a terminal directly and run the commands from this section.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
+First, start the LiDAR driver, fusion, and filtering launch file:
 
 ```bash
 ros2 launch yahboom_M3Pro_laser laser_driver.launch.py
 ```
 
-Next, you can refer to this product tutorial [5. Chassis Control] - [2. Handle Control] to start the handle control to control the car conveniently. Press the R2 button on the handle to cancel and start the radar tracking gameplay. If you do not start the handle control, it will not affect the operation of this program. Enter the following command in the terminal to start the radar tracking program,
+Optionally, refer to [5. Chassis Control] - [2. Gamepad Control] to start gamepad control. Press R2 on the gamepad to pause or resume the guard behavior. The program can still run if gamepad control is not started. Run the following command to start LiDAR guard:
 
 ```bash
 ros2 run yahboom_M3Pro_laser laser_Warning
 ```
 
-After the program starts, the radar will scan for the nearest object within the detection range. Slowly moving the object left or right will cause the chassis to rotate, tracking the object and aligning the front of the vehicle with it. If the distance between the vehicle and the object is less than 0.55 meters, the onboard buzzer will sound.
+After the program starts, slowly move an object left or right in the detection range. The robot rotates to keep the object aligned with its front. If the object is closer than 0.55 m, the onboard buzzer sounds.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi and Jetson Nano boards
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Warning.py
+The program code is in the running Docker. The path in Docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Warning.py
 
-Orin Motherboard
+Orin mainboard
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_War ning.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Warning.py
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 #ros lib
@@ -54,7 +54,7 @@ from yahboom_M3Pro_laser.common import *
 import os
 ```
 
-The program initializes and creates publishers and subscribers,
+The program initializes publishers and subscribers:
 
 ```python
 def __init__(self,name):
@@ -97,7 +97,7 @@ handle control
     self.ang_pid = SinglePID(3.0, 0.0, 5.0)
 ```
 
-registerScan radar topic callback function.
+The registerScan callback finds the closest object, controls rotation, and publishes buzzer messages:
 
 ```python
 def registerScan(self, scan_data):

@@ -1,97 +1,97 @@
-# Machine code handling
+# AprilTag Object Transport
 
 ## 1. Content Description
 
-This section explains how to combine nav2 navigation, machine code recognition, and threedimensional gripping with a robotic arm to achieve complex handling capabilities.
+This section explains how to combine Nav2 navigation, AprilTag recognition, and 3D robotic-arm gripping to pick up and transport tagged objects.
 
-This section requires entering commands in the terminal. The terminal you choose depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to the product tutorial **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+This section requires terminal commands. The terminal you use depends on the mainboard type. This section uses the Raspberry Pi 5 as an example. On Raspberry Pi and Jetson Nano mainboards, open a terminal on the host computer and enter the Docker container. After entering Docker, run the commands from this section there. For Docker entry steps, refer to **[Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+On an Orin mainboard, open a terminal directly and run the commands from this section.
 
-## 2. Program startup
+## 2. Program Startup
 
-The virtual machine needs to be on the same LAN as the car, and the ROS_DOMAIN_ID must be the same for both cars. Modify the ROS_DOMAIN_ID value in ~/.bashrc and refresh the environment variables after the modification.
+The virtual machine and robot must be on the same LAN and must use the same ROS_DOMAIN_ID. If needed, edit ROS_DOMAIN_ID in ~/.bashrc and run source ~/.bashrc to refresh the environment.
 
-Enter the following statement at the car terminal 1 to start the camera and robotic arm solving program:
+In robot terminal 1, run the following command to start the camera and robotic arm solving program:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Enter the following statement at the car terminal 2 to start the chassis data fusion and radar data fusion filtering program:
+In robot terminal 2, run the following command to start the chassis data fusion and LiDAR data fusion filtering program:
 
 ```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
-Enter the following statement at the trolley terminal 3 to start the gripping program:
+In robot terminal 3, run the following command to start the gripping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_transport
 ```
 
-Enter the following statement at the car terminal 4 to start the machine code recognition program:
+In robot terminal 4, run the following command to start the AprilTag recognition program:
 
 ```bash
 ros2 run M3Pro_demo apriltag_transport_V2
 ```
 
-Enter the command in the virtual machine terminal 1 to start the navigation RViz display.
+In virtual machine terminal 1, start the navigation RViz display:
 
 ```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
-Enter the following statement on the car terminal 5 to start navigation2:
+In robot terminal 5, run the following command to start Navigation2:
 
 ```bash
-ros2 launch M3Pro_navigation navigation2.launch.py map_dir: =
+ros2 launch M3Pro_navigation navigation2.launch.py map_dir:=
 /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml
 ```
 
-Among them, /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml replace it with the file address of your own yaml map.
+Replace /root/M3Pro_ws/src/yahboom_mapping/maps/yahboom_map.yaml with the path to your own YAML map file.
 
-Enter the following statement in the virtual machine terminal 2 to start the rotation detection program:
+In virtual machine terminal 2, start the rotation detection program:
 
 ```bash
 ros2 run yahboom_nav2_bringup rotation_detect_V2
 ```
 
-Enter the following statement in the virtual machine terminal 3 to start the navigation status detection program:
+In virtual machine terminal 3, start the navigation status detection program:
 
 ```bash
 ros2 run yahboom_nav2_bringup get_nav2_status_V2
 ```
 
-After starting, in the virtual machine's RViz, use the [2D Pose Estimate] tool to give the car an initial pose based on its actual position in the environment and the map. Check whether the obstacles scanned by the car's radar overlap with the black part on the map, as shown in the figure below.
+After all programs are running, use [2D Pose Estimate] in the virtual machine's RViz to set the robot's initial pose based on its real position on the map. The pose is accurate when the LiDAR scan overlaps the mapped obstacles.
 
 ![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 
-Then click [Waypoint/Nav Through Poses Mode] in [Navigation2 navigation plug-in], and select it as shown below.
+In the Navigation2 plugin, click [Waypoint/Nav Through Poses Mode] as shown below.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-Then, we use the [Nav2 Goal] tool to give a target point. The car will navigate to this target point autonomously. When it reaches the destination, the car's buzzer will beep.
+Use [Nav2 Goal] to set a target point. The robot navigates to the target autonomously, and the buzzer beeps when it reaches the destination.
 
-You can press the n key, r key, or b key to select the following modes:
+Use the n, r, and b keys to select operating modes:
 
-- Press the n key: select navigation mode, then use the [Nav2 Goal] tool to set a target point. The car will navigate to this target point and will beep when it reaches the destination.
-- Press the r key: select the rotation mode, the car rotates a circle, as shown in the figure below. During the rotation,
+- Press the n key: select navigation mode, then use the [Nav2 Goal] tool to set a target point. The robot will navigate to this target point and will beep when it reaches the destination.
+- Press the r key: select rotation mode. The robot rotates in place, as shown below, while searching for an AprilTag.
 
-If the robot sees the wooden block with the machine code, it will stop rotating and then move left and right to adjust the horizontal distance from the machine code. After adjustment, it will move forward and backward to adjust the vertical distance from the machine code. After adjustment, the lower gripper will grasp the machine code. After
+If the robot detects a wooden block with an AprilTag, it stops rotating, adjusts left and right to align horizontally with the tag, then moves forward or backward to correct the distance. After alignment, the gripper picks up the tagged block.
 
-grasping, the buzzer will beep, and the robot arm will move to the handling posture. Finally, according to the terminal prompt: Press the b key to navigate back to the origin (initial position) and then the lower gripper will release the wooden block with the machine code. Alternatively, you can directly use the [Nav2 Goal] tool to specify a target point. After the robot navigates to this target point, the lower gripper will release the wooden block with the machine code.
+After gripping succeeds, the buzzer beeps and the robotic arm moves to the transport pose. Follow the terminal prompt: press b to navigate back to the origin and release the tagged block, or use [Nav2 Goal] to send the robot to another target point where it should release the block.
 
-- If you do not see the machine code, the car terminal will prompt you to press the n key and use the [Nav2 Goal] tool to set a target point. The car will go to the next target point or press the b key to return to the origin (initial position).
-- Press the b key to select return mode, and the car will navigate back to the origin (initial position)
+- If no AprilTag is detected, the robot terminal prompts you to press n and use [Nav2 Goal] to set the next target point, or press b to return to the origin.
+- Press the b key to select return mode. The robot navigates back to the origin.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 ### 3.1 get_nav2_status_V2
 
-In the virtual machine, the source code path of the program is, /home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/get_nav2_ status_V2.py, the function of this program is to obtain the navigation status and publish and receive some topics.
+In the virtual machine, the program source path is /home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/get_nav2_status_V2.py. This program monitors navigation status and publishes or subscribes to the coordination topics used by the transport workflow.
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -104,7 +104,7 @@ import time
 from visualization_msgs.msg import MarkerArray
 ```
 
-The program initializes and creates clients, publishers, and subscribers for actions.
+The program initializes action clients, publishers, and subscribers.
 
 ```python
 def __init__(self):
@@ -200,7 +200,7 @@ msg.markers[len(msg.markers)-2].pose.orientation.w
     self.send_goal()
 ```
 
-send_goal,
+send_goal:
 
 ```python
 def send_goal(self):
@@ -218,7 +218,7 @@ self._client.send_goal_async(goal_msg,feedback_callback=self.feedback_callback).
 add_done_callback(self.goal_response_callback)
 ```
 
-goal_response_callback,
+goal_response_callback:
 
 ```python
 def goal_response_callback(self, future):
@@ -232,7 +232,7 @@ def goal_response_callback(self, future):
     result.get_result_async().add_done_callback(self.result_callback)
 ```
 
-feedback_callback,
+feedback_callback:
 
 ```python
 def feedback_callback(self,feedback_msg):
@@ -244,7 +244,7 @@ False:
         self.move_flag = True
 ```
 
-result_callback,
+result_callback:
 
 ```python
 def result_callback(self, future):
@@ -275,7 +275,7 @@ finally the corresponding message is published according to the current status
             self.cur_status = "Detect"
 ```
 
-get_InitPoseCallBack,
+get_InitPoseCallBack:
 
 ```python
 def get_InitPoseCallBack(self,msg):
@@ -290,11 +290,9 @@ def get_InitPoseCallBack(self,msg):
 
 ### 3.2 rotation_detect_V2
 
-In the virtual machine, the source code path of the program is,
+In the virtual machine, the program source path is /home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/rotation_detect_V2.py. This program rotates the robot 360 degrees while publishing and subscribing to rotation-status topics.
 
-/home/yahboom/yahboomcar_ws/src/yahboom_nav2_bringup/yahboom_nav2_bringup/rotation_ detect_V2.py, the function of this program is to control the car to rotate 360 degrees, and publish and receive some topics.
-
-Import the necessary header files,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -307,7 +305,7 @@ from scipy.spatial.transform import Rotation as R
 from std_msgs.msg import Float32,Bool,Int16,UInt16
 ```
 
-The program initializes and defines publishers and definers,
+The program initializes publishers and subscribers:
 
 ```python
 def __init__(self):
@@ -343,7 +341,7 @@ performed to find the machine code.
     self.get_angle()
 ```
 
-timer_callback,
+timer_callback:
 
 ```python
 def timer_callback(self):
@@ -379,7 +377,7 @@ self.first_angle)
             self.pub_rotation.publish(rotate_done)
 ```
 
-getangle,
+get_angle:
 
 ```python
 def get_angle(self):
@@ -405,15 +403,15 @@ here refers to the angle of rotation
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi and Jetson Nano boards
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_transport_V2.py
+The program code is in the running Docker. The path in Docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_transport_V2.py
 
-Orin Motherboard
+Orin mainboard
 
 The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_transport_V2.py
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -447,7 +445,7 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 ```
 
-Program initialization and creation of publishers and subscribers,
+The program initializes publishers and subscribers:
 
 ```python
 def __init__(self, name):

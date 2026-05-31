@@ -2,41 +2,41 @@
 
 ## 1. Content Description
 
-This section describes how the program combines chassis control with fused radar data to detect the nearest object to the vehicle in real time and control the chassis to track it.
+This section explains the LiDAR tracking example. The program searches the fused scan for the nearest object in front of the robot, then uses PID control to keep the chassis aligned with the object and maintain a target distance.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
+This section requires terminal commands. The terminal you use depends on the mainboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano mainboards, open a terminal and enter the Docker container. After entering the Docker container, run the commands from this section there. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+On an Orin mainboard, open a terminal directly and run the commands from this section.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the radar fusion and radar filtering programs.
+First, start the LiDAR driver, fusion, and filtering launch file:
 
 ```bash
 ros2 launch yahboom_M3Pro_laser laser_driver.launch.py
 ```
 
-Next, you can refer to this product tutorial [5. Chassis Control] - [2. Handle Control] to start the handle control to control the car conveniently. Press the R2 button on the handle to cancel and start the radar tracking gameplay. If you do not start the handle control, it will not affect the operation of this program. Enter the following command in the terminal to start the radar tracking program,
+Optionally, refer to [5. Chassis Control] - [2. Gamepad Control] to start gamepad control. Press R2 on the gamepad to pause or resume LiDAR tracking. The program can still run if gamepad control is not started. Run the following command to start LiDAR tracking:
 
 ```bash
 ros2 run yahboom_M3Pro_laser laser_Tracker
 ```
 
-After the program is started, the radar will scan the object closest to the car within the detection range and slowly move the object. The program will control the chassis to move, maintain a distance of 0.55 meters from the object and align the front of the car with the object.
+After the program starts, place an object in the LiDAR detection range and move it slowly. The robot follows the nearest detected object, keeping roughly 0.55 m of distance while turning to keep the object in front of the chassis.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi and Jetson Nano boards
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Tracker.py
+The program code is in the running Docker. The path in Docker is /root/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Tracker.py
 
-Orin Motherboard
+Orin mainboard
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Trac ker.py
+The program code path is /home/jetson/yahboomcar_ws/src/yahboom_M3Pro_laser/yahboom_M3Pro_laser/laser_Tracker.py
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 #ros lib
@@ -54,7 +54,7 @@ from yahboom_M3Pro_laser.common import *
 import os
 ```
 
-The program initializes and creates publishers and subscribers,
+The program initializes publishers and subscribers:
 
 ```python
 def __init__(self,name):
@@ -98,7 +98,7 @@ self.lin_pid = SinglePID(1.0, 0.0, 1.0)
 self.ang_pid = SinglePID(2.0, 0.0, 2.0)
 ```
 
-registerScan radar topic callback function,
+The registerScan callback finds the nearest valid scan point and computes the tracking command:
 
 ```python
 def registerScan(self, scan_data):

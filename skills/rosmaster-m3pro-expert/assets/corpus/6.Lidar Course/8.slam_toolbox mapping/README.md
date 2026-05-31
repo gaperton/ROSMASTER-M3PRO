@@ -1,113 +1,115 @@
-# slam_toolbox mapping
+# slam_toolbox Mapping
 
 ## 1. Course Content
 
-Learn the SLAM mapping algorithm for robotics using the slam-toolbox.
+Learn how to use slam_toolbox for robot SLAM mapping. After starting the sample program, drive the robot with the keyboard or gamepad to scan the environment, build a map, and save the result.
 
-After running the sample program, control the robot using the keyboard or controller to complete mapping and save the map.
+## 2. Introduction to slam_toolbox
 
-## 2. Introduction to slam-toolbox
-
-slam-toolbox is an open-source 2D SLAM (Simultaneous Localization and Mapping) algorithm package based on ROS, primarily used for mapping and localizing mobile robots in unknown environments. Based on the **Graph Optimization** framework, it combines sensor data from laser radar (such as 2D LiDAR) and inertial measurement units (IMUs) to construct a 2D grid map of the environment and update the robot's pose in real time.
+slam_toolbox is an open-source ROS package for 2D SLAM and localization with mobile robots. It uses graph optimization to combine 2D LiDAR and IMU data, build a 2D occupancy grid map, and update the robot pose in real time.
 
 ### 2.1 Core Technology Principles
 
 #### 2.1.1 Front-end Processing (Laser Scan Matching)
 
-- **GICP Algorithm**: It estimates the robot's relative pose by iteratively calculating the optimal match between the current laser scan and the map. Compared to traditional ICP, GICP introduces a probabilistic model, making it more robust to outliers.
-- **Motion Compensation**: Uses IMU data to compensate for laser scanning distortion during robot motion, improving matching accuracy in dynamic environments.
+- **GICP Algorithm**: Estimates the robot's relative pose by iteratively matching the current laser scan against the map. Compared with traditional ICP, GICP uses a probabilistic model and is more robust to outliers.
+- **Motion Compensation**: Uses IMU data to reduce laser scan distortion caused by robot motion, improving matching accuracy in dynamic environments.
 
 #### 2.1.2 Backend Optimization (Graph Optimization)
 
-- **Pose Graph Construction**: Constructs a graph structure by combining the robot's pose nodes and the relative pose constraints obtained from scan matching.
-- **Global Optimization**: Uses a nonlinear optimization algorithm (such as the Ceres Solver) to optimize the pose graph, eliminating accumulated errors and achieving global consistency of the map.
+- **Pose Graph Construction**: Builds a graph from robot pose nodes and relative pose constraints obtained through scan matching.
+- **Global Optimization**: Uses nonlinear optimization, such as Ceres Solver, to optimize the pose graph, reduce accumulated error, and keep the map globally consistent.
 
 ![Figure: page 0: figure 13](_page_0_Figure_13.jpeg)
 
-GitHub Project Address: [https://github.com/SteveMacenski/slam\\_toolbox](https://github.com/SteveMacenski/slam_toolbox)
+GitHub project: [https://github.com/SteveMacenski/slam\\_toolbox](https://github.com/SteveMacenski/slam_toolbox)
 
 ## 3. Preparation
 
 ### 3.1 Content Description
 
-This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
+This lesson uses the Jetson Orin NX as an example. On Raspberry Pi and Jetson Nano boards, open a terminal and enter the Docker container before running the commands in this lesson. For Docker entry steps, refer to **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. On Orin and NX boards, run the commands directly in a terminal.
 
-### 3.2 Start the agent
+### 3.2 Starting the Agent
 
-Note: To test all cases, you must first start the docker agent. If it has already been started, you do not need to restart it
+Note: To test all cases, you must first start the agent. If it has already been started, you do not need to restart it.
 
-Enter the command in the vehicle terminal:
+Run the following command in the robot terminal:
 
 ```
 sh start_agent.sh
 ```
 
-The terminal prints the following message, indicating that the connection is successful
+The terminal prints a success message when the connection is established.
 
 ![Picture: page 1: picture 7](_page_1_Picture_7.jpeg)
 
-## 4. Run the case
+## 4. Running the Example
 
-### 4.1 Map creation process
+### 4.1 Map Creation Process
 
 #### Note:
 
-- **When building a map, the slower the speed, the better the effect (mainly the slower the rotation speed). If the speed is too fast, the effect will be very poor.**
+- **Move slowly while mapping, especially during rotation. Fast motion usually produces poor map quality.**
 - For the Jetson Nano and Raspberry Pi series controllers, you must first enter the Docker container (for steps, see the [Docker course chapter - Entering the Robot's Docker Container]).
 
-Command to start mapping on the vehicle terminal:
+Start mapping from the robot terminal:
 
 ```bash
 ros2 launch slam_mapping slam_toolbox.launch.py
 ```
 
-Using the virtual machine configuration as an example, open a terminal and launch the RViz visualization interface:
+For example, on the virtual machine, open a terminal and start RViz:
 
 ```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
-Command to start the RViz visualization interface on the vehicle terminal:
+To start RViz on the robot, run:
 
-#### ros2 launch slam_mapping slam_view.launch.py
+```bash
+ros2 launch slam_mapping slam_view.launch.py
+```
 
 ![Figure: page 2: figure 3](_page_2_Figure_3.jpeg)
 
-Open another terminal in the virtual machine and start the keyboard control node (you can also use a controller remote control. To start the controller control node in advance, refer to [5. Chassis Control - 2. Controller Control]):
+Open another terminal in the virtual machine and start keyboard control. You can also use a gamepad if the gamepad control node has already been started; see [5. Chassis Control - 2. Controller Control].
 
 ```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
-Click the terminal window with your mouse and press z to reduce the speed.
-
-Click the terminal window with your mouse and press z to reduce the speed. Press I, <, J, and L to control the car's forward, backward, left, and right turns, respectively. Control the car's movement to complete the map building.
+Click in the terminal window and press z to reduce the speed. Press I, <, J, and L to move the robot forward, backward, left, and right. Drive slowly until the map is complete.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
 ### 4.2 Saving the Map
 
-Open a new terminal on the vehicle and save the map.
+Open a new terminal on the robot and save the map:
 
 ```bash
 ros2 launch slam_mapping save_map.launch.py
 ```
 
-The terminal prompts \*\*Map saved "successful" indicates the map was saved successfully.
+The terminal prompt **"Map saved successful"** indicates that the map was saved successfully.
 
-The map save path is as follows:
+The map is saved to:
 
-Jetson Orin Nano, Jetson Orin NX:
+Jetson Orin Nano and Jetson Orin NX:
 
+```text
 /home/jetson/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map
+```
 
-Jetson Orin Nano, Raspberry Pi:
+Jetson Nano and Raspberry Pi:
 
-You need to enter Docker first.
+Enter Docker first, then use:
 
+```text
 /root/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map/
+```
 
-One PGM image, one YAML file yahboom_map.yaml
+The saved output includes a PGM image and the yahboom_map.yaml YAML file.
 
 ```
 image: yahboom_map.pgm
@@ -119,7 +121,7 @@ occupied_thresh: 0.65
 free_thresh: 0.25
 ```
 
-#### Parameter Explanation:
+#### Parameter Explanation
 
 - image: The path to the map file, either absolute or relative.
 - mode: This attribute can be one of trinary, scale, or raw, depending on the selected mode. Trinary is the default.
@@ -157,7 +159,7 @@ Image size is too large; the original image can be viewed in this lesson folder.
 ros2 node info /slam_toolbox
 ```
 
-Enter the above command in the terminal to view the subscription and publication topics related to the gmapping node.
+Run this command to view the topics and services used by the slam_toolbox node.
 
 ```
 /slam_toolbox

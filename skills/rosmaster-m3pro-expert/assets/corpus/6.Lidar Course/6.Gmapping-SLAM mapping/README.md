@@ -1,27 +1,21 @@
-# Gmapping-SLAM mapping
+# Gmapping-SLAM Mapping
 
 ## 1. Course Content
 
-Learn the robot gmapping mapping algorithm for SLAM mapping function
-
-After running the program, control the robot through the keyboard or handle to perform SLAM mapping and save it as a raster map
+Learn how to use the gmapping SLAM algorithm on the robot. After starting the mapping node, drive the robot with the keyboard or gamepad to scan the environment, build a raster map, and save the generated map files.
 
 ## 2. Introduction to gmapping
 
 ### 2.1 Introduction
 
-- gmapping only works when the number of 2D laser points in a single frame is less than 1440. If the number of laser points in a single frame is greater than 1440, the error [[mapping-4] process has died] will occur.
-- Gmapping is a commonly used open source SLAM algorithm based on the filtering SLAM framework.
-- Gmapping is based on the RBPF particle filter algorithm, which separates the real-time positioning and mapping processes, performing positioning first and then mapping.
-- Gmapping makes two major improvements to the RBpf algorithm: improving the proposal distribution and selective resampling.
+- gmapping requires fewer than 1440 2D laser points in a single frame. If a scan contains more than 1440 points, the [[mapping-4] process has died] error may occur.
+- gmapping is a widely used open-source SLAM algorithm based on the filtering SLAM framework.
+- gmapping uses an RBPF particle filter. It estimates the robot pose first, then updates the map.
+- gmapping improves the RBPF algorithm by using a better proposal distribution and selective resampling.
 
-**Advantages:** Gmapping can build indoor maps in real time, and the computation required to build small scene maps is small and the accuracy is high.
+**Advantages:** gmapping can build indoor maps in real time. It works well for small environments because it requires relatively little computation and can produce accurate maps.
 
-**Disadvantages:** As the scene grows, the number of particles required increases, because each particle carries a map, so the memory and
-
-The amount of calculation will increase. Therefore, it is not suitable for building large scene maps. And there is no loop detection, so it may cause the map to be
-
-Misalignment, although increasing the number of particles can make the map closed, it comes at the cost of increasing computation and memory.
+**Disadvantages:** As the mapped area grows, gmapping needs more particles. Each particle carries its own map, so memory use and computation both increase. gmapping also lacks loop closure detection, so large maps may become misaligned. Increasing the particle count can improve closure, but it also increases CPU and memory load.
 
 ![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)
 
@@ -35,42 +29,44 @@ Misalignment, although increasing the number of particles can make the map close
 
 ### 3.1 Content Description
 
-This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
+This lesson uses the Jetson Orin NX as an example. On Raspberry Pi and Jetson Nano boards, open a terminal and enter the Docker container before running the commands in this lesson. For Docker entry steps, refer to **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. On Orin and NX boards, run the commands directly in a terminal.
 
-### 3.2 Start the Agent
+### 3.2 Starting the Agent
 
-Note: To test all cases, you must start the docker agent first. If it has already been started, you do not need to start it again.
+Note: To test all cases, you must start the agent first. If it has already been started, you do not need to start it again.
 
-Enter the command in the vehicle terminal:
+Run the following command in the robot terminal:
 
+```bash
 sh start_agent.sh
+```
 
-The terminal prints the following information, indicating that the connection is successful
+The terminal prints a success message when the connection is established.
 
-## 4. Run the case
+## 4. Running the Example
 
 ### 4.1 Mapping Process
 
-#### Notice:
+#### Note:
 
-- **When building a map, the slower the speed, the better the effect (mainly the slower the rotation speed). If the speed is too fast, the effect will be very poor.**
-- **Jetson Nano and Raspberry Pi** series controllers need to enter the Docker container first (please refer to the [Docker course chapter - Entering the robot's Docker container] for steps).
+- **Move slowly while mapping, especially during rotation. Fast motion usually produces poor map quality.**
+- **Jetson Nano and Raspberry Pi** controllers must enter the Docker container first. See [Docker course chapter - Entering the robot's Docker container] for steps.
 
-The vehicle terminal starts the mapping command:
+Start mapping from the robot terminal:
 
 ```bash
 ros2 launch slam_mapping gmapping.launch.py
 ```
 
-The RViz visualization function can be started on the vehicle side or the virtual machine side. **You can choose either** method to start it. It is forbidden to start it on the virtual machine side and the vehicle side repeatedly:
+RViz can be started on either the robot or the virtual machine. **Choose one method only**; do not start RViz in both places at the same time:
 
-Taking the configuration of a virtual machine as an example, open a terminal and start the RViz visualization interface:
+For example, on the virtual machine, open a terminal and start RViz:
 
 ```bash
 ros2 launch slam_view slam_view.launch.py
 ```
 
-Start the RViz visualization interface command on the vehicle:
+To start RViz on the robot, run:
 
 ```bash
 ros2 launch slam_mapping slam_view.launch.py
@@ -78,63 +74,69 @@ ros2 launch slam_mapping slam_view.launch.py
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-Open another terminal in the virtual machine and start the keyboard control node (you can also use the controller remote control, you need to start the controller control node in advance, refer to [5. Chassis Control - 2. Controller Control]):
+Open another terminal in the virtual machine and start keyboard control. You can also use a gamepad if the gamepad control node has already been started; see [5. Chassis Control - 2. Controller Control].
 
 ```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
-Click the window in the terminal and press z to reduce the speed appropriately.
+Click in the terminal window and press z to reduce the speed.
 
-Press I, <, J, and L to control the car to move forward, backward, turn left, and turn right respectively, and control the car to move to complete the map construction.
+Press I, <, J, and L to move the robot forward, backward, left, and right. Drive slowly until the map is complete.
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-### 4.2 Save the map
+### 4.2 Saving the Map
 
-Open a new terminal on the car and save the map
+Open a new terminal on the robot and save the map:
 
 ```bash
 ros2 launch slam_mapping save_map.launch.py
 ```
 
-If the terminal prompts **"Map saved successfully** ", it means that the map is saved successfully. If the map fails to be saved, try saving again.
+The terminal prompt **"Map saved successfully"** indicates that the map was saved. If saving fails, run the save command again.
 
-The map save path is as follows:
+The map is saved to:
 
-jetson Orin Nano, jetson Orin NX:
+- Jetson Orin Nano and Jetson Orin NX:
 
-Jetson Orin Nano, Raspberry Pi:
+  ```text
+  /home/jetson/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map/
+  ```
 
-You need to enter docker first
+- Jetson Nano and Raspberry Pi, inside Docker:
 
-/root/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map/
+  ```text
+  /root/M3Pro_ws/install/M3Pro_navigation/share/M3Pro_navigation/map/
+  ```
 
-A pgm image, a yaml file yahboom_map.yaml
+The saved output includes a PGM image and the yahboom_map.yaml YAML file.
 
+```yaml
 image: yahboom_map.pgm
-
-mode: trinary resolution: 0.05 origin: [-10, -10, 0]
-
+mode: trinary
+resolution: 0.05
+origin: [-10, -10, 0]
 negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25
+```
 
-occupied_thresh: 0.65 free_thresh: 0.25
+#### Parameter Analysis
 
-#### Parameter analysis:
-
-- image: The path of the map file, which can be an absolute path or a relative path
-- mode: This attribute can be one of trinary, scale or raw, depending on the selected mode. Trinary mode is the default mode.
-- resolution: map resolution, meters/pixels
-- origin: The 2D position (x, y, yaw) of the lower-left corner of the map, where yaw is a counterclockwise rotation (yaw=0 means no rotation). Currently, many parts of the system ignore the yaw value.
-- negate: whether to invert the meaning of white/black, free/occupied (the interpretation of thresholds is not affected)
+- image: Map image path. It can be absolute or relative.
+- mode: Map interpretation mode: trinary, scale, or raw. Trinary is the default.
+- resolution: Map resolution, in meters per pixel.
+- origin: 2D pose (x, y, yaw) of the map's lower-left corner. yaw is counterclockwise; yaw=0 means no rotation. Many system components ignore this yaw value.
+- negate: Whether to invert free/occupied meaning for white and black pixels. Threshold interpretation is not affected.
 - occupied_thresh: Pixels with an occupancy probability greater than this threshold are considered fully occupied.
 - free_thresh: Pixels with an occupancy probability less than this threshold are considered completely free.
 
-## 5. Node parsing
+## 5. Node Analysis
 
 ### 5.1 Displaying the Node Computation Graph
 
-The virtual machine terminal runs:
+Run in the virtual machine terminal:
 
 ```bash
 ros2 run rqt_graph rqt_graph
@@ -150,17 +152,17 @@ The virtual machine terminal runs:
 ros2 run rqt_tf_tree rqt_tf_tree
 ```
 
-The image size is too large. The original image can be viewed in the folder of this course.
+The image is large; the original can be viewed in this course folder.
 
 ![Figure: page 6: figure 4](_page_6_Figure_4.jpeg)
 
-### 5.3 gmapping node details
+### 5.3 gmapping Node Details
 
 ```bash
 ros2 node info /slam_gmapping
 ```
 
-Enter the above command in the terminal to view the subscription and publishing topics related to the gmapping node.
+Run this command to view the topics and services used by the gmapping node.
 
 ```
 /slam_gmapping
@@ -192,20 +194,20 @@ Action Clients:
 
 ### 5.4 Configuration Files
 
-Configuration file path:
+Configuration file paths:
 
-jetson Orin Nano, jetson Orin NX:
+Jetson Orin Nano and Jetson Orin NX:
 
 ```
 /home/jetson/M3Pro_ws/src/M3Pro_core/slam_gmapping/params/slam_gmapping.yaml
 ```
 
-Jetson Orin Nano, Raspberry Pi:
+Jetson Nano and Raspberry Pi:
 
-You need to enter docker first
+Enter Docker first, then use:
 
 ```
-root/M3Pro_ws/src/M3Pro_core/slam_gmapping/params/slam_gmapping.yaml
+/root/M3Pro_ws/src/M3Pro_core/slam_gmapping/params/slam_gmapping.yaml
 ```
 
 Default configuration parameters:
@@ -316,7 +318,7 @@ ymax: 100.0
 ymin: -100.0
 ```
 
-The above are the configurable parameters of gmapping. If the user needs to modify the configuration parameters, M3Pro_ws the gmapping function package needs to be recompiled in the workspace after the modification is completed to take effect:
+These are the configurable gmapping parameters. After editing them, rebuild the slam_gmapping package in the M3Pro_ws workspace for the changes to take effect:
 
 ```bash
 colcon build --packages-select slam_gmapping

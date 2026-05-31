@@ -2,30 +2,30 @@
 
 ## 1. Course Content
 
-- 1. Learn the robot's rapid relocalization and navigation capabilities.
-- 2. Run the program. A real-time map and robot model will be loaded into RViz. The robot can quickly locate its position within the map and perform real-time SLAM mapping and navigation.
+- Learn how to use rapid relocalization with Navigation2.
+- Run the program in RViz and observe how the robot localizes itself on the map while continuing SLAM-based localization and navigation.
 
 ## 2. Principle Overview
 
 ### 2.1 Introduction
 
-- Navigation 2 (Nav 2) is the navigation framework included with ROS 2. Its purpose is to safely move a mobile robot from point A to point B.
-- The default localization algorithm used in Navigation 2 is AMCL (Adaptive Monte Carlo Localization). By replacing the default AMCL localization method with Cartographer's localization method, other navigation functions remain unchanged.
+- Navigation2 (Nav2) is the ROS 2 navigation framework for safely moving a mobile robot from one pose to another.
+- Navigation2 normally uses AMCL (Adaptive Monte Carlo Localization) for localization on a known map. This example replaces AMCL with Cartographer localization while keeping the rest of the navigation stack unchanged.
 
 ### 2.2 Differences Between the Two Localization Methods
 
-- **AMCL**: Suitable for scenarios with a known map. For example, in an indoor environment with a pre-built map, the robot can use AMCL to determine its position when performing repetitive tasks or navigating.
-- **Cartographer**: It is more suitable for scenarios where robots need to simultaneously map and localize in unknown environments. For example, when a robot enters a new area for the first time and needs to quickly build a map and determine its position, Cartographer is particularly effective.
+- **AMCL**: Best for a known environment with a pre-built map, such as repeated indoor navigation tasks.
+- **Cartographer**: Better when the robot must localize while updating or building a map, especially in a new or changing environment.
 
 ## 3. Preparation
 
 ### 3.1 Content Description
 
-This lesson uses the Jetson Orin NX as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this lesson in the terminal. For instructions on entering the Docker container, refer to the product tutorial **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. For Orin and NX boards, simply open a terminal and enter the commands mentioned in this lesson.
+This lesson uses the Jetson Orin NX as an example. On Raspberry Pi and Jetson Nano boards, open a terminal and enter the Docker container before running the commands in this lesson. For Docker entry steps, refer to **[Configuration and Operation Guide]--[Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**. On Orin and NX boards, run the commands directly in a terminal.
 
 ### 3.2 Map Preparation
 
-For this lesson's rapid relocalization and navigation, you'll need to first save a map in pbstream format according to the tutorials [6. LiDAR - 7. Cartographer Mapping]. The pbstream file will automatically be saved in your home directory (for Raspberry Pi and Jetson Nano, it will be saved in the /root directory within Docker).
+Before running rapid relocalization, save a PBStream map by following [6. LiDAR - 7. Cartographer Mapping]. The PBStream file is saved in the home directory. On Raspberry Pi and Jetson Nano, it is saved under /root inside Docker.
 
 ## 4. Running the Example
 
@@ -35,50 +35,52 @@ For this lesson's rapid relocalization and navigation, you'll need to first save
 
 The Jetson Nano and Raspberry Pi series controllers must first enter the Docker container (see the [Docker Course Chapter - Entering the Robot's Docker Container] for steps).
 
-The robot's vehicle terminal starts the underlying sensor command:
+Start the low-level sensors from the robot terminal:
 
 ```bash
 ros2 launch M3Pro_navigation base_bringup.launch.py
 ```
 
-Then start the Cartographer node for positioning:
+Start the Cartographer localization node:
 
 ```bash
 ros2 launch M3Pro_navigation cartographer_localization.launch.py
 ```
 
-Finally, start Navigation 2.
+Finally, start Navigation2.
 
 ```bash
 ros2 launch M3Pro_navigation navigation_launch.py
 ```
 
-The RViz visualization function can be launched from either the vehicle or the virtual machine. **Select either** method. Do not launch both the virtual machine and the vehicle simultaneously:
+RViz can be launched from either the robot or the virtual machine. **Choose one method only**; do not start RViz in both places at the same time.
 
-Command to launch the RViz visualization interface from the virtual machine:
+To launch RViz from the virtual machine:
 
 ```bash
 ros2 launch slam_view nav_rviz.launch.py
 ```
 
-Command to launch the RViz visualization interface from the vehicle:
+To launch RViz from the robot:
 
-#### ros2 launch M3Pro_navigation nav_rviz.launch.py
+```bash
+ros2 launch M3Pro_navigation nav_rviz.launch.py
+```
 
 ![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-- From RViz, you can see that the robot automatically estimates its initial position, eliminating the need for manual initialization.
-- If the robot's initial position deviates significantly, use the [2D Pose Estimate] tool in the RViz toolbar to estimate its approximate position for quick positioning.
+- RViz shows the robot automatically estimating its initial position, so manual initialization is usually not required.
+- If the initial pose is far from the real robot pose, use [2D Pose Estimate] in RViz to give the approximate position and speed up localization.
 
 ### 4.3 Viewing the Node Communication Graph
 
-Enter the VM terminal:
+Run in the VM terminal:
 
 ```bash
 ros2 run rqt_graph rqt_graph
 ```
 
-If it doesn't display initially, select [Nodes/Topics (all)] and click the refresh button in the upper left corner. The original image is too large; you can view it in the lesson folder.
+If the graph does not display at first, select [Nodes/Topics (all)] and click the refresh button in the upper left corner. The original image is large and can be viewed in this lesson folder.
 
 ![Picture: page 2: picture 8](_page_2_Picture_8.jpeg)
 
@@ -96,7 +98,7 @@ If the page doesn't display initially, click the refresh icon in the upper left 
 
 ## 5. Principle Explanation
 
-The key to fast re-localization navigation is to replace the default amcl positioning method in navigation2 with the Cartographer positioning method. All other settings remain unchanged. The following explains how to replace the positioning method.
+Rapid relocalization works by replacing Navigation2's default AMCL localization with Cartographer localization. The rest of the Navigation2 stack remains unchanged. The following files show how that replacement is configured.
 
 Source code location:
 
@@ -116,7 +118,7 @@ You need to first enter Docker.
 
 Find the navigation_launch.py file in the launch directory. The contents are as follows:
 
-This file modifies the default navigation2 launch file, removing the node that originally enabled the amcl positioning method. The rest of the navigation stack remains unchanged.
+This file modifies the default Navigation2 launch file, removing the node that originally enabled the AMCL localization method. The rest of the navigation stack remains unchanged.
 
 ```python
 import os
@@ -202,7 +204,7 @@ launched nodes')
         description='Use composed bringup if True')
     declare_container_name_cmd = DeclareLaunchArgument(
         'container_name', default_value='nav2_container',
-        description='the name of conatiner that nodes will load in if use
+        description='the name of container that nodes will load in if use
 composition')
     declare_use_respawn_cmd = DeclareLaunchArgument(
         'use_respawn', default_value='False',
@@ -383,7 +385,7 @@ return ld
 
 Find the cartographer_localization.launch.py file in the launch directory. The contents are as follows:
 
-This file starts the Cartographer node and replaces the default Navigation 2 localization method.
+This file starts the Cartographer node and replaces the default Navigation2 localization method.
 
 ```python
 from launch import LaunchDescription
