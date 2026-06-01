@@ -1,60 +1,57 @@
-# Multi-vehicle robotic arm control
+# Multi-Vehicle Robotic Arm Control
 
 ## 1. Content Description
 
-This function enables the use of handles to control the robotic arms of multiple robots.
+This lesson shows how to use a gamepad to control the robotic arms of multiple ROSMASTER robots.
 
 ### 1.1 Functional Requirements
 
-For more information, please refer to this product course **[11. Multi-vehicle Function] - [1. Multi-vehicle Chassis Control] - [1.1. Functional Requirements]**
+Complete the shared multi-vehicle setup first. See [11.1 Multi-Vehicle Chassis Control](../1.Multi-vehicle%20chassis%20control/README.md#11-functional-requirements).
 
-### 1.2. Connect the controller to the virtual machine
+### 1.2 Connect the Controller to the Virtual Machine
 
-After the virtual machine starts, plug the handle receiver into the USB port of the computer, and then select Connect handle receiver in the virtual machine, as shown below.
+After the virtual machine starts, plug the gamepad receiver into the host computer's USB port. In the virtual machine USB menu, select the controller receiver and connect it to the VM.
 
 ![Picture: page 0: picture 7](_page_0_Picture_7.jpeg)
 
-Click [Connect] to complete the connection.
+Click `Connect` to finish attaching the receiver to the virtual machine.
 
-## 2. Program startup
+## 2. Program Startup
 
-After completing the namespace settings for the two robots and successfully reconnecting to the proxy, open two terminals in the corresponding virtual machines and enter the following commands respectively to start the handle to control the robotic arm.
+After both robots have namespaces configured and the agent reconnects successfully, open two terminals in the virtual machine. Start the joystick node in one terminal and the ROSMASTER controller node in the other:
 
 ```bash
-#Terminal 1
+# Terminal 1
 ros2 run joy joy_node
-#Terminal 2
+
+# Terminal 2
 ros2 run yahboomcar_ctrl yahboom_joy_M3Pro
 ```
 
-After the program starts, press the [START] button to wake up the controller, then press the [R2] button to unlock the controller. The terminal will display "joy control now". Then control the robotic arm according to the following table. **Note** that **when controlling the servo, use the quick press and release technique, which is equivalent to clicking and releasing the button**
+After the program starts, press `START` to wake the controller, then press `R2` to unlock it. The terminal displays `joy control now`. Use the controls below to move the robotic arm. When controlling a servo, quickly press and release the button, like a click.
 
-.
+| Button | Function |
+| --- | --- |
+| `X` / `B` | Servo No. 1 turns left/right |
+| `Y` / `A` | Servo No. 2 moves up/down |
+| Left / Right | Servo No. 3 moves up/down |
+| Up / Down | Servo No. 4 moves up/down |
+| `SELECT` | Switch control between Servo No. 5 and Servo No. 6 |
+| `L1` | Servo No. 5 turns left / Servo No. 6 closes |
+| `L2` | Servo No. 5 turns right / Servo No. 6 opens |
 
-| button          | property                                  |  |  |
-|-----------------|-------------------------------------------|--|--|
-| X/B             | Servo No. 1 turns left/right              |  |  |
-| Y/A             | Servo No. 2 down/down                     |  |  |
-| Left/Right      | Servo No. 3 up/down                       |  |  |
-| Up key/Down key | Servo No. 4 up/down                       |  |  |
-| SELECT          | Select to control Servo No. 5/Servo No. 6 |  |  |
-| L1              | Servo No. 5 turns left/Servo No. 6 closes |  |  |
-| L2              | Servo No. 5 turns right/Servo No. 6 opens |  |  |
-
-In addition to the controllable robotic arm, the chassis can also be controlled.
-
-The left joystick controls forward/backward/left/right movement, and the right joystick controls left turn/right turn on the spot.
+The controller can also drive the chassis. The left joystick controls forward, backward, left, and right movement. The right joystick turns the robot left or right in place.
 
 ## 3. Node Communication
 
-Enter the following command in the virtual machine terminal to view the node communication diagram.
+Run the following command in the virtual-machine terminal to view the node communication graph:
 
 ```bash
 ros2 run rqt_graph rqt_graph
 ```
 
-As shown in the figure below, select [Nodes/Topics (all)] in the upper left corner, and then click the refresh button on the left.
+In the upper-left corner, select `Nodes/Topics (all)`, then click the refresh button on the left.
 
 ![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 
-The joystick node /joy_ctrl publishes the /cmd_vel and /arm_joint topics to control the chassis and robotic arm. The two robots' underlying nodes /robot1/YB_Node and /robot2/YB_Node subscribe to these topics, receive messages from these topics, process them, and pass them to the driver board, which then controls the robot's movement and the robotic arm.
+The joystick node `/joy_ctrl` publishes the `/cmd_vel` and `/arm_joint` topics for chassis and robotic-arm control. The low-level nodes `/robot1/YB_Node` and `/robot2/YB_Node` subscribe to these topics, process the received messages, and pass the commands to the driver board to move the robots and robotic arms.

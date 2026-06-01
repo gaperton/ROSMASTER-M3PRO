@@ -1,63 +1,74 @@
-# Multi-vehicle chassis control
+# Multi-Vehicle Chassis Control
 
 ## 1. Content Description
 
-This function enables the use of a keyboard to control multiple cars at the same time.
+This lesson shows how to use one keyboard-control node to command multiple ROSMASTER robots at the same time.
 
 ### 1.1 Functional Requirements
 
-Taking two cars as an example, these two cars need to meet the following three requirements at the same time:
+This example uses two robots. Both robots must meet these requirements:
 
-- The two vehicles need to be in the same local area network and connected to the same Wi-Fi to achieve this requirement.
-- The ros_domain_id of the two vehicles needs to be the same. This can be done by modifying the ROS_DOMAIN_ID value in the terminal running the ROS environment. The default value is 30. Here we modify it according to the motherboard:
-  - Raspberry Pi and Jetson Nano motherboards: Enter Docker, modify the value of ROS_DOMAIN_ID in the /root/.bashrc file, save and exit, and enter the command in the terminal source ~/.bashrc to refresh the environment variables. The modified [MY_DOMAIN_ID] will be printed in the terminal.
-  - Orin motherboard: Open the terminal directly, then modify the value of ROS_DOMAIN_ID in the ~/.bashrc file, save and exit, enter the command in the terminal source ~/.bashrc to refresh the environment variables, and the terminal will print the modified [MY_DOMAIN_ID].
-- The namespaces of the two robots are set to different ones. Here we use robot1 and robot2 as the namespaces of the two robots. The setting method of the robots on all mainboards is the same. The setting method is as follows:
-  - Open the Rosmaster_Lib.py file in the /home directory and bot.set_ros_namespace modify its contents as shown below. Set the namespace of the first car to robot1. Note that the value in bot.set_ros_domain_id must be the same as the ROS_DOMAIN_ID value set in the second step.
+- The two robots must be on the same LAN and connected to the same Wi-Fi network.
+- The two robots must use the same `ROS_DOMAIN_ID`. The default value is `30`. Change the value in the terminal that runs the ROS environment:
+  - Raspberry Pi and Jetson Nano mainboards: enter the Docker container, edit `ROS_DOMAIN_ID` in `/root/.bashrc`, save the file, then run `source ~/.bashrc` to refresh the environment. The terminal prints the updated `[MY_DOMAIN_ID]`.
+  - Orin mainboard: open a terminal directly, edit `ROS_DOMAIN_ID` in `~/.bashrc`, save the file, then run `source ~/.bashrc` to refresh the environment. The terminal prints the updated `[MY_DOMAIN_ID]`.
+- The two robots must use different namespaces. This lesson uses `robot1` and `robot2`.
 
-Save and exit, press Ctrl+C to close the proxy, then use a screwdriver or toothpick to press the [RESET] button on the STM32 control board and enter in the terminal within 5 seconds python3 Rosmaster_Lib.py to run the setup program. After completion, use a screwdriver or toothpick to press the [RESET] button on the STM32 control board again to complete the setup. Finally, enter in the terminal to sh start_agent.sh reconnect to the proxy.
+Namespace configuration is the same on all supported mainboards. Open `Rosmaster_Lib.py` in the `/home` directory and modify `bot.set_ros_namespace` as shown in the source example. Set the first robot namespace to `robot1`. The value in `bot.set_ros_domain_id` must match the `ROS_DOMAIN_ID` configured above.
 
-Repeat the same steps for the other car, setting the namespac to robot2.
+Save the file and exit. Press `Ctrl+C` to stop the agent, then use a screwdriver or toothpick to press the `RESET` button on the STM32 control board. Within 5 seconds, run the setup program:
 
-## 2. Program startup
+```bash
+python3 Rosmaster_Lib.py
+```
 
-After setting the namespace and successfully reconnecting to the proxy, enter the following command in the terminal to verify that the namespace is set correctly. The virtual machine needs to be on the same LAN as the two cars, and the ROS_DOMAIN_ID must be the same for both cars. To modify it, refer to the setting of the car's ros_domain_id above. All you need to do is modify the contents of ~/.bashrc and refresh the environment variables after the modification is complete.
+After the setup finishes, press the `RESET` button on the STM32 control board again. Reconnect the agent:
+
+```bash
+sh start_agent.sh
+```
+
+Repeat the same steps on the second robot, but set its namespace to `robot2`.
+
+## 2. Program Startup
+
+After both robots have namespaces configured and the agent reconnects successfully, verify the namespace settings from a virtual-machine terminal. The virtual machine must be on the same LAN as both robots, and its `ROS_DOMAIN_ID` must match the robots. To change it, edit `~/.bashrc` and run `source ~/.bashrc`.
 
 ```bash
 ros2 node list
 ```
 
-As shown in the figure below, the appearance of /robot1/YB_Node and /robot2/YB_Node indicates that the setting is successful.
+If `/robot1/YB_Node` and `/robot2/YB_Node` appear in the node list, the namespace setup is correct.
 
-Enter the following command in the virtual machine terminal to start keyboard control,
+Start keyboard control from the virtual-machine terminal:
 
 ```bash
 ros2 run yahboomcar_ctrl yahboom_keyboard
 ```
 
-After the program starts, click to start the keyboard controlled terminal and press the corresponding keys according to the following key table to control the movement of the two cars.
+After the program starts, click the keyboard-control terminal so it has focus. Use the keys below to control both robots.
 
-| button | property                  |
-|--------|---------------------------|
-| i or I | go ahead                  |
-| <      | Back                      |
-| j or J | Turn left                 |
-| l or L | Turn right                |
-| uorU   | Go forward and turn left  |
-| o or O | Go forward and turn right |
-| m or M | Turn left                 |
-| >      | Turn right                |
+| Key | Function |
+| --- | --- |
+| `i` or `I` | Move forward |
+| `<` | Move backward |
+| `j` or `J` | Turn left |
+| `l` or `L` | Turn right |
+| `u` or `U` | Move forward and turn left |
+| `o` or `O` | Move forward and turn right |
+| `m` or `M` | Move backward and turn left |
+| `>` | Move backward and turn right |
 
 ## 3. Node Communication
 
-Enter the following command in the virtual machine terminal to view the node communication diagram.
+Run the following command in the virtual-machine terminal to view the node communication graph:
 
 ```bash
 ros2 run rqt_graph rqt_graph
 ```
 
-As shown in the figure below, select [Nodes/Topics (all)] in the upper left corner, and then click the refresh button on the left
+In the upper-left corner, select `Nodes/Topics (all)`, then click the refresh button on the left.
 
 ![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)
 
-The keyboard control node /yahboom_keyboard_ctrl publishes the speed topic /cmd_vel. The bottom-level nodes /robot1/YB_Node and /robot2/YB_Node of the two robots subscribe to this /cmd_vel topic. After receiving the message data from this topic, they process it and pass it to the driver board to control the movement of the robots.
+The keyboard-control node `/yahboom_keyboard_ctrl` publishes the `/cmd_vel` velocity topic. The low-level nodes `/robot1/YB_Node` and `/robot2/YB_Node` subscribe to `/cmd_vel`, process the received motion commands, and send them to the driver board to move the robots.

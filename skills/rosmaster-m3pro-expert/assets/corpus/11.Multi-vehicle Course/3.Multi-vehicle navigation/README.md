@@ -1,141 +1,170 @@
-# Multi-vehicle navigation
+# Multi-Vehicle Navigation
 
 ## 1. Content Description
 
-This feature allows you to assign two cars different navigation points in RViz. The two cars will plan paths based on their positions on the map and navigate to the designated locations, avoiding obstacles in real time during the navigation process.
+This lesson shows how to assign different navigation goals to two robots in RViz. Each robot plans a path from its current map position to its assigned target and avoids obstacles in real time while navigating.
 
 ### 1.1 Functional Requirements
 
-For more information, please refer to this product course **[11. Multi-vehicle Function] - [1. Multi-vehicle Chassis Control] - [1.1. Functional Requirements]**
+Complete the shared multi-vehicle setup first. See [11.1 Multi-Vehicle Chassis Control](../1.Multi-vehicle%20chassis%20control/README.md#11-functional-requirements).
 
 ### 1.2 Navigation Map
 
-Before starting multi-vehicle navigation, you need to put the map file into /home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps the path of the virtual machine. The map file includes a parameter file in.yaml format and an image file in.pgm format.
+Before starting multi-vehicle navigation, place the map files in the virtual machine at:
 
-## 2. Program startup
-
-The virtual machine needs to be in the same LAN as the two cars, and the ROS_DOMAIN_ID must be the same as the two cars. The modification method can refer to the content of setting the car's ros_domain_id above. All you need to do is modify the content in ~/.bashrc and refresh the environment variables after the modification is completed.
-
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This section uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano motherboards, you'll need to open a terminal and enter commands to enter a Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering a Docker container, refer to the product tutorial **[Robot Configuration and Operation Guide] - [Entering the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
-
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
-
-### 2.1. Start chassis data fusion
-
-Open the terminal of robot1 and enter the following command to start the chassis data fusion, including dual radar fusion, filtering imu and odom data for ekf fusion.
-
-```bash
-ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name: = robot1
+```text
+/home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps
 ```
 
-Similarly, open the terminal on robot2 and enter the following command to start chassis data fusion.
+The map consists of a `.yaml` parameter file and a `.pgm` image file.
+
+## 2. Program Startup
+
+The virtual machine must be on the same LAN as both robots, and its `ROS_DOMAIN_ID` must match the robots. To change it, edit `~/.bashrc` and run `source ~/.bashrc`.
+
+The terminal location depends on the mainboard type. This lesson uses Raspberry Pi 5 as the example. On Raspberry Pi and Jetson Nano mainboards, open a terminal and enter the Docker container before running the commands in this section. For Docker access, see the Configuration and Operation Guide lesson on entering Docker for Jetson Nano and Raspberry Pi 5. On Orin mainboards, open a terminal directly and run the commands there.
+
+### 2.1 Start Chassis Data Fusion
+
+On robot1, start chassis data fusion:
+
+```bash
+ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name:=robot1
+```
+
+On robot2, start chassis data fusion:
 
 ```bash
 ros2 launch yahboom_multi yahboom_bringup_multi.xml robot_name:=robot2
 ```
 
-### 2.2. Start RViz and publish map data
+This launch starts the robot chassis data pipeline, including dual-LiDAR fusion, IMU filtering, odometry filtering, and EKF fusion.
 
-In the virtual machine, we open the terminal and enter the following command to start RViz.
+### 2.2 Start RViz and Publish Map Data
+
+In the virtual machine, start RViz:
 
 ```bash
 ros2 launch slam_view multi_nav_rviz.launch.py
 ```
 
-After startup, it is as shown below:
+After startup, RViz appears as shown below.
 
 ![Picture: page 1: picture 4](_page_1_Picture_4.jpeg)
 
-Then start the map loading program. The default map is yahboom_map.yaml, and the file path is /home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps. Enter the following command in the terminal to start,
+Start the map-loading program. By default, the map is `yahboom_map.yaml` in `/home/yahboom/yahboomcar_ws/src/yahboom_mapping/maps`.
 
 ```bash
 ros2 launch yahboom_mapping map.launch.py
 ```
 
-After successful operation, the map will be loaded in RViz.
+After the command runs successfully, the map loads in RViz.
 
 ![Figure: page 1: figure 8](_page_1_Figure_8.jpeg)
 
-### 2.3. Start amcl positioning
+### 2.3 Start AMCL Localization
 
-Open the terminal of robot1 and enter the following command to start amcl positioning.
+On robot1, start AMCL localization:
 
 ```bash
 ros2 launch yahboom_multi robot1_amcl.launch.py
 ```
 
-Open the terminal of robot2 and enter the following command to start amcl positioning.
+On robot2, start AMCL localization:
 
 ```bash
 ros2 launch yahboom_multi robot2_amcl.launch.py
 ```
 
-As shown in the figure below, " **AMCL cannot publish a pose or update the transform. Please set the initial pose...** " appears, indicating that the program is running the amcl positioning program.
+If the terminal prints `AMCL cannot publish a pose or update the transform. Please set the initial pose...`, the AMCL localization program is running and waiting for an initial pose.
 
-Next, based on the position of the car on the actual map, we use the [2D Pose Estimate] tool on rviz2 to give the car an initial pose. There are two [2D Pose Estimate] tools on RViz here. The first one is a tool for giving the initial pose of robot1, and the second one is a tool for giving the initial pose of robot2. Use these two tools to give the initial poses of the two cars respectively.
+In RViz, use the `2D Pose Estimate` tools to set the initial poses based on the robots' actual positions on the map. RViz provides two `2D Pose Estimate` tools: the first sets the initial pose for robot1, and the second sets the initial pose for robot2.
 
-As shown in the figure below, the areas scanned by the two radars overlap with the black area on the map. The green point cloud is scanned by the robot1 radar, and the red point cloud is scanned by the robot2 radar.
+In the figure below, the LiDAR scan areas overlap the black area on the map. The green point cloud is scanned by robot1, and the red point cloud is scanned by robot2.
 
 ![Figure: page 2: figure 6](_page_2_Figure_6.jpeg)
 
-### 2.4. Start nav2 navigation
+### 2.4 Start Nav2 Navigation
 
-Open the terminal of robot1 and enter the following command to start the nav2 navigation of robot1.
+On robot1, start Nav2 navigation:
 
 ```bash
 ros2 launch yahboom_multi robot1_nav.launch.py
 ```
 
-Open the terminal of robot2 and enter the following command to start the nav2 navigation of robot2.
+On robot2, start Nav2 navigation:
 
 ```bash
 ros2 launch yahboom_multi robot2_nav.launch.py
 ```
 
-As shown in the figure below, both terminals that start nav2 navigation show "Creating bond timer...", indicating that the startup is successful.
+When both terminals show `Creating bond timer...`, Nav2 has started successfully.
 
-Next, we use the [2D Goal Pose] tool on rviz2 to give the car an initial pose. There are two [2D Goal Pose] tools on RViz here. The first one is a tool for giving the target point of robot1, and the second one is a tool for giving the target point of robot2. Use these two tools to give target points to the two cars respectively. As shown in the figure below, after the car is given a target point, it will plan a path and navigate to the target point.
+In RViz, use the `2D Goal Pose` tools to assign navigation goals. RViz provides two `2D Goal Pose` tools: the first assigns a target point to robot1, and the second assigns a target point to robot2. After a target point is assigned, the corresponding robot plans a path and navigates to it.
 
 ## 3. TF Tree
 
-Enter the following command in the virtual machine terminal to view the TF tree.
+Run the following command in the virtual-machine terminal to view the TF tree:
 
 ```bash
 ros2 run rqt_tf_tree rqt_tf_tree
 ```
 
-As shown in the figure below, this is the TF tree for multi-vehicle navigation.
+The figure below shows the TF tree for multi-vehicle navigation.
 
 ![Figure: page 3: figure 6](_page_3_Figure_6.jpeg)
 
 ## 4. Expansion
 
-This tutorial takes two cars as an example. If you want to increase the number of cars, for example, adding a third car, you need to modify the following parts. The following directories involving the files to be added need to be found according to the motherboard type.
+This tutorial uses two robots. To add another robot, such as `robot3`, modify the files below. The target directory depends on the mainboard type:
 
-Raspberry Pi 5 and Jetson boards: Look for the /root directory in the running Docker container.
+- Raspberry Pi 5 and Jetson boards: use the `/root` directory inside the running Docker container.
+- Orin mainboard: use the `/home/jetson` directory.
 
-Orin motherboard: Search in the /home/jetson directory
+### 4.1 Add the Robot URDF Model File
 
-### 4.1. Add the URDF model file of the car
+In `/M3Pro_ws/src/M3Pro/urdf`, add a URDF model file for `robot3` and name it `M3Pro_robot3.urdf`. You can copy `M3Pro_robot1.urdf` and replace every `robot1` reference with `robot3`.
 
-In the /M3Pro_ws/src/M3Pro/urdf directory, add the urdf model of robot3 and name it M3Pro_robot3.urdf. You can copy the content of M3Pro_robot1.urdf and replace the places where robot1 appears with robot3. Save and exit.
+### 4.2 Add the Robot URDF Launch File
 
-### 4.2. Add car URDF startup file
+In `M3Pro_ws/src/M3Pro/launch/`, add the `robot3` URDF launch file and name it `display_robot3.launch.py`. You can copy `display_robot1.launch.py` and replace every `robot1` reference with `robot3`.
 
-In the M3Pro_ws/src/M3Pro/launch/ directory, add the robot3 urdf startup file and name it display_robot3.launch.py. You can copy the content of display_robot1.launch.py and replace the robot1 with robot3. Save and exit, then return to the M3Pro_ws directory and use it colcon build --packages-select M3Pro to compile. After successful compilation, enter the command source ~/.bashrc and refresh the environment variables.
+Save the file, return to the `M3Pro_ws` directory, and compile the package:
 
-### 4.3. Add the amcl parameter file of the car
+```bash
+colcon build --packages-select M3Pro
+```
 
-In the M3Pro_ws/src/yahboom_multi/param/ directory, add the amcl parameter file for robot3 and name it robot3_amcl_param.yaml. You can copy the content of robot1_amcl_param.yaml and replace the robot1 with robot3. Save and exit.
+After compilation succeeds, refresh the environment:
 
-### 4.4. Add the amcl startup file of the car
+```bash
+source ~/.bashrc
+```
 
-In the M3Pro_ws/src/yahboom_multi/launch/ directory, add the amcl startup file of robot3 and name it robot3_amcl.launch.py. You can copy the content of robot1_amcl.launch.py and replace the occurrences of robot1 with robot3. Save and exit.
+### 4.3 Add the Robot AMCL Parameter File
 
-### 4.5. Add the nav2 navigation parameter file of the car
+In `M3Pro_ws/src/yahboom_multi/param/`, add the AMCL parameter file for `robot3` and name it `robot3_amcl_param.yaml`. You can copy `robot1_amcl_param.yaml` and replace every `robot1` reference with `robot3`.
 
-In the M3Pro_ws/src/yahboom_multi/param/ directory, add the nav2 navigation parameter file of robot3 and name it robot3_nav_param.yaml. You can copy the content of robot1_nav_param.yaml and replace the occurrences of robot1 with robot3. Save and exit.
+### 4.4 Add the Robot AMCL Launch File
 
-### 4.6. Add the nav2 navigation startup file of the car
+In `M3Pro_ws/src/yahboom_multi/launch/`, add the AMCL launch file for `robot3` and name it `robot3_amcl.launch.py`. You can copy `robot1_amcl.launch.py` and replace every `robot1` reference with `robot3`.
 
-In the M3Pro_ws/src/yahboom_multi/launch/ directory, add the nav2 navigation startup file of robot3 and name it robot3_nav.launch.py. You can copy the content of robot1_nav.launch.py and replace the robot1 with robot3. Save and exit, then return to the M3Pro_ws directory and use it colcon build --packages-select yahboom_multi to compile. After successful compilation, enter the command source ~/.bashrc and refresh the environment variables.
+### 4.5 Add the Robot Nav2 Parameter File
+
+In `M3Pro_ws/src/yahboom_multi/param/`, add the Nav2 parameter file for `robot3` and name it `robot3_nav_param.yaml`. You can copy `robot1_nav_param.yaml` and replace every `robot1` reference with `robot3`.
+
+### 4.6 Add the Robot Nav2 Launch File
+
+In `M3Pro_ws/src/yahboom_multi/launch/`, add the Nav2 launch file for `robot3` and name it `robot3_nav.launch.py`. You can copy `robot1_nav.launch.py` and replace every `robot1` reference with `robot3`.
+
+Save the file, return to the `M3Pro_ws` directory, and compile the package:
+
+```bash
+colcon build --packages-select yahboom_multi
+```
+
+After compilation succeeds, refresh the environment:
+
+```bash
+source ~/.bashrc
+```
