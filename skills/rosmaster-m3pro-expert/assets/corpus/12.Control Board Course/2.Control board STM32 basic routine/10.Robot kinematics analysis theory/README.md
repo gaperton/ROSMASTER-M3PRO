@@ -1,8 +1,8 @@
-# Robot kinematics analysis theory
+# Robot Kinematics Analysis Theory
 
 ## 1. Experimental Purpose
 
-Analyze the kinematics of the car based on its structural characteristics. Since real cars have structural errors and factors like resistance and friction during motion, the kinematics are quite complex. For simplicity, we will only analyze the car in an ideal state.
+Analyze the kinematics of the robot based on its structural characteristics. Since real robots have structural errors and factors like resistance and friction during motion, the kinematics are quite complex. For simplicity, we will only analyze the robot in an ideal state.
 
 ## 2. Hardware Connection
 
@@ -32,7 +32,7 @@ A Mecanum wheel (hereafter referred to as a Mecanum wheel) consists of a hub and
 
 As mentioned earlier, there are two types of wheels: A and B. If wheel A moves forward and to the right at the same time, that is, it moves diagonally to the right front, then on the contrary, wheel A will move backward and to the left at the same time, that is, it moves diagonally to the left rear; accordingly, wheel B can move diagonally to the left front and right rear.
 
-With the front of the car as the positive direction, the direction of the wheel moving forward is considered the motor's forward rotation, and the direction of the wheel moving backward is considered the motor's reverse rotation. (All the following lessons will be explained in this direction)
+With the front of the robot as the positive direction, the direction of the wheel moving forward is considered the motor's forward rotation, and the direction of the wheel moving backward is considered the motor's reverse rotation. (All the following lessons will be explained in this direction)
 
 ![Figure: page 3: figure 4](_page_3_Figure_4.jpeg)
 

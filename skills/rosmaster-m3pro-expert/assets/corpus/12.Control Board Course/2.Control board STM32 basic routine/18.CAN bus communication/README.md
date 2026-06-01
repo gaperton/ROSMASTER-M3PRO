@@ -1,4 +1,4 @@
-# CAN bus communication
+# CAN Bus Communication
 
 ## 1. Experimental Purpose
 
@@ -8,7 +8,7 @@ Use the FDCAN function of the STM32 control board, configure the FDCAN as a trad
 
 As shown in the figure below, the STM32 control board integrates the FDCAN interface. For testing convenience, this routine uses the loopback mode and the CAN interface does not need to be connected to other CAN devices.
 
-Please connect the type-C data cable to the computer and the USB Connect port of the STM32 control board.
+Please connect the Type-C data cable to the computer and the USB Connect port of the STM32 control board.
 
 ![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
@@ -18,9 +18,9 @@ If you need to connect other CAN devices, please align the CAN interface silkscr
 
 ![Picture: page 1: picture 1](_page_1_Picture_1.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The path corresponding to the program source code is:
+The program source code is located at:
 
 Board_Samples/STM32_Samples/CAN
 
@@ -28,7 +28,7 @@ According to the pin assignment, CAN_TX is connected to PD1 and CAN_RX is connec
 
 ![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
-According to the CAN component provided by STM32CUBEIDE, configure the frame format to traditional mode and the CAN mode to loopback mode. If you need to connect an external CAN device, set the Mode mode to standard mode.
+According to the CAN component provided by STM32CubeIDE, configure the frame format to traditional mode and the CAN mode to loopback mode. If you need to connect an external CAN device, set the Mode mode to standard mode.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
@@ -162,17 +162,17 @@ void App_Handle(void)
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 5: picture 2](_page_5_Picture_2.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port burning mode. Then use the serial port burning tool to burn the firmware to the board.
+Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port flashing mode. Then use the serial port burning tool to flash the firmware to the board.
 
-If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
+If you have ST-LINK or JLink, you can also use STM32CubeIDE to flash the firmware with one click, which is more convenient and quick.
 
 ## 5. Experimental Results
 

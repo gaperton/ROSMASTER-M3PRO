@@ -1,4 +1,4 @@
-# Read motor encoder data
+# Read Motor Encoder Data
 
 ## 1. Experimental Purpose
 
@@ -8,7 +8,7 @@ Use the encoder motor interface of the STM32 control board and learn to use the 
 
 As shown in the figure below, the STM32 control board integrates four encoder motor control interfaces. This requires additional connection to an encoder motor. The motor control interface supports 520 encoder motors. Because encoder motors require high voltage and current, they must be powered by a battery.
 
-Use a type-C data cable to connect the computer USB and the USB Connect port of the STM32 control board.
+Use a Type-C data cable to connect the computer USB and the USB Connect port of the STM32 control board.
 
 The corresponding names of the four motor interfaces are: left front wheel -> M1, left rear wheel - > M2, right front wheel -> M3, right rear wheel -> M4.
 
@@ -29,9 +29,9 @@ The corresponding relationship of motor encoder GPIO is shown in the following t
 | H4A                            | PD12                 | TIM4_CH1             |
 | H4B                            | PD13                 | TIM4_CH2             |
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The path corresponding to the program source code is:
+The program source code is located at:
 
 Board_Samples/STM32_Samples/Encoder
 
@@ -192,7 +192,7 @@ void Encoder_Get_ALL(int* Encoder_all)
 
 Define the value of the encoder for a full rotation of the wheel as: reduction ratio \* number of encoder lines \* number of channels \* signal trigger source
 
-Here we take the M3 car motor as an example. The parameters are reduction ratio: 56, number of encoder lines: 11, number of channels (two Hall sensors): 2, signal trigger source (including rising and falling edges): 2. The calculated encoder value for one wheel rotation is approximately 2464.
+Here we take the M3 robot motor as an example. The parameters are reduction ratio: 56, number of encoder lines: 11, number of channels (two Hall sensors): 2, signal trigger source (including rising and falling edges): 2. The calculated encoder value for one wheel rotation is approximately 2464.
 
 ```
 #define ENCODER_CIRCLE (2464)
@@ -227,17 +227,17 @@ g_Encoder_Now[2], g_Encoder_Now[3]);
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 8: picture 3](_page_8_Picture_3.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port burning mode. Then use the serial port burning tool to burn the firmware to the board.
+Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port flashing mode. Then use the serial port burning tool to flash the firmware to the board.
 
-If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
+If you have ST-LINK or JLink, you can also use STM32CubeIDE to flash the firmware with one click, which is more convenient and quick.
 
 ## 5. Experimental Results
 

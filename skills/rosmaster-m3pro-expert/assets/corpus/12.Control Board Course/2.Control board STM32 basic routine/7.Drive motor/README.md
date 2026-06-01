@@ -1,10 +1,10 @@
-# Drive motor
+# Drive Motor
 
 ## 1. Experimental Purpose
 
 Learn how to control motors using the PWM output of the STM32 control board.
 
-Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.
+Note: Since the motor starts moving after the program is downloaded, please suspend the robot or motor in the air first to avoid the robot running around.
 
 ## 2. Hardware Connection
 
@@ -35,9 +35,9 @@ Motor interface wiring diagram:
 
 ![Picture: page 3: picture 2](_page_3_Picture_2.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The path corresponding to the program source code is:
+The program source code is located at:
 
 Board_Samples/STM32_Samples/Motor
 
@@ -408,22 +408,22 @@ void App_Handle(void)
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 11: picture 5](_page_11_Picture_5.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port burning mode. Then use the serial port burning tool to burn the firmware to the board.
+Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port flashing mode. Then use the serial port burning tool to flash the firmware to the board.
 
-If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
+If you have ST-LINK or JLink, you can also use STM32CubeIDE to flash the firmware with one click, which is more convenient and quick.
 
 ## 5. Experimental Results
 
-Note: Since the motor starts moving after the program is downloaded, please suspend the car or motor in the air first to avoid the car running around.
+Note: Since the motor starts moving after the program is downloaded, please suspend the robot or motor in the air first to avoid the robot running around.
 
 The MCU_LED light flashes every 200 milliseconds.
 
-The car motor moves forward for 1 second, stops for 1 second, moves backward for 1 second, and stops for 1 second.
+The robot motor moves forward for 1 second, stops for 1 second, moves backward for 1 second, and stops for 1 second.

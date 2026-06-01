@@ -1,4 +1,4 @@
-# Set up the STM32CUBEIDE development environment
+# Set Up the STM32CubeIDE Development Environment
 
 ## 1. Introduction to STM32CubeIDE
 
@@ -8,7 +8,7 @@ C++ development platform with peripheral configuration, code generation, compila
 
 Open the following link in your computer browser:
 
-<https://www.st.com/en/development-tools/stm32cubeide.html>
+<https://www.st.com/en/development-tools/STM32CubeIDE.html>
 
 Download according to the computer system. Here we take Win10 system as an example to install the current latest version (version 1.19.0). The operations for other versions are similar.
 

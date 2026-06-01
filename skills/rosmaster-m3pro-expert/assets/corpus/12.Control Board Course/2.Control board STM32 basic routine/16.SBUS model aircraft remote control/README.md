@@ -1,4 +1,4 @@
-# SBUS model aircraft remote control
+# SBUS Model Aircraft Remote Control
 
 ## 1. Experimental Purpose
 
@@ -18,9 +18,9 @@ Schematic diagram of the model aircraft remote control and SBUS receiver
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The path corresponding to the program source code is:
+The program source code is located at:
 
 Board_Samples/STM32_Samples/SBus
 
@@ -238,17 +238,17 @@ void SBUS_Handle(void)
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 6: picture 2](_page_6_Picture_2.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port burning mode. Then use the serial port burning tool to burn the firmware to the board.
+Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port flashing mode. Then use the serial port burning tool to flash the firmware to the board.
 
-If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
+If you have ST-LINK or JLink, you can also use STM32CubeIDE to flash the firmware with one click, which is more convenient and quick.
 
 ## 5. Experimental Results
 

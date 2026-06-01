@@ -1,26 +1,26 @@
-# Multi-topic subscription and publishing
+# Multi-Topic Subscription and Publishing
 
 ## 1. Experimental Purpose
 
-Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to and publish multiple int32 topics.
+Learn about the STM32 micro-ROS component, access the ROS 2 environment, and subscribe to and publish multiple int32 topics.
 
 ## 2. Hardware Connection
 
-As shown in the figure below, the STM32 control board integrates the STM32H743 chip and can use the microros framework program.
+As shown in the figure below, the STM32 control board integrates the STM32H743 chip and can use the micro-ROS framework program.
 
 Please connect the Type-C data cable to the USB port of the main control board and the USB Connect port of the STM32 control board.
 
 If you have a USB-to-serial module such as CH340, you can connect to the serial port assistant to view debugging information.
 
-Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu22.04 and ROS2 environment on the main control board.
+Since ROS 2 requires the Ubuntu environment, it is recommended to install Ubuntu 22.04 and a ROS 2 environment on the main control board.
 
 ![Picture: page 0: picture 14](_page_0_Picture_14.jpeg)
 
-Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
+Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image flashed.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The virtual machine path corresponding to the program source code is:
+The program source code is located at:
 
 ```
 Board_Samples/Microros_Samples/Publisher_Subscriber
@@ -193,7 +193,7 @@ void subscriber_callback_3(const void *msgin)
 }
 ```
 
-Call rclc_executor_spin_some in a loop to make microros work properly.
+Call rclc_executor_spin_some in a loop to make micro-ROS work properly.
 
 ```
 while (ros_error < 3)
@@ -205,17 +205,17 @@ while (ros_error < 3)
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 4: picture 3](_page_4_Picture_3.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Since the Type-C communication serial port used by the microros agent is multiplexed with the burning serial port, it is recommended to use the STlink tool to burn the firmware.
+Since the Type-C communication serial port used by the micro-ROS agent is shared with the flashing serial port, it is recommended to use the ST-LINK tool to flash the firmware.
 
-If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
+If you flash through the serial port, first plug the Type-C data cable into the computer's USB port, enter serial-port download mode, flash the firmware, and then plug it back into the USB port of the main control board.
 
 ## 5. Experimental Results
 
@@ -223,7 +223,7 @@ The MCU_LED light flashes every 200 milliseconds.
 
 The functional operation is similar to the single topic subscription and publishing functions, except that the topic name is different.
 
-If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
+If the agent is not enabled on the main control board terminal, enter the following command to enable it. If the agent is already enabled, disable it and then re-enable it.
 
 ```
 sh ~/start_agent.sh

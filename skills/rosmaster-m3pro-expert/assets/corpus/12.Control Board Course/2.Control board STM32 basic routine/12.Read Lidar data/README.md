@@ -1,14 +1,14 @@
-# Read LiDAR data
+# Read LiDAR Data
 
 ## 1. Experimental Purpose
 
-Use the radar interface of the STM32 control board to read data from the T-MiniPlus lidar and parse the radar data packets.
+Use the LiDAR interface of the STM32 control board to read data from the T-MiniPlus lidar and parse the LiDAR data packets.
 
 ## 2. Hardware Connection
 
 As shown in the figure below, the STM32 control board integrates the T-MiniPlus LiDAR interface. You need to connect the T-MiniPlus LiDAR cable to the STM32 control board and the LiDAR.
 
-Please connect the type-C data cable to the computer USB port and the USB Connect port of the STM32 control board.
+Please connect the Type-C data cable to the computer USB port and the USB Connect port of the STM32 control board.
 
 ![Picture: page 0: picture 12](_page_0_Picture_12.jpeg)
 
@@ -16,9 +16,9 @@ The T-MiniPlus LiDAR interface cable has an anti-reverse connection function. Ju
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The path corresponding to the program source code is:
+The program source code is located at:
 
 Board_Samples/STM32_Samples/Read_Lidar
 
@@ -70,7 +70,7 @@ HAL_OK)
 }
 ```
 
-Initialize the radar. After the radar is successfully initialized, you can start the scanning mode and enable the serial port 4DMA to receive data. At this time, the radar indicator light changes from solid to flashing.
+Initialize the LiDAR. After the LiDAR is successfully initialized, you can start the scanning mode and enable the serial port 4DMA to receive data. At this time, the LiDAR indicator light changes from solid to flashing.
 
 ```
 void Lidar_Init(void)
@@ -260,7 +260,7 @@ static void Lidar_Update_Points(Lidar_Data_t *msg, Lidar_Point_t* output)
 }
 ```
 
-Process the message data sent by the radar in the loop.
+Process the message data sent by the LiDAR in the loop.
 
 ```
 void Lidar_Handle(void)
@@ -307,17 +307,17 @@ while (1)
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 7: picture 3](_page_7_Picture_3.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port burning mode. Then use the serial port burning tool to burn the firmware to the board.
+Press and hold the BOOT0 button, then press the RESET button to reset, release the BOOT0 button to enter the serial port flashing mode. Then use the serial port burning tool to flash the firmware to the board.
 
-If you have STlink or JLink, you can also use STM32CUBEIDE to burn the firmware with one click, which is more convenient and quick.
+If you have ST-LINK or JLink, you can also use STM32CubeIDE to flash the firmware with one click, which is more convenient and quick.
 
 ## 5. Experimental Results
 

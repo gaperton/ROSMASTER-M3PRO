@@ -1,30 +1,30 @@
-# Subscribe to a topic
+# Subscribe to a Topic
 
 ## 1. Experimental Purpose
 
-Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to the int32 topic.
+Learn about the STM32 micro-ROS component, access the ROS 2 environment, and subscribe to the int32 topic.
 
 ## 2. Hardware Connection
 
-As shown in the figure below, the STM32 control board integrates the STM32H743 chip and can use the microros framework program.
+As shown in the figure below, the STM32 control board integrates the STM32H743 chip and can use the micro-ROS framework program.
 
 Please connect the Type-C data cable to the USB port of the main control board and the USB Connect port of the STM32 control board.
 
 If you have a USB-to-serial module such as CH340, you can connect to the serial port assistant to view debugging information.
 
-Since ROS2 requires the Ubuntu environment, it is recommended to install Ubuntu22.04 and ROS2 environment on the main control board.
+Since ROS 2 requires the Ubuntu environment, it is recommended to install Ubuntu 22.04 and a ROS 2 environment on the main control board.
 
 ![Picture: page 0: picture 14](_page_0_Picture_14.jpeg)
 
-Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
+Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image flashed.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The virtual machine path corresponding to the program source code is:
+The program source code is located at:
 
 Board_Samples/Microros_Samples/Subscriber
 
-Since microros needs to handle more complex tasks, it is recommended to enable the FREERTOS function of STM32 and create a new microros processing task.
+Since micro-ROS needs to handle more complex tasks, it is recommended to enable the FreeRTOS function of STM32 and create a new micro-ROS processing task.
 
 ![Figure: page 1: figure 5](_page_1_Figure_5.jpeg)
 
@@ -32,15 +32,15 @@ Since the FreeRTOS component is used, in order to avoid warnings, the system bas
 
 ![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 
-Since Microros needs to transmit a large amount of data, the baud rate is changed to 2Mbps and the DMA channels of TX and RX are enabled.
+Since micro-ROS needs to transmit a large amount of data, the baud rate is changed to 2Mbps and the DMA channels of TX and RX are enabled.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-Since serial port 1 is used for Microros communication, the debug information printing is changed to serial port 7. Set the baud rate to 115200, 8-bit data, no parity, and 1 stop bit.
+Since serial port 1 is used for micro-ROS communication, the debug information printing is changed to serial port 7. Set the baud rate to 115200, 8-bit data, no parity, and 1 stop bit.
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-For ease of viewing, the debugging serial port of subsequent microros routines is redefined as serial port 7.
+For easier viewing, the debugging serial port of subsequent micro-ROS routines is redefined as serial port 7.
 
 ```
 int _write(int file, char*p, int len)
@@ -50,23 +50,23 @@ int _write(int file, char*p, int len)
 }
 ```
 
-Right-click to open the project properties, then click [Settings]->[MCU/MPU GCC Compiler]-> [include paths] to add the microros include directory path, and then click [Apply] to take effect.
+Right-click to open the project properties, then click [Settings]->[MCU/MPU GCC Compiler]-> [include paths] to add the micro-ROS include directory path, and then click [Apply] to take effect.
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-Add the microros folder as the project source code path.
+Add the micro-ROS folder as the project source code path.
 
 ![Figure: page 3: figure 4](_page_3_Figure_4.jpeg)
 
-Import the microros library path
+Import the micro-ROS library path
 
 ![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
-Link the microros library file to the project. Make sure the name matches the libmicroros.a static library file name (excluding the prefix and suffix "microros").
+Link the micro-ROS library file to the project. Make sure the name matches the libmicroros.a static library file name (excluding the prefix and suffix "microros").
 
 ![Picture: page 4: picture 2](_page_4_Picture_2.jpeg)
 
-Initialize the configuration of microROS. The default value of ros2_domain_id is 30, which is consistent with the factory image configuration. If the DOMAINID of the ROS2 environment is changed to another value, the ros2_domain_id variable must also be changed to the same value for normal communication.
+Initialize the configuration of micro-ROS. The default value of ros2_domain_id is 30, which is consistent with the factory image configuration. If the DOMAINID of the ROS 2 environment is changed to another value, the ros2_domain_id variable must also be changed to the same value for normal communication.
 
 ```
 allocator = rcl_get_default_allocator();
@@ -77,7 +77,7 @@ allocator = rcl_get_default_allocator();
 rcl_init_options_get_rmw_init_options(&init_options);
 ```
 
-Set the microros communication serial port and specify it as serial port 1.
+Set the micro-ROS communication serial port and specify it as serial port 1.
 
 ```
 int32_t set_microros_serial_transports_with_options(rmw_init_options_t *
@@ -100,7 +100,7 @@ true,
 }
 ```
 
-Set the method for requesting memory in the Microros system.
+Set the method for requesting memory in the micro-ROS system.
 
 ```
 int set_microros_freeRTOS_allocator(void)
@@ -119,7 +119,7 @@ rcutils_get_zero_initialized_allocator();
 }
 ```
 
-Try to connect to the proxy. Only proceed to the next step if the connection is successful. If the connection to the proxy fails, it will remain in the connecting state. In this case, you need to enable the proxy script on the control panel to connect.
+Try to connect to the agent. Only proceed to the next step if the connection is successful. If the connection to the agent fails, it will remain in the connecting state. In this case, you need to enable the agent script on the control panel to connect.
 
 ```
 while (1)
@@ -132,7 +132,7 @@ while (1)
     }
 ```
 
-After connecting to the proxy, create the node "YB_Example_Node" where ros2_namespace is empty by default, indicating the namespace of the node.
+After connecting to the agent, create the node "YB_Example_Node" where ros2_namespace is empty by default, indicating the namespace of the node.
 
 ```
 printf("Start YB_Example_Node\n");
@@ -141,7 +141,7 @@ printf("Start YB_Example_Node\n");
 (char*)ros2_namespace, &support));
 ```
 
-To create a publisher "int32_subscriber", you need to specify that the publisher's information is of type std_msgs/msg/Int32.
+To create a publisher "int32_subscriber", you need to specify that the publisher message type is std_msgs/msg/Int32.
 
 ```
 RCCHECK(rclc_subscription_init_default(
@@ -182,7 +182,7 @@ void subscriber_callback(const void *msgin)
 }
 ```
 
-The node and topic are processed, and the power LED_MCU indicator is on. Call rclc_executor_spin_some in the loop to make Microros work normally.
+The node and topic are processed, and the power LED_MCU indicator is on. Call rclc_executor_spin_some in the loop to make micro-ROS work normally.
 
 ```
 LED_ROS_ON();
@@ -196,7 +196,7 @@ LED_ROS_ON();
     }
 ```
 
-The ping_microros_agent function checks if the agent is connected and ends the loop if the connection is lost.
+The ping_micro-ROS_agent function checks if the agent is connected and ends the loop if the connection is lost.
 
 ```
 int32_t ping_microros_agent(void)
@@ -221,23 +221,23 @@ printf("ROS Task End\n");
     HAL_NVIC_SystemReset();
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 7: picture 5](_page_7_Picture_5.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Since the Type-C communication serial port used by the microros agent is multiplexed with the burning serial port, it is recommended to use the STlink tool to burn the firmware.
+Since the Type-C communication serial port used by the micro-ROS agent is shared with the flashing serial port, it is recommended to use the ST-LINK tool to flash the firmware.
 
-If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
+If you flash through the serial port, first plug the Type-C data cable into the computer's USB port, enter serial-port download mode, flash the firmware, and then plug it back into the USB port of the main control board.
 
 ## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 
-If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
+If the agent is not enabled on the main control board terminal, enter the following command to enable it. If the agent is already enabled, disable it and then re-enable it.
 
 ```
 sh ~/start_agent.sh

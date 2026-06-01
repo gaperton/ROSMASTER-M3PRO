@@ -1,4 +1,4 @@
-# Burning STM32 firmware using serial port
+# Flash STM32 Firmware Using the Serial Port
 
 ## 1. Download and install the tool
 

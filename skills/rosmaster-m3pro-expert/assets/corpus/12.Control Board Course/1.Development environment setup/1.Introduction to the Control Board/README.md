@@ -1,53 +1,52 @@
 # Introduction to the Control Board
 
-## 1. Component distribution diagram on the front of the control board
+## 1. Front-Side Component Layout
 
 ![Picture: page 0: picture 7](_page_0_Picture_7.jpeg)
 
-- 1. KEY1 key: User function key, which can realize customized functions through programming.
-- 2. RESET button: reset the STM32 microcontroller.
-- 3. BOOT0 key: used to enter the burning mode when burning STM32 firmware.
-- 4. Active buzzer: whistle and low battery alarm functions.
-- 5. Left radar interface: Serial port 4, connected to the left rear radar.
-- 6. Debug interface: Serial port 7, can be connected to a TTL module to view log information.
-- 7. Right radar interface: Serial port 5, connected to the right front radar.
-- 8. Control interface: Serial port 6, can be connected to TTL module and send protocol to control the robot.
-- 9. CAN interface: can be connected to CAN bus devices and send protocols to control the robot.
-- 10. OLED screen interface: can display the status of the board
-- 11. RGB light bar interface: displays the light bar color status
-- 12. SBUS interface: connect to SBUS aircraft remote controller
-- 13. PWM servo interface: connect to PWM servo
-- 14. PWM servo voltage switch: PWM servo voltage can be selected as 5V or 6.8V
-- 15. 6.8V serial servo interface: connect to 6.8V serial servo
-- 16. 12V serial servo interface: connect to 12V serial servo
+1. KEY1: user function key for custom firmware behavior.
+2. RESET: resets the STM32 microcontroller.
+3. BOOT0: enters firmware flashing mode.
+4. Active buzzer: provides audible prompts and low-battery alarms.
+5. Left LiDAR interface: serial port 4, connected to the left-rear LiDAR.
+6. Debug interface: serial port 7, used with a TTL module to view log output.
+7. Right LiDAR interface: serial port 5, connected to the right-front LiDAR.
+8. Control interface: serial port 6, used with a TTL module to send robot-control protocol data.
+9. CAN interface: connects to CAN bus devices and sends robot-control protocol data.
+10. OLED screen interface: displays board status.
+11. RGB light-strip interface: drives the RGB light-strip status display.
+12. SBUS interface: connects to an SBUS aircraft remote controller.
+13. PWM servo interface: connects to PWM servos.
+14. PWM servo voltage switch: selects 5V or 6.8V for the PWM servo interface.
+15. 6.8V serial servo interface: connects to 6.8V serial servos.
+16. 12V serial servo interface: connects to 12V serial servos.
+17. 12V serial servo interface: connects to 12V serial servos.
+18. Communication and firmware flashing interface: Type-C serial port for MCU firmware flashing and data communication.
+19. Controller interface: connects a USB controller.
+20. M3 motor: connects to the robot's right-front motor.
+21. M4 motor: connects to the robot's right-rear motor.
+22. M1 motor: connects to the robot's left-front motor.
+23. M2 motor: connects to the robot's left-rear motor.
+24. Type-C 5V output interface: 5.1V\5A output with the Raspberry Pi power protocol.
+25. DC 5V output interface: provides 5V output power.
+26. T-type DC 12V power input interface: connects the 12V power supply that powers the mainboard.
+27. LED indicator: shows voltage and function status.
+28. DC12V power output: provides 12V output power.
+29. DC12V power output: provides 12V output power.
+30. Power switch: controls board power. Turn it to `OFF` to shut down the board and `ON` to power on the board.
+31. Charging port: 12.6V charging port.
+32. Nine-axis attitude sensor: includes a 3-axis accelerometer, 3-axis gyroscope, and 3-axis magnetometer.
+33. SWD debug interface: used with ST-LINK for debugging.
 
-- 17. 12V serial servo interface: connect to 12V serial servo
-- 18. Communication and firmware burning interface: TYPE-C serial port for burning MCU firmware and data communication
-- 19. Handle interface: connect USB handle
-- 20. M3 motor: connected to the right front motor of the car
-- 21. M4 motor: connected to the right rear motor of the car
-- 22. M1 motor: connected to the left front motor of the car
-- 23. M2 motor: connected to the left rear motor of the car
-- 24. Type-C 5V output interface: 5.1V\5A output, with Raspberry Pi exclusive protocol
-- 25. DC 5V output interface: provides 5V voltage output
-- 26. T-type DC 12V power input interface: connect to 12V power supply to power the motherboard
-- 27. LED indicator: LED indicator to show voltage and function
-- 28. DC12V power output: provides 12V voltage output
-- 29. DC12V power output: provides 12V voltage output
-- 30. Power switch: controls the entire board. Turn the switch to OFF to shut down the board, and turn it to ON to power on the board.
-- 31. Charging port: 12.6V charging port
-- 32. Nine-axis attitude sensor: including 3-axis accelerometer, 3-axis gyroscope, and 3-axis magnetometer
-- 33. SWD debug interface: users can use ST-LINK for debugging
-
-## 2. Component distribution diagram on the back of the control board
+## 2. Back-Side Component Layout
 
 ![Picture: page 1: picture 18](_page_1_Picture_18.jpeg)
 
-- 1. STM32 microcontroller: main chip, controls the function operation of the entire board
-- 2. Charging port: 12.6V charging port
-- 3. Self-locking switch interface: can be used to connect an external self-locking switch to control the switch of the entire board
+1. STM32 microcontroller: the main chip that controls board functions.
+2. Charging port: 12.6V charging port.
+3. Self-locking switch interface: connects an external self-locking switch for board power control.
 
-## 3. Control board pin assignment diagram
+## 3. Control Board Pin Assignment
 
 ![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
@@ -78,27 +77,25 @@
 | Peripheral functions                   | Pins      | Remark                                              |
 |-------------------------------------------|-----------|-----------------------------------------------------|
 | M4 motor drive                            | PC8/PC9   | PWM output mode, timer 8 channel 3 and channel 4 |
-| Burning and communication interface | PA9/PA10  | Serial port 1                                       |
+| Flashing and communication interface | PA9/PA10  | Serial port 1                                       |
 | USB controller interface               | PA11/PA12 | USB Host                                            |
 | SWD interface                             | PA13/PA14 | SWDIO/SWCLK                                         |
 | M2 motor encoder                       | PA15/PB3  | Encoder mode, Timer 2 channel 1 and channel 2    |
-| Left radar interface                   | PC10/PC11 | Serial port 4                                       |
-| Right radar interface                  | PC12/PD2  | Serial port 5                                       |
+| Left LiDAR interface                   | PC10/PC11 | Serial port 4                                       |
+| Right LiDAR interface                  | PC12/PD2  | Serial port 5                                       |
 | CAN interface                             | PD0/PD1   |                                                     |
 | M1 motor encoder                       | PB4/PB5   | Encoder mode, Timer 3 channel 1 and channel 2    |
 
-## 4. Analysis of Common Problems
+## 4. Common Questions
 
-- 1. How does a main control board (such as Jetson Nano) drive a control board? How do I communicate with the control board?
+### 4.1 How does a main control board, such as Jetson Nano, drive and communicate with the control board?
 
-A: The factory firmware of the control board integrates the Microros framework program. Jetson Nano is connected to the control board through the USB Connect interface, opens the Microros agent and sends the corresponding topic instructions. The microcontroller integrated in the control board receives and parses the data, and then processes the specific commands to be executed.
+The factory firmware on the control board integrates the micro-ROS framework. The Jetson Nano connects to the control board through the USB Connect interface, starts the micro-ROS agent, and sends the corresponding topic commands. The STM32 microcontroller receives and parses the data, then executes the requested command.
 
-- 2. How is the robot powered? Does the main control board need a separate power supply?
+### 4.2 How is the robot powered? Does the main control board need a separate power supply?
 
-A: The car comes with a battery pack. Plug the battery pack into the DC 12V T-type power connector on the control board and turn on the main power switch. The control board has an integrated voltage conversion chip. For the Jetson Nano motherboard, power is supplied via the DC 5V power cable. For the Raspberry Pi 5, power is supplied via the Type-C 5V output power cable with protocol. For the Jetson Orin series, power is supplied via the DC 12V output power cable.
+The robot includes a battery pack. Connect the battery pack to the DC 12V T-type power connector on the control board and turn on the main power switch. The control board includes voltage-conversion circuitry. Jetson Nano uses the DC 5V power cable, Raspberry Pi 5 uses the Type-C 5V output power cable with protocol support, and Jetson Orin series boards use the DC 12V output power cable.
 
-- 3. How to update the MCU firmware? Why do we need to update the MCU firmware?
+### 4.3 How do I update MCU firmware, and when is it necessary?
 
-A: The MCU integrated into the control board is pre-loaded with factory firmware. You do not need to update the firmware unless necessary. If you need to update the firmware, please refer to the firmware update tutorial to update the MCU firmware. If the control board has been preloaded with a separate hex file, please re-load the firmware to the factory firmware before
-
-running the ROS example.
+The MCU on the control board is preloaded with factory firmware, so you usually do not need to update it. If an update is required, follow the firmware update tutorial. If the control board has been flashed with a separate `.hex` file, restore the factory firmware before running the ROS examples.

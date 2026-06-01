@@ -1,4 +1,4 @@
-# Burning STM32 firmware using SWD
+# Flash STM32 Firmware Using SWD
 
 ## 1. Hardware Connection
 
@@ -8,15 +8,15 @@ Use the Type-C port to power the control board.
 
 ![Picture: page 0: picture 8](_page_0_Picture_8.jpeg)
 
-## 2. STM32CUBEIDE burning
+## 2. STM32CubeIDE burning
 
-Use STM32CUBEIDE to open the project.
+Use STM32CubeIDE to open the project.
 
 Select the project name, press the Compile button, and confirm that the project compiles without errors. Here we take the LED project as an example.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-Select the project to be burned and click the green play button. The first time you click the green play button, the configuration debugging parameters will pop up. Select the ST-LINK and SWD interfaces, then click Apply, and then click OK to start burning. After that, just click the green play button to start burning.
+Select the project to be flashed and click the green play button. The first time you click the green play button, the configuration debugging parameters will pop up. Select the ST-LINK and SWD interfaces, then click Apply, and then click OK to start burning. After that, just click the green play button to start burning.
 
 ![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
@@ -24,7 +24,7 @@ Select the project to be burned and click the green play button. The first time 
 
 ## 3. STM32CubeProgrammer burns firmware
 
-If the firmware only has a hex file and does not have the full functional source code, you can use STM32CubeProgrammer to burn the firmware.
+If the firmware only has a hex file and does not have the full functional source code, you can use STM32CubeProgrammer to flash the firmware.
 
 Open the STM32CubeProgrammer software, select ST-LINK mode, select SWD for Port, and click Connect to connect to the device.
 

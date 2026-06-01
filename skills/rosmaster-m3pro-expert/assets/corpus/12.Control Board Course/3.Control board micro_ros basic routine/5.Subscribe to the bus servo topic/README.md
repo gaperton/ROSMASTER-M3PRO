@@ -2,7 +2,7 @@
 
 ## 1. Experimental Purpose
 
-Learn about the STM32-microROS component, access the ROS2 environment, and subscribe to topics related to controlling the servo angle on the bus.
+Learn about the STM32 micro-ROS component, access the ROS 2 environment, and subscribe to topics related to controlling the servo angle on the bus.
 
 ## 2. Hardware Connection
 
@@ -14,13 +14,13 @@ Since the bus servo has high voltage and current requirements, it must be powere
 
 ![Picture: page 0: picture 13](_page_0_Picture_13.jpeg)
 
-Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image burned.
+Note: There are many types of main control boards. Here we take the Jetson Orin series main control board as an example, with the default factory image flashed.
 
 Note: There are three bus servo interfaces (S3/S4/S5), of which S3 is a 6.8V bus servo interface, and S4 and S5 are 12V bus servo interfaces. Since the M3PRO's robotic arm bus servo is 6.8V, we will use S3 as an example.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The virtual machine path corresponding to the program source code is:
+The program source code is located at:
 
 ```
 Board_Samples/Microros_Samples/Subscriber_uart_servo
@@ -70,7 +70,7 @@ void uart_servo_Callback(const void *msgin)
 }
 ```
 
-Call rclc_executor_spin_some in a loop to make microros work properly.
+Call rclc_executor_spin_some in a loop to make micro-ROS work properly.
 
 ```
 while (ros_error < 3)
@@ -82,23 +82,23 @@ while (ros_error < 3)
 }
 ```
 
-## 4. Compile, download and burn firmware
+## 4. Compile, Download, and Flash Firmware
 
-Select the project to be compiled in the file management interface of STM32CUBEIDE and click the compile button on the toolbar to start compiling.
+In STM32CubeIDE, select the project in the file browser and click the compile button on the toolbar.
 
 ![Picture: page 2: picture 3](_page_2_Picture_3.jpeg)
 
-If there are no errors or warnings, the compilation is complete.
+Compilation is complete when no errors or warnings are reported.
 
-Since the Type-C communication serial port used by the microros agent is multiplexed with the burning serial port, it is recommended to use the STlink tool to burn the firmware.
+Since the Type-C communication serial port used by the micro-ROS agent is shared with the flashing serial port, it is recommended to use the ST-LINK tool to flash the firmware.
 
-If you are using the serial port to burn, you need to first plug the Type-C data cable into the computer's USB port, enter the serial port download mode, burn the firmware, and then plug it back into the USB port of the main control board.
+If you flash through the serial port, first plug the Type-C data cable into the computer's USB port, enter serial-port download mode, flash the firmware, and then plug it back into the USB port of the main control board.
 
 ## 5. Experimental Results
 
 The MCU_LED light flashes every 200 milliseconds.
 
-If the proxy is not enabled on the main control board terminal, enter the following command to enable it. If the proxy is already enabled, disable it and then re-enable it.
+If the agent is not enabled on the main control board terminal, enter the following command to enable it. If the agent is already enabled, disable it and then re-enable it.
 
 ```
 sh ~/start_agent.sh
