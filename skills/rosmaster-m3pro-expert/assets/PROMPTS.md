@@ -21,6 +21,7 @@ Scope:
 - Use official/vendor docs or nearby repo docs to fill obvious gaps, but do not invent technical steps.
 - If required information is missing in the source chapter, fill the gap using common technical knowledge or targeted web search, and keep added details practical and verifiable.
 - Remove generated `README.json` metadata files in the same folders if they are not needed.
+- Сreate the section TOC and overview in README using the linked-header style from sections 0 and 1.
 
 Verification:
 - Check `git diff --check`.

@@ -1,42 +1,48 @@
-# 1. Content Description
+# Face Special Effects
 
-This program implements the functions of acquiring color images and using the dlib library to implement face detection and face effects.
+## 1. Content Description
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson captures color images, uses the dlib library to detect facial landmarks, and applies simple special effects to the eyebrows, eyes, and mouth.
 
-Open the terminal directly on the Orin motherboard and enter the commands mentioned in this section.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-## 2. Program startup
+Orin users can open a terminal directly on the robot and run the commands there.
 
-First, in the terminal, enter the following command to start the camera,
+## 2. Program Startup
+
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the face effects program:
+After the camera starts successfully, open another terminal and start the face-effects program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 06_FaceLandmarks
 ```
 
-After the program is run, as shown in the figure below, it will first detect the face, and then perform special effects processing on the eyebrows, eyes and mouth areas.
+After the program starts, it detects the face and applies effects to the eyebrow, eye, and mouth regions.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/06_FaceLandm arks.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/06_FaceLandmarks.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/06_Face Landmarks.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/06_FaceLandmarks.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import time
@@ -52,7 +58,7 @@ from arm_msgs.msg import ArmJoints
 import cv2
 ```
 
-DLIB is a modern C++ toolkit that includes machine learning algorithms and tools for creating complex software in C++ to solve real-world problems. It is widely used in industry and academia for robotics, embedded devices, mobile phones, and large-scale high-performance computing environments. The dlib library uses 68 points to mark important facial features, such as points 18- 22 for the right eyebrow and points 51-68 for the mouth. Faces are detected using the get_frontal_face_detector module in the dlib library, and facial feature values are predicted using the shape_predictor_68_face_landmarks.dat feature data.
+dlib is a C++ toolkit with machine-learning algorithms used in robotics, embedded systems, mobile devices, and high-performance computing. In this example, dlib detects faces with `get_frontal_face_detector` and predicts 68 facial landmarks with `shape_predictor_68_face_landmarks.dat`. The landmarks identify facial regions such as eyebrows, eyes, nose, and mouth.
 
 The 68 facial key points of dlib are arranged in the following order:
 
@@ -60,14 +66,14 @@ The 68 facial key points of dlib are arranged in the following order:
 0-16: Chin contour
 ```
 
-- 17-21: right eyebrow
+- 17-21: Right eyebrow
 - 22-26: Left eyebrow
 - 27-35: Nose bridge and nose tip
-- 36-41: right eye
+- 36-41: Right eye
 - 42-47: Left eye
 - 48-67: Lip contour
 
-Initialize data and define publishers and subscribers,
+Initialize the dlib detector, publishers, and subscribers:
 
 ```python
 def __init__(self,name):
@@ -90,7 +96,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-The topic of color images returns to the function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -106,7 +112,7 @@ draw=True)
     cv.imshow('frame', frame)
 ```
 
-get_face function, detects faces,
+The `get_face` function detects faces and optionally draws landmark IDs:
 
 ```python
 def get_face(self, frame, draw=True):
@@ -127,7 +133,7 @@ subsequent image processing
     return frame
 ```
 
-prettify_face function, add special effects to the face,
+The `prettify_face` function fills selected facial regions to create the effects:
 
 ```python
 def prettify_face(self, frame, eye=True, lips=True, eyebrow=True, draw=True):
@@ -170,7 +176,7 @@ np.mat(lefteyebrow), (255, 255, 255))
 np.mat(righteyebrow), (255, 255, 255))
 ```
 
-get_lmList gets the facial coordinate function,
+The `get_lmList` function collects facial landmark coordinates in a specified index range:
 
 ```python
 def get_lmList(self, frame, p1, p2, draw=True):

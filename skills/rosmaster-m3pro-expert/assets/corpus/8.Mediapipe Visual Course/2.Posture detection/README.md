@@ -2,43 +2,47 @@
 
 ## 1. Content Description
 
-This course implements color image acquisition and gesture detection using the MediaPipe framework.
+This lesson captures color images from the camera and uses MediaPipe Pose to detect human body landmarks. The program displays the original image beside a landmark-only view of the detected pose.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the posture detection program.
+After the camera starts successfully, open another terminal and start the pose-detection program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 02_PoseDetector
 ```
 
-After the program is run, the following figure will be shown. The joint points of the detected posture will be displayed on the right side of the image.
+After the program starts, the detected pose landmarks are displayed on the right side of the image.
 
 ![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/02_PoseDetec tor.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/02_PoseDetector.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/02_Pos eDetector.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/02_PoseDetector.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -56,7 +60,7 @@ import cv2
 print("import done")
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the MediaPipe Pose detector, publishers, and subscribers:
 
 ```python
 def __init__(self, name,mode=False, smooth=True, detectionCon=0.5,
@@ -91,7 +95,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -106,7 +110,7 @@ means not to draw the joint points on the original color image
     cv.imshow('dist', dist)
 ```
 
-pubPosePoint function,
+The `pubPosePoint` function detects pose landmarks and draws them:
 
 ```python
 def pubPosePoint(self, frame, draw=True):
@@ -130,4 +134,4 @@ self.mpPose.POSE_CONNECTIONS, self.lmDrawSpec, self.drawSpec)
     return frame, img
 ```
 
-The frame_combine image merging function was mentioned in the first lesson of this chapter. Please refer to [Meediapipe Visual Fun Game] - [1. Hand Detection] for an analysis of this function.
+The `frame_combine` image-stitching function is explained in [8.1 Hand Detection](../1.Hand%20detection/README.md).

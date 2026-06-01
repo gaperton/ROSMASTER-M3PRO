@@ -1,44 +1,48 @@
-# Finger control robotic arm
+# Finger Control of Robotic Arm
 
 ## 1. Content Description
 
-This function realizes the acquisition of color images and the use of the mediapipe framework to detect fingers, calculate the angle between the thumb and index finger to control the opening and closing of the robot arm gripper (servo No. 6).
+This lesson captures color images, uses MediaPipe Hands to detect fingers, and calculates the angle between the thumb and index finger. The angle controls the opening and closing of the robotic arm gripper, servo No. 6.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the program for controlling the gripper with your finger:
+After the camera starts successfully, open another terminal and start the finger-controlled gripper program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 13_FingerCtrl
 ```
 
-The program runs as shown in the figure below. After detecting a hand, the program calculates the angle between the thumb and index finger. Slowly opening and closing the two fingers causes the robotic arm's gripper to open and close more slowly. Performance is slightly worse on the Raspberry Pi 5 and Jetson Nano motherboards, due to motherboard performance and the fact that the program is running in Docker.
+After the program starts, it detects the hand and calculates the angle between the thumb and index finger. Slowly opening and closing the two fingers changes the gripper opening. Raspberry Pi 5 and Jetson Nano boards may respond more slowly because of board performance and Docker overhead.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/13_FingerCtr l.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/13_FingerCtrl.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/13_Fing erCtrl.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/13_FingerCtrl.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import math
@@ -55,7 +59,7 @@ from arm_msgs.msg import ArmJoints,ArmJoint
 import cv2
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the MediaPipe hand detector, arm publishers, and image subscriber:
 
 ```python
 def __init__(self, name):
@@ -86,7 +90,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -131,7 +135,7 @@ coordinates corresponding to the joint id
     return self.lmLis
 ```
 
-calc_angle function, calculates the angle formed by 3 points,
+The `calc_angle` function calculates the angle formed by three landmarks:
 
 ```python
 def calc_angle(self, pt1, pt2, pt3):

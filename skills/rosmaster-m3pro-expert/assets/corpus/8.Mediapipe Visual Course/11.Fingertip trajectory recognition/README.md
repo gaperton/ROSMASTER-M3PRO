@@ -1,62 +1,66 @@
-# 11.Fingertip trajectory recognition
+# Fingertip Trajectory Recognition
 
 ## 1. Content Description
 
-This course implements color image acquisition and fingertip detection using the MediaPipe framework. Gestures are used to start and stop recording fingertip trajectories within the image. After recording is complete, a fingertip trajectory map is generated and the trajectory is recognized.
+This lesson captures color images, detects fingertips with MediaPipe, and uses gestures to start and stop fingertip trajectory recording. After recording, the program generates a trajectory image and classifies the drawn shape.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the fingertip trajectory recognition program:
+After the camera starts successfully, open another terminal and start the fingertip-trajectory recognition program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 15_ FingerTrajectory
 ```
 
-After the program is run, as shown in the figure below, place your palm flat on the camera screen, open your fingers, and face the camera with your palm, similar to the number 5 gesture. The image will draw the joints on the entire palm. Adjust the position of your palm and try to keep it in the upper middle part of the screen.
+After the program starts, hold an open palm toward the camera, similar to the number `5`. The program draws landmarks for the whole hand. Adjust your hand so it stays near the upper middle of the image.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-At this time, the index finger remains unchanged and the other fingers are retracted, similar to the gesture of the number 1.
+To start drawing, keep only the index finger extended, similar to the number `1`.
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-While holding gesture 1, move the position of your finger and a red line will appear on the screen, drawing the path of your index finger.
+While holding the `1` gesture, move your finger. A red line appears on the screen and follows the index fingertip.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-After the graphic is drawn, open all your fingers and make a gesture similar to the number 5, and the drawn graphic will be generated below.
+After drawing the shape, open all fingers again to make the `5` gesture. The program then generates and recognizes the trajectory image.
 
 ![Picture: page 2: picture 2](_page_2_Picture_2.jpeg)
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-Note: The drawn graphics need to be closed, otherwise some content may be missing.
+Note: Draw closed shapes. If the trajectory is not closed, parts of the recognized shape may be missing.
 
-There are currently four trajectory shapes that can be recognized, namely: triangle, rectangle, circle, and five-pointed star
+The current recognizer supports four trajectory shapes: triangle, rectangle, circle, and five-pointed star.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/15_FingerTra jectory.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/15_FingerTrajectory.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/15_Fi ngerTrajectory.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/15_FingerTrajectory.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import math
@@ -75,7 +79,7 @@ import threading
 import enum
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the MediaPipe hand detector, drawing state, publishers, and subscribers:
 
 ```python
 def __init__(self,name):
@@ -108,7 +112,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -234,7 +238,7 @@ outline
         gc.collect()
 ```
 
-hand_angle function, calculates the bending angle of each finger
+The `hand_angle` function calculates the bend angle for each finger:
 
 ```python
 def hand_angle(landmarks):
@@ -266,7 +270,7 @@ landmarks[20])
     return angle_list
 ```
 
-h_gesture function, which determines the gesture of the finger through two-dimensional features
+The `h_gesture` function classifies the hand gesture from 2D finger-angle features:
 
 ```python
 def h_gesture(angle_list):
@@ -284,7 +288,7 @@ def h_gesture(angle_list):
     return gesture_str
 ```
 
-get_track_img function, generates the track map,
+The `get_track_img` function generates the trajectory image:
 
 ```python
 def get_track_img(points):

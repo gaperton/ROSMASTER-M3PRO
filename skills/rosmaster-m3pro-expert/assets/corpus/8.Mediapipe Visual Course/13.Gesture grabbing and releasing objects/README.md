@@ -1,48 +1,56 @@
-# Gesture grabbing and releasing objects
+# Gesture Grabbing and Releasing Objects
 
 ## 1. Content Description
 
-This function acquires color images and uses the MediaPipe framework to detect gestures, controlling the robotic arm to grasp objects based on these gestures.
+This lesson captures color images, uses MediaPipe to recognize hand gestures, and controls the robotic arm to grasp or release objects based on the recognized gesture.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the gesture grab and release program.
+After the camera starts successfully, open another terminal and start the gesture-based grasp/release program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 16_GestureGrasp
 ```
 
-After the program starts, if the camera image shows a "Yes" gesture, the robotic arm will move to a specific location to grab an object. If the camera image shows an "OK" gesture, the robotic arm will place the object in a specific location. The two recognized gestures are: "Yes" and "OK."
+After the program starts, a `Yes` gesture commands the robotic arm to move to a preset position and grasp an object. An `OK` gesture commands the arm to place the object at a preset position. This example recognizes two gestures: `Yes` and `OK`.
 
-At this time, put your hand in the camera image and make a "Yes" gesture, and the robotic arm will move forward to grab the object.
+Place your hand in the camera image and make the `Yes` gesture. The robotic arm moves forward to grasp the object.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-When the object is grabbed and the gesture is recognized as OK, the object is placed in the upper left position.
+After the object is grasped, make the `OK` gesture to place it at the upper-left position.
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
 Press Ctrl+C in the terminal to exit the program.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/16_GestureGras p.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/16_GestureGrasp.py
+```
 
-Import the library files used,
+Orin:
+
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/16_GestureGrasp.py
+```
+
+Import the required libraries:
 
 ```python
 import math
@@ -59,7 +67,7 @@ from M3Pro_demo.media_library import *
 import threading
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the gesture detector, arm state, publishers, and subscriber:
 
 ```python
 def __init__(self,name):
@@ -162,7 +170,7 @@ name="arm_ctrl_threading", args=(gesture, ))
     cv.imshow('frame', frame)
 ```
 
-arm_ctrl_threading is the thread function of the robot arm gripping. The parameter passed in is the gesture.
+The `arm_ctrl_threading` thread executes the arm action associated with the recognized gesture:
 
 ```python
 def arm_ctrl_threading(self, gesture):

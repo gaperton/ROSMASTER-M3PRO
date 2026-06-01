@@ -1,42 +1,48 @@
-# 3D object recognition
+# 3D Object Recognition
 
 ## 1. Content Description
 
-This course implements color image acquisition and 3D object recognition using the MediaPipe framework (only four examples are shown: a mug, a shoe, a chair, and a camera).
+This lesson captures color images and uses MediaPipe Objectron for 3D object recognition. The demo includes four supported object categories: shoe, chair, cup, and camera.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the 3D object detection program.
+After the camera starts successfully, open another terminal and start the 3D object-detection program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 08_Objectron
 ```
 
-After the program is running, the default object to be recognized is the shoe. You can press the F key to switch the recognized object. As shown in the figure below, the mug is recognized.
+After the program starts, the default recognition target is `Shoe`. Press `F` to switch between supported object classes. The example below shows a detected cup.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/08_Objectron.py
+Raspberry Pi 5 and Jetson Nano:
 
-Orin Motherboard
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/08_Objectron.py
+```
 
-Program code path /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/08 _Objectron.py
+Orin:
 
-Import the library files used,
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/08_Objectron.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2 as cv
@@ -52,7 +58,7 @@ import cv2
 print("import done")
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the Objectron detector, publishers, and subscribers:
 
 ```python
 def __init__(self,name):
@@ -84,7 +90,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -96,7 +102,7 @@ def get_RGBImageCallBack(self,msg):
     cv.imshow('frame', frame)
 ```
 
-configUP switches the object recognition function and selects self.modelNames by modifying the value of self.index. The options for self.modelNames are ['Shoe', 'Chair', 'Cup', 'Camera']
+The `configUP` function switches the recognition target by updating `self.index`. The available `self.modelNames` values are `['Shoe', 'Chair', 'Cup', 'Camera']`.
 
 ```python
 def configUP(self):
@@ -107,7 +113,7 @@ def configUP(self):
 self.minTrackingCon,self.modelNames[self.index])
 ```
 
-findObjectron object recognition function,
+The `findObjectron` function runs Objectron recognition and draws the 3D box and axis:
 
 ```python
 def findObjectron(self, frame):

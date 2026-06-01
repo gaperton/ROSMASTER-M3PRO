@@ -1,48 +1,48 @@
-# Palm target positioning
+# Palm Target Positioning
 
 ## 1. Content Description
 
-This course implements capturing color images and using the MediaPipe framework to detect a hand, outputting its coordinates. This can then be combined with a robot chassis or robotic arm to track hand movements.
+This lesson captures color images, uses MediaPipe to detect a hand, and outputs the palm center coordinates. These coordinates can be used later for chassis tracking or robotic-arm target tracking.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the palm positioning program.
+After the camera starts successfully, open another terminal and start the palm-positioning program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 12_FindHand
 ```
 
-After the program is started, as shown in the figure below, when a palm is detected, the palm will be framed in green on the screen, and the center coordinates of the palm will be output on the terminal.
+After the program starts, detected palms are outlined in green, and the palm center coordinates are printed in the terminal.
 
 ![Figure: page 0: figure 11](_page_0_Figure_11.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
 ```
-The program code is in the running docker. The path in docker
-is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/12_FindHand.
-py
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/12_FindHand.py
 ```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/12_Fi ndHand.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/12_FindHand.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -59,7 +59,7 @@ from arm_msgs.msg import ArmJoints
 import cv2
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the reusable `HandDetector`, publishers, and subscribers:
 
 ```python
 def __init__(self,name, mode=False, maxHands=2, detectorCon=0.5, trackCon=0.5):
@@ -79,7 +79,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -91,7 +91,7 @@ def get_RGBImageCallBack(self,msg):
     cv.imshow('dist', frame)
 ```
 
-process function,
+The `process` function detects the hand and prints the palm center:
 
 ```python
 def process(self, frame):
@@ -110,25 +110,25 @@ upper left and lower right corners of the palm
     return frame
 ```
 
-The definition of the Medipipe recognition class can be found in the media_library library, which is located in the M3Pro_demo function package.
+The MediaPipe recognition helper classes are defined in the `media_library.py` file in the `M3Pro_demo` package.
 
-In the directory,
+File path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is
-
+```text
 /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/media_library.py
+```
 
-In this library, we use the native library of meidiapipe to expand and define many classes. Each class defines different functions.
+This helper library wraps native MediaPipe functionality into reusable classes. For example, the `HandDetector` class defines:
 
-When needed, just pass in the parameters. For example, we define the following function in the HandDetector class:
-
-- findHands: Find hands
-- fingersUp: fingers straight up
-- ThumbTOforefinger: Detects the angle between the thumb and index finger
-- get_gesture: Detect gestures
+- `findHands`: Detect hands.
+- `fingersUp`: Determine which fingers are extended.
+- `ThumbTOforefinger`: Detect the angle between the thumb and index finger.
+- `get_gesture`: Recognize gestures.

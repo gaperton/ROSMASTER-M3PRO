@@ -1,50 +1,54 @@
-# Brush
+# Air-Drawing Brush
 
 ## 1. Content Description
 
-This course implements acquiring color images and using the MediaPipe framework to detect fingers. It then selects colors and draws a trajectory based on the detected finger movement.
+This lesson captures color images, uses MediaPipe Hands to detect finger positions, and turns fingertip movement into a virtual drawing brush. The user can select a color with a two-finger gesture and draw with the index finger.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the brush program.
+After the camera starts successfully, open another terminal and start the virtual brush program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 09_VirtualPaint
 ```
 
-After running the program, as shown in the figure below, the default fingertip color is red. When the index finger and middle finger of the right hand are combined, it is in the selection state, and a color selection box pops up. When the two fingertips move to the corresponding color position, the color is selected (black is the eraser); when the index finger and middle finger are separated, it is in the drawing state and can be drawn on the drawing board.
+After the program starts, the default brush color is red. When the right index finger and middle finger are held together, the program enters color-selection mode and displays the color bar. Move the fingertips to a color area to select it; black acts as the eraser. When the index and middle fingers separate, the program enters drawing mode and traces the index fingertip.
 
-The index finger and middle finger start to draw.
+Index-finger drawing mode:
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-Put your index and middle fingers together to enter the color selection mode.
+Hold the index and middle fingers together to enter color-selection mode:
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/09_VirtualPa int.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/09_VirtualPaint.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/09_Vi rtualPaint.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/09_VirtualPaint.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import math
@@ -61,7 +65,7 @@ import cv2
 print("import done")
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the canvas, color settings, MediaPipe hand detector, publishers, and subscribers:
 
 ```python
 def __init__(self,name):
@@ -117,7 +121,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -223,7 +227,7 @@ cv.FILLED)
     cv.imshow('frame', frame)
 ```
 
-fingersUp finger straightening finger detection function,
+The `fingersUp` function determines which fingers are extended:
 
 ```python
 def fingersUp(self):
@@ -252,11 +256,11 @@ value increases as it goes to the right)
     return fingers
 ```
 
-As shown in the figure below, the ID of each joint of the finger,
+The figure below shows each finger-joint ID:
 
 ![Figure: page 5: figure 4](_page_5_Figure_4.jpeg)
 
-findHands detects the palm function,
+The `findHands` function detects the hand and records landmark coordinates:
 
 ```python
 def findHands(self, frame, draw=True):

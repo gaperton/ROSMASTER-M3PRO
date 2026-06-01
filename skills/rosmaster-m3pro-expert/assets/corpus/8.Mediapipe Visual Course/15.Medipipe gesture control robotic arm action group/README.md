@@ -1,57 +1,59 @@
-# Medipipe gesture control robotic arm action group
+# MediaPipe Gesture Control of Arm Action Group
 
 ## 1. Content Description
 
-This function captures color images and uses the mediapipe framework to recognize gestures, then uses these gestures to move the robotic arm to a predefined set of actions.
+This lesson captures color images, recognizes gestures with MediaPipe, and maps those gestures to predefined robotic-arm action groups.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the gesture control program of the robotic arm.
+After the camera starts successfully, open another terminal and start the arm gesture-control program:
 
 ```bash
 ros2 run M3Pro_demo Gesture_Moving
 ```
 
-After the program runs, the robotic arm will move to recognize gestures. There are several gestures to recognize:
+After the program starts, the robotic arm moves to the recognition posture. The program recognizes the following gestures:
 
-- Yes gesture: The robotic arm will "dance" according to the set movements and then return to the initial posture.
-- OK gesture: The robotic arm will shake its head left and right, then return to its initial position.
-- Disdain gesture (clenched fist, thumbs below the line): The robotic arm will kneel down and then return to its original position.
-- One-finger gesture (recognizing only one finger extended): The robotic arm nods and then returns to its initial posture.
-- Rock gesture (thumb, middle finger, and ring finger are bent, index finger and pinky finger are straight): the robotic arm stretches upward and shakes left and right, then returns to the initial posture.
-- Five fingers (all 5 fingers extended): The robotic arm claps and then returns to its initial position.
+- `Yes`: The robotic arm performs a preset dance and then returns to the initial posture.
+- `OK`: The robotic arm shakes left and right, then returns to the initial posture.
+- `Thumb_down` / disdain gesture: The robotic arm kneels down and then returns to the initial posture.
+- One-finger gesture: The robotic arm nods and then returns to the initial posture.
+- Rock gesture: The thumb, middle finger, and ring finger are bent while the index finger and pinky are extended. The robotic arm stretches upward, shakes left and right, and then returns to the initial posture.
+- Five-finger gesture: The robotic arm claps and then returns to the initial posture.
 
-For example, the following is the Rock gesture.
+The following image shows the Rock gesture.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-After we make a gesture, press the space bar, and the robotic arm will perform a set of movements based on the recognized gesture. You need to press the space bar every time recognition is performed.
+After making a gesture, press the spacebar. The robotic arm performs the action group for the recognized gesture. Press the spacebar each time you want to trigger recognition.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
+```
 
-is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/Gesture_Moving.py
-
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -69,7 +71,7 @@ import rclpy
 import threading
 ```
 
-The program initializes and creates publishers and subscribers,
+Initialize the hand detector, publishers, subscriber, and action state:
 
 ```python
 def __init__(self, name):
@@ -101,7 +103,7 @@ ck,100)
     self.pubSix_Arm(self.init_joints)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,color_msg):
@@ -111,7 +113,7 @@ def get_RGBImageCallBack(self,color_msg):
     self.process(rgb_image)
 ```
 
-process function,
+The `process` function detects the hand and starts gesture-action execution when the spacebar is pressed:
 
 ```python
 def process(self, frame):
@@ -142,7 +144,7 @@ self.pTime = self.cTime
     cv.imshow('frame', frame)
 ```
 
-Arm_Moving_threadin gesture recognition thread program,
+The `Arm_Moving_threading` function recognizes the gesture and runs the matching arm action group:
 
 ```python
 def Arm_Moving_threading(self, lmList,bbox):

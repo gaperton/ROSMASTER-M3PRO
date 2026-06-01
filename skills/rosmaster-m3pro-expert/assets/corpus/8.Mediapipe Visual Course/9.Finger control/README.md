@@ -1,46 +1,50 @@
-# Finger control
+# Finger Control
 
 ## 1. Content Description
 
-This course implements color images and uses the mediapipe framework to detect fingers. It then calculates the angles formed by the thumb tip, wrist joint, and index finger tip to change the effect of image processing.
+This lesson captures color images, uses MediaPipe Hands to detect fingers, and calculates the angle between the thumb tip, wrist, and index fingertip. That angle controls the strength of several image-processing effects.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the finger control program.
+After the camera starts successfully, open another terminal and start the finger-control program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 10_HandCtrl
 ```
 
-After the program is running, press the F key to switch the image processing effect, and then change the angle by changing the distance between the thumb and index finger to control the image processing effect.
+After the program starts, press `F` to switch image-processing effects. Move the thumb and index finger closer together or farther apart to change the effect intensity.
 
 ![Figure: page 0: figure 11](_page_0_Figure_11.jpeg)
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/10_HandCtrl. py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/10_HandCtrl.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/10_Ha ndCtrl.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/10_HandCtrl.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import math
@@ -56,7 +60,7 @@ from arm_msgs.msg import ArmJoints
 import cv2
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the effect list, MediaPipe hand detector, publishers, and subscribers:
 
 ```python
 def __init__(self, name):
@@ -94,7 +98,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -160,7 +164,7 @@ Gaussian matrix are both 21, and the standard deviation is value
     cv.imshow('dst', dst)
 ```
 
-findPosition obtains the id of each joint and the xy coordinates of each joint.
+The `findPosition` function records each landmark ID and its XY image coordinates.
 
 ```python
 def findPosition(self, frame, draw=True):
@@ -180,11 +184,11 @@ the joint detected
     return self.lmList
 ```
 
-As shown in the figure below, the ID of each joint of the finger,
+The figure below shows each finger-joint ID:
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-calc_angle calculates the angle, here we calculate the angle between the thumb tip, wrist joint and index finger tip.
+The `calc_angle` function calculates the angle between three landmarks. In this lesson, it measures the angle between the thumb tip, wrist, and index fingertip.
 
 ```python
 def calc_angle(self, pt1, pt2, pt3):

@@ -1,44 +1,48 @@
-# Face detection
+# Face Detection
 
 ## 1. Content Description
 
-This course implements color image acquisition and face detection using the MediaPipe framework.
+This lesson captures color images and uses MediaPipe Face Detection to locate faces in the camera image. The program draws a bounding box around each detected face and displays the detection confidence.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the face detection program.
+After the camera starts successfully, open another terminal and start the face-detection program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 07_FaceDetection
 ```
 
-After the program is run, as shown in the figure below, the detected face will be framed and the detection score will be displayed. The higher the score, the more accurate the face recognition is.
+After the program starts, detected faces are framed and labeled with a confidence score. A higher score indicates a more confident detection.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/07_FaceDetectio n.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/07_FaceDetection.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/07_Face Detection.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/07_FaceDetection.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import time
@@ -54,7 +58,7 @@ from arm_msgs.msg import ArmJoints
 import cv2
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the MediaPipe face detector, publishers, and subscribers:
 
 ```python
 def __init__(self, name):
@@ -80,7 +84,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-Color image callback function,
+Color image callback:
 
 ```python
 def get_RGBImageCallBack(self,msg):
@@ -93,7 +97,7 @@ detection program
     cv.imshow('frame', frame)
 ```
 
-findFaces function,
+The `findFaces` function detects faces and annotates the image:
 
 ```python
 def findFaces(self, frame):
@@ -123,7 +127,7 @@ recognized
 bbox[1] - 20), cv.FONT_HERSHEY_PLAIN,3, (255, 0, 255), 2)
 ```
 
-fancyDraw function draws the bounding box according to the value of the detection result bbox
+The `fancyDraw` function draws a stylized bounding box from the detected face rectangle:
 
 ```python
 def fancyDraw(self, frame, bbox, l=30, t=10):

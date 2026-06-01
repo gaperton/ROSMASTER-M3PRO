@@ -1,64 +1,68 @@
-# Fingertip gesture control robotic arm
+# Fingertip Gesture Control of Robotic Arm
 
 ## 1. Content Description
 
-This function captures color images and uses the MediaPipe framework to detect fingertips. Gestures are used to start and stop recording the fingertip's trajectory within the image. After recording is complete, a fingertip trajectory map is generated and the trajectory is recognized. Finally, the robot arm is controlled based on the trajectory.
+This lesson captures color images, detects fingertips with MediaPipe, records a fingertip trajectory, recognizes the drawn shape, and then controls the robotic arm according to that shape.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command in the terminal to start the program for controlling the robotic arm with fingertip trajectory gestures:
+After the camera starts successfully, open another terminal and start the fingertip-trajectory arm-control program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 14_FingerAction
 ```
 
-After the program is run, as shown in the figure below, place your palm flat on the camera screen, open your fingers, and face the camera with your palm, similar to the number 5 gesture. The image will draw the joints on the entire palm. Adjust the position of your palm and try to keep it in the upper middle part of the screen.
+After the program starts, hold an open palm toward the camera, similar to the number `5`. The program draws landmarks for the whole hand. Adjust your hand so it stays near the upper middle of the image.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-At this time, the index finger remains unchanged and the other fingers are retracted, similar to the gesture of the number 1.
+To start drawing, keep only the index finger extended, similar to the number `1`.
 
 ![Picture: page 1: picture 2](_page_1_Picture_2.jpeg)
 
-While holding gesture 1, move the position of your finger and a red line will appear on the screen, drawing the path of your index finger.
+While holding the `1` gesture, move your finger. A red line appears on the screen and follows the index fingertip.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-After the graphic is drawn, open all your fingers and make a gesture similar to the number 5, and the drawn graphic will be generated below.
+After drawing the shape, open all fingers again to make the `5` gesture. The program generates the trajectory image and recognizes the drawn shape.
 
 ![Picture: page 2: picture 2](_page_2_Picture_2.jpeg)
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-Note: The drawn graphics need to be closed, otherwise some content may be missing.
+Note: Draw closed shapes. If the trajectory is not closed, parts of the recognized shape may be missing.
 
 There are currently four trajectory shapes that can be recognized: triangle, rectangle, circle, and five-pointed star.
 
-When the camera recognizes different trajectory shapes, it will control the robotic arm to perform corresponding actions.
+When the camera recognizes a supported trajectory shape, the robotic arm performs the corresponding action.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/14_FingerAct ion.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/14_FingerAction.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/14_Fi ngerAction.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/14_FingerAction.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import math
@@ -77,7 +81,7 @@ import threading
 import enum
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the trajectory-recognition state, arm publishers, and image subscriber:
 
 ```python
 def __init__(self,name):
@@ -111,7 +115,7 @@ self.create_subscription(Image,"/camera/color/image_raw",self.get_RGBImageCallBa
 ck,100)
 ```
 
-The color image callback function can refer to the content of the previous section. Here, there is an additional thread to control the robotic arm.
+The color image callback follows the trajectory-recognition flow from the previous lesson, then starts an additional thread to control the robotic arm:
 
 ```
 if not self.move_state:
@@ -123,7 +127,7 @@ args= (graph_name, ))
    task.start()
 ```
 
-The arm_move_action thread executes the function and executes the corresponding function according to the passed name.
+The `arm_move_action` thread selects the corresponding arm action from the recognized trajectory name:
 
 ```python
 def arm_move_action(self, name):
@@ -145,7 +149,7 @@ time.sleep(1.5)
 self.move_state = False
 ```
 
-Take self.arm_move_square() as an example,
+For example, `self.arm_move_square()` runs the square action:
 
 ```python
 def arm_move_square(self):

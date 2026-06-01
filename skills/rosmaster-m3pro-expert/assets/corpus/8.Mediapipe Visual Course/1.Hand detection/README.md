@@ -1,44 +1,48 @@
-# Hand detection
+# Hand Detection
 
 ## 1. Content Description
 
-This course implements color image acquisition and hand joint detection using the MediaPipe framework.
+This lesson captures color images from the camera and uses MediaPipe to detect hand landmarks. The program displays the original camera image beside a blank image that contains only the detected hand joints and landmark connections.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, in the terminal, enter the following command to start the camera,
+Start the camera:
 
 ```bash
 ros2 launch orbbec_camera dabai_dcw2.launch.py
 ```
 
-After successfully starting the camera, open another terminal and enter the following command to start the hand detection program.
+After the camera starts successfully, open another terminal and start the hand-detection program:
 
 ```bash
 ros2 run yahboomcar_mediapipe 01_HandDetector
 ```
 
-After the program is run, the following figure will be shown. The hand joint points detected will be displayed on the right side of the image.
+After the program starts, the detected hand landmarks are drawn on the right side of the display.
 
 ![Picture: page 0: picture 11](_page_0_Picture_11.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/01_HandDetec tor.py
+```text
+/root/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/01_HandDetector.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/01_Ha ndDetector.py
+```text
+/home/jetson/yahboomcar_ws/src/yahboomcar_mediapipe/yahboomcar_mediapipe/01_HandDetector.py
+```
 
-Import the library files used,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -54,7 +58,7 @@ from arm_msgs.msg import ArmJoints
 import cv2
 ```
 
-Initialize data and define publishers and subscribers,
+Initialize the MediaPipe hand detector, publishers, and subscribers:
 
 ```python
 def __init__(self,name, mode=False, maxHands=2, detectorCon=0.5, trackCon=0.5):
@@ -95,7 +99,7 @@ means not to draw the joint points on the original color image
     cv.imshow('dist', dist)
 ```
 
-pubHandsPoint function,
+The `pubHandsPoint` function detects hand landmarks and draws them on a blank image:
 
 ```python
 def pubHandsPoint(self, frame, draw=True):
@@ -123,7 +127,7 @@ self.lmDrawSpec, self.drawSpec)
     return frame, img
 ```
 
-frame_combine merge image function,
+The `frame_combine` function stitches the original image and landmark-only image side by side:
 
 ```python
 def frame_combine(slef,frame, src):
