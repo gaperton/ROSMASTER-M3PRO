@@ -1,64 +1,68 @@
-# Line patrol and obstacle removal
+# Line Patrol and Obstacle Removal
 
 ## 1. Content Description
 
-This function enables the program to acquire images through the camera and recognize the color of the patrol line. The program controls the robot to move along the line. During this process, the lidar scans for obstacles on the path. If an obstacle is encountered, the robot stops. If a machine code appears on the route, the robot adjusts its posture, grabs the machine code with its lower claw, puts it aside, and continues patrolling the line.
+This lesson captures camera images, recognizes the color of the patrol line, and controls the robot to follow the line. While the robot patrols, LiDAR scans for obstacles on the path. If an obstacle is detected, the robot stops. If a machine-code block appears on the route, the robot adjusts its pose, grasps the block with the lower gripper, places it aside, and then continues following the line.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The machine code blocks used in this lesson have the following dimensions: 30 x 30 x 30 mm.
+Machine-code blocks used in this lesson: **30x30x30mm**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-Finally, open the third terminal and enter the following command to start the line inspection and obstacle removal program:
+Open a third terminal and start the line patrol and obstacle removal program:
 
 ```bash
 ros2 run M3Pro_demo follow_line
 ```
 
-After the start command, a graphic window titled " **frame"** will be opened. The marking box in the screen will mark the landmark line. Press the spacebar to start the robot moving along the landmark line. If an obstacle appears in front of it, the robot stops patrolling and the buzzer sounds an alarm. After the obstacle is removed, the robot continues to move until the landmark line ends and the terminal prompts " **Not Found** ", indicating that no landmark line was found.
+After startup, a graphics window titled **frame** opens. The detection box marks the line in the image. Press the spacebar to start line patrol. If an obstacle appears ahead, the robot stops and the buzzer sounds an alarm. After the obstacle is removed, the robot continues moving until the line ends and the terminal prints **Not Found**, indicating that no line was detected.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-If it encounters a machine code, the car will stop and adjust the distance between the car body and the machine code according to the position of the machine code. After adjusting to the distance set by the program, the robotic arm will lower its claws to clamp the machine code and place it aside, and then continue to move along the line.
+If the robot encounters a machine-code block, it stops and adjusts the distance between the chassis and the block according to the detected tag position. After reaching the target distance, the robotic arm lowers the gripper, grasps the block, places it aside, and then continues following the line.
 
-### 2.1. Color calibration
+### 2.1. Color Calibration
 
-The robot has been calibrated with a specific color when it leaves the factory. If you find that the color recognition of road markings is not ideal during line patrol, or you need to change the color of the road markings, you need to change the line patrol color.
+The robot is factory-calibrated for a specific line color. If line-color recognition is unreliable during patrol, or if you need to use a different line color, recalibrate the line-patrol color.
 
-After the frame graphics window appears after the previous step ros2 run M3Pro_demo follow_line, press the R key on the keyboard to select the color, hold down the left mouse button and drag a rectangular box in the color area (make sure the rectangular box is within the color range), and it will automatically confirm after releasing the left mouse button.
+After the `frame` window opens from the previous `ros2 run M3Pro_demo follow_line` command, press `R` to select the color. Hold the left mouse button and drag a rectangle over the line color area. Keep the rectangle fully inside the target color area. Release the mouse button to confirm automatically.
 
 ![Picture: page 1: picture 5](_page_1_Picture_5.jpeg)
 
-After recalibrating the color, the terminal prompts **Reset success!!!**, and the color calibration is completed.
+After recalibration, the terminal prints **Reset success!!!**, and color calibration is complete.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ follow_line.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/follow_line.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/follow_line.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/follow_line.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 #ros lib
@@ -86,7 +90,7 @@ from arm_interface.msg import AprilTagInfo,CurJoints
 from M3Pro_demo.compute_joint5 import *
 ```
 
-Program initialization and creation of publishers and subscribers
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self,name):
@@ -198,7 +202,7 @@ self.get_parameter('ResponseDist').get_parameter_value().double_value
     print("self.ResponseDist: ",self.ResponseDist)
 ```
 
-callback color image topic callback function,
+The color-image callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):
@@ -231,7 +235,7 @@ bin_img])))
     else:cv.imshow('frame', result_img)
 ```
 
-process image processing function,
+The `process` function performs image processing:
 
 ```python
 def process(self, rgb_img, action):
@@ -361,7 +365,7 @@ int(self.tags[0].corners[1][1])
     return rgb_img, binary
 ```
 
-execute line patrol function,
+The `execute` function runs line patrol:
 
 ```python
 def execute(self, point_x, color_radius):

@@ -1,78 +1,82 @@
-# Color block color sorting
+# Color Block Sorting
 
 ## 1. Content Description
 
-This function enables the program to obtain images through the camera, select the color of the color block to be sorted according to the key input, and the program will identify the color block that meets the requirements and clamp it with the lower claw, and finally place it in the set position.
+This lesson captures camera images, lets the user select the target block color with the keyboard, identifies the matching color block, grasps it with the lower gripper, and places it at the configured position.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-Wooden Blocks Used in This Lesson: 30x30x30mm Colored Blocks
+Wooden blocks used in this lesson: **30x30x30mm color blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-Finally, open the third terminal and enter the following command to start the color sorting program:
+Open a third terminal and start the color sorting program:
 
 ```bash
 ros2 run M3Pro_demo color_recognize
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the color sorting program by pressing Ctrl+C and restart the color sorting program until the robot gripping program obtains the current angle information and calculates the current end position.
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the color sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
 
-Upon launching the color block sorting program, it subscribes to the color and depth image topics. Place the product's accompanying **30x30x30mm color block** beneath the camera; once the color block appears in the image, use the following keys to select or calibrate the color block's color:
+After the color-block sorting program starts, it subscribes to the color and depth image topics. Place the included **30x30x30mm color block** under the camera. When the block appears in the image, use these keys to select or calibrate the target color:
 
-- Press R or r: sort red blocks
-- Press G or g: sort the green blocks
-- Press B or b: sort blue blocks
-- Press Y or y: sort the yellow blocks
-- Press C or c: calibrate the color of the selected color block
+- Press `R` or `r`: sort red blocks
+- Press `G` or `g`: sort green blocks
+- Press `B` or `b`: sort blue blocks
+- Press `Y` or `y`: sort yellow blocks
+- Press `C` or `c`: calibrate the selected block color
 
-After pressing the button to select the color block, the selected color will be printed in the upper left corner of the image, and a binary image will appear on the right side of the image, showing the blue block that appeared in the left image, as shown in the figure below. Assuming that b is pressed to select the blue block,
+After a color is selected, the selected color is printed in the upper-left corner of the image. The right side shows a binary mask for the selected color. In the example below, `b` is pressed to select the blue block.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-At this point, press the spacebar to begin the gripping process. Similarly, the program determines the distance between the blue block and the robot's base_link. If the distance is within [215, 225], the robot arm directly lowers its gripper to grab the block and place it at the set location. If the distance is outside [215, 225], the robot first moves the robot block to within [215, 225] based on the distance between the robot code block and the robot's base coordinate system (base_link), then lowers its gripper to grab the block and place it at the set location.
+Press the spacebar to begin grasping. The program checks the distance between the blue block and `base_link`. If the distance is within `[215, 225]`, the arm lowers the gripper, grasps the block, and places it at the configured location. If the distance is outside `[215, 225]`, the chassis first adjusts the block to the required distance, then the arm grasps and places it.
 
-### 2.1. Color block color calibration
+### 2.1. Color Block Calibration
 
-Due to lighting reasons, the HSV value preset by the program may not be able to accurately distinguish the color blocks. At this time, you can press the c key or the C key, and then use the mouse to select the color of the color block to recalibrate the HSV value of the color block. As shown in the figure below, suppose you press b or B to select blue first, but the binary image on the right cannot distinguish the blue. Then we need to press the c key or the C key to enter the calibration model and use the mouse to select the area of the blue block. The program will obtain the HSV value in the green box.
+Lighting changes can make the preset HSV values inaccurate. Press `C` or `c`, then drag a rectangle over the target color with the mouse to recalibrate the HSV range. In the example below, blue was selected with `B` or `b`, but the binary image on the right does not isolate the blue block correctly. Press `C` or `c` to enter calibration mode and select the blue block area. The program samples the HSV values inside the green box.
 
 ![Picture: page 2: picture 4](_page_2_Picture_4.jpeg)
 
-Release the mouse to complete the calibration. Press the b or B key to identify. The binary image on the right can distinguish the blue block very well.
+Release the mouse to complete calibration. Press `B` or `b` again, and the binary image on the right should isolate the blue block clearly.
 
 ![Picture: page 3: picture 1](_page_3_Picture_1.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 ### 3.1. color_recognize.py
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ color_recognize.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_recognize.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_recognize.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_recognize.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -200,7 +204,7 @@ the HSV value of the selected color can be updated.
     self.updata_flag = False
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):
@@ -296,7 +300,7 @@ else:
     self.pubVel(0,0,0)
 ```
 
-process button image processing function,
+The `process` function handles button input and image processing:
 
 ```python
 def process(self,rgb_img,key):
@@ -403,15 +407,19 @@ cv2.FONT_HERSHEY_SIMPLEX, 1, self.text_color, 2)
 
 The source code path of the library:
 
-Raspberry Pi 5 and Jetson motherboard
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ color_common.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_common.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_common.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_common.py
+```
 
-object_follow color recognition function
+The `object_follow` function performs color recognition:
 
 ```python
 def object_follow(self, img, hsv_msg):

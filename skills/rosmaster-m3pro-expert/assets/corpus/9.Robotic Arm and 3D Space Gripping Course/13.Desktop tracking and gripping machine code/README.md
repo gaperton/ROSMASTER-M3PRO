@@ -1,56 +1,65 @@
-# Desktop tracking and gripping machine code
+# Desktop Tracking and Gripping (AprilTag)
 
 ## 1. Content Description
 
-This function allows the program to capture an image through the camera, recognize the machine code on the desktop, and then slowly move the machine code on the desktop. The robot, in conjunction with the chassis and robotic arm, will track the machine code. After stopping the machine code, the robot adjusts the robotic arm back to its initial position and adjusts the chassis so that the center of the machine code appears in the center of the image. After the adjustment is completed, the robot can choose to continue tracking or clamp the machine code on the desktop using a button.
+This lesson captures camera images, recognizes an AprilTag machine-code block on the desktop, and tracks it with coordinated chassis and robotic-arm motion. When the block stops moving, the arm returns to its recognition posture and the chassis adjusts so the tag center appears in the center of the image. After alignment, the user can either continue tracking or press a key to grasp the block.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson: **30x30x30mm Machine Code Blocks.**
+Wooden blocks used in this lesson: **30x30x30mm machine-code blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-After running, it is shown as follows:
+After it starts, the display appears as shown below.
 
-Then enter the following command in the third terminal to start the desktop tracking and grabbing machine code program,
+Open a third terminal and start the desktop tracking and grasping program:
 
 ```bash
 ros2 run M3Pro_demo apriltag_track_desktop
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the sorting desktop tracking gripping robot code program with Ctrl+C and restart the desktop tracking gripping robot code program until the robot arm gripping program obtains the current angle information and calculates the current end position.
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the desktop tracking and grasping program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
 
-The first time you run the program, it will enter tracking mode. Slowly move the robot code on the table. The chassis and robotic arm will simultaneously track the robot code, achieving coordinated tracking. When you stop moving the robot code, the program will control the robotic arm to return to the recognition posture and move the chassis to center the robot code in the image. You can choose between the following modes: press the following button to select the mode.
+The first time the program runs, it enters tracking mode. Slowly move the machine-code block on the table. The chassis and robotic arm track the block together. When the block stops moving, the program returns the arm to the recognition posture and moves the chassis to center the tag in the image. Use these keys to select the mode:
 
-- 'm' or 'M' Key: Tracking Mode. In this mode, as you slowly move the **30x30x30mm machinecode block** across the desktop, both the robotic arm and the chassis will track the block.
-- Spacebar: Grasping Mode. In this mode, the program controls the robotic arm to lower its gripper, grasp the **30x30x30mm machine-code block**, place it at a designated position, and finally return to its initial posture.
+- `M` or `m`: Tracking mode. In this mode, slowly move the **30x30x30mm machine-code block** across the desktop and both the robotic arm and chassis track the block.
+- Spacebar: Grasping mode. In this mode, the program lowers the gripper, grasps the **30x30x30mm machine-code block**, places it at the configured position, and returns to the initial posture.
 
-After completing the first clamping, you need to press the m or M key to enter the tracking mode for the second tracking.
+After the first grasp, press `M` or `m` to enter tracking mode again.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-- Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltag_track_desktop.py
-- Orin Motherboard
+Raspberry Pi 5 and Jetson Nano:
 
-Import the necessary library files,
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_track_desktop.py
+```
+
+Orin:
+
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_track_desktop.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2
@@ -81,7 +90,7 @@ from M3Pro_demo.PID import *
 import threading
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -160,7 +169,7 @@ tracking mode.
     self.recover_done = False
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):

@@ -1,54 +1,60 @@
-# Tracking and gripping machine code
+# Tracking and Gripping AprilTag Blocks
 
 ## 1. Content Description
 
-This function enables the program to capture images through the camera and recognize the machine code in the image. When the handheld machine code moves, the robotic arm will move with it, keeping the center point of the machine code in the middle of the image. When the robotic arm stops tracking, the program will calculate the distance between the machine code and the car's base_link at this time. If the distance is greater than 24 cm, the program will adjust it forward until the distance between the two is less than 24 cm. If the distance between the two is less than 24 cm, the robotic arm will be controlled to grab the machine code block and place it in the set position.
+This lesson captures camera images and recognizes a handheld AprilTag machine-code block. As the block moves, the robotic arm follows it and keeps the tag center near the center of the image. When tracking stops, the program calculates the distance between the tag and `base_link`. If the distance is greater than 24 cm, the chassis moves forward until the target is within range. Once the target is close enough, the arm grasps the machine-code block and places it at the configured position.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson: **40x40x40mm Machine Code Blocks**.
+Wooden blocks used in this lesson: **40x40x40mm machine-code blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp
 ```
 
-After running, it is shown as follows:
+After it starts, the display appears as shown below.
 
-Finally, open the third terminal and enter the following command to start the tracking and grabbing machine code program:
+Open a third terminal and start the AprilTag tracking and grasping program:
 
 ```bash
 ros2 run M3Pro_demo apriltag_follow_2D
 ```
 
-After the program is run, the 4 cm machine code wooden block that comes with the handheld device appears in the image, as shown below.
+After the program starts, hold the included 4 cm machine-code block in the camera view. It appears as shown below.
 
 ![Picture: page 1: picture 3](_page_1_Picture_3.jpeg)
 
-Slowly move the robot code block. The robotic arm will track it, keeping the center of the code in the center of the image. After stopping tracking, the program will determine whether the distance between the robot base_link and the robot code is less than 24 cm. If so, a buzzer will sound, and the program will control the robotic arm to grab the robot code, place it in the set position, and finally return to the initial position. If the distance between the robot base_link and the robot code is greater than 24 cm, the program will control the chassis to move forward until the distance between the two is less than 24 cm, and then proceed with the grab, placement, and return operations.
+Slowly move the machine-code block. The robotic arm tracks it and keeps the tag center in the middle of the image. When tracking stops, the program checks whether the distance between `base_link` and the tag is less than 24 cm. If it is, the buzzer sounds and the arm grasps the block, places it at the configured position, and returns to the initial pose. If the distance is greater than 24 cm, the chassis moves forward until the target is within range, then the arm grasps, places, and returns.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-- Raspberry Pi and Jetson Nano board
-  - The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow_2D.py
-- Orin Motherboard
+Raspberry Pi 5 and Jetson Nano:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow_2D.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow_2D.py
+```
 
-Import the necessary library files,
+Orin:
+
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow_2D.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2
@@ -80,7 +86,7 @@ from M3Pro_demo.PID import *
 from M3Pro_demo.compute_joint5 import *
 ```
 
-Import the robot arm offset parameter file to compensate for the deviation caused by the servo virtual position
+Import the robotic-arm offset parameter file to compensate for servo virtual-position deviation:
 
 ```
 offset_file = "/root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml"
@@ -88,7 +94,7 @@ with open(offset_file, 'r') as file:
     offset_config = yaml.safe_load(file)
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -181,7 +187,7 @@ True, it means that the next tracking and clamping can be performed.
     self.PID_init()
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):

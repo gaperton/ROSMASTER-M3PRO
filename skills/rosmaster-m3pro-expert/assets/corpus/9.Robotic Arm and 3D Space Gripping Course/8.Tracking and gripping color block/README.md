@@ -1,72 +1,74 @@
-# Tracking and gripping color block
+# Tracking and Gripping Color Blocks
 
 ## 1. Content Description
 
-This function allows the program to capture an image through the camera and select the color block to be tracked and gripped by pressing a button. The program will then identify the target color block in the image. When the handheld color block moves, the robotic arm will follow, keeping the center of the color block in the center of the image. When the robotic arm stops tracking, the program will calculate the distance between the color block and the robot's base_link. If the distance is greater than 26 cm, the program will adjust the distance until it is less than 24 cm. If the distance is less than 26 cm, the robotic arm will be controlled to grip the color block and place it in the set position.
+This lesson captures camera images, lets the user select a target color block with the keyboard, and tracks the matching block in the image. As the handheld color block moves, the robotic arm follows it and keeps the block center near the image center. When tracking stops, the program calculates the distance between the block and `base_link`. If the distance is greater than 26 cm, the chassis moves forward until the target is close enough. Once the block is within range, the arm grasps it and places it at the configured position.
 
-Note: Sometimes the robot cannot move the chassis for adjustment. This may be because the depth distance of the current color block is invalid. In this case, you need to rotate the color block to obtain valid depth information.
+Note: If the chassis does not move for distance adjustment, the current color block depth may be invalid. Rotate the block to help the camera obtain valid depth information.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson: **40x40x40mm colored blocks**.
+Wooden blocks used in this lesson: **40x40x40mm color blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp
 ```
 
-After running, it is shown as follows:
+After it starts, the display appears as shown below.
 
-Finally, open the third terminal and enter the following command to start the tracking and clamping color block program:
+Open a third terminal and start the color-block tracking and grasping program:
 
 ```bash
 ros2 run M3Pro_demo color_follow
 ```
 
-After the program starts, it will subscribe to the color image and depth image topics. According to the following buttons, you can select the color of the tracked color block or the calibration color block:
+After the program starts, it subscribes to the color and depth image topics. Use these keys to select the tracked block color or calibrate the selected color:
 
-- Press R or r: sort red blocks
-- Press G or g: sort the green blocks
-- Press B or b: sort blue blocks
-- Press Y or y: sort the yellow blocks
-- Press C or c: calibrate the color of the selected color block
+- Press `R` or `r`: track red blocks
+- Press `G` or `g`: track green blocks
+- Press `B` or `b`: track blue blocks
+- Press `Y` or `y`: track yellow blocks
+- Press `C` or `c`: calibrate the selected block color
 
-As shown in the image below, after the program runs, the matching blue block (40x40x40mm) will appear in the image. Then, press the B key or the 'b' key, and the program will recognize the blue block in your hand.
+In the example below, a matching blue **40x40x40mm** block appears in the image. Press `B` or `b`, and the program recognizes the blue block in your hand.
 
 ![Picture: page 1: picture 10](_page_1_Picture_10.jpeg)
 
-Slowly move the color block, and the robotic arm will follow. The program will keep the center of the color block in the center of the image. After the robotic arm stops tracking, the program will determine whether the distance between the robot base_link and the color block is less than or equal to 26 cm. If so, a buzzer will sound, and the program will control the robotic arm to grab the color block, place it in the set position, and finally return to the initial position. If the distance between the robot base_link and the color block is greater than 26 cm, the program will control the chassis to move forward until the condition of less than or equal to 26 cm is met, and then the gripping, placement, and homing operations will be carried out.
+Slowly move the color block. The robotic arm follows it and keeps the block center in the image center. When tracking stops, the program checks whether the distance between `base_link` and the block is less than or equal to 26 cm. If it is, the buzzer sounds and the arm grasps the block, places it at the configured position, and returns to the initial pose. If the distance is greater than 26 cm, the chassis moves forward until the target is within range, then the arm grasps, places, and returns.
 
-### 2.1. Color block color calibration
+### 2.1. Color Block Calibration
 
-You can refer to the content of [2.1, Color Block Color Calibration] in [6. Color Block Color Sorting] in the tutorial [9. Robotic Arm and 3D Space Gripping].
+The calibration method is the same as [2.1. Color Block Calibration](../6.Color%20block%20color%20sorting/README.md#21-color-block-calibration) in lesson 9.6.
 
-The calibration method is consistent.
-
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ color_follow.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_follow.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_follow.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_follow.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -99,7 +101,7 @@ from M3Pro_demo.compute_joint5 import *
 from M3Pro_demo.PID import *
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -210,7 +212,7 @@ means that the x value threshold is exceeded.
     print("Init done.")
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):

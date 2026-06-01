@@ -1,48 +1,52 @@
-# Robotic arm chassis linkage control
+# Robotic Arm + Chassis Linkage Control
 
 ## 1. Content Description
 
-This course implements the use of an inverse solution algorithm for the robotic arm to calculate the target pose of the robotic arm and control the robotic arm to move to that pose. At the same time, the chassis also moves synchronously, with the robotic arm and chassis moving in tandem relative to each other.
+This lesson uses the robotic-arm inverse-kinematics algorithm to calculate a target pose and move the arm to that pose. At the same time, the chassis moves in coordination with the arm, so the chassis and arm move relative to each other as one linked motion.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver.
+Start the robotic-arm solver:
 
 ```bash
 ros2 run arm_kin kin_srv
 ```
 
-In another terminal, enter
+Open another terminal and start the linkage-control node:
 
 ```bash
 ros2 run M3Pro_demo M3Pro_Dancing
 ```
 
-After the program is started, the robot arm will reach the initial posture. Then enter the following command in the terminal to start it:
+After the program starts, the robotic arm moves to its initial posture. Publish the following topic message to trigger the linked motion:
 
 ```bash
 ros2 topic pub /start_dancing std_msgs/msg/Bool "data: True" --once
 ```
 
-After posting this topic, the robot will move forward and the robotic arm will move backward. The robot will move forward 1 meter and then stop. If the above message is posted again, the robot will move back 1 meter.
+After this message is published, the robot moves forward while the robotic arm moves backward. The robot moves forward 1 meter and stops. Publishing the same message again moves the robot back 1 meter.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ M3Pro_Dancing.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/M3Pro_Dancing.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ M3Pro_Dancing.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/M3Pro_Dancing.py
+```
 
-Import the used libraries,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -57,7 +61,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 ```
 
-The program initializes and creates publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -95,7 +99,7 @@ posture
     print('init done')
 ```
 
-The startFlagCallBack callback function processes the message data released. If the message is true, two threads are started to control the operation of the robotic arm and chassis respectively. The parameters passed in are self.direction and -self.direction, which indicate the relative direction of movement.
+The `startFlagCallBack` callback processes the received trigger message. When the message is `true`, it starts two threads: one for the robotic arm and one for the chassis. The parameters `self.direction` and `-self.direction` set the relative movement directions.
 
 ```python
 def startFlagCallBack(self,msg):
@@ -106,7 +110,7 @@ def startFlagCallBack(self,msg):
         base.start()
 ```
 
-base_move controls the chassis movement function,
+The `base_move` function controls chassis movement:
 
 ```python
 def base_move(self,base_dir):
@@ -121,7 +125,7 @@ direction
     self.direction = -self.direction
 ```
 
-arm_move controls the movement of the robotic arm.
+The `arm_move` function controls robotic-arm movement:
 
 ```python
 def arm_move(self,arm_dir):
@@ -153,7 +157,7 @@ from various angles
     future.add_done_callback(self.get_ik_respone_callback)
 ```
 
-get_ik_respone_callback receives the callback function that returns the result of calling the ik service.
+The `get_ik_respone_callback` function receives the result returned by the `ik` service call:
 
 ```python
 def get_ik_respone_callback(self, future):
@@ -180,7 +184,7 @@ responses returned after the service is processed.
         self.get_logger().error(f'Service call failed: {e}')
 ```
 
-get_current_end_pos gets the current end position function of the robotic arm.
+The `get_current_end_pos` function gets the current robotic-arm end position:
 
 ```python
 def get_current_end_pos(self):
@@ -199,7 +203,7 @@ values are the joint angle values of the current robot arm.
     future.add_done_callback(self.get_fk_respone_callback)
 ```
 
-get_fk_respone_callback receives the callback function that returns the result of calling the fk service.
+The `get_fk_respone_callback` function receives the result returned by the `fk` service call:
 
 ```python
 def get_fk_respone_callback(self, future):

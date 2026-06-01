@@ -1,70 +1,76 @@
-# Medipipe gesture ID sorting machine code
+# MediaPipe Gesture ID Sorting (AprilTag)
 
 ## 1. Content Description
 
-This function implements the program to capture images through the camera and then recognize gestures (1-4). After analyzing the gestures, the robotic arm moves to a sorting posture. According to the gestures, it sorts the machine-coded wooden blocks on the table. If a machine-coded wooden block with the ID corresponding to the gesture exists on the table, the robotic arm lowers its gripper and places it in the designated location. If a machine-coded wooden block with the ID corresponding to the gesture does not exist on the table, the robotic arm shakes its head and finally returns to the gesture recognition posture.
+This lesson captures camera images, recognizes MediaPipe finger-count gestures from 1 to 4, and uses the recognized gesture as the target AprilTag ID. After a gesture is recognized, the robotic arm moves to the sorting posture and searches the desktop for the matching machine-code block. If the matching block is found, the arm lowers the gripper and places the block at the configured location. If no matching block is found, the arm shakes its head and returns to the gesture-recognition posture.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-After running, it is shown as follows:
+After it starts, the display appears as shown below.
 
-Then enter the following command in the third terminal to start the Mediapipe gesture ID sorting machine code program,
+Open a third terminal and start the MediaPipe gesture ID sorting program:
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+```bash
+ros2 run M3Pro_demo apriltagID_gesture
+```
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate during the coordinate system conversion. Therefore, you need to close the Mediapipe gesture ID sorting machine code program by pressing Ctrl+C and restart the Mediapipe gesture ID sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end position posture.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-Then enter the following command in the fourth terminal to start the Mediapipe gesture recognition program,
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the MediaPipe gesture ID sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
+
+Open a fourth terminal and start the MediaPipe gesture recognition program:
 
 ```bash
 ros2 run M3Pro_demo mediapipe_detect
 ```
 
-After starting, the robot arm will move to the recognition posture and begin to recognize gestures. The recognized gestures are 1-4. Gesture 1 represents one finger stretched out, gesture 2 represents two fingers stretched out, gesture 3 represents three fingers stretched out, and gesture 4 represents four fingers stretched out. Keep the gesture in mind and wait for the buzzer to sound, indicating that the gesture recognition is complete. The robot arm will move to the sorting posture. As shown in the figure below, assuming gesture 2 is given,
+After startup, the robotic arm moves to the recognition posture and begins recognizing gestures from 1 to 4. Gesture 1 means one extended finger, gesture 2 means two extended fingers, gesture 3 means three extended fingers, and gesture 4 means four extended fingers. Hold the gesture until the buzzer sounds, which indicates recognition is complete. The arm then moves to the sorting posture. The example below uses gesture 2.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-After entering the sorting posture, it will start to recognize the machine code on the desktop, as shown in the figure below.
+After entering the sorting posture, the program begins recognizing machine-code blocks on the desktop, as shown below.
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-After waiting for 8 seconds, if machine code No. 2 is found, the program will determine whether the distance between the machine code block No. 2 and the trolley base_link is within the range of [210, 220]. If so, the lower claw will directly clamp the machine code block No. 2, and then place it at the set position. Finally, the robotic arm returns to the sorting posture. If not, the distance
+After waiting 8 seconds, if machine-code block No. 2 is found, the program checks whether the distance between block No. 2 and `base_link` is within `[210, 220]`. If it is, the lower gripper grasps block No. 2, places it at the configured position, and the arm returns to the sorting posture. If the block is outside `[210, 220]`, the chassis adjusts the distance until the block is within range, then the gripper grasps and places it.
 
-between the machine code block No. 2 and the trolley base_link is outside the range of [210, 220]. The program will control the chassis to adjust the distance, adjust the distance between the two to within the range of [210, 220], and then clamp it with the lower claw, and then place it at the set position. Finally, the robotic arm returns to the sorting posture.
+If machine-code block No. 2 is not found, or no machine-code block is detected, the robot buzzer sounds, the robotic arm shakes its head, and the arm returns to the gesture-recognition posture.
 
-If machine code No. 2 is not found or no machine code is found, the buzzer on the car will sound, then the robotic arm will shake its head and finally return to the gesture recognition posture.
-
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 ### 3.1. mediapipe_detect.py
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ mediapipe_detect.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_detect.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_detect.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/mediapipe_detect.py
+```
 
-Import the necessary libraries,
+Import the required libraries:
 
 ```python
 import cv2
@@ -85,7 +91,7 @@ TimeSynchronizer,ApproximateTimeSynchronizer
 import threading
 ```
 
-The program initializes and creates publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -124,7 +130,7 @@ self.create_subscription(Bool,"reset_gesture",self.get_resetCallBack,100)
     time.sleep(2)
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_msg):
@@ -135,7 +141,7 @@ image data
     self.process(rgb_image)
 ```
 
-process function,
+The `process` function handles image processing:
 
 ```python
 def process(self, frame):
@@ -162,7 +168,7 @@ self.pub_gesture is True, which means that the gesture topic can be published
     cv.imshow('frame', frame)
 ```
 
-Gesture_Detect_threading gesture detection program,
+The `Gesture_Detect_threading` function performs gesture detection:
 
 ```python
 def Gesture_Detect_threading(self, lmList,bbox):
@@ -201,15 +207,19 @@ fingers stretched
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltagID_gesture.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagID_gesture.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagID_gesture.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagID_gesture.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -243,7 +253,7 @@ import transforms3d as tfs
 import tf_transformations as tf
 ```
 
-The program initializes and creates publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -317,7 +327,7 @@ self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
     self.index = None
 ```
 
-callback image topic processing function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_msg,depth_msg):

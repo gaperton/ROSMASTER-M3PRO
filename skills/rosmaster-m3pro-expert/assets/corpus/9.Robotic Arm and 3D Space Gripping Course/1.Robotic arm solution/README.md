@@ -1,26 +1,28 @@
-# Robotic arm solution
+# Robotic Arm Solution
 
 ## 1. Content Description
 
-This course implements the forward kinematics and inverse kinematics calculations of the robotic arm. Forward kinematics is the calculation of the end-point pose from the angle value of each servo of the robotic arm, while inverse kinematics is the calculation of the angle value of each servo from the end-point pose. Both play a vital role in three-dimensional space clamping. The forward kinematics algorithm can be used to determine the current pose of the end of the robotic arm. We need to know this value when performing coordinate system conversion. The inverse kinematics algorithm can be used to calculate the angle of each servo of the robotic arm in order for the end of the robotic arm to reach the target pose. Before clamping, this algorithm needs to be called to calculate the servo value and then control the servo to move to the clamping posture.
+This lesson introduces the robotic arm's forward-kinematics and inverse-kinematics calculations. Forward kinematics calculates the end-effector pose from the servo angles. Inverse kinematics calculates the servo angles needed to reach a target end-effector pose.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+Both calculations are important for 3D grasping. Forward kinematics provides the current end-effector pose for coordinate transforms. Inverse kinematics calculates the servo targets that move the gripper to the grasping pose before the arm clamps an object.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-## 2. Program startup
+Orin users can open a terminal directly on the robot and run the commands there.
 
-In the terminal, enter the following command to start,
+## 2. Program Startup
+
+Start the arm kinematics node:
 
 ```bash
 ros2 run arm_kin kin_srv
 ```
 
-After startup, enter the terminal ros2 node list to view the node list,
+After startup, run `ros2 node list` in the terminal to view the node list.
 
-/kinemarics_arm is the node that starts the forward and inverse solution. Enter ros2 node info /kinemarics_arm in the terminal to query the node information.
+`/kinemarics_arm` is the node that provides the forward- and inverse-kinematics service. Run `ros2 node info /kinemarics_arm` to inspect the node.
 
-As shown in the figure above, the /kinemarics_arm node provides a service /get_kinemarics. The service type is arm_interface/srv/ArmKinemarics. Enter the terminal ros2 interface show arm_interface/srv/ArmKinemarics to view the content of this service data.
+As shown above, `/kinemarics_arm` provides the `/get_kinemarics` service. Its service type is `arm_interface/srv/ArmKinemarics`. Run `ros2 interface show arm_interface/srv/ArmKinemarics` to view the request and response fields.
 
 ```
 float64 tar_x
@@ -51,7 +53,7 @@ float64 pitch
 float64 yaw
 ```
 
----Divide the data into two parts, the upper part is the request and the lower part is the response. The request part is as follows,
+The service data is divided into request and response sections. The request fields are:
 
 ```
 #The x coordinate of the end position of the robotic arm, in meters
@@ -87,7 +89,7 @@ kinematics solution
 string kin_name
 ```
 
-The response part is as follows,
+The response fields are:
 
 ```
 #1 Servo Angle
@@ -117,16 +119,16 @@ in radians
 float64 yaw
 ```
 
-### 2.1. Call fk
+### 2.1. Call FK
 
-We call fk to calculate: when the robot arm is straightened upward, what is the position of the end of the robot arm? First, we enter the following command to straighten the robot arm upward. After successfully connecting to the agent, enter the following command in the terminal,
+Call `fk` to calculate the end-effector pose when the robotic arm is straightened upward. After the agent connects successfully, run the following command to move the arm to the upright pose:
 
 ```bash
 ros2 topic pub /arm6_joints arm_msgs/msg/ArmJoints { "joint1: 90,joint2:
 90,joint3: 90,joint4: 90,joint5: 90,joint6: 90,time: 1500" } --once
 ```
 
-After running, the robotic arm will straighten upwards. Then, we enter the following command in the terminal to call the fk service.
+After the arm straightens upward, call the `fk` service:
 
 ```
 ros2 service call /get_kinemarics arm_interface/srv/ArmKinemarics "{tar_x: 0.0,
@@ -135,9 +137,9 @@ cur_joint2: 90.0, cur_joint3: 90.0, cur_joint4: 90.0, cur_joint5: 90.0,
 cur_joint6: 90.0, kin_name: 'fk'}"
 ```
 
-The values to be entered here are cur_joint1 to cur_joint6. We enter 90.0 for each. For the value of kin_name, we enter 'fk' to call the fk-positive solution service. The terminal will respond with the following content as shown below.
+Set `cur_joint1` through `cur_joint6` to `90.0`. Set `kin_name` to `fk` to call the forward-kinematics service. The terminal returns a response like the one shown below.
 
-Check out the response section:
+Check the response section:
 
 ```
 response:
@@ -147,19 +149,19 @@ arm_interface.srv.ArmKinemarics_Response (joint1 = 0 .0, joint2 = 0 .0, joint3 =
 pitch = -1 .5707324948694676, yaw = -1 .5728927150075942)
 ```
 
-We only need to care about the following x, y, z, roll, pitch and yaw values. Here we represent the pose coordinates of the end of the robot arm, which means the position of the end of the robot arm in the world coordinate system, with base_link (0, 0, 0) as the reference point. When the robot arm is straightened upward, the values of xyz and rpy are x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942. Here, start the urdf display in the virtual machine and enter the following command in the virtual machine terminal to start the urdf display.
+Focus on the `x`, `y`, `z`, `roll`, `pitch`, and `yaw` values. These values describe the end-effector pose in the world coordinate system, using `base_link` at `(0, 0, 0)` as the reference. With the arm straightened upward, the example pose is `x=0.03141308752246765`, `y=0.00020942581836905875`, `z=0.5517500187814817`, `roll=1.5728637148906415`, `pitch=-1.5707324948694676`, and `yaw=-1.5728927150075942`. To compare this with the URDF visualization, start the URDF display in the virtual-machine terminal:
 
 ```bash
 ros2 launch yahboom_M3Pro_description display_launch.py
 ```
 
-As shown in the figure below, the TF plug-in is used to view the Gripping pose. The xyz coordinate values are almost the same as the response values, while the rpy value needs to be obtained by converting the quaternion to rpy.
+As shown below, the TF plugin can display the `Gripping` pose. The `xyz` values are almost the same as the service response. The `rpy` values are obtained by converting the displayed quaternion to roll, pitch, and yaw.
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-### 2.2. call ik
+### 2.2. Call IK
 
-We call fk to calculate: when the robot arm, the end of the robot arm pose is x=0.03141308752246765, y=0.00020942581836905875, z=0.5517500187814817, roll=1.5728637148906415, pitch=-1.5707324948694676, yaw=-1.5728927150075942, what is the value of each servo. In fact, this is reverse calculation. Theoretically, the result should be that the value of all six servos is 90.0. Enter the following command in the terminal,
+Call `ik` to calculate the servo angles for the same end-effector pose: `x=0.03141308752246765`, `y=0.00020942581836905875`, `z=0.5517500187814817`, `roll=1.5728637148906415`, `pitch=-1.5707324948694676`, and `yaw=-1.5728927150075942`. Because this is the pose produced by all joints at `90.0`, the inverse-kinematics result should return approximately the same servo values. Run:
 
 ```
 ros2 service call /get_kinemarics arm_interface/srv/ArmKinemarics "{tar_x:
@@ -169,9 +171,9 @@ cur_joint1: 0.0, cur_joint2: 0.0, cur_joint3: 0.0, cur_joint4: 0.0, cur_joint5:
 0.0, cur_joint6: 0.0, kin_name: 'ik'}"
 ```
 
-The values entered here are xyz and rpy. For cur_joint1-cur_joint6, we use the default values. The result is shown in the figure below.
+Here, the important inputs are `xyz` and `rpy`; `cur_joint1` through `cur_joint6` can use their default values. The result is shown below.
 
-The final response value returned is as follows:
+The final response is:
 
 ```
 arm_interface.srv.ArmKinemarics_Response(joint1=90.0, joint2=90.0, joint3=90.0,
@@ -179,21 +181,25 @@ joint4=90.0, joint5=90.0, joint6=0.0, x=0.0, y=0.0, z=0.0, roll=0.0, pitch=0.0,
 yaw=0.0)
 ```
 
-Here, we only need to focus on the values of joint1-joint5. Because the end of the robot arm is gripping and connected to servo No. 5, the value of servo No. 6 is not within the range of the inverse solution. Therefore, the value obtained here [90.0, 90.0, 90.0, 90.0, 90.0] is the same as the value of each servo in the current posture of the robot arm. Therefore, the result of the inverse solution can be considered correct.
+Focus on `joint1` through `joint5`. Because the gripper is connected after servo No. 5, servo No. 6 is not part of this inverse-kinematics solution. The returned values, `[90.0, 90.0, 90.0, 90.0, 90.0]`, match the current arm posture, so the inverse-kinematics result is correct for this example.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi 5 and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/arm_kin/src/kin_srv.cpp
+```text
+/root/yahboomcar_ws/src/arm_kin/src/kin_srv.cpp
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/arm_kin/src/kin_srv.cpp
+```text
+/home/jetson/yahboomcar_ws/src/arm_kin/src/kin_srv.cpp
+```
 
-Main function main,
+Main function:
 
 ```
 int main ( int argc , char ** argv )
@@ -212,7 +218,7 @@ callback function handle_service
 }
 ```
 
-Service callback function handle_service,
+The `handle_service` callback processes kinematics service requests:
 
 ```
 void handle_service (

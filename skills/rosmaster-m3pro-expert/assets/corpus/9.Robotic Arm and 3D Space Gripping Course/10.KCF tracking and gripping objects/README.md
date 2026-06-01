@@ -1,67 +1,71 @@
-# KFC tracks gripped objects
+# KCF Tracking and Gripping
 
 ## 1. Content Description
 
-This function allows the program to acquire an image through the camera, then use the mouse to select the object to be tracked and gripped. After pressing the spacebar, slowly move the object to be tracked. The robotic arm will track the object, keeping its center at the center of the image. After the robotic arm stops tracking, the program will adjust the distance between the object and the robot's base_link and then control the robotic arm to grip the object.
+This lesson captures camera images, lets the user select an object with the mouse, and tracks the selected object with KCF. After the spacebar is pressed, the robotic arm tracks the object and keeps its center near the image center. When tracking stops, the robot adjusts the distance between the object and `base_link`, then controls the arm to grasp the object.
 
-### Notice:
+### Notice
 
-- The object you select should be as large as possible. If the object is too small, it will not be possible to accurately obtain depth information, resulting in the program being unable to control the robotic arm and chassis. It is recommended that the object has a cross-section of no more than 7 cm.
-- The gripping angle of the robot arm's gripper needs to be adjusted according to the selected object. Otherwise, it will not be able to clamp firmly or clamp too tightly, which may burn out the No. 6 servo. For the first grip, you can prevent the gripper from gripping the object. Then, modify the No. 6 servo angle in the program and then grip again. The smaller the value, the wider the gripper opens. The minimum is 0 degrees, and the maximum value results in a smaller gripper opening.
+- Select an object with a large enough visible area for reliable depth measurement. If the selected area is too small, the program may not obtain valid depth data and may fail to control the arm and chassis correctly. A cross-section no larger than 7 cm is recommended.
+- Adjust the gripper angle for the selected object. If the gripper is too loose, it will not hold the object; if it is too tight, servo No. 6 may be overloaded. For the first test, keep the gripper from fully clamping the object, adjust the servo No. 6 angle in the program, and then try again. Smaller values open the gripper wider. The minimum is 0 degrees; larger values close the gripper more.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp
 ```
 
-Then, open the third terminal and enter the following command to start the KCF tracking program:
+Open a third terminal and start the KCF follow program:
 
 ```bash
 ros2 run M3Pro_demo KCF_follow
 ```
 
-Then open the fourth terminal and enter the following command to start the KCF program,
+Open a fourth terminal and start the KCF tracker node:
 
 ```bash
 ros2 run M3Pro_KCF KCF_Tracker_Node
 ```
 
-After starting, use the mouse to frame the object to be tracked, as shown below.
+After startup, use the mouse to draw a bounding box around the object to track, as shown below.
 
 ![Picture: page 1: picture 6](_page_1_Picture_6.jpeg)
 
-Then press the spacebar to start tracking. Slowly move the selected object, and the robotic arm will track the object, keeping the center of the selected object in the middle of the image. After stopping tracking, the program will determine whether the distance between the robot base_link and the machine code is within the range of [240, 260]. If so, the buzzer will sound, and the program will control the robotic arm to grab the selected object, place it in the set position, and finally return to the initial posture; if the distance between the robot base_link and the selected object is outside the range of [240, 260], the program will control the chassis to move forward
+Press the spacebar to start tracking. Slowly move the selected object. The robotic arm tracks it and keeps the selected object's center in the middle of the image. When tracking stops, the program checks whether the distance between `base_link` and the selected object is within `[240, 260]`. If it is, the buzzer sounds and the arm grasps the object, places it at the configured position, and returns to the initial posture. If the distance is outside `[240, 260]`, the chassis moves forward until the target is within range, then the arm grasps, places, and returns.
 
-until the condition that both are within the range of [240, 260] is met, and then the gripping, placement, and homing operations will be performed.
-
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 ### 3.1. KCF_Tracker_Node
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The paths in docker are /root/yahboomcar_ws/src/M3Pro_KCF/src/KCF_Tracker.cpp and /root/yahboomcar_ws/src/M3Pro_KCF/include/M3Pro_KCF/KCF_Tracker.h
+```text
+/root/yahboomcar_ws/src/M3Pro_KCF/src/KCF_Tracker.cpp
+/root/yahboomcar_ws/src/M3Pro_KCF/include/M3Pro_KCF/KCF_Tracker.h
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_KCF/src/KCF_Tracker.cpp, /home/jetson/yahboomcar_ws/src/M3Pro_KCF/include/M3Pro_KCF/KCF_Tracker.h
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_KCF/src/KCF_Tracker.cpp
+/home/jetson/yahboomcar_ws/src/M3Pro_KCF/include/M3Pro_KCF/KCF_Tracker.h
+```
 
-First, let's look at what publishers and subscribers are defined in KCF_Tracker.h.
+First, inspect the publishers and subscribers defined in `KCF_Tracker.h`.
 
 ```
 //Color image topic subscriber
@@ -82,9 +86,9 @@ vel_pub_ =this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel",1);
 pos_pub_ =this->create_publisher<arm_interface::msg::Position>("/pos_xyz",1);
 ```
 
-In KCF_Tracker.cpp, the main functions are to subscribe to the color image and use the mouse to frame the object to be tracked, subscribe to the depth image to calculate the depth information of the tracked object and publish the position information of the tracked object, subscribe to the topic of resetting the object frame and publishing the stop command, etc. Next, take a look at the source code content of KCF_Tracker.cpp.
+In `KCF_Tracker.cpp`, the node subscribes to the color image, lets the user select the tracked object with the mouse, subscribes to the depth image to calculate target depth, publishes target position information, subscribes to the reset-frame topic, and publishes the stop command.
 
-Import the necessary header files,
+Import the required header files:
 
 ```
 #include <iostream>
@@ -164,7 +168,7 @@ center point of the tracked object
 }
 ```
 
-ImageConverter::depthCb depth image topic callback function,
+The `ImageConverter::depthCb` function handles depth-image callbacks:
 
 ```
 void ImageConverter::depthCb(const std::shared_ptr<sensor_msgs::msg::Image> msg)
@@ -240,15 +244,19 @@ not enabled, then the parking information is released
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/KCF_follow.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/KCF_follow.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/KCF_follow.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/KCF_follow.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -273,7 +281,7 @@ from geometry_msgs.msg import Twist
 from M3Pro_demo.PID import *
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -337,7 +345,7 @@ self.create_subscription(Bool,"grasp_done",self.get_graspStatusCallBack,100)
     self.PID_init()
 ```
 
-callback object position information topic callback function,
+The object-position callback handles target position topic messages:
 
 ```python
 def callback(self,msg):

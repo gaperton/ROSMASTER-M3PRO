@@ -159,7 +159,7 @@ A complete table of contents for the ROSMASTER-M3PRO course corpus, grouped by w
 - [9.2 Robotic Arm + Chassis Linkage Control](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/2.Robotic%20arm%20chassis%20linkage%20control/README.md)
 - [9.3 AprilTag ID Sorting](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/3.Machine%20code%20ID%20sorting/README.md)
 - [9.4 AprilTag Height-Anomaly Sorting](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/4.Sorting%20height%20abnormality%20machine%20code/README.md)
-- [9.5 Tracking and Gripping (AprilTag)](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/5.Tracking%20and%20gripping%20machine%20code/README.md)
+- [9.5 Tracking and Gripping AprilTag Blocks](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/5.Tracking%20and%20gripping%20machine%20code/README.md)
 - [9.6 Color Block Sorting](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/6.Color%20block%20color%20sorting/README.md)
 - [9.7 Color Block Height-Anomaly Sorting](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/7.Sorting%20height%20abnormality%20color%20block/README.md)
 - [9.8 Tracking and Gripping Color Blocks](./9.Robotic%20Arm%20and%203D%20Space%20Gripping%20Course/8.Tracking%20and%20gripping%20color%20block/README.md)

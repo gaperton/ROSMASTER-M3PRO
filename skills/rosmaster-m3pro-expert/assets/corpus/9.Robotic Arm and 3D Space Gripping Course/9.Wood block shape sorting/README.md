@@ -1,53 +1,62 @@
-# Wood block shape sorting
+# Wood Block Shape Sorting
 
 ## 1. Content Description
 
-This function enables the program to obtain images through the camera, identify the shape of the wooden block in the image according to the input target shape parameters, and clamp the wooden block of the target shape and place it at the set position.
+This lesson captures camera images, identifies wooden-block shapes based on the target shape entered by the user, grasps the matching block, and places it at the configured position.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-Wooden blocks used in this lesson: **30x30x30mm, 30x30x60mm, and 30x30mm colored blocks**
+Wooden blocks used in this lesson: **30x30x30mm cubes, 30x30x60mm rectangular prisms, and 30x30mm cylinders**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-Finally, open the third terminal and enter the following command to start the wood block shape sorting program:
+Open a third terminal and start the wood-block shape sorting program:
 
 ```bash
 ros2 run M3Pro_demo shape_recognize
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the wood block shape sorting program by pressing Ctrl+C and restart it again until the robot arm gripping program obtains the current angle information and calculates the current end position.
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the shape sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
 
-Once the program has launched, you must enter the shape of the wooden block to be sorted into the terminal. There are three available shapes: a **30x30x60mm** rectangular prism (Rectangle), a 30x30x30mm cube (Square), and a **30x30mm** cylinder (Cylinder). Suppose we wish to sort the rectangular prisms; in that case, you would need to enter: Rectangle, as shown in the figure below.
+After the program starts, enter the target block shape in the terminal. Three shapes are supported: **30x30x60mm** rectangular prism (`Rectangle`), **30x30x30mm** cube (`Square`), and **30x30mm** cylinder (`Cylinder`). To sort rectangular prisms, enter `Rectangle`, as shown below.
 
-After pressing Enter, a color screen will appear. Then, press the spacebar to start gripping the block. The recognized block's shape will also appear on the screen. Calculate the distance between the recognized block and the car's base_link. If the distance is within [190, 210], directly lower the gripper to grip the block and place it at the set location. If the distance is outside [190, 210], control the chassis to move the block within [190, 210], then lower the gripper to grip the block and place it at the set location.
+After pressing Enter, a color display appears and the recognized block shape is shown on the screen. Press the spacebar to start grasping. The program calculates the distance between the recognized block and `base_link`. If the distance is within `[190, 210]`, the arm lowers the gripper, grasps the block, and places it at the configured location. If the distance is outside `[190, 210]`, the chassis moves until the block is within range, then the arm grasps and places it.
 
 ![Picture: page 2: picture 1](_page_2_Picture_1.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-- Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ shape_recognize.py
-- Orin Motherboard The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/shape_recognize.py
+Raspberry Pi 5 and Jetson Nano:
 
-Import the necessary library files,
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/shape_recognize.py
+```
+
+Orin:
+
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/shape_recognize.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2
@@ -77,7 +86,7 @@ from geometry_msgs.msg import Twist
 from M3Pro_demo.compute_joint5 import *
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -136,7 +145,7 @@ self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
     print("Init done.")
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):

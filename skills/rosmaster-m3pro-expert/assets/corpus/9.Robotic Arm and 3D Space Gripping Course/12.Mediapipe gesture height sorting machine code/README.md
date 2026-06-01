@@ -1,76 +1,78 @@
-# Mediapipe gesture height sorting machine code
+# MediaPipe Gesture Height Sorting (AprilTag)
 
 ## 1. Content Description
 
-This function implements the program capturing images through the camera and then recognizing gestures (1-4). The robotic arm then moves to a sorting posture. Based on the gesture results, a height threshold is calculated and the robotic block on the table that exceeds this height threshold is sorted. If a robotic block exceeds the height threshold, the robotic arm lowers its gripper to pick it up and place it at the designated location. If no robotic block exceeds the height threshold, the robotic arm shakes its head and returns to the gesture recognition posture.
+This lesson captures camera images, recognizes MediaPipe finger-count gestures from 1 to 4, and uses the recognized gesture to calculate a height threshold. The robotic arm then moves to the sorting posture and searches the desktop for a machine-code block above that threshold. If a matching block is found, the arm grasps it and places it at the configured location. If no block exceeds the threshold, the arm shakes its head and returns to the gesture-recognition posture.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson: **30x30x30mm Machine Code Blocks.**
+Wooden blocks used in this lesson: **30x30x30mm machine-code blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-After running, it is as shown below:
+After it starts, the display appears as shown below.
 
-Then enter the following command in the third terminal to start the Mediapipe gesture height sorting machine code program,
+Open a third terminal and start the MediaPipe gesture height sorting program:
 
 ```bash
 ros2 run M3Pro_demo apriltagHeight_gesture
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-If the current angle information and the current pose are not received, the gripping pose will be inaccurately calculated during the coordinate system conversion. Therefore, you need to close the Mediapipe gesture height sorting machine code program by pressing Ctrl+C and restart the Mediapipe gesture height sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end-point pose.
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the MediaPipe gesture height sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
 
-Then enter the following command in the fourth terminal to start the Mediapipe gesture recognition program,
+Open a fourth terminal and start the MediaPipe gesture recognition program:
 
 ```bash
 ros2 run M3Pro_demo mediapipe_detect
 ```
 
-After starting, the robot arm will move to the recognition posture and begin to recognize gestures. The recognized gestures are 1-4. Gesture 1 represents one finger stretched out, gesture 2 represents two fingers stretched out, gesture 3 represents three fingers stretched out, and gesture 4 represents four fingers stretched out. Keep the gesture in mind and wait for the buzzer
-
-to sound, indicating that the gesture recognition is complete. The robot arm will move to the sorting posture. As shown in the figure below, assuming gesture 2 is given,
+After startup, the robotic arm moves to the recognition posture and begins recognizing gestures from 1 to 4. Gesture 1 means one extended finger, gesture 2 means two extended fingers, gesture 3 means three extended fingers, and gesture 4 means four extended fingers. Hold the gesture until the buzzer sounds, which indicates recognition is complete. The arm then moves to the sorting posture. The example below uses gesture 2.
 
 ![Figure: page 2: figure 1](_page_2_Figure_1.jpeg)
 
-Once in sorting mode, it will begin recognizing the **30x30x30mm** machine code on the table. Here, we treat two 3cm machine codes stacked together as a 6cm height, as shown in the image below.
+Once in sorting mode, the program begins recognizing **30x30x30mm** machine-code blocks on the table. In this example, two 3 cm blocks are stacked and treated as a 6 cm height, as shown below.
 
 ![Picture: page 2: picture 3](_page_2_Picture_3.jpeg)
 
-A height threshold appears in the upper left corner of the image. The height threshold is calculated by adding one to the gesture result. For example, if the gesture recognized above is 2, then the height threshold is 2 plus 1, which equals 3.
+A height threshold appears in the upper-left corner of the image. The threshold is calculated by adding 1 to the gesture result. For example, if the recognized gesture is 2, the height threshold is `2 + 1 = 3`.
 
-After waiting for 8 seconds, if a machine code exceeding the height threshold is found, the program will determine whether the distance between the machine code block with the height threshold and the car base_link is within the range of [210, 220]. If so, the lower claw will directly clamp the machine code block with the height threshold, and then place it at the set position, and finally the robotic arm returns to the sorting posture; if the distance between the machine code block with the height threshold and the car base_link is not within the range of [210, 220], the program will control the chassis to adjust the distance, adjust the distance between the two to be within the range of [210, 220], and then clamp it with the lower claw, and then place it at the set position, and finally the robotic arm returns to the sorting posture.
+After waiting 8 seconds, if a machine-code block above the threshold is found, the program checks whether the distance between the block and `base_link` is within `[210, 220]`. If it is, the lower gripper grasps the block, places it at the configured position, and the arm returns to the sorting posture. If the block is outside `[210, 220]`, the chassis adjusts the distance until the block is within range, then the gripper grasps and places it.
 
-If the machine code of the height threshold is not found or no machine code is found, the buzzer on the car will sound, then the robotic arm will shake its head and finally return to the gesture recognition posture.
+If no block above the height threshold is found, or no machine-code block is detected, the robot buzzer sounds, the robotic arm shakes its head, and the arm returns to the gesture-recognition posture.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltagHeight_gesture
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagHeight_gesture
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagHeight_gesture
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltagHeight_gesture
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -104,7 +106,7 @@ import transforms3d as tfs
 import tf_transformations as tf
 ```
 
-The program initializes and creates publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__ ( self , name ):
@@ -194,7 +196,7 @@ the machine code height can be calculated.
     print ( "Init done." )
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback ( self , color_msg , depth_msg ):

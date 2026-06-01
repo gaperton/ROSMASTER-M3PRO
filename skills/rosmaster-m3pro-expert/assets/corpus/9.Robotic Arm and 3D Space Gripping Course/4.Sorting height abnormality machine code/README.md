@@ -1,65 +1,69 @@
-# Sorting height abnormality machine code
+# AprilTag Height-Anomaly Sorting
 
 ## 1. Content Description
 
-This function allows the program to acquire an image through the camera and identify the machine code in the image, calculate the height of each machine code, and then remove the machine code with a height higher than 4 cm.
+This lesson captures camera images, recognizes AprilTag machine-code blocks, calculates the height of each detected block, and removes blocks taller than 4 cm.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson are: **30x30x30mm and 30x30x60mm Machine Code blocks**.
+Wooden blocks used in this lesson: **30x30x30mm and 30x30x60mm machine-code blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-After running, it is shown as follows:
+After it starts, the display appears as shown below.
 
-Finally, open the third terminal and enter the following command to start the program to remove highly abnormal machine code:
+Open a third terminal and start the height-anomaly sorting program:
 
 ```bash
 ros2 run M3Pro_demo apriltag_list
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown below
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-As shown,
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the height-anomaly sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the height error sorting machine code program by pressing Ctrl+C and restart the height error sorting machine code program until the robot arm gripping program obtains the current angle information and calculates the current end position.
+After the sorting program starts, it subscribes to the color and depth image topics. Place the included machine-code block under the camera.
 
-After the machine code ID sorting program is started, it will subscribe to the color image and depth image topics, and place the machine code block that comes with the product under the camera.
-
-If a machine code appears in the image, the program will recognize the machine code, as shown below.
+When a tag appears in the image, the program recognizes it as shown below.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-The program will print out the height of the machine code and the distance from the robot base_link. Press the spacebar, and the robot arm will lower its claw to remove the machine code with a height of 6cm. There are two cases:
+The program prints the machine-code height and its distance from `base_link`. Press the spacebar, and the robotic arm lowers its gripper to remove the 6 cm machine-code block. There are two cases:
 
-- If the distance to the target machine code block is within [215, 225], the robot arm directly grabs the machine code block with its lower claw and places it at the set position according to the ID value;
-- If the target machine code block is outside [215, 225], the robot will first move and adjust it to within [215, 225] based on the distance between the machine code block and the robot base coordinate system (base_link), then lower the claw to clamp it, and finally place it at the set position according to the ID value.
+- If the target machine-code block is within `[215, 225]`, the robotic arm directly grasps the block with its lower gripper and places it according to the ID value.
+- If the target block is outside `[215, 225]`, the robot adjusts the chassis distance until the block is within range, lowers the gripper, grasps the block, and places it according to the ID value.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltag_list.py
+Raspberry Pi 5 and Jetson Nano:
 
-Orin Motherboard
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_list.py
+```
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_list.py
+Orin:
 
-Import the necessary library files,
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_list.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2
@@ -97,7 +101,7 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 ```
 
-Import the robot arm offset parameter file to compensate for the deviation caused by the servo virtual position.
+Import the robotic-arm offset parameter file to compensate for servo virtual-position deviation:
 
 ```
 offset_file = "/root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml"
@@ -105,7 +109,7 @@ with open(offset_file, 'r') as file:
     offset_config = yaml.safe_load(file)
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -182,7 +186,7 @@ self.linearx_PID[1] / 1000.0, self.linearx_PID[2] / 1000.0)
     self.joint5 = Int16()
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):

@@ -1,48 +1,52 @@
-# 3D tracking machine code
+# 3D Tracking (AprilTag)
 
 ## 1. Content Description
 
-This function implements a program that captures images from a camera and recognizes machine codes. The machine codes move up and down, left and right, and forward and backward, and the robotic arm follows the machine codes.
+This lesson captures camera images, recognizes an AprilTag machine-code block, and tracks the block in 3D space. As the block moves up, down, left, right, forward, or backward, the robotic arm follows the movement.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson: **40x40x40mm Machine Code Blocks.**
+Wooden blocks used in this lesson: **40x40x40mm machine-code blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the 3D tracking machine code program.
+Open another terminal and start the 3D AprilTag tracking program:
 
 ```bash
 ros2 run M3Pro_demo apriltag_follow
 ```
 
-After the program is started, the robotic arm will move to the tracking posture, holding a **40x40x40mm** machine code wooden block, as shown in the figure below.
+After the program starts, the robotic arm moves to the tracking posture while holding a **40x40x40mm** machine-code block, as shown below.
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-Then press the space bar to start tracking and slowly move the robot code block. The program will calculate the position changes in the machine code space and then control the robotic arm to track the machine code.
+Press the spacebar to start tracking, then slowly move the machine-code block. The program calculates the block's position changes in 3D space and controls the robotic arm to follow it.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltag_follow.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_follow.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import cv2
@@ -72,7 +76,7 @@ import transforms3d as tfs
 import tf_transformations as tf
 ```
 
-Program initialization and definition of related variables,
+Initialize the node and related variables:
 
 ```python
 def __init__(self, name):
@@ -132,7 +136,7 @@ downwards
     self.first_track = True
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):
@@ -242,7 +246,7 @@ judgment of the next moving distance
                 self.last_x = res_pos[0]
 ```
 
-Adjust adjustment function,
+The `Adjust` function performs tracking adjustment:
 
 ```python
 def adjust(self,offset_x,offset_y,offset_z):

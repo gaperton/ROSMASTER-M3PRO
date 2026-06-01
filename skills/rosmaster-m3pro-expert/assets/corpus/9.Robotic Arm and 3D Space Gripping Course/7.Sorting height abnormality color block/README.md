@@ -1,67 +1,74 @@
-# Sorting height abnormality color block
+# Color Block Height-Anomaly Sorting
 
 ## 1. Content Description
 
-This function enables the program to obtain images through the camera and select the color of the color blocks to be sorted according to the key input. The program will identify the color blocks that meet the requirements and the lower claw will grab the color blocks with a height of more than 4 cm and finally place them in the set position.
+This lesson captures camera images, lets the user select the target color with the keyboard, and identifies matching color blocks. Among the matching blocks, the lower gripper grasps blocks taller than 4 cm and places them at the configured position.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson are: **30x30x30mm and 30x30x60mm colored blocks**.
+Wooden blocks used in this lesson: **30x30x30mm and 30x30x60mm color blocks**.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-Finally, open the third terminal and input the following command to start the program for sorting highly abnormal color blocks:
+Open a third terminal and start the color-block height-anomaly sorting program:
 
 ```bash
 ros2 run M3Pro_demo color_list
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-If the current angle information is not received and the current posture is not calculated, the calculation of the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to press Ctrl+C to close the height abnormality color block sorting program and restart the height abnormality color block sorting program until the robot arm gripping program obtains the current angle information and calculates the current end posture.
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the height-anomaly color-block sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end pose.
 
-After the color block color sorting program is started, it will subscribe to the color image and depth image topics. Place the color block provided by the product under the camera. When the color block appears in the image, use the following buttons to select the color of the color block or calibrate the color of the color block:
+After the program starts, it subscribes to the color and depth image topics. Place the included color blocks under the camera. When a block appears in the image, use these keys to select or calibrate the target color:
 
-- Press R or r: sort red blocks
-- Press G or g: sort the green blocks
-- Press B or b: sort blue blocks
-- Press Y or y: sort the yellow blocks
-- Press C or c: calibrate the color of the selected color block
+- Press `R` or `r`: sort red blocks
+- Press `G` or `g`: sort green blocks
+- Press `B` or `b`: sort blue blocks
+- Press `Y` or `y`: sort yellow blocks
+- Press `C` or `c`: calibrate the selected block color
 
-Suppose we place four color blocks, two **30x30x60mm**red blocks and green blocks, and two**30x30x30mm**yellow blocks and green blocks. Press the g key to select the green blocks with a height higher than 4 cm. The running screenshot is as follows:
+For example, place four color blocks: two **30x30x60mm** red and green blocks, and two **30x30x30mm** yellow and green blocks. Press `G` or `g` to select green blocks taller than 4 cm. The running display is shown below.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-Pressing the spacebar starts the gripping process. Similarly, the program determines the distance between the target green block and the robot's base_link. If the distance is within [215, 225], the robot arm directly lowers its gripper to grab the target green block and place it at the set location. If the distance is outside [215, 225], the robot first moves the target green block to within [215, 225] based on the distance between the target green block and the robot's base coordinate system (base_link), then lowers its gripper to grab the block and finally place it at the set location.
+Press the spacebar to begin grasping. The program checks the distance between the target green block and `base_link`. If the distance is within `[215, 225]`, the arm directly lowers the gripper, grasps the block, and places it at the configured location. If the distance is outside `[215, 225]`, the chassis first adjusts the target to the required distance, then the arm grasps and places it.
 
-### 2.1. Color block color calibration
+### 2.1. Color Block Calibration
 
-You can refer to the content of [2.1, Color Block Color Calibration] in [6. Color Block Color Sorting] in the tutorial [9. Robotic Arm and 3D Space Gripping]. The calibration method is the same.
+The calibration method is the same as [2.1. Color Block Calibration](../6.Color%20block%20color%20sorting/README.md#21-color-block-calibration) in lesson 9.6.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 Program code path:
 
-- Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ color_list.py
-- Orin Motherboard
+Raspberry Pi 5 and Jetson Nano:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_list.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_list.py
+```
 
-Import the necessary library files,
+Orin:
+
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/color_list.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2
@@ -96,7 +103,7 @@ import threading
 from M3Pro_demo.compute_joint5 import *
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -208,7 +215,7 @@ the HSV value of the selected color can be updated.
     self.updata_flag = False
 ```
 
-callback image topic callback function,
+The image-topic callback processes camera frames:
 
 ```python
 def callback(self,color_frame,depth_frame):

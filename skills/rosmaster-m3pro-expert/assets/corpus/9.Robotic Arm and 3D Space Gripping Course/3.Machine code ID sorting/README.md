@@ -1,80 +1,86 @@
-# Machine code ID sorting
+# AprilTag ID Sorting
 
 ## 1. Content Description
 
-This function enables the program to obtain images through the camera and recognize the machine code in the image. The robot arm's lower claw grabs the machine code and places it in different positions according to the machine code ID.
+This lesson captures camera images, recognizes AprilTag machine-code blocks, and uses the robotic arm's lower gripper to grasp each block. The block is placed at a target position according to its detected ID.
 
-This section requires entering commands in the terminal. The terminal you open depends on your motherboard type. This lesson uses the Raspberry Pi 5 as an example. For Raspberry Pi and Jetson Nano boards, you need to open a terminal on the host computer and enter the command to enter the Docker container. Once inside the Docker container, enter the commands mentioned in this section in the terminal. For instructions on entering the Docker container from the host computer, refer to this product tutorial **[Configuration and Operation Guide]--[Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)]**.
+This lesson requires terminal commands. Use the terminal that matches your mainboard. Raspberry Pi 5 and Jetson Nano users should open a terminal on the host system, enter the Docker container, and then run the commands from this lesson inside the container. For Docker entry steps, see **Configuration and Operation Guide - Enter the Docker (Jetson Nano and Raspberry Pi 5 users, see here)**.
 
-Simply open the terminal on the Orin motherboard and enter the commands mentioned in this section.
+Orin users can open a terminal directly on the robot and run the commands there.
 
-The wooden blocks used in this lesson: **30x30x30mm Machine Code Blocks**.
+Wooden blocks used in this lesson: **30x30x30mm machine-code blocks**.
 
 ### 1.1 Machine Code
 
-AprilTag's "machine code" refers to its internal encoding structure, a binary matrix composed of black and white squares. This design enables efficient decoding by computer vision algorithms and is used for tasks such as pose estimation and object recognition. AprilTag is a twodimensional barcode with a typical structure consisting of:
+In these lessons, "machine code" refers to the AprilTag's encoded black-and-white marker pattern. The pattern lets computer-vision algorithms decode an ID and estimate pose for object recognition and grasping. An AprilTag is a two-dimensional barcode with this typical structure:
 
 - **Border**: The outer black frame helps the algorithm locate the marker quickly.
-- **Coding area (Payload)**: The black and white square inside stores the unique ID (machine code).
-- **Error Correction**: Some AprilTag families support error correction to improve anti-occlusion capabilities.
+- **Coding area (payload)**: The inner black-and-white grid stores the unique ID.
+- **Error correction**: Some AprilTag families include redundancy to improve tolerance to partial occlusion.
 
 AprilTag has multiple predefined "families", each with different encoding rules and capacities:
 
-- tag16h5: 4x4 matrix, small, low redundancy
-- tag25h9: 5x5 matrix, balancing size and reliability
-- tag36h11: 6x6 matrix, high capacity, strong anti-blocking ability
-- tagCircle21h7: circular design, suitable for rotating scenes
+- `tag16h5`: 4x4 matrix, small marker, low redundancy
+- `tag25h9`: 5x5 matrix, balanced size and reliability
+- `tag36h11`: 6x6 matrix, higher capacity and stronger occlusion tolerance
+- `tagCircle21h7`: circular design suitable for rotating scenes
 
-h5, h9 etc. suffixes indicate distance (error correction capability). The larger the number, the stronger the fault tolerance.
+Suffixes such as `h5` and `h9` indicate the Hamming distance, or error-correction capability. Larger values provide stronger fault tolerance.
 
-## 2. Program startup
+## 2. Program Startup
 
-First, open the terminal and enter the following command to start the robot arm solver and camera driver,
+Start the robotic-arm solver and camera driver:
 
 ```bash
 ros2 launch M3Pro_demo camera_arm_kin.launch.py
 ```
 
-Then, open another terminal and enter the following command to start the robotic arm gripping program:
+Open another terminal and start the robotic-arm grasping program:
 
 ```bash
 ros2 run M3Pro_demo grasp_desktop
 ```
 
-After running, it is shown as follows:
+After it starts, the display appears as shown below.
 
-Finally, open the third terminal and enter the following command to start the machine code ID sorting program:
+Open a third terminal and start the AprilTag ID sorting program:
 
 ```bash
 ros2 run M3Pro_demo apriltag_detect
 ```
 
-After starting this command, the second terminal should receive the current angle topic information sent in one frame and calculate the current posture once, as shown in the figure below.
+After this command starts, the second terminal should receive one frame of current-angle topic information and calculate the current arm pose, as shown below.
 
-If the current angle information is not received and the current posture is not calculated, the gripping posture will be inaccurate when the coordinate system is converted. Therefore, you need to close the machine code ID sorting program by pressing Ctrl+C and restart the machine code ID sorting program until the robot arm gripping program obtains the current angle information and calculates the current end position.
+If the current-angle information is not received and the current pose is not calculated, coordinate conversion will produce an inaccurate grasping pose. Press Ctrl+C to stop the AprilTag ID sorting program, then restart it until the grasping program receives the current-angle information and calculates the current end position.
 
-After the machine code ID sorting program is started, it will subscribe to the color image and depth image topics. Place the machine code block that comes with the product under the camera. If the machine code appears in the image, the program will recognize the machine code, as shown in the figure below.
+After the sorting program starts, it subscribes to the color and depth image topics. Place the included machine-code block under the camera. When the tag appears in the image, the program recognizes it as shown below.
 
 ![Picture: page 2: picture 0](_page_2_Picture_0.jpeg)
 
-Press the spacebar to start the clamping process. There are two situations:
+Press the spacebar to start grasping. There are two possible cases:
 
-- If the distance between the machine code block and the block is within [215, 225], the robot arm will directly grab the block and place it at the set position according to the ID value.
-- If the machine code block is outside [215, 225], the robot will first move and adjust it to within [215, 225] according to the distance between the machine code block and the robot base coordinate system (base_link), then lower the claw to clamp it, and finally place it at the set position according to the ID value.
+- If the distance between the machine-code block and `base_link` is within `[215, 225]`, the robotic arm grasps the block directly and places it according to the ID value.
+- If the block is outside `[215, 225]`, the robot adjusts the chassis distance until the block is within range, lowers the gripper, grasps the block, and places it according to the ID value.
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
 ### 3.1. apriltag_detect.py
 
 Program code path:
 
-Raspberry Pi and Jetson Nano board The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ apriltag_detect.py
+Raspberry Pi 5 and Jetson Nano:
 
-Orin Motherboard
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_detect.py
+```
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_detect.py
+Orin:
 
-Import the necessary library files,
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/apriltag_detect.py
+```
+
+Import the required libraries:
 
 ```python
 import cv2
@@ -112,7 +118,7 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 ```
 
-Import the robot arm offset parameter file to compensate for the deviation caused by the servo virtual position
+Import the robotic-arm offset parameter file to compensate for servo virtual-position deviation:
 
 ```
 offset_file = "/root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml"
@@ -120,7 +126,7 @@ with open(offset_file, 'r') as file:
     offset_config = yaml.safe_load(file)
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -225,7 +231,7 @@ is calculated. If the value is False, the distance is not calculated.
     self.compute_flag = True
 ```
 
-callbackImage topic callback function
+The `callbackImage` function handles image-topic callbacks:
 
 ```python
 def callback(self,color_frame,depth_frame):
@@ -365,7 +371,7 @@ servo
     key = cv2.waitKey(1)
 ```
 
-move_dist chassis movement adjustment distance function,
+The `move_dist` function adjusts the chassis distance:
 
 ```python
 def move_dist(self,dist):
@@ -376,7 +382,7 @@ distance value
     self.pubVel(linear_x,0,0)
 ```
 
-compute_heigh calculates the machine code pose function. The parameters passed in are the xy pixel coordinates of the center point and the depth distance information corresponding to the center point.
+The `compute_heigh` function calculates the machine-code pose. Its parameters are the center point's `xy` pixel coordinates and the depth value at that center point:
 
 ```python
 def compute_heigh(self,x,y,z):
@@ -414,7 +420,7 @@ value of the machine code in the world coordinate system.
     return pose_T
 ```
 
-get_current_end_pos gets the current end position function of the robotic arm.
+The `get_current_end_pos` function gets the current robotic-arm end position:
 
 ```python
 def get_current_end_pos(self):
@@ -433,7 +439,7 @@ values are the joint angle values of the current robot arm.
     future.add_done_callback(self.get_fk_respone_callback)
 ```
 
-get_fk_respone_callback receives the callback function that returns the result of calling the fk service.
+The `get_fk_respone_callback` function receives the result returned by the `fk` service call:
 
 ```python
 def get_fk_respone_callback(self, future):
@@ -462,13 +468,17 @@ except Exception as e:
 
 Program source code path:
 
-Raspberry Pi 5 and Jetson board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ compute_joint5.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/compute_joint5.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/compute_joint5.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/compute_joint5.py
+```
 
 ```python
 import math
@@ -484,15 +494,19 @@ def compute_joint5(vy,vx):
 
 Program source code path:
 
-Raspberry Pi 5 and Jetson board
+Raspberry Pi 5 and Jetson Nano:
 
-The program code is in the running docker. The path in docker is /root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/ grasp_desktop.py
+```text
+/root/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/grasp_desktop.py
+```
 
-Orin Motherboard
+Orin:
 
-The program code path is /home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/grasp_desktop.py
+```text
+/home/jetson/yahboomcar_ws/src/M3Pro_demo/M3Pro_demo/grasp_desktop.py
+```
 
-Import the necessary library files,
+Import the required libraries:
 
 ```python
 import rclpy
@@ -511,7 +525,7 @@ import yaml
 from rclpy.node import Node
 ```
 
-Import the robot arm offset parameter file to compensate for the deviation caused by the servo virtual position.
+Import the robotic-arm offset parameter file to compensate for servo virtual-position deviation:
 
 ```
 offset_file = "/root/yahboomcar_ws/src/arm_kin/param/offset_value.yaml"
@@ -520,7 +534,7 @@ with open(offset_file, 'r') as file:
 print(offset_config)
 ```
 
-Program initialization and creation of publishers and subscribers,
+Initialize the node and create the publishers and subscribers:
 
 ```python
 def __init__(self, name):
@@ -592,7 +606,7 @@ placement point
     self.z_offset = offset_config.get('z_offset')
 ```
 
-pos_info_callback machine code position information topic callback function,
+The `pos_info_callback` function handles machine-code position topic messages:
 
 ```python
 def pos_info_callback(self,msg):
@@ -728,7 +742,7 @@ six servos, so that the robotic arm can move its claws downwards
         self.get_logger().error(f'Service call failed: {e}')
 ```
 
-Move robot arm gripping and placement function,
+The grasping function moves the robotic arm to grasp and place the block:
 
 ```python
 def move(self):
