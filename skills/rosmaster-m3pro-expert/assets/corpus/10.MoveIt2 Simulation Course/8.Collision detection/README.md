@@ -1,38 +1,40 @@
-# Collision detection
+# Collision Detection
 
-Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
+Raspberry Pi 5 and Jetson Nano run ROS in Docker, so MoveIt2 performance is usually limited on those boards. Raspberry Pi 5 and Jetson Nano users should run these MoveIt2 examples in the virtual machine. Orin users can run the same commands directly on the robot because ROS runs directly on the Orin mainboard. This lesson uses the virtual machine as the example environment.
 
 ## 1. Content Description
 
-This lesson explains how to use the MoveIt library to add obstacles to RViz and implement obstacle avoidance when MoveIt plans motion.
+This lesson uses MoveIt2 to add obstacles to the RViz planning scene and plan robotic-arm motion that avoids those obstacles.
 
-## 2. Start
+## 2. Program Startup
 
-Open a terminal in the virtual machine and enter the following command to start MoveIt2.
+Open a terminal in the virtual machine and start MoveIt2:
 
 ```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
+When the terminal displays **"You can start planning now!"**, MoveIt2 has started successfully.
 
 ![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
-Then, we enter the following command in the virtual machine terminal to start the collision detection program,
+Start the collision detection program:
 
 ```bash
 ros2 run MoveIt_demo obstacle_avoidance
 ```
 
-After the program is run, a green block will be added to RViz. The robot arm will first move to the up position, then plan a movement to the down position, avoiding obstacles during the process; finally, it will plan a movement from the down position to the up position, also avoiding obstacles during the process. As shown in the figure below,
+After the program starts, a green block is added to RViz as an obstacle. The arm first moves to the `up` pose, then plans a motion to the `down` pose while avoiding the obstacle. Finally, it plans a motion from `down` back to `up`, again avoiding the obstacle.
 
 ![Figure: page 1: figure 1](_page_1_Figure_1.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The code path in the virtual machine
+Program code path in the virtual machine:
 
-is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/obstacle_avoidance.cpp
+```text
+/home/yahboom/moveit2_ws/src/MoveIt_demo/src/obstacle_avoidance.cpp
+```
 
 ```python
 #include <rclcpp/rclcpp.hpp>

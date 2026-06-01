@@ -1,37 +1,37 @@
 # MoveIt2 Configuration
 
-Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
+Raspberry Pi 5 and Jetson Nano run ROS in Docker, so MoveIt2 performance is usually limited on those boards. Raspberry Pi 5 and Jetson Nano users should run these MoveIt2 examples in the virtual machine. Orin users can run the same commands directly on the robot because ROS runs directly on the Orin mainboard. This lesson uses the virtual machine as the example environment.
 
 ## 1. Content Description
 
-This section explains how to configure MoveIt2 and generate the parameter files and launch files required for simulation.
+This lesson explains how to configure MoveIt2 and generate the parameter files and launch files required for M3Pro arm simulation.
 
 ## 2. Introduction to MoveIt2
 
-MoveIt 2 is the next generation of **MoveIt**, designed for **ROS 2 (Robot Operating System 2)**. It is an open-source framework for robot motion planning, manipulation, 3D perception, kinematics, collision detection, and mission planning. It is widely used in industrial robots, service robots, mobile manipulators, as well as in scientific research and education.
+MoveIt 2 is the ROS 2 version of **MoveIt**. It is an open-source framework for robotic motion planning, manipulation, 3D perception, kinematics, collision detection, and task planning. It is widely used with industrial robots, service robots, mobile manipulators, and robotics education platforms.
 
 ### 2.1. Differences from MoveIt
 
-| characteristic               | MoveIt               | MoveIt2                                               |
+| Characteristic               | MoveIt               | MoveIt2                                               |
 |------------------------------|----------------------|-------------------------------------------------------|
-| ROS version                  | ROS1                 | ROS2                                                  |
-| Real-time                    | Limited support   | Better real-time performance                          |
-| Cross-platform support    | Main Linux           | Supports Linux, Windows, and macOS (ROS 2 feature) |
+| ROS version                  | ROS 1                | ROS 2                                                 |
+| Real-time behavior           | Limited support      | Better real-time performance                          |
+| Cross-platform support       | Mainly Linux         | Linux, Windows, and macOS through ROS 2               |
 | Motion Planning Interface | ActionLib (ROS 1) | Action (ROS 2)                                        |
-| Default planner              | OMPL                 | OMPL + More optimization options                      |
+| Default planner              | OMPL                 | OMPL, plus more optimization options                  |
 
 ### 2.2. MoveIt2 Core Functions
 
-- **Motion Planning**: Supports multiple planning algorithms (such as OMPL, CHOMP, STOMP, etc.) to generate collision-free motion trajectories.
+- **Motion Planning**: Supports multiple planning algorithms, such as OMPL, CHOMP, and STOMP, to generate collision-free trajectories.
 - **Inverse Kinematics (IK)**: Calculates the robot's joint angles to achieve the target pose.
-- **Collision Checking**: Real-time collision detection based on **FCL (Flexible Collision Library).**
-- **3D Perception Integration**: Supports point cloud and depth camera (such as RealSense, Kinect) data.
-- **Manipulation**: Provides a high-level interface for grabbing and placing objects.
+- **Collision Checking**: Provides collision detection based on **FCL (Flexible Collision Library)**.
+- **3D Perception Integration**: Supports point cloud and depth camera data, such as RealSense and Kinect data.
+- **Manipulation**: Provides high-level interfaces for grasping and placing objects.
 - **Task Planning**: Combines **Behavior Trees** for high-level task orchestration.
 
 ### 2.3. Install MoveIt2
 
-MoveIt2 has been installed in the virtual machine, so there is no need to install it here. If you need to install MoveIt2 in a new environment, enter the following command to install it.
+MoveIt2 is already installed in the provided virtual machine, so no installation is required there. To install MoveIt2 in a new environment, use:
 
 ```bash
 #Change the <distro> below to your own ROS version. It is recommended to use
@@ -39,7 +39,7 @@ humble (22.04) or Rolling (24.04)
 sudo apt install ros-<distro>-moveit -y
 ```
 
-### 2.4. Reference Websites
+### 2.4. References
 
 MoveIt2 source code:
 
@@ -49,194 +49,194 @@ Official tutorial documentation:
 
 [MoveIt 2 Documentation - MoveIt Documentation: Humble documentation](https://moveit.picknik.ai/humble/index.html)
 
-## 3. Program startup
+## 3. Program Startup
 
-First, create a folder under the src folder of the ros workspace to store the files generated after MoveIt configuration. Taking the moveit2_ws workspace in the virtual machine as an example, enter the virtual machine terminal.
+In the virtual machine terminal, create a folder under the ROS workspace `src` directory to store the generated MoveIt configuration package. This lesson uses the `moveit2_ws` workspace as the example.
 
 ```bash
 cd moveit2_ws/src
 mkdir test_config
 ```
 
-Enter the following command in the virtual machine terminal to start MoveIt2 configuration,
+Start MoveIt Setup Assistant:
 
 ```bash
 ros2 run moveit_setup_assistant moveit_setup_assistant
 ```
 
-After the program starts, the following configuration screen appears.
+After the program starts, the configuration screen appears.
 
 ![Figure: page 1: figure 14](_page_1_Figure_14.jpeg)
 
-Click [Create New MoveIt Configuration Package] and the following screen will appear.
+Click [Create New MoveIt Configuration Package].
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-Click [Browse] and select the M3Pro URDF file. The file directory is in /home/yahboom/moveit2_ws/src/yahboom_M3Pro_description/urdf. After selecting, click [Load Files]. The program will then load the selected URDF file. After loading, the following screen will appear, with the loaded M3Pro car model displayed on the right.
+Click [Browse] and select the M3Pro URDF file from `/home/yahboom/moveit2_ws/src/yahboom_M3Pro_description/urdf`. After selecting the file, click [Load Files]. The setup assistant loads the URDF and displays the M3Pro robot model on the right.
 
 ![Figure: page 2: figure 2](_page_2_Figure_2.jpeg)
 
-Then click [Self-Collisions] in the left configuration bar. This step is to configure self-collision detection, as shown in the figure below. Click [Generate Collisions Matrix] to complete the configuration.
+Click [Self-Collisions] in the left configuration bar. This step configures self-collision detection. Click [Generate Collisions Matrix] to complete the configuration.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-Next, click [Planning Groups] in the left configuration bar. This step is to create a planning group. Click [Add Group] to create the first planning group, as shown below.
+Click [Planning Groups] in the left configuration bar. Click [Add Group] to create the first planning group.
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
-Then create the arm_group planning group to control the robotic arm, as shown in the figure below.
+Create the `arm_group` planning group for the robotic arm.
 
 ![Figure: page 4: figure 0](_page_4_Figure_0.jpeg)
 
-Then, we need to add this planning group. Click [Add Joints] below to enter the adding interface. In the adding interface, we select arm_Joint1 to arm_Joint5 on the left, click > to complete the addition, and click [Save] to save and exit.
+Add joints to this planning group. Click [Add Joints], select `arm_Joint1` through `arm_Joint5` on the left, click `>` to add them, then click [Save].
 
 ![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
-Complete the arm_group planning group settings as shown below, then click [Add Group] to add the planning group of the gripper.
+After completing the `arm_group` settings, click [Add Group] to add the gripper planning group.
 
 ![Figure: page 5: figure 0](_page_5_Figure_0.jpeg)
 
-The parameters are shown in the figure below, then click [Add Links] to enter the Links selection interface.
+Set the parameters as shown below, then click [Add Links] to open the link selection interface.
 
 ![Figure: page 5: figure 2](_page_5_Figure_2.jpeg)
 
-On the Links selection interface, select llink1, llink2, llink3, rlink1, rlink2, rlink3 on the left, click > to complete the addition, and then click [Save] to save and exit.
+In the link selection interface, select `llink1`, `llink2`, `llink3`, `rlink1`, `rlink2`, and `rlink3` on the left. Click `>` to add them, then click [Save].
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 
-The completed gripper planning group is shown in the figure below.
+The completed gripper planning group is shown below.
 
 ![Figure: page 6: figure 2](_page_6_Figure_2.jpeg)
 
-At this point, the planning group settings are complete. Next, click [Robot Groups] in the left setting column. This step is to set the preset posture of the robot arm and gripper.
+The planning group settings are now complete. Click [Robot Groups] in the left column to configure preset poses for the robotic arm and gripper.
 
-As shown in the figure below, click [Add Pose],
+Click [Add Pose].
 
 ![Figure: page 7: figure 0](_page_7_Figure_0.jpeg)
 
-Then set it as shown in the figure below, set the up posture of the arm_group planning group, the middle slider can set the posture, and the urdf on the right will also display the set posture. After the setting is completed, click [Save] to complete the setting.
+Configure the `up` pose for the `arm_group` planning group as shown below. Use the middle sliders to set the pose; the URDF preview on the right updates with the selected posture. Click [Save] when finished.
 
 ![Figure: page 7: figure 2](_page_7_Figure_2.jpeg)
 
-Next, we follow the steps to set the up posture, set the down posture and init posture of the arm_group planning group, and refer to the figure below for the settings.
+Use the same process to set the `down` and `init` poses for `arm_group`.
 
 Down posture:
 
 ![Figure: page 8: figure 0](_page_8_Figure_0.jpeg)
 
-### init posture:
+### Init Posture
 
 ![Figure: page 8: figure 2](_page_8_Figure_2.jpeg)
 
-After setting the three postures of the arm_group group, set the two postures of the grip_group group to close and open. The main thing is that the [Planning Group] here needs to be changed to grip_group. The settings are as follows.
+After configuring the three `arm_group` poses, configure the `close` and `open` poses for `grip_group`. Make sure [Planning Group] is set to `grip_group`.
 
-#### Close posture:
+#### Close Posture
 
 ![Figure: page 9: figure 0](_page_9_Figure_0.jpeg)
 
-#### Open posture:
+#### Open Posture
 
 ![Figure: page 9: figure 2](_page_9_Figure_2.jpeg)
 
-After setting up [Robot Poses], as shown below:
+The completed [Robot Poses] settings are shown below.
 
 ![Figure: page 10: figure 0](_page_10_Figure_0.jpeg)
 
-Next, click [End Effectors] in the left setting column to configure the end effector, as shown in the figure below, and click [Add End Effector] to enter the setting interface.
+Click [End Effectors] in the left column to configure the end effector, then click [Add End Effector].
 
 ![Figure: page 10: figure 2](_page_10_Figure_2.jpeg)
 
-In the settings interface, make settings as shown in the figure below. After completing the settings, click [Save] to save and exit.
+Enter the settings shown below, then click [Save].
 
 ![Figure: page 11: figure 0](_page_11_Figure_0.jpeg)
 
-The settings of [End Effectors] are as shown below.
+The completed [End Effectors] settings are shown below.
 
 ![Figure: page 11: figure 2](_page_11_Figure_2.jpeg)
 
-Next, click [ros2_control URDF Modifications] in the left setting column. This step is to set the URDF model. We do not need to modify the URDF model. Just click [Add interfaces], as shown below.
+Click [ros2_control URDF Modifications] in the left column. No URDF model changes are needed for this lesson; click [Add interfaces] as shown below.
 
 ![Figure: page 12: figure 0](_page_12_Figure_0.jpeg)
 
-Click [ROS2 Controllers] in the left setting column. This step is to set up the robot motion control. Click [Add Controller] to add a controller, as shown below.
+Click [ROS2 Controllers] in the left column to configure motion controllers. Click [Add Controller].
 
 ![Figure: page 12: figure 2](_page_12_Figure_2.jpeg)
 
-After entering the settings, add the arm_group_controller controller as shown below.
+Add the `arm_group_controller` controller as shown below.
 
 ![Figure: page 13: figure 0](_page_13_Figure_0.jpeg)
 
-Then click [Add Planning Group Joints] to add the joints of the control group, as shown in the figure below, add the arm_group control group, select the arm_group on the left and click > to complete the addition, and finally click [Save] to save and exit.
+Click [Add Planning Group Joints], select `arm_group` on the left, click `>` to add it, then click [Save].
 
 ![Figure: page 13: figure 2](_page_13_Figure_2.jpeg)
 
-The first controller after setting up is shown in the figure below.
+The first completed controller is shown below.
 
 ![Figure: page 14: figure 0](_page_14_Figure_0.jpeg)
 
-Then, we add a second controller. Click [Add Controller] to enter the add interface, and then set it up as shown in the figure below.
+Add the second controller. Click [Add Controller] and configure it as shown below.
 
 ![Figure: page 14: figure 2](_page_14_Figure_2.jpeg)
 
-Then click [Add Planning Group Joints] to add joints, as shown in the figure below, select grip_group on the left, and then click > to complete the addition. Finally, click [Save] to complete the setting.
+Click [Add Planning Group Joints], select `grip_group` on the left, click `>` to add it, then click [Save].
 
 ![Figure: page 15: figure 0](_page_15_Figure_0.jpeg)
 
-After completing the [ROS2 Controllers] settings, as shown below,
+The completed [ROS2 Controllers] settings are shown below.
 
 ![Figure: page 15: figure 2](_page_15_Figure_2.jpeg)
 
-Next, click [MoveIt Controllers] in the left setting column. This step is to set the trajectory controller to execute the planned trajectory.
+Click [MoveIt Controllers] in the left column. This section configures the trajectory controllers that execute planned trajectories.
 
-The trajectory is sent to the robot ROS2 controller. Click [Add Controller] to add a trajectory controller, as shown below.
+The trajectory is sent to the ROS 2 controller. Click [Add Controller] to add a trajectory controller.
 
 ![Figure: page 16: figure 0](_page_16_Figure_0.jpeg)
 
-Enter the settings interface and set it up as shown below. Note that the [Controller Name] here should be the same as the [ROS2 Controller] set in the previous step, then click [Add Planning Group Joints] to add control joints.
+In the settings interface, configure the controller as shown below. The [Controller Name] must match the [ROS2 Controller] name configured in the previous step. Then click [Add Planning Group Joints].
 
 ![Figure: page 16: figure 2](_page_16_Figure_2.jpeg)
 
-As shown in the figure below, add the arm_group control group, select arm_group on the left and click > to complete the addition, and finally click [Save] to save and exit.
+Select `arm_group` on the left, click `>` to add it, then click [Save].
 
 ![Figure: page 17: figure 0](_page_17_Figure_0.jpeg)
 
-After the settings are completed, the following figure will be shown:
+The completed controller is shown below.
 
 ![Figure: page 17: figure 2](_page_17_Figure_2.jpeg)
 
-Next, add the trajectory controller of the gripper. Click [Add Controller] to enter the settings interface. Set it up as shown in the figure below, and then click [Add Planning Group Joints] to add the control joints.
+Add the gripper trajectory controller. Click [Add Controller], configure it as shown below, then click [Add Planning Group Joints].
 
 ![Figure: page 18: figure 0](_page_18_Figure_0.jpeg)
 
-Then click [Add Planning Group Joints] to add joints, as shown in the figure below, select grip_group on the left, and then click > to complete the addition. Finally, click [Save] to complete the setting.
+Select `grip_group` on the left, click `>` to add it, then click [Save].
 
 ![Figure: page 18: figure 2](_page_18_Figure_2.jpeg)
 
-Complete the [MoveIt Controllers] settings as shown below.
+The completed [MoveIt Controllers] settings are shown below.
 
 ![Figure: page 19: figure 0](_page_19_Figure_0.jpeg)
 
-Next, click [Author Information] in the settings column on the left, and then fill in your name and email address, as shown below.
+Click [Author Information] in the left column, then enter your name and email address.
 
 ![Figure: page 19: figure 2](_page_19_Figure_2.jpeg)
 
-Finally, click [Configuration Files] in the settings column on the left, click [Browse], find the folder we created earlier, select here /home/yahboom/moveit2_ws/src/test_moveit_config, and click [OK] when the following message appears
+Click [Configuration Files] in the left column, click [Browse], and select the folder created earlier: `/home/yahboom/moveit2_ws/src/test_moveit_config`. Click [OK] when prompted.
 
 ![Figure: page 20: figure 0](_page_20_Figure_0.jpeg)
 
-Then click [Generate Package] below to generate the function package, as shown in the figure below. Click [OK] when the prompt message appears.
+Click [Generate Package] to generate the package. Click [OK] when prompted.
 
 ![Figure: page 20: figure 2](_page_20_Figure_2.jpeg)
 
-When the prompt message appears, click [OK].
+Click [OK] on the next prompt.
 
 ![Figure: page 21: figure 0](_page_21_Figure_0.jpeg)
 
-As shown in the figure below, **the Configuration package generated successfully** appears. Click [Exit Setup Assistant] to complete all settings.
+When **the Configuration package generated successfully** appears, click [Exit Setup Assistant] to finish.
 
 ![Figure: page 21: figure 2](_page_21_Figure_2.jpeg)
 
-In the test_moveit_config package, all the settings just made are saved. Then, we need to modify the joint_limits.yaml file in the /home/yahboom/moveit2_ws/src/test_moveit_config/config directory. We only need to change the integers in it to decimals, and the values remain unchanged. The modified file is as follows:
+The generated settings are saved in the `test_moveit_config` package. Next, edit `joint_limits.yaml` in `/home/yahboom/moveit2_ws/src/test_moveit_config/config`. Change integer values to decimal values without changing the numeric value. The modified file should look like this:
 
 ```
 # joint_limits.yaml allows the dynamics properties specified in the URDF to be
@@ -314,49 +314,49 @@ has_acceleration_limits: false
 max_acceleration: 0.0
 ```
 
-Save and exit, then return to the workspace directory, use colcon build to compile, and enter in the terminal,
+Save and exit, then return to the workspace directory and build the package:
 
 ```bash
 cd moveit2_ws
 colcon build --packages-select test_moveit_config
 ```
 
-After the compilation is complete, refresh the environment variables and enter the terminal source ~/.bashrc. Then enter the following command in the terminal to start moveit2. Enter the terminal,
+After the build completes, refresh the environment by running `source ~/.bashrc`, then start MoveIt2:
 
 ```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
+When the terminal displays **"You can start planning now!"**, MoveIt2 has started successfully.
 
 ![Figure: page 23: figure 6](_page_23_Figure_6.jpeg)
 
-Then we test Plan and Execute. Let's test arm_grou first. As shown in the figure below, select [Planning Group] as arm_group, select [Start State], then select `Goal State`. We let the posture of the robot arm change from the current up,motion planning to the previously set init,
+Test [Plan & Execute] with `arm_group` first. Set [Planning Group] to `arm_group`, select [Start State], and then select [Goal State]. In this example, the arm plans from the current `up` pose to the previously configured `init` pose.
 
 ![Figure: page 24: figure 0](_page_24_Figure_0.jpeg)
 
-Then click [Plan & Execute] on the left to let the robot plan run to init, as shown in the figure below.
+Click [Plan & Execute] on the left to plan and move the arm to `init`.
 
 ![Figure: page 24: figure 2](_page_24_Figure_2.jpeg)
 
-After the motion planning is completed, as shown in the figure below,
+After motion planning completes, the result is shown below.
 
 ![Figure: page 25: figure 0](_page_25_Figure_0.jpeg)
 
-If the plan and execution are successful, it means that the arm_group configuration is successful. Next, test the grip_group. Set it as shown below, set [Planning Group] to grip_group, select [Start State], then select `Goal State`.
+If planning and execution succeed, the `arm_group` configuration is working. Next, test `grip_group`. Set [Planning Group] to `grip_group`, select [Start State], then select [Goal State].
 
 ![Figure: page 25: figure 2](_page_25_Figure_2.jpeg)
 
-Click [Plan & Execute] on the left to run the gripper planning to the close state, as shown in the figure below.
+Click [Plan & Execute] to plan the gripper motion to the `close` state.
 
 ![Figure: page 26: figure 0](_page_26_Figure_0.jpeg)
 
-If the gripper closes successfully, the plan is executed successfully.
+If the gripper closes successfully, the plan executed correctly.
 
-## 4. Set up RViz
+## 4. Set Up RViz
 
-When running MoveIt2, the robot arm may repeat the planned operation. This is because **the loop animation is enabled**. To disable this option, go to [Display], find [MotionPlanning] -> [Planned Path] -> [Loop Animation], and click the check mark here to disable the loop animation.
+When running MoveIt2, the robotic arm animation may repeat the planned operation because **Loop Animation** is enabled. To disable it, go to [Display] -> [MotionPlanning] -> [Planned Path] -> [Loop Animation] and clear the checkbox.
 
-When running MoveIt2, the orange part represents the target pose. If we do not want to display the target pose, we can find [MotionPlanning]->[Query Goal State] and click the check mark here to cancel the display of the target pose.
+In MoveIt2, the orange model represents the target pose. To hide it, go to [MotionPlanning] -> [Query Goal State] and clear the checkbox.
 
-After modifying the RViz settings here, you need **to press ctrl and s to save**.
+After modifying the RViz settings, press **Ctrl+S** to save them.

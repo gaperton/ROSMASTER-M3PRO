@@ -1,36 +1,42 @@
-# Forward kinematics design
+# Forward Kinematics Design
 
-Preface: ROS on Raspberry Pi 5 and Jetson Nano runs in Docker, so the performance of running MoveIt2 is average. It is recommended that users of Raspberry Pi 5 and Jetson Nano motherboards run MoveIt2 related cases in a virtual machine. ROS on Orin motherboard runs directly on the motherboard, so users of Orin motherboard can run MoveIt2 related cases directly on the motherboard. The instructions are the same as running in a virtual machine.
+Raspberry Pi 5 and Jetson Nano run ROS in Docker, so MoveIt2 performance is usually limited on those boards. Raspberry Pi 5 and Jetson Nano users should run these MoveIt2 examples in the virtual machine. Orin users can run the same commands directly on the robot because ROS runs directly on the Orin mainboard.
 
-The following content uses running on a virtual machine as an example.
+This lesson uses the virtual machine as the example environment.
 
 ## 1. Content Description
 
-This course explains how to use functions in the MoveIt library to implement forward kinematics for a robotic arm. Forward kinematics involves calculating the pose of the robotic arm's end effector based on joint angles. In RViz, we specify the angles for each joint and have MoveIt2 program the robot to achieve these poses.
+This lesson uses MoveIt2 to plan arm motion from specified joint angles. Forward kinematics calculates the end-effector pose from the robotic arm's joint values. In RViz, the program sets target joint angles and asks MoveIt2 to plan and execute the corresponding motion.
 
-## 2. Start
+## 2. Program Startup
 
-Open a terminal in the virtual machine and enter the following command to start MoveIt2.
+Open a terminal in the virtual machine and start MoveIt2:
 
 ```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
+When the terminal displays **"You can start planning now!"**, MoveIt2 has started successfully.
 
 ![Figure: page 0: figure 9](_page_0_Figure_9.jpeg)
 
-Then enter the following command in the terminal to start the positive kinematics design program,
+Start the forward-kinematics example:
 
-After the program runs, the robotic arm in RViz will plan to move to the posture of each joint we set, as shown in the figure below.
+```bash
+ros2 run MoveIt_demo set_target_joints
+```
+
+After the program starts, the robotic arm in RViz plans a motion to the configured joint posture.
 
 ![Picture: page 1: picture 1](_page_1_Picture_1.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The code path in the virtual machine
+Program code path in the virtual machine:
 
-is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_target_joints.cpp
+```text
+/home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_target_joints.cpp
+```
 
 ```python
 #include <rclcpp/rclcpp.hpp>

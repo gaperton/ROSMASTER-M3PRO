@@ -1,48 +1,50 @@
-# Scene design
+# Scene Design
 
-Preface: Raspberry Pi 5 and Jetson Nano run ROS in Docker, so the performance of running MoveIt2 is generally poor. Users of Raspberry Pi 5 and Jetson Nano boards are advised to run MoveIt2 examples in a virtual machine. Orin motherboards run ROS directly on the motherboard, so users of Orin boards can run MoveIt2 examples directly on the motherboard, using the same instructions as running in a virtual machine. This section uses running in a virtual machine as an example.
+Raspberry Pi 5 and Jetson Nano run ROS in Docker, so MoveIt2 performance is usually limited on those boards. Raspberry Pi 5 and Jetson Nano users should run these MoveIt2 examples in the virtual machine. Orin users can run the same commands directly on the robot because ROS runs directly on the Orin mainboard. This lesson uses the virtual machine as the example environment.
 
 ## 1. Content Description
 
-This course implements a scenario: in RViz, there is a three-layer shelf. After the robotic arm grabs the cylindrical object, it plans to move it to the upper and lower layers in the middle to simulate the action of placing the object.
+This lesson builds an RViz scene with a three-layer shelf. After a cylindrical object is attached to the gripper, MoveIt2 plans placement motions to the upper and lower positions on the middle shelf layer.
 
-## 2. Program startup
+## 2. Program Startup
 
-Open a terminal in the virtual machine and enter the following command to start MoveIt2.
+Open a terminal in the virtual machine and start MoveIt2:
 
 ```bash
 ros2 launch test_moveit_config demo.launch.py
 ```
 
-After the program is started, when the terminal displays **"You can start planning now!"**, it indicates that the program has been successfully started, as shown in the figure below.
+When the terminal displays **"You can start planning now!"**, MoveIt2 has started successfully.
 
 ![Figure: page 0: figure 8](_page_0_Figure_8.jpeg)
 
-Then, we add the scene in RViz as shown below.
+Add the scene in RViz as shown below.
 
 ![Figure: page 1: figure 0](_page_1_Figure_0.jpeg)
 
-After selecting the scene file, click [Open] to complete the addition. The addition is as shown below.
+After selecting the scene file, click [Open] to add it.
 
 ![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
-Click [Publish] to publish the obstacle information. The robot arm will then avoid obstacles during planning.
+Click [Publish] to publish the obstacle information so the robotic arm avoids the scene objects during planning.
 
-Then, enter the following command in another terminal to start the upper and lower layer planning program,
+Open another terminal and start the shelf placement planning program:
 
 ```bash
 ros2 run MoveIt_demo set_scene
 ```
 
-After the program runs, the robot arm will plan to the set init posture, then a purple cylindrical object will be added to the gripper, and then the simulation action of placing the object will be planned and executed on the middle two layers.
+After the program starts, the arm plans to the configured `init` posture. A purple cylindrical object is then added to the gripper, and MoveIt2 plans and executes simulated placement motions for the middle shelf positions.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-## 3. Core code analysis
+## 3. Core Code Analysis
 
-The code path in the virtual machine
+Program code path in the virtual machine:
 
-is: /home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_scene.cpp
+```text
+/home/yahboom/moveit2_ws/src/MoveIt_demo/src/set_scene.cpp
+```
 
 ```python
 #include <rclcpp/rclcpp.hpp>
