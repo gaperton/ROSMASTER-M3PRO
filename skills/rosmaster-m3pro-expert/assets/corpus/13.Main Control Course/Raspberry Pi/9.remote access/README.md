@@ -42,7 +42,7 @@ Use the command to view the IP address: hostname -I or ifconfig
 
 ## 2. SSH remote control
 
-After obtaining the IP address of the Raspberry Pi motherboard, you can perform SSH remote login on the terminal based on the user name and password of the Raspberry Pi system.
+After obtaining the IP address of the Raspberry Pi mainboard, you can perform SSH remote login on the terminal based on the user name and password of the Raspberry Pi system.
 
 SSH remote login command: ssh username@IP address
 
@@ -54,7 +54,7 @@ sshpi@192.168.2.93
 
 ## 3. VNC remote login
 
-After obtaining the IP address of the Raspberry Pi motherboard, you can use the RealVNC Viewer software to log in remotely.
+After obtaining the IP address of the Raspberry Pi mainboard, you can use the RealVNC Viewer software to log in remotely.
 
 My current login user name is pi, the password is yahboom, and the IP address is 192.168.2.93
 

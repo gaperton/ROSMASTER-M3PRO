@@ -1,0 +1,194 @@
+# Deploying a Local RAG Knowledge Base
+**Deploying a Local RAG Knowledge Base**
+
+1. Course Content
+
+2. Starting the Dify Service
+
+3. Viewing the Preset Knowledge Base
+
+4. Expanding the RAG Knowledge Base
+
+### 4.1 Economic Mode Knowledge Base
+
+### 4.2 High-Quality Mode Knowledge Base
+
+### 4.3 Recall Test
+
+## 1. Course Content
+Master the process and methods for local deployment, debugging, and testing of the RAG
+
+knowledge base.
+
+Master the method for extending the RAG knowledge base based on your specific task
+
+scenarios.
+
+
+[TIP]
+
+
+The RAG knowledge base helps general AI large models provide reference knowledge
+
+in vertical domains, preventing AI large models from generating hallucinatory
+
+responses and increasing the model's ability to respond with knowledge in vertical
+
+domains.
+
+The RAG knowledge base can help robots quickly expand their generalization
+
+capabilities in different task scenarios.
+## 2. Starting the Dify Service
+Connect to the vehicle's computer via VNC or SSH, and enter the following command in the
+
+terminal:
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-0-1.jpeg)
+Check the vehicle's IP address (you can check it on the OLED screen, using `ifconfig`, or
+
+directly in the terminal). Enter the vehicle's IP address directly in the browser's address bar
+
+to access the Dify management page.
+
+## 3. Viewing the Preset Knowledge Base
+Click on the Knowledge Base page on the homepage. Dify comes pre-configured with two
+
+RAG knowledge bases, with the same content but different languages.
+
+
+[TIP]
+
+
+The preset knowledge base provides training examples for some task scenarios to help
+
+the AI model quickly master relevant skills.
+
+
+Open a knowledge base; it contains a preset file called Sample training for the decision
+making level, which includes:
+
+Sample training for the decision-making level: Stores preset reference examples related to
+
+specific task scenarios.
+
+## 4. Expanding the RAG Knowledge Base
+To expand with a new knowledge base, click "Create Knowledge".
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-1-0.jpeg)
+
+![](Deploy-the-RAG-knowledge-base.pdf-1-1.jpeg)
+
+![](Deploy-the-RAG-knowledge-base.pdf-1-2.jpeg)
+![](Deploy-the-RAG-knowledge-base.pdf-2-0.jpeg)
+
+Here, we'll use importing local data as an example.
+
+Click "Import Existing file" -> Select File -> Next
+
+
+Then, you'll enter the knowledge base configuration page. Click the preview block to view the
+
+file chunking effect. Here, select "Economic" for the indexing mode.
+
+
+[!TIP]
+
+
+For beginners, it is recommended to use the economic mode for learning and testing.
+
+The difference between the two indexing modes:
+
+
+Economic: Retrieves content from the knowledge base using **keywords** . It cannot
+
+perform extended retrieval of similar semantics, and the method of retrieving
+
+knowledge fragments is relatively rigid.
+
+High-Quality Mode: Requires an embedding model to consume extra tokens and
+
+requires a rerank model, enabling more accurate retrieval of similar semantic
+
+fragments.
+
+The default knowledge base mode is High-Quality Mode.
+
+### 4.1 Economic Mode Knowledge Base
+After selecting the following configuration, click "Save and Process".
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-2-1.jpeg)
+![](Deploy-the-RAG-knowledge-base.pdf-3-0.jpeg)
+
+Then wait for the embedding to complete, and click to go to document.
+
+
+When the knowledge base is functioning normally, the status will show as available. Then
+
+click on the knowledge base file.
+
+
+Afterwards, you can see the segmented knowledge base fragments. The small text below
+
+each segment shows the automatically generated keywords for that segment (only available
+
+in economic mode).
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-3-1.jpeg)
+
+![](Deploy-the-RAG-knowledge-base.pdf-3-2.jpeg)
+![](Deploy-the-RAG-knowledge-base.pdf-4-0.jpeg)
+
+If the keywords do not accurately describe the knowledge fragment, click "Edit" on the right
+
+side of the fragment to edit the content or keywords of that fragment. The image below
+
+shows the modified keywords, then click save.
+
+### 4.2 High-Quality Mode Knowledge Base
+If you need to use a high-quality knowledge base later, refer to this section of the tutorial.
+
+The knowledge base creation and file import process is the same as before.
+
+Here, select "High-Quality" for the indexing method, and choose any retrieval method. Here,
+
+we use hybrid retrieval as an example. Finally, save and process.
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-4-1.jpeg)
+![](Deploy-the-RAG-knowledge-base.pdf-5-0.jpeg)
+### 4.3 Recall Test
+Retrieval testing tests the actual effectiveness of retrieving relevant knowledge snippets from
+
+the knowledge base based on the input, helping to optimize the AI model's response
+
+performance.
+
+After opening a knowledge base, click on "Retrieval Testing" on the left side.
+
+
+Enter the test content in the source text (simulating user input during actual use), and then
+
+click "Test".
+
+The retrieved paragraphs and the knowledge base related to the input content will appear
+
+on the right. The knowledge base tested here is the economic model knowledge base, which
+
+retrieves information based on keywords.
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-5-1.jpeg)
+![](Deploy-the-RAG-knowledge-base.pdf-6-0.jpeg)
+
+higher score indicates a higher relevance between the snippet and the input content. High
+quality mode knowledge bases can perform associative retrieval of similar semantics, but
+
+also consume tokens.
+
+
+![](Deploy-the-RAG-knowledge-base.pdf-6-2.jpeg)

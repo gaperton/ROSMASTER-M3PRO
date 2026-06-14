@@ -217,6 +217,6 @@ sudo motion
 
 Preview screen
 
-After turning on motion, enter the car IP: 8081 on the browser on the same LAN to view the realtime image of the camera.
+After turning on motion, enter the robot IP: 8081 on the browser on the same LAN to view the realtime image of the camera.
 
 Example: 192.168.2.93:8081

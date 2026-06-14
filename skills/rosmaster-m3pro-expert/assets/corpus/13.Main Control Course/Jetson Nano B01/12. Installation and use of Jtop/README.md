@@ -1,8 +1,8 @@
-# Installation and Use of Jtop
+# jtop Installation and Use
 
-## Installation of Jtop
+## Install jtop
 
-(1) Installing JTOP to check CPU usage
+Install `jtop` to monitor CPU usage and other Jetson system resources:
 
 ```bash
 sudo apt-get update
@@ -17,7 +17,7 @@ jtop
 
 ## Check the installed system components
 
-(1) The OS image of Jetson Nano B01 already comes with JetPack, cuda, cudnn, opencv, and other installed examples. The installation path for these examples is as follows
+The Jetson Nano B01 OS image already includes JetPack, CUDA, cuDNN, OpenCV, and related sample projects. The sample paths are:
 
 ```
 TensorRT /usr/src/tensorrt/samples/
@@ -29,49 +29,53 @@ VisionWorks /usr/share/visionworks/sources/samples/
 OpenCV /usr/share/opencv4/samples/
 ```
 
-### (2) Check CUDA
+### Check CUDA
 
-The CUDA10.2 version has already been installed in Jetson Nano B01, but at this time, if you run nvcc - V, it will not succeed. You need to write the path of CUDA to the environment variable. The Vim tool comes with the OS, so run the following command to edit the environment variables
+CUDA 10.2 is already installed on Jetson Nano B01. However, `nvcc -V` may fail until the CUDA path is added to the environment variables. Vim is included with the OS, so use it to edit the shell configuration.
 
-Firstly, check if there is nvcc in the bin directory of cuda:
+First, check whether `nvcc` exists in the CUDA `bin` directory:
 
 ```bash
 ls /usr/local/cuda/bin
 ```
 
-If present,
+If it is present, edit `~/.bashrc`:
 
 ```bash
 sudo vim ~/.bashrc; :
 ```
 
-Note: In vim, use Esc to return to command mode, and switch to the input module through I to enter text in input mode
+Note: In Vim, press `i` to enter insert mode. Press `Esc` to return to command mode.
 
 ```
 export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 ```
 
-Note: After exiting the command mode through Esc, press: to start inputting commands, wq to save and exit, q to exit, q! For forced exitSave to exit.
+Note: After pressing `Esc`, type `:wq` to save and exit. Use `:q` to exit without saving, or `:q!` to force quit.
 
-Then it needs to take effect under the source.
+Reload the shell configuration:
 
 ```bash
 source ~/.bashrc
 ```
 
-After the source, execute nvcc - V again at this time, and the result is as follows
+After sourcing the file, run `nvcc -V` again. The command should report the CUDA compiler version:
 
 beckhans@Jetson:~\$ nvcc -V
 
-#### (3) Check OpenCV
+### Check OpenCV
 
-OpenCV4.1.1 version is already installed in Jetson Nano B01. You can use the command to check if OpenCV is installed properlypkg-config opencv4 --modversionIf OpenCv is installed properly, the version number will be displayed, and my version is 4.4.1
+OpenCV 4.1.1 is already installed on Jetson Nano B01. Check the installed version with:
 
-### (4) Check cuDNN
+```bash
+pkg-config opencv4 --modversion
+```
 
-CuDNN has been installed in Jetson Nano and there are examples available for operation. Let's run the examples to verify the CUDA above
+If OpenCV is installed correctly, the command prints the version number.
 
-Enter jtop at the terminal, press the right arrow key on the keyboard to select 7info, and you can see the version of cuDNN, as shown in the following figure:
+### Check cuDNN
+
+cuDNN is installed on Jetson Nano, and sample projects are available for testing. To view the cuDNN version, run `jtop` in a terminal, then use the right arrow key to open the `7INFO` page.
 
 ![Figure: page 2: figure 4](_page_2_Figure_4.jpeg)

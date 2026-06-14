@@ -1,6 +1,6 @@
-# Jtop tool
+# jtop Tool
 
-## 1. Install Jtop
+## 1. Install jtop
 
 ```bash
 sudo apt update
@@ -12,9 +12,9 @@ sudo pip3 install -U jetson-stats
 
 ## 2. Best performance mode
 
-### 2.2. Enable MAXN mode
+### 2.1. Enable MAXN mode
 
-Enabling MAXN Power Mode on Jetson will ensure that all CPU and GPU cores are turned on:
+Enable MAXN power mode so all CPU and GPU cores are available:
 
 ```
 sudo nvpmodel -m 2
@@ -22,21 +22,21 @@ sudo nvpmodel -m 2
 
 ### 2.2. Enable Jetson Clocks
 
-Enabling Jetson Clocks will ensure that all CPU and GPU cores run at maximum frequency:
+Enable Jetson Clocks so the CPU and GPU cores run at maximum frequency:
 
 ```
 sudo jetson_clocks
 ```
 
-## 3. Use Jtop
+## 3. Use jtop
 
-Only after restarting the system can you enter the jtop command in the terminal to start the Jtop tool:
+After restarting the system, run `jtop` in a terminal to start the monitoring tool:
 
 ```
 jtop
 ```
 
-Note: The motherboard power mode must be set to MAXN to display the strongest performance parameters!
+Note: Set the mainboard power mode to MAXN to display the highest performance parameters.
 
 ![Figure: page 1: figure 7](_page_1_Figure_7.jpeg)
 

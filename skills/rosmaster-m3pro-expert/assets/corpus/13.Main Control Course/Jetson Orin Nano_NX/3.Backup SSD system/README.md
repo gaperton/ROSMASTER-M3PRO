@@ -1,20 +1,20 @@
-# Backup SSD system
+# Back Up the SSD System
 
-During the development process, users may need to back up the system to prevent subsequent development from affecting the current system environment.
+During development, you may need to back up the system so later changes do not permanently affect the current working environment.
 
-The image file demonstrated in the tutorial is not the actual factory image, it is only for tutorial demonstration
+The image file shown in this lesson is only an example for the tutorial; it is not the actual factory image.
 
-## 1. Hardware connection
+## 1. Hardware Connection
 
-Users need to prepare the SSD box in advance, install the SSD into the SSD box and connect it to the computer or virtual machine: the computer and virtual machine systems need to be Ubuntu systems.
+Prepare an SSD enclosure, install the SSD in the enclosure, and connect it to the computer or virtual machine. The computer or virtual machine must run Ubuntu.
 
 ![Picture: page 0: picture 16](_page_0_Picture_16.jpeg)
 
 ![Picture: page 0: picture 17](_page_0_Picture_17.jpeg)
 
-## 2. Compress the SSD
+## 2. Shrink the SSD Partition
 
-Since the SSD capacity of the Jetson Orin series motherboard is relatively large, we need to compress it to an appropriate space for system backup to save time for backup and burning the system.
+Because the Jetson Orin SSD is relatively large, shrink the system partition before backup. This reduces the image size and saves time when backing up or writing the image later.
 
 ### 2.1. Install Gparted
 
@@ -29,25 +29,25 @@ Find the GParted application icon in the system application menu bar to open it 
 
 ![Figure: page 1: figure 3](_page_1_Figure_3.jpeg)
 
-#### 2.2.1. Select the SSD
+#### 2.2.1 Select the SSD
 
-Select the newly added disk symbol: You can confirm again whether it is the SSD you mounted based on the disk capacity
+Select the newly added disk. Confirm that it is the mounted SSD by checking the disk capacity.
 
 ![Figure: page 2: figure 0](_page_2_Figure_0.jpeg)
 
-#### 2.2.2. Unmount the partition
+#### 2.2.2 Unmount the Partition
 
-Before operating the disk, you need to unmount the disk: select the APP partition (largest partition) in the disk, and click Unmount to unmount the partition
+Before modifying the disk, unmount it. Select the `APP` partition, which is the largest partition, then click `Unmount`.
 
 ![Figure: page 2: figure 3](_page_2_Figure_3.jpeg)
 
-#### 2.2.3. Perform disk compression
+#### 2.2.3 Shrink the Partition
 
-Right-click the uninstalled disk partition and resize the previously uninstalled partition space:
+Right-click the unmounted partition and resize it.
 
 ![Figure: page 3: figure 0](_page_3_Figure_0.jpeg)
 
-You can adjust the partition size using the slider: yellow is the space used by the partition, white is the unused space, it is recommended to leave about 5-10G of unused space in the partition to avoid the system from failing to start
+Adjust the partition size with the slider. Yellow indicates used space, and white indicates free space. Leave about 5-10G of free space in the partition to avoid startup failure.
 
 ![Figure: page 3: figure 2](_page_3_Figure_2.jpeg)
 
@@ -69,7 +69,7 @@ After completing the above operations, close GParted!
 
 ### 3.1. Check disk information
 
-Open the terminal and use the script to view the current disk information: the drive letter needs to correspond to the drive letter of the SSD you backed up
+Open a terminal and use the script to view the current disk information. The device path must correspond to the SSD you are backing up.
 
 ```
 sudo bash parted_info.sh /dev/sdb
@@ -88,25 +88,25 @@ quit
 EOF
 ```
 
-Record the data in the figure: 41822208s
+Record the sector count shown in the output. In this example, it is `41822208s`.
 
 ![Picture: page 5: picture 6](_page_5_Picture_6.jpeg)
 
 ### 3.2. Start disk backup
 
-Use the dd command to back up the SSD to the img file. Enter the following in the terminal:
+Use `dd` to back up the SSD to an `.img` file:
 
 ```
 sudo dd if=/dev/sdb of=Jetson_Orin_Nano_8G.img bs=512 count=41822208
 ```
 
-/dev/sdb: SSD drive letter
+`/dev/sdb`: SSD device path
 
-Jetson_Orin_Nano_8G.img: Image name
+`Jetson_Orin_Nano_8G.img`: output image name
 
-bs=512: Set block size to 512 bytes
+`bs=512`: sets the block size to 512 bytes
 
-56393728: Data queried by the script
+`41822208`: sector count queried by the script
 
 ![Figure: page 6: figure 0](_page_6_Figure_0.jpeg)
 

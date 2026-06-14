@@ -50,7 +50,7 @@ Set to GNOME compilation mode
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 ```
 
-Now the screen sharing panel is working in the unit control center But this is not enough to make Vino run! So you need to add the program Vino server when the session starts, using the following command line:
+The screen sharing panel is now available in the system control center, but Vino still needs to start with the desktop session. Add the Vino server startup command as follows:
 
 ### 4. Restart the machine and verify if VNC settings were successful
 

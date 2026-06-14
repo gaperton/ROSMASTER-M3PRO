@@ -44,7 +44,7 @@ Use the scp command to send files to the Raspberry Pi system through ssh. This o
 
 My current login user name is pi, the password is yahboom, and the IP address is 192.168.2.93
 
-### 1.1. Copy the file to the Raspberry Pi motherboard
+### 1.1. Copy the file to the Raspberry Pi mainboard
 
 #### Single file copy command: scp file name username@IP address:path
 
@@ -56,7 +56,7 @@ Copy the file to the desktop: scp Test.txt pi@192.168.2.93:Desktop/
 
 ![Picture: page 3: picture 0](_page_3_Picture_0.jpeg)
 
-### 1.2. Copy files from the Raspberry Pi motherboard to the current computer
+### 1.2. Copy files from the Raspberry Pi mainboard to the current computer
 
 ### Single file copy command: scp username@IP address: file name
 

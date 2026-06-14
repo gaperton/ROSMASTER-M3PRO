@@ -80,7 +80,7 @@ Enter Y during the process to confirm the update. The second process may take ab
 
 ![Figure: page 4: figure 2](_page_4_Figure_2.jpeg)
 
-The first step is to click on the network symbol above. The second step is to select the network we need to connect to, and enter the password. I have already connected to the network of yahboom2Obtain the IP address of the motherboard (when connected to the network)
+The first step is to click on the network symbol above. The second step is to select the network we need to connect to, and enter the password. I have already connected to the network of yahboom2Obtain the IP address of the mainboard (when connected to the network)
 
 ```bash
 ifconfig

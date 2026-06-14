@@ -8,7 +8,7 @@ This chapter introduces information about Raspberry Pi 5.
 
 To use the Raspberry Pi, you will need the following:
 
-A Raspberry Pi motherboard;
+A Raspberry Pi mainboard;
 
 apower;
 

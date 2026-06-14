@@ -1,12 +1,12 @@
-# TF card/U disk expansion
+# microSD card/USB drive expansion
 
 ## Capacity Expansion Tutorial
 
 ### 1. Problem
 
-After burning an image using a TF card or USB flash drive that is larger than the image memory, some of the free memory will be unusable, resulting in an error message indicating insufficient space or failure to run large projects.
+After writing an image to a microSD card or USB drive that is larger than the image size, some free space may remain unallocated. When that happens, the system can report insufficient storage or fail to run larger projects.
 
-Note: This tutorial is only for users who burn the image by themselves. If there is a factory image in the TF card/U disk, you can skip this tutorial.
+Note: This tutorial is only for users who write the image themselves. If the microSD card or USB drive already contains the factory image, you can skip this tutorial.
 
 ### 2. Solution
 

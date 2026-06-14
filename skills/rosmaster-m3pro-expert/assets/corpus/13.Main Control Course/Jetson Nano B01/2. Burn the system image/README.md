@@ -1,10 +1,10 @@
-# Burn EMMC boot
+# Flash eMMC Boot
 
-After burning the EMMC boot, you can directly use the U disk system with the modified extlinux.conf configuration file to boot the computer, without the need to match the JetPack version of the EMMC system and the U disk system.
+After flashing the eMMC boot files, you can boot from a USB drive system by using the modified `extlinux.conf` configuration file. The JetPack version of the eMMC boot system does not need to match the JetPack version of the USB drive system.
 
-- 1. Connecting Jetson Nano B01 to a virtual machine
-- 1.1 Prepare the Jetson Nano B01 motherboard, jumper caps, display, mouse and keyboard, etc.
-- 1.2 Let Jetson Nano B01 enter the system REC flashing mode.
+## 1. Connect Jetson Nano B01 to a Virtual Machine
+
+Prepare the Jetson Nano B01 mainboard, jumper caps, display, mouse, keyboard, and required cables. Then put the Jetson Nano B01 into REC flashing mode.
 
 Connect the jumper caps to the FC REC and GND pins, which are the second and third pins on the carrier board below the core board, as shown in the following figure:
 
@@ -14,35 +14,36 @@ Connect the HDMI display, mouse, and keyboard to the Jetson Nano B01, plug in th
 
 ![Picture: page 1: picture 0](_page_1_Picture_0.jpeg)
 
-Under normal circumstances, the following window will pop up after inserting the microUSB data cable. Please note that when using a virtual machine, you need to set the device to connect to the virtual machine.
+Under normal circumstances, the following window will pop up after inserting the microUSB data cable. Note that when using a virtual machine, you need to set the device to connect to the virtual machine.
 
 ![Figure: page 1: figure 2](_page_1_Figure_2.jpeg)
 
-- 2. Start burning
-- 2.1 Please transfer the Jetson_Boot_USB.tar.gz file in the document to the Ubuntu 18.04 system and open the terminal to run the decompression command.
+## 2. Flash eMMC Boot
+
+Transfer `Jetson_Boot_USB.tar.gz` from the documentation package to the Ubuntu 18.04 system. Open a terminal and extract it:
 
 ```bash
 tar xzvf Jetson_Boot_USB.tar.gz
 ```
 
-- 2.2. After decompression, enter the Jetson_Boot_USB folder, then
+After extraction, enter the `Jetson_Boot_USB` folder and list its contents:
 
 ```bash
 cd Jetson_Boot_USB/
 ls
 ```
 
-- 2.3. Run the following command to burn the EMMC boot file.
+Run the following command to flash the eMMC boot file:
 
 ```
 sudo ./flash.sh -r jetson-nano-devkit-emmc mmcblk0p1
 ```
 
-- 2.4. Finally, wait for the file to be burned into the EMMC. If successful, it will prompt **"The target t210ref has been flashed successfully. Reset the board to boot from internal eMMC."**
+Wait for the file to be flashed to eMMC. If the process succeeds, the terminal prints **"The target t210ref has been flashed successfully. Reset the board to boot from internal eMMC."**
 
-If an error message appears, please confirm whether the Jetson Nano B01 is connected properly and enter the flashing mode, and then reconnect according to the first step.
+If an error appears, confirm that the Jetson Nano B01 is connected correctly and is in flashing mode, then reconnect it and repeat the first step.
 
-**After the burning is complete, please remove the jumper cap of Jetson Nano B01, insert the USB drive, and restart the computer**.
+After flashing is complete, remove the Jetson Nano B01 jumper cap, insert the USB drive, and restart the board.
 
 Note: If you are using the virtual machine provided in the Yahboom Intelligent Materials, which already contains the Jetson_Boot_USB file, you do not need to import it into the system again.
 
@@ -50,57 +51,55 @@ Virtual machine username: yahboom
 
 Password: yahboom
 
-## Burn USB system
+## Write USB System Image
 
-The system in the U disk needs to use Win32DiskImager to burn the system.
+Use Win32DiskImager to write the USB drive system image.
 
 ### 1. Prepare for installation
 
-The process of burning the USB disk system is the same as that of burning the TF card system.
+The process for writing a USB drive image is the same as writing a microSD card image.
 
-- 1. Prepare a Windows 10 computer and a USB flash drive (32GB or larger is recommended). This step of burning the USB flash drive does not require the Jetson Nano B01.
-- 2. Download the image (it is recommended to download the system with Yahboom configured environment)
+1. Prepare a Windows 10 computer and a USB drive. A 32GB or larger drive is recommended. The Jetson Nano B01 is not required for this step.
+2. Download the image. The Yahboom-configured system image is recommended.
 
-Since the system configuration information in the USB disk needs to be modified, please download the USB disk system image provided by yahboom.
+Because the USB drive system configuration must be modified, use the USB drive system image provided by Yahboom.
 
 Do not download the official NVIDIA image, as it may fail to boot due to configuration issues.
 
-The default system username configured by yahboom is: jetson, and the password is: yahboom
+The default Yahboom-configured system username is `jetson`, and the password is `yahboom`.
 
-- 3. Format SD card
+3. Format the USB drive.
 
-Use SDFormatter to format the USB drive. Be careful not to select the wrong Drive, otherwise it will cause unnecessary trouble. If the USB drive has already been burned with the system, the first formatting may fail. Just try it again.
+Use SD Formatter to format the USB drive. Be careful not to select the wrong drive. If the USB drive already contains a system image, the first formatting attempt may fail; run the format operation again.
 
 ![Picture: page 4: picture 0](_page_4_Picture_0.jpeg)
 
-### 2. Burn the USB system
+### 2. Write the USB System Image
 
-- 1. Unzip the downloaded system compressed file to get the img image file
-- 2. Insert the USB drive into the computer's USB port
-- 3. Unzip and run the Win32DiskImager tool
-- 4. Select the img (image) file in the software, select the drive letter of the USB flash drive under "Device", and then select "Write" and then start burning the system. The burning process will be fast or slow depending on the speed of your USB flash drive.
+1. Extract the downloaded system archive to obtain the `.img` image file.
+2. Insert the USB drive into the computer's USB port.
+3. Extract and run Win32DiskImager.
+4. In Win32DiskImager, select the `.img` file, choose the USB drive letter under `Device`, then click `Write`. The writing speed depends on the USB drive speed.
 
 ![Figure: page 4: figure 6](_page_4_Figure_6.jpeg)
 
-- 5. After the burning is completed, a completion dialog box will pop up, indicating that the installation is complete. If it is unsuccessful, please disable the firewall and other software, and reinsert the USB drive to burn. Please note that after the installation, the USB drive will be divided into multiple partitions in Windows and cannot be accessed. This is normal because the disk
+5. When writing is complete, a completion dialog appears. If writing fails, disable firewall or security software, reinsert the USB drive, and write the image again. After writing, Windows may show multiple inaccessible partitions on the USB drive. This is normal because Windows cannot read the Linux partitions.
 
-partitions in Linux cannot be seen in Windows!
+At this point, the USB drive system image has been written successfully. Windows may prompt you to format a partition because it cannot recognize it. **Do not format it.** Click `Cancel`, eject the USB drive, and insert it into the Jetson Nano B01 USB port.
 
-At this point, the USB flash drive system has been successfully burned into the Jetson Nano B01. After the system is successfully burned, it may prompt you to format the partition because it cannot recognize the partition. **Do not format it at this time! Do not format it! Do not format it!** Click Cancel, then eject the USB flash drive and finally insert the USB flash drive into the USB port on the Jetson Nano B01 motherboard.
+### 3. If the System Cannot Start After Writing the USB Drive Image
 
-### 3. If the system cannot start after burning the USB flash drive, the solution
-
-- 1. Insert the U disk into the virtual machine, open the U disk in the virtual machine, open the terminal in the U disk interface, and enter the following command
+Insert the USB drive into the virtual machine, open the USB drive in the virtual machine, open a terminal in the USB drive directory, and run:
 
 ```bash
 cd boot/extlinux
 sudo gedit extlinux.conf
 ```
 
-Change "root=/dev/mmcblk0p1" to "root=/dev/sda1"
+Change `root=/dev/mmcblk0p1` to `root=/dev/sda1`.
 
 ![Picture: page 5: picture 6](_page_5_Picture_6.jpeg)
 
-**mmcblk0p1: SD card boot sda1: USB boot** Save and exit, insert the USB into Jetson Nano B01, and boot it.
+`mmcblk0p1` means SD-card boot, and `sda1` means USB boot. Save and exit, insert the USB drive into the Jetson Nano B01, and boot it.
 
-**[If the above methods still don't solve the problem:](https://blog.csdn.net/propor/article/details/127966228)** Reference link: https://blog.csdn.net/propo r/article/details/127966228
+If the steps above do not solve the problem, see this reference: <https://blog.csdn.net/propor/article/details/127966228>

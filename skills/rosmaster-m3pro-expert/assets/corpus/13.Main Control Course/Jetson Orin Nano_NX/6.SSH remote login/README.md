@@ -52,7 +52,7 @@ Find the MobaXterm icon on the desktop and open it:
 
 Select Session -> SSH: Fill in the remote device IP and username
 
-Default information of Jetson motherboard:
+Default information of Jetson mainboard:
 
 Username: jetson Password: yahboom
 

@@ -52,7 +52,7 @@ Turn on remote login:
 
 ### 2.2. Fixed remote password
 
-You can perform VNC remote control by completing the above settings, but the access password of the Jetson motherboard will change every time it restarts. The fixed password needs to be operated as follows!
+You can perform VNC remote control by completing the above settings, but the access password of the Jetson mainboard will change every time it restarts. The fixed password needs to be operated as follows!
 
 #### Passwords and Keys
 
@@ -76,7 +76,7 @@ Set an empty key: Submit without filling in any content
 
 ### 2.3. Start VNC automatically after booting
 
-After completing the above operations, the Jetson motherboard cannot be remotely accessed by VNC after the screen is locked. We can follow the following operations to solve the remote problem of locked screen.
+After completing the above operations, the Jetson mainboard cannot be remotely accessed by VNC after the screen is locked. We can follow the following operations to solve the remote problem of locked screen.
 
 #### Desktop extension manager
 
@@ -112,11 +112,11 @@ Restart the system: open Extension Manager to enable the corresponding function 
 
 ## 3. VNC remote control
 
-VNC Viewer input motherboard IP:
+VNC Viewer input mainboard IP:
 
 ![Figure: page 12: figure 3](_page_12_Figure_3.jpeg)
 
-Fill in the motherboard system password:
+Fill in the mainboard system password:
 
 ![Figure: page 13: figure 0](_page_13_Figure_0.jpeg)
 

@@ -1,15 +1,15 @@
-# Tutorial on how to re-burn a burned image
+# Re-Write an Existing Memory Card or USB Drive
 
-This tutorial is for re-burning a previously burned image on a memory card or USB drive that is no longer recognized by the computer. This **is usually caused by Windows 7 not being able to recognize the burned Ubuntu system drive. Windows 10 can use SDformat to format the drive.**
+This lesson explains how to prepare a memory card or USB drive that already contains a Linux system image but is no longer recognized correctly by the computer. This usually happens because Windows cannot recognize the Ubuntu system partitions. Windows 10 can use SD Formatter to format the drive.
 
-## 1. Check whether the memory card or USB drive is recognized.
+## 1. Check Whether the Drive Is Recognized
 
-Insert the memory card or USB drive into the computer, right-click the computer and select "Manage", select Disk Management, and find out if there is a removable disk with the size of the memory card or USB drive.
+Insert the memory card or USB drive into the computer. Right-click `This PC`, select `Manage`, open Disk Management, and check whether a removable disk with the expected capacity appears.
 
 ![Figure: page 0: figure 4](_page_0_Figure_4.jpeg)
 
-## 2. Delete partition
+## 2. Delete Partitions
 
-You can use Partition Assistant to delete all partitions on the memory card or USB drive, which are about 10 or so, and then format the disk. This way, the drive letters can be recognized again by the two software, and the image can be reburned. (You can also use Disk Management to select all partitions. Note that you should not only delete the partitions below, but also delete the extra small partitions in the list above. After deleting, create a new partition and format it as FAT32 so that the drive letter can be correctly recognized.)
+Use Partition Assistant to delete all partitions on the memory card or USB drive, then format the disk. This lets the drive letter be recognized again so the image can be written again. You can also use Disk Management, but delete all partitions, including the small partitions shown in the upper list. After deletion, create a new partition and format it as FAT32 so the drive letter is recognized correctly.
 
-Finally, follow the steps of burning the image to re-burn the image.
+Finally, follow the system-image writing steps again.
